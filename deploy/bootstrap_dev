@@ -4,9 +4,13 @@ if [[ ${0} != "deploy/bootstrap_dev" ]]; then
     exit 1;
 fi;
 
-virtualenv --distribute --no-site-packages env || virtualenv --no-site-packages env
+mkdir media static
 
+virtualenv --distribute --no-site-packages env || virtualenv --no-site-packages env
 source env/bin/activate
 pip install -r deploy/requirements.txt
 
 touch projecttemplate/settings/local.py
+
+SECRET_KEY=$(python -c 'from random import choice;print "".join([choice("abcdefghijklmnopqrstuvwxyz0123456789%^&*(-_=+)") for i in range(50)])')
+sed -i '' -e "s/SECRET_KEY = .*/SECRET_KEY = $SECRET_KEY" projecttemplate/settings/base.py
