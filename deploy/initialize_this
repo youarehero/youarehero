@@ -29,4 +29,3 @@ git rm deploy/initialize_this
 
 git commit -a -m "initialized project as $project_name"
 echo "Initialized project $project_name"
-
