@@ -4,7 +4,7 @@ if [[ ${0} != "deploy/bootstrap_dev" ]]; then
     exit 1;
 fi;
 
-VIRTUALENV="env"
+VIRTUAL_ENV="env"
 
 mkdir media static coverage
 
@@ -12,9 +12,9 @@ virtualenv --distribute --no-site-packages $VIRTUAL_ENV || virtualenv --no-site-
 
 echo "export DJANGO_SETTINGS_MODULE=settings.dev" >> $VIRTUAL_ENV/bin/postactivate
 echo "unset DJANGO_SETTINGS_MODULE" >> $VIRTUAL_ENV/bin/postdeactivate
-source $VIRTUALENV/bin/activate
+source $VIRTUAL_ENV/bin/activate
 
-add2virtualenv src
+add2virtualenv "$(pwd)/src"
 
 pip install -r deploy/requirements.txt
 
