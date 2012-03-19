@@ -16,8 +16,13 @@ source $VIRTUAL_ENV/bin/activate
 
 add2virtualenv "$(pwd)/src"
 
-pip install -r deploy/requirements.txt
+for dir in env/lib/*/site-packages/; do
+    if [[ ! -f $dir/projecttemplate.pth ]]; then
+        echo "$(pwd)/src" > $dir/projecttemplate.pth
+    fi
+done;
 
+pip install -r deploy/requirements.txt
 
 if [[ ! -f src/projecttemplate/settings/local.py ]]; then
     echo "from devel import *" >> src/projecttemplate/settings/local.py
