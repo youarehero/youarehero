@@ -1,0 +1,17 @@
+*/.idea
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.sqlite
+*/settings/local.py
+deploy/configs/hosts/*/*
+*/media/*
+*/static/*
+vm/*
+!vm/Vagrantfile
+!vm/manifests/*
+media/*
+static/*
+env/*
+docs/_build/*
