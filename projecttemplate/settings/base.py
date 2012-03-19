@@ -131,11 +131,30 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+PROJECT_APPS = (
+    # project specific installed apps
+)
+
+INSTALLED_APPS += PROJECT_APPS
+
+TEST_RUNNER = 'test_runner.ProjectCoverageRunner'
+
+COVERAGE_MODULE_EXCLUDES = [
+    'tests$', 'settings$', 'urls$', 'locale$',
+    'migrations', 'fixtures', 'admin$',
+]
+
+COVERAGE_MODULE_EXCLUDES += PREREQ_APPS
+
+COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(PROJECT_ROOT, "coverage")
+
+HTML_OUTPUT_DIR = os.path.join(PROJECT_ROOT, "coverage")
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
