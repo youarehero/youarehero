@@ -10,22 +10,22 @@ if [[ -z ${project_name} ]]; then
     exit 1
 fi
 
-if [[ ! -d projecttemplate ]]; then
+if [[ ! -d src/projecttemplate ]]; then
     echo "This project has already been customized, aborting";
     exit 1
 fi
 
 sed -i '' -e 's/url = .*/url = DEFINE_GIT_URL_IN_GIT_CONFIG/' .git/config
 
-for file in manage.py projecttemplate/settings/base.py projecttemplate/urls.py projecttemplate/wsgi.py deploy/bootstrap_dev docs/index.rst docs/conf.py docs/Makefile docs/make.bat; 
+for file in src/manage.py src/projecttemplate/settings/base.py src/projecttemplate/urls.py src/projecttemplate/wsgi.py deploy/bootstrap_dev docs/index.rst docs/conf.py docs/Makefile docs/make.bat; 
     do sed -i '' -e "s/projecttemplate/$project_name/g" $file;
 done;
 
 SECRET_KEY=$(python -c 'from random import choice; import sys; sys.stdout.write("".join([choice("abcdefghijklmnopqrstuvwxyz0123456789%^&*(-_=+)") for i in range(50)]))')
-echo "SECRET_KEY = '$SECRET_KEY'" >> projecttemplate/settings/base.py
+echo "SECRET_KEY = '$SECRET_KEY'" >> src/projecttemplate/settings/base.py
 
 
-git mv projecttemplate $project_name
+git mv src/projecttemplate src/$project_name
 git rm deploy/initialize_this
 
 git commit -a -m "initialized project as $project_name"
