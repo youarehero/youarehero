@@ -17,8 +17,12 @@ fi
 
 sed -i '' -e 's/url = .*/url = DEFINE_GIT_URL_IN_GIT_CONFIG/' .git/config
 
-for file in manage.py projecttemplate/settings/base.py projecttemplate/urls.py projecttemplate/wsgi.py; 
+for file in manage.py projecttemplate/settings/base.py projecttemplate/urls.py projecttemplate/wsgi.py deploy/bootstrap_dev; 
     do sed -i '' -e "s/projecttemplate/$project_name/g" $file;
 done;
 
 mv projecttemplate $project_name
+
+rm deploy/initialize_this
+
+git commit -a -m "initialized project as $project_name"
