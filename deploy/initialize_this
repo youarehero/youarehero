@@ -1,0 +1,26 @@
+#!/bin/bash
+if [[ ${0} != "deploy/initialize_this" ]]; then
+    echo "only call this from within the source root of a template project"
+    exit 1;
+fi;
+project_name=$1
+
+if [[ -z ${project_name} ]]; then
+    echo "Usage: $0 project_name"
+    exit 1
+fi
+
+if [[ ! -d projecttemplate ]]; then
+    echo "This project has already been customized ... aborting";
+    exit 1
+fi
+
+cd $project_name
+
+sed -i '' -e 's/url = .*/url = DEFINE_GIT_URL_IN_GIT_CONFIG/' .git/config
+
+for file in manage.py projecttemplate/settings/base.py projecttemplate/urls.py projecttemplate/wsgi.py; 
+    do sed -i '' -e "s/projecttemplate/$project_name/g" $file;
+done;
+
+mv projecttemplate $project_name
