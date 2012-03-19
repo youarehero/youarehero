@@ -138,7 +138,7 @@ PROJECT_APPS = (
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
 
-TEST_RUNNER = 'test_runner.ProjectCoverageRunner'
+TEST_RUNNER = 'projecttemplate.test_runner.ProjectTestRunner'
 
 COVERAGE_MODULE_EXCLUDES = [
     'tests$', 'settings$', 'urls$', 'locale$',
