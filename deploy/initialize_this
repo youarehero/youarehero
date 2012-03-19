@@ -21,7 +21,7 @@ for file in manage.py projecttemplate/settings/base.py projecttemplate/urls.py p
     do sed -i '' -e "s/projecttemplate/$project_name/g" $file;
 done;
 
-SECRET_KEY=$(python -c 'from random import choice;print "".join([choice("abcdefghijklmnopqrstuvwxyz0123456789%^&*(-_=+)") for i in range(50)])')
+SECRET_KEY=$(python -c 'from random import choice;print "".join([choice("abcdefghijklmnopqrstuvwxyz0123456789%^&*(-_=+)") for i in range(50)]),')
 sed -i '' -e "s/SECRET_KEY = .*/SECRET_KEY = $SECRET_KEY" projecttemplate/settings/base.py
 
 git mv projecttemplate $project_name
