@@ -17,7 +17,7 @@ fi
 
 sed -i '' -e 's/url = .*/url = DEFINE_GIT_URL_IN_GIT_CONFIG/' .git/config
 
-for file in src/manage.py src/projecttemplate/settings/base.py src/projecttemplate/urls.py src/projecttemplate/wsgi.py deploy/bootstrap_dev docs/index.rst docs/conf.py docs/Makefile docs/make.bat; 
+for file in .gitignore src/manage.py src/projecttemplate/settings/base.py src/projecttemplate/urls.py src/projecttemplate/wsgi.py deploy/bootstrap_dev docs/index.rst docs/conf.py docs/Makefile docs/make.bat; 
     do sed -i '' -e "s/projecttemplate/$project_name/g" $file;
 done;
 
