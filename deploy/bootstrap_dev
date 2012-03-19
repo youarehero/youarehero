@@ -14,8 +14,6 @@ echo "export DJANGO_SETTINGS_MODULE=settings.dev" >> $VIRTUAL_ENV/bin/postactiva
 echo "unset DJANGO_SETTINGS_MODULE" >> $VIRTUAL_ENV/bin/postdeactivate
 source $VIRTUAL_ENV/bin/activate
 
-add2virtualenv "$(pwd)/src"
-
 for dir in env/lib/*/site-packages/; do
     if [[ ! -f $dir/projecttemplate.pth ]]; then
         echo "$(pwd)/src" > $dir/projecttemplate.pth
