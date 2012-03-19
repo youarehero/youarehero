@@ -1,1 +1,8 @@
-http://www.djangoproject.com/download/1.4-rc-1/tarball/#egg=django
+http://www.djangoproject.com/download/1.4-rc-2/tarball/#egg=django
+Fabric==1.4.0
+South==0.7.3
+distribute==0.6.24
+django-extensions==0.8
+pycrypto==2.5
+ssh==1.7.13
+wsgiref==0.1.2
