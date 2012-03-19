@@ -1,4 +1,5 @@
 #!/bin/bash
+template_url=https://template:template@git.ampad.de/django_template
 
 project_name=$1
 
@@ -7,13 +8,14 @@ if [[ -z $project_name ]]; then
     exit 1
 fi
 
-git clone --depth 1 https://template:template@git.ampad.de/var/git/django_template $project_name || echo "Error while checking out project template" && exit 1;
+if [[ -d $project_name ]]; then
+    echo "Project folder already exists";
+    exit 1
+fi
+
+GIT_SSL_NO_VERIFY=true git clone $template_url $project_name || (echo "Error while checking out project template" && exit 1);
 
 if [[ ! -d $project_name ]]; then
     echo "Unable to cd into project folder";
     exit 1
 fi
-
-cd $project_name
-
-#sed -i .git/config/
