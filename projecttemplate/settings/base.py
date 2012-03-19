@@ -118,7 +118,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-INSTALLED_APPS = (
+PREREQ_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -139,7 +139,7 @@ PROJECT_APPS = (
     # project specific installed apps
 )
 
-INSTALLED_APPS += PROJECT_APPS
+INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
 
 TEST_RUNNER = 'test_runner.ProjectCoverageRunner'
 
