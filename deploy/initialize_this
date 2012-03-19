@@ -11,11 +11,9 @@ if [[ -z ${project_name} ]]; then
 fi
 
 if [[ ! -d projecttemplate ]]; then
-    echo "This project has already been customized ... aborting";
+    echo "This project has already been customized, aborting";
     exit 1
 fi
-
-cd $project_name
 
 sed -i '' -e 's/url = .*/url = DEFINE_GIT_URL_IN_GIT_CONFIG/' .git/config
 
