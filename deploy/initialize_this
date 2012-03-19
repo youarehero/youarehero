@@ -21,8 +21,8 @@ for file in manage.py projecttemplate/settings/base.py projecttemplate/urls.py p
     do sed -i '' -e "s/projecttemplate/$project_name/g" $file;
 done;
 
-mv projecttemplate $project_name
+git mv projecttemplate $project_name
 
-rm deploy/initialize_this
+git rm deploy/initialize_this
 
 git commit -a -m "initialized project as $project_name"

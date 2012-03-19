@@ -1,0 +1,12 @@
+#!/bin/bash
+if [[ ${0} != "deploy/bootstrap_dev" ]]; then
+    echo "only call this from within the source root of a template project"
+    exit 1;
+fi;
+
+virtualenv --distribute --no-site-packages env || virtualenv --no-site-packages env
+
+source env/bin/activate
+pip install -r deploy/requirements.txt
+
+touch projecttemplate/settings/local.py
