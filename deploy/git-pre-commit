@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+exec 1>&2
+
+if [ -r "$GIT_DIR/../env/bin/activate" ] && [ -r "$GIT_DIR/../src/manage.py" ]; then
+source $GIT_DIR/../env/bin/activate && cd $GIT_DIR/../src && ./manage.py test --failfast;
+fi;

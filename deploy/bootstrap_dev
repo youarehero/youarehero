@@ -6,6 +6,10 @@ fi;
 
 VIRTUAL_ENV="env"
 
+if [[ ! -x .git/hooks/pre-commit-hook ]]; then
+    cp deploy/hooks/git-pre-commit .git/hooks && chmod +x .git/hooks/pre-commit
+fi;
+
 mkdir media static coverage
 
 if [[ ! -d $VIRTUAL_ENV ]]; then
