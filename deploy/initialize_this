@@ -17,7 +17,7 @@ fi
 
 sed -i '' -e 's/url = .*/url = DEFINE_GIT_URL_IN_GIT_CONFIG/' .git/config
 
-for file in .gitignore src/manage.py src/projecttemplate/settings/base.py src/projecttemplate/urls.py src/projecttemplate/wsgi.py deploy/bootstrap_dev docs/index.rst docs/conf.py docs/Makefile docs/make.bat; 
+for file in .gitignore src/manage.py src/projecttemplate/settings/base.py src/projecttemplate/urls.py src/projecttemplate/wsgi.py deploy/bootstrap_dev docs/index.rst docs/conf.py docs/Makefile docs/make.bat deploy/dot_idea/* deploy/dot_idea/.name; 
     do sed -i '' -e "s/projecttemplate/$project_name/g" $file;
 done;
 
@@ -26,6 +26,7 @@ echo "SECRET_KEY = '$SECRET_KEY'" >> src/projecttemplate/settings/base.py
 
 
 git mv src/projecttemplate src/$project_name
+git mv deploy/dot_idea/projecttemplate.iml deploy/dot_idea/$project_name.iml
 git rm deploy/initialize_this
 
 git commit -a -m "initialized project as $project_name"

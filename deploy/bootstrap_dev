@@ -21,6 +21,11 @@ if [[ ! -d $VIRTUAL_ENV ]]; then
     done;
 fi;
 
+if [[ ! -d .idea ]]; then
+    cp -r deploy/dot_idea .idea;
+fi;
+
+
 pip install -r deploy/requirements.txt
 
 if [[ ! -f src/projecttemplate/settings/local.py ]]; then
