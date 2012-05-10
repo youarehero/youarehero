@@ -1,9 +1,9 @@
-.. projecttemplate documentation master file, created by
+.. youarehero documentation master file, created by
    sphinx-quickstart on Mon Mar 19 11:59:21 2012.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to projecttemplate's documentation!
+Welcome to youarehero's documentation!
 ===========================================
 
 Contents:

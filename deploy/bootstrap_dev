@@ -11,12 +11,12 @@ mkdir media static coverage
 if [[ ! -d $VIRTUAL_ENV ]]; then
     virtualenv --distribute --no-site-packages $VIRTUAL_ENV || virtualenv --no-site-packages $VIRTUAL_ENV 
 
-    echo "export DJANGO_SETTINGS_MODULE=projecttemplate.settings.local" >> $VIRTUAL_ENV/bin/activate
+    echo "export DJANGO_SETTINGS_MODULE=youarehero.settings.local" >> $VIRTUAL_ENV/bin/activate
     source $VIRTUAL_ENV/bin/activate
 
     for dir in env/lib/*/site-packages/; do
-        if [[ ! -f $dir/projecttemplate.pth ]]; then
-            echo "$(pwd)/src" > $dir/projecttemplate.pth
+        if [[ ! -f $dir/youarehero.pth ]]; then
+            echo "$(pwd)/src" > $dir/youarehero.pth
         fi
     done;
 fi;
@@ -28,6 +28,6 @@ fi;
 
 pip install -r deploy/requirements.txt
 
-if [[ ! -f src/projecttemplate/settings/local.py ]]; then
-    echo "from devel import *" >> src/projecttemplate/settings/local.py
+if [[ ! -f src/youarehero/settings/local.py ]]; then
+    echo "from devel import *" >> src/youarehero/settings/local.py
 fi

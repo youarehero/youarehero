@@ -1,4 +1,4 @@
-# Django settings for projecttemplate project.
+# Django settings for youarehero project.
 
 import os
 import sys
@@ -104,10 +104,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'projecttemplate.urls'
+ROOT_URLCONF = 'youarehero.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'projecttemplate.wsgi.application'
+WSGI_APPLICATION = 'youarehero.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -138,7 +138,7 @@ PROJECT_APPS = (
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
 
-TEST_RUNNER = 'projecttemplate.test_runner.ProjectTestRunner'
+TEST_RUNNER = 'youarehero.test_runner.ProjectTestRunner'
 
 COVERAGE_MODULE_EXCLUDES = [
     'tests$', 'settings$', 'urls$', 'locale$',
@@ -181,3 +181,4 @@ LOGGING = {
 }
 
 # Make this unique, and don't share it with anybody.
+SECRET_KEY = 'd61xtu1&-efpp(ym-oy6h+3rk^m_l0(5qqw=(3h7u^a(p+ofp9'

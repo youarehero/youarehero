@@ -5,7 +5,7 @@ build/*
 *.swp
 *.swo
 *.sqlite
-src/projecttemplate/settings/local.py
+src/youarehero/settings/local.py
 deploy/configs/hosts/*/*
 */media/*
 */static/*
