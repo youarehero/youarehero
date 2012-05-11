@@ -67,6 +67,12 @@ class Quest(models.Model):
     def get_absolute_url(self):
         return reverse("quest-detail", args=(self.pk,))
 
+    #@property
+    def needs_heroes(self):
+        if self.heroes.count() < self.max_heroes:
+            return True
+        return False
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     experience = models.PositiveIntegerField(default=0)

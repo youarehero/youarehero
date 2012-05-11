@@ -6,7 +6,7 @@
         <p>Diese Herausforderung braucht noch Helden.</p>
         <form action="{% url adventure-update quest.id %}" method="post">
             {% csrf_token %}
-            <input type="submit" name="apply" value="Quest annehmen"/>
+            <input type="submit" name="apply" class="btn btn-primary btn-large" value="Quest annehmen"/>
         </form>
     {% endif %}
 {%  endblock %}
