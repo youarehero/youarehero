@@ -55,6 +55,12 @@
         </div>
     </div>
 </div>
+{% if request.user.is_authenticated %}
+    User: {{ request.user.username }}
+    <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
+{% else %}
+    User: anonym. <a href="{% url django.contrib.auth.views.login %}">Login</a>
+{% endif %}
 
 <div class="container-fluid">
     {% if requst.messages %}

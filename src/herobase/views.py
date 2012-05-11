@@ -52,7 +52,7 @@ class QuestDetailView(DetailView):
 @login_required
 def hero_home_view(request):
     hero = request.user
-    return render(request, 'herobase/home.html',
+    return render(request, 'herobase/hero_home.html',
             {'hero': hero,
              'profile': hero.get_profile(),
              'active_quests': hero.quests.exclude(state=Quest.STATE_DONE).order_by('-created'),
