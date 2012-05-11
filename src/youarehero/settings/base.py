@@ -1,4 +1,5 @@
 # Django settings for youarehero project.
+from django.core.urlresolvers import reverse_lazy
 
 import os
 import sys
@@ -139,8 +140,14 @@ PREREQ_APPS = (
     'south',
     'django_extensions',
     'south',
+    'registration',
     'crispy_forms',
     )
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+
+LOGIN_REDIRECT_URL = reverse_lazy('hero-home')
 
 PROJECT_APPS = (
     'herobase',

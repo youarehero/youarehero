@@ -1,0 +1,12 @@
+{% load i18n %}
+<div class="quest-detail">
+    <h1>Quest: {{ quest.title }}</h1>
+    <p>{{ quest.description }}</p>
+    <h2>Details</h2>
+    <ul>
+        <li>{% trans "location" %}: {{ quest.location }}</li>
+        <li>{% trans "level" %}: {{ quest.level }}</li>
+        <li>{% trans "experience" %}: {{ quest.experience }}</li>
+        <li>{% trans "class" %}: {{ quest.get_hero_class_display }}</li>
+    </ul>
+</div>

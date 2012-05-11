@@ -1,0 +1,16 @@
+{% extends "herobase/base.html" %}
+{% block content %}
+    {% include "herobase/quest/description.html" %}
+
+    <h2>Dies ist deine Quest!</h2>
+    {% if quest.heroes.any %}
+        Die Folgenden Helden moechten dir helfen:
+        <ul>
+            {% for user in quest.heroes.all %}
+                {{ user.username }}
+            {% endfor %}
+        </ul>
+    {% else %}
+        Leider hilft Dir noch niemand.
+    {% endif %}
+{%  endblock %}

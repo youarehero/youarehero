@@ -1,0 +1,12 @@
+{% extends "herobase/base.html" %}
+{% block content %}
+    {% include "herobase/quest/description.html" %}
+    {% if quest.needs_heroes %}
+        <h2>Nimm diese Quest an!</h2>
+        <p>Diese Herausforderung braucht noch Helden.</p>
+        <form action="{% url adventure-update quest.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" name="apply" value="Quest annehmen"/>
+        </form>
+    {% endif %}
+{%  endblock %}
