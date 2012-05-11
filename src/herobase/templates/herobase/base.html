@@ -40,39 +40,50 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="{% url home %}">You Are Hero</a>
-            <div class="nav-collapse">
-                <ul class="nav">
-                    <li><a href="{% url quest-create %}">Create Quest</a></li>
-                    <li><a href="{% url quest-list %}">Show Quests</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
+            <a class="brand" href="{% url hero-home %}">You Are Hero</a>
+            <ul class="nav">
+                <li><a href="{% url quest-create %}">Create Quest</a></li>
+                <li><a href="{% url quest-list %}">Show Quests</a></li>
+            </ul>
+            <ul class="nav pull-right">
+                {% if request.user.is_authenticated %}
+                    <li class="dropdown">
+                        <a href="#"
+                           class="dropdown-toggle"
+                           data-toggle="dropdown">
+                            {{ request.user.username }}
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url django.contrib.auth.views.login %}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
     </div>
 </div>
-{% if request.user.is_authenticated %}
-    User: {{ request.user.username }}
-    <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
-{% else %}
-    User: anonym. <a href="{% url django.contrib.auth.views.login %}">Login</a>
-{% endif %}
+
 
 <div class="container-fluid">
     {% if requst.messages %}
-        <ul>
+        <div id="messages">
             {% for message in request.messages %}
-                <li>{{ request.message }}</li>
+                <div class="alert">
+                    <a class="close" data-dismiss="alert" href="#">×</a>
+                    {{ request.message }}
+                </div>
             {% endfor %}
-        </ul>
+        </div>
     {% endif %}
     {% block content %}
     {% endblock %}
 </div> <!-- /container -->
+
 
 <!-- Le javascript
 ================================================== -->
