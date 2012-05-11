@@ -70,12 +70,12 @@
 
 
 <div class="container-fluid">
-    {% if requst.messages %}
+    {% if messages %}
         <div id="messages">
-            {% for message in request.messages %}
-                <div class="alert">
+            {% for message in messages %}
+                <div class="alert {% if message.tags %} alert-{{message.tags}} {% endif %}">
                     <a class="close" data-dismiss="alert" href="#">×</a>
-                    {{ request.message }}
+                    {{ message }}
                 </div>
             {% endfor %}
         </div>

@@ -1,4 +1,5 @@
 # Create your views here.
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
@@ -66,7 +67,8 @@ def hero_home_view(request):
 def adventure_update(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
     if quest.author == request.user:
-        message = 'you are the author'
+        messages.error(request, 'You are the author.')
+        return render(request, 'herobase/quest/detail_for_author.html', {'quest': quest})
     else: #hero
-        message = 'you are a hero'
-    return render(request, 'herobase/quest/adventure_update.html', {'quest': quest, 'message': message})
+        messages.success(request, 'You are a hero!')
+    return render(request, 'herobase/quest/adventure_update.html', {'quest': quest})
