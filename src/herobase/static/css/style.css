@@ -6,14 +6,17 @@
 .quest-list-item .content {
     padding: 18%;
     height: 300px;
+
 }
 
 a.text {
     text-decoration: none;
     color: #232566;
+
 }
 
 .quest-list-item .content p, .quest-list-item .content h2 {
     font-family: 'Coming Soon', cursive;
-    text-shadow: 0 0 1px #A28D5B;;
+    text-shadow: 0 0 1px #A28D5B;
+
 }
