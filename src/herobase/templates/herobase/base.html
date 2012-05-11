@@ -57,6 +57,13 @@
 </div>
 
 <div class="container-fluid">
+    {% if requst.messages %}
+        <ul>
+            {% for message in request.messages %}
+                <li>{{ request.message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     {% block content %}
     {% endblock %}
 </div> <!-- /container -->
