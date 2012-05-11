@@ -12,7 +12,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from herobase.forms import QuestCreateForm
-from herobase.models import Quest
+from herobase.models import Quest, Adventure
 
 
 class QuestListView(ListView):
@@ -65,6 +65,11 @@ def adventure_update(request, quest_id):
     if quest.author == request.user:
         messages.error(request, 'You are the author.')
         return render(request, 'herobase/quest/detail_for_author.html', {'quest': quest})
-    else: #hero
+    elif request.user in User.objects.filter(quests=quest):
+        messages.info(request, 'You are already applying for the quest "%s".' % quest.title)
+        return render(request, 'herobase/quest/detail_for_hero.html', {'quest': quest})
+    else: #hero not assigned yet
+        adventure = Adventure.objects.create(user=request.user, quest=quest, state=Adventure.STATE_APPLIED)
+        adventure.save()
         messages.success(request, 'You are a hero!')
     return render(request, 'herobase/quest/adventure_update.html', {'quest': quest})

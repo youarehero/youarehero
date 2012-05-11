@@ -69,7 +69,7 @@ class Quest(models.Model):
 
     #@property
     def needs_heroes(self):
-        if self.heroes.count() < self.max_heroes:
+        if self.heroes.filter(adventures__state=Adventure.STATE_ASSIGNED).count() < self.max_heroes:
             return True
         return False
 

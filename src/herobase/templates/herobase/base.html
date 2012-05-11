@@ -42,8 +42,8 @@
         <div class="container-fluid">
             <a class="brand" href="{% url hero-home %}">You Are Hero</a>
             <ul class="nav">
-                <li><a href="{% url quest-create %}">Create Quest</a></li>
-                <li><a href="{% url quest-list %}">Show Quests</a></li>
+                <li><a href="{% url quest-create %}"><i class="icon-plus-sign icon-white"></i> Create Quest</a></li>
+                <li><a href="{% url quest-list %}"><i class="icon-list icon-white"></i> Show Quests</a></li>
             </ul>
             <ul class="nav pull-right">
                 {% if request.user.is_authenticated %}
@@ -51,11 +51,15 @@
                         <a href="#"
                            class="dropdown-toggle"
                            data-toggle="dropdown">
+                            <i class="icon-user icon-white"></i>
                             {{ request.user.username }}
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
+                            <a href="#"><i class="icon-star"></i> Profil</a>
+                            <a href="#"><i class="icon-cog"></i> Einstellungen</a>
+                            <a href="#"><i class="icon-lock"></i> Sicherheit</a>
+                            <a href="{% url django.contrib.auth.views.logout %}"><i class="icon-off"></i> Logout</a>
                         </ul>
                     </li>
                 {% else %}
