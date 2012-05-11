@@ -48,8 +48,12 @@ class QuestDetailView(DetailView):
         else:
             return ['herobase/quest/detail_for_hero.html']
 
+def home_view(request):
+    if request.user.is_authenticated():
+        return hero_home_view(request)
+    return render(request, "herobase/public_home.html", {})
 
-@login_required
+
 def hero_home_view(request):
     hero = request.user
     return render(request, 'herobase/hero_home.html',
