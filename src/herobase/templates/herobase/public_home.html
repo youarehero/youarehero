@@ -1,0 +1,15 @@
+{% extends "herobase/base.html" %}
+{% block content %}
+    <h1>Welcome, unknown Hero </h1>
+    {% if open_quests %}
+        <p>The following quests are available should you choose to accept them:</p>
+        <ul>
+        {% for quest in open_quests %}
+            <li><a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no open quests right now.</p>
+    {% endif %}
+
+{%  endblock %}
