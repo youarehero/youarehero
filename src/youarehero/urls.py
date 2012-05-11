@@ -11,8 +11,7 @@ urlpatterns = patterns('',
     url(r'^quests/create$', QuestCreateView.as_view(), name='quest-create'),
     url(r'^quests/(?P<pk>\d+)$', QuestDetailView.as_view(), name='quest-detail'),
     url(r'^quests/(?P<quest_id>\d+)/adventure_update', 'herobase.views.adventure_update', name='adventure-update'),
-    url(r'^$', 'herobase.views.hero_home_view', name='hero-home'),
-
+    url(r'^$', 'herobase.views.home_view', name='home'),
     (r'^accounts/', include('registration.urls')),
 
     # Examples:

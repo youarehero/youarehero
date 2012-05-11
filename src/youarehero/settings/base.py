@@ -147,7 +147,7 @@ PREREQ_APPS = (
 ACCOUNT_ACTIVATION_DAYS = 7
 
 
-LOGIN_REDIRECT_URL = reverse_lazy('hero-home')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
 
 PROJECT_APPS = (
     'herobase',

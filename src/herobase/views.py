@@ -1,9 +1,6 @@
 # Create your views here.
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
-from django.db.models.query_utils import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
@@ -49,8 +46,12 @@ class QuestDetailView(DetailView):
         else:
             return ['herobase/quest/detail_for_hero.html']
 
+def home_view(request):
+    if request.user.is_authenticated():
+        return hero_home_view(request)
+    return render(request, "herobase/public_home.html", {'open_quests': Quest.objects.filter(state=Quest.STATE_OPEN)})
 
-@login_required
+
 def hero_home_view(request):
     hero = request.user
     return render(request, 'herobase/hero_home.html',

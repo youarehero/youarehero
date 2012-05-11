@@ -1,5 +1,17 @@
 {% extends "herobase/base.html" %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags static %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#id_due_date').datepicker();
+    });
+    </script>
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% get_static_prefix %}bootstrap/css/datepicker.css"/>
+{% endblock %}
 {% block content %}
     {% crispy form %}
 {%  endblock %}

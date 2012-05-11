@@ -6,7 +6,7 @@
             <a class='text' href="{% url quest-detail quest.id %}">
             <div class="content">
                 <h2>{{ quest.title }}</h2>
-                <p>{{ quest.description }}</p>
+                <p>{{ quest.description|truncatewords:40 }}{% if quest.description|wordcount > 40 %}...{% endif %}</p>
             </div>
         </a>
         </div>
