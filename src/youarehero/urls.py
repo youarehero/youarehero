@@ -2,9 +2,15 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from herobase.views import QuestListView, QuestDetailView, QuestCreateView
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^quests$', QuestListView.as_view(), name='quest-list'),
+    url(r'^quests/(?P<pk>\d+)$', QuestDetailView.as_view(), name='quest-detail'),
+    url(r'^quests/create$', QuestCreateView.as_view(), name='quest-create'),
+
     # Examples:
     # url(r'^$', 'youarehero.views.home', name='home'),
     # url(r'^youarehero/', include('youarehero.foo.urls')),

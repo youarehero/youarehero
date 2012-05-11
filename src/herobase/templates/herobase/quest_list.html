@@ -1,0 +1,15 @@
+{% extends "herobase/base.html" %}
+{% block content %}
+    {% for quest in quests %}
+        {% if forloop.counter0|divisibleby:3 %}<div class="row-fluid">{% endif %}
+        <div class="span4 quest-list-item">
+            <a class='text' href="{% url quest-detail quest.id %}">
+            <div class="content">
+                <h2>{{ quest.title }}</h2>
+                <p>{{ quest.description }}</p>
+            </div>
+        </a>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}</div>{% endif %}
+    {% endfor %}
+{% endblock %}
