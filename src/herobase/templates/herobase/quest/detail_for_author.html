@@ -3,7 +3,7 @@
     {% include "herobase/quest/description.html" %}
 
     <h2>Dies ist deine Quest!</h2>
-    {% if quest.heroes.any %}
+    {% if quest.heroes.exists %}
         Die Folgenden Helden moechten dir helfen:
         <ul>
             {% for user in quest.heroes.all %}

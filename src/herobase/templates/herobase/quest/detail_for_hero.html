@@ -2,7 +2,7 @@
 {% block content %}
     {% include "herobase/quest/description.html" %}
     {% if request.user in quest.heroes.all %}
-        <h2>Du nimmst an dieser Quest bereits teil.</h2>
+        <h2>Du nimmst an dieser Quest teil.</h2>
     {% elif quest.needs_heroes %}
         <h2>Nimm diese Quest an!</h2>
         <p>Diese Herausforderung braucht noch Helden.</p>
