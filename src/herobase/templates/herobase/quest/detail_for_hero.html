@@ -1,7 +1,9 @@
 {% extends "herobase/base.html" %}
 {% block content %}
     {% include "herobase/quest/description.html" %}
-    {% if quest.needs_heroes and user not in quest.heroes %}
+    {% if request.user in quest.heroes.all %}
+        <h2>Du nimmst an dieser Quest bereits teil.</h2>
+    {% elif quest.needs_heroes %}
         <h2>Nimm diese Quest an!</h2>
         <p>Diese Herausforderung braucht noch Helden.</p>
         <form action="{% url adventure-update quest.id %}" method="post">

@@ -3,18 +3,18 @@
 
     <h1>Welcome, Hero {{ hero.username }}</h1>
 
-    {% if open_quests %}
+    {% if adventures %}
     <p>The quests you are currently playing are:</p>
     <ul>
-    {% for quest in open_quests %}
-        <li><a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a></li>
+    {% for adventure in adventures %}
+        <li><a href="{{ adventure.quest.get_absolute_url }}">{{ adventure.quest.title }}</a></li>
     {% endfor %}
     {% else %}
         <p>You are not currently doing any quests</p>
     {% endif %}
 
-    {% if authored_quests %}
     </ul>
+    {% if authored_quests %}
     <p>The quests you authored are:</p>
     <ul>
     {% for quest in authored_quests  %}

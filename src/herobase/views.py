@@ -1,6 +1,7 @@
 # Create your views here.
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
@@ -18,13 +19,11 @@ class QuestListView(ListView):
     template_name = "herobase/quest/list.html"
 
 
-
 class QuestCreateView(CreateView):
     context_object_name = "quest"
     form_class = QuestCreateForm
     template_name = "herobase/quest/create.html"
     success_url = './%(id)s'
-
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -57,7 +56,7 @@ def hero_home_view(request):
     return render(request, 'herobase/hero_home.html',
             {'hero': hero,
              'profile': hero.get_profile(),
-             'active_quests': hero.quests.exclude(state=Quest.STATE_DONE).order_by('-created'),
+             'adventures': hero.adventures.order_by('-created'),
              'authored_quests': hero.authored_quests.order_by('-created')})
 
 @login_required
