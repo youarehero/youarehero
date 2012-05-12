@@ -1,4 +1,5 @@
 # Create your views here.
+from django.views.decorators.http import require_http_methods
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -59,6 +60,8 @@ def hero_home_view(request):
              'adventures': hero.adventures.order_by('-created'),
              'authored_quests': hero.authored_quests.order_by('-created')})
 
+
+@require_http_methods(["POST"])
 @login_required
 def adventure_update(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
