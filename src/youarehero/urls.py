@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^quests/(?P<pk>\d+)$', QuestDetailView.as_view(), name='quest-detail'),
     url(r'^quests/(?P<quest_id>\d+)/adventure_update', 'herobase.views.adventure_update', name='adventure-update'),
     url(r'^$', 'herobase.views.home_view', name='home'),
-    (r'^accounts/', include('registration.urls')),
+    (r'^accounts/', include('registration.backends.default.urls')),
 
     # Examples:
     # url(r'^$', 'youarehero.views.home', name='home'),
@@ -27,7 +27,7 @@ urlpatterns = patterns('',
 
 from django.conf import settings
 if settings.DEBUG:
-    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    #noinspection PyAugmentAssignment
     urlpatterns = patterns('',
         url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.STATIC_ROOT,

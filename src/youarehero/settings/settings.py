@@ -2,7 +2,6 @@
 from django.core.urlresolvers import reverse_lazy
 
 import os
-import sys
 
 settings_dir = os.path.dirname(__file__)
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(settings_dir), '../../'))
@@ -125,7 +124,7 @@ TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
                                'django.core.context_processors.request',
     )
 
-PREREQ_APPS = (
+INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -142,19 +141,19 @@ PREREQ_APPS = (
     'south',
     'registration',
     'crispy_forms',
+
+    # project specific installed apps
+    'herobase',
     )
+TEST_APPS = (
+    'herobase',
+)
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
 
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 
-PROJECT_APPS = (
-    'herobase',
-    # project specific installed apps
-    )
-
-INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
 
 TEST_RUNNER = 'youarehero.test_runner.ProjectTestRunner'
 
@@ -163,7 +162,7 @@ COVERAGE_MODULE_EXCLUDES = [
     'migrations', 'fixtures', 'admin$',
     ]
 
-COVERAGE_MODULE_EXCLUDES += PREREQ_APPS
+COVERAGE_MODULE_EXCLUDES += filter(lambda x: x in TEST_APPS, INSTALLED_APPS)
 
 COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(PROJECT_ROOT, "coverage")
 
@@ -204,3 +203,8 @@ SECRET_KEY = 'd61xtu1&-efpp(ym-oy6h+3rk^m_l0(5qqw=(3h7u^a(p+ofp9'
 AUTH_PROFILE_MODULE = 'herobase.UserProfile'
 
 CRISPY_FAIL_SILENTLY = not DEBUG
+
+try:
+    from local import *
+except ImportError:
+    pass

@@ -2,7 +2,6 @@
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
@@ -69,7 +68,7 @@ def adventure_update(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
     if 'apply' in request.POST:
         if request.user == quest.author:
-            messages.error("You can't participate in your own quest")
+            messages.error(request, "You can't participate in your own quest.")
         elif request.user in quest.heroes.all():
             messages.info(request, 'You are already applying for the quest "%s".' % quest.title)
             return render(request, 'herobase/quest/detail_for_hero.html', {'quest': quest})

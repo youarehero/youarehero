@@ -12,6 +12,7 @@ CLASS_CHOICES =  (
 
 
 class Adventure(models.Model):
+    """Model the relationship between a User and a Quest she is engaged in."""
     user = models.ForeignKey(User, related_name='adventures')
     quest = models.ForeignKey('Quest')
     created = models.DateTimeField(auto_now_add=True)
@@ -33,6 +34,7 @@ class Adventure(models.Model):
 
 
 class Quest(models.Model):
+    """A quest, authored by a user"""
     author = models.ForeignKey(User, related_name='authored_quests')
     title = models.CharField(max_length=255)
     description = models.TextField()
@@ -58,20 +60,20 @@ class Quest(models.Model):
 
     @property
     def experience(self):
+        """Return the experience awarded for solving this quest."""
         return 10 * self.level # TODO: correct formula
 
-    @property
-    def candidates(self):
-        return User.objects.filter(adventures__state='applied')
-
     def get_absolute_url(self):
+        """Get the url for this quests detail page."""
         return reverse("quest-detail", args=(self.pk,))
 
     #@property
     def needs_heroes(self):
+        """Returns true if there are still open slots in this quest"""
         return self.adventure_set.filter(state=Adventure.STATE_ASSIGNED).count() < self.max_heroes
 
 class UserProfile(models.Model):
+    """Hold extended user information."""
     user = models.OneToOneField(User)
     experience = models.PositiveIntegerField(default=0)
     location = models.CharField(max_length=255) # TODO : placeholder
@@ -82,10 +84,12 @@ class UserProfile(models.Model):
 
     @property
     def level(self):
+        """Calculate the user's level based on her experience"""
         return self.experience % 1000 + 1 # TODO: correct formula
 
 
 def create_user_profile(sender, instance, created, **kwargs):
+    """Create a user profile on user account creation."""
     if created:
         UserProfile.objects.create(user=instance)
 post_save.connect(create_user_profile, sender=User)

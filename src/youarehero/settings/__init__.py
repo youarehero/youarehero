@@ -1,1 +1,2 @@
-from local import *
+#noinspection PyUnresolvedReferences
+from settings import *

@@ -1,5 +1,5 @@
 import os
-from base import *
+from settings import PROJECT_ROOT
 
 DEBUG = True
 
