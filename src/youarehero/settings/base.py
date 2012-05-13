@@ -1,10 +1,9 @@
-# Django settings for youarehero project.
-from django.core.urlresolvers import reverse_lazy
-
 import os
-
 settings_dir = os.path.dirname(__file__)
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(settings_dir), '../../'))
+
+# Django settings for youarehero project.
+from django.core.urlresolvers import reverse_lazy
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -203,8 +202,3 @@ SECRET_KEY = 'd61xtu1&-efpp(ym-oy6h+3rk^m_l0(5qqw=(3h7u^a(p+ofp9'
 AUTH_PROFILE_MODULE = 'herobase.UserProfile'
 
 CRISPY_FAIL_SILENTLY = not DEBUG
-
-try:
-    from local import *
-except ImportError:
-    pass
