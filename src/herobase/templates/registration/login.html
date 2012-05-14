@@ -2,21 +2,9 @@
 {% load crispy_forms_tags i18n static %}
 {% block content %}
     <form method="post" action=".">{% csrf_token %}
-        <div class="row-fluid">
-            <div class="span16">
-                {{ form|crispy }}
-            </div>
-        </div>
-
-        <div class="row-fluid">
-            <div class="span16">
-                <div class="well align_button">
-                    <input type="submit" class="btn primary" value="{% trans 'Log in' %}" />
-                    <input type="hidden" name="next" value="{{ next }}" />
-
-                    <p>{% trans "Forgot password" %}? <a href="{% url auth_password_reset %}">{% trans "Reset it" %}</a></p>
-                </div>
-            </div>
-        </div>
+        {{ form|crispy }}
+        <input type="submit" class="btn btn-primary btn-large" value="{% trans 'Log in' %}" />
+        <input type="hidden" name="next" value="{{ next }}" />
     </form>
+    <p>{% trans "Forgot password" %}? <a href="{% url auth_password_reset %}">{% trans "Reset it" %}</a></p>
 {% endblock %}
