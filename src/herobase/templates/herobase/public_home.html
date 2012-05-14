@@ -11,6 +11,6 @@
     {% else %}
         <p>There are no open quests right now.</p>
     {% endif %}
-    <button type="button" onclick="location.href={% url join %}" class="btn btn-primary btn-large" id="join">Join now!</button>
+    <button type="button" onclick="location.href='{% url registration_register %}'" class="btn btn-primary btn-large" id="join">Join now!</button>
 
 {%  endblock %}

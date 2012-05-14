@@ -1,0 +1,10 @@
+{% extends "herobase/base.html" %}
+{% load crispy_forms_tags i18n static %}
+
+{% block content %}
+    <h1>Be a Hero!</h1>
+    <p>Being a hero is exciting. Try it yourself!</p>
+    <h2>Registration</h2>
+    {% crispy form %}
+{%  endblock %}
+
