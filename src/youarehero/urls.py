@@ -12,6 +12,8 @@ urlpatterns = patterns('',
     url(r'^quests/(?P<pk>\d+)$', QuestDetailView.as_view(), name='quest-detail'),
     url(r'^quests/(?P<quest_id>\d+)/adventure_update', 'herobase.views.adventure_update', name='adventure-update'),
     url(r'^$', 'herobase.views.home_view', name='home'),
+    url(r'^join/$', 'herobase.views.join', name="join"),
+
     (r'^accounts/', include('registration.backends.default.urls')),
 
     # Examples:

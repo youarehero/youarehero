@@ -2,7 +2,7 @@
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
@@ -76,3 +76,7 @@ def adventure_update(request, quest_id):
             adventure = Adventure.objects.create(user=request.user, quest=quest, state=Adventure.STATE_APPLIED)
             messages.success(request, 'You are a hero!')
     return HttpResponseRedirect(reverse("quest-detail", args=(quest.pk,)))
+
+
+def join(request):
+    raise Http404
