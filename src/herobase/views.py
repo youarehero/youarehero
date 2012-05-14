@@ -12,6 +12,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from herobase.forms import QuestCreateForm
 from herobase.models import Quest, Adventure
+from registration.forms import RegistrationForm
 
 
 class QuestListView(ListView):
@@ -76,7 +77,3 @@ def adventure_update(request, quest_id):
             adventure = Adventure.objects.create(user=request.user, quest=quest, state=Adventure.STATE_APPLIED)
             messages.success(request, 'You are a hero!')
     return HttpResponseRedirect(reverse("quest-detail", args=(quest.pk,)))
-
-
-def join(request):
-    raise Http404
