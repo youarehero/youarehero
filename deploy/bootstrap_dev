@@ -27,6 +27,7 @@ fi;
 
 
 pip install -r deploy/requirements.txt
+easy_install readline
 
 if [[ ! -f src/youarehero/settings/local.py ]]; then
     echo "from devel import *" >> src/youarehero/settings/local.py
