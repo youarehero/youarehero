@@ -6,4 +6,4 @@ Feature: View the home page.
   Scenario: Open home page as authenticated user.
     When I access the url "/"
     And I am logged in as user "Horst"
-    Then I see the text "Horst"
+    Then I see the text "Hrst"
