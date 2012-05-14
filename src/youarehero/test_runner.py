@@ -9,7 +9,7 @@ from django_coverage.coverage_runner import CoverageRunner
 class ProjectTestRunner(DjangoTestSuiteRunner):
     def build_suite(self, test_labels, *args, **kwargs):
         return super(ProjectTestRunner, self).build_suite(test_labels or
-                [a.rsplit('.',1)[-1] for a in settings.PROJECT_APPS], *args, **kwargs)
+                [a.rsplit('.',1)[-1] for a in settings.TEST_APPS], *args, **kwargs)
 
 class ProjectCoverageRunner(ProjectTestRunner, CoverageRunner):
     pass
