@@ -118,6 +118,9 @@ ROOT_URLCONF = 'youarehero.urls'
 WSGI_APPLICATION = 'youarehero.wsgi.application'
 
 TEMPLATE_DIRS = (
+    # Listed here so we have a higher priority than the native admin templates
+    # for the registration/* templates
+    os.path.join(PROJECT_ROOT, 'src', 'herobase', 'templates'),
 # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
 # Always use forward slashes, even on Windows.
 # Don't forget to use absolute paths, not relative paths.
