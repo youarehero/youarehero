@@ -11,6 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   herobase
 
 
 Indices and tables
