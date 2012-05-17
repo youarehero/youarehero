@@ -13,7 +13,7 @@ class QuestCreateForm(ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.form_action = 'quest-create'
-        self.helper.form_class = 'form-horizontal'
+        self.helper.form_class = 'well form-horizontal'
 
         #self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.layout = Layout(
@@ -24,14 +24,14 @@ class QuestCreateForm(ModelForm):
                     'title',
                     'description',
 
-                        css_class="span6",
+                        css_class="span4",
                     ), Div(
                     'hero_class',
                     'level',
                     'max_heroes',
                     'location',
                     'due_date',
-                        css_class="span6",
+                        css_class="span4",
                     ),
                     css_class="row",
                 ),
