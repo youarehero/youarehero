@@ -31,6 +31,11 @@ class QuestCreateView(CreateView):
     def dispatch(self, *args, **kwargs):
         return super(QuestCreateView, self).dispatch(*args, **kwargs)
 
+    def get_form_kwargs(self):
+        kwargs = super(QuestCreateView, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.owner = self.request.user
@@ -74,6 +79,6 @@ def adventure_update(request, quest_id):
             messages.info(request, 'You are already applying for the quest "%s".' % quest.title)
             return render(request, 'herobase/quest/detail_for_hero.html', {'quest': quest})
         else:
-            adventure = Adventure.objects.create(user=request.user, quest=quest, state=Adventure.STATE_APPLIED)
+            adventure = Adventure.objects.create(user=request.user, quest=quest, state=Adventure.STATE_HERO_APPLIED)
             messages.success(request, 'You are a hero!')
     return HttpResponseRedirect(reverse("quest-detail", args=(quest.pk,)))
