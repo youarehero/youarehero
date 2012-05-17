@@ -14,10 +14,10 @@
     {% endif %}
 
     </ul>
-    {% if authored_quests %}
-    <p>The quests you authored are:</p>
+    {% if created_quests %}
+    <p>The quests you created are:</p>
     <ul>
-    {% for quest in authored_quests  %}
+    {% for quest in created_quests  %}
         <li><a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a></li>
     {% endfor %}
     </ul>
