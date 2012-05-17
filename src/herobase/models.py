@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.core.validators import MinValueValidator
 from django.db import models
@@ -19,55 +20,55 @@ class Adventure(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    STATE_APPLIED = 0
-    STATE_REFUSED = 1
-    STATE_CANCELED = 2
-    STATE_ASSIGNED = 3
-    STATE_DONE = 4
+    STATE_HERO_APPLIED = 0
+    STATE_OWNER_REFUSED = 1
+    STATE_HERO_CANCELED = 2
+    STATE_OWNER_ACCEPTED = 3
+    STATE_HERO_DONE = 4
 
     state = models.IntegerField(choices=(
-        (STATE_APPLIED, 'open'),
-        (STATE_REFUSED, 'refused'),
-        (STATE_CANCELED, 'canceled'),
-        (STATE_ASSIGNED, 'assigned'),
-        (STATE_DONE, 'done'),
+        (STATE_HERO_APPLIED, 'open'),
+        (STATE_OWNER_REFUSED, 'refused'),
+        (STATE_HERO_CANCELED, 'canceled'),
+        (STATE_OWNER_ACCEPTED, 'assigned'),
+        (STATE_HERO_DONE, 'done'),
         ))
-
-class Location(models.Model):
-    latitude = models.FloatField()
-    longitude = models.FloatField()
-
-    zip_code = models.CharField(max_length=255)
-    country = models.CharField(max_length=255)
-    state = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    street = models.CharField(max_length=255)
-    class Meta:
-        abstract = True
-    # plz, hausnummer, strasse, stadt, bundesland
 
 class Quest(models.Model):
     """A quest, owned by a user"""
     owner = models.ForeignKey(User, related_name='created_quests')
     title = models.CharField(max_length=255)
     description = models.TextField()
-    hero_class = models.IntegerField(choices=CLASS_CHOICES)
+
     location = models.CharField(max_length=255) # TODO : placeholder
     due_date = models.DateTimeField()
+
+    hero_class = models.IntegerField(choices=CLASS_CHOICES)
     heroes = models.ManyToManyField(User, through=Adventure, related_name='quests')
+
     created = models.DateTimeField(auto_now_add=True)
-    max_heroes = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
     modified = models.DateTimeField(auto_now=True)
+
+    max_heroes = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
+    auto_accept = models.BooleanField(default=False)
+
+    level = models.PositiveIntegerField(choices=((1, 'Easy'), (2, 'Okay'), (3, 'Experienced'), (4, 'Challenging'), (5, 'Heroic')))
+    experience = models.PositiveIntegerField()
+
+    def clean(self):
+        if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
+            raise ValidationError('Maximum experience for quest with level {0} is {1}'.format(self.level, self.level * 100))
 
     STATE_OPEN = 0
     STATE_FULL = 1
-    STATE_DONE = 2
-    STATE_CANCELED = 3
+    STATE_OWNER_DONE = 2
+    STATE_OWNER_CANCELED = 3
+
     state = models.IntegerField(default=STATE_OPEN, choices=(
         (STATE_OPEN, 'open'),
         (STATE_FULL, 'full'),
-        (STATE_DONE, 'done'),
-        (STATE_CANCELED, 'canceled'),
+        (STATE_OWNER_DONE, 'done'),
+        (STATE_OWNER_CANCELED, 'canceled'),
     ))
 
     def get_absolute_url(self):
@@ -77,7 +78,7 @@ class Quest(models.Model):
     #@property
     def needs_heroes(self):
         """Returns true if there are still open slots in this quest"""
-        return self.adventure_set.filter(state=Adventure.STATE_ASSIGNED).count() < self.max_heroes
+        return self.adventure_set.filter(state=Adventure.STATE_OWNER_ACCEPTED).count() < self.max_heroes
 
 class UserProfile(models.Model):
     """Hold extended user information."""
@@ -100,3 +101,17 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
 post_save.connect(create_user_profile, sender=User)
+
+
+class Location(models.Model):
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+
+    zip_code = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    street = models.CharField(max_length=255)
+    class Meta:
+        abstract = True
+        # plz, hausnummer, strasse, stadt, bundesland
