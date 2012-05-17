@@ -3,14 +3,22 @@
     {% include "herobase/quest/description.html" %}
 
     <h2>Dies ist deine Quest!</h2>
-    {% if quest.heroes.exists %}
-        Die Folgenden Helden moechten dir helfen:
-        <ul>
-            {% for user in quest.heroes.all %}
-                {{ user.username }}
-            {% endfor %}
-        </ul>
+    {% if quest.cancelled %}
+        Du hast diese Quest abgebrochen.
     {% else %}
-        Leider hilft Dir noch niemand.
+        {% if quest.heroes.exists %}
+            Die Folgenden Helden moechten dir helfen:
+            <ul>
+                {% for user in quest.heroes.all %}
+                    {{ user.username }}
+                {% endfor %}
+            </ul>
+        {% else %}
+            Leider hilft Dir noch niemand.
+        {% endif %}
+        <form action="{% url adventure-update quest.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" name="cancel" class="btn btn-primary btn-large" value="Quest abbrechen"/>
+        </form>
     {% endif %}
 {%  endblock %}

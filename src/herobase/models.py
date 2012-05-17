@@ -26,7 +26,7 @@ class Adventure(models.Model):
     STATE_OWNER_ACCEPTED = 3
     STATE_HERO_DONE = 4
 
-    state = models.IntegerField(choices=(
+    state = models.IntegerField(default=STATE_HERO_APPLIED, choices=(
         (STATE_HERO_APPLIED, 'open'),
         (STATE_OWNER_REFUSED, 'refused'),
         (STATE_HERO_CANCELED, 'canceled'),
@@ -55,6 +55,9 @@ class Quest(models.Model):
     level = models.PositiveIntegerField(choices=((1, 'Easy'), (2, 'Okay'), (3, 'Experienced'), (4, 'Challenging'), (5, 'Heroic')))
     experience = models.PositiveIntegerField()
 
+    def active_heroes(self):
+        return self.heroes.exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_HERO_CANCELED)
+
     def clean(self):
         if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
             raise ValidationError('Maximum experience for quest with level {0} is {1}'.format(self.level, self.level * 100))
@@ -63,6 +66,10 @@ class Quest(models.Model):
     STATE_FULL = 1
     STATE_OWNER_DONE = 2
     STATE_OWNER_CANCELED = 3
+
+    @property
+    def cancelled(self):
+        return self.state == Quest.STATE_OWNER_CANCELED
 
     state = models.IntegerField(default=STATE_OPEN, choices=(
         (STATE_OPEN, 'open'),

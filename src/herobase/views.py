@@ -1,4 +1,6 @@
 # Create your views here.
+from django.utils.html import escape
+from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -65,7 +67,7 @@ def hero_home_view(request):
     return render(request, 'herobase/hero_home.html',
             {'hero': hero,
              'profile': hero.get_profile(),
-             'adventures': hero.adventures.order_by('-created'),
+             'adventures': hero.adventures.exclude(state=Adventure.STATE_HERO_CANCELED).order_by('-created'),
              'created_quests': hero.created_quests.order_by('-created')})
 
 @require_POST
@@ -75,10 +77,22 @@ def adventure_update(request, quest_id):
     if 'apply' in request.POST:
         if request.user == quest.owner:
             messages.error(request, "You can't participate in your own quest.")
-        elif request.user in quest.heroes.all():
+        elif request.user in quest.active_heroes():
             messages.info(request, 'You are already applying for the quest "%s".' % quest.title)
-            return render(request, 'herobase/quest/detail_for_hero.html', {'quest': quest})
         else:
-            adventure = Adventure.objects.create(user=request.user, quest=quest, state=Adventure.STATE_HERO_APPLIED)
+            adventure, created = Adventure.objects.get_or_create(user=request.user, quest=quest)
+            adventure.state = Adventure.STATE_HERO_APPLIED
+            adventure.save()
             messages.success(request, 'You are a hero!')
-    return HttpResponseRedirect(reverse("quest-detail", args=(quest.pk,)))
+        return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
+    elif 'cancel' in request.POST:
+        if request.user == quest.owner:
+            quest.state = Quest.STATE_OWNER_CANCELED
+            quest.save()
+            messages.info(request, mark_safe('Quest <em>{0}</em> abgebrochen.'.format(escape(quest.title))))
+        elif request.user in quest.heroes.all(): # TODO : only allow cancel if it makes sense (not done, etc)
+            adventure = quest.adventure_set.get(user=request.user)
+            adventure.state = Adventure.STATE_HERO_CANCELED
+            adventure.save()
+            messages.info(request, mark_safe('Quest <em>{0}</em> abgebrochen.'.format(escape(quest.title))))
+        return HttpResponseRedirect(reverse("home"))
