@@ -27,7 +27,6 @@ class QuestCreateForm(ModelForm):
                         css_class="span4",
                     ), Div(
                     'hero_class',
-                    'level',
                     'max_heroes',
                     'location',
                     'due_date',
@@ -43,4 +42,4 @@ class QuestCreateForm(ModelForm):
         super(QuestCreateForm, self).__init__(*args, **kwargs)
     class Meta:
         model = Quest
-        fields = ('title', 'description', 'level', 'max_heroes', 'location', 'due_date', 'hero_class')
+        fields = ('title', 'description', 'max_heroes', 'location', 'due_date', 'hero_class')

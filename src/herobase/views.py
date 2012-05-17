@@ -33,7 +33,7 @@ class QuestCreateView(CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.author = self.request.user
+        self.object.owner = self.request.user
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
@@ -42,7 +42,7 @@ class QuestDetailView(DetailView):
     model = Quest
 
     def get_template_names(self):
-        if self.object.author == self.request.user:
+        if self.object.owner == self.request.user:
             return ['herobase/quest/detail_for_author.html']
         else:
             return ['herobase/quest/detail_for_hero.html']
@@ -61,14 +61,14 @@ def hero_home_view(request):
             {'hero': hero,
              'profile': hero.get_profile(),
              'adventures': hero.adventures.order_by('-created'),
-             'authored_quests': hero.authored_quests.order_by('-created')})
+             'created_quests': hero.created_quests.order_by('-created')})
 
 @require_POST
 @login_required
 def adventure_update(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
     if 'apply' in request.POST:
-        if request.user == quest.author:
+        if request.user == quest.owner:
             messages.error(request, "You can't participate in your own quest.")
         elif request.user in quest.heroes.all():
             messages.info(request, 'You are already applying for the quest "%s".' % quest.title)

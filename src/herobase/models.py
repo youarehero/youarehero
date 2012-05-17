@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.core.validators import MinValueValidator
 from django.db import models
 
 # Create your models here.
@@ -32,19 +33,30 @@ class Adventure(models.Model):
         (STATE_DONE, 'done'),
         ))
 
+class Location(models.Model):
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+
+    zip_code = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    street = models.CharField(max_length=255)
+    class Meta:
+        abstract = True
+    # plz, hausnummer, strasse, stadt, bundesland
 
 class Quest(models.Model):
-    """A quest, authored by a user"""
-    author = models.ForeignKey(User, related_name='authored_quests')
+    """A quest, owned by a user"""
+    owner = models.ForeignKey(User, related_name='created_quests')
     title = models.CharField(max_length=255)
     description = models.TextField()
     hero_class = models.IntegerField(choices=CLASS_CHOICES)
-    level = models.PositiveIntegerField(default=1)
-    max_heroes = models.PositiveIntegerField()
     location = models.CharField(max_length=255) # TODO : placeholder
     due_date = models.DateTimeField()
     heroes = models.ManyToManyField(User, through=Adventure, related_name='quests')
     created = models.DateTimeField(auto_now_add=True)
+    max_heroes = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
     modified = models.DateTimeField(auto_now=True)
 
     STATE_OPEN = 0
@@ -57,11 +69,6 @@ class Quest(models.Model):
         (STATE_DONE, 'done'),
         (STATE_CANCELED, 'canceled'),
     ))
-
-    @property
-    def experience(self):
-        """Return the experience awarded for solving this quest."""
-        return 10 * self.level # TODO: correct formula
 
     def get_absolute_url(self):
         """Get the url for this quests detail page."""
