@@ -154,6 +154,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     # project specific installed apps
     'herobase',
+    'heromessage',
     )
 
 TEST_APPS = (
