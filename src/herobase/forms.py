@@ -15,7 +15,7 @@ class QuestCreateForm(ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.form_action = 'quest-create'
-        self.helper.form_class = 'form-horizontal'
+        self.helper.form_class = 'well form-horizontal'
         self.request = kwargs.pop('request')
 
         #self.helper.add_input(Submit('submit', 'Submit'))
@@ -56,7 +56,8 @@ class QuestCreateForm(ModelForm):
 
     def clean(self):
         data = super(QuestCreateForm, self).clean()
-        if int(data['experience']) > int(data['level']) * 100: # TODO experience formula
+        if ('experience' in data and 'level' in data and
+            int(data['experience']) > int(data['level']) * 100): # TODO experience formula
             self._errors['experience'] = self._errors.get('experience', ErrorList())
             self._errors['experience'].append(_(u'Experience to high for level.'))
             del data['experience']

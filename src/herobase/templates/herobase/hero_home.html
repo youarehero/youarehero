@@ -18,7 +18,12 @@
     <p>The quests you created are:</p>
     <ul>
     {% for quest in created_quests  %}
-        <li><a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a></li>
+        <li><a href="{{ quest.get_absolute_url }}">
+            {{ quest.title }}
+            {% if quest.cancelled %}
+                <em>(abgebrochen)</em>
+            {% endif %}
+        </a></li>
     {% endfor %}
     </ul>
     {% else %}

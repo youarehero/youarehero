@@ -1,6 +1,7 @@
 {% load i18n %}
 <div class="quest-detail">
     <h1>Quest: {{ quest.title }}</h1>
+    {% if quest.cancelled %}<em>abgebrochen</em>{% endif %}
     <p>{{ quest.description }}</p>
     <h2>Details</h2>
     <ul>

@@ -1,8 +1,12 @@
 {% extends "herobase/base.html" %}
 {% block content %}
     {% include "herobase/quest/description.html" %}
-    {% if request.user in quest.heroes.all %}
+    {% if request.user in quest.active_heroes %}
         <h2>Du nimmst an dieser Quest teil.</h2>
+        <form action="{% url adventure-update quest.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" name="cancel" class="btn btn-primary btn-large" value="Quest abbrechen"/>
+        </form>
     {% elif quest.needs_heroes %}
         <h2>Nimm diese Quest an!</h2>
         <p>Diese Herausforderung braucht noch Helden.</p>
