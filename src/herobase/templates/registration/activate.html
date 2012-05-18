@@ -1,0 +1,7 @@
+{% extends "herobase/base.html" %}
+{% load crispy_forms_tags i18n static %}
+
+{% block content %}
+    <h1>Account-activation failed.</h1>
+    <p>Sorry, the activation key "{{ activation_key }}" is invalid.</p>
+{%  endblock %}

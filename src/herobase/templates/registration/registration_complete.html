@@ -1,0 +1,7 @@
+{% extends "herobase/base.html" %}
+{% load crispy_forms_tags i18n static %}
+
+{% block content %}
+    <h1>Your first Quest is to activate your account, {{ user.username }}!</h1>
+    <p>An email containing account-activation information has been sent to the email-address you specified in the registration form.</p>
+{%  endblock %}

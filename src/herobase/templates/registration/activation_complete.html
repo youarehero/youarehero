@@ -1,0 +1,7 @@
+{% extends "herobase/base.html" %}
+{% load crispy_forms_tags i18n static %}
+
+{% block content %}
+    <h1>Welcome Hero {{ user.username }}!</h1>
+    <p>Your Account is now activ. Start <a href="{% url quest-list %}">browsing open quests</a> or <a href="{% url quest-create %}">create your own quest</a>!</p>
+{% endblock %}

@@ -17,3 +17,4 @@ class Message(models.Model):
 
     recipient = models.ForeignKey(User, related_name='sent_messages')
     sender = models.ForeignKey(User, related_name='received_messages')
+

@@ -5,6 +5,11 @@
     <h1>Be a Hero!</h1>
     <p>Being a hero is exciting. Try it yourself!</p>
     <h2>Registration</h2>
-    {% crispy form %}
+
+    <form method="post" action="." class="well">{% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" class="btn btn-primary" value="{% trans 'register' %}" />
+    </form>
+
 {%  endblock %}
 

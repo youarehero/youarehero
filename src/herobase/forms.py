@@ -24,18 +24,18 @@ class QuestCreateForm(ModelForm):
                 'Create a Quest',
                 Div(
                     Div(
-                    'title',
-                    'description',
-
+                        'title',
+                        'description',
                         css_class="span6",
-                    ), Div(
-                    'hero_class',
-                    'max_heroes',
-                    'auto_accept',
-                    'level',
-                    'experience',
-                    'location',
-                    'due_date',
+                    ),
+                    Div(
+                        'hero_class',
+                        'max_heroes',
+                        'auto_accept',
+                        'level',
+                        'experience',
+                        'location',
+                        'due_date',
                         css_class="span6",
                     ),
                     css_class="row",
