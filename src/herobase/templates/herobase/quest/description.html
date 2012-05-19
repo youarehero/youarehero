@@ -4,10 +4,10 @@
     {% if quest.cancelled %}<em>abgebrochen</em>{% endif %}
     <p>{{ quest.description }}</p>
     <h2>Details</h2>
-    <ul>
-        <li>{% trans "location" %}: {{ quest.location }}</li>
-        <li>{% trans "level" %}: {{ quest.level }}</li>
-        <li>{% trans "experience" %}: {{ quest.experience }}</li>
-        <li>{% trans "class" %}: {{ quest.get_hero_class_display }}</li>
-    </ul>
+    <dl class="dl-horizontal">
+        <dt>{% trans "class" %}</dt><dd>{{ quest.class }}</dd>
+        <dt>{% trans "level" %}</dt><dd>{{ quest.level }}</dd>
+        <dt>{% trans "experience" %}</dt><dd>{{ quest.experience }}</dd>
+        <dt>{% trans "location" %}</dt><dd>{{ quest.location }}</dd>
+    </dl>
 </div>
