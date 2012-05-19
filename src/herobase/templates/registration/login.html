@@ -6,5 +6,5 @@
         <input type="submit" class="btn btn-primary btn-large" value="{% trans 'Log in' %}" />
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
-    <p><a href="{% url registration_register %}">{% trans "Create Account" %}</a> <a href="{% url auth_password_reset %}">{% trans "Password reset" %}</a></p>
+    <p><a href="{% url registration_register %}">{% trans "register" %}</a> <a href="{% url auth_password_reset %}">{% trans "reset Password" %}</a></p>
 {% endblock %}

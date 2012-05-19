@@ -4,7 +4,7 @@ Welcome {{ user.username }}!
 Your activation key is: {{ activation_key }}
 
 Please follow this link to complete your account-activation:
-
-http://{{ request.META.HTTP_HOST }}{% url registration.views.activate activation_key=activation_key %}
-
+{% block activate_link %}
+http://{{ site.domain }}{% url registration.views.activate activation_key=activation_key %}
+{% endblock %}
 {% endautoescape %}
