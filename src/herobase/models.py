@@ -20,6 +20,7 @@ class Adventure(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
+    STATE_DOESNT_EXIST = -1
     STATE_HERO_APPLIED = 0
     STATE_OWNER_REFUSED = 1
     STATE_HERO_CANCELED = 2
@@ -62,6 +63,7 @@ class Quest(models.Model):
         if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
             raise ValidationError('Maximum experience for quest with level {0} is {1}'.format(self.level, self.level * 100))
 
+
     STATE_OPEN = 0
     STATE_FULL = 1
     STATE_OWNER_DONE = 2
@@ -86,6 +88,55 @@ class Quest(models.Model):
     def needs_heroes(self):
         """Returns true if there are still open slots in this quest"""
         return self.adventure_set.filter(state=Adventure.STATE_OWNER_ACCEPTED).count() < self.max_heroes
+
+    def state_machine(self, user, action, target_user=None):
+        if user == self.owner:
+            try:
+                adventure = Adventure.objects.get(quest=self, user=target_user)
+                adventure_state = adventure.state
+            except Adventure.DoesNotExist:
+                adventure = None
+                adventure_state = Adventure.STATE_DOESNT_EXIST
+        else:
+            try:
+                adventure = Adventure.objects.get(quest=self, user=user)
+                adventure_state = adventure.state
+            except Adventure.DoesNotExist:
+                adventure = None
+                adventure_state = Adventure.STATE_DOESNT_EXIST
+
+        # (quest_state, adventure_state)
+        hero_map = {
+            'cancel': { (Quest.STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED,
+                        (Quest.STATE_FULL, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED },
+            'apply' : { (Quest.STATE_OPEN, Adventure.STATE_DOESNT_EXIST): Adventure.STATE_HERO_APPLIED,
+                        (Quest.STATE_OPEN, Adventure.STATE_HERO_CANCELED): Adventure.STATE_HERO_APPLIED}
+        }
+
+        owner_map = {
+
+        }
+
+        if user == self.owner:
+            state = owner_map[action][(self.state, adventure_state)]
+            self.owner_set_state(user, state, adventure)
+        else:
+            state = hero_map[action][(self.state, adventure_state)]
+            self.hero_set_state(user, adventure, state)
+
+    def owner_set_state(self, user, state, adventure):
+        pass
+
+    def hero_set_state(self, user, adventure, state):
+        if state == Adventure.STATE_HERO_CANCELED:
+            adventure.state = Adventure.STATE_HERO_CANCELED
+            adventure.save()
+
+        if state == Adventure.STATE_HERO_APPLIED:
+            adventure, created = Adventure.objects.get_or_create(quest=self,user=user,state=Adventure.STATE_HERO_APPLIED)
+
+        pass
+
 
 class UserProfile(models.Model):
     """Hold extended user information."""
