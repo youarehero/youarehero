@@ -153,7 +153,6 @@ class Quest(models.Model):
         elif state == Quest.STATE_OWNER_DONE:
             self.state = Quest.STATE_OWNER_DONE
             self.save()
-            print "settings state done", self.get_state_display()
 
     def hero_set_state(self, state, adventure):
         if state == Adventure.STATE_HERO_CANCELED:
