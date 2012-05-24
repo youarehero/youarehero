@@ -4,7 +4,7 @@ from django.conf.urls import url
 from django.core.exceptions import ValidationError
 from django.forms.models import ModelForm
 from django.forms.util import ErrorList
-from herobase.models import Quest
+from herobase.models import Quest, UserProfile
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset, Div
@@ -66,3 +66,30 @@ class QuestCreateForm(ModelForm):
     class Meta:
         model = Quest
         fields = ('title', 'description', 'max_heroes', 'location', 'due_date', 'hero_class', 'level' ,'experience', 'auto_accept')
+
+
+class UserProfileEdit(ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.form_action = 'user-edit'
+        self.helper.form_class = 'well form-horizontal'
+
+        #self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.layout = Layout(
+            Fieldset(
+                _('Edit your Profile'),
+                Div(
+                    'location',
+                    'hero_class'
+                )
+            ),
+            FormActions(
+                Submit('save', 'Save', css_class='btn-primary btn-large')
+            ),
+        )
+        super(UserProfileEdit, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = UserProfile
+        fields = ('location', 'hero_class')

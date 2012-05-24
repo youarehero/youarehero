@@ -13,7 +13,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
-from herobase.forms import QuestCreateForm
+from herobase.forms import QuestCreateForm, UserProfileEdit
 from herobase.models import Quest, Adventure
 from registration.forms import RegistrationForm
 
@@ -64,12 +64,12 @@ def home_view(request):
 
 @login_required
 def hero_home_view(request):
-    hero = request.user
+    user = request.user
     return render(request, 'herobase/hero_home.html',
-            {'hero': hero,
-             'profile': hero.get_profile(),
-             'adventures': hero.adventures.exclude(state=Adventure.STATE_HERO_CANCELED).order_by('-created'),
-             'created_quests': hero.created_quests.order_by('-created')})
+            {'user': user,
+             'profile': user.get_profile(),
+             'adventures': user.adventures.exclude(state=Adventure.STATE_HERO_CANCELED).order_by('-created'),
+             'created_quests': user.created_quests.order_by('-created')})
 
 @require_POST
 @login_required
@@ -113,7 +113,15 @@ def profile_view(request, username):
 
 @login_required
 def profile_edit(request):
+    user = request.user
+    form = UserProfileEdit(request.POST or None, instance=user.get_profile())
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Profile successfully changed')
+    return render(request, 'herobase/profile_edit.html', {
+        'user': user,
+        'form': form
+    })
 
-    pass
 
 
