@@ -91,39 +91,6 @@ class Quest(models.Model):
         """Returns true if there are still open slots in this quest"""
         return self.adventure_set.filter(state=Adventure.STATE_OWNER_ACCEPTED).count() < self.max_heroes
 
-    def hero_apply(self, user):
-        if not self.state(self.STATE_OPEN):
-            return False
-
-        if user == self.owner:
-            return False
-
-        if user not in (x.user for x in self.adventures):
-            return False
-
-        adventure, created = Adventure.objects.get_or_create(user=request.user, quest=quest)
-        if self.auto_accept:
-            adventure.state = Adventure.STATE_OWNER_ACCEPTED
-            if not self.needs_heroes():
-                self.state = self.STATE_FULL
-                self.save()
-        else:
-            adventure.state = Adventure.STATE_HERO_APPLIED
-        adventure.save()
-
-        return True
-
-
-    def owner_accept(self, owner, user):
-        if not self.state(self.STATE_OPEN):
-            return False
-
-        if owner != self.owner:
-            return False
-
-        if user not in self.applying_heroes():
-            return False
-
     def combined_state(self):
         pass
 
