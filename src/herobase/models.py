@@ -198,7 +198,6 @@ class Quest(models.Model):
         for idx, adv in enumerate(self.adventure_set.all()):
             print(idx + ": " + adv.state)
 
->>>>>>> Stashed changes:src/herobase/models.py
 
 class UserProfile(models.Model):
     #"""Hold extended user information."""

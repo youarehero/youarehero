@@ -105,7 +105,6 @@ def adventure_update(request, quest_id):
             adventure.save()
             messages.info(request, mark_safe('Quest <em>{0}</em> abgebrochen.'.format(escape(quest.title))))
         return HttpResponseRedirect(reverse("home"))
->>>>>>> Stashed changes:src/herobase/views.py
 
 def decorator(f):
     def decorated(*args, **kwargs):
