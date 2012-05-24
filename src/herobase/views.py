@@ -1,10 +1,11 @@
 # Create your views here.
+from django.contrib.auth.models import User
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
@@ -96,3 +97,23 @@ def adventure_update(request, quest_id):
             adventure.save()
             messages.info(request, mark_safe('Quest <em>{0}</em> abgebrochen.'.format(escape(quest.title))))
         return HttpResponseRedirect(reverse("home"))
+
+def decorator(f):
+    def decorated(*args, **kwargs):
+        print f.func_name, args, kwargs
+        return f(*args, **kwargs)
+    return decorated
+
+@decorator
+def profile_view(request, username):
+    user = get_object_or_404(User, username=username)
+    return render(request, 'herobase/profile.html', {
+        'user': user
+    })
+
+@login_required
+def profile_edit(request):
+
+    pass
+
+

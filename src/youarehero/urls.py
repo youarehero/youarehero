@@ -16,6 +16,9 @@ urlpatterns = patterns('',
     url(r'^$', 'herobase.views.home_view', name='home'),
 
 
+    url(r'^profile/(?P<username>\w+)$', 'herobase.views.profile_view', name='user-profile'),
+    url(r'^profile/$', 'herobase.views.profile_edit', name='user-edit'),
+
     # Examples:
     # url(r'^$', 'youarehero.views.home', name='home'),
     # url(r'^youarehero/', include('youarehero.foo.urls')),
