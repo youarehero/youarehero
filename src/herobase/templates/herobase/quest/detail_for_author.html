@@ -9,16 +9,30 @@
         {% if quest.heroes.exists %}
             Die Folgenden Helden moechten dir helfen:
             <ul>
-                {% for user in quest.heroes.all %}
-                    {{ user.username }}
+                {% for adventure in quest.adventure_set.all %}
+                    {{ adventure.user.username }}, state: {{ adventure.get_state_display }}
                 {% endfor %}
             </ul>
         {% else %}
             Leider hilft Dir noch niemand.
         {% endif %}
+        <h3>Allgemeine settings</h3>
         <form action="{% url adventure-update quest.id %}" method="post">
             {% csrf_token %}
-            <input type="submit" name="cancel" class="btn btn-primary btn-large" value="Quest abbrechen"/>
+            <input type="hidden" name="target_user" value="{{ adventure.user_id }}"/>
+            <input type="submit" name="action" class="btn btn-primary btn-large" value="cancel"/>
+            <input type="submit" name="action" class="btn btn-primary btn-large" value="done"/>
+            <input type="submit" name="action" class="btn btn-primary btn-large" value="accept"/>
         </form>
+        {% for adventure in quest.adventure_set.all %}
+            <h3>settings for user {{ adventure.user }}</h3>
+            <form action="{% url adventure-update quest.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="target_user" value="{{ adventure.user_id }}"/>
+                <input type="submit" name="action" class="btn btn-primary btn-large" value="cancel"/>
+                <input type="submit" name="action" class="btn btn-primary btn-large" value="done"/>
+                <input type="submit" name="action" class="btn btn-primary btn-large" value="accept"/>
+            </form>
+        {% endfor %}
     {% endif %}
 {%  endblock %}

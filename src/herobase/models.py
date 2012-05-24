@@ -2,10 +2,11 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.core.validators import MinValueValidator
-from django.db import models
+from django.db import models, transaction
 
 # Create your models here.
 from django.db.models.signals import post_save
+from django.utils.decorators import method_decorator
 
 CLASS_CHOICES =  (
     (0, "Scientist"),
@@ -27,9 +28,9 @@ class Adventure(models.Model):
     STATE_OWNER_ACCEPTED = 2**4
     STATE_HERO_DONE = 2**5
 
-    state = models.IntegerField(default=STATE_HERO_APPLIED, choices=(
-        (STATE_DOESNT_EXIST, "doesn't exist")
-        (STATE_HERO_APPLIED, 'open'),
+    state = models.IntegerField(default=STATE_DOESNT_EXIST, choices=(
+        (STATE_DOESNT_EXIST, "doesn't exist"),
+        (STATE_HERO_APPLIED, 'applied'),
         (STATE_OWNER_REFUSED, 'refused'),
         (STATE_HERO_CANCELED, 'canceled'),
         (STATE_OWNER_ACCEPTED, 'assigned'),
@@ -88,47 +89,71 @@ class Quest(models.Model):
     #@property
     def needs_heroes(self):
         """Returns true if there are still open slots in this quest"""
-        return self.adventure_set.filter(state=Adventure.STATE_OWNER_ACCEPTED).count() < self.max_heroes
+        return not self.max_heroes or self.adventure_set.filter(state=Adventure.STATE_OWNER_ACCEPTED).count() < self.max_heroes
 
+    @transaction.commit_on_success()
     def state_machine(self, user, action, target_user=None):
         if user == self.owner:
-            adventure_user = target_user
+            if target_user:
+                adventure = Adventure(quest=self, user=target_user)
+            else:
+                adventure = Adventure(quest=self)
         else:
-            adventure_user = user
-        try:
-            adventure = Adventure.objects.get(quest=self, user=adventure_user)
-        except Adventure.DoesNotExist:
-            adventure = Adventure(user=adventure_user)
+            adventure = Adventure.objects.get(quest=self, user=user)
 
         # (quest_state, adventure_state)
         hero_map = {
             'cancel': {(Quest.STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED,
-                        (Quest.STATE_FULL, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED },
+                        (Quest.STATE_FULL, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED},
             'apply' : {(Quest.STATE_OPEN, Adventure.STATE_DOESNT_EXIST): Adventure.STATE_HERO_APPLIED,
-                        (Quest.STATE_OPEN, Adventure.STATE_HERO_CANCELED): Adventure.STATE_HERO_APPLIED}
+                        (Quest.STATE_OPEN, Adventure.STATE_HERO_CANCELED): Adventure.STATE_HERO_APPLIED},
         }
         owner_map = {
             'accept': {(Quest.STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_OWNER_ACCEPTED},
-            'cancel': {(Quest.STATE_OPEN, None): Quest.STATE_OWNER_CANCELED}
+            'cancel': {(Quest.STATE_OPEN, None): Quest.STATE_OWNER_CANCELED},
+            'done': {(Quest.STATE_OPEN, None): Quest.STATE_OWNER_DONE,
+                     (Quest.STATE_FULL, None): Quest.STATE_OWNER_DONE,
+                     }
         }
 
+        print user, self.owner, '##'
         if user == self.owner:
             try:
                 state = owner_map[action][(self.state, adventure.state)]
             except KeyError:
-                state = owner_map[action][(self.state, None)]
+                try:
+                    state = owner_map[action][(self.state, None)]
+                except KeyError:
+                    return 'owner fehler %s %s %s' % (action, self.state, adventure.state)
             self.owner_set_state(state, adventure)
         else:
-            state = hero_map[action][(self.state, adventure.state)]
+            try:
+                state = hero_map[action][(self.state, adventure.state)]
+            except KeyError:
+                return 'hero fehler %s %s %s' % (action, self.state, adventure.state)
             self.hero_set_state(state, adventure)
 
+        self.update_calculated_state()
+        return 'stuff done'
+
+    def update_calculated_state(self):
+        """Update denormalized state on quest"""
+        if (self.state != Quest.STATE_OWNER_DONE and self.max_heroes and
+            self.adventure_set.filter(state=Adventure.STATE_OWNER_ACCEPTED).count() >= self.max_heroes):
+            self.state = self.STATE_FULL
+            self.save()
+
     def owner_set_state(self, state, adventure):
-        if self.state == Adventure.STATE_HERO_APPLIED:
-            adventure.state = Adventure.STATE_HERO_APPLIED
+        if state == Adventure.STATE_OWNER_ACCEPTED:
+            adventure.state = Adventure.STATE_OWNER_ACCEPTED
             adventure.save()
-        elif self.state == Quest.STATE_OWNER_CANCELED:
+        elif state == Quest.STATE_OWNER_CANCELED:
             self.state = Quest.STATE_OWNER_CANCELED
             self.save()
+        elif state == Quest.STATE_OWNER_DONE:
+            self.state = Quest.STATE_OWNER_DONE
+            self.save()
+            print "settings state done", self.get_state_display()
 
     def hero_set_state(self, state, adventure):
         if state == Adventure.STATE_HERO_CANCELED:
@@ -140,8 +165,6 @@ class Quest(models.Model):
             else:
                 adventure.state = Adventure.STATE_HERO_APPLIED
             adventure.save()
-
-
 
 class UserProfile(models.Model):
     """Hold extended user information."""

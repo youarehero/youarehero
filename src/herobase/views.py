@@ -49,6 +49,14 @@ class QuestDetailView(DetailView):
     context_object_name = "quest"
     model = Quest
 
+    def get_context_data(self, **kwargs):
+        try:
+            adventure = self.object.adventure_set.get(user=self.request.user)
+        except Adventure.DoesNotExist:
+            adventure = None
+        kwargs['adventure'] = adventure
+        return super(QuestDetailView, self).get_context_data(**kwargs)
+
     def get_template_names(self):
         if self.object.owner == self.request.user:
             return ['herobase/quest/detail_for_author.html']
@@ -75,28 +83,14 @@ def hero_home_view(request):
 @login_required
 def adventure_update(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
-    if 'apply' in request.POST:
-        if request.user == quest.owner:
-            messages.error(request, "You can't participate in your own quest.")
-        elif request.user in quest.active_heroes():
-            messages.info(request, 'You are already applying for the quest "%s".' % quest.title)
-        else:
-            adventure, created = Adventure.objects.get_or_create(user=request.user, quest=quest)
-            adventure.state = Adventure.STATE_HERO_APPLIED
-            adventure.save()
-            messages.success(request, 'You are a hero!')
-        return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
-    elif 'cancel' in request.POST:
-        if request.user == quest.owner:
-            quest.state = Quest.STATE_OWNER_CANCELED
-            quest.save()
-            messages.info(request, mark_safe('Quest <em>{0}</em> abgebrochen.'.format(escape(quest.title))))
-        elif request.user in quest.heroes.all(): # TODO : only allow cancel if it makes sense (not done, etc)
-            adventure = quest.adventure_set.get(user=request.user)
-            adventure.state = Adventure.STATE_HERO_CANCELED
-            adventure.save()
-            messages.info(request, mark_safe('Quest <em>{0}</em> abgebrochen.'.format(escape(quest.title))))
-        return HttpResponseRedirect(reverse("home"))
+    action = request.POST['action']
+    print action
+    target_user = request.POST.get('target_user', None)
+    if target_user:
+        target_user = get_object_or_404(User, pk=target_user)
+    message = quest.state_machine(request.user, action, target_user)
+    messages.info(request, message)
+    return HttpResponseRedirect(reverse("quest-detail", args=(quest.pk,)))
 
 def decorator(f):
     def decorated(*args, **kwargs):
