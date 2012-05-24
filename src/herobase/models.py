@@ -25,6 +25,7 @@ class Adventure(models.Model):
     STATE_HERO_CANCELED = 2
     STATE_OWNER_ACCEPTED = 3
     STATE_HERO_DONE = 4
+    STATE_OWNER_DONE = 5
 
     state = models.IntegerField(default=STATE_HERO_APPLIED, choices=(
         (STATE_HERO_APPLIED, 'open'),
@@ -56,7 +57,10 @@ class Quest(models.Model):
     experience = models.PositiveIntegerField()
 
     def active_heroes(self):
-        return self.heroes.exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_HERO_CANCELED)
+        return self.heroes.exclude(adventures__quest=self.pk).filter(adventures__state=Adventure.STATE_HERO_CANCELED)
+
+    def applying_heroes(self):
+        return self.heroes.filter(adventures__quest=self.pk),filter(adventures__state=Adventure.STATE_HERO_APPLIED)
 
     def clean(self):
         if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
@@ -86,6 +90,42 @@ class Quest(models.Model):
     def needs_heroes(self):
         """Returns true if there are still open slots in this quest"""
         return self.adventure_set.filter(state=Adventure.STATE_OWNER_ACCEPTED).count() < self.max_heroes
+
+    def hero_apply(self, user):
+        if not self.state(self.STATE_OPEN):
+            return False
+
+        if user == self.owner:
+            return False
+
+        if user not in (x.user for x in self.adventures):
+            return False
+
+        adventure, created = Adventure.objects.get_or_create(user=request.user, quest=quest)
+        if self.auto_accept:
+            adventure.state = Adventure.STATE_OWNER_ACCEPTED
+            if not self.needs_heroes():
+                self.state = self.STATE_FULL
+                self.save()
+        else:
+            adventure.state = Adventure.STATE_HERO_APPLIED
+        adventure.save()
+
+        return True
+
+
+    def owner_accept(self, owner, user):
+        if not self.state(self.STATE_OPEN):
+            return False
+
+        if owner != self.owner:
+            return False
+
+        if user not in self.applying_heroes():
+            return False
+
+    def combined_state(self):
+        pass
 
 class UserProfile(models.Model):
     """Hold extended user information."""
