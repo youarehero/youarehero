@@ -68,6 +68,8 @@ class AdventureTest(TestCase):
 # BDD Morelia tests
 # ##################
 #
+
+
 #html_output_dir = os.environ.get('MORELIA_HTML_OUTPUT_DIR', False)
 #
 #class BehaviourBase(TestCase):

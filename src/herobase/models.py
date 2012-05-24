@@ -133,7 +133,9 @@ class Quest(models.Model):
             adventure.save()
 
         if state == Adventure.STATE_HERO_APPLIED:
-            adventure, created = Adventure.objects.get_or_create(quest=self,user=user,state=Adventure.STATE_HERO_APPLIED)
+            adventure, created = Adventure.objects.get_or_create(quest=self,user=user)
+            adventure.state = Adventure.STATE_HERO_APPLIED
+            adventure.save()
 
         pass
 
