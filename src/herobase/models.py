@@ -20,14 +20,15 @@ class Adventure(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    STATE_DOESNT_EXIST = -1
-    STATE_HERO_APPLIED = 0
-    STATE_OWNER_REFUSED = 1
-    STATE_HERO_CANCELED = 2
-    STATE_OWNER_ACCEPTED = 3
-    STATE_HERO_DONE = 4
+    STATE_DOESNT_EXIST = 2**0
+    STATE_HERO_APPLIED = 2**1
+    STATE_OWNER_REFUSED = 2**2
+    STATE_HERO_CANCELED = 2**3
+    STATE_OWNER_ACCEPTED = 2**4
+    STATE_HERO_DONE = 2**5
 
     state = models.IntegerField(default=STATE_HERO_APPLIED, choices=(
+        (STATE_DOESNT_EXIST, "doesn't exist")
         (STATE_HERO_APPLIED, 'open'),
         (STATE_OWNER_REFUSED, 'refused'),
         (STATE_HERO_CANCELED, 'canceled'),
@@ -64,10 +65,10 @@ class Quest(models.Model):
             raise ValidationError('Maximum experience for quest with level {0} is {1}'.format(self.level, self.level * 100))
 
 
-    STATE_OPEN = 0
-    STATE_FULL = 1
-    STATE_OWNER_DONE = 2
-    STATE_OWNER_CANCELED = 3
+    STATE_OPEN = 2**10
+    STATE_FULL = 2**11
+    STATE_OWNER_DONE = 2**12
+    STATE_OWNER_CANCELED = 2**13
 
     @property
     def cancelled(self):
@@ -91,53 +92,55 @@ class Quest(models.Model):
 
     def state_machine(self, user, action, target_user=None):
         if user == self.owner:
-            try:
-                adventure = Adventure.objects.get(quest=self, user=target_user)
-                adventure_state = adventure.state
-            except Adventure.DoesNotExist:
-                adventure = None
-                adventure_state = Adventure.STATE_DOESNT_EXIST
+            adventure_user = target_user
         else:
-            try:
-                adventure = Adventure.objects.get(quest=self, user=user)
-                adventure_state = adventure.state
-            except Adventure.DoesNotExist:
-                adventure = None
-                adventure_state = Adventure.STATE_DOESNT_EXIST
+            adventure_user = user
+        try:
+            adventure = Adventure.objects.get(quest=self, user=adventure_user)
+        except Adventure.DoesNotExist:
+            adventure = Adventure(user=adventure_user)
 
         # (quest_state, adventure_state)
         hero_map = {
-            'cancel': { (Quest.STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED,
+            'cancel': {(Quest.STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED,
                         (Quest.STATE_FULL, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED },
-            'apply' : { (Quest.STATE_OPEN, Adventure.STATE_DOESNT_EXIST): Adventure.STATE_HERO_APPLIED,
+            'apply' : {(Quest.STATE_OPEN, Adventure.STATE_DOESNT_EXIST): Adventure.STATE_HERO_APPLIED,
                         (Quest.STATE_OPEN, Adventure.STATE_HERO_CANCELED): Adventure.STATE_HERO_APPLIED}
         }
-
         owner_map = {
-
+            'accept': {(Quest.STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_OWNER_ACCEPTED},
+            'cancel': {(Quest.STATE_OPEN, None): Quest.STATE_OWNER_CANCELED}
         }
 
         if user == self.owner:
-            state = owner_map[action][(self.state, adventure_state)]
-            self.owner_set_state(user, state, adventure)
+            try:
+                state = owner_map[action][(self.state, adventure.state)]
+            except KeyError:
+                state = owner_map[action][(self.state, None)]
+            self.owner_set_state(state, adventure)
         else:
-            state = hero_map[action][(self.state, adventure_state)]
-            self.hero_set_state(user, adventure, state)
+            state = hero_map[action][(self.state, adventure.state)]
+            self.hero_set_state(state, adventure)
 
-    def owner_set_state(self, user, state, adventure):
-        pass
+    def owner_set_state(self, state, adventure):
+        if self.state == Adventure.STATE_HERO_APPLIED:
+            adventure.state = Adventure.STATE_HERO_APPLIED
+            adventure.save()
+        elif self.state == Quest.STATE_OWNER_CANCELED:
+            self.state = Quest.STATE_OWNER_CANCELED
+            self.save()
 
-    def hero_set_state(self, user, adventure, state):
+    def hero_set_state(self, state, adventure):
         if state == Adventure.STATE_HERO_CANCELED:
             adventure.state = Adventure.STATE_HERO_CANCELED
             adventure.save()
-
-        if state == Adventure.STATE_HERO_APPLIED:
-            adventure, created = Adventure.objects.get_or_create(quest=self,user=user)
-            adventure.state = Adventure.STATE_HERO_APPLIED
+        elif state == Adventure.STATE_HERO_APPLIED:
+            if self.auto_accept:
+                adventure.state = Adventure.STATE_OWNER_ACCEPTED
+            else:
+                adventure.state = Adventure.STATE_HERO_APPLIED
             adventure.save()
 
-        pass
 
 
 class UserProfile(models.Model):
