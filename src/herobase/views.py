@@ -39,6 +39,7 @@ class QuestCreateView(CreateView):
         return kwargs
 
     def form_valid(self, form):
+
         self.object = form.save(commit=False)
         self.object.owner = self.request.user
         self.object.save()
