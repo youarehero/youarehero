@@ -21,7 +21,7 @@
             {% csrf_token %}
             <input type="hidden" name="target_user" value="{{ adventure.user_id }}"/>
             <input type="submit" name="action" class="btn btn-primary btn-large" value="cancel"/>
-            <input type="submit" name="action" class="btn btn-primary btn-large" value="done"/>
+            <input type="submit" name="action" class="btn btn-primary btn-large" value="quest_done"/>
             <input type="submit" name="action" class="btn btn-primary btn-large" value="accept"/>
         </form>
         {% for adventure in quest.adventure_set.all %}
@@ -30,7 +30,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="target_user" value="{{ adventure.user_id }}"/>
                 <input type="submit" name="action" class="btn btn-primary btn-large" value="cancel"/>
-                <input type="submit" name="action" class="btn btn-primary btn-large" value="done"/>
+                <input type="submit" name="action" class="btn btn-primary btn-large" value="hero_done"/>
                 <input type="submit" name="action" class="btn btn-primary btn-large" value="accept"/>
             </form>
         {% endfor %}

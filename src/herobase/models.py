@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
@@ -27,6 +28,7 @@ class Adventure(models.Model):
     STATE_HERO_CANCELED = 2**3
     STATE_OWNER_ACCEPTED = 2**4
     STATE_HERO_DONE = 2**5
+    STATE_OWNER_DONE = 2**6
 
     state = models.IntegerField(default=STATE_DOESNT_EXIST, choices=(
         (STATE_DOESNT_EXIST, "doesn't exist"),
@@ -34,7 +36,8 @@ class Adventure(models.Model):
         (STATE_OWNER_REFUSED, 'refused'),
         (STATE_HERO_CANCELED, 'canceled'),
         (STATE_OWNER_ACCEPTED, 'assigned'),
-        (STATE_HERO_DONE, 'done'),
+        (STATE_HERO_DONE, 'hero done'),
+        (STATE_OWNER_DONE, 'owner done'),
         ))
 
 class Quest(models.Model):
@@ -95,28 +98,45 @@ class Quest(models.Model):
     def state_machine(self, user, action, target_user=None):
         if user == self.owner:
             if target_user:
-                adventure = Adventure(quest=self, user=target_user)
+                try:
+                    adventure = Adventure.objects.get(quest=self, user=target_user)
+                except Adventure.DoesNotExist:
+                    adventure = Adventure(quest=self)
             else:
                 adventure = Adventure(quest=self)
         else:
-            adventure = Adventure.objects.get(quest=self, user=user)
+            try:
+                adventure = Adventure.objects.get(quest=self, user=user)
+            except Adventure.DoesNotExist:
+                adventure = Adventure(quest=self, user=user)
 
-        # (quest_state, adventure_state)
+        # { action :  {(quest_state, adventure_state) -> new state, ...}, ...}
         hero_map = {
-            'cancel': {(Quest.STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED,
-                        (Quest.STATE_FULL, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED},
-            'apply' : {(Quest.STATE_OPEN, Adventure.STATE_DOESNT_EXIST): Adventure.STATE_HERO_APPLIED,
-                        (Quest.STATE_OPEN, Adventure.STATE_HERO_CANCELED): Adventure.STATE_HERO_APPLIED},
+            'cancel': {
+                (Quest.STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED,
+                (Quest.STATE_FULL, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED},
+            'apply' : {
+                (Quest.STATE_OPEN, Adventure.STATE_DOESNT_EXIST): Adventure.STATE_HERO_APPLIED,
+                (Quest.STATE_OPEN, Adventure.STATE_HERO_CANCELED): Adventure.STATE_HERO_APPLIED},
+            'hero_done': {
+                (Quest.STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_DONE,
+                (Quest.STATE_OWNER_DONE, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_DONE,
+            }
         }
         owner_map = {
-            'accept': {(Quest.STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_OWNER_ACCEPTED},
-            'cancel': {(Quest.STATE_OPEN, None): Quest.STATE_OWNER_CANCELED},
-            'done': {(Quest.STATE_OPEN, None): Quest.STATE_OWNER_DONE,
-                     (Quest.STATE_FULL, None): Quest.STATE_OWNER_DONE,
-                     }
+            'accept': {
+                (Quest.STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_OWNER_ACCEPTED},
+            'cancel': {
+                (Quest.STATE_OPEN, None): Quest.STATE_OWNER_CANCELED},
+            'quest_done': {
+                (Quest.STATE_OPEN, None): Quest.STATE_OWNER_DONE,
+                (Quest.STATE_FULL, None): Quest.STATE_OWNER_DONE,
+             },
+            'hero_done': {
+                (Quest.STATE_OWNER_DONE, Adventure.STATE_OWNER_ACCEPTED): Adventure.STATE_OWNER_DONE,
+                }
         }
 
-        print user, self.owner, '##'
         if user == self.owner:
             try:
                 state = owner_map[action][(self.state, adventure.state)]
@@ -124,17 +144,17 @@ class Quest(models.Model):
                 try:
                     state = owner_map[action][(self.state, None)]
                 except KeyError:
-                    return 'owner fehler %s %s %s' % (action, self.state, adventure.state)
-            self.owner_set_state(state, adventure)
+                    return 'owner fehler: action %s, quest state: %s, adventure state: %s ,target_user: %s' % (action, self.get_state_display(), adventure.get_state_display(), target_user)
+            message = self.owner_set_state(state, adventure)
         else:
             try:
                 state = hero_map[action][(self.state, adventure.state)]
             except KeyError:
-                return 'hero fehler %s %s %s' % (action, self.state, adventure.state)
-            self.hero_set_state(state, adventure)
+                return 'owner fehler: action %s, quest state: %s, adventure state: %s, target_user: %s' % (action, self.get_state_display(), adventure.get_state_display(), target_user)
+            message = self.hero_set_state(state, adventure)
 
         self.update_calculated_state()
-        return 'stuff done'
+        return message
 
     def update_calculated_state(self):
         """Update denormalized state on quest"""
@@ -147,24 +167,39 @@ class Quest(models.Model):
         if state == Adventure.STATE_OWNER_ACCEPTED:
             adventure.state = Adventure.STATE_OWNER_ACCEPTED
             adventure.save()
+            return 'Nutzer %s akzeptiert' % adventure.user.username
+        elif state == Adventure.STATE_OWNER_DONE:
+            adventure.state = Adventure.STATE_OWNER_DONE
+            adventure.save()
+            return 'Nutzer %s als hat quest erledigt markiert' % adventure.user.username
         elif state == Quest.STATE_OWNER_CANCELED:
             self.state = Quest.STATE_OWNER_CANCELED
             self.save()
+            return 'Quest %s abgebrochen' % adventure.quest.title
         elif state == Quest.STATE_OWNER_DONE:
             self.state = Quest.STATE_OWNER_DONE
             self.save()
+            return 'Quest %s als erledigt markiert' % adventure.quest.title
+
 
     def hero_set_state(self, state, adventure):
         if state == Adventure.STATE_HERO_CANCELED:
             adventure.state = Adventure.STATE_HERO_CANCELED
             adventure.save()
+            return 'Teilnahme an Quest %s  abgebrochen' % adventure.quest.title
         elif state == Adventure.STATE_HERO_APPLIED:
             if self.auto_accept:
                 adventure.state = Adventure.STATE_OWNER_ACCEPTED
+                message =  "Fuer quest %s beworben" % adventure.quest.title
             else:
                 adventure.state = Adventure.STATE_HERO_APPLIED
+                message = "Fuer quest %s angemeldet" % adventure.quest.title
             adventure.save()
-
+            return message
+        elif state == Adventure.STATE_HERO_DONE:
+            adventure.state = Adventure.STATE_HERO_DONE
+            adventure.save()
+            return 'Du hast den Besitzer darauf hingewiesen, dass der quest erledigt ist'
 class UserProfile(models.Model):
     """Hold extended user information."""
     user = models.OneToOneField(User)
