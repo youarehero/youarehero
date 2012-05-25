@@ -201,7 +201,7 @@ class Quest(models.Model):
 
     def update_calculated_state(self):
         """Update denormalized state on quest"""
-        if (self.state != Quest.STATE_OWNER_DONE and self.max_heroes and
+        if (self.state not in (Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED) and self.max_heroes and
             self.adventure_set.filter(state=Adventure.STATE_OWNER_ACCEPTED).count() >= self.max_heroes):
             self.state = self.STATE_FULL
             self.save()
