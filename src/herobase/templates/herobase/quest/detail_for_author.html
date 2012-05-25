@@ -6,33 +6,32 @@
     {% if quest.cancelled %}
         Du hast diese Quest abgebrochen.
     {% else %}
-        {% if quest.heroes.exists %}
-            Die Folgenden Helden moechten dir helfen:
-            <ul>
-                {% for adventure in quest.adventure_set.all %}
-                    {{ adventure.user.username }}, state: {{ adventure.get_state_display }}
-                {% endfor %}
-            </ul>
+        <form action="{% url adventure-update quest.id %}" method="post">
+            {% csrf_token %}
+            <h2>Allgemeine settings</h2>
+            {% if 'cancel' in quest.get_owner_actions %}
+                <input type="submit" name="action" class="btn btn-primary btn-large" value="cancel"/>
+            {% endif %}
+            {% if 'quest_done' in quest.get_owner_actions %}
+                <input type="submit" name="action" class="btn btn-primary btn-large" value="quest_done"/>
+            {% endif %}
+        </form>
+        <h2>    Die Folgenden Helden moechten dir helfen</h2>
+        {% if quest.active_heroes.exists %}
+            {% for adventure in quest.adventure_set.all %}
+                <h3>{{ adventure.user }} (state: {{ adventure.get_state_display }})</h3>
+                <form action="{% url adventure-update quest.id %}" method="post">
+                    {% csrf_token %}
+                        <input type="submit" name="action" class="btn btn-primary btn-large" value="cancel"/>
+                    <input type="hidden" name="target_user" value="{{ adventure.user_id }}"/>
+
+                    <input type="submit" name="action" class="btn btn-primary btn-large" value="hero_done"/>
+                    <input type="submit" name="action" class="btn btn-primary btn-large" value="accept"/>
+                </form>
+            {% endfor %}
         {% else %}
             Leider hilft Dir noch niemand.
         {% endif %}
-        <h3>Allgemeine settings</h3>
-        <form action="{% url adventure-update quest.id %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="target_user" value="{{ adventure.user_id }}"/>
-            <input type="submit" name="action" class="btn btn-primary btn-large" value="cancel"/>
-            <input type="submit" name="action" class="btn btn-primary btn-large" value="quest_done"/>
-            <input type="submit" name="action" class="btn btn-primary btn-large" value="accept"/>
-        </form>
-        {% for adventure in quest.adventure_set.all %}
-            <h3>settings for user {{ adventure.user }}</h3>
-            <form action="{% url adventure-update quest.id %}" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="target_user" value="{{ adventure.user_id }}"/>
-                <input type="submit" name="action" class="btn btn-primary btn-large" value="cancel"/>
-                <input type="submit" name="action" class="btn btn-primary btn-large" value="hero_done"/>
-                <input type="submit" name="action" class="btn btn-primary btn-large" value="accept"/>
-            </form>
-        {% endfor %}
+
     {% endif %}
 {%  endblock %}

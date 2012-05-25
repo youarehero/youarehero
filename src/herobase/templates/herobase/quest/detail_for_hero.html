@@ -11,9 +11,15 @@
 
     <form action="{% url adventure-update quest.id %}" method="post">
         {% csrf_token %}
-        <input type="submit" name="action" class="btn btn-primary btn-large" value="apply"/>
-        <input type="submit" name="action" class="btn btn-primary btn-large" value="cancel"/>
-        <input type="submit" name="action" class="btn btn-primary btn-large" value="hero_done"/>
-        <input type="submit" name="action" class="btn btn-primary btn-large" value="accept"/>
+    {{ adventure.get_hero_actions }}
+        {% if not adventure.get_hero_actions %}
+            <input type="submit" name="action" class="btn btn-primary btn-large" value="apply"/>
+        {% endif %}
+        {% if 'cancel' in adventure.get_hero_actions %}
+            <input type="submit" name="action" class="btn btn-primary btn-large" value="cancel"/>
+        {% endif %}
+        {% if 'hero_done' in adventure.get_hero_actions %}
+            <input type="submit" name="action" class="btn btn-primary btn-large" value="hero_done"/>
+        {% endif %}
     </form>
 {% endblock %}
