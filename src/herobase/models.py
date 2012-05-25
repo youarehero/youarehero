@@ -42,7 +42,11 @@ class Adventure(models.Model):
 
 
     def get_hero_actions(self):
-        return self.quest.get_hero_actions(self)
+        return self.quest.get_adventure_hero_actions(self)
+
+    def get_owner_actions(self):
+        return self.quest.get_adventure_owner_actions(self)
+
 class Quest(models.Model):
     """A quest, owned by a user"""
     owner = models.ForeignKey(User, related_name='created_quests')
@@ -117,11 +121,12 @@ class Quest(models.Model):
 
 
 
-
     HERO_ACTIONS = {
         'cancel': {
             (STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED,
-            (STATE_FULL, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED},
+            (STATE_FULL, Adventure.STATE_HERO_APPLIED): Adventure.STATE_HERO_CANCELED,
+            (STATE_OPEN, Adventure.STATE_OWNER_ACCEPTED): Adventure.STATE_HERO_CANCELED,
+            (STATE_FULL, Adventure.STATE_OWNER_ACCEPTED): Adventure.STATE_HERO_CANCELED},
         'apply' : {
             (STATE_OPEN, Adventure.STATE_DOESNT_EXIST): Adventure.STATE_HERO_APPLIED,
             (STATE_OPEN, Adventure.STATE_HERO_CANCELED): Adventure.STATE_HERO_APPLIED},
@@ -133,18 +138,30 @@ class Quest(models.Model):
     OWNER_ACTIONS = {
         'accept': {
             (STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_OWNER_ACCEPTED},
-        'cancel': {
-            (STATE_OPEN, None): STATE_OWNER_CANCELED},
+        'quest_cancel': {
+            (STATE_OPEN, None): STATE_OWNER_CANCELED,
+            (STATE_FULL, None): STATE_OWNER_CANCELED},
         'quest_done': {
             (STATE_OPEN, None): STATE_OWNER_DONE,
             (STATE_FULL, None): STATE_OWNER_DONE,
             },
         'hero_done': {
             (STATE_OWNER_DONE, Adventure.STATE_OWNER_ACCEPTED): Adventure.STATE_OWNER_DONE,
-            }
+            },
+        'hero_refuse': {
+            (STATE_OPEN, Adventure.STATE_HERO_APPLIED): Adventure.STATE_OWNER_REFUSED,
+            (STATE_FULL, Adventure.STATE_HERO_APPLIED): Adventure.STATE_OWNER_REFUSED,
+        }
     }
 
-    def get_hero_actions(self, adventure):
+    def get_adventure_owner_actions(self, adventure):
+        actions = []
+        for action, states in self.OWNER_ACTIONS.items():
+            if (self.state, adventure.state) in states:
+                actions.append(action)
+        return actions
+
+    def get_adventure_hero_actions(self, adventure):
         actions = []
         for action, states in self.HERO_ACTIONS.items():
             if (self.state, adventure.state) in states:
@@ -154,8 +171,6 @@ class Quest(models.Model):
     def get_owner_actions(self):
         actions = []
         for action, states in self.OWNER_ACTIONS.items():
-            print '####'
-            print action, states
             if (self.state, None) in states:
                 actions.append(action)
         return actions
@@ -196,6 +211,10 @@ class Quest(models.Model):
             adventure.state = Adventure.STATE_OWNER_ACCEPTED
             adventure.save()
             return 'Nutzer %s akzeptiert' % adventure.user.username
+        elif state == Adventure.STATE_OWNER_REFUSED:
+            adventure.state = Adventure.STATE_OWNER_ACCEPTED
+            adventure.save()
+            return "Nutzer %s verweigert" % adventure.user.username
         elif state == Adventure.STATE_OWNER_DONE:
             adventure.state = Adventure.STATE_OWNER_DONE
             adventure.save()
