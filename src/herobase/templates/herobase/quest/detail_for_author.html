@@ -6,19 +6,28 @@
     {% if quest.cancelled %}
         Du hast diese Quest abgebrochen.
     {% else %}
-        {% if quest.heroes.exists %}
-            Die Folgenden Helden moechten dir helfen:
-            <ul>
-                {% for user in quest.heroes.all %}
-                    {{ user.username }}
-                {% endfor %}
-            </ul>
+        <form action="{% url adventure-update quest.id %}" method="post">
+            {% csrf_token %}
+            <h2>Allgemeine settings</h2>
+            {% for action in quest.get_owner_actions %}
+                <input type="submit" name="action" class="btn btn-primary btn-large" value="{{ action }}"/>
+            {% endfor %}
+        </form>
+        <h2>Die Folgenden Helden moechten dir helfen</h2>
+        {% if quest.active_heroes.exists %}
+            {% for adventure in quest.adventure_set.all %}
+                <a href="{% url user-profile adventure.user.username %}"><h3>{{ adventure.user }} (state: {{ adventure.get_state_display }})</h3></a>
+                <form action="{% url adventure-update quest.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="target_user" value="{{ adventure.user_id }}"/>
+                    {% for action in adventure.get_owner_actions %}
+                        <input type="submit" name="action" class="btn btn-primary btn-large" value="{{ action }}"/>
+                    {% endfor  %}
+                </form>
+            {% endfor %}
         {% else %}
             Leider hilft Dir noch niemand.
         {% endif %}
-        <form action="{% url adventure-update quest.id %}" method="post">
-            {% csrf_token %}
-            <input type="submit" name="cancel" class="btn btn-primary btn-large" value="Quest abbrechen"/>
-        </form>
+
     {% endif %}
 {%  endblock %}
