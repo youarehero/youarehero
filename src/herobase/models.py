@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, PermissionDenied
 from django.core.urlresolvers import reverse
 from django.core.validators import MinValueValidator
 from django.db import models, transaction
@@ -14,6 +14,11 @@ CLASS_CHOICES =  (
     (1, 'Gadgeteer'),
     (2, 'Diplomat'))
 
+
+def negate(f):
+    def decorated(*args, **kwargs):
+        return not f(*args, **kwargs)
+    return decorated
 
 class Adventure(models.Model):
     """Model the relationship between a User and a Quest she is engaged in."""
@@ -40,6 +45,11 @@ class Adventure(models.Model):
         (STATE_OWNER_DONE, 'owner done'),
         ))
 
+    def valid_actions_for(self, request):
+        if self.quest and self.quest.owner != request.user:
+            return []
+        return ['accept']
+
 
 class Quest(models.Model):
     """A quest, owned by a user"""
@@ -63,7 +73,12 @@ class Quest(models.Model):
     experience = models.PositiveIntegerField()
 
     def active_heroes(self):
+        """All heroes that have not cancelled their participation and have not been excluded"""
+        # TODO refused heroes ???
         return self.heroes.exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_HERO_CANCELED)
+
+    def accepted_heroes(self):
+        return self.heroes.filter(adventures__quest=self.pk, adventures__state=Adventure.STATE_OWNER_ACCEPTED)
 
     def clean(self):
         if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
@@ -74,14 +89,94 @@ class Quest(models.Model):
     STATE_FULL = 2
     STATE_OWNER_DONE = 3
     STATE_OWNER_CANCELED = 4
+#
+    def can_apply(self, request):
+        if self.is_owner(request):
+            return False
+        try:
+            adventure = self.adventure_set.get(user=request.user)
+        except Adventure.DoesNotExist:
+            return True
+        return adventure.state in (Adventure.STATE_HERO_CANCELED, )
 
-    def is_cancelled(self):
+
+
+    def get_actions(self):
+        actions = {
+            'cancel': {
+                'conditions': (self.is_owner, self.is_open),
+                'actions': (self.cancel,),
+                },
+            'apply': {
+                'conditions': (self.is_open, self.can_apply),
+                'actions': (self.hero_apply, )
+                },
+            'hero_cancel': {
+                'conditions': (negate(self.is_done),
+                               lambda r: r.user in self.active_heroes()),
+                'actions': (self.hero_cancel, )
+                },
+            }
+        return actions
+
+    def hero_cancel(self, request):
+        adventure = self.adventure_set.get(user=request.user)
+        adventure.state = Adventure.STATE_HERO_CANCELED
+        adventure.save()
+
+    def hero_apply(self, request):
+        adventure, created = self.adventure_set.get_or_create(user=request.user)
+        if self.auto_accept:
+            adventure.state = Adventure.STATE_OWNER_ACCEPTED
+        else:
+            adventure.state = Adventure.STATE_HERO_APPLIED
+        adventure.save()
+
+    def cancel(self, request=None):
+        self.state = self.STATE_OWNER_CANCELED
+        self.save()
+
+    def valid_actions_for(self, request):
+        actions = self.get_actions()
+        valid_actions = []
+        for name, action in actions.items():
+            valid = True
+            for condition in action['conditions']:
+                if not condition(request):
+                    valid = False
+            if valid:
+                valid_actions.append(name)
+        return valid_actions
+
+    def process_action(self, request, action_name):
+        actions = self.get_actions()
+        if not action_name in actions:
+            raise ValueError("not a valid action")
+
+        action = actions[action_name]
+
+        valid = True
+        for condition in action['conditions']:
+            if not condition(request):
+                valid = False
+
+        if not valid:
+            raise PermissionDenied("Can't execute action %s" % action)
+
+        for f in action['actions']:
+            f(request)
+
+
+    def is_owner(self, request):
+        return self.owner == request.user
+
+    def is_cancelled(self, request=None):
         return self.state == Quest.STATE_OWNER_CANCELED
 
-    def is_open(self):
+    def is_open(self, request=None):
         return self.state == Quest.STATE_OPEN
 
-    def is_done(self):
+    def is_done(self, request=None):
         return self.state == Quest.STATE_OWNER_DONE
 
     def needs_heroes(self):
@@ -93,13 +188,14 @@ class Quest(models.Model):
         else:
             return self.adventure_set.filter(state=Adventure.STATE_OWNER_ACCEPTED).count() < self.max_heroes
 
-    state = models.IntegerField(default=STATE_NOT_SET, choices=(
-        (STATE_NOT_SET, 'not set'),
+    state = models.IntegerField(default=STATE_OPEN, choices=(
+#        (STATE_NOT_SET, 'not set'),
         (STATE_OPEN, 'open'),
         (STATE_FULL, 'full'),
         (STATE_OWNER_DONE, 'done'),
         (STATE_OWNER_CANCELED, 'canceled'),
     ))
+
 
     def get_absolute_url(self):
         """Get the url for this quests detail page."""

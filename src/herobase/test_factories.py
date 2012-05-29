@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 from django.contrib.auth.models import User
-from herobase.models import Quest, CLASS_CHOICES
+from herobase.models import Quest, CLASS_CHOICES, Adventure
 
 def factory(f):
     def decorated(*args, **kwargs):
@@ -39,3 +39,15 @@ def create_quest(**kwargs):
     if not 'owner' in quest_data:
         quest_data['owner'] = create_user()
     return Quest.objects.create(**quest_data)
+
+@factory
+def create_adventure(quest, **kwargs):
+    create_counter = kwargs.pop('create_counter')
+    adventure_data = {
+        'state': Adventure.STATE_HERO_APPLIED,
+        'quest': quest,
+    }
+    adventure_data.update(kwargs)
+    if not 'user' in adventure_data:
+        adventure_data['user'] = create_user()
+    return Adventure.objects.create(**adventure_data)
