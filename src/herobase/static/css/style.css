@@ -18,5 +18,8 @@ a.text {
 .quest-list-item .content p, .quest-list-item .content h2 {
     font-family: 'Coming Soon', cursive;
     text-shadow: 0 0 1px #A28D5B;
+}
 
+tr.new td {
+    background: #c1d9c4;
 }

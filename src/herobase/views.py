@@ -76,7 +76,7 @@ def hero_home_view(request):
     return render(request, 'herobase/hero_home.html',
             {'user': user,
              'profile': user.get_profile(),
-             'adventures': user.adventures.exclude(state=Adventure.STATE_CANCELED).order_by('-created'),
+             'adventures': user.adventures.exclude(state=Adventure.STATE_HERO_CANCELED).order_by('-created'),
              'created_quests': user.created_quests.order_by('-created')})
 
 @require_POST

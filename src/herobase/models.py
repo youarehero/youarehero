@@ -8,6 +8,7 @@ from django.db import models, transaction
 # Create your models here.
 from django.db.models.signals import post_save
 from django.utils.decorators import method_decorator
+from heromessage.models import Message
 
 CLASS_CHOICES =  (
     (0, "Scientist"),
@@ -216,6 +217,10 @@ class UserProfile(models.Model):
     def level(self):
         """Calculate the user's level based on her experience"""
         return self.experience % 1000 + 1 # TODO: correct formula
+
+    @property
+    def unread_messages_count(self):
+        return Message.objects.filter(recipient=self.user,read__isnull=True,recipient_deleted__isnull=True).count()
 
 
 def create_user_profile(sender, instance, created, **kwargs):

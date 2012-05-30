@@ -1,0 +1,14 @@
+{% extends "herobase/base.html" %}
+
+{% block content %}
+
+    {% if message %}
+        <div class="span6">
+        <p>Subject:{{ message.title }} from {{ message.sender }} at {{ message.sent }}</p>
+        <p>{{ message.text }}</p>
+        </div>
+    {% else %}
+
+    {% endif %}
+
+{%  endblock %}
