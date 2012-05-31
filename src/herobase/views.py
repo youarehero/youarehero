@@ -54,9 +54,12 @@ class QuestDetailView(DetailView):
     model = Quest
 
     def get_context_data(self, **kwargs):
-        try:
-            adventure = self.object.adventure_set.get(user=self.request.user)
-        except Adventure.DoesNotExist:
+        if self.request.user.is_authenticated():
+            try:
+                adventure = self.object.adventure_set.get(user=self.request.user)
+            except Adventure.DoesNotExist:
+                adventure = None
+        else:
             adventure = None
         kwargs['adventure'] = adventure
         return super(QuestDetailView, self).get_context_data(**kwargs)
