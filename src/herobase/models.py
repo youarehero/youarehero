@@ -6,14 +6,12 @@ from django.db import models, transaction
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_syncdb
 from django.utils.decorators import method_decorator
 from herobase.fields import LocationField
 from heromessage.models import Message
 
 from south.modelsinspector import add_introspection_rules
-import logging
-logger = logging.getLogger('youarehero.herobase')
 
 CLASS_CHOICES =  (
     (0, "Scientist"),
@@ -172,7 +170,6 @@ class Quest(models.Model, ActionMixin):
             'cancel': {
                 'conditions': (self.is_owner, self.is_open),
                 'actions': (self.cancel,),
-                'verbose_name': _("Cancel Quest")
                 },
             'hero_apply': {
                 'conditions': (self.is_open, self.can_apply),
@@ -206,7 +203,11 @@ class Quest(models.Model, ActionMixin):
         else:
             adventure.state = Adventure.STATE_HERO_APPLIED
         adventure.save()
-
+        Message.objects.create(
+            sender=get_system_user(),
+            recipient=adventure.quest.owner,
+            text="%s applied to your Quest %s" % (request.user, adventure.quest.title),
+            title="New Hero applied")
 
     def cancel(self, request=None):
         self.state = self.STATE_OWNER_CANCELED
@@ -271,9 +272,6 @@ class UserProfile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    ### Settings ###
-    public_location = models.BooleanField(default=False)
-
     @property
     def get_geolocation(self):
         if self.geolocation:
@@ -325,3 +323,9 @@ def login_on_activation(sender, user, request, **kwargs):
 
 # Registers the function with the django-registration user_activated signal
 user_activated.connect(login_on_activation)
+
+SYSTEM_USER_NAME = "YouAreHero"
+
+def get_system_user():
+    user, created = User.objects.get_or_create(username=SYSTEM_USER_NAME)
+    return user
