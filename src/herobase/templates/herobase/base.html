@@ -19,6 +19,11 @@
     </style>
     <link href='http://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>
     <link href="{% get_static_prefix %}css/style.css" rel="stylesheet">
+    <script src="{% get_static_prefix %}js/jquery-1.7.2.min.js"></script>
+
+    {% block head_javascript %}
+    {% endblock %}
+
     {% block css %}
     {% endblock %}
 
@@ -97,9 +102,27 @@
 <!-- Le javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="{% get_static_prefix %}js/jquery-1.7.2.min.js"></script>
 <script src="{% get_static_prefix %}bootstrap/js/bootstrap.js"></script>
+<script id="_webengage_script_tag" type="text/javascript">
+    window.webengageWidgetInit = window.webengageWidgetInit || function(){
+        webengage.init({
+            licenseCode:"14507c80d"
+        }).onReady(function(){
+                    webengage.render();
+                });
+    };
+
+    (function(d){
+        var _we = d.createElement('script');
+        _we.type = 'text/javascript';
+        _we.async = true;
+        _we.src = (d.location.protocol == 'https:' ? "//ssl.widgets.webengage.com" : "//cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-3.0.js";
+        var _sNode = d.getElementById('_webengage_script_tag');
+        _sNode.parentNode.insertBefore(_we, _sNode);
+    })(document);
+</script>
 {% block javascript %}
+
 {% endblock %}
 </body>
 </html>

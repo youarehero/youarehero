@@ -27,7 +27,7 @@ class Message(models.Model):
 
     @property
     def is_read(self):
-        return self.recipient_deleted is not None
+        return self.read is not None
 
 class MessageForm(ModelForm):
 

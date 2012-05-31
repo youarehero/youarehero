@@ -23,3 +23,6 @@ a.text {
 tr.new td {
     background: #c1d9c4;
 }
+
+#map_geolocation label { width: auto; display:inline; }
+#map_geolocation img { max-height: none; max-width: none; }

@@ -5,9 +5,10 @@ from django.core.exceptions import ValidationError
 from django.forms.models import ModelForm
 from django.forms.util import ErrorList
 from herobase.models import Quest, UserProfile
+from herobase.widgets import LocationWidget
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Fieldset, Div
+from crispy_forms.layout import Submit, Layout, Fieldset, Div, Field
 from django.utils.translation import ugettext_lazy as _
 
 class QuestCreateForm(ModelForm):
@@ -81,7 +82,8 @@ class UserProfileEdit(ModelForm):
                 _('Edit your Profile'),
                 Div(
                     'location',
-                    'hero_class'
+                    'hero_class',
+                    'geolocation',
                 )
             ),
             FormActions(
@@ -92,4 +94,7 @@ class UserProfileEdit(ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('location', 'hero_class')
+        fields = ('location', 'hero_class', 'geolocation')
+        widgets = {
+            'title': LocationWidget,
+        }
