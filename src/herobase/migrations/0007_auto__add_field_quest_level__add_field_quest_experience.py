@@ -9,10 +9,10 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding field 'Quest.level'
-        db.add_column('herobase_quest', 'level',
-                      self.gf('django.db.models.fields.PositiveIntegerField')(default=1),
-                      keep_default=False)
-
+#        db.add_column('herobase_quest', 'level',
+#                      self.gf('django.db.models.fields.PositiveIntegerField')(default=1),
+#                      keep_default=False)
+#
         # Adding field 'Quest.experience'
         db.add_column('herobase_quest', 'experience',
                       self.gf('django.db.models.fields.PositiveIntegerField')(default=100),
