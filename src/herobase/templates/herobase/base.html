@@ -10,6 +10,10 @@
 
     <!-- Le styles -->
     <link href="{% get_static_prefix %}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href='http://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>
+    <link href="{% get_static_prefix %}css/style.css" rel="stylesheet">
+    <script src="{% get_static_prefix %}js/jquery-1.7.2.min.js"></script>
     <style>
         @media (min-width: 981px) {
             body {
@@ -17,10 +21,6 @@
             }
         }
     </style>
-    <link href='http://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>
-    <link href="{% get_static_prefix %}css/style.css" rel="stylesheet">
-    <script src="{% get_static_prefix %}js/jquery-1.7.2.min.js"></script>
-
     {% block head_javascript %}
     {% endblock %}
 
@@ -42,42 +42,42 @@
 
 <body>
 
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-top">
     <div class="navbar-inner">
-        <div class="container-fluid">
+        <div class="container">
             <a class="brand" href="{% url home %}">You Are Hero</a>
-            <ul class="nav">
-                <li><a href="{% url quest-create %}"><i class="icon-plus-sign icon-white"></i> Create Quest</a></li>
-                <li><a href="{% url quest-list %}"><i class="icon-list icon-white"></i> Show Quests</a></li>
-            </ul>
-            <ul class="nav pull-right">
-                {% if request.user.is_authenticated %}
-                    <li><a href="{% url message-list %}">
-                        {% if request.user.get_profile.unread_messages_count != 0 %}
-                            <span class="badge badge-success"> {{ request.user.get_profile.unread_messages_count }}</span>
-                        {% endif %}
-                        <i class="icon-envelope icon-white"></i></a></li>
-                    <li class="dropdown">
-                        <a href="#"
-                           class="dropdown-toggle"
-                           data-toggle="dropdown">
-                            <i class="icon-user icon-white"></i>
-                            {{ request.user.username }}
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <a href="{% url user-edit %}"><i class="icon-star"></i> Profil</a>
-                            <a href="#"><i class="icon-cog"></i> Einstellungen</a>
-                            <a href="#"><i class="icon-lock"></i> Sicherheit</a>
-                            <a href="{% url django.contrib.auth.views.logout %}"><i class="icon-off"></i> Logout</a>
-                        </ul>
-                    </li>
-                {% else %}
-                    <li>
-                        <a href="{% url django.contrib.auth.views.login %}">Login</a>
-                    </li>
-                {% endif %}
-            </ul>
+                <ul class="nav">
+                    <li><a href="{% url quest-create %}"><i class="icon-plus-sign icon-white"></i> Create Quest</a></li>
+                    <li><a href="{% url quest-list %}"><i class="icon-list icon-white"></i> Show Quests</a></li>
+                </ul>
+                <ul class="nav pull-right">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url message-list %}">
+                            {% if request.user.get_profile.unread_messages_count != 0 %}
+                                <span class="badge badge-success"> {{ request.user.get_profile.unread_messages_count }}</span>
+                            {% endif %}
+                            <i class="icon-envelope icon-white"></i></a></li>
+                        <li class="dropdown">
+                            <a href="#"
+                               class="dropdown-toggle"
+                               data-toggle="dropdown">
+                                <i class="icon-user icon-white"></i>
+                                {{ request.user.username }}
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <a href="{% url user-edit %}"><i class="icon-star"></i> Profil</a>
+                                <a href="#"><i class="icon-cog"></i> Einstellungen</a>
+                                <a href="#"><i class="icon-lock"></i> Sicherheit</a>
+                                <a href="{% url django.contrib.auth.views.logout %}"><i class="icon-off"></i> Logout</a>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url django.contrib.auth.views.login %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
         </div>
     </div>
 </div>
