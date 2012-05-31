@@ -272,6 +272,8 @@ class UserProfile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
+    public_location = models.BooleanField(default=False)
+
     @property
     def get_geolocation(self):
         if self.geolocation:
