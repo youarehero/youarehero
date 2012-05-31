@@ -78,7 +78,7 @@ class Adventure(models.Model, ActionMixin):
         (STATE_HERO_APPLIED, 'applied'),
         (STATE_OWNER_REFUSED, 'refused'),
         (STATE_HERO_CANCELED, 'canceled'),
-        (STATE_OWNER_ACCEPTED, 'assigned'),
+        (STATE_OWNER_ACCEPTED, 'accepted'),
         (STATE_HERO_DONE, 'hero done'),
         (STATE_OWNER_DONE, 'owner done'),
         ))
@@ -142,7 +142,7 @@ class Quest(models.Model, ActionMixin):
     STATE_FULL = 2
     STATE_OWNER_DONE = 3
     STATE_OWNER_CANCELED = 4
-    #
+
     state = models.IntegerField(default=STATE_OPEN, choices=(
         #        (STATE_NOT_SET, 'not set'),
         (STATE_OPEN, 'open'),
