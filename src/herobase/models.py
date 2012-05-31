@@ -158,7 +158,10 @@ class Quest(models.Model, ActionMixin):
         return self.heroes.all()
 
     def accepted_heroes(self):
-        return self.heroes.filter(adventures__quest=self.pk, adventures__state=Adventure.STATE_OWNER_ACCEPTED)
+        return self.heroes.filter(adventures__quest=self.pk,
+            adventures__state__in=(Adventure.STATE_OWNER_ACCEPTED,
+                                   Adventure.STATE_OWNER_DONE,
+                                   Adventure.STATE_HERO_DONE))
 
     def clean(self):
         if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
