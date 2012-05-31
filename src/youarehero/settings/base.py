@@ -215,13 +215,6 @@ LOGGING = {
             'formatter': 'simple',
             'class': 'logging.StreamHandler',
         },
-        'debug_file': {
-            'level': 'DEBUG',
-            'formatter': 'precise',
-            'class': 'logging.handlers.TimedRotatingFileHandler',
-#            'filename': '/tmp/acms_debug.log',
-            'when': 'midnight',
-        }
     },
     'loggers': {
         'django.request': {
