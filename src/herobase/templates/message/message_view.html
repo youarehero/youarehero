@@ -1,0 +1,106 @@
+{% extends "herobase/base.html" %}
+{% load crispy_forms_tags i18n static %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#typeahead').typeahead()
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+  <!--  <p><a class="btn btn-primary" href="#">
+        <i class="icon-envelope icon-white"></i>
+        New Message
+    </a>
+    </p> -->
+
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#in" data-toggle="tab"><i class="icon-arrow-down"></i>In</a></li>
+                <li><a href="#out" data-toggle="tab"><i class="icon-arrow-up"></i>Out</a></li>
+            </ul>
+            <div class="row">
+                <div class="span10">
+
+                <div class="tab-content">
+                <div class="tab-pane active" id="in">
+                    {% if received_messages %}
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>From</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for message in received_messages %}
+                                <tr {% if not message.is_read %}class="new"{% endif %}>
+                                    <td>
+                                        <a href="{% url message-detail message.pk %}">{{ message.title }}</a>
+                                    </td>
+                                    <td>{{ message.sender }}</td>
+                                    <td>{{ message.sent }}</td>
+                                    <td>
+                                        <form method="post" action="{% url message-list message.id %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="form" value="{{ form.data }}" />
+                                            <button class="btn btn-small" type="submit" value="reply" name="reply">reply <i class="icon-share-alt icon-white"></i></button>
+                                            <button class="btn btn-small" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-white"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>No messages yet :(</p>
+                    {% endif %}
+
+                </div>
+
+
+                <div class="tab-pane" id="out">
+                    {% if sent_messages %}
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>To</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for message in sent_messages %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url message-detail message.pk %}">{{ message.title }}</a>
+                                    </td>
+                                    <td>{{ message.recipient }}</td>
+                                    <td>{{ message.sent }}</td>
+                                    <td>
+                                        <form method="post" action="{% url message-list message.id %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="form" value="{{ form.data }}" />
+                                            <button class="btn btn-small" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-white"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>You did not send any messages yet</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="span6">
+            {% include 'message/send.html' %}
+        </div>
+    </div>
+{% endblock %}
