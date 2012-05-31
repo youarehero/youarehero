@@ -47,8 +47,8 @@
                                         <form method="post" action="{% url message-list message.id %}">
                                             {% csrf_token %}
                                             <input type="hidden" name="form" value="{{ form.data }}" />
-                                            <button class="btn btn-small" type="submit" value="reply" name="reply">reply <i class="icon-share-alt icon-white"></i></button>
-                                            <button class="btn btn-small" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-white"></i></button>
+                                            <button class="btn btn-small" type="submit" value="reply" name="reply">reply <i class="icon-share-alt icon-black"></i></button>
+                                            <button class="btn btn-small" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-black"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -85,7 +85,7 @@
                                         <form method="post" action="{% url message-list message.id %}">
                                             {% csrf_token %}
                                             <input type="hidden" name="form" value="{{ form.data }}" />
-                                            <button class="btn btn-small" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-white"></i></button>
+                                            <button class="btn btn-small" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-black"></i></button>
                                         </form>
                                     </td>
                                 </tr>
