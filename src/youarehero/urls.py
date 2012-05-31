@@ -19,6 +19,12 @@ urlpatterns = patterns('',
     url(r'^profile/(?P<username>\w+)$', 'herobase.views.profile_view', name='user-profile'),
     url(r'^profile/$', 'herobase.views.profile_edit', name='user-edit'),
 
+    url(r'^messages/reply/(?P<message_id>\d+)$', 'heromessage.views.message_view', name='message-list'),
+    url(r'^messages', 'heromessage.views.message_view', name='message-list'),
+    url(r'^message/(?P<pk>\d+)$', 'heromessage.views.message_detail', name='message-detail'),
+    url(r'^message/send', 'heromessage.views.message_send', name='message-send'),
+
+
     # Examples:
     # url(r'^$', 'youarehero.views.home', name='home'),
     # url(r'^youarehero/', include('youarehero.foo.urls')),
