@@ -154,6 +154,8 @@ INSTALLED_APPS = (
     'south',
     'registration',
     'crispy_forms',
+    'autocomplete_light',
+
     # project specific installed apps
     'herobase',
     'heromessage',

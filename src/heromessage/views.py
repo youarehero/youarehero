@@ -9,7 +9,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
 from django.views.generic.list import ListView
 from herobase.forms import UserProfileEdit
-from heromessage.models import Message, MessageForm
+from .models import Message
+from .forms import MessageForm
 import logging
 
 logger = logging.getLogger('youarehero.heromessage')
