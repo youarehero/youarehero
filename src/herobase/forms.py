@@ -81,8 +81,8 @@ class UserProfileEdit(ModelForm):
             Fieldset(
                 _('Edit your Profile'),
                 Div(
-                    'location',
                     'hero_class',
+                    'location',
                     'geolocation',
                 )
             ),
@@ -98,3 +98,28 @@ class UserProfileEdit(ModelForm):
         widgets = {
             'title': LocationWidget,
         }
+
+class UserProfileSecurityEdit(ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.form_action = 'user-security-edit'
+        self.helper.form_class = 'well form-horizontal'
+
+        #self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.layout = Layout(
+            Fieldset(
+                _('Security'),
+                Div(
+                    'public_location',
+                )
+            ),
+            FormActions(
+                Submit('save', 'Save', css_class='btn')
+            ),
+        )
+        super(UserProfileSecurityEdit, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = UserProfile
+        fields = ('public_location', )
