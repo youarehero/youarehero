@@ -24,130 +24,9 @@ def negate(f):
         return not f(*args, **kwargs)
     return decorated
 
-class Adventure(models.Model):
-    """Model the relationship between a User and a Quest she is engaged in."""
-    user = models.ForeignKey(User, related_name='adventures')
-    quest = models.ForeignKey('Quest')
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-
-    STATE_NOT_SET = 0
-    STATE_HERO_APPLIED = 1
-    STATE_OWNER_REFUSED = 2
-    STATE_HERO_CANCELED = 3
-    STATE_OWNER_ACCEPTED = 4
-    STATE_HERO_DONE = 5
-    STATE_OWNER_DONE = 6
-
-    state = models.IntegerField(default=STATE_NOT_SET, choices=(
-        (STATE_NOT_SET, "doesn't exist"),
-        (STATE_HERO_APPLIED, 'applied'),
-        (STATE_OWNER_REFUSED, 'refused'),
-        (STATE_HERO_CANCELED, 'canceled'),
-        (STATE_OWNER_ACCEPTED, 'assigned'),
-        (STATE_HERO_DONE, 'hero done'),
-        (STATE_OWNER_DONE, 'owner done'),
-        ))
-
-    def valid_actions_for(self, request):
-        if self.quest and self.quest.owner != request.user:
-            return []
-        return ['accept', 'refuse']
-
-class Quest(models.Model):
-    """A quest, owned by a user"""
-    owner = models.ForeignKey(User, related_name='created_quests')
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-
-    location = models.CharField(max_length=255) # TODO : placeholder
-    due_date = models.DateTimeField()
-
-    hero_class = models.IntegerField(choices=CLASS_CHOICES)
-    heroes = models.ManyToManyField(User, through=Adventure, related_name='quests')
-
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-
-    max_heroes = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
-    auto_accept = models.BooleanField(default=False)
-
-    level = models.PositiveIntegerField(choices=((1, 'Easy'), (2, 'Okay'), (3, 'Experienced'), (4, 'Challenging'), (5, 'Heroic')))
-    experience = models.PositiveIntegerField()
-
-    def active_heroes(self):
-        """All heroes that have not cancelled their participation and have not been excluded"""
-        # TODO refused heroes ???
-        return self.heroes.exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_HERO_CANCELED)
-
-    def accepted_heroes(self):
-        return self.heroes.filter(adventures__quest=self.pk, adventures__state=Adventure.STATE_OWNER_ACCEPTED)
-
-    def clean(self):
-        if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
-            raise ValidationError('Maximum experience for quest with level {0} is {1}'.format(self.level, self.level * 100))
-
-    STATE_NOT_SET = 0
-    STATE_OPEN = 1
-    STATE_FULL = 2
-    STATE_OWNER_DONE = 3
-    STATE_OWNER_CANCELED = 4
-#
-    def can_apply(self, request):
-        if self.is_owner(request):
-            return False
-        try:
-            adventure = self.adventure_set.get(user=request.user)
-        except Adventure.DoesNotExist:
-            return True
-        return adventure.state in (Adventure.STATE_HERO_CANCELED, )
-
-
-
+class ActionMixin(object):
     def get_actions(self):
-        actions = {
-            'cancel': {
-                'conditions': (self.is_owner, self.is_open),
-                'actions': (self.cancel,),
-                },
-            'hero_apply': {
-                'conditions': (self.is_open, self.can_apply),
-                'actions': (self.hero_apply, )
-                },
-            'hero_cancel': {
-                'conditions': (negate(self.is_done),
-                               lambda r: r.user in self.active_heroes()),
-                'actions': (self.hero_cancel, )
-                },
-            'done': {
-                'conditions': (self.is_owner,
-                               lambda r: self.accepted_heroes(),
-                               lambda r: self.state != self.STATE_OWNER_DONE),
-                'actions': (self.done, )
-                },
-            }
-        return actions
-
-    def hero_cancel(self, request):
-        adventure = self.adventure_set.get(user=request.user)
-        adventure.state = Adventure.STATE_HERO_CANCELED
-        adventure.save()
-
-    def hero_apply(self, request):
-        adventure, created = self.adventure_set.get_or_create(user=request.user)
-        if self.auto_accept:
-            adventure.state = Adventure.STATE_OWNER_ACCEPTED
-        else:
-            adventure.state = Adventure.STATE_HERO_APPLIED
-        adventure.save()
-
-    def cancel(self, request=None):
-        self.state = self.STATE_OWNER_CANCELED
-        self.save()
-
-    def done(self, request=None):
-        self.state = self.STATE_OWNER_DONE
-        self.save()
+        return []
 
     def valid_actions_for(self, request):
         actions = self.get_actions()
@@ -179,6 +58,161 @@ class Quest(models.Model):
         for f in action['actions']:
             f(request)
 
+class Adventure(models.Model, ActionMixin):
+    """Model the relationship between a User and a Quest she is engaged in."""
+    user = models.ForeignKey(User, related_name='adventures')
+    quest = models.ForeignKey('Quest')
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    STATE_NOT_SET = 0
+    STATE_HERO_APPLIED = 1
+    STATE_OWNER_REFUSED = 2
+    STATE_HERO_CANCELED = 3
+    STATE_OWNER_ACCEPTED = 4
+    STATE_HERO_DONE = 5
+    STATE_OWNER_DONE = 6
+
+    state = models.IntegerField(default=STATE_NOT_SET, choices=(
+        (STATE_NOT_SET, "doesn't exist"),
+        (STATE_HERO_APPLIED, 'applied'),
+        (STATE_OWNER_REFUSED, 'refused'),
+        (STATE_HERO_CANCELED, 'canceled'),
+        (STATE_OWNER_ACCEPTED, 'accepted'),
+        (STATE_HERO_DONE, 'hero done'),
+        (STATE_OWNER_DONE, 'owner done'),
+        ))
+
+    def get_actions(self):
+        actions = {
+            'accept': {
+                'conditions': (self.quest.is_owner,
+                               lambda r: self.state == self.STATE_HERO_APPLIED),
+                'actions': (self.accept,),
+            },
+            'refuse': {
+                'conditions': (self.quest.is_owner,
+                               lambda r: self.state == self.STATE_HERO_APPLIED),
+                'actions': (self.refuse,),
+            },
+            'done': {
+                'conditions': (self.quest.is_owner,
+                               lambda r: self.state == self.STATE_OWNER_ACCEPTED),
+                'actions': (self.done,),
+            },
+        }
+        return actions
+
+    #### A C T I O N S ####
+    def accept(self, request=None):
+        self.state = self.STATE_OWNER_ACCEPTED
+        self.save()
+
+    def refuse(self, request=None):
+        self.state = self.STATE_OWNER_REFUSED
+        self.save()
+
+    def done(self, request=None):
+        self.state = self.STATE_OWNER_DONE
+        self.save()
+
+class Quest(models.Model, ActionMixin):
+    """A quest, owned by a user"""
+    owner = models.ForeignKey(User, related_name='created_quests')
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+
+    location = models.CharField(max_length=255) # TODO : placeholder
+    due_date = models.DateTimeField()
+
+    hero_class = models.IntegerField(choices=CLASS_CHOICES)
+    heroes = models.ManyToManyField(User, through=Adventure, related_name='quests')
+
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    max_heroes = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
+    auto_accept = models.BooleanField(default=False)
+
+    level = models.PositiveIntegerField(choices=((1, 'Easy'), (2, 'Okay'), (3, 'Experienced'), (4, 'Challenging'), (5, 'Heroic')))
+    experience = models.PositiveIntegerField()
+
+    STATE_NOT_SET = 0
+    STATE_OPEN = 1
+    STATE_FULL = 2
+    STATE_OWNER_DONE = 3
+    STATE_OWNER_CANCELED = 4
+
+    state = models.IntegerField(default=STATE_OPEN, choices=(
+        #        (STATE_NOT_SET, 'not set'),
+        (STATE_OPEN, 'open'),
+        (STATE_FULL, 'full'),
+        (STATE_OWNER_DONE, 'done'),
+        (STATE_OWNER_CANCELED, 'canceled'),
+        ))
+
+    def active_heroes(self):
+        """All heroes that have not cancelled their participation and have not been excluded"""
+        # TODO refused heroes ???
+        return self.heroes.exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_HERO_CANCELED)
+
+    def accepted_heroes(self):
+        return self.heroes.filter(adventures__quest=self.pk, adventures__state=Adventure.STATE_OWNER_ACCEPTED)
+
+    def clean(self):
+        if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
+            raise ValidationError('Maximum experience for quest with level {0} is {1}'.format(self.level, self.level * 100))
+
+
+    def get_actions(self):
+        actions = {
+            'cancel': {
+                'conditions': (self.is_owner, self.is_open),
+                'actions': (self.cancel,),
+                },
+            'hero_apply': {
+                'conditions': (self.is_open, self.can_apply),
+                'actions': (self.hero_apply, )
+                },
+            'hero_cancel': {
+                'conditions': (negate(self.is_done),
+                               lambda r: r.user in self.active_heroes()),
+                'actions': (self.hero_cancel, )
+                },
+            'done': {
+                'conditions': (self.is_owner,
+                               lambda r: self.accepted_heroes(),
+                               lambda r: self.state != self.STATE_OWNER_DONE),
+                'actions': (self.done, )
+                },
+            }
+        return actions
+
+    ####  A C T I O N S ####
+
+    def hero_cancel(self, request):
+        adventure = self.adventure_set.get(user=request.user)
+        adventure.state = Adventure.STATE_HERO_CANCELED
+        adventure.save()
+
+    def hero_apply(self, request):
+        adventure, created = self.adventure_set.get_or_create(user=request.user)
+        if self.auto_accept:
+            adventure.state = Adventure.STATE_OWNER_ACCEPTED
+        else:
+            adventure.state = Adventure.STATE_HERO_APPLIED
+        adventure.save()
+
+    def cancel(self, request=None):
+        self.state = self.STATE_OWNER_CANCELED
+        self.save()
+
+    def done(self, request=None):
+        # todo: xp und so
+        self.state = self.STATE_OWNER_DONE
+        self.save()
+
+    #### C O N D I T I O N S ####
 
     def is_owner(self, request):
         return self.owner == request.user
@@ -201,14 +235,16 @@ class Quest(models.Model):
         else:
             return self.adventure_set.filter(state=Adventure.STATE_OWNER_ACCEPTED).count() < self.max_heroes
 
-    state = models.IntegerField(default=STATE_OPEN, choices=(
-#        (STATE_NOT_SET, 'not set'),
-        (STATE_OPEN, 'open'),
-        (STATE_FULL, 'full'),
-        (STATE_OWNER_DONE, 'done'),
-        (STATE_OWNER_CANCELED, 'canceled'),
-    ))
+    def can_apply(self, request):
+        if self.is_owner(request):
+            return False
+        try:
+            adventure = self.adventure_set.get(user=request.user)
+        except Adventure.DoesNotExist:
+            return True
+        return adventure.state in (Adventure.STATE_HERO_CANCELED, )
 
+    #### M I S C ####
 
     def get_absolute_url(self):
         """Get the url for this quests detail page."""
