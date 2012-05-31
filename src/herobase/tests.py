@@ -82,13 +82,20 @@ class QuestTest(TestCase):
         adventure = create_adventure(quest)
         request = fake_request(adventure.user)
         quest.process_action(request, 'hero_cancel')
-        self.assertNotIn(adventure.user, quest.accepted_heroes())
+        self.assertNotIn(adventure.user, quest.active_heroes())
 
     def test_owner_accept_valid(self):
         quest = create_quest()
         adventure = create_adventure(quest)
         request = fake_request(quest.owner)
         self.assertIn('accept', adventure.valid_actions_for(request))
+
+    def test_owner_accept(self):
+        quest = create_quest()
+        adventure = create_adventure(quest)
+        request = fake_request(quest.owner)
+        adventure.process_action(request, 'accept')
+        self.assertIn(adventure.user, quest.accepted_heroes())
 
     def test_owner_done_no_heroes(self):
         quest = create_quest()
@@ -107,3 +114,15 @@ class QuestTest(TestCase):
         adventure = create_adventure(quest, state=Adventure.STATE_OWNER_ACCEPTED)
         self.assertNotIn('done', quest.valid_actions_for(request))
 
+    def test_owner_refuse_valid(self):
+        quest = create_quest()
+        adventure = create_adventure(quest)
+        request = fake_request(quest.owner)
+        self.assertIn('refuse', adventure.valid_actions_for(request))
+
+    def test_owner_refuse(self):
+        quest = create_quest()
+        adventure = create_adventure(quest)
+        request = fake_request(quest.owner)
+        adventure.process_action(request, 'refuse')
+        self.assertNotIn(adventure.user, quest.accepted_heroes())
