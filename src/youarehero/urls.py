@@ -10,9 +10,10 @@ urlpatterns = patterns('',
     url(r'^quest/list$', QuestListView.as_view(), name='quest-list'),
     url(r'^quests/create$', QuestCreateView.as_view(), name='quest-create'),
     url(r'^quests/(?P<quest_id>\d+)$', 'herobase.views.quest_detail_view', name='quest-detail'),
+    url(r'^quests/(?P<quest_id>\d+)/quest_update',
+        'herobase.views.quest_update', name='quest-update'),
     url(r'^quests/(?P<quest_id>\d+)/adventure_update',
-        'herobase.views.adventure_update',
-        name='adventure-update'),
+        'herobase.views.adventure_update', name='adventure-update'),
     url(r'^$', 'herobase.views.home_view', name='home'),
 
 

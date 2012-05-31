@@ -28,7 +28,7 @@
                     {% for action in valid_actions %}
                         <form action="{% url adventure-update quest.id %}" method="post">
                             {% csrf_token %}
-                            <input type="hidden" name="target_user" value="{{ adventure.user_id }}"/>
+                            <input type="hidden" name="adventure_id" value="{{ adventure.id }}"/>
                             <input type="hidden" name="action" value="{{ action }}">
                             <input type="submit" name="action_btn" class="btn" value="{{ action }}"/>
                         </form>
@@ -55,7 +55,7 @@
     <h2>Quest actions</h2>
     {% valid_actions_for quest as valid_actions %}
     {% for action in valid_actions %}
-        <form action="{% url adventure-update quest.id %}" method="post">
+        <form action="{% url quest-update quest.id %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="action" value="{{ action }}">
             <input type="submit" name="action_btn" class="btn" value="{{ action }}"/>

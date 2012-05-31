@@ -171,6 +171,7 @@ class Quest(models.Model, ActionMixin):
             'cancel': {
                 'conditions': (self.is_owner, self.is_open),
                 'actions': (self.cancel,),
+                'verbose_name': _("Cancel Quest")
                 },
             'hero_apply': {
                 'conditions': (self.is_open, self.can_apply),

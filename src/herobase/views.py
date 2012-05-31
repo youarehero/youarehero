@@ -99,7 +99,7 @@ def hero_home_view(request):
 
 @require_POST
 @login_required
-def adventure_update(request, quest_id):
+def quest_update(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
 
     if 'action' in request.POST:
@@ -114,6 +114,32 @@ def adventure_update(request, quest_id):
         messages.error(request, 'No action submitted.')
 
     return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
+
+@require_POST
+@login_required
+def adventure_update(request, quest_id):
+    quest = get_object_or_404(Quest, pk=quest_id)
+
+    if 'adventure_id' in request.POST:
+        adventure_id = request.POST['adventure_id']
+        adventure = get_object_or_404(Adventure, pk=adventure_id)
+
+    if adventure not in quest.adventure_set.all():
+        raise Http404
+
+    if 'action' in request.POST:
+        action = request.POST['action']
+        try:
+            adventure.process_action(request, action)
+        except ValueError, e:
+            messages.error(request, e.message)
+        except PermissionDenied, e:
+            messages.error(request, e.message)
+    else:
+        messages.error(request, 'No action submitted.')
+
+    return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
+
 def decorator(f):
     def decorated(*args, **kwargs):
         print f.func_name, args, kwargs
