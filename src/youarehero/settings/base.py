@@ -161,6 +161,7 @@ INSTALLED_APPS = (
 
 TEST_APPS = (
     'herobase',
+    'heromessage',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7

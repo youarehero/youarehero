@@ -47,6 +47,11 @@
             </ul>
             <ul class="nav pull-right">
                 {% if request.user.is_authenticated %}
+                    <li><a href="{% url message-list %}">
+                        {% if request.user.get_profile.unread_messages_count != 0 %}
+                            <span class="badge badge-success"> {{ request.user.get_profile.unread_messages_count }}</span>
+                        {% endif %}
+                        <i class="icon-envelope icon-white"></i></a></li>
                     <li class="dropdown">
                         <a href="#"
                            class="dropdown-toggle"
