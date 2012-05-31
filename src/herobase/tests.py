@@ -24,6 +24,7 @@ def fake_request(user, path='/'):
     return request
 
 class QuestTest(TestCase):
+    # canceled quest is canceled
     def test_owner_cancel(self):
         quest = create_quest()
         request = fake_request(quest.owner)
@@ -49,19 +50,19 @@ class QuestTest(TestCase):
         quest = create_quest()
         hero = create_user()
         request = fake_request(hero)
-        self.assertIn('apply', quest.valid_actions_for(request))
+        self.assertIn('hero_apply', quest.valid_actions_for(request))
 
     def test_hero_apply_full_not_valid(self):
         quest = create_quest(state=Quest.STATE_FULL)
         hero = create_user()
         request = fake_request(hero)
-        self.assertNotIn('apply', quest.valid_actions_for(request))
+        self.assertNotIn('hero_apply', quest.valid_actions_for(request))
 
     def test_hero_apply(self):
         quest = create_quest()
         hero = create_user()
         request = fake_request(hero)
-        quest.process_action(request, 'apply')
+        quest.process_action(request, 'hero_apply')
         self.assertIn(hero, quest.heroes.all())
 
     def test_hero_cancel_not_valid(self):
@@ -106,23 +107,3 @@ class QuestTest(TestCase):
         adventure = create_adventure(quest, state=Adventure.STATE_OWNER_ACCEPTED)
         self.assertNotIn('done', quest.valid_actions_for(request))
 
-
-
-
-        #    if request.user == self.owner: # owner
-        #        if self.accepted_heroes().exists():
-        #            if self.state == self.STATE_OWNER_DONE:
-        #                return []
-        #            else:
-        #                return ['cancel', 'done']
-        #        else:
-        #            return ['cancel']
-        #    elif request.user in self.heroes.all(): # hero
-        #        adventure = self.adventure_set.get(user=request.user)
-        #        if adventure.state in (Adventure.STATE_HERO_APPLIED,
-        #                               Adventure.STATE_OWNER_ACCEPTED):
-        #            return ['hero_cancel']
-        #    else:
-        #        if self.state == self.STATE_OPEN:
-        #            return ['apply']
-        #    return []

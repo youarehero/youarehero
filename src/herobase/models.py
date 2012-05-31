@@ -110,7 +110,7 @@ class Quest(models.Model):
                 'conditions': (self.is_owner, self.is_open),
                 'actions': (self.cancel,),
                 },
-            'apply': {
+            'hero_apply': {
                 'conditions': (self.is_open, self.can_apply),
                 'actions': (self.hero_apply, )
                 },
@@ -118,6 +118,12 @@ class Quest(models.Model):
                 'conditions': (negate(self.is_done),
                                lambda r: r.user in self.active_heroes()),
                 'actions': (self.hero_cancel, )
+                },
+            'done': {
+                'conditions': (self.is_owner,
+                               lambda r: self.accepted_heroes(),
+                               lambda r: self.state != self.STATE_OWNER_DONE),
+                'actions': (self.done, )
                 },
             }
         return actions
@@ -137,6 +143,10 @@ class Quest(models.Model):
 
     def cancel(self, request=None):
         self.state = self.STATE_OWNER_CANCELED
+        self.save()
+
+    def done(self, request=None):
+        self.state = self.STATE_OWNER_DONE
         self.save()
 
     def valid_actions_for(self, request):

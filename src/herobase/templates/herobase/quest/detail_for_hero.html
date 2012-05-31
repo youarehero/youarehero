@@ -9,13 +9,11 @@
         <p>Diese Herausforderung braucht noch Helden.</p>
     {% endif %}
 
-    <form action="{% url adventure-update quest.id %}" method="post">
-        {% csrf_token %}
-        {%  if quest.needs_heroes and not adventure or adventure.state == adventure.STATE_CANCELED  %}
-            <input type="submit" name="action" class="btn btn-primary btn-large" value="apply"/>
-        {% endif %}
-        {% for action in adventure.get_hero_actions %}
-            <input type="submit" name="action" class="btn btn-primary btn-large" value="{{ action }}"/>
-        {% endfor %}
-    </form>
+    {% for action in valid_actions %}
+        <form action="{% url adventure-update quest.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="{{ action }}">
+            <input type="submit" name="action_btn" class="btn" value="{{ action }}"/>
+        </form>
+    {% endfor %}
 {% endblock %}
