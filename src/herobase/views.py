@@ -1,5 +1,6 @@
 # Create your views here.
 from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_POST
@@ -63,6 +64,22 @@ class QuestDetailView(DetailView):
         else:
             return ['herobase/quest/detail_for_hero.html']
 
+def quest_detail_view(request, quest_id):
+    quest = get_object_or_404(Quest, pk=quest_id)
+    try:
+        adventure = quest.adventure_set.get(user=request.user)
+        adventure.valid_actions = adventure.valid_actions_for(request)
+    except Adventure.DoesNotExist:
+        adventure = None
+
+    context = {
+        'quest': quest,
+        'adventure': adventure,
+        'valid_actions': quest.valid_actions_for(request)
+    }
+
+    return render(request, "herobase/quest/detail.html", context)
+
 def home_view(request):
     if request.user.is_authenticated():
         return hero_home_view(request)
@@ -83,29 +100,19 @@ def hero_home_view(request):
 @login_required
 def adventure_update(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
-    if 'apply' in request.POST:
-        if request.user == quest.owner:
-            messages.error(request, "You can't participate in your own quest.")
-        elif request.user in quest.active_heroes():
-            messages.info(request, 'You are already applying for the quest "%s".' % quest.title)
-        else:
-            adventure, created = Adventure.objects.get_or_create(user=request.user, quest=quest)
-            adventure.state = Adventure.STATE_HERO_APPLIED
-            adventure.save()
-            messages.success(request, 'You are a hero!')
-        return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
-    elif 'cancel' in request.POST:
-        if request.user == quest.owner:
-            quest.state = Quest.STATE_OWNER_CANCELED
-            quest.save()
-            messages.info(request, mark_safe('Quest <em>{0}</em> abgebrochen.'.format(escape(quest.title))))
-        elif request.user in quest.heroes.all(): # TODO : only allow cancel if it makes sense (not done, etc)
-            adventure = quest.adventure_set.get(user=request.user)
-            adventure.state = Adventure.STATE_CANCELED
-            adventure.save()
-            messages.info(request, mark_safe('Quest <em>{0}</em> abgebrochen.'.format(escape(quest.title))))
-        return HttpResponseRedirect(reverse("home"))
 
+    if 'action' in request.POST:
+        action = request.POST['action']
+        try:
+            quest.process_action(request, action)
+        except ValueError, e:
+            messages.error(request, e.message)
+        except PermissionDenied, e:
+            messages.error(request, e.message)
+    else:
+        messages.error(request, 'No action submitted.')
+
+    return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
 def decorator(f):
     def decorated(*args, **kwargs):
         print f.func_name, args, kwargs

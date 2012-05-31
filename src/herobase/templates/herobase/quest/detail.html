@@ -1,0 +1,62 @@
+{% extends "herobase/base.html" %}
+{% load i18n %}
+{% block content %}
+    <div class="quest-detail">
+        <h1>Quest: {{ quest.title }}</h1>
+        quest-state: {{ quest.get_state_display }}
+        {% if quest.cancelled %}<em>abgebrochen</em>{% endif %}
+        <p>{{ quest.description }}</p>
+        <h2>Details</h2>
+        <dl class="dl-horizontal">
+            <dt>{% trans "class" %}</dt><dd>{{ quest.hero_class }}</dd>
+            <dt>{% trans "level" %}</dt><dd>{{ quest.level }}</dd>
+            <dt>{% trans "experience" %}</dt><dd>{{ quest.experience }}</dd>
+            <dt>{% trans "location" %}</dt><dd>{{ quest.location }}</dd>
+        </dl>
+    </div>
+    {# owner #}
+    {% if request.user == quest.owner %}
+        <h2>Dies ist deine Quest!</h2>
+        {% if quest.cancelled %}
+            Du hast diese Quest abgebrochen.
+        {% else %}
+            <h2>Die Folgenden Helden moechten dir helfen</h2>
+            {% if quest.active_heroes.exists %}
+                {% for adventure in quest.adventure_set.all %}
+                    <a href="{% url user-profile adventure.user.username %}"><h3>{{ adventure.user }} (state: {{ adventure.get_state_display }})</h3></a>
+
+                    {% for action in adventure.valid_actions %}
+                        <form action="{% url adventure-update quest.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="target_user" value="{{ adventure.user_id }}"/>
+                            <input type="hidden" name="action" value="{{ action }}">
+                            <input type="submit" name="action_btn" class="btn" value="{{ action }}"/>
+                        </form>
+                    {% endfor  %}
+
+                {% endfor %}
+            {% else %}
+                Leider hilft Dir noch niemand.
+            {% endif %}
+        {% endif %}
+
+    {# hero #}
+    {% else %}
+        <p>adventure state: {{ adventure.get_state_display }}</p>
+        {% if request.user in quest.active_heroes %}
+            <h2>Du nimmst an dieser Quest teil.</h2>
+        {% elif quest.needs_heroes %}
+            <h2>Nimm diese Quest an!</h2>
+            <p>Diese Herausforderung braucht noch Helden.</p>
+        {% endif %}
+    {% endif %}
+
+    {# actions #}
+    {% for action in valid_actions %}
+        <form action="{% url adventure-update quest.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="{{ action }}">
+            <input type="submit" name="action_btn" class="btn" value="{{ action }}"/>
+        </form>
+    {% endfor %}
+{% endblock %}
