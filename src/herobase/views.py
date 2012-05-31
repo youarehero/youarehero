@@ -68,14 +68,12 @@ def quest_detail_view(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
     try:
         adventure = quest.adventure_set.get(user=request.user)
-        adventure.valid_actions = adventure.valid_actions_for(request)
     except Adventure.DoesNotExist:
         adventure = None
 
     context = {
         'quest': quest,
         'adventure': adventure,
-        'valid_actions': quest.valid_actions_for(request)
     }
 
     return render(request, "herobase/quest/detail.html", context)

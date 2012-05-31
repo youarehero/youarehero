@@ -52,7 +52,7 @@ class Adventure(models.Model):
     def valid_actions_for(self, request):
         if self.quest and self.quest.owner != request.user:
             return []
-        return ['accept']
+        return ['accept', 'refuse']
 
 class Quest(models.Model):
     """A quest, owned by a user"""

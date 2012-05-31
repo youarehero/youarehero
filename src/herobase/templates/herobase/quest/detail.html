@@ -1,5 +1,5 @@
 {% extends "herobase/base.html" %}
-{% load i18n %}
+{% load i18n hero_actions %}
 {% block content %}
     <div class="quest-detail">
         <h1>Quest: {{ quest.title }}</h1>
@@ -24,8 +24,8 @@
             {% if quest.active_heroes.exists %}
                 {% for adventure in quest.adventure_set.all %}
                     <a href="{% url user-profile adventure.user.username %}"><h3>{{ adventure.user }} (state: {{ adventure.get_state_display }})</h3></a>
-
-                    {% for action in adventure.valid_actions %}
+                    {% valid_actions_for adventure as valid_actions %}
+                    {% for action in valid_actions %}
                         <form action="{% url adventure-update quest.id %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="target_user" value="{{ adventure.user_id }}"/>
@@ -52,6 +52,7 @@
     {% endif %}
 
     {# actions #}
+    {% valid_actions_for quest as valid_actions %}
     {% for action in valid_actions %}
         <form action="{% url adventure-update quest.id %}" method="post">
             {% csrf_token %}
