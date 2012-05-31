@@ -1,14 +1,17 @@
-from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.core.urlresolvers import reverse
 from django.core.validators import MinValueValidator
 from django.db import models, transaction
+from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 from django.db.models.signals import post_save
 from django.utils.decorators import method_decorator
+from herobase.fields import LocationField
 from heromessage.models import Message
+
+from south.modelsinspector import add_introspection_rules
 
 CLASS_CHOICES =  (
     (0, "Scientist"),
@@ -50,7 +53,6 @@ class Adventure(models.Model):
         if self.quest and self.quest.owner != request.user:
             return []
         return ['accept']
-
 
 class Quest(models.Model):
     """A quest, owned by a user"""
@@ -204,14 +206,24 @@ class Quest(models.Model):
 
 
 class UserProfile(models.Model):
+
+    add_introspection_rules([], ["^herobase\.fields\.LocationField"])
+
     """Hold extended user information."""
     user = models.OneToOneField(User)
     experience = models.PositiveIntegerField(default=0)
     location = models.CharField(max_length=255) # TODO : placeholder
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
 
+    geolocation = LocationField(_(u'geolocation'), max_length=100, default='24.2,24.5')
+
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+
+    @property
+    def get_geolocation(self):
+        if self.geolocation:
+            return self.geolocation.split(',')
 
     @property
     def level(self):
