@@ -206,6 +206,7 @@ class Quest(models.Model, ActionMixin):
             adventure.state = Adventure.STATE_HERO_APPLIED
         adventure.save()
 
+
     def cancel(self, request=None):
         self.state = self.STATE_OWNER_CANCELED
         self.save()
