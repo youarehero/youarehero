@@ -72,11 +72,13 @@ class QuestDetailView(DetailView):
 
 def quest_detail_view(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
-    try:
-        adventure = quest.adventure_set.get(user=request.user)
-    except Adventure.DoesNotExist:
+    if not request.user.is_anonymous():
+        try:
+            adventure = quest.adventure_set.get(user=request.user)
+        except Adventure.DoesNotExist:
+            adventure = None
+    else:
         adventure = None
-
     context = {
         'quest': quest,
         'adventure': adventure,
