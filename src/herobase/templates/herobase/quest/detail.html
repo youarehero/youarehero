@@ -2,24 +2,57 @@
 {% load i18n hero_actions %}
 {% block content %}
     <div class="quest-detail">
-        <h1>Quest: {{ quest.title }}</h1>
-        quest-state: {{ quest.get_state_display }}
-        owner: {{ quest.owner }}
-        {% if quest.cancelled %}<em>abgebrochen</em>{% endif %}
+        <div class="page-header">
+            <h1>Quest: {{ quest.title }}
+            <small>
+                {% if request.user == quest.owner %}
+                    Dies ist deine Quest!
+                {% elif request.user in quest.active_heroes %}
+                    Du nimmst an dieser Quest teil.
+                {% elif quest.needs_heroes %}
+                    Diese Herausforderung braucht noch Helden.
+                {% else %}
+                    Diese Quest ist schon voll.
+                {% endif %}
+            </small>
+            </h1>
+        </div>
+        <div class="row-fluid">
+        <div class="span6">
+        <h2>{% trans "description" %}</h2>
         <p>{{ quest.description }}</p>
+        {# quest actions #}
+        <h2>Quest actions</h2>
+        {% valid_actions_for quest as valid_actions %}
+        {% for action in valid_actions %}
+            <form action="{% url quest-update quest.id %}" method="post" class="inline">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="{{ action }}">
+                <input type="submit" name="action_btn" class="btn" value="{{ action }}"/>
+            </form>
+        {% endfor %}
+        </div>
+        <div class="span6">
         <h2>Details</h2>
         <dl class="dl-horizontal">
+            <dt>{% trans "quest-state" %}</dt><dd>{{ quest.get_state_display }}</dd>
+            {% if adventure %}
+                <dt>{% trans "adventure state" %}</dt><dd>{{ adventure.get_state_display }}</dd>
+            {% endif %}
+            <dt>{% trans "owner" %}</dt><dd>{{ quest.owner }}</dd>
             <dt>{% trans "class" %}</dt><dd>{{ quest.hero_class }}</dd>
             <dt>{% trans "level" %}</dt><dd>{{ quest.level }}</dd>
             <dt>{% trans "experience" %}</dt><dd>{{ quest.experience }}</dd>
             <dt>{% trans "location" %}</dt><dd>{{ quest.location }}</dd>
         </dl>
+        </div>
+        </div>
     </div>
+
     {# owner #}
     {% if request.user == quest.owner %}
-        <h2>Dies ist deine Quest!</h2>
         {% if quest.cancelled %}
-            Du hast diese Quest abgebrochen.
+            <h2>Du hast diese Quest abgebrochen.</h2>
         {% else %}
             <h2>Die Folgenden Helden moechten dir helfen</h2>
             {% if quest.active_heroes.exists %}
@@ -59,26 +92,5 @@
                 Leider hilft Dir noch niemand.
             {% endif %}
         {% endif %}
-
-    {# hero #}
-    {% else %}
-        <p>adventure state: {{ adventure.get_state_display }}</p>
-        {% if request.user in quest.active_heroes %}
-            <h2>Du nimmst an dieser Quest teil.</h2>
-        {% elif quest.needs_heroes %}
-            <h2>Nimm diese Quest an!</h2>
-            <p>Diese Herausforderung braucht noch Helden.</p>
-        {% endif %}
     {% endif %}
-
-    {# quest actions #}
-    <h2>Quest actions</h2>
-    {% valid_actions_for quest as valid_actions %}
-    {% for action in valid_actions %}
-        <form action="{% url quest-update quest.id %}" method="post" class="inline">
-            {% csrf_token %}
-            <input type="hidden" name="action" value="{{ action }}">
-            <input type="submit" name="action_btn" class="btn" value="{{ action }}"/>
-        </form>
-    {% endfor %}
 {% endblock %}
