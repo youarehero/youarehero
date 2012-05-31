@@ -17,9 +17,9 @@ urlpatterns = patterns('',
         'herobase.views.adventure_update', name='adventure-update'),
     url(r'^$', 'herobase.views.home_view', name='home'),
 
-
-    url(r'^profile/(?P<username>\w+)$', 'herobase.views.profile_view', name='user-profile'),
     url(r'^profile/$', 'herobase.views.profile_edit', name='user-edit'),
+    url(r'^profile/security/$', 'herobase.views.profile_security_edit', name='user-security-edit'),
+    url(r'^profile/(?P<username>\w+)/$', 'herobase.views.profile_view', name='user-profile'),
 
     url(r'^messages/reply/(?P<message_id>\d+)$', 'heromessage.views.message_view', name='message-list'),
     url(r'^messages', 'heromessage.views.message_view', name='message-list'),

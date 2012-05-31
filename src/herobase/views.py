@@ -14,7 +14,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
-from herobase.forms import QuestCreateForm, UserProfileEdit
+from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfileSecurityEdit
 from herobase.models import Quest, Adventure
 from registration.forms import RegistrationForm
 import logging
@@ -161,6 +161,18 @@ def profile_edit(request):
         form.save()
         messages.success(request, 'Profile successfully changed')
     return render(request, 'herobase/profile_edit.html', {
+        'user': user,
+        'form': form
+    })
+
+@login_required
+def profile_security_edit(request):
+    user = request.user
+    form = UserProfileSecurityEdit(request.POST or None, instance=user.get_profile())
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Security settings successfully changed')
+    return render(request, 'herobase/profile_security_edit.html', {
         'user': user,
         'form': form
     })
