@@ -54,7 +54,7 @@ class QuestDetailView(DetailView):
     model = Quest
 
     def get_context_data(self, **kwargs):
-        if self.request.user.is_authenticated():
+        if not self.request.user.is_anonymous():
             try:
                 adventure = self.object.adventure_set.get(user=self.request.user)
             except Adventure.DoesNotExist:
