@@ -8,6 +8,8 @@ from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 from django.forms.models import ModelForm
+import logging
+logger = logging.getLogger('youarehero.heromessage')
 
 class Message(models.Model):
     title = models.CharField(max_length=255)

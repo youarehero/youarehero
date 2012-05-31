@@ -17,6 +17,9 @@ from django.views.generic.edit import CreateView
 from herobase.forms import QuestCreateForm, UserProfileEdit
 from herobase.models import Quest, Adventure
 from registration.forms import RegistrationForm
+import logging
+logger = logging.getLogger('youarehero.herobase')
+
 
 
 class QuestListView(ListView):
@@ -78,6 +81,8 @@ def quest_detail_view(request, quest_id):
 
     return render(request, "herobase/quest/detail.html", context)
 
+logger.info("home view")
+logger.debug("view view")
 def home_view(request):
     if request.user.is_authenticated():
         return hero_home_view(request)

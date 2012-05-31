@@ -12,6 +12,8 @@ from herobase.fields import LocationField
 from heromessage.models import Message
 
 from south.modelsinspector import add_introspection_rules
+import logging
+logger = logging.getLogger('youarehero.herobase')
 
 CLASS_CHOICES =  (
     (0, "Scientist"),

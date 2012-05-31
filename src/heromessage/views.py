@@ -10,6 +10,10 @@ from django.views.decorators.http import require_POST
 from django.views.generic.list import ListView
 from herobase.forms import UserProfileEdit
 from heromessage.models import Message, MessageForm
+import logging
+
+logger = logging.getLogger('youarehero.heromessage')
+
 
 @login_required
 def message_view(request, message_id=None):
