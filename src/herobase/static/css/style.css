@@ -26,3 +26,8 @@ tr.new td {
 
 #map_geolocation label { width: auto; display:inline; }
 #map_geolocation img { max-height: none; max-width: none; }
+
+.inline,
+form.inline {
+    display: inline;
+}
