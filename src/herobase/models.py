@@ -238,7 +238,10 @@ class UserProfile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     """Create a user profile on user account creation."""
     if created:
-        UserProfile.objects.create(user=instance)
+        try:
+            UserProfile.objects.create(user=instance)
+        except:
+            pass
 post_save.connect(create_user_profile, sender=User)
 
 
