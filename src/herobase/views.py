@@ -124,7 +124,7 @@ def adventure_update(request, quest_id):
         adventure_id = request.POST['adventure_id']
         adventure = get_object_or_404(Adventure, pk=adventure_id)
 
-    if adventure not in quest.adventure_set:
+    if adventure not in quest.adventure_set.all():
         raise Http404
 
     if 'action' in request.POST:
