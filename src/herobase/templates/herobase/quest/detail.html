@@ -51,7 +51,8 @@
         {% endif %}
     {% endif %}
 
-    {# actions #}
+    {# quest actions #}
+    <h2>Quest actions</h2>
     {% valid_actions_for quest as valid_actions %}
     {% for action in valid_actions %}
         <form action="{% url adventure-update quest.id %}" method="post">
