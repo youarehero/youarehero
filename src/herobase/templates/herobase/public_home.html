@@ -11,6 +11,7 @@
     {% else %}
         <p>There are no open quests right now.</p>
     {% endif %}
-    <button type="button" onclick="location.href='{% url registration_register %}'" class="btn btn-primary btn-large" id="join">Join now!</button>
+    <a type="button" href="{% url django.contrib.auth.views.login %}" class="btn" id="join">Login</a> or
+    <a type="button" href="{% url registration_register %}" class="btn btn-primary btn-large" id="join">Join now!</a>
 
 {%  endblock %}
