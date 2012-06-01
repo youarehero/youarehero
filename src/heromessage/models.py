@@ -30,3 +30,6 @@ class Message(models.Model):
     @property
     def is_read(self):
         return self.read is not None
+
+    def __unicode__(self):
+        return '%s -> %s: %s' % (self.sender.username, self.recipient.username, self.title)

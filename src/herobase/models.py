@@ -103,6 +103,9 @@ class Adventure(models.Model, ActionMixin):
         }
         return actions
 
+    def __unicode__(self):
+        return '%s - %s' % (self.quest.title, self.user.username)
+
     #### A C T I O N S ####
     def accept(self, request=None):
         self.state = self.STATE_OWNER_ACCEPTED
@@ -262,6 +265,8 @@ class Quest(models.Model, ActionMixin):
         """Get the url for this quests detail page."""
         return reverse("quest-detail", args=(self.pk,))
 
+    def __unicode__(self):
+        return self.title
 
 class UserProfile(models.Model):
 
@@ -297,6 +302,8 @@ class UserProfile(models.Model):
     def unread_messages_count(self):
         return Message.objects.filter(recipient=self.user,read__isnull=True,recipient_deleted__isnull=True).count()
 
+    def __unicode__(self):
+        return self.user.username
 
 def create_user_profile(sender, instance, created, **kwargs):
     """Create a user profile on user account creation."""
