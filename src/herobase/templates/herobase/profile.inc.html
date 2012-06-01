@@ -1,15 +1,28 @@
 {% load i18n %}
-
+{% if request.user.is_authenticated %}
     <div class="page-header">
         <h1>{{ user.username }}
-            <small>Profil</small>
+            <small>{{ user.get_profile.get_hero_class_display }}</small>
         </h1>
     </div>
-    <dl class="dl-horizontal">
-        <dt>{% trans "hero-class" %}</dt><dd>{{ user.get_profile.hero_class }}</dd>
-        <dt>{% trans "experience" %}</dt><dd>{{ user.get_profile.experience }}</dd>
-        <dt>{% trans "member since" %}</dt><dd>{{ user.get_profile.created }}</dd>
-        {% if user.get_profile.public_location %}
-            <dt>{% trans "location" %}</dt><dd>{{ user.get_profile.location }}, {{ user.get_profile.geolocation }}</dd>
-        {% endif %}
-    </dl>
+
+    <div class="thumbnail">
+        <img src="http://placehold.it/260x180" alt="{{ user.username }}">
+        <h5 class="pull-right">{{ user.get_profile.experience }} XP</h5>
+        <h5>Level: {{ user.get_profile.level }}</h5>
+        <div class="progress">
+            <div class="bar" style="width: {{ user.get_profile.relative_level_experience }}%;"></div>
+        </div>
+    </div>
+    <p></p>
+    <ul class="unstyled">
+        <li><a href="{% url quest-create %}"><i class="icon-plus-sign"></i> Create Quest</a></li>
+        <li><a href="{% url quest-list %}"><i class="icon-list"></i> Show Quests</a></li>
+        <li><a href="{% url user-edit %}"><i class="icon-star"></i> Profil</a></li>
+        <li><a href="#"><i class="icon-cog"></i> Einstellungen</a></li>
+        <li><a href="{% url user-security-edit %}"><i class="icon-lock"></i> Sicherheit</a></li>
+        <li><a href="{% url django.contrib.auth.views.logout %}"><i class="icon-off"></i> Logout</a></li>
+    </ul>
+{% else %}
+    <a href="{% url django.contrib.auth.views.login %}">Login</a>
+{% endif %}

@@ -1,0 +1,14 @@
+{% load i18n %}
+
+<div class="page-header">
+    {% if request.user.is_authenticated %}
+    <div class="pull-right2">
+        <a href="{% url message-list %}">
+            {% if request.user.get_profile.unread_messages_count != 0 %}
+                <span class="badge badge-success"> {{ request.user.get_profile.unread_messages_count }}</span>
+            {% endif %}
+            <i class="icon-envelope"></i>
+        </a>
+    </div>
+    {% endif %}
+</div>
