@@ -202,7 +202,13 @@ class AuthenticatedIntegrationTest(TestCase):
         response = self.client.get(reverse('user-profile', args=(user.username,)))
         self.assertContains(response, user.username)
 
-    def test_quest_details(self):
+    def test_quest_details_as_hero(self):
         quest = create_quest()
+        response = self.client.get(reverse('quest-detail', args=(quest.pk,)))
+        self.assertContains(response, quest.title)
+
+
+    def test_quest_details_as_owner(self):
+        quest = create_quest(owner=self.user)
         response = self.client.get(reverse('quest-detail', args=(quest.pk,)))
         self.assertContains(response, quest.title)
