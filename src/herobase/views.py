@@ -1,4 +1,5 @@
 # Create your views here.
+from itertools import chain
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.utils.html import escape
@@ -96,11 +97,14 @@ def home_view(request):
 @login_required
 def hero_home_view(request):
     user = request.user
+    quests = sorted(chain(user.created_quests.order_by('-created'),
+            Quest.objects.filter(adventure__user=2).exclude(adventure__user=2, adventure__state=Adventure.STATE_HERO_CANCELED)),
+            key=lambda instance: instance.created, reverse=True)
     return render(request, 'herobase/hero_home.html',
             {'user': user,
              'profile': user.get_profile(),
-             'adventures': user.adventures.exclude(state=Adventure.STATE_HERO_CANCELED).order_by('-created'),
-             'created_quests': user.created_quests.order_by('-created')})
+             'quests': quests
+             })
 
 @require_POST
 @login_required
