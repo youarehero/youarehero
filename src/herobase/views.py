@@ -13,11 +13,9 @@ from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 
 from django.views.generic import ListView
-from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfileSecurityEdit
 from herobase.models import Quest, Adventure
-from registration.forms import RegistrationForm
 import logging
 logger = logging.getLogger('youarehero.herobase')
 
