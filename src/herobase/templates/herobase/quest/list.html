@@ -1,15 +1,25 @@
-{% extends "herobase/layout-3-6-3.html" %}
+{% extends "herobase/layout-3-9.html" %}
+
+{% block css %}
+    <link  href="http://fonts.googleapis.com/css?
+family=Reenie+Beanie:regular"
+           rel="stylesheet"
+           type="text/css">
+{% endblock %}
+
 {% block content %}
-    <div class="row">
-    {% for quest in quests %}
-        <div class="span2 quest-list-item">
-            <a class='text' href="{% url quest-detail quest.id %}">
-            <div class="content">
-                <h2>{{ quest.title }}</h2>
-                <p>{{ quest.description|truncatewords:40 }}{% if quest.description|wordcount > 40 %}...{% endif %}</p>
-            </div>
-        </a>
-        </div>
-    {% endfor %}
+    <div class="quest-list">
+        <ul>
+        {% for quest in quests %}
+            <li class="{{ quest.get_hero_class_display }}">
+                <div draggable="true">
+                <a href="{% url quest-detail quest.id %}">
+                    <h2>{{ quest.title|truncatechars:22 }}</h2>
+                    <p>{{ quest.description|truncatechars:80 }}</p>
+                </a>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
     </div>
 {% endblock %}
