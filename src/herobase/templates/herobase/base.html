@@ -76,25 +76,21 @@
     </div>
 </div>
 
-
 <div class="container-fluid">
-    {% if messages %}
-        <div id="messages">
-            {% for message in messages %}
-                <div class="alert {% if message.tags %} alert-{{message.tags}} {% endif %}">
-                    <a class="close" data-dismiss="alert" href="#">×</a>
-                    {{ message }}
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-    {% block content %}
-    {% endblock %}
-</div> <!-- /container -->
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well sidebar-nav">
+                {% block sidebar_left %}{% endblock %}
+            </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+            {% block content %}{% endblock %}
+        </div><!--/span-->
+    </div><!--/row-->
 
 
-<!-- Le javascript
-================================================== -->
+    <!-- Le javascript
+   ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{% get_static_prefix %}bootstrap/js/bootstrap.js"></script>
 <script id="_webengage_script_tag" type="text/javascript">

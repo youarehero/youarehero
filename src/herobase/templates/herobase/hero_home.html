@@ -1,7 +1,9 @@
 {% extends "herobase/base.html" %}
+{% block sidebar_left %}
+    <h1>Welcome, Hero {{ user.username }}</h1>
+{% endblock %}
 {% block content %}
 
-    <h1>Welcome, Hero {{ user.username }}</h1>
 
     {% if adventures %}
     <p>The quests you are currently playing are:</p>
