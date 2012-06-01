@@ -6,7 +6,7 @@ Replace this with more appropriate tests for your application.
 """
 from django.core.exceptions import PermissionDenied
 from django.test import TestCase
-from django.test.client import RequestFactory
+from django.test.client import RequestFactory, Client
 from herobase.models import Quest, Adventure
 from herobase.test_factories import create_adventure
 from test_factories import create_quest, create_user
@@ -138,4 +138,19 @@ class QuestTest(TestCase):
         adventure = create_adventure(quest, state=Adventure.STATE_OWNER_ACCEPTED)
         request = fake_request(quest.owner)
         adventure.process_action(request, 'done')
-        self.assertNotIn(adventure.user, quest.active_heroes())
+        self.assertEqual(adventure.state, Adventure.STATE_OWNER_DONE)
+
+class BasicIntegrationTest(TestCase):
+    def test_unauthenticated_homepage(self):
+        client = Client()
+        response = client.get('/')
+        self.assertContains(response, 'Join')
+    def test_authenticated_homepage(self):
+        client = Client()
+        user = create_user()
+        logged_in = client.login(**user.credentials)
+        self.assertTrue(logged_in)
+        response = client.get('/')
+        self.assertContains(response, user.username)
+
+

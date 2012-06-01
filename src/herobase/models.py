@@ -152,10 +152,8 @@ class Quest(models.Model, ActionMixin):
         ))
 
     def active_heroes(self):
-        """All heroes that have not cancelled their participation and have not been excluded"""
-        # TODO refused heroes ???
-#        return self.heroes.exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_HERO_CANCELED)
-        return self.heroes.all()
+        """Return all heroes that have not cancelled their participation and have not been excluded"""
+        return self.heroes.exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_HERO_CANCELED).exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_OWNER_REFUSED)
 
     def accepted_heroes(self):
         return self.heroes.filter(adventures__quest=self.pk,
