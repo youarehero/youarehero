@@ -103,6 +103,9 @@ class Adventure(models.Model, ActionMixin):
         }
         return actions
 
+    def __unicode__(self):
+        return '%s - %s' % (self.quest.title, self.user.username)
+
     #### A C T I O N S ####
     def accept(self, request=None):
         self.state = self.STATE_OWNER_ACCEPTED
@@ -113,6 +116,10 @@ class Adventure(models.Model, ActionMixin):
         self.save()
 
     def done(self, request=None):
+        profile = self.user.get_profile()
+        profile.experience += self.quest.experience
+        profile.save()
+
         self.state = self.STATE_OWNER_DONE
         self.save()
 
@@ -152,10 +159,8 @@ class Quest(models.Model, ActionMixin):
         ))
 
     def active_heroes(self):
-        """All heroes that have not cancelled their participation and have not been excluded"""
-        # TODO refused heroes ???
-#        return self.heroes.exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_HERO_CANCELED)
-        return self.heroes.all()
+        """Return all heroes that have not cancelled their participation and have not been excluded"""
+        return self.heroes.exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_HERO_CANCELED).exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_OWNER_REFUSED)
 
     def accepted_heroes(self):
         return self.heroes.filter(adventures__quest=self.pk,
@@ -218,6 +223,7 @@ class Quest(models.Model, ActionMixin):
 
     def done(self, request=None):
         # todo: xp und so
+
         self.state = self.STATE_OWNER_DONE
         self.save()
 
@@ -259,6 +265,8 @@ class Quest(models.Model, ActionMixin):
         """Get the url for this quests detail page."""
         return reverse("quest-detail", args=(self.pk,))
 
+    def __unicode__(self):
+        return self.title
 
 class UserProfile(models.Model):
 
@@ -270,7 +278,7 @@ class UserProfile(models.Model):
     location = models.CharField(max_length=255) # TODO : placeholder
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
 
-    geolocation = LocationField(_(u'geolocation'), max_length=100, default='24.2,24.5')
+    geolocation = LocationField(_(u'geolocation'), max_length=100, default='48,8') # todo : fix default :-)
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
@@ -285,12 +293,17 @@ class UserProfile(models.Model):
     @property
     def level(self):
         """Calculate the user's level based on her experience"""
-        return self.experience % 1000 + 1 # TODO: correct formula
+        return int(self.experience / 1000) + 1 # TODO: correct formula
+
+    def relative_level_experience(self):
+        return (self.experience % 1000) / 10 # TODO: correct formula
 
     @property
     def unread_messages_count(self):
         return Message.objects.filter(recipient=self.user,read__isnull=True,recipient_deleted__isnull=True).count()
 
+    def __unicode__(self):
+        return self.user.username
 
 def create_user_profile(sender, instance, created, **kwargs):
     """Create a user profile on user account creation."""

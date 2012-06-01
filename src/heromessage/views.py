@@ -3,6 +3,7 @@ from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.utils.decorators import method_decorator
@@ -48,6 +49,7 @@ def message_view(request, message_id=None):
         new_message.sender = request.user
         new_message.save()
         messages.success(request, 'Message successfully sent')
+        return HttpResponseRedirect(reverse('message-list'))
 
     form.fields["recipient"].queryset = User.objects.exclude(id=user.id)
 

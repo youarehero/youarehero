@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from herobase.views import QuestListView, QuestDetailView, QuestCreateView
+from herobase.views import QuestListView, QuestCreateView
 import autocomplete_light
 autocomplete_light.autodiscover()
 admin.autodiscover()
@@ -35,8 +35,9 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    url(r'autocomplete/', include('autocomplete_light.urls')),
+
     url(r'^admin/', include(admin.site.urls)),
+    url(r'autocomplete/', include('autocomplete_light.urls')),
     (r'^accounts/', include('registration.backends.default.urls')),
 )
 

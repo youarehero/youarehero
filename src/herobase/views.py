@@ -1,4 +1,5 @@
 # Create your views here.
+from itertools import chain
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.utils.html import escape
@@ -49,27 +50,6 @@ class QuestCreateView(CreateView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
-class QuestDetailView(DetailView):
-    context_object_name = "quest"
-    model = Quest
-
-    def get_context_data(self, **kwargs):
-        if not self.request.user.is_anonymous():
-            try:
-                adventure = self.object.adventure_set.get(user=self.request.user)
-            except Adventure.DoesNotExist:
-                adventure = None
-        else:
-            adventure = None
-        kwargs['adventure'] = adventure
-        return super(QuestDetailView, self).get_context_data(**kwargs)
-
-    def get_template_names(self):
-        if self.object.owner == self.request.user:
-            return ['herobase/quest/detail_for_author.html']
-        else:
-            return ['herobase/quest/detail_for_hero.html']
-
 def quest_detail_view(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
     if not request.user.is_anonymous():
@@ -96,11 +76,14 @@ def home_view(request):
 @login_required
 def hero_home_view(request):
     user = request.user
+    quests = sorted(chain(user.created_quests.order_by('-created'),
+            Quest.objects.filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)),
+            key=lambda instance: instance.created, reverse=True)
     return render(request, 'herobase/hero_home.html',
             {'user': user,
              'profile': user.get_profile(),
-             'adventures': user.adventures.exclude(state=Adventure.STATE_HERO_CANCELED).order_by('-created'),
-             'created_quests': user.created_quests.order_by('-created')})
+             'quests': quests
+             })
 
 @require_POST
 @login_required
@@ -145,13 +128,7 @@ def adventure_update(request, quest_id):
 
     return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
 
-def decorator(f):
-    def decorated(*args, **kwargs):
-        print f.func_name, args, kwargs
-        return f(*args, **kwargs)
-    return decorated
 
-@decorator
 def profile_view(request, username):
     user = get_object_or_404(User, username=username)
     return render(request, 'herobase/profile.html', {

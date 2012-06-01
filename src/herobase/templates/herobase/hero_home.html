@@ -1,32 +1,19 @@
-{% extends "herobase/base.html" %}
+{% extends "herobase/layout-3-6-3.html" %}
+
 {% block content %}
-
-    <h1>Welcome, Hero {{ user.username }}</h1>
-
-    {% if adventures %}
-    <p>The quests you are currently playing are:</p>
+    {% if quests %}
     <ul>
-    {% for adventure in adventures %}
-        <li><a href="{{ adventure.quest.get_absolute_url }}">{{ adventure.quest.title }}</a></li>
-    {% endfor %}
-    {% else %}
-        <p>You are not currently doing any quests</p>
-    {% endif %}
-
-    </ul>
-    {% if created_quests %}
-    <p>The quests you created are:</p>
-    <ul>
-    {% for quest in created_quests  %}
-        <li><a href="{{ quest.get_absolute_url }}">
-            {{ quest.title }}
-            {% if quest.cancelled %}
-                <em>(abgebrochen)</em>
-            {% endif %}
-        </a></li>
+    {% for quest in quests %}
+        <li>
+        {% if quest.owner == request.user %}
+            <a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a> --&gt;
+        {% else %}
+            <a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a> &lt;--
+        {% endif %}
+        </li>
     {% endfor %}
     </ul>
     {% else %}
-        <p>You don't have authored any quests yet</p>
+        No quests.
     {% endif %}
 {%  endblock %}

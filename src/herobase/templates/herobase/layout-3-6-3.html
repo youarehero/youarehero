@@ -1,0 +1,21 @@
+{% extends "herobase/base.html" %}
+{% load static %}
+{% block layout %}
+    <div class="row">
+        <div class="span3">
+            <img src="{% get_static_prefix %}/img/logo.png" alt="You Are Hero">
+            {% block sidebar_left %}
+                {% include "herobase/profile.inc.html" %}
+            {% endblock %}
+        </div><!--/span-->
+        <div class="span6">
+            <div class="page-header"></div>
+            {% block content %}&nbsp;{% endblock %}
+        </div><!--/span-->
+        <div class="span3">
+            {% block sidebar_right %}
+                {% include "message/icon.inc.html" %}
+            {% endblock %}
+        </div><!--/span-->
+    </div>
+{% endblock %}
