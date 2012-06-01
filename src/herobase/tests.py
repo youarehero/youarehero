@@ -5,6 +5,7 @@ when you run "manage.py test".
 Replace this with more appropriate tests for your application.
 """
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import RequestFactory, Client
 from herobase.models import Quest, Adventure
@@ -140,17 +141,48 @@ class QuestTest(TestCase):
         adventure.process_action(request, 'done')
         self.assertEqual(adventure.state, Adventure.STATE_OWNER_DONE)
 
-class BasicIntegrationTest(TestCase):
+class UnauthenticatedIntegrationTest(TestCase):
     def test_unauthenticated_homepage(self):
         client = Client()
         response = client.get('/')
         self.assertContains(response, 'Join')
-    def test_authenticated_homepage(self):
+
+
+    def test_quest_create(self):
         client = Client()
-        user = create_user()
-        logged_in = client.login(**user.credentials)
-        self.assertTrue(logged_in)
-        response = client.get('/')
-        self.assertContains(response, user.username)
+        response = client.get(reverse('quest-create'))
+        self.assertTrue(response, '%s?next=%s' % (reverse('django.contrib.auth.views.login'), reverse('quest-create')))
 
+class AuthenticatedIntegrationTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = create_user()
+        self.logged_in = self.client.login(**self.user.credentials)
 
+    def test_logged_in(self):
+        self.assertTrue(self.logged_in)
+
+    def test_authenticated_homepage(self):
+        response = self.client.get('/')
+        self.assertContains(response, self.user.username)
+
+    def test_quest_create(self):
+        response = self.client.get(reverse('quest-create'))
+        self.assertContains(response, 'Level')
+
+        response = self.client.post(reverse('quest-create'), data={
+            'title': 'title',
+            'description': 'description',
+            'hero_class': 1,
+            'max_heroes': 1,
+            'level': 1,
+            'experience': 1,
+            'location': 'location',
+            'due_date': '11/11/13',
+        })
+        self.assertTrue(Quest.objects.filter(title='title', owner=self.user).exists())
+
+    def test_quest_list(self):
+        quest = create_quest(title='aquestcreated')
+        response = self.client.get(reverse('quest-list'))
+        self.assertContains(response, 'aquestcreated')
