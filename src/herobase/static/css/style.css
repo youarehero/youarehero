@@ -39,6 +39,82 @@ tr.new td {
 #map_geolocation label { width: auto; display:inline; }
 #map_geolocation img { max-height: none; max-width: none; }
 
+.quest-list {
+    margin:0;
+    padding: 0;
+}
+
+.quest-list h2,p{
+    font-size:100%;
+    font-weight:normal;
+    color: #000032;
+}
+
+.quest-list ul,li{
+    list-style:none;
+}
+.quest-list ul{
+    overflow:hidden;
+    padding:3em;
+}
+
+.quest-list ul li{
+    margin:1em;
+    float:left;
+}
+
+.quest-list ul li h2{
+    font-size:140%;
+    font-weight:bold;
+    padding-bottom:10px;
+}
+
+.quest-list ul li p{
+    font-family:"Reenie Beanie",arial,sans-serif;
+    font-size:180%;
+}
+
+.quest-list ul li a{
+    text-decoration:none;
+    color:#000;
+    background:#ffc;
+    display:block;
+    height:13em;
+    width:13em;
+    padding:1em;
+    -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+    -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    -moz-transition:-moz-transform .15s linear;
+    -o-transition:-o-transform .15s linear;
+    -webkit-transition:-webkit-transform .15s linear;
+    -webkit-transform:rotate(-6deg);
+    -o-transform:rotate(-6deg);
+    -moz-transform:rotate(-6deg);
+}
+
+.quest-list ul li:nth-child(even) a{
+    -o-transform:rotate(4deg);
+    -webkit-transform:rotate(4deg);
+    -moz-transform:rotate(4deg);
+    position:relative;
+    top:5px;
+}
+.quest-list ul li:nth-child(3n) a{
+    -o-transform:rotate(-3deg);
+    -webkit-transform:rotate(-3deg);
+    -moz-transform:rotate(-3deg);
+    position:relative;
+    top:-5px;
+}
+.quest-list ul li:nth-child(5n) a{
+    -o-transform:rotate(5deg);
+    -webkit-transform:rotate(5deg);
+    -moz-transform:rotate(5deg);
+    position:relative;
+    top:-10px;
+}
+
 /* action-forms in 1 line */
 .inline,
 form.inline {
@@ -113,4 +189,34 @@ ul.navigation li a {
     background-size: 78% 100%;
     padding: 0px 20px;
 
+}
+
+.quest-list ul li a:hover,ul li a:focus{
+    -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    -webkit-transform: scale(1.25);
+    -moz-transform: scale(1.25);
+    -o-transform: scale(1.25);
+    position:relative;
+    z-index:5;
+}
+
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.quest-list .Scientist a {
+    border: 5px solid #63a83b;
+}
+
+.quest-list .Gadgeteer a {
+    border: 5px solid #7c7c7c;
+}
+
+.quest-list .Diplomat a {
+    border: 5px solid #d29a1c;
 }
