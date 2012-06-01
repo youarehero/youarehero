@@ -26,6 +26,13 @@ def fake_request(user, path='/'):
 
 class QuestTest(TestCase):
     # canceled quest is canceled
+
+    def test_invalid_action_raises_value_error(self):
+        quest = create_quest()
+        request = fake_request(quest.owner)
+        with self.assertRaises(ValueError):
+            quest.process_action(request, 'nosuchaction')
+
     def test_owner_cancel(self):
         quest = create_quest()
         request = fake_request(quest.owner)
