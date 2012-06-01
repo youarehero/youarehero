@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n static %}
 {% if request.user.is_authenticated %}
     <div class="page-header">
         <h1>{{ user.username }}
@@ -7,7 +7,7 @@
     </div>
 
     <div class="thumbnail">
-        <img src="http://placehold.it/260x180" alt="{{ user.username }}">
+        <img src="{% get_static_prefix %}img/profil.png" alt="{{ user.username }}">
         <h5 class="pull-right">{{ user.get_profile.experience }} XP</h5>
         <h5>Level: {{ user.get_profile.level }}</h5>
         <div class="progress">

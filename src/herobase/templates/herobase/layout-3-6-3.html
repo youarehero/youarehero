@@ -1,9 +1,9 @@
 {% extends "herobase/base.html" %}
-
+{% load static %}
 {% block layout %}
     <div class="row">
         <div class="span3">
-            <img src="http://placehold.it/260x100" alt="You Are Hero">
+            <img src="{% get_static_prefix %}/img/logo.png" alt="You Are Hero">
             {% block sidebar_left %}
                 {% include "herobase/profile.inc.html" %}
             {% endblock %}
