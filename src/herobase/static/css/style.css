@@ -1,3 +1,15 @@
+#team_hints { /* development only */
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border: 1px solid #add8e6;
+    background-color: #ffc533;
+    border-radius: 3px;
+}
+
+#team_hints a{
+    margin: 0 1em 0 1em;
+}
 .quest-list-item {
     background-image: url(../img/postit.jpg);
     background-size: cover;
