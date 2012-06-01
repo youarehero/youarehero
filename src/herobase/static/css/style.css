@@ -27,7 +27,59 @@ tr.new td {
 #map_geolocation label { width: auto; display:inline; }
 #map_geolocation img { max-height: none; max-width: none; }
 
+/* action-forms in 1 line */
 .inline,
 form.inline {
     display: inline;
+}
+
+/* autocomplete massage receiver */
+#_deck,
+.autocomplete_light_widget .deck {
+    padding-left: 0px ;
+    margin: 0px;
+}
+
+#_deck li {
+    background: #f9f9fb;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #555555;
+    display: inline-block;
+    font-size: 13px;
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 0px;
+    padding: 4px 3px 4px 5px;
+    width: 210px;
+    -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+#_deck li .remove {
+    float: right;
+    background-image: url("../../static/bootstrap/img/glyphicons-halflings.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: text-top;
+    width: 14px;
+    background-position: -312px 0;
+    margin-right: 2px;
+}
+
+.autocomplete_light_widget .autocomplete {
+    margin-bottom: 0px !important;
+}
+
+#id_id_recipient_text .yourlabs_autocomplete.inner_container{
+    width: 221px;
+    border-radius: 3px 7px 7px 3px;
+    left: 0px;
+    border: 1px solid #CCCCCC;
+}
+#id_id_recipient_text .yourlabs_autocomplete.inner_container ul{
+    border-radius: 3px 3px 3px 3px;
 }

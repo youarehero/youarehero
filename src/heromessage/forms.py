@@ -24,7 +24,7 @@ class MessageForm(forms.ModelForm):
                 Div(
                     Field(
                         'recipient',
-                        HTML('<input type="text" data-provide="typeahead">'),
+                        #HTML('<input type="text" data-provide="typeahead">'),
                     ),
                     'title',
                     'text',
