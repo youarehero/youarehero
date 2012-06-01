@@ -49,7 +49,7 @@ def message_view(request, message_id=None):
         new_message.sender = request.user
         new_message.save()
         messages.success(request, 'Message successfully sent')
-        HttpResponseRedirect(reverse('message-view'))
+        HttpResponseRedirect(reverse('message-list'))
 
     form.fields["recipient"].queryset = User.objects.exclude(id=user.id)
 
