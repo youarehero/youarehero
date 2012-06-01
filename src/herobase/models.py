@@ -268,7 +268,7 @@ class UserProfile(models.Model):
     location = models.CharField(max_length=255) # TODO : placeholder
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
 
-    geolocation = LocationField(_(u'geolocation'), max_length=100, default='24.2,24.5') # todo : fix default :-)
+    geolocation = LocationField(_(u'geolocation'), max_length=100, default='48,8') # todo : fix default :-)
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
