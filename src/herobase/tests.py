@@ -142,11 +142,10 @@ class QuestTest(TestCase):
         self.assertEqual(adventure.state, Adventure.STATE_OWNER_DONE)
 
 class UnauthenticatedIntegrationTest(TestCase):
-    def test_unauthenticated_homepage(self):
+    def test_homepage(self):
         client = Client()
         response = client.get('/')
         self.assertContains(response, 'Join')
-
 
     def test_quest_create(self):
         client = Client()
