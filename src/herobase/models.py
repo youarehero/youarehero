@@ -283,7 +283,10 @@ class UserProfile(models.Model):
     @property
     def level(self):
         """Calculate the user's level based on her experience"""
-        return self.experience % 1000 + 1 # TODO: correct formula
+        return int(self.experience / 1000) + 1 # TODO: correct formula
+
+    def relative_level_experience(self):
+        return (self.experience % 1000) / 10 # TODO: correct formula
 
     @property
     def unread_messages_count(self):
