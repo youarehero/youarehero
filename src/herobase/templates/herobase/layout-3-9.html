@@ -3,7 +3,9 @@
 {% block layout %}
     <div class="row">
         <div class="span3">
-            {% block sidebar_left %}&nbsp;{% endblock %}
+            {% block sidebar_left %}
+                {% include "herobase/profile.inc.html" %}
+            {% endblock %}
         </div><!--/span-->
         <div class="span9">
             {% block content %}{% endblock %}

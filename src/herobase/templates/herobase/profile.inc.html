@@ -1,0 +1,18 @@
+{% extends "herobase/layout-3-6-3.html" %}
+{% load i18n %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>{{ user.username }}
+            <small>Profil</small>
+        </h1>
+    </div>
+    <dl class="dl-horizontal">
+        <dt>{% trans "hero-class" %}</dt><dd>{{ user.get_profile.hero_class }}</dd>
+        <dt>{% trans "experience" %}</dt><dd>{{ user.get_profile.experience }}</dd>
+        <dt>{% trans "member since" %}</dt><dd>{{ user.get_profile.created }}</dd>
+        {% if user.get_profile.public_location %}
+            <dt>{% trans "location" %}</dt><dd>{{ user.get_profile.location }}, {{ user.get_profile.geolocation }}</dd>
+        {% endif %}
+    </dl>
+{% endblock %}

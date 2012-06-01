@@ -50,27 +50,6 @@ class QuestCreateView(CreateView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
-class QuestDetailView(DetailView):
-    context_object_name = "quest"
-    model = Quest
-
-    def get_context_data(self, **kwargs):
-        if not self.request.user.is_anonymous():
-            try:
-                adventure = self.object.adventure_set.get(user=self.request.user)
-            except Adventure.DoesNotExist:
-                adventure = None
-        else:
-            adventure = None
-        kwargs['adventure'] = adventure
-        return super(QuestDetailView, self).get_context_data(**kwargs)
-
-    def get_template_names(self):
-        if self.object.owner == self.request.user:
-            return ['herobase/quest/detail_for_author.html']
-        else:
-            return ['herobase/quest/detail_for_hero.html']
-
 def quest_detail_view(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
     if not request.user.is_anonymous():
