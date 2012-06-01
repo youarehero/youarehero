@@ -43,7 +43,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'youarehero'
-copyright = u'2012, ampad'
+copyright = u'2012, entwicklungshelden'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -186,7 +186,7 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'youarehero.tex', u'youarehero Documentation',
-   u'ampad', 'manual'),
+   u'entwicklungshelden', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -216,7 +216,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'youarehero', u'youarehero Documentation',
-     [u'ampad'], 1)
+     [u'entwicklungshelden'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -230,7 +230,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'youarehero', u'youarehero Documentation',
-   u'ampad', 'youarehero', 'One line description of project.',
+   u'entwicklungshelden', 'youarehero', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -248,9 +248,9 @@ texinfo_documents = [
 
 # Bibliographic Dublin Core info.
 epub_title = u'youarehero'
-epub_author = u'ampad'
-epub_publisher = u'ampad'
-epub_copyright = u'2012, ampad'
+epub_author = u'entwicklungshelden'
+epub_publisher = u'entwicklungshelden'
+epub_copyright = u'2012, entwicklungshelden'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
