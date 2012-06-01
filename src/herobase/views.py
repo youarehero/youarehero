@@ -128,13 +128,7 @@ def adventure_update(request, quest_id):
 
     return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
 
-def decorator(f):
-    def decorated(*args, **kwargs):
-        print f.func_name, args, kwargs
-        return f(*args, **kwargs)
-    return decorated
 
-@decorator
 def profile_view(request, username):
     user = get_object_or_404(User, username=username)
     return render(request, 'herobase/profile.html', {
