@@ -113,6 +113,10 @@ class Adventure(models.Model, ActionMixin):
         self.save()
 
     def done(self, request=None):
+        profile = self.user.get_profile()
+        profile.experience += self.quest.experience
+        profile.save()
+
         self.state = self.STATE_OWNER_DONE
         self.save()
 
@@ -216,6 +220,7 @@ class Quest(models.Model, ActionMixin):
 
     def done(self, request=None):
         # todo: xp und so
+
         self.state = self.STATE_OWNER_DONE
         self.save()
 
