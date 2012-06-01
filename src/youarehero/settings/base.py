@@ -179,7 +179,7 @@ COVERAGE_MODULE_EXCLUDES = [
     'migrations', 'fixtures', 'admin$',
     ]
 
-COVERAGE_MODULE_EXCLUDES += filter(lambda x: x in TEST_APPS, INSTALLED_APPS)
+COVERAGE_MODULE_EXCLUDES += filter(lambda x: x not in TEST_APPS, INSTALLED_APPS)
 
 COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(PROJECT_ROOT, "coverage")
 
