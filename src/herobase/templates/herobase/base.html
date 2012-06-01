@@ -84,7 +84,7 @@
     {% block sidebar_right %}{% endblock %}
 {% endblock %}
 </div><!--/container-->
-{% if 'youarehero.daenerys.de' in request.host %}
+{% if 'youarehero.daenerys.de' in request.get_host %}
     <div id="team_hints"><a href="/coverage/">tests</a><a href="/docs/">docs</a><a href="http://wiki.youarehero.daenerys.de">wiki</a></div>
 {% endif %}
     <!-- Le javascript
