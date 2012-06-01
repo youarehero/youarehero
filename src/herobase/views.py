@@ -98,7 +98,7 @@ def home_view(request):
 def hero_home_view(request):
     user = request.user
     quests = sorted(chain(user.created_quests.order_by('-created'),
-            Quest.objects.filter(adventure__user=2).exclude(adventure__user=2, adventure__state=Adventure.STATE_HERO_CANCELED).distinct()),
+            Quest.objects.filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)),
             key=lambda instance: instance.created, reverse=True)
     return render(request, 'herobase/hero_home.html',
             {'user': user,
