@@ -13,10 +13,6 @@ from herobase.test_factories import create_adventure
 from test_factories import create_quest, create_user
 
 
-from django.conf import settings
-from django.utils.importlib import import_module
-from django.contrib.auth import SESSION_KEY, BACKEND_SESSION_KEY
-
 def fake_request(user, path='/'):
     factory = RequestFactory()
     request = factory.get(path)
@@ -192,3 +188,21 @@ class AuthenticatedIntegrationTest(TestCase):
         quest = create_quest(title='aquestcreated')
         response = self.client.get(reverse('quest-list'))
         self.assertContains(response, 'aquestcreated')
+
+    def test_user_edit(self):
+        response = self.client.get(reverse('user-edit'))
+        self.assertContains(response, self.user.username)
+
+    def test_user_security_edit(self):
+        response = self.client.get(reverse('user-security-edit'))
+        self.assertContains(response, self.user.username)
+
+    def test_user_profile(self):
+        user = create_user()
+        response = self.client.get(reverse('user-profile', args=(user.username,)))
+        self.assertContains(response, user.username)
+
+    def test_quest_details(self):
+        quest = create_quest()
+        response = self.client.get(reverse('quest-detail', args=(quest.pk,)))
+        self.assertContains(response, quest.title)
