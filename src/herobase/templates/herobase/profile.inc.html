@@ -15,13 +15,13 @@
         </div>
     </div>
     <p></p>
-    <ul class="unstyled">
-        <li><a href="{% url quest-create %}"><i class="icon-plus-sign"></i> Create Quest</a></li>
-        <li><a href="{% url quest-list %}"><i class="icon-list"></i> Show Quests</a></li>
-        <li><a href="{% url user-edit %}"><i class="icon-star"></i> Profil</a></li>
-        <li><a href="#"><i class="icon-cog"></i> Einstellungen</a></li>
-        <li><a href="{% url user-security-edit %}"><i class="icon-lock"></i> Sicherheit</a></li>
-        <li><a href="{% url django.contrib.auth.views.logout %}"><i class="icon-off"></i> Logout</a></li>
+    <ul class="navigation">
+        <li><a href="{% url quest-create %}">Create Quest</a></li>
+        <li><a href="{% url quest-list %}">Show Quests</a></li>
+        <li><a href="{% url user-edit %}">Profil</a></li>
+        <li><a href="#">Einstellungen</a></li>
+        <li><a href="{% url user-security-edit %}">Sicherheit</a></li>
+        <li><a href="{% url django.contrib.auth.views.logout %}">Logout</a></li>
     </ul>
 {% else %}
     <a href="{% url django.contrib.auth.views.login %}">Login</a>

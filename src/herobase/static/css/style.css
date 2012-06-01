@@ -95,3 +95,22 @@ form.inline {
 #id_id_recipient_text .yourlabs_autocomplete.inner_container ul{
     border-radius: 3px 3px 3px 3px;
 }
+
+ul.navigation {
+    list-style: none;
+    margin-left: 0;
+}
+
+ul.navigation li {
+    margin-bottom: 6px;
+}
+
+ul.navigation li a {
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    background: url("../img/headline.png") 0 0 no-repeat transparent;
+    background-size: 78% 100%;
+    padding: 0px 20px;
+
+}
