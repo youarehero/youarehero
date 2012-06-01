@@ -76,17 +76,14 @@
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span3">
-            <div class="well sidebar-nav">
-                {% block sidebar_left %}{% endblock %}
-            </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
-            {% block content %}{% endblock %}
-        </div><!--/span-->
-    </div><!--/row-->
+
+<div class="container">
+{% block layout %}
+    {% block sidebar_left %}{% endblock %}
+    {% block content %}{% endblock %}
+    {% block sidebar_right %}{% endblock %}
+{% endblock %}
+</div><!--/container-->
 
 
     <!-- Le javascript

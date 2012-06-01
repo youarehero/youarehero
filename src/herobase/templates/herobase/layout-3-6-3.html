@@ -1,0 +1,15 @@
+{% extends "herobase/base.html" %}
+
+{% block layout %}
+    <div class="row">
+        <div class="span3">
+            {% block sidebar_left %}&nbsp;{% endblock %}
+        </div><!--/span-->
+        <div class="span6">
+            {% block content %}&nbsp;{% endblock %}
+        </div><!--/span-->
+        <div class="span3">
+            {% block sidebar_right %}{% endblock %}
+        </div><!--/span-->
+    </div>
+{% endblock %}

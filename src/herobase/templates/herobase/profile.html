@@ -1,4 +1,4 @@
-{% extends "herobase/base.html" %}
+{% extends "herobase/layout-3-6-3.html" %}
 {% load i18n %}
 
 {% block content %}
@@ -15,6 +15,4 @@
             <dt>{% trans "location" %}</dt><dd>{{ user.get_profile.location }}, {{ user.get_profile.geolocation }}</dd>
         {% endif %}
     </dl>
-
-
 {% endblock %}
