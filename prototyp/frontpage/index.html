@@ -27,11 +27,16 @@
 			$.localScroll.defaults.axis = 'x';
 			$.localScroll();
 			//mousewheel
-			$('html, body').mousewheel(function(event, delta) {
-				this.scrollLeft -= (delta * 20);
-				event.preventDefault();
-			});
+			if(!isTouchDevice()){
+				$('html, body').mousewheel(function(event, delta) {
+					this.scrollLeft -= (delta * 20);
+					event.preventDefault();
+				});
+			}
 		});
+		function isTouchDevice(){
+			  return (typeof(window.ontouchstart) != 'undefined') ? true : false;
+		}
 		</script>
     
 
