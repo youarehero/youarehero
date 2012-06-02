@@ -314,6 +314,9 @@ body {
 	#bg_container_shadow .box {
 		margin-top: 180px;
 	}
+	#container_absolute{
+		top:100px;
+	}
 }
 
 @media (max-height: 319px) {
@@ -329,6 +332,9 @@ body {
 	#nav{
 		top:100px;
 	}
+	#container_absolute{
+		top:80px;
+	}
 }
 
 @media (max-width: 600px) {
@@ -337,6 +343,9 @@ body {
 		left:1000px;
 		right:auto;
 		width:400px;
+	}
+	#logo img{
+		width:150px;
 	}
 }
 /* =Print
