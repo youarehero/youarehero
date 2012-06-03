@@ -39,6 +39,34 @@ tr.new td {
 #map_geolocation label { width: auto; display:inline; }
 #map_geolocation img { max-height: none; max-width: none; }
 
+div .charicon {
+    display: inline-block;
+    line-height: 33px;
+    width: 33px;
+    height: 33px;
+}
+
+div .Scientist {
+    background: url("../img/icon_scientist.png") center right no-repeat;
+}
+
+div .Gadgeteer {
+    background: url("../img/icon_gadgeteer.png") center right no-repeat;
+}
+
+div .Action {
+    background: url("../img/icon_action.png") center right no-repeat;
+}
+
+div .Protective {
+    background: url("../img/icon_protective.png") center right no-repeat;
+}
+
+div .Diplomat {
+    background: url("../img/icon_diplomat.png") center right no-repeat;
+}
+
+
 /* Quest list */
 
 .quest-list a {

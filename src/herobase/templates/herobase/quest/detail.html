@@ -40,7 +40,7 @@
                         <dt>{% trans "adventure-state" %}</dt><dd>{{ adventure.get_state_display }}</dd>
                     {% endif %}
                     <dt>{% trans "owner" %}</dt><dd>{{ quest.owner }}</dd>
-                    <dt>{% trans "class" %}</dt><dd>{{ quest.hero_class }}</dd>
+                    <dt>{% trans "class" %}</dt><dd>{{ quest.get_hero_class_display }}<div class="charicon {{ quest.get_hero_class_display }}"/></dd>
                     <dt>{% trans "level" %}</dt><dd>{{ quest.level }}</dd>
                     <dt>{% trans "experience" %}</dt><dd>{{ quest.experience }}</dd>
                     <dt>{% trans "location" %}</dt><dd>{{ quest.location }}</dd>
