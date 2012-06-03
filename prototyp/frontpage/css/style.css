@@ -64,6 +64,7 @@ body {
 	margin: 0;
 	padding: 20px 10px 0px 8px;
 	background:url(../img/link_bg_small.png) no-repeat left bottom;
+	background-size: 100% 55%;
 	
 	font-size:13px;
 	font-weight:700;
@@ -98,6 +99,7 @@ body {
 	margin: 0;
 	padding: 20px 10px 5px 10px;
 	background:url(../img/link_bg.png) no-repeat left bottom;
+	background-size: 100% 70%;
 	
 	font-size:20px;
 }
