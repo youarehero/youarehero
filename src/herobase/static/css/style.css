@@ -39,6 +39,29 @@ tr.new td {
 #map_geolocation label { width: auto; display:inline; }
 #map_geolocation img { max-height: none; max-width: none; }
 
+.quest-list a {
+}
+
+.quest-list .Scientist a {
+    background: url("../img/icon_scientist.png") no-repeat #e8e8e8 95% 95%;
+}
+
+.quest-list .Gadgeteer a {
+    background: url("../img/icon_gadgeteer.png") no-repeat #ccffa7 95% 95%;
+}
+
+.quest-list .Diplomat a {
+    background: url("../img/icon_diplomat.png") no-repeat #fff9b4 95% 95%;
+}
+
+.quest-list .Action a {
+    background: url("../img/icon_action.png") no-repeat #ffa19b 95% 95%;
+}
+
+.quest-list .Protective a {
+    background: url("../img/icon_protective.png") no-repeat #bdcaff 95% 95%;
+}
+
 .quest-list {
     margin:0;
     padding: 0;
@@ -55,7 +78,8 @@ tr.new td {
 }
 .quest-list ul{
     overflow:hidden;
-    padding:3em;
+    padding:20px;
+    padding-bottom: 38px;
 }
 
 .quest-list ul li{
@@ -207,16 +231,4 @@ ul.navigation li a {
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-}
-
-.quest-list .Scientist a {
-    border: 5px solid #63a83b;
-}
-
-.quest-list .Gadgeteer a {
-    border: 5px solid #7c7c7c;
-}
-
-.quest-list .Diplomat a {
-    border: 5px solid #d29a1c;
 }

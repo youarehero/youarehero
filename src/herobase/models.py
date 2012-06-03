@@ -16,7 +16,9 @@ from south.modelsinspector import add_introspection_rules
 CLASS_CHOICES =  (
     (0, "Scientist"),
     (1, 'Gadgeteer'),
-    (2, 'Diplomat'))
+    (2, 'Diplomat'),
+    (3, 'Action'),
+    (4, 'Protective'))
 
 
 def negate(f):
@@ -141,7 +143,11 @@ class Quest(models.Model, ActionMixin):
     max_heroes = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
     auto_accept = models.BooleanField(default=False)
 
-    level = models.PositiveIntegerField(choices=((1, 'Easy'), (2, 'Okay'), (3, 'Experienced'), (4, 'Challenging'), (5, 'Heroic')))
+    QUEST_LEVELS = (
+        (1, 'Easy'), (2, 'Okay'), (3, 'Experienced'), (4, 'Challenging'), (5, 'Heroic')
+    )
+
+    level = models.PositiveIntegerField(choices=QUEST_LEVELS)
     experience = models.PositiveIntegerField()
 
     STATE_NOT_SET = 0
@@ -150,13 +156,14 @@ class Quest(models.Model, ActionMixin):
     STATE_OWNER_DONE = 3
     STATE_OWNER_CANCELED = 4
 
-    state = models.IntegerField(default=STATE_OPEN, choices=(
-        #        (STATE_NOT_SET, 'not set'),
-        (STATE_OPEN, 'open'),
-        (STATE_FULL, 'full'),
-        (STATE_OWNER_DONE, 'done'),
-        (STATE_OWNER_CANCELED, 'canceled'),
-        ))
+    QUEST_STATES = (
+            (STATE_OPEN , 'open'),
+            (STATE_FULL , 'full'),
+            (STATE_OWNER_DONE , 'done'),
+            (STATE_OWNER_CANCELED , 'canceled'),
+        )
+
+    state = models.IntegerField(default=STATE_OPEN, choices=QUEST_STATES)
 
     def active_heroes(self):
         """Return all heroes that have not cancelled their participation and have not been excluded"""
