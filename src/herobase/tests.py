@@ -8,6 +8,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import RequestFactory, Client
+from django.test.testcases import SimpleTestCase, TransactionTestCase
 from herobase.models import Quest, Adventure
 from herobase.test_factories import create_adventure
 from test_factories import create_quest, create_user
