@@ -274,6 +274,7 @@ ul.navigation li a {
 }
 h1 small{
     color: #FF8A31;
+    text-shadow: 0 0 10px #FFFFFF;
 }
 
 .portrait img {
