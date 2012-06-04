@@ -6,7 +6,7 @@
         </h1>
     </div>
 
-    <div class="portrait">
+    <div class="portrait pull-left">
         <img src="{% get_static_prefix %}img/profil.png" alt="{{ user.username }}">
         <h4 class="pull-right">{{ user.get_profile.experience }} XP</h4>
         <h4>Level: {{ user.get_profile.level }}</h4>
@@ -14,7 +14,7 @@
             <div class="bar" style="width: {{ user.get_profile.relative_level_experience }}%;"></div>
         </div>
     </div>
-    <p></p>
+    <p class="clearfix">&nbsp;</p>
     <ul class="navigation">
         <li><a href="{% url quest-create %}">Create Quest</a></li>
         <li><a href="{% url quest-list %}">Show Quests</a></li>
