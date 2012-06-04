@@ -180,6 +180,16 @@ div .Diplomat {
     z-index:5;
 }
 
+/* aufklappen example */
+.quest-list ul li a p {
+    display: none;
+}
+
+.quest-list ul li a:hover p,
+.quest-list ul li a:focus p {
+    display: block;
+}
+
 [draggable] {
     -moz-user-select: none;
     -khtml-user-select: none;
