@@ -10,16 +10,6 @@
 #team_hints a{
     margin: 0 1em 0 1em;
 }
-.quest-list-item {
-    background-image: url(../img/postit.jpg);
-    background-size: cover;
-}
-
-.quest-list-item .content {
-    padding: 18%;
-    height: 200px;
-
-}
 
 a.text {
     text-decoration: none;
@@ -69,6 +59,8 @@ div .Diplomat {
 
 /* Quest list */
 
+
+
 .quest-list a {
 }
 
@@ -106,8 +98,8 @@ div .Diplomat {
 .quest-list ul,li{
     list-style:none;
 }
+
 .quest-list ul{
-    overflow:hidden;
     padding:20px;
     padding-bottom: 38px;
 }
@@ -118,9 +110,11 @@ div .Diplomat {
 }
 
 .quest-list ul li h2{
-    font-size:140%;
     font-weight:bold;
     padding-bottom:10px;
+    font-family:"Reenie Beanie",arial,sans-serif;
+    font-size:200%;
+    line-height: 30px;
 }
 
 .quest-list ul li p{
@@ -133,8 +127,8 @@ div .Diplomat {
     color:#000;
     background:#ffc;
     display:block;
-    height:13em;
-    width:13em;
+    height:11em;
+    width:11em;
     padding:1em;
     -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
     -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
@@ -180,7 +174,7 @@ div .Diplomat {
     z-index:5;
 }
 
-/* aufklappen example */
+/* aufklappen example
 .quest-list ul li a p {
     display: none;
 }
@@ -188,7 +182,7 @@ div .Diplomat {
 .quest-list ul li a:hover p,
 .quest-list ul li a:focus p {
     display: block;
-}
+} */
 
 /* ?? was is das ?? */
 [draggable] {
@@ -284,4 +278,8 @@ h1 small{
 
 .portrait img {
     margin: 5px;
+}
+
+.portrait .progress {
+    border: 2px solid black;
 }

@@ -14,18 +14,20 @@ from django.utils.decorators import method_decorator
 
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
+from django_filters.models import QuestFilter
 from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfileSecurityEdit
 from herobase.models import Quest, Adventure
 import logging
 logger = logging.getLogger('youarehero.herobase')
 
+def quest_list_view(request):
 
+    f = QuestFilter(request.POST, queryset=Quest.objects.all())
 
-class QuestListView(ListView):
-    context_object_name = "quests"
-    queryset = Quest.objects.filter(state=Quest.STATE_OPEN)
-    template_name = "herobase/quest/list.html"
-
+    return render(request, 'herobase/quest/list.html', {
+        'quests': Quest.objects.filter(state=Quest.STATE_OPEN),
+        'filter': f,
+    })
 
 class QuestCreateView(CreateView):
     context_object_name = "quest"

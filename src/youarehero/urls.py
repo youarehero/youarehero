@@ -3,12 +3,12 @@ from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from herobase.views import QuestListView, QuestCreateView
-import autocomplete_light
-autocomplete_light.autodiscover()
-admin.autodiscover()
+#import autocomplete_light
+#autocomplete_light.autodiscover()
+#admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^quest/list$', QuestListView.as_view(), name='quest-list'),
+    url(r'^quest/list$', 'herobase.views.quest_list_view', name='quest-list'),
     url(r'^quests/create$', QuestCreateView.as_view(), name='quest-create'),
     url(r'^quests/(?P<quest_id>\d+)$', 'herobase.views.quest_detail_view', name='quest-detail'),
     url(r'^quests/(?P<quest_id>\d+)/quest_update',
