@@ -3,9 +3,9 @@ from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from herobase.views import QuestCreateView
-#import autocomplete_light
-#autocomplete_light.autodiscover()
-#admin.autodiscover()
+import autocomplete_light
+autocomplete_light.autodiscover()
+admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^quest/list$', 'herobase.views.quest_list_view', name='quest-list'),
