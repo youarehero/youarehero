@@ -88,7 +88,8 @@ class Adventure(models.Model, ActionMixin):
     def get_actions(self):
         actions = {
             'accept': {
-                'conditions': (self.quest.is_owner,
+                'conditions': (self.quest.is_owner, self.quest.is_open,
+                               lambda r: self.quest.needs_heroes,
                                lambda r: self.state == self.STATE_HERO_APPLIED),
                 'actions': (self.accept,),
             },
@@ -112,6 +113,8 @@ class Adventure(models.Model, ActionMixin):
     def accept(self, request=None):
         self.state = self.STATE_OWNER_ACCEPTED
         self.save()
+        self.quest.check_full()
+        self.quest.save()
 
     def refuse(self, request=None):
         self.state = self.STATE_OWNER_REFUSED
@@ -166,14 +169,21 @@ class Quest(models.Model, ActionMixin):
     state = models.IntegerField(default=STATE_OPEN, choices=QUEST_STATES)
 
     def active_heroes(self):
-        """Return all heroes that have not cancelled their participation and have not been excluded"""
-        return self.heroes.exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_HERO_CANCELED).exclude(adventures__quest=self.pk, adventures__state=Adventure.STATE_OWNER_REFUSED)
+        """Return all accepted heroes and heros who claim to be done"""
+        return self.heroes.filter(adventures__quest=self.pk,
+            adventures__state__in=(Adventure.STATE_OWNER_ACCEPTED,
+                                   Adventure.STATE_HERO_DONE))
 
     def accepted_heroes(self):
+        """Return all accepted heroes and heros who are done or claim so"""
         return self.heroes.filter(adventures__quest=self.pk,
             adventures__state__in=(Adventure.STATE_OWNER_ACCEPTED,
                                    Adventure.STATE_OWNER_DONE,
                                    Adventure.STATE_HERO_DONE))
+
+    def applying_heroes(self):
+        return self.heroes.filter(adventures__quest=self.pk,
+            adventures__state=Adventure.STATE_HERO_APPLIED)
 
     def clean(self):
         if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
@@ -183,22 +193,22 @@ class Quest(models.Model, ActionMixin):
     def get_actions(self):
         actions = {
             'cancel': {
-                'conditions': (self.is_owner, self.is_open),
+                'conditions': (self.is_owner, self.is_active),
                 'actions': (self.cancel,),
                 },
             'hero_apply': {
-                'conditions': (self.is_open, self.can_apply),
+                'conditions': (self.is_open, self.can_apply,
+                                self.is_active, self.needs_heroes),
                 'actions': (self.hero_apply, )
                 },
             'hero_cancel': {
-                'conditions': (negate(self.is_done),
-                               lambda r: r.user in self.active_heroes()),
+                'conditions': (self.is_active,
+                               lambda r: r.user in (list(self.active_heroes()) + list(self.applying_heroes()))),
                 'actions': (self.hero_cancel, )
                 },
             'done': {
-                'conditions': (self.is_owner,
-                               lambda r: self.accepted_heroes(),
-                               lambda r: self.state != self.STATE_OWNER_DONE),
+                'conditions': (self.is_owner, self.is_active,
+                               lambda r: self.accepted_heroes()),
                 'actions': (self.done, )
                 },
             }
@@ -210,6 +220,8 @@ class Quest(models.Model, ActionMixin):
         adventure = self.adventure_set.get(user=request.user)
         adventure.state = Adventure.STATE_HERO_CANCELED
         adventure.save()
+        self.check_full()
+        self.save()
 
     def hero_apply(self, request):
         adventure, created = self.adventure_set.get_or_create(user=request.user)
@@ -248,14 +260,29 @@ class Quest(models.Model, ActionMixin):
     def is_done(self, request=None):
         return self.state == Quest.STATE_OWNER_DONE
 
-    def needs_heroes(self):
+    def is_full(self, request=None):
+        return self.state == Quest.STATE_FULL
+
+    def is_active(self, request=None):
+        return self.state in (Quest.STATE_OPEN, Quest.STATE_FULL)
+
+    def is_closed(self, request=None):
+        return self.state in (Quest.STATE_OWNER_CANCELED, Quest.STATE_OWNER_DONE)
+
+    def needs_heroes(self, request=None):
         """Returns true if there are still open slots in this quest"""
-        if self.is_cancelled() or self.is_done():
-            return False
+        return self.is_open()
+
+    def check_full(self, request=None):
+        """Calculates if quest is full or not"""
+        if self.is_closed():
+            return
         if not self.max_heroes:
-            return True
+            return
+        if self.accepted_heroes().count() < self.max_heroes:
+            self.state = Quest.STATE_OPEN
         else:
-            return self.adventure_set.filter(state=Adventure.STATE_OWNER_ACCEPTED).count() < self.max_heroes
+            self.state = Quest.STATE_FULL
 
     def can_apply(self, request):
         if self.is_owner(request):

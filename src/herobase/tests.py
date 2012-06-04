@@ -145,6 +145,21 @@ class QuestTest(TestCase):
         adventure.process_action(request, 'done')
         self.assertEqual(adventure.state, Adventure.STATE_OWNER_DONE)
 
+    def test_adventure_done_hero_actions(self):
+        quest = create_quest()
+        adventure = create_adventure(quest, state=Adventure.STATE_OWNER_DONE)
+        request = fake_request(adventure.user)
+        self.assertNotIn('hero_apply', quest.valid_actions_for(request))
+        self.assertNotIn('hero_cancel', quest.valid_actions_for(request))
+
+    def test_adventure_done_owner_actions(self):
+        quest = create_quest()
+        adventure = create_adventure(quest, state=Adventure.STATE_OWNER_DONE)
+        request = fake_request(quest.owner)
+        self.assertNotIn('accept', adventure.valid_actions_for(request))
+        self.assertNotIn('refuse', adventure.valid_actions_for(request))
+        self.assertNotIn('done', adventure.valid_actions_for(request))
+
 class UnauthenticatedIntegrationTest(TestCase):
     def test_homepage(self):
         client = Client()
@@ -207,7 +222,6 @@ class AuthenticatedIntegrationTest(TestCase):
         quest = create_quest()
         response = self.client.get(reverse('quest-detail', args=(quest.pk,)))
         self.assertContains(response, quest.title)
-
 
     def test_quest_details_as_owner(self):
         quest = create_quest(owner=self.user)
