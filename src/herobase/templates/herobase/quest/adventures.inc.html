@@ -16,7 +16,7 @@
             {% for adventure in quest.adventure_set.all %}
                 <tr>
                     <td>
-                        <a href="{% url user-profile adventure.user.username %}">
+                        <a href="{% url userprofile-public adventure.user.username %}">
                             <h4>{{ adventure.user }} </h4>
                         </a>
                     </td>

@@ -227,6 +227,13 @@ class AuthenticatedIntegrationTest(TestCase):
         response = self.client.get(reverse('quest-list'))
         self.assertContains(response, 'aquestcreated')
 
+    def test_quest_detail(self):
+        quest = create_quest(title='questwithadventure', owner=self.user)
+        adventure = create_adventure(quest)
+        response = self.client.get(reverse("quest-detail", args=(quest.pk, )))
+        self.assertContains(response, quest.title)
+        self.assertContains(response, adventure.user.username)
+
     def test_user_edit(self):
         response = self.client.get(reverse('userprofile-edit'))
         self.assertContains(response, self.user.username)
