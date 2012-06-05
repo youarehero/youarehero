@@ -21,10 +21,10 @@ urlpatterns = patterns('',
     url(r'^profile/security/$', 'herobase.views.profile_security_edit', name='user-security-edit'),
     url(r'^profile/(?P<username>\w+)/$', 'herobase.views.profile_view', name='user-profile'),
 
-    url(r'^messages/reply/(?P<message_id>\d+)$', 'heromessage.views.message_view', name='message-list'),
-    url(r'^messages', 'heromessage.views.message_view', name='message-list'),
+    url(r'^messages/reply/(?P<message_id>\d+)$', 'heromessage.views.message_list', name='message-list'),
+    url(r'^messages', 'heromessage.views.message_list', name='message-list'),
     url(r'^message/(?P<pk>\d+)$', 'heromessage.views.message_detail', name='message-detail'),
-    url(r'^message/send', 'heromessage.views.message_send', name='message-send'),
+   # url(r'^message/send', 'heromessage.views.message_send', name='message-send'),
 
 
     # Examples:

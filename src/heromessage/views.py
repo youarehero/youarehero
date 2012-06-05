@@ -18,7 +18,7 @@ logger = logging.getLogger('youarehero.heromessage')
 
 
 @login_required
-def message_view(request, message_id=None):
+def message_list(request, message_id=None):
     user = request.user
     form = MessageForm(request.POST or None)
 
@@ -50,33 +50,34 @@ def message_view(request, message_id=None):
     sent_messages = Message.objects.filter(sender=user, sender_deleted__isnull=True).order_by('-sent')
     received_messages = Message.objects.filter(recipient=user, recipient_deleted__isnull=True).order_by('-sent')
 
-    return render(request, 'message/message_view.html',
+    return render(request, 'message/list.html',
             {'user': user,
              'form': form,
              'sent_messages': sent_messages,
              'received_messages': received_messages,
             })
 
-@require_POST
-@login_required
-def message_send(request):
-
-    form = MessageForm(request.POST)
-
-    if form.is_valid():
-        new_message = form.save(commit=False)
-        new_message.sender = request.user
-        new_message.save()
-        messages.info(request, "Message successfully sent")
-
-    return HttpResponseRedirect('message-view')
+#@require_POST
+#@login_required
+#def message_send(request):
+#
+#    form = MessageForm(request.POST)
+#
+#    if form.is_valid():
+#        new_message = form.save(commit=False)
+#        new_message.sender = request.user
+#        new_message.save()
+#        messages.info(request, "Message successfully sent")
+#
+#    return HttpResponseRedirect('message-list')
 
 
 @login_required
 def message_detail(request, pk):
     message = get_object_or_404(Message, pk=pk)
-    message.read = datetime.now()
-    message.save()
-    return render(request, 'message/message_detail.html', {
+    if not message.read:
+        message.read = datetime.now()
+        message.save()
+    return render(request, 'message/detail.html', {
         'message': message
     })
