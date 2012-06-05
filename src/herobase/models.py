@@ -1,9 +1,9 @@
-from collections import OrderedDict
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.core.urlresolvers import reverse
 from django.core.validators import MinValueValidator
 from django.db import models, transaction
+from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
@@ -33,7 +33,7 @@ class ActionMixin(object):
 
     def valid_actions_for(self, request):
         actions = self.get_actions()
-        valid_actions = OrderedDict()
+        valid_actions = SortedDict()
         for name, action in actions.items():
             valid = True
             for condition in action['conditions']:
