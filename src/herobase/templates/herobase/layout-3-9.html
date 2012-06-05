@@ -4,14 +4,15 @@
 {% block layout %}
     <div class="row">
         <div class="span3">
-            <a href="{% url home %}">
-                <img src="{% get_static_prefix %}/img/logo.png" alt="You Are Hero">
-            </a>
             {% block sidebar_left %}
-                {% include "herobase/userprofile/private.inc.html" %}
+                {% include "herobase/sidebar_left.inc.html" %}
             {% endblock %}
         </div><!--/span-->
         <div class="span9">
+            <div class="page-header">&nbsp;</div>
+            <div class="container-fluid">
+                {% include "herobase/messages.inc.html" %}
+            </div>
             {% block content %}{% endblock %}
         </div><!--/span-->
     </div>

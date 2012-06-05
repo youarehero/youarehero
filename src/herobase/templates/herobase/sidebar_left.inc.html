@@ -1,0 +1,13 @@
+{% load i18n static %}
+<a href="{% url home %}">
+    <img src="{% get_static_prefix %}/img/logo.png" alt="You Are Hero">
+</a>
+{% if request.user.is_authenticated %}
+    {% include "herobase/userprofile/private.inc.html" %}
+    <p class="clearfix">&nbsp;</p>
+    {% include "herobase/navigation.inc.html" %}
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+{% else %}
+    <a href="{% url django.contrib.auth.views.login %}">Login</a>
+{% endif %}

@@ -28,7 +28,7 @@ class QuestCreateForm(ModelForm):
                         'title',
                         'hero_class',
                         'description',
-                        css_class="span6",
+                        css_class="span3",
                     ),
                     Div(
                         'level',
@@ -37,9 +37,9 @@ class QuestCreateForm(ModelForm):
                         'auto_accept',
                         'location',
                         'due_date',
-                        css_class="span6",
+                        css_class="span3",
                     ),
-                    css_class="row-fluid",
+                    css_class="row",
                 ),
             ),
             FormActions(

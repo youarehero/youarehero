@@ -309,6 +309,7 @@ class Quest(models.Model, ActionMixin):
     def __unicode__(self):
         return self.title
 
+
 class UserProfile(models.Model):
 
     add_introspection_rules([], ["^herobase\.fields\.LocationField"])
@@ -326,6 +327,8 @@ class UserProfile(models.Model):
 
     public_location = models.BooleanField(default=False, verbose_name=_("Location is public"),
         help_text=_("Enable this if you want to share your location with other Heroes."))
+
+
 
     @property
     def get_geolocation(self):
