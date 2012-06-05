@@ -20,16 +20,10 @@ logger = logging.getLogger('youarehero.heromessage')
 @login_required
 def message_view(request, message_id=None):
     user = request.user
-    form = MessageForm()
-
-    if request.method == 'POST':
-
-        form = MessageForm(request.POST)
+    form = MessageForm(request.POST or None)
 
     if message_id is not None:
-
         message = Message.objects.get(pk=message_id)
-
         if 'reply' in request.POST:
             form = MessageForm (initial={'recipient':message.sender, 'title': "Re: %s" % message.title})
 
