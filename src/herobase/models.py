@@ -198,7 +198,7 @@ class Quest(models.Model, ActionMixin):
                 },
             'hero_apply': {
                 'conditions': (self.is_open, self.can_apply,
-                                self.is_active, self.needs_heroes),
+                                self.needs_heroes),
                 'actions': (self.hero_apply, )
                 },
             'hero_cancel': {
