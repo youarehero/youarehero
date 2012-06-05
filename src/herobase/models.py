@@ -151,7 +151,7 @@ class Quest(models.Model, ActionMixin):
     auto_accept = models.BooleanField(default=False)
 
     QUEST_LEVELS = (
-        (1, 'Easy'), (2, 'Okay'), (3, 'Experienced'), (4, 'Challenging'), (5, 'Heroic')
+        (1, '1 (Easy)'), (2, '2 (Okay)'), (3, '3 (Experienced)'), (4, '4 (Challenging)'), (5, '5 (Heroic)')
     )
 
     level = models.PositiveIntegerField(choices=QUEST_LEVELS)
