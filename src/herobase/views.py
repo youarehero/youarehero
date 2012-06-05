@@ -15,7 +15,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from filters import QuestFilter
-from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfileSecurityEdit
+from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit
 from herobase.models import Quest, Adventure
 import logging
 logger = logging.getLogger('youarehero.herobase')
@@ -126,32 +126,32 @@ def adventure_update(request, quest_id):
     return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
 
 
-def profile_view(request, username):
+def userprofile_public(request, username):
     user = get_object_or_404(User, username=username)
-    return render(request, 'herobase/profile.html', {
+    return render(request, 'herobase/userprofile/public.html', {
         'user': user
     })
 
 @login_required
-def profile_edit(request):
+def userprofile_edit(request):
     user = request.user
     form = UserProfileEdit(request.POST or None, instance=user.get_profile())
     if form.is_valid():
         form.save()
         messages.success(request, 'Profile successfully changed')
-    return render(request, 'herobase/profile_edit.html', {
+    return render(request, 'herobase/userprofile/edit.html', {
         'user': user,
         'form': form
     })
 
 @login_required
-def profile_security_edit(request):
+def userprofile_privacy_settings(request):
     user = request.user
-    form = UserProfileSecurityEdit(request.POST or None, instance=user.get_profile())
+    form = UserProfilePrivacyEdit(request.POST or None, instance=user.get_profile())
     if form.is_valid():
         form.save()
-        messages.success(request, 'Security settings successfully changed')
-    return render(request, 'herobase/profile_security_edit.html', {
+        messages.success(request, 'Privacy settings successfully changed')
+    return render(request, 'herobase/userprofile/privacy_settings.html', {
         'user': user,
         'form': form
     })

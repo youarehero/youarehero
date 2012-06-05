@@ -224,16 +224,16 @@ class AuthenticatedIntegrationTest(TestCase):
         self.assertContains(response, 'aquestcreated')
 
     def test_user_edit(self):
-        response = self.client.get(reverse('user-edit'))
+        response = self.client.get(reverse('userprofile-edit'))
         self.assertContains(response, self.user.username)
 
     def test_user_security_edit(self):
-        response = self.client.get(reverse('user-security-edit'))
+        response = self.client.get(reverse('userprofile-privacy-settings'))
         self.assertContains(response, self.user.username)
 
     def test_user_profile(self):
         user = create_user()
-        response = self.client.get(reverse('user-profile', args=(user.username,)))
+        response = self.client.get(reverse('userprofile-public', args=(user.username,)))
         self.assertContains(response, user.username)
 
     def test_quest_details_as_hero(self):
