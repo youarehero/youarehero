@@ -324,7 +324,8 @@ class UserProfile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    public_location = models.BooleanField(default=False)
+    public_location = models.BooleanField(default=False, verbose_name=_("Location is public"),
+        help_text=_("I want to share my location with other Heroes."))
 
     @property
     def get_geolocation(self):
