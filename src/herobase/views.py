@@ -14,7 +14,7 @@ from django.utils.decorators import method_decorator
 
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
-from django_filters.models import QuestFilter
+from filters import QuestFilter
 from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfileSecurityEdit
 from herobase.models import Quest, Adventure
 import logging
