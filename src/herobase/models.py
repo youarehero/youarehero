@@ -242,7 +242,9 @@ class Quest(models.Model, ActionMixin):
         Message.objects.create(
             sender=get_system_user(),
             recipient=adventure.quest.owner,
-            text="%s applied to your Quest %s" % (request.user, adventure.quest.title),
+            text="%s applied to your Quest %s. Have a look at %s" % (
+                request.user, adventure.quest.title,
+                adventure.quest.get_absolute_url()),
             title="New Hero applied")
 
     def cancel(self, request=None):
