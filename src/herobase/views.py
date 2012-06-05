@@ -30,7 +30,7 @@ class QuestCreateView(CreateView):
     context_object_name = "quest"
     form_class = QuestCreateForm
     template_name = "herobase/quest/create.html"
-    success_url = './%(id)s'
+    success_url = '../%(id)s/'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
