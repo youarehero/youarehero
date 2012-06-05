@@ -4,14 +4,13 @@
     <div class="row">
         <div class="span3">
             <a href="{% url home %}">
-            <img src="{% get_static_prefix %}/img/logo.png" alt="You Are Hero">
+                <img src="{% get_static_prefix %}/img/logo.png" alt="You Are Hero">
             </a>
             {% block sidebar_left %}
                 {% include "herobase/profile.inc.html" %}
             {% endblock %}
         </div><!--/span-->
         <div class="span6">
-            <div class="page-header"></div>
             {% block content %}&nbsp;{% endblock %}
         </div><!--/span-->
         <div class="span3">
