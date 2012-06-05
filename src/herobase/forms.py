@@ -16,7 +16,7 @@ class QuestCreateForm(ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
        # self.helper.form_action = 'quest-create'
-        self.helper.form_class = 'well form-horizontal'
+       # self.helper.form_class = 'form-horizontal'
         self.request = kwargs.pop('request')
 
         #self.helper.add_input(Submit('submit', 'Submit'))
@@ -26,24 +26,24 @@ class QuestCreateForm(ModelForm):
                 Div(
                     Div(
                         'title',
+                        'hero_class',
                         'description',
                         css_class="span6",
                     ),
                     Div(
-                        'hero_class',
-                        'max_heroes',
-                        'auto_accept',
                         'level',
                         'experience',
+                        'max_heroes',
+                        'auto_accept',
                         'location',
                         'due_date',
                         css_class="span6",
                     ),
-                    css_class="row",
+                    css_class="row-fluid",
                 ),
             ),
             FormActions(
-                Submit('save', 'Save', css_class='btn-primary btn-large')
+                Submit('save', 'Save', css_class='btn-large')
             ),
         )
         super(QuestCreateForm, self).__init__(*args, **kwargs)
@@ -74,7 +74,7 @@ class UserProfileEdit(ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         #self.helper.form_action = 'user-edit'
-        self.helper.form_class = 'well form-horizontal'
+        self.helper.form_class = 'form-horizontal'
 
         #self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.layout = Layout(
@@ -87,7 +87,7 @@ class UserProfileEdit(ModelForm):
                 )
             ),
             FormActions(
-                Submit('save', 'Save', css_class='btn-primary btn-large')
+                Submit('save', 'Save', css_class='btn-large')
             ),
         )
         super(UserProfileEdit, self).__init__(*args, **kwargs)
@@ -104,18 +104,18 @@ class UserProfilePrivacyEdit(ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         #self.helper.form_action = 'userprofile-privacy-settings'
-        self.helper.form_class = 'well form-horizontal'
+        self.helper.form_class = 'form-horizontal'
 
         #self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.layout = Layout(
             Fieldset(
-                _('Security'),
+                _('Privacy Settings'),
                 Div(
                     'public_location',
                 )
             ),
             FormActions(
-                Submit('save', 'Save', css_class='btn')
+                Submit('save', 'Save', css_class='btn-large')
             ),
         )
         super(UserProfilePrivacyEdit, self).__init__(*args, **kwargs)
