@@ -6,7 +6,11 @@
 </h1>
 
 <div class="portrait">
-    <img src="{% get_static_prefix %}img/profil.png" alt="{{ user.username }}">
+    {% if user.get_profile.hero_class %}
+        <img src="{% get_static_prefix %}img/avatar/{{ user.get_profile.avatar }}" alt="{{ user.username }}">
+    {% else %}
+        <img src="{% get_static_prefix %}img/profil.png" alt="{{ user.username }}">
+    {% endif %}
 </div>
 <div class="experience">
     <h4 class="pull-right">{{ user.get_profile.experience }} XP</h4>

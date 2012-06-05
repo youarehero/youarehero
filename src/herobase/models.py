@@ -21,7 +21,6 @@ CLASS_CHOICES =  (
     (3, 'Action'),
     (4, 'Protective'))
 
-
 def negate(f):
     def decorated(*args, **kwargs):
         return not f(*args, **kwargs)
@@ -328,7 +327,15 @@ class UserProfile(models.Model):
     public_location = models.BooleanField(default=False, verbose_name=_("Location is public"),
         help_text=_("Enable this if you want to share your location with other Heroes."))
 
+    CLASS_AVATARS =  {
+        0: "scientist.jpg",
+        1: 'gadgeteer.jpg',
+        2: 'diplomat.jpg',
+        3: 'action.jpg',
+        4: 'protective.jpg'}
 
+    def avatar(self):
+        return self.CLASS_AVATARS[self.hero_class]
 
     @property
     def get_geolocation(self):

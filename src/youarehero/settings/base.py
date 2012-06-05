@@ -156,6 +156,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'autocomplete_light',
     'django_filters',
+   # 'easy_thumbnails',
 
     # project specific installed apps
     'herobase',
