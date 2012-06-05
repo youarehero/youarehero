@@ -1,11 +1,13 @@
 {% load i18n static %}
 {% if request.user.is_authenticated %}
     <div class="page-header2">
-        <h1>{{ user.username }}
-            <small>{{ user.get_profile.get_hero_class_display }}</small>
+        <h1>
+            <a href="{% url home %}">
+            {{ user.username }}
+            <small>{{ user.get_profile.get_hero_class_display }}</small></a>
         </h1>
-    </div>
 
+    </div>
     <div class="portrait">
         <img src="{% get_static_prefix %}img/profil.png" alt="{{ user.username }}">
     </div>
