@@ -151,6 +151,7 @@ def userprofile_privacy_settings(request):
     if form.is_valid():
         form.save()
         messages.success(request, 'Privacy settings successfully changed')
+        return HttpResponseRedirect('.')
     return render(request, 'herobase/userprofile/privacy_settings.html', {
         'user': user,
         'form': form
