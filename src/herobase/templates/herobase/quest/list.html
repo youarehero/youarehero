@@ -37,8 +37,7 @@ family=Reenie+Beanie:regular"
                 <span class="caret"></span>
             </a>
             <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-                <form action="" method="post">
-                    {% csrf_token %}
+                <form action="" method="get">
                     {{ filter.form.as_p }}
                     {{ filter.form.ordering_field }}
                     <input type="submit" value="Update"/>

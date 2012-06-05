@@ -21,11 +21,8 @@ import logging
 logger = logging.getLogger('youarehero.herobase')
 
 def quest_list_view(request):
-
-    f = QuestFilter(request.POST, queryset=Quest.objects.all())
-
+    f = QuestFilter(request.GET, queryset=Quest.objects.all())
     return render(request, 'herobase/quest/list.html', {
-        'quests': Quest.objects.filter(state=Quest.STATE_OPEN),
         'filter': f,
     })
 

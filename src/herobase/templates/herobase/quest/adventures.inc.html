@@ -23,12 +23,12 @@
                     <td>{{ adventure.get_state_display }}</td>
                     <td>
                         {% valid_actions_for adventure as valid_actions %}
-                        {% for action in valid_actions %}
+                        {% for action_name, action in valid_actions.items %}
                             <form action="{% url adventure-update quest.id %}" method="post" class="inline">
                                 {% csrf_token %}
                                 <input type="hidden" name="adventure_id" value="{{ adventure.id }}"/>
-                                <input type="hidden" name="action" value="{{ action }}">
-                                <input type="submit" name="action_btn" class="btn" value="{{ action }}"/>
+                                <input type="hidden" name="action" value="{{ action_name }}">
+                                <input type="submit" name="action_btn" class="btn" value="{{ action.verbose_name }}"/>
                             </form>
                         {% endfor  %}
                     </td>

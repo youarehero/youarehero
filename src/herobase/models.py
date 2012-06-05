@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.core.urlresolvers import reverse
@@ -32,14 +33,14 @@ class ActionMixin(object):
 
     def valid_actions_for(self, request):
         actions = self.get_actions()
-        valid_actions = []
+        valid_actions = OrderedDict()
         for name, action in actions.items():
             valid = True
             for condition in action['conditions']:
                 if not condition(request):
                     valid = False
             if valid:
-                valid_actions.append(name)
+                valid_actions[name] = action
         return valid_actions
 
     def process_action(self, request, action_name):
@@ -92,16 +93,19 @@ class Adventure(models.Model, ActionMixin):
                                lambda r: self.quest.is_open,
                                lambda r: self.state == self.STATE_HERO_APPLIED),
                 'actions': (self.accept,),
+                'verbose_name': _("Accept"),
             },
             'refuse': {
                 'conditions': (self.quest.is_owner,
                                lambda r: self.state == self.STATE_HERO_APPLIED),
                 'actions': (self.refuse,),
+                'verbose_name': _("Refuse"),
             },
             'done': {
                 'conditions': (self.quest.is_owner,
                                lambda r: self.state == self.STATE_OWNER_ACCEPTED),
                 'actions': (self.done,),
+                'verbose_name': _("Mark as done"),
             },
         }
         return actions
@@ -195,21 +199,26 @@ class Quest(models.Model, ActionMixin):
             'cancel': {
                 'conditions': (self.is_owner, self.is_active),
                 'actions': (self.cancel,),
+                'verbose_name': _("Cancel"),
                 },
             'hero_apply': {
                 'conditions': (self.is_open, self.can_apply,
                                 self.is_open),
-                'actions': (self.hero_apply, )
+                'actions': (self.hero_apply, ),
+                'verbose_name': _("Apply"),
                 },
             'hero_cancel': {
                 'conditions': (self.is_active,
                                lambda r: r.user in (list(self.active_heroes()) + list(self.applying_heroes()))),
-                'actions': (self.hero_cancel, )
+                'actions': (self.hero_cancel, ),
+                'verbose_name': _("Cancel"),
                 },
             'done': {
                 'conditions': (self.is_owner, self.is_active,
                                lambda r: self.accepted_heroes()),
-                'actions': (self.done, )
+                'actions': (self.done, ),
+                'verbose_name': _("Mark as done"),
+
                 },
             }
         return actions
