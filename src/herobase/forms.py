@@ -15,7 +15,7 @@ class QuestCreateForm(ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.form_action = 'quest-create'
+       # self.helper.form_action = 'quest-create'
         self.helper.form_class = 'well form-horizontal'
         self.request = kwargs.pop('request')
 
@@ -73,7 +73,7 @@ class UserProfileEdit(ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.form_action = 'user-edit'
+        #self.helper.form_action = 'user-edit'
         self.helper.form_class = 'well form-horizontal'
 
         #self.helper.add_input(Submit('submit', 'Submit'))
@@ -99,11 +99,11 @@ class UserProfileEdit(ModelForm):
             'title': LocationWidget,
         }
 
-class UserProfileSecurityEdit(ModelForm):
+class UserProfilePrivacyEdit(ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.form_action = 'user-security-edit'
+        #self.helper.form_action = 'userprofile-privacy-settings'
         self.helper.form_class = 'well form-horizontal'
 
         #self.helper.add_input(Submit('submit', 'Submit'))
@@ -118,7 +118,7 @@ class UserProfileSecurityEdit(ModelForm):
                 Submit('save', 'Save', css_class='btn')
             ),
         )
-        super(UserProfileSecurityEdit, self).__init__(*args, **kwargs)
+        super(UserProfilePrivacyEdit, self).__init__(*args, **kwargs)
 
     class Meta:
         model = UserProfile

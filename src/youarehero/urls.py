@@ -17,11 +17,11 @@ urlpatterns = patterns('',
         'herobase.views.adventure_update', name='adventure-update'),
     url(r'^$', 'herobase.views.home_view', name='home'),
 
-    url(r'^profile/$', 'herobase.views.profile_edit', name='user-edit'),
-    url(r'^profile/security/$', 'herobase.views.profile_security_edit', name='user-security-edit'),
-    url(r'^profile/(?P<username>\w+)/$', 'herobase.views.profile_view', name='user-profile'),
+    url(r'^profile/$', 'herobase.views.userprofile_edit', name='userprofile-edit'),
+    url(r'^profile/privacy/$', 'herobase.views.userprofile_privacy_settings', name='userprofile-privacy-settings'),
+    url(r'^profile/(?P<username>\w+)/$', 'herobase.views.userprofile_public', name='userprofile-public'),
 
-    url(r'^messages/reply/(?P<message_id>\d+)$', 'heromessage.views.message_list', name='message-list'),
+    url(r'^messages/reply/(?P<message_id>\d+)$', 'heromessage.views.message_list', name='message-list'), # todo: rename
     url(r'^messages', 'heromessage.views.message_list', name='message-list'),
     url(r'^message/(?P<pk>\d+)$', 'heromessage.views.message_detail', name='message-detail'),
    # url(r'^message/send', 'heromessage.views.message_send', name='message-send'),
