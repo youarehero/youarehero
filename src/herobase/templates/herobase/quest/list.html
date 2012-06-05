@@ -56,8 +56,14 @@ family=Reenie+Beanie:regular"
                 </div>
             </li>
         {% empty %}
-            {% trans "No results found matching your current criteria." %}
-            {% if filter.is_filtered %}<a href="./">{% trans "Show all." %}</a>{% endif %}
+            {% if filter.is_filtered %}
+                {% trans "No quests found matching your current criteria." %}
+                <a href="./">{% trans "Show all." %}</a>
+            {% else %}
+                {% trans "There don't seem to be any quests." %}
+            {% endif %}
+
+
         {% endfor %}
         </ul>
     </div>
