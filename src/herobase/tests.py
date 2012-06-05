@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import RequestFactory, Client
 from django.test.testcases import SimpleTestCase, TransactionTestCase
+from django.test.utils import override_settings
 from herobase.models import Quest, Adventure
 from herobase.test_factories import create_adventure
 from test_factories import create_quest, create_user
@@ -189,6 +190,9 @@ class UnauthenticatedIntegrationTest(TestCase):
         response = client.get(reverse('quest-create'))
         self.assertTrue(response, '%s?next=%s' % (reverse('django.contrib.auth.views.login'), reverse('quest-create')))
 
+
+
+@override_settings(PASSWORD_HASHERS=('herobase.utils.PlainTextPasswordHasher', ))
 class AuthenticatedIntegrationTest(TestCase):
     def setUp(self):
         self.client = Client()

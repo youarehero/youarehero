@@ -16,10 +16,6 @@ def factory(f):
 
 @factory
 def create_user(**kwargs):
-    test_hasher = 'herobase.utils.PlainTextPasswordHasher'
-    if not test_hasher in settings.PASSWORD_HASHERS:
-        settings.PASSWORD_HASHERS = (test_hasher, ) + settings.PASSWORD_HASHERS
-
     create_counter = kwargs.pop('create_counter')
     user_data = {
         'username': 'user_%d'  % create_counter,
