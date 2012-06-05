@@ -2,6 +2,7 @@
 from itertools import chain
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
+from django.utils import simplejson
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_POST
@@ -16,8 +17,10 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from filters import QuestFilter
 from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit
-from herobase.models import Quest, Adventure
+from herobase.models import Quest, Adventure, CLASS_CHOICES
 import logging
+from django.db.models import Count, Sum
+
 logger = logging.getLogger('youarehero.herobase')
 
 def quest_list_view(request):
@@ -158,4 +161,52 @@ def userprofile_privacy_settings(request):
     })
 
 
+def leader_board(request):
+    total = User.objects.select_related().order_by('-userprofile__experience')
+    by_class = {}
+    for hero_class, class_name in CLASS_CHOICES:
+        by_class[class_name] = User.objects.select_related()\
+                                         .filter(userprofile__hero_class=hero_class)\
+                                         .order_by('-userprofile__experience')
 
+    by_quest_class = {}
+    for hero_class, class_name in CLASS_CHOICES:
+        by_quest_class[class_name] = User.objects.filter(adventures__quest__hero_class=hero_class,
+            adventures__quest__state=Quest.STATE_OWNER_DONE)\
+            .annotate(class_experience=Sum('adventures__quest__experience'))\
+            .order_by('-class_experience')
+
+    return render(request, "herobase/leader_board.html", {'total': total,
+                                                         'by_class': by_class,
+                                                         'by_quest_class': by_quest_class,
+                                                         })
+
+def random_stats(request):
+    user = request.user
+    class_choices = dict(CLASS_CHOICES)
+
+    adventure_count_by_class = []
+    for choice, count in user.adventures.values_list('quest__hero_class').annotate(Count('quest__hero_class')):
+        adventure_count_by_class.append((class_choices[choice], count))
+
+    open_quest_types = []
+    for choice, count in  Quest.objects.filter(state=Quest.STATE_OPEN).values_list('hero_class').annotate(Count('hero_class')):
+        open_quest_types.append((class_choices[choice], count))
+
+    completed_quest_types = []
+    for choice, count in  Quest.objects.filter(state=Quest.STATE_OWNER_DONE).values_list('hero_class').annotate(Count('hero_class')):
+        open_quest_types.append((class_choices[choice], count))
+
+    context = {
+        'adventure_count_by_class': adventure_count_by_class,
+        'open_quest_types': open_quest_types,
+        'completed_quest_types': completed_quest_types,
+        }
+    for key in context:
+        context[key] = mark_safe(simplejson.dumps(list(context[key])))
+
+    context.update({
+        'quests_completed': user.adventures.filter(quest__state=Quest.STATE_OWNER_DONE).count()
+    })
+
+    return render(request, 'herobase/stats.html', context)

@@ -1,0 +1,82 @@
+{% extends "herobase/layout-3-9.html" %}
+{% load i18n %}
+{% block head_javascript %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.google.com/uds/api/visualization/1.0/02323762feeb560baea0acc98c4c4e09/format+en,default,corechart.I.js"></script>
+{% endblock %}
+
+{% block css %}{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.setOnLoadCallback(adventure_count_by_class);
+        google.setOnLoadCallback(completed_quest_types);
+        google.setOnLoadCallback(open_quest_types);
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function adventure_count_by_class() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Class');
+            data.addColumn('number', 'Quests');
+            data.addRows({{ adventure_count_by_class }});
+
+            // Set chart options
+            var options = {
+                'title':'The kind of quests you are participating in.',
+                backgroundColor: "WhiteSmoke",
+                height: 320
+            };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('adventure_count_by_class'));
+            chart.draw(data, options);
+        }
+        function open_quest_types() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Class');
+            data.addColumn('number', 'Quests');
+            data.addRows({{ open_quest_types }});
+
+            // Set chart options
+            var options = {
+                'title':'Quests that are open right now.',
+                backgroundColor: "WhiteSmoke",
+                height: 320
+            };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('open_quest_types'));
+            chart.draw(data, options);
+        }
+        function completed_quest_types() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Class');
+            data.addColumn('number', 'Quests');
+            data.addRows({{ completed_quest_types }});
+
+            // Set chart options
+            var options = {
+                'title':'Quests that have been completed by class.',
+                backgroundColor: "WhiteSmoke",
+                height: 320
+            };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('completed_quest_types'));
+            chart.draw(data, options);
+
+        }
+    </script>
+{% endblock %}
+{% block content %}
+    <div class="well">
+        <div id="adventure_count_by_class"></div>
+        <div id="open_quest_types"></div>
+        <div id="completed_quest_types"></div>
+        <div>You have completed {{ quests_completed }} quests.</div>
+{#        <div id="adventure_count_by_class"></div>#}
+    </div>
+{% endblock %}
