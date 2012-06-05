@@ -1,5 +1,5 @@
 {% extends "herobase/layout-3-9.html" %}
-
+{% load i18n static %}
 {% block head_javascript %}
     <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
     <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
@@ -56,6 +56,8 @@ family=Reenie+Beanie:regular"
                 </a>
                 </div>
             </li>
+        {% empty %}
+            {% trans "No results found matching your current criteria." %}
         {% endfor %}
         </ul>
     </div>
