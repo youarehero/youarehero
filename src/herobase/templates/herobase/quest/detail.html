@@ -36,7 +36,7 @@
                         <dt>{% trans "adventure-state" %}</dt><dd>{{ adventure.get_state_display }}</dd>
                     {% endif %}
                     <dt>{% trans "heroes" %}</dt><dd>{{ quest.accepted_heroes.count }}/{{ quest.max_heroes }}</dd>
-                    <dt>{% trans "owner" %}</dt><dd>{{ quest.owner }}</dd>
+                    <dt>{% trans "owner" %}</dt><dd><a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a></dd>
                     <dt>{% trans "class" %}</dt><dd>{{ quest.get_hero_class_display }}<div class="charicon {{ quest.get_hero_class_display }}"/></dd>
                     <dt>{% trans "level" %}</dt><dd>{{ quest.level }}</dd>
                     <dt>{% trans "experience" %}</dt><dd>{{ quest.experience }}</dd>

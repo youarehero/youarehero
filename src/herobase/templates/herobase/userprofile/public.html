@@ -1,5 +1,5 @@
 {% extends "herobase/layout-3-6-3.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block content %}
     <div class="page-header">
@@ -7,12 +7,23 @@
             <small>Profil</small>
         </h1>
     </div>
-    <dl class="dl-horizontal">
-        <dt>{% trans "hero-class" %}</dt><dd>{{ user.get_profile.hero_class }}</dd>
-        <dt>{% trans "experience" %}</dt><dd>{{ user.get_profile.experience }}</dd>
-        <dt>{% trans "member since" %}</dt><dd>{{ user.get_profile.created }}</dd>
-        {% if user.get_profile.public_location %}
-            <dt>{% trans "location" %}</dt><dd>{{ user.get_profile.location }}, {{ user.get_profile.geolocation }}</dd>
-        {% endif %}
-    </dl>
+    <div class="row">
+        <div class="span3">
+            {% if user.get_profile.hero_class %}
+                <img src="{% get_static_prefix %}img/avatar/{{ user.get_profile.avatar }}" alt="{{ user.username }}">
+            {% else %}
+                <img src="{% get_static_prefix %}img/profil.png" alt="{{ user.username }}">
+            {% endif %}
+        </div>
+        <div class="span3">
+            <dl class="dl-horizontal">
+                <dt>{% trans "hero-class" %}</dt><dd>{{ user.get_profile.hero_class }}</dd>
+                <dt>{% trans "experience" %}</dt><dd>{{ user.get_profile.experience }}</dd>
+                <dt>{% trans "member since" %}</dt><dd>{{ user.get_profile.created }}</dd>
+                {% if user.get_profile.public_location %}
+                    <dt>{% trans "location" %}</dt><dd>{{ user.get_profile.location }}, {{ user.get_profile.geolocation }}</dd>
+                {% endif %}
+            </dl>
+        </div>
+    </div>
 {% endblock %}
