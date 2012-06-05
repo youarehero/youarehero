@@ -164,18 +164,18 @@ class QuestTest(TestCase):
         quest = create_quest(max_heroes=1)
         adventure = create_adventure(quest)
         request = fake_request(quest.owner)
-        self.assert_(not quest.is_full())
+        self.assertFalse(quest.is_full())
         adventure.process_action(request, 'accept')
-        self.assert_(quest.is_full())
-        self.assert_(not quest.is_open())
+        self.assertTrue(quest.is_full())
+        self.assertFalse(quest.is_open())
 
     def test_check_quest_not_full(self):
         quest = create_quest(max_heroes=2)
         adventure = create_adventure(quest)
         request = fake_request(quest.owner)
         adventure.process_action(request, 'accept')
-        self.assert_(not quest.is_full())
-        self.assert_(quest.is_open())
+        self.assertFalse(quest.is_full())
+        self.assertTrue(quest.is_open())
 
 
 class UnauthenticatedIntegrationTest(TestCase):

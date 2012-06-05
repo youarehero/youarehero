@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from herobase.models import Quest, CLASS_CHOICES, Adventure
@@ -15,17 +16,21 @@ def factory(f):
 
 @factory
 def create_user(**kwargs):
+    test_hasher = 'herobase.utils.PlainTextPasswordHasher'
+    if not test_hasher in settings.PASSWORD_HASHERS:
+        settings.PASSWORD_HASHERS = (test_hasher, ) + settings.PASSWORD_HASHERS
+
     create_counter = kwargs.pop('create_counter')
     user_data = {
         'username': 'user_%d'  % create_counter,
         'is_staff': False,
         'is_superuser': False,
-        'password': 'md5$VB2Ej0s457FF$b1bce604f8dc3e78f9a3058d6bc94b50'
+        'password': 'plain$$password'
         }
     user_data.update(kwargs)
     if 'password' in kwargs:
         plain_password = kwargs['password']
-        user_data['password'] = make_password(plain_password, hasher='md5')
+        user_data['password'] = "plain$$%s" % plain_password
     else:
         plain_password = 'password'
     user =  User.objects.create(**user_data)
