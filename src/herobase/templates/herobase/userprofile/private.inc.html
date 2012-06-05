@@ -1,34 +1,17 @@
 {% load i18n static %}
-{% if request.user.is_authenticated %}
-    <div class="page-header2">
-        <h1>
-            <a href="{% url home %}">
-            {{ user.username }}
-            <small>{{ user.get_profile.get_hero_class_display }}</small></a>
-        </h1>
+<h1>
+    <a href="{% url home %}">
+    {{ user.username }}
+    <small>{{ user.get_profile.get_hero_class_display }}</small></a>
+</h1>
 
+<div class="portrait">
+    <img src="{% get_static_prefix %}img/profil.png" alt="{{ user.username }}">
+</div>
+<div class="experience">
+    <h4 class="pull-right">{{ user.get_profile.experience }} XP</h4>
+    <h4>Level: {{ user.get_profile.level }}</h4>
+    <div class="progress">
+        <div class="bar" style="width: {{ user.get_profile.relative_level_experience }}%;"></div>
     </div>
-    <div class="portrait">
-        <img src="{% get_static_prefix %}img/profil.png" alt="{{ user.username }}">
-    </div>
-    <div class="experience">
-        <h4 class="pull-right">{{ user.get_profile.experience }} XP</h4>
-        <h4>Level: {{ user.get_profile.level }}</h4>
-        <div class="progress">
-            <div class="bar" style="width: {{ user.get_profile.relative_level_experience }}%;"></div>
-        </div>
-    </div>
-    <p class="clearfix">&nbsp;</p>
-    <ul class="navigation">
-        <li><a href="{% url quest-create %}">Create Quest</a></li>
-        <li><a href="{% url quest-list %}">Show Quests</a></li>
-        <li><a href="{% url userprofile-edit %}">Profil</a></li>
-        <li><a href="{% url userprofile-privacy-settings %}">Privatsphäre</a></li>
-        <li><a href="http://webengage.com/s/~3dij6ek">Fragebogen (1min)</a></li>
-        <li><a href="{% url django.contrib.auth.views.logout %}">Logout</a></li>
-    </ul>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-{% else %}
-    <a href="{% url django.contrib.auth.views.login %}">Login</a>
-{% endif %}
+</div>
