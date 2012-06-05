@@ -23,7 +23,7 @@
         <h2>{{ class_name }}</h2>
         <ul>
             {% for user in leaders|slice:":10" %}
-                <li><a href="{% url userprofile-public user.username %}">{{ user.username }}: {{ user.get_profile.experience }} Erfahrung</a></li>
+                <li><a href="{% url userprofile-public user.username %}">{{ user.username }}: {{ user.class_experience }} Erfahrung</a></li>
             {% endfor %}
         </ul>
     {% endfor %}

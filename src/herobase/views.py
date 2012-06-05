@@ -176,7 +176,7 @@ def leader_board(request):
             adventures__state=Adventure.STATE_OWNER_DONE,
             adventures__quest__state=Quest.STATE_OWNER_DONE)\
             .annotate(class_experience=Sum('adventures__quest__experience'))\
-            .order_by('class_experience')
+            .order_by('-class_experience')
 
     return render(request, "herobase/leader_board.html", {'total': total,
                                                          'by_class': by_class,
