@@ -89,7 +89,7 @@ class Adventure(models.Model, ActionMixin):
         actions = {
             'accept': {
                 'conditions': (self.quest.is_owner, self.quest.is_open,
-                               lambda r: self.quest.needs_heroes,
+                               lambda r: self.quest.is_open,
                                lambda r: self.state == self.STATE_HERO_APPLIED),
                 'actions': (self.accept,),
             },
@@ -198,7 +198,7 @@ class Quest(models.Model, ActionMixin):
                 },
             'hero_apply': {
                 'conditions': (self.is_open, self.can_apply,
-                                self.is_active, self.needs_heroes),
+                                self.is_active, self.is_open),
                 'actions': (self.hero_apply, )
                 },
             'hero_cancel': {
@@ -268,10 +268,6 @@ class Quest(models.Model, ActionMixin):
 
     def is_closed(self, request=None):
         return self.state in (Quest.STATE_OWNER_CANCELED, Quest.STATE_OWNER_DONE)
-
-    def needs_heroes(self, request=None):
-        """Returns true if there are still open slots in this quest"""
-        return self.is_open()
 
     def check_full(self, request=None):
         """Calculates if quest is full or not"""
