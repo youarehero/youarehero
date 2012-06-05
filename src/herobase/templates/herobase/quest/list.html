@@ -57,6 +57,7 @@ family=Reenie+Beanie:regular"
             </li>
         {% empty %}
             {% trans "No results found matching your current criteria." %}
+            {% if filter.is_filtered %}<a href="./">{% trans "Show all." %}</a>{% endif %}
         {% endfor %}
         </ul>
     </div>
