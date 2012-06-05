@@ -265,6 +265,13 @@ ul.navigation li a {
     font-weight: bold;
 }
 
+/* Links in H1 */
+
+h1 a,
+h1 a:hover{
+    color: #000;
+}
+
 /* special background */
 h1,
 ul.navigation li a {
