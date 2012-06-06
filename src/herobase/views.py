@@ -80,8 +80,8 @@ def hero_home_view(request):
             Quest.objects.filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)),
             key=lambda instance: instance.created, reverse=True)
     return render(request, 'herobase/hero_home.html',
-            {'user': user,
-             'profile': user.get_profile(),
+            {
+             #'profile': user.get_profile(),
              'quests': quests
              })
 
@@ -143,7 +143,6 @@ def userprofile_edit(request):
         form.save()
         messages.success(request, 'Profile successfully changed')
     return render(request, 'herobase/userprofile/edit.html', {
-        'user': user,
         'form': form
     })
 
@@ -156,7 +155,6 @@ def userprofile_privacy_settings(request):
         messages.success(request, 'Privacy settings successfully changed')
         return HttpResponseRedirect('.')
     return render(request, 'herobase/userprofile/privacy_settings.html', {
-        'user': user,
         'form': form
     })
 

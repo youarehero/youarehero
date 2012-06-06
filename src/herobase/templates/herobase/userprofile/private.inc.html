@@ -1,21 +1,21 @@
 {% load i18n static %}
 <h1>
     <a href="{% url home %}">
-    {{ user.username }}
-    <small>{{ user.get_profile.get_hero_class_display }}</small></a>
+    {{ request.user.username }}
+    <small>{{ request.user.get_profile.get_hero_class_display }}</small></a>
 </h1>
 
 <div class="portrait">
-    {% if user.get_profile.hero_class %}
-        <img src="{% get_static_prefix %}img/avatar/{{ user.get_profile.avatar }}" alt="{{ user.username }}">
+    {% if request.user.get_profile.hero_class %}
+        <img src="{% get_static_prefix %}img/avatar/{{ request.user.get_profile.avatar }}" alt="{{ request.user.username }}">
     {% else %}
-        <img src="{% get_static_prefix %}img/profil.png" alt="{{ user.username }}">
+        <img src="{% get_static_prefix %}img/profil.png" alt="{{ request.user.username }}">
     {% endif %}
 </div>
 <div class="experience">
-    <h4 class="pull-right">{{ user.get_profile.experience }} XP</h4>
-    <h4>Level: {{ user.get_profile.level }}</h4>
+    <h4 class="pull-right">{{ request.user.get_profile.experience }} XP</h4>
+    <h4>Level: {{ request.user.get_profile.level }}</h4>
     <div class="progress">
-        <div class="bar" style="width: {{ user.get_profile.relative_level_experience }}%;"></div>
+        <div class="bar" style="width: {{ request.user.get_profile.relative_level_experience }}%;"></div>
     </div>
 </div>
