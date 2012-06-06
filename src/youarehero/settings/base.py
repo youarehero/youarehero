@@ -156,7 +156,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'autocomplete_light',
     'django_filters',
-   # 'easy_thumbnails',
+    'easy_thumbnails',
 
     # project specific installed apps
     'herobase',
@@ -239,3 +239,9 @@ SECRET_KEY = 'd61xtu1&-efpp(ym-oy6h+3rk^m_l0(5qqw=(3h7u^a(p+ofp9'
 AUTH_PROFILE_MODULE = 'herobase.UserProfile'
 
 CRISPY_FAIL_SILENTLY = not DEBUG
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'avatar': {'size': (260, 260)},
+        },
+    }

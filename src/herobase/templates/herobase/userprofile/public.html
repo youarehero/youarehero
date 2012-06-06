@@ -9,11 +9,7 @@
     </div>
     <div class="row">
         <div class="span3">
-            {% if user.get_profile.hero_class %}
-                <img src="{% get_static_prefix %}img/avatar/{{ user.get_profile.avatar }}" alt="{{ user.username }}">
-            {% else %}
-                <img src="{% get_static_prefix %}img/profil.png" alt="{{ user.username }}">
-            {% endif %}
+            <img src="{{ user.get_profile.avatar }}" alt="{{ user.username }}">
         </div>
         <div class="span3">
             <dl class="dl-horizontal">

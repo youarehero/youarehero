@@ -1,3 +1,7 @@
+from django.core.files.storage import FileSystemStorage
+from easy_thumbnails.files import get_thumbnailer
+import os
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.core.urlresolvers import reverse
@@ -335,7 +339,16 @@ class UserProfile(models.Model):
         4: 'protective.jpg'}
 
     def avatar(self):
-        return self.CLASS_AVATARS[self.hero_class]
+        file_name = "default.png"
+        if self.hero_class:
+            file_name = self.CLASS_AVATARS[self.hero_class]
+        image = os.path.join('avatar/', file_name)
+
+        fs = FileSystemStorage(location=os.path.join(settings.PROJECT_ROOT, 'assets/'))
+
+        thumbnailer = get_thumbnailer(fs, image)
+        thumbnail = thumbnailer.get_thumbnail({'size': (260, 260), 'quality':70})
+        return os.path.join(settings.MEDIA_URL, thumbnail.url )
 
     @property
     def get_geolocation(self):
