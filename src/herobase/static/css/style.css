@@ -273,22 +273,65 @@ h1 a:hover{
 }
 
 /* special background */
-h1, h2,
+span.yellow-stripe,
+span.orange-stripe,
 ul.navigation li a {
-    background: url("../img/headline.png") 0 0 no-repeat transparent;
+    background: url("../img/stripes/yellow.png") 0 0 no-repeat transparent;
     background-size: 78% 100%;
-    padding: 0px 10px;
+    padding: 0px 0px 0px 10px;
     margin-left: -10px;
 }
+span.orange-stripe,
+ul.navigation li a:hover,
+ul.navigation li a:focus {
+    background: url("../img/stripes/orange.png") 0 0 no-repeat transparent;
+    background-size: 78% 100%;
+}
+
+
 h1 small{
     color: #FF8A31;
     text-shadow: 0 0 10px #FFFFFF;
 }
 
 .portrait img {
-    margin: 5px;
+    margin: 10px 0px;
 }
 
 .experience .progress {
     border: 2px solid black;
+}
+
+/* allgemeiner weißer page header */
+.page-header-100 {
+    min-height: 100px;
+    padding: 25px 10px 10px;
+    position:relative;
+}
+
+/* LOGO */
+#logo {
+    padding: 25px 10px 10px;
+}
+#logo img {
+    margin-left: -27px;
+}
+
+/* Navigation + Nav Icons */
+#main-navigation {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.navigation-icons {
+    position: absolute;
+    bottom: 0;
+}
+
+.badge {
+    border-radius: 5px;
+    padding: 1px 5px 2px;
+}
+.badge-orange {
+    background-color: #ff8a31;
 }

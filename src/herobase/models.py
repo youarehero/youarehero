@@ -347,7 +347,7 @@ class UserProfile(models.Model):
         fs = FileSystemStorage(location=os.path.join(settings.PROJECT_ROOT, 'assets/'))
 
         thumbnailer = get_thumbnailer(fs, image)
-        thumbnail = thumbnailer.get_thumbnail({'size': (260, 260), 'quality':70})
+        thumbnail = thumbnailer.get_thumbnail({'size': (270, 270), 'quality':70})
         return os.path.join(settings.MEDIA_URL, thumbnail.url )
 
     @property

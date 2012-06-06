@@ -2,8 +2,8 @@
 {% load i18n %}
 {% block content %}
     <div class="well">
-    <h1>Leader Board</h1>
-    <h2>Erfahrungspunkte</h2>
+    <h1><span class="orange-stripe">Leader Board</span></h1>
+    <h2><span class="yellow-stripe">Erfahrungspunkte</span></h2>
     <ul>
     {% for user in total|slice:":10" %}
         <li><a href="{% url userprofile-public user.username %}">{{ user.username }}: {{ user.get_profile.experience }} Erfahrung</a></li>
