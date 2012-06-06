@@ -11,27 +11,27 @@
     <script type="text/javascript">
 
         // Set a callback to run when the Google Visualization API is loaded.
-        google.setOnLoadCallback(adventure_count_by_class);
+        google.setOnLoadCallback(hero_completed_quests);
         google.setOnLoadCallback(completed_quest_types);
         google.setOnLoadCallback(open_quest_types);
         // Callback that creates and populates a data table,
         // instantiates the pie chart, passes in the data and
         // draws it.
-        function adventure_count_by_class() {
+        function hero_completed_quests() {
             // Create the data table.
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Class');
             data.addColumn('number', 'Quests');
-            data.addRows({{ adventure_count_by_class }});
+            data.addRows({{ hero_completed_quests }});
 
             // Set chart options
             var options = {
-                'title':'The kind of quests you are participating in.',
+                'title':'The kind of quests you have completed.',
                 backgroundColor: "WhiteSmoke",
                 height: 320
             };
             // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('adventure_count_by_class'));
+            var chart = new google.visualization.PieChart(document.getElementById('hero_completed_quests'));
             chart.draw(data, options);
         }
         function open_quest_types() {
@@ -73,10 +73,10 @@
 {% endblock %}
 {% block content %}
     <div class="well">
-        <div id="adventure_count_by_class"></div>
+        <div id="hero_completed_quests"></div>
+        <div id="completed_quests_by_class"></div>
         <div id="open_quest_types"></div>
         <div id="completed_quest_types"></div>
         <div>You have completed {{ quests_completed }} quests.</div>
-{#        <div id="adventure_count_by_class"></div>#}
     </div>
 {% endblock %}

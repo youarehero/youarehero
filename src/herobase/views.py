@@ -187,9 +187,13 @@ def random_stats(request):
     user = request.user
     class_choices = dict(CLASS_CHOICES)
 
-    adventure_count_by_class = []
-    for choice, count in user.adventures.values_list('quest__hero_class').annotate(Count('quest__hero_class')):
-        adventure_count_by_class.append((class_choices[choice], count))
+    hero_completed_quests = []
+    for choice, count in user.adventures\
+        .filter(quest__state=Quest.STATE_OWNER_DONE)\
+        .filter(state=Adventure.STATE_OWNER_DONE)\
+        .values_list('quest__hero_class')\
+        .annotate(Count('quest__hero_class')):
+        hero_completed_quests.append((class_choices[choice], count))
 
     open_quest_types = []
     for choice, count in  Quest.objects.filter(state=Quest.STATE_OPEN).values_list('hero_class').annotate(Count('hero_class')):
@@ -200,7 +204,7 @@ def random_stats(request):
         completed_quest_types.append((class_choices[choice], count))
 
     context = {
-        'adventure_count_by_class': adventure_count_by_class,
+        'hero_completed_quests': hero_completed_quests,
         'open_quest_types': open_quest_types,
         'completed_quest_types': completed_quest_types,
         }
