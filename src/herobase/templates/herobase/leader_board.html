@@ -1,16 +1,17 @@
-{% extends "herobase/layout-3-9.html" %}
+{% extends "herobase/layout-3-6-3.html" %}
 {% load i18n %}
 {% block content %}
     <div class="well">
-    <h1>Nach Erfahrung</h1>
+    <h1>Leader Board</h1>
+    <h2>Erfahrungspunkte</h2>
     <ul>
     {% for user in total|slice:":10" %}
         <li><a href="{% url userprofile-public user.username %}">{{ user.username }}: {{ user.get_profile.experience }} Erfahrung</a></li>
     {% endfor %}
     </ul>
-    <h1>Nach Klasse</h1>
+    <h3>Nach Klasse</h3>
     {% for class_name, leaders in by_class.items  %}
-        <h2>{{ class_name }}</h2>
+        <h4>{{ class_name }}</h4>
         <ul>
             {% for user in leaders|slice:":10" %}
                 <li><a href="{% url userprofile-public user.username %}">{{ user.username }}: {{ user.get_profile.experience }} Erfahrung</a></li>
@@ -18,9 +19,9 @@
         </ul>
     {% endfor %}
 
-    <h1>Nach Erfahrung in bestimmten arten von Quests</h1>
+    <h3>Nach Arten von Quests</h3>
     {% for class_name, leaders in by_quest_class.items  %}
-        <h2>{{ class_name }}</h2>
+        <h4>{{ class_name }}</h4>
         <ul>
             {% for user in leaders|slice:":10" %}
                 <li><a href="{% url userprofile-public user.username %}">{{ user.username }}: {{ user.class_experience }} Erfahrung</a></li>
