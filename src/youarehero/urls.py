@@ -19,7 +19,7 @@ urlpatterns = patterns('',
 
     url(r'^profile/$', 'herobase.views.userprofile_edit', name='userprofile-edit'),
     url(r'^profile/privacy/$', 'herobase.views.userprofile_privacy_settings', name='userprofile-privacy-settings'),
-    url(r'^profile/(?P<username>\w+)/$', 'herobase.views.userprofile_public', name='userprofile-public'),
+    url(r'^profile/(?P<username>[\w.@+-]+)/$', 'herobase.views.userprofile_public', name='userprofile-public'),
 
     url(r'^messages/reply/(?P<message_id>\d+)/$', 'heromessage.views.message_list', name='message-list'), # todo: rename
     url(r'^messages/', 'heromessage.views.message_list', name='message-list'),
