@@ -277,7 +277,8 @@ h1, h2,
 ul.navigation li a {
     background: url("../img/headline.png") 0 0 no-repeat transparent;
     background-size: 78% 100%;
-    padding: 0px 20px;
+    padding: 0px 10px;
+    margin-left: -10px;
 }
 h1 small{
     color: #FF8A31;
