@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
 from django.forms import forms
-from django.forms.fields import CharField, IntegerField
+from django.forms.fields import CharField, IntegerField, EmailField
 from django.forms.models import ModelForm
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext_lazy as _
@@ -136,3 +138,13 @@ class UserRegistrationForm(RegistrationFormUniqueEmail):
     username = CharField(max_length=75,
         widget=forms.TextInput(attrs={'class': 'required'}),
         label=_("Username"))
+
+class UserAuthenticationForm(AuthenticationForm):
+    email = EmailField(label=_("E-mail"), max_length=75)
+    def __init__(self, request=None, *args, **kwargs):
+        super(UserAuthenticationForm, self).__init__(request, *args, **kwargs)
+        del self.fields['username']
+        self.fields.keyOrder.reverse()
+
+    def clean_email(self):
+        self.cleaned_data['username'] = self.cleaned_data['email']

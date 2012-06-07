@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from herobase.forms import UserRegistrationForm
+from herobase.forms import UserRegistrationForm, UserAuthenticationForm
 from herobase.views import QuestCreateView
 import autocomplete_light
 autocomplete_light.autodiscover()
@@ -40,7 +40,11 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'autocomplete/', include('autocomplete_light.urls')),
-
+    url(r'^accounts/login/$',
+        'django.contrib.auth.views.login',
+            {'template_name': 'registration/login.html',
+             'authentication_form': UserAuthenticationForm},
+        name='auth_login'),
     url(r'^accounts/register/$',
         'registration.views.register',
             {
