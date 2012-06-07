@@ -5,6 +5,6 @@ Your activation key is: {{ activation_key }}
 
 Please follow this link to complete your account-activation:
 {% block activate_link %}
-http://{{ site.domain }}{% url registration.views.activate activation_key=activation_key %}
+https://{{ site.domain }}{% url registration.views.activate activation_key=activation_key %}
 {% endblock %}
 {% endautoescape %}

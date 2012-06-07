@@ -41,7 +41,7 @@
                                     <td>
                                         <a href="{% url message-detail message.pk %}">{{ message.title }}</a>
                                     </td>
-                                    <td>{{ message.sender }}</td>
+                                    <td><a href="{% url userprofile-public message.sender.username %}">{{ message.sender }}</a></td>
                                     <td>{{ message.sent }}</td>
                                     <td>
                                         <form method="post" action="{% url message-list message.id %}">

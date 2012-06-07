@@ -34,7 +34,7 @@ class LocationWidget(forms.TextInput):
             lat, lng = float(a), float(b)
 
         js = '''
-<script type="application/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="application/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
 <script>
 
 <!--
