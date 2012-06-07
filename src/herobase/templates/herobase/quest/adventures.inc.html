@@ -1,9 +1,10 @@
 {% load i18n hero_actions %}
-{% if quest.cancelled %}
+{% if quest.is_cancelled %}
     <h2>Du hast diese Quest abgebrochen.</h2>
 {% else %}
-    <h2>Die Folgenden Helden moechten dir helfen</h2>
+
     {% if quest.heroes.exists %}
+        <h2>Die Folgenden Helden moechten dir helfen</h2>
         <table class="table table-striped table-bordered table-condensed">
             <thead>
             <tr>
@@ -37,6 +38,8 @@
             </tbody>
         </table>
     {% else %}
-        Leider hilft Dir noch niemand.
+        {% if not quest.is_cancelled %}
+            <h2>Leider hilft Dir noch niemand.</h2>
+        {% endif %}
     {% endif %}
 {% endif %}

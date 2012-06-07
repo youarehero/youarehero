@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^profile/privacy/$', 'herobase.views.userprofile_privacy_settings', name='userprofile-privacy-settings'),
     url(r'^profile/(?P<username>.+)/$', 'herobase.views.userprofile_public', name='userprofile-public'),
 
-    url(r'^messages/reply/(?P<message_id>\d+)/$', 'heromessage.views.message_list', name='message-list'), # todo: rename
+    url(r'^messages/reply/(?P<message_id>\d+)/$', 'heromessage.views.message_list', name='message-list'),    # todo: rename
     url(r'^messages/', 'heromessage.views.message_list', name='message-list'),
     url(r'^message/(?P<pk>\d+)/$', 'heromessage.views.message_detail', name='message-detail'),
    # url(r'^message/send', 'heromessage.views.message_send', name='message-send'),

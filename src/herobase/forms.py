@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.core.exceptions import ValidationError
 from django.forms import forms
-from django.forms.fields import CharField
+from django.forms.fields import CharField, IntegerField
 from django.forms.models import ModelForm
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext_lazy as _
@@ -16,6 +16,9 @@ from herobase.widgets import LocationWidget
 
 
 class QuestCreateForm(ModelForm):
+    experience = IntegerField(initial=100)
+    level = IntegerField(initial=1)
+    location = CharField(initial="GPN")
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'

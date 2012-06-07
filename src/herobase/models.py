@@ -261,6 +261,8 @@ class Quest(models.Model, ActionMixin):
         self.save()
 
     #### C O N D I T I O N S ####
+    def needs_attention(self):
+        return self.adventure_set.filter(state__in=(Adventure.STATE_HERO_APPLIED, Adventure.STATE_HERO_DONE)).exists()
 
     def is_owner(self, request):
         return self.owner == request.user
