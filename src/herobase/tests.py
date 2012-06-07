@@ -134,13 +134,13 @@ class QuestTest(TestCase):
         self.assertNotIn(adventure.user, quest.accepted_heroes())
 
     def test_adventure_done_valid(self):
-        quest = create_quest()
+        quest = create_quest(state=Quest.STATE_OWNER_DONE)
         adventure = create_adventure(quest, state=Adventure.STATE_OWNER_ACCEPTED)
         request = fake_request(quest.owner)
         self.assertIn('done', adventure.valid_actions_for(request))
 
     def test_adventure_done(self):
-        quest = create_quest()
+        quest = create_quest(state=Quest.STATE_OWNER_DONE)
         adventure = create_adventure(quest, state=Adventure.STATE_OWNER_ACCEPTED)
         request = fake_request(quest.owner)
         adventure.process_action(request, 'done')
