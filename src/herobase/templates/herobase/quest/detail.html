@@ -7,15 +7,6 @@
             <small>
                 {{ quest.get_hero_class_display }}
                 <div class="charicon {{ quest.get_hero_class_display }}"/>
-{#                {% if quest.is_open %}#}
-{#                    Diese Herausforderung braucht noch Helden!#}
-{#                {% elif quest.is_cancelled %}#}
-{#                    Die Quest wurde abgebrochen.#}
-{#                {% elif quest.is_full %}#}
-{#                    Diese Quest ist schon voll.#}
-{#                {% elif quest.is_done %}#}
-{#                    Diese Quest ist abgeschlossen.#}
-{#                {% endif %}#}
             </small>
             </h1>
         </div>
@@ -35,6 +26,7 @@
                 </dl>
             </div>
         </div>
+
         {# Owner #}
         {% if request.user == quest.owner %}
             <h2>Du bist der Auftraggeber</h2>
