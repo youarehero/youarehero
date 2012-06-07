@@ -9,5 +9,8 @@
     {% include "herobase/userprofile/private.inc.html" %}
     {% include "herobase/navigation.inc.html" %}
 {% else %}
-    <a href="{% url django.contrib.auth.views.login %}">Login</a>
+    <h2><span class="stripe">are you?</span></h2>
+    <a type="button" href="{% url django.contrib.auth.views.login %}" class="btn btn-large" id="join">Helden-Login</a>
+    <h2><span class="stripe">not yet?</span></h2>
+    <a type="button" href="{% url registration_register %}" class="btn btn-primary btn-large" id="join">Join now!</a>
 {% endif %}
