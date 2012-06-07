@@ -140,6 +140,9 @@ class UserRegistrationForm(RegistrationFormUniqueEmail):
         label=_("Username"))
 
 class UserAuthenticationForm(AuthenticationForm):
+    error_messages = AuthenticationForm.error_messages
+    error_messages.update({'invalid_login': _("Please enter a correct e-mail address and password. "
+                                "Note that both fields are case-sensitive.")})
     email = EmailField(label=_("E-mail"), max_length=75)
     def __init__(self, request=None, *args, **kwargs):
         super(UserAuthenticationForm, self).__init__(request, *args, **kwargs)
