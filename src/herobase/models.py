@@ -169,10 +169,10 @@ class Quest(models.Model, ActionMixin):
     STATE_OWNER_CANCELED = 4
 
     QUEST_STATES = (
-            (STATE_OPEN , 'open'),
-            (STATE_FULL , 'full'),
-            (STATE_OWNER_DONE , 'done'),
-            (STATE_OWNER_CANCELED , 'canceled'),
+            (STATE_OPEN , 'offen'),
+            (STATE_FULL , 'voll'),
+            (STATE_OWNER_DONE , 'abgeschlossen'),
+            (STATE_OWNER_CANCELED , 'abgebrochen'),
         )
 
     state = models.IntegerField(default=STATE_OPEN, choices=QUEST_STATES)
@@ -224,13 +224,13 @@ class Quest(models.Model, ActionMixin):
                 'conditions': (self.is_open, self.can_apply,
                                 self.is_open),
                 'actions': (self.hero_apply, ),
-                'verbose_name': _("Apply"),
+                'verbose_name': _("Bewerben"),
                 }),
             ('hero_cancel', {
                 'conditions': (self.is_active,
                                lambda r: r.user in (list(self.active_heroes()) + list(self.applying_heroes()))),
                 'actions': (self.hero_cancel, ),
-                'verbose_name': _("Cancel"),
+                'verbose_name': _("Abbrechen"),
                 }),
             ))
         return actions

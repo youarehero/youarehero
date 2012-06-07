@@ -35,7 +35,7 @@
                 </dl>
             </div>
         </div>
-
+        {# Owner #}
         {% if request.user == quest.owner %}
             <h2>Du bist der Auftraggeber</h2>
             {% if quest.is_active %}
@@ -66,8 +66,55 @@
                         indem Du die Teilnahme bestätigst.</p>
                 {% endif %}
             {% endif %}
-        {% elif request.user in quest.active_heroes %}
-            <h2>Du nimmst an dieser Quest teil.</h2>
+        {% elif quest.is_cancelled %}
+            <h2>Abgebrochen</h2>
+            <p>Der Auftraggeber
+                (<a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>)
+                hat diese Quest leider abgebrochen.</p>
+
+        {# Hero #}
+        {% elif adventure %}
+            {% if adventure.state == adventure.STATE_HERO_APPLIED %}
+                <h2>Du hast Dich beworben</h2>
+                <p>Du hast Dich für diese Quest beworben. Sobald der Auftraggeber
+                    (<a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>)
+                    Dich akzeptiert, kann es losgehen.</p>
+                <p>Wenn Dir etwas dazwischengekommen ist, kannst Du die Quest auch abbrechen.</p>
+            {% elif adventure.state == adventure.STATE_OWNER_REFUSED %}
+                <h2>Zurückgewiesen</h2>
+                <p>Schade. Der Auftraggeber
+                    (<a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>)
+                    hat Dich zurückgewiesen. Aber nicht verzagen, vielleicht war die Quest einfach schon voll.</p>
+            {% elif adventure.state == adventure.STATE_HERO_CANCELED %}
+                <h2>Abgebrochen</h2>
+                <p>Du hast diese Quest abgebrochen. Wenn Du möchtest, kannst Du Dich wieder bewerben.</p>
+            {% elif adventure.state == adventure.STATE_OWNER_ACCEPTED %}
+                <h2>Du nimmst teil</h2>
+                <p>Du nimmst an dieser Quest teil und der Auftraggeber
+                    (<a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>)
+                    hat dich akzeptiert.</p>
+                <p>Jetzt solltest Du zur Tat schreiten!</p>
+                <p>Wenn Dir etwas dazwischengekommen ist, kannst Du die Quest auch abbrechen.</p>
+            {% elif adventure.state == adventure.STATE_HERO_DONE %}
+                <h2>Du nimmst teil</h2>
+                <p>Du nimmst an dieser Quest teil und hast dem Auftraggeber
+                    (<a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>)
+                    mitgeteilt, dass Du die Quest erledigt hast.</p>
+                <p>Jetzt muss der Auftraggeber Deine Teilnahme nur noch bestätigen und Du bekommst Erfahrungspunkte.</p>
+            {% elif adventure.state == adventure.STATE_OWNER_DONE %}
+                <h2>Erfolgreich abgeschlossen</h2>
+                <p>Du hast an dieser Quest teilgenommen und Deinen Heldenmut bewiesen.</p>
+                <p>Du hast {{ quest.experience }} Erfahrungspunkte erhalten.</p>
+            {% endif %}
+        {% elif quest.is_done %}
+            <h2>Abgeschlossen</h2>
+            <p>Diese Quest ist schon abgeschlossen. Es ist keine Teilnahme möglich.</p>
+        {% elif quest.is_full %}
+            <h2>Voll</h2>
+            <p>Diese Quest ist leider schon voll. Es ist keine Teilnahme möglich.</p>
+        {% else %}
+            <h2>Helden gesucht</h2>
+            <p>Diese Herausforderung braucht noch Helden. Wenn Dir die Beschreibung zusagt, kannst Du Dich bewerben.</p>
         {% endif %}
 
         {# quest actions #}
@@ -89,10 +136,4 @@
             {% include "herobase/quest/adventures.inc.html" %}
         {% endif %}
     </div>
-
-
-    {% if adventure %}
-        <dt>{% trans "adventure-state" %}</dt><dd>{{ adventure.get_state_display }}</dd>
-    {% endif %}
-
 {% endblock %}
