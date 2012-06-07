@@ -51,14 +51,14 @@
                 {% endif %}
                 <p>Für abgebrochene Quests bekommt niemand Erfahrungspunkte. Eine aggebrochene Quest kann nicht wieder aufgenommen werden.</p>
             {% else %}
-                {% if quest.is_cancelled %}
+                {% if quest.is_canceled %}
                     <p>Du hast diese Quest abgebrochen. Niemand bekommt Erfahrungspunkte :-(</p>
                 {% elif quest.is_done %}
                     <p>Diese Quest is abgeschlossen. Verteile nun Erfahrungspunkte an alle Helden die Dir geholfen haben
                         indem Du die Teilnahme bestätigst.</p>
                 {% endif %}
             {% endif %}
-        {% elif quest.is_cancelled %}
+        {% elif quest.is_canceled %}
             <h2>Abgebrochen</h2>
             <p>Der Auftraggeber
                 (<a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>)

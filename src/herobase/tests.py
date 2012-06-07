@@ -36,7 +36,7 @@ class QuestTest(TestCase):
         request = fake_request(quest.owner)
         self.assertIn('cancel', quest.valid_actions_for(request))
         quest.process_action(request, 'cancel')
-        self.assertTrue(quest.is_cancelled())
+        self.assertTrue(quest.is_canceled())
 
     def test_other_cancel_not_valid(self):
         quest = create_quest()
@@ -50,7 +50,7 @@ class QuestTest(TestCase):
         request = fake_request(not_owner)
         with self.assertRaises(PermissionDenied):
             quest.process_action(request, 'cancel')
-        self.assertFalse(quest.is_cancelled())
+        self.assertFalse(quest.is_canceled())
 
     def test_hero_apply_valid(self):
         quest = create_quest()
