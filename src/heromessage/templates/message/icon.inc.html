@@ -4,10 +4,12 @@
     {% if request.user.is_authenticated %}
     <div class="navigation-icons">
         <a href="{% url message-list %}">
-            {% if request.user.get_profile.unread_messages_count != 0 %}
-                <span class="badge badge-orange"> {{ request.user.get_profile.unread_messages_count }}</span>
-            {% endif %}
-            <i class="icon-envelope"></i>
+
+            <i class="icon-envelope">
+                {% if request.user.get_profile.unread_messages_count != 0 %}
+                    <span class="badge badge-orange"> {{ request.user.get_profile.unread_messages_count }}</span>
+                {% endif %}
+            </i>
         </a>
     </div>
     {% endif %}
