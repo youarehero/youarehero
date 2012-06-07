@@ -1,3 +1,4 @@
+# -"- coding:utf-8 -"-
 from django.core.files.storage import FileSystemStorage
 from easy_thumbnails.files import get_thumbnailer
 import os
@@ -80,13 +81,13 @@ class Adventure(models.Model, ActionMixin):
     STATE_OWNER_DONE = 6
 
     state = models.IntegerField(default=STATE_NOT_SET, choices=(
-        (STATE_NOT_SET, "doesn't exist"),
-        (STATE_HERO_APPLIED, 'applied'),
-        (STATE_OWNER_REFUSED, 'refused'),
-        (STATE_HERO_CANCELED, 'canceled'),
-        (STATE_OWNER_ACCEPTED, 'accepted'),
-        (STATE_HERO_DONE, 'hero done'),
-        (STATE_OWNER_DONE, 'owner done'),
+        (STATE_NOT_SET, "kein Status"),
+        (STATE_HERO_APPLIED, u'beworben'),
+        (STATE_OWNER_REFUSED, u'zurückgewiesen'),
+        (STATE_HERO_CANCELED, u'abgebrochen'),
+        (STATE_OWNER_ACCEPTED, u'akzeptiert'),
+        (STATE_HERO_DONE, u'fordert Bestätigung an'),
+        (STATE_OWNER_DONE, u'Teilnahme bestätigt'),
         ))
 
     def get_actions(self):
@@ -96,19 +97,20 @@ class Adventure(models.Model, ActionMixin):
                                lambda r: self.quest.is_open,
                                lambda r: self.state == self.STATE_HERO_APPLIED),
                 'actions': (self.accept,),
-                'verbose_name': _("Accept"),
+                'verbose_name': _(u"Akzeptieren"),
             },
             'refuse': {
                 'conditions': (self.quest.is_owner,
                                lambda r: self.state == self.STATE_HERO_APPLIED),
                 'actions': (self.refuse,),
-                'verbose_name': _("Refuse"),
+                'verbose_name': _(u"Zurückweisen"),
             },
             'done': {
                 'conditions': (self.quest.is_owner,
-                               lambda r: self.state == self.STATE_OWNER_ACCEPTED),
+                               lambda r: self.state == self.STATE_OWNER_ACCEPTED,
+                                lambda r: self.quest.state == Quest.STATE_OWNER_DONE),
                 'actions': (self.done,),
-                'verbose_name': _("Mark as done"),
+                'verbose_name': _(u"Teilnahme bestätigen"),
             },
         }
         return actions
@@ -192,38 +194,45 @@ class Quest(models.Model, ActionMixin):
         return self.heroes.filter(adventures__quest=self.pk,
             adventures__state=Adventure.STATE_HERO_APPLIED)
 
+    def done_heroes(self):
+        return self.heroes.filter(adventures__quest=self.pk,
+            adventures__state=Adventure.STATE_OWNER_DONE)
+
+    def remaining_slots(self):
+        return self.max_heroes - self.accepted_heroes().count()
+
     def clean(self):
         if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
             raise ValidationError('Maximum experience for quest with level {0} is {1}'.format(self.level, self.level * 100))
 
 
     def get_actions(self):
-        actions = {
-            'cancel': {
+        actions = SortedDict((
+            ('done', {
+                'conditions': (self.is_owner, self.is_active,
+                               lambda r: self.accepted_heroes()),
+                'actions': (self.done, ),
+                'verbose_name': _(u"Quest abschließen"),
+
+                }),
+            ('cancel', {
                 'conditions': (self.is_owner, self.is_active),
                 'actions': (self.cancel,),
-                'verbose_name': _("Cancel"),
-                },
-            'hero_apply': {
+                'verbose_name': _("Quest abbrechen"),
+                }),
+            ('hero_apply', {
                 'conditions': (self.is_open, self.can_apply,
                                 self.is_open),
                 'actions': (self.hero_apply, ),
                 'verbose_name': _("Apply"),
-                },
-            'hero_cancel': {
+                }),
+            ('hero_cancel', {
                 'conditions': (self.is_active,
                                lambda r: r.user in (list(self.active_heroes()) + list(self.applying_heroes()))),
                 'actions': (self.hero_cancel, ),
                 'verbose_name': _("Cancel"),
-                },
-            'done': {
-                'conditions': (self.is_owner, self.is_active,
-                               lambda r: self.accepted_heroes()),
-                'actions': (self.done, ),
-                'verbose_name': _("Mark as done"),
-
-                },
-            }
+                }),
+            ))
         return actions
 
     ####  A C T I O N S ####

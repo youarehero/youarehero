@@ -1,54 +1,78 @@
 {% extends "herobase/layout-3-6-3.html" %}
 {% load i18n hero_actions %}
 {% block content %}
-    <div class="quest-detail">
+    <div class="quest-detail well well-large">
         <div class="page-header">
             <h1>{{ quest.title }}
             <small>
-                {% if quest.is_open %}
-                    Diese Herausforderung braucht noch Helden!
-                {% elif quest.is_cancelled %}
-                    Die Quest wurde abgebrochen.
-                {% elif quest.is_full %}
-                    Diese Quest ist schon voll.
-                {% elif quest.is_done %}
-                    Diese Quest ist abgeschlossen.
-                {% endif %}
+                {{ quest.get_hero_class_display }}
+                <div class="charicon {{ quest.get_hero_class_display }}"/>
+{#                {% if quest.is_open %}#}
+{#                    Diese Herausforderung braucht noch Helden!#}
+{#                {% elif quest.is_cancelled %}#}
+{#                    Die Quest wurde abgebrochen.#}
+{#                {% elif quest.is_full %}#}
+{#                    Diese Quest ist schon voll.#}
+{#                {% elif quest.is_done %}#}
+{#                    Diese Quest ist abgeschlossen.#}
+{#                {% endif %}#}
             </small>
             </h1>
         </div>
+        <div class="well">{{ quest.description }}</div>
 
-        {% if request.user == quest.owner %}
-            <h2>Dies ist deine Quest!</h2>
-        {% elif request.user in quest.active_heroes %}
-            <h2>Du nimmst an dieser Quest teil.</h2>
-        {% endif %}
         <div class="row-fluid">
             <div class="span6">
-                <h2>{% trans "description" %}</h2>
-                <p>{{ quest.description }}</p>
-            </div>
-            <div class="span6">
-                <h2>Details</h2>
                 <dl class="dl-horizontal">
-                    <dt>{% trans "quest-state" %}</dt><dd>{{ quest.get_state_display }}</dd>
-                    {% if adventure %}
-                        <dt>{% trans "adventure-state" %}</dt><dd>{{ adventure.get_state_display }}</dd>
-                    {% endif %}
-                    <dt>{% trans "heroes" %}</dt><dd>{{ quest.accepted_heroes.count }}/{{ quest.max_heroes }}</dd>
-                    <dt>{% trans "owner" %}</dt><dd><a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a></dd>
-                    <dt>{% trans "class" %}</dt><dd>{{ quest.get_hero_class_display }}<div class="charicon {{ quest.get_hero_class_display }}"/></dd>
-                    <dt>{% trans "level" %}</dt><dd>{{ quest.level }}</dd>
-                    <dt>{% trans "experience" %}</dt><dd>{{ quest.experience }}</dd>
+                    <dt>{% trans "Auftraggeber" %}</dt><dd><a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a></dd>
                     <dt>{% trans "location" %}</dt><dd>{{ quest.location }}</dd>
                 </dl>
             </div>
+            <div class="span6">
+                <dl class="dl-horizontal">
+                    <dt>{% trans "Level" %}</dt><dd>{{ quest.level }}</dd>
+                    <dt>{% trans "experience" %}</dt><dd>{{ quest.experience }}</dd>
+                </dl>
+            </div>
         </div>
-        {# quest actions #}
 
+        {% if request.user == quest.owner %}
+            <h2>Du bist der Auftraggeber</h2>
+            {% if quest.is_active %}
+                {% if not quest.heroes.exists %}
+                    <p>Dies ist Dein Quest. Sobald ein Held Dir helfen möchte siehst Du unten eine Liste mit Deinen Helden</p>
+                {% else %}
+                    {% if quest.applying_heroes.exists %}
+                        <p>Hey, es gibt Helden die Dir helfen möchten! Akzeptiere einen Held und er wird Dir helfen.
+                            Wenn Dir ein Held nicht geheuer ist, kannst Du ihn auch zurückweisen.</p>
+                    {% endif %}
+                    {% if quest.active_heroes.exists %}
+                        {% if not quest.is_full %}
+                            <p>Du hast schon {{ quest.active_heroes.count }} Held{{ quest.active_heroes.count|pluralize:" der dir hilft,en die Dir helfen" }}.
+                            Noch {{ quest.remaining_slots }} Held{{ quest.remaining_slots|pluralize:" kann,en können" }} teilnehmen.</p>
+                        {% else %}
+                            <p>Dir {{ quest.max_heroes|pluralize:"hilft,helfen" }} {{ quest.max_heroes }} Held{{ quest.max_heroes|pluralize:"en" }}. Deine Quest ist voll.</p>
+                        {% endif %}
+                        <p>Wenn Du die Quest abschließt, kannst Du die Teilnahme Deiner Helden bestätigen und somit Erfahrungspunkte verteilen :-) </p>
+                        <p><strong>Achtung:</strong> An einer abgeschlossenen Quest können keine weiteren Helden teilnehmen.</p>
+                    {% endif %}
+                {% endif %}
+                <p>Für abgebrochene Quests bekommt niemand Erfahrungspunkte. Eine aggebrochene Quest kann nicht wieder aufgenommen werden.</p>
+            {% else %}
+                {% if quest.is_cancelled %}
+                    <p>Du hast diese Quest abgebrochen. Niemand bekommt Erfahrungspunkte :-(</p>
+                {% elif quest.is_done %}
+                    <p>Diese Quest is abgeschlossen. Verteile nun Erfahrungspunkte an alle Helden die Dir geholfen haben
+                        indem Du die Teilnahme bestätigst.</p>
+                {% endif %}
+            {% endif %}
+        {% elif request.user in quest.active_heroes %}
+            <h2>Du nimmst an dieser Quest teil.</h2>
+        {% endif %}
+
+        {# quest actions #}
         {% valid_actions_for quest as valid_actions %}
         {% if valid_actions %}
-            <h2 class="inline">Quest actions</h2>
             <div class="form-actions">
             {% for action_name, action in valid_actions.items %}
                 <form action="{% url quest-update quest.id %}" method="post" class="inline">
@@ -59,10 +83,16 @@
             {% endfor %}
             </div>
         {% endif %}
+
+        {# owner #}
+        {% if request.user == quest.owner %}
+            {% include "herobase/quest/adventures.inc.html" %}
+        {% endif %}
     </div>
 
-    {# owner #}
-    {% if request.user == quest.owner %}
-        {% include "herobase/quest/adventures.inc.html" %}
+
+    {% if adventure %}
+        <dt>{% trans "adventure-state" %}</dt><dd>{{ adventure.get_state_display }}</dd>
     {% endif %}
+
 {% endblock %}
