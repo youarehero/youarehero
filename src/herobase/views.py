@@ -72,6 +72,8 @@ def home_view(request):
     return render(request, "herobase/public_home.html", {'open_quests':
         Quest.objects.filter(state=Quest.STATE_OPEN)})
 
+def abstract(request):
+    return render(request, "herobase/abstract.html")
 
 @login_required
 def hero_home_view(request):

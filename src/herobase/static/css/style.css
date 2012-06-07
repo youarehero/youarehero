@@ -273,6 +273,7 @@ h1 a:hover{
 }
 
 /* special background */
+span.stripe,
 span.yellow-stripe,
 span.orange-stripe,
 ul.navigation li a {
@@ -281,6 +282,7 @@ ul.navigation li a {
     padding: 0px 0px 0px 10px;
     margin-left: -10px;
 }
+h1 span.stripe,
 span.orange-stripe,
 ul.navigation li a:hover,
 ul.navigation li a:focus {

@@ -1,17 +1,12 @@
 {% extends "herobase/layout-3-6-3.html" %}
 {% block content %}
-    <h1>Welcome, unknown Hero </h1>
-    {% if open_quests %}
-        <p>The following quests are available should you choose to accept them:</p>
-        <ul>
-        {% for quest in open_quests %}
-            <li><a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>There are no open quests right now.</p>
-    {% endif %}
-    <a type="button" href="{% url django.contrib.auth.views.login %}" class="btn" id="join">Login</a> or
-    <a type="button" href="{% url registration_register %}" class="btn btn-primary btn-large" id="join">Join now!</a>
+    <h1><span class="stripe">Hallo liebe Gulaschprogrammierer!</span></h1>
+
+    <p>Wie ihr seht, ist diese Seite noch im Aufbau. Gerade sind wir dabei die Seite so herauszuputzen,
+        dass sie bis morgen Abend benutzbar wird. (Immer diese Details...) </p>
+    <p>Doch fühlt euch geehrt, Ihr werdet die ersten sein, die <strong>You Are HERO</strong> testen dürfen :-)</p>
+    <p>Ihr könnt euch auch schon anmelden, aber die Quests werden nochmal reseted, und das Äußere wie Innere ist auch noch nicht ganz soo...</p>
+    <p>Bis dahin: <a href="{% url abstract %}">Was ist You Are Hero?</a></p>
+    <p>Euer <strong>You Are HERO</strong> Team</p>
 
 {%  endblock %}
