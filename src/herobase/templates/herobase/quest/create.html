@@ -5,7 +5,7 @@
     <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
-        $('#id_due_date').datepicker();
+        $('#id_due_date').datepicker({autoclose: true});
     });
     </script>
 {% endblock %}
