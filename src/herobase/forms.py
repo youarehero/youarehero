@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
-from django.forms import forms
-from django.forms.fields import CharField, IntegerField, EmailField
-from django.forms.models import ModelForm
-from django.forms.util import ErrorList
+from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.bootstrap import FormActions
@@ -17,10 +13,11 @@ from herobase.models import Quest, UserProfile
 from herobase.widgets import LocationWidget
 
 
-class QuestCreateForm(ModelForm):
-    experience = IntegerField(initial=100)
-    level = IntegerField(initial=1)
-    location = CharField(initial="GPN")
+class QuestCreateForm(forms.ModelForm):
+    experience = forms.IntegerField(initial=100)
+    level = forms.IntegerField(initial=1)
+    location = forms.CharField(initial="GPN")
+    due_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'autocomplete': 'off'}))
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
@@ -68,7 +65,7 @@ class QuestCreateForm(ModelForm):
         data = super(QuestCreateForm, self).clean()
         if ('experience' in data and 'level' in data and
             int(data['experience']) > int(data['level']) * 100): # TODO experience formula
-            self._errors['experience'] = self._errors.get('experience', ErrorList())
+            self._errors['experience'] = self._errors.get('experience', forms.ErrorList())
             self._errors['experience'].append(_(u'Experience to high for level.'))
             del data['experience']
         return data
@@ -78,7 +75,7 @@ class QuestCreateForm(ModelForm):
         fields = ('title', 'description', 'max_heroes', 'location', 'due_date', 'hero_class', 'level' ,'experience', 'auto_accept')
 
 
-class UserProfileEdit(ModelForm):
+class UserProfileEdit(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
@@ -108,7 +105,7 @@ class UserProfileEdit(ModelForm):
             'title': LocationWidget,
         }
 
-class UserProfilePrivacyEdit(ModelForm):
+class UserProfilePrivacyEdit(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
@@ -135,7 +132,7 @@ class UserProfilePrivacyEdit(ModelForm):
 
 
 class UserRegistrationForm(RegistrationFormUniqueEmail):
-    username = CharField(max_length=75,
+    username = forms.CharField(max_length=75,
         widget=forms.TextInput(attrs={'class': 'required'}),
         label=_("Username"))
 
@@ -143,7 +140,7 @@ class UserAuthenticationForm(AuthenticationForm):
     error_messages = AuthenticationForm.error_messages
     error_messages.update({'invalid_login': _("Please enter a correct e-mail address and password. "
                                 "Note that both fields are case-sensitive.")})
-    email = EmailField(label=_("E-mail"), max_length=75)
+    email = forms.EmailField(label=_("E-mail"), max_length=75)
     def __init__(self, request=None, *args, **kwargs):
         super(UserAuthenticationForm, self).__init__(request, *args, **kwargs)
         del self.fields['username']
