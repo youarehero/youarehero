@@ -5,7 +5,7 @@
     <div class="navigation-icons">
         <a href="{% url message-list %}">
 
-            <i class="icon-envelope">
+            <i class="icon-envelope-large">
                 {% if request.user.get_profile.unread_messages_count != 0 %}
                     <span class="badge badge-orange"> {{ request.user.get_profile.unread_messages_count }}</span>
                 {% endif %}

@@ -35,47 +35,6 @@
 </head>
 
 <body>
-<!--
-<div class="navbar navbar-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="brand" href="{% url home %}">You Are Hero</a>
-                <ul class="nav">
-                    <li><a href="{% url quest-create %}"><i class="icon-plus-sign icon-white"></i> Create Quest</a></li>
-                    <li><a href="{% url quest-list %}"><i class="icon-list icon-white"></i> Show Quests</a></li>
-                </ul>
-                <ul class="nav pull-right">
-                    {% if request.user.is_authenticated %}
-                        <li><a href="{% url message-list %}">
-                            {% if request.user.get_profile.unread_messages_count != 0 %}
-                                <span class="badge badge-success"> {{ request.user.get_profile.unread_messages_count }}</span>
-                            {% endif %}
-                            <i class="icon-envelope icon-white"></i></a></li>
-                        <li class="dropdown">
-                            <a href="#"
-                               class="dropdown-toggle"
-                               data-toggle="dropdown">
-                                <i class="icon-user icon-white"></i>
-                                {{ request.user.username }}
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <a href="{% url userprofile-edit %}"><i class="icon-star"></i> Profil</a>
-                                <a href="#"><i class="icon-cog"></i> Einstellungen</a>
-                                <a href="{% url userprofile-privacy-settings %}"><i class="icon-lock"></i> Sicherheit</a>
-                                <a href="{% url django.contrib.auth.views.logout %}"><i class="icon-off"></i> Logout</a>
-                            </ul>
-                        </li>
-                    {% else %}
-                        <li>
-                            <a href="{% url django.contrib.auth.views.login %}">Login</a>
-                        </li>
-                    {% endif %}
-                </ul>
-        </div>
-    </div>
-</div>
--->
 
 <div class="container">
 {% block layout %}
@@ -84,7 +43,7 @@
     {% block sidebar_right %}{% endblock %}
 {% endblock %}
 </div><!--/container-->
-{% if 'youarehero.daenerys.de' in request.get_host %}
+{% if request.user.is_staff %}
     <div id="team_hints"><a href="/admin/">admin</a><a href="/coverage/">tests</a><a href="/docs/">docs</a><a href="http://wiki.youarehero.daenerys.de">wiki</a></div>
 {% endif %}
     <!-- Le javascript

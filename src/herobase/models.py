@@ -65,7 +65,14 @@ class ActionMixin(object):
         for f in action['actions']:
             f(request)
 
+
+class AdventureManager(models.Manager):
+   def active(self):
+       return super(AdventureManager, self).get_query_set().exclude(state=Adventure.STATE_HERO_CANCELED)
+
 class Adventure(models.Model, ActionMixin):
+    objects = models.Manager()
+
     """Model the relationship between a User and a Quest she is engaged in."""
     user = models.ForeignKey(User, related_name='adventures')
     quest = models.ForeignKey('Quest')
@@ -137,7 +144,15 @@ class Adventure(models.Model, ActionMixin):
         self.state = self.STATE_OWNER_DONE
         self.save()
 
+class QuestManager(models.Manager):
+    def active(self):
+        return super(QuestManager, self).get_query_set().exclude(state__in=(Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED))
+    def inactive(self):
+        return super(QuestManager, self).get_query_set().filter(state__in=(Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED))
+
 class Quest(models.Model, ActionMixin):
+    objects = QuestManager()
+
     """A quest, owned by a user"""
     owner = models.ForeignKey(User, related_name='created_quests')
     title = models.CharField(max_length=255)
@@ -251,13 +266,13 @@ class Quest(models.Model, ActionMixin):
         else:
             adventure.state = Adventure.STATE_HERO_APPLIED
         adventure.save()
-        Message.objects.create(
-            sender=get_system_user(),
-            recipient=adventure.quest.owner,
-            text="%s applied to your Quest %s. Have a look at %s" % (
-                request.user, adventure.quest.title,
-                adventure.quest.get_absolute_url()),
-            title="New Hero applied")
+#        Message.objects.create(
+#            sender=get_system_user(),
+#            recipient=adventure.quest.owner,
+#            text="%s applied to your Quest %s. Have a look at https://youarehero.net%s" % (
+#                request.user, adventure.quest.title,
+#                adventure.quest.get_absolute_url()),
+#            title="New Hero applied")
 
     def cancel(self, request=None):
         self.state = self.STATE_OWNER_CANCELED
