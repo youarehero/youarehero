@@ -19,6 +19,7 @@ def create_user(**kwargs):
     create_counter = kwargs.pop('create_counter')
     user_data = {
         'username': 'user_%d'  % create_counter,
+        'email': 'user_%d@example.com' % create_counter,
         'is_staff': False,
         'is_superuser': False,
         'password': 'plain$$password'

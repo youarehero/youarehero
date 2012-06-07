@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
-from crispy_forms.bootstrap import FormActions
-from django.conf.urls import url
 from django.core.exceptions import ValidationError
+from django.forms import forms
+from django.forms.fields import CharField
 from django.forms.models import ModelForm
 from django.forms.util import ErrorList
+from django.utils.translation import ugettext_lazy as _
+
+from crispy_forms.bootstrap import FormActions
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit, Layout, Fieldset, Div
+from registration.forms import RegistrationFormUniqueEmail
+
 from herobase.models import Quest, UserProfile
 from herobase.widgets import LocationWidget
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Fieldset, Div, Field
-from django.utils.translation import ugettext_lazy as _
 
 class QuestCreateForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -123,3 +127,9 @@ class UserProfilePrivacyEdit(ModelForm):
     class Meta:
         model = UserProfile
         fields = ('public_location', )
+
+
+class UserRegistrationForm(RegistrationFormUniqueEmail):
+    username = CharField(max_length=75,
+        widget=forms.TextInput(attrs={'class': 'required'}),
+        label=_("Username"))

@@ -374,7 +374,7 @@ def create_user_profile(sender, instance, created, **kwargs):
     """Create a user profile on user account creation."""
     if created:
         try:
-            UserProfile.objects.create(user=instance)
+            UserProfile.objects.get_or_create(user=instance)
         except:
             pass
 post_save.connect(create_user_profile, sender=User)

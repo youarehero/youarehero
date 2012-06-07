@@ -245,3 +245,6 @@ THUMBNAIL_ALIASES = {
         'avatar': {'size': (260, 260)},
         },
     }
+
+AUTHENTICATION_BACKENDS = ('herobase.backends.EmailAuthBackend',
+                           'django.contrib.auth.backends.ModelBackend',)
