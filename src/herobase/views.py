@@ -196,18 +196,18 @@ def leader_board(request):
                                          .filter(userprofile__hero_class=hero_class)\
                                          .order_by('-userprofile__experience')
 
-    by_quest_class = {}
-    for hero_class, class_name in CLASS_CHOICES:
-        by_quest_class[class_name] = User.objects.filter(
-            adventures__quest__hero_class=hero_class,
-            adventures__state=Adventure.STATE_OWNER_DONE,
-            adventures__quest__state=Quest.STATE_OWNER_DONE)\
-            .annotate(class_experience=Sum('adventures__quest__experience'))\
-            .order_by('-class_experience')
+#    by_quest_class = {}
+#    for hero_class, class_name in CLASS_CHOICES:
+#        by_quest_class[class_name] = User.objects.filter(
+#            adventures__quest__hero_class=hero_class,
+#            adventures__state=Adventure.STATE_OWNER_DONE,
+#            adventures__quest__state=Quest.STATE_OWNER_DONE)\
+#            .annotate(class_experience=Sum('adventures__quest__experience'))\
+#            .order_by('-class_experience')
 
     return render(request, "herobase/leader_board.html", {'total': total,
                                                          'by_class': by_class,
-                                                         'by_quest_class': by_quest_class,
+#                                                         'by_quest_class': by_quest_class,
                                                          })
 
 def random_stats(request):
