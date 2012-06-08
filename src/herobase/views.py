@@ -172,7 +172,7 @@ def userprofile(request, username=None):
     return render(request, 'herobase/userprofile/detail.html', {
         'user': user,
         'rank': rank,
-        'colors': simplejson.dumps(mark_safe(colors)),
+        'colors': mark_safe(simplejson.dumps(colors)),
         'completed_quest_count': user.adventures.filter(state=Adventure.STATE_OWNER_DONE).count(),
         'hero_completed_quests': mark_safe(simplejson.dumps(hero_completed_quests)),
     })
