@@ -8,7 +8,8 @@
 {% block javascript %}
     <script type="text/javascript">
         // Set a callback to run when the Google Visualization API is loaded.
-        if({{ hero_completed_quests }}.length > 0) {
+        var quests = {{ hero_completed_quests }};
+        if(quests.length > 0) {
             google.setOnLoadCallback(hero_completed_quests);
         }
         // Callback that creates and populates a data table,

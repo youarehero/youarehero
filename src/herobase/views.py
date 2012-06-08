@@ -162,7 +162,6 @@ def userprofile(request, username=None):
                    4: '#bdcaff'}
     colors = []
     for choice, count in user.adventures\
-            .filter(quest__state=Quest.STATE_OWNER_DONE)\
             .filter(state=Adventure.STATE_OWNER_DONE)\
             .values_list('quest__hero_class')\
             .annotate(Count('quest__hero_class')):
