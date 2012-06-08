@@ -1,4 +1,4 @@
-{% extends "herobase/layout-3-6-3.html" %}
+{% extends "herobase/layout-3-9.html" %}
 {% load crispy_forms_tags i18n static %}
 
 {% block javascript %}
@@ -10,18 +10,13 @@
 {% endblock %}
 
 {% block content %}
-  <!--  <p><a class="btn btn-primary" href="#">
-        <i class="icon-envelope icon-white"></i>
-        New Message
-    </a>
-    </p> -->
-
             <ul class="nav nav-pills">
+                <li> <a href="{% url message-create %}" class="">Write</a></li>
                 <li class="active"><a href="#in" data-toggle="tab"><i class="icon-arrow-down"></i>In</a></li>
                 <li><a href="#out" data-toggle="tab"><i class="icon-arrow-up"></i>Out</a></li>
             </ul>
             <div class="row">
-                <div class="span10">
+                <div class="span9">
 
                 <div class="tab-content">
                 <div class="tab-pane active" id="in">
@@ -44,10 +39,9 @@
                                     <td><a href="{% url userprofile-public message.sender.username %}">{{ message.sender }}</a></td>
                                     <td>{{ message.sent }}</td>
                                     <td>
-                                        <form method="post" action="{% url message-list message.id %}">
+                                        <a class="btn btn-small" href="{% url message-reply message.pk %}">reply<i class=" icon-share-alt icon-black"></i></a>
+                                        <form method="post" action="{% url message-update message.pk %}">
                                             {% csrf_token %}
-                                            <input type="hidden" name="form" value="{{ form.data }}" />
-                                            <button class="btn btn-small" type="submit" value="reply" name="reply">reply <i class="icon-share-alt icon-black"></i></button>
                                             <button class="btn btn-small" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-black"></i></button>
                                         </form>
                                     </td>
@@ -79,12 +73,11 @@
                                     <td>
                                         <a href="{% url message-detail message.pk %}">{{ message.title }}</a>
                                     </td>
-                                    <td>{{ message.recipient }}</td>
+                                    <td><a href="{% url userprofile-public message.recipient.username %}">{{ message.recipient }}</a></td>
                                     <td>{{ message.sent }}</td>
                                     <td>
-                                        <form method="post" action="{% url message-list message.id %}">
+                                        <form method="post" action="{% url message-update message.pk %}">
                                             {% csrf_token %}
-                                            <input type="hidden" name="form" value="{{ form.data }}" />
                                             <button class="btn btn-small" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-black"></i></button>
                                         </form>
                                     </td>
@@ -97,10 +90,6 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
-
-        <div class="span6">
-            {% include 'message/send.inc.html' %}
         </div>
     </div>
 {% endblock %}

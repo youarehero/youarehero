@@ -1,5 +1,5 @@
 {% extends "herobase/layout-3-6-3.html" %}
-
+{% load hero_message %}
 {% block content %}
 
     <h1><span class="stripe">Hallo {{ request.user.username }}!</span></h1>
@@ -49,7 +49,7 @@
                     {% if quest.is_canceled %}
                         <a style="text-decoration: line-through" href="{{ quest.get_absolute_url }}">{{ quest.title }}</a></li>
                     {% else %}
-                        <a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a><span style="font-size:1.5em;">✓</span>
+                        <a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a><span style="font-size:1.5em;">✓</span> {% message_user quest.owner %}
                     {% endif %}
                 </li>
             {% endfor %}

@@ -1,14 +1,23 @@
 {% extends "herobase/layout-3-6-3.html" %}
 
 {% block content %}
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="well well-small">
+            <div class="page-header">
+            {% if message.sender == request.user %}
+                <h4>Message to <a href="{% url userprofile-public message.recipient.username %}">{{ message.recipient }}</a> sent {{ message.sent }}</h4>
+            {% else %}
+                <h4>Message from <a href="{% url userprofile-public message.sender.username %}">{{ message.sender }}</a> received {{ message.sent }}</h4>
+            {% endif %}
+            </div>
 
-    {% if message %}
-        <div class="span6">
-        <p>Subject:{{ message.title }} from {{ message.sender }} at {{ message.sent }}</p>
-        <p>{{ message.text }}</p>
+
+                <h3>{{ message.title }}</h3>
+                <p>{{ message.text }}</p>
+            </div>
+            <a href="{% url message-list %}">zurück zur Inbox</a>
         </div>
-    {% else %}
 
-    {% endif %}
-
+    </div>
 {%  endblock %}
