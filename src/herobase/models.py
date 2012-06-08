@@ -1,4 +1,5 @@
 # -"- coding:utf-8 -"-
+import textwrap
 from django.core.files.storage import FileSystemStorage
 from django.core.mail import send_mail
 from django.db.models.query import QuerySet
@@ -138,8 +139,11 @@ class Adventure(models.Model, ActionMixin):
         self.state = self.STATE_OWNER_ACCEPTED
         if not self.quest.auto_accept:
             send_mail('YouAreHero - Du wurdest als Held Akzeptiert',
-                '''Du wurdest als Held akzeptiert. Es kann losgehen!.
-                 https://youarehero.net%s''' % self.quest.get_absolute_url(),
+                textwrap.dedent('''\
+                Du wurdest als Held akzeptiert. Es kann losgehen!
+                Verabredet dich jetzt mit dem Questgeber um die Quest zu erledigen.
+
+                Quest: https://youarehero.net%s''' % self.quest.get_absolute_url()),
                 'noreply@youarehero.net',
                 [self.user.email],
                 fail_silently=False)
@@ -286,6 +290,28 @@ class Quest(models.Model, ActionMixin):
 
     def hero_apply(self, request):
         adventure, created = self.adventure_set.get_or_create(user=request.user)
+        if adventure.state != Adventure.STATE_HERO_CANCELED:
+            if self.auto_accept:
+                send_mail('YouAreHero - Ein Held hat sich beworben',
+                textwrap.dedent('''\
+                Auf eine deiner Quests hat sich ein Held beworben.
+                Verabredet euch jetzt um die Quest zu erledigen.
+
+                Quest: https://youarehero.net%s''' % self.get_absolute_url()),
+                'noreply@youarehero.net',
+                [self.owner.email],
+                fail_silently=False)
+            else:
+                send_mail('YouAreHero - Ein Held hat sich beworben',
+                    textwrap.dedent('''\
+                    Auf eine deiner Quests hat sich ein Held beworben.
+                    Damit er auch mitmachen kann solltest du seine Teilnahme erlauben.
+                    Verabredet euch dann um die Quest zu erledigen.
+
+                    Quest: https://youarehero.net%s''' % self.get_absolute_url()),
+                    'noreply@youarehero.net',
+                    [self.owner.email],
+                    fail_silently=False)
         if self.auto_accept:
             adventure.state = Adventure.STATE_OWNER_ACCEPTED
         else:
