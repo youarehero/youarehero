@@ -1,4 +1,4 @@
-{% load i18n hero_actions %}
+{% load i18n hero_actions hero_message %}
 {% if not quest.is_canceled %}
     {% if quest.heroes.exists %}
         <h2>Deine Helden</h2>
@@ -15,7 +15,7 @@
                 <tr>
                     <td>
                         <a href="{% url userprofile-public adventure.user.username %}">
-                            <h4>{{ adventure.user }} </h4>
+                            <h4>{{ adventure.user }} {% message_user adventure.user %} </h4>
                         </a>
                     </td>
                     <td>{{ adventure.get_state_display }}</td>

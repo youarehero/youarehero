@@ -1,5 +1,5 @@
 {% extends "herobase/layout-3-6-3.html" %}
-{% load i18n hero_actions %}
+{% load i18n hero_actions hero_message %}
 {% block content %}
     <div class="quest-detail well quest-class-{{ quest.hero_class }}">
         <div class="page-header">
@@ -15,7 +15,7 @@
         <div class="row-fluid">
             <div class="span6">
                 <dl class="dl-horizontal">
-                    <dt>{% trans "Auftraggeber" %}</dt><dd><a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a></dd>
+                    <dt>{% trans "Auftraggeber" %}</dt><dd><a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>{% message_user quest.owner %}</dd>
                     <dt>{% trans "location" %}</dt><dd>{{ quest.location }}</dd>
                 </dl>
             </div>
