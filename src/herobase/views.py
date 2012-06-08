@@ -274,7 +274,7 @@ def random_stats(request):
 
 def signups(request):
     if request.user.is_authenticated() and request.user.is_staff:
-        logged_in = '\n'.join('%s: %s' % (u.date_joined, u.username) for u in User.objects.order_by('-last_login')[:20])
+        logged_in = '\n'.join('%s: %s' % (u.last_login, u.username) for u in User.objects.order_by('-last_login')[:20])
         signed_up = '\n'.join('%s: %s' % (u.date_joined, u.username) for u in User.objects.order_by('-date_joined')[:10])
         return HttpResponse('Logged in \n%s\nJoined\n%s' % (logged_in, signed_up), mimetype='text/plain')
     else:
