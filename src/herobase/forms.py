@@ -89,7 +89,7 @@ class UserProfileEdit(forms.ModelForm):
                 Div(
                     'hero_class',
                     'location',
-                    'geolocation',
+                 #   'geolocation',
                 )
             ),
             FormActions(
@@ -100,7 +100,7 @@ class UserProfileEdit(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('location', 'hero_class', 'geolocation')
+        fields = ('location', 'hero_class', )# 'geolocation')
         widgets = {
             'title': LocationWidget,
         }

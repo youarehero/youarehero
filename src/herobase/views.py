@@ -140,17 +140,25 @@ def adventure_update(request, quest_id):
 
     return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
 
+def userprofile(request, username=None):
+    if username:
+        user = get_object_or_404(User, username=username)
+    else:
+        user = request.user
 
-def userprofile_public(request, username):
-    user = get_object_or_404(User, username=username)
-    return render(request, 'herobase/userprofile/public.html', {
-        'user': user
-    })
+    hero_completed_quests = []
+    class_choices = dict(CLASS_CHOICES)
+    for choice, count in user.adventures\
+            .filter(quest__state=Quest.STATE_OWNER_DONE)\
+            .filter(state=Adventure.STATE_OWNER_DONE)\
+            .values_list('quest__hero_class')\
+            .annotate(Count('quest__hero_class')):
+        hero_completed_quests.append((class_choices[choice], count))
 
-def userprofile_private(request):
-    user = request.user
-    return render(request, 'herobase/userprofile/private.html', {
-        'user': user
+    return render(request, 'herobase/userprofile/detail.html', {
+        'user': user,
+        'completed_quest_count': user.adventures.filter(state=Adventure.STATE_OWNER_DONE).count(),
+        'hero_completed_quests': mark_safe(simplejson.dumps(hero_completed_quests)),
     })
 
 @login_required

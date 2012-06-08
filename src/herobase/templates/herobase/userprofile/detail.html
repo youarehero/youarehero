@@ -1,0 +1,72 @@
+{% extends "herobase/layout-3-9.html" %}
+{% load i18n static %}
+
+{% block head_javascript %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.google.com/uds/api/visualization/1.0/02323762feeb560baea0acc98c4c4e09/format+en,default,corechart.I.js"></script>
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+        // Set a callback to run when the Google Visualization API is loaded.
+        if({{ hero_completed_quests }}.length > 0) {
+            google.setOnLoadCallback(hero_completed_quests);
+        }
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function hero_completed_quests() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Class');
+            data.addColumn('number', 'Quests');
+            data.addRows({{ hero_completed_quests }});
+
+            // Set chart options
+            var options = {
+                'title':'The kind of quests you have completed.',
+                backgroundColor: "WhiteSmoke",
+                height: 320
+            };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('stats'));
+            chart.draw(data, options);
+        }
+    </script>
+{% endblock %}
+{% block submenu %}
+    {% if request.user == user %}
+        {% include "herobase/userprofile/submenu.inc.html" %}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="span3">
+            {% if user != request.user %}
+                <h1><span class="stripe">{{ user.username }}</span>
+                    <small>{{ user.get_profile.get_hero_class_display }}</small>
+                </h1>
+                {% include "herobase/userprofile/public_avatar.inc.html" %}
+            {% else %}
+                <h2><span class="stripe">Das bist Du</span></h2>
+                <p>Hier siehst, was andere Helden sehen, wenn sie Dein Profil aufrufen</p>
+            {% endif %}
+
+        </div>
+        <div class="span6">
+            <h1><span class="stripe">Profil</span>
+            </h1>
+            <dl class="dl-horizontal">
+                <dt>{% trans "Mitglied seit" %}</dt><dd>{{ user.get_profile.created }}</dd>
+                {% if user.get_profile.public_location %}
+                    <dt>{% trans "location" %}</dt><dd>{{ user.get_profile.location }}, {{ user.get_profile.geolocation }}</dd>
+                {% endif %}
+                <dt>{% trans "Quests erledigt" %}</dt><dd>{{ completed_quest_count }}</dd>
+            </dl>
+            <div id="stats"></div>
+        </div>
+
+    </div>
+{% endblock %}

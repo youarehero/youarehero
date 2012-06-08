@@ -1,9 +1,0 @@
-{% load i18n static %}
-
-
-<dl class="dl-horizontal">
-    <dt>{% trans "member since" %}</dt><dd>{{ user.get_profile.created }}</dd>
-    {% if user.get_profile.public_location %}
-        <dt>{% trans "location" %}</dt><dd>{{ user.get_profile.location }}, {{ user.get_profile.geolocation }}</dd>
-    {% endif %}
-</dl>

@@ -5,6 +5,47 @@
     {% include "herobase/userprofile/submenu.inc.html" %}
 {% endblock %}
 
+{% block javascript %}
+    <script type="text/javascript" src="{% get_static_prefix %}select2-2.0/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var avatar_thumbnails_tiny = {
+            {% for id, image in request.user.get_profile.avatar_thumbnails_tiny %}
+                {{ id }}: "{{ image|escapejs }}"{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        };
+        var avatar_thumbnails = {
+        {% for id, image in request.user.get_profile.avatar_thumbnails %}
+            {{ id }}: "{{ image|escapejs }}"{% if not forloop.last %},{% endif %}
+        {% endfor %}
+        };
+        function formatResult(hero_class) {
+            if(hero_class.id) {
+                return "<img src='" + avatar_thumbnails[hero_class.id] + "'/> " + hero_class.text;
+            } else {
+                return hero_class.text
+            }
+        }
+        function formatSelection(hero_class) {
+            if(hero_class.id) {
+                return "<img src='" + avatar_thumbnails_tiny[hero_class.id] + "'/> " + hero_class.text;
+            } else {
+                return hero_class.text
+            }
+        }
+        $("#id_hero_class").select2({
+            formatResult: formatResult,
+            minimumResultsForSearch: 10,
+            formatSelection: formatSelection
+        });
+        });
+    </script>
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% get_static_prefix %}select2-2.0/select2.css"/>
+{% endblock %}
+
+
 {% block content %}
     {% crispy form %}
 {% endblock %}
