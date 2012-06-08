@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^$', 'herobase.views.home_view', name='home'),
 
     url(r'^abstract/$', 'herobase.views.abstract', name="abstract"),
+    url(r'^hero_classes/$', 'herobase.views.hero_classes', name="hero_classes"),
 
     url(r'^profile/edit/$', 'herobase.views.userprofile_edit', name='userprofile-edit'),
     url(r'^profile/private/$', 'herobase.views.userprofile', name='userprofile-private'),

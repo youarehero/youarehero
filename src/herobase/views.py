@@ -76,6 +76,9 @@ def home_view(request):
 def abstract(request):
     return render(request, "herobase/abstract.html")
 
+def hero_classes(request):
+    return render(request, "herobase/hero_classes.html")
+
 @login_required
 def hero_home_view(request):
     user = request.user
