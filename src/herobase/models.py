@@ -2,7 +2,6 @@
 from django.core.files.storage import FileSystemStorage
 from django.db.models.query import QuerySet
 from easy_thumbnails.files import get_thumbnailer
-from herobase.utils import generate_chainable_manager
 import os
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -72,8 +71,14 @@ class AdventureQuerySet(QuerySet):
    def active(self):
        return self.exclude(state=Adventure.STATE_HERO_CANCELED)
 
+class AdventureManager(models.Manager):
+    def get_query_set(self):
+        return AdventureQuerySet(model=self.model, using=self._db)
+    def active(self):
+        return self.get_query_set().active()
+
 class Adventure(models.Model, ActionMixin):
-    objects = generate_chainable_manager(AdventureQuerySet)
+    objects = AdventureManager()
 
     """Model the relationship between a User and a Quest she is engaged in."""
     user = models.ForeignKey(User, related_name='adventures')
@@ -154,8 +159,16 @@ class QuestQuerySet(QuerySet):
         return self.filter(state__in=(Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED))
 
 
+class QuestManager(models.Manager):
+    def get_query_set(self):
+        return QuestQuerySet(model=self.model, using=self._db)
+    def active(self):
+        return self.get_query_set().active()
+    def inactive(self):
+        return self.get_query_set().inactive()
+
 class Quest(models.Model, ActionMixin):
-    objects = generate_chainable_manager(QuestQuerySet)
+    objects = QuestManager()
 
     """A quest, owned by a user"""
     owner = models.ForeignKey(User, related_name='created_quests')
