@@ -17,7 +17,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from filters import QuestFilter
 from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit
-from herobase.models import Quest, Adventure, CLASS_CHOICES
+from herobase.models import Quest, Adventure, CLASS_CHOICES, UserProfile
 import logging
 from django.db.models import Count, Sum
 
@@ -146,6 +146,7 @@ def userprofile(request, username=None):
     else:
         user = request.user
 
+    rank = UserProfile.objects.filter(experience__gt=user.get_profile().experience).count() + 1
     hero_completed_quests = []
     class_choices = dict(CLASS_CHOICES)
     for choice, count in user.adventures\
@@ -157,6 +158,7 @@ def userprofile(request, username=None):
 
     return render(request, 'herobase/userprofile/detail.html', {
         'user': user,
+        'rank': rank,
         'completed_quest_count': user.adventures.filter(state=Adventure.STATE_OWNER_DONE).count(),
         'hero_completed_quests': mark_safe(simplejson.dumps(hero_completed_quests)),
     })

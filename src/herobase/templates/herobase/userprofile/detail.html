@@ -1,5 +1,5 @@
 {% extends "herobase/layout-3-9.html" %}
-{% load i18n static %}
+{% load i18n static humanize %}
 
 {% block head_javascript %}
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -57,12 +57,15 @@
         <div class="span6">
             <h1><span class="stripe">Profil</span>
             </h1>
+            <h3>{{ user.username }} ist {{ rank }}. in der Bestenliste.</h3>
             <dl class="dl-horizontal">
-                <dt>{% trans "Mitglied seit" %}</dt><dd>{{ user.get_profile.created }}</dd>
+                <dt>{% trans "Mitglied seit " %}</dt><dd>{{ user.get_profile.created|timesince }}</dd>
                 {% if user.get_profile.public_location %}
-                    <dt>{% trans "location" %}</dt><dd>{{ user.get_profile.location }}, {{ user.get_profile.geolocation }}</dd>
+                    <dt>{% trans "Region" %}</dt><dd>{{ user.get_profile.location }}</dd>
                 {% endif %}
+            {% if completed_quest_count %}
                 <dt>{% trans "Quests erledigt" %}</dt><dd>{{ completed_quest_count }}</dd>
+            {% endif %}
             </dl>
             <div id="stats"></div>
         </div>
