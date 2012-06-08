@@ -86,6 +86,17 @@ def hero_home_view(request):
              'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)
              })
 
+@login_required
+def quest_my(request):
+    user = request.user
+    return render(request, 'herobase/quest/my.html',
+            {
+            #'profile': user.get_profile(),
+            'quests_active': user.created_quests.active().order_by('-created'),
+            'quests_old': user.created_quests.inactive().order_by('-created'),
+            'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)
+        })
+
 @require_POST
 @login_required
 def quest_update(request, quest_id):

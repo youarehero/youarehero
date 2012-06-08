@@ -1,0 +1,58 @@
+{% extends "herobase/layout-3-9.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block submenu %}
+    {% include "herobase/quest/submenu.inc.html"%}
+{% endblock %}
+
+{% block content %}
+    <h1><span class="stripe">Meine Quests</span></h1>
+    <h2>Quests you have created</h2>
+    <h3>Current quests</h3>
+    {% if quests_active %}
+        <ul>
+            {% for quest in quests_active %}
+                <li>
+                    <a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a>
+                    {% if quest.needs_attention %}(!!!){% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        No current quests.
+    {% endif %}
+    <h3>Old quests</h3>
+    {% if quests_old %}
+        <ul>
+            {% for quest in quests_old %}
+                <li>
+                    {% if quest.is_canceled %}
+                        <a style="text-decoration: line-through" href="{{ quest.get_absolute_url }}">{{ quest.title }}</a></li>
+                    {% else %}
+                        <a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a><span style="font-size:1.5em;">✓</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        No current quests.
+    {% endif %}
+
+    <h2>Quests you are participating in</h2>
+    {% if quests_joined %}
+        <ul>
+            {% for quest in quests_joined %}
+                <li>
+                    {% if quest.is_canceled %}
+                        <a style="text-decoration: line-through" href="{{ quest.get_absolute_url }}">{{ quest.title }}</a></li>
+                    {% else %}
+                        <a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a><span style="font-size:1.5em;">✓</span> {% message_user quest.owner %}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        No quests created.
+    {% endif %}
+{% endblock %}

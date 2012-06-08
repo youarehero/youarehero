@@ -12,6 +12,11 @@
 {% block css %}
     <link rel="stylesheet" href="{% get_static_prefix %}bootstrap/css/datepicker.css"/>
 {% endblock %}
+
+{% block submenu %}
+    {% include "herobase/quest/submenu.inc.html"%}
+{% endblock %}
+
 {% block content %}
     {% crispy form %}
 {% endblock %}

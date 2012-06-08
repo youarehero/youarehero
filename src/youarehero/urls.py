@@ -10,6 +10,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^quest/list/$', 'herobase.views.quest_list_view', name='quest-list'),
+    url(r'^quest/my/$', 'herobase.views.quest_my', name='quest-my'),
     url(r'^quests/create/$', QuestCreateView.as_view(), name='quest-create'),
     url(r'^quests/(?P<quest_id>\d+)/$', 'herobase.views.quest_detail_view', name='quest-detail'),
     url(r'^quests/(?P<quest_id>\d+)/quest_update/',

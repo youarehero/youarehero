@@ -1,5 +1,10 @@
 {% extends "herobase/layout-3-6-3.html" %}
-{% load i18n hero_actions hero_message %}
+{% load i18n hero_actions hero_massage %}
+
+{% block submenu %}
+    {% include "herobase/quest/submenu.inc.html"%}
+{% endblock %}
+
 {% block content %}
     <div class="quest-detail well quest-class-{{ quest.hero_class }}">
         <div class="page-header">

@@ -250,6 +250,8 @@ form.inline {
     border-radius: 3px 3px 3px 3px;
 }
 
+/* Main menu */
+
 ul.navigation {
     list-style: none;
     margin-left: 0;
@@ -311,6 +313,11 @@ h1 small{
     position:relative;
 }
 
+.header {
+    height: 120px;
+    position: relative;
+}
+
 /* LOGO */
 #logo {
     padding: 25px 10px 10px;
@@ -354,6 +361,25 @@ h1 small{
     line-height: 29px;
 
 }
+
+/* SubMenu */
+
+.submenu {
+    position: absolute;
+    bottom: 0;
+}
+
+.submenu ul li{
+    display: inline-block;
+}
+
+.submenu li a {
+    color: #000;
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
 /*
 [class^="quest-class-"] h1,
 [class*="quest-class-"] h1{

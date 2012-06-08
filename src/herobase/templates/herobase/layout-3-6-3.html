@@ -7,8 +7,12 @@
                 {% include "herobase/sidebar_left.inc.html" %}
             {% endblock %}
         </div><!--/span-->
+        <div class="span9 header">
+            <div class="submenu">
+                {% block submenu %}&nbsp;{% endblock %}
+            </div>
+        </div>
         <div class="span6">
-            <div class="page-header-100">&nbsp;</div>
             <div class="container-fluid">
                 {% include "herobase/messages.inc.html" %}
             </div>
