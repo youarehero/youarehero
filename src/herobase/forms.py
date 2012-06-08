@@ -88,6 +88,7 @@ class UserProfileEdit(forms.ModelForm):
                 _('Edit your Profile'),
                 Div(
                     'hero_class',
+                    'about',
                     'location',
                     'receive_system_email',
                     'receive_private_email',
@@ -102,7 +103,7 @@ class UserProfileEdit(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('location', 'hero_class', 'receive_system_email', 'receive_private_email' )# 'geolocation')
+        fields = ('location', 'about', 'hero_class', 'receive_system_email', 'receive_private_email' )# 'geolocation')
         widgets = {
             'title': LocationWidget,
         }
