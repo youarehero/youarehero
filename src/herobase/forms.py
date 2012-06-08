@@ -89,7 +89,9 @@ class UserProfileEdit(forms.ModelForm):
                 Div(
                     'hero_class',
                     'location',
-                 #   'geolocation',
+                    'receive_system_email',
+                    'receive_private_email',
+                    #   'geolocation',
                 )
             ),
             FormActions(
@@ -100,7 +102,7 @@ class UserProfileEdit(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('location', 'hero_class', )# 'geolocation')
+        fields = ('location', 'hero_class', 'receive_system_email', 'receive_private_email' )# 'geolocation')
         widgets = {
             'title': LocationWidget,
         }
