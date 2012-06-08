@@ -8,5 +8,12 @@
     <p>Hinter Deinem Namen steht Deine Heldenklasse. Alle Quests in YAH! sind einer der fünf Heldenklassen zugeteilt. Du kannst aber jede Quest annehmen, auf die Du Lust hast.</p>
     <p>Links siehst du ein Bild von deinem Charakter. Darunter Deinen Level und die Erfahrungspunkte, die Du schon gesammelt hast.</p>
 
+    {% if not request.user.get_profile.hero_class %}
+        <p>
+            Du hast noch keine Helden-Klasse gewählt. Gehe auf Profil und dann
+            Einstellungen um eine zu wählen oder klicke
+            <a href="{% url userprofile-edit %}">hier</a>
+        </p>
+    {% endif %}
 
 {%  endblock %}
