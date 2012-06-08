@@ -1,10 +1,10 @@
 {% extends "herobase/layout-3-9.html" %}
-{% load staticfiles %}
+{% load static %}
 {% load i18n %}
 
 {% block head_javascript %}
-    <script type="text/javascript" src="https://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
-    <script type="text/javascript" src="https://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-popover.js"></script>
 {% endblock %}
 
 {% block javascript %}
