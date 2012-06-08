@@ -1,9 +1,10 @@
 {% extends "herobase/layout-3-6-3.html" %}
-{% load i18n hero_actions hero_message %}
+{% load i18n hero_actions hero_message static %}
 {% block javascript %}
+    <script type="text/javascript" src="{% get_static_prefix %}js/forms.js"></script>
     <script>
         $(function() {
-            confirm_button("form[name=action]");
+            confirm_button("input[name=action_btn]");
         });
     </script>
 {% endblock %}

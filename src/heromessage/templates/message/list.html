@@ -2,9 +2,10 @@
 {% load crispy_forms_tags i18n static %}
 
 {% block javascript %}
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#typeahead').typeahead()
+    <script type="text/javascript" src="{% get_static_prefix %}js/forms.js"></script>
+    <script>
+        $(function() {
+            confirm_button("button[name=delete]", "Diese Nachricht wirklich löschen? ");
         });
     </script>
 {% endblock %}
