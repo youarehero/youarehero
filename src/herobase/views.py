@@ -272,3 +272,9 @@ def random_stats(request):
     })
 
     return render(request, 'herobase/stats.html', context)
+
+def signups(request):
+    if request.user.is_authenticated() and request.user.is_staff:
+        return HttpResponse('\n'.join('%s: %s' % (u.date_joined, u.username) for u in User.objects.order_by('-date_joined')[:10]), mimetype='text/plain')
+    else:
+        raise Http404()
