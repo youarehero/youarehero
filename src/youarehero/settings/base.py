@@ -159,6 +159,7 @@ INSTALLED_APPS = (
     'django_filters',
     'easy_thumbnails',
 
+    'endless_pagination',
     # project specific installed apps
     'herobase',
     'heromessage',

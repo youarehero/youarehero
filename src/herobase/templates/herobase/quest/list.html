@@ -1,6 +1,7 @@
 {% extends "herobase/layout-3-9.html" %}
 {% load static %}
 {% load i18n %}
+{% load endless %}
 
 {% block head_javascript %}
     <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-tooltip.js"></script>
@@ -49,14 +50,17 @@ family=Reenie+Beanie:regular"
                     </form>
                 </div>
             </div>
+            {% paginate 12 quests %}
+            {% show_pages %}
         </div>
-
 
         <div class="tab-content" style="padding-bottom: 38px">
 
+
             <div class="tab-pane active" id="grid">
                 <ul>
-                    {% for quest in filter %}
+
+                    {% for quest in quests %}
                         <li class="quest-class-{{ quest.hero_class }}">
                             <div>
                                 <a href="{% url quest-detail quest.id %}">
@@ -65,6 +69,7 @@ family=Reenie+Beanie:regular"
                                 </a>
                             </div>
                         </li>
+
                     {% empty %}
                         {% if filter.is_filtered %}
                             {% trans "No quests found matching your current criteria." %}
@@ -89,7 +94,7 @@ family=Reenie+Beanie:regular"
                     </tr>
                     </thead>
                     <tbody>
-                    {% for quest in filter %}
+                    {% for quest in quests %}
                         <tr>
                             <td><a href="{% url quest-detail quest.id %}" class="btn"><i class="icon-eye-open"></i></a></td>
                             <td>

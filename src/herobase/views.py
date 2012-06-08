@@ -27,6 +27,7 @@ def quest_list_view(request):
     f = QuestFilter(request.GET, queryset=Quest.objects.all())
     return render(request, 'herobase/quest/list.html', {
         'filter': f,
+        'quests': f.qs,
     })
 
 class QuestCreateView(CreateView):

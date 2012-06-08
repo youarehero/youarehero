@@ -34,7 +34,6 @@ def create_user(**kwargs):
     user.plain_password = plain_password
     user.credentials = {'username': user.username, 'password': user.plain_password}
     return user
-create_user.created_count = 0
 
 @factory
 def create_quest(**kwargs):
