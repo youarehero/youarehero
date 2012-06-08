@@ -19,7 +19,7 @@ urlpatterns = patterns('',
         'herobase.views.adventure_update', name='adventure-update'),
     url(r'^$', 'herobase.views.home_view', name='home'),
 
-    url(r'^abstact/$', 'herobase.views.abstract', name="abstract"),
+    url(r'^abstract/$', 'herobase.views.abstract', name="abstract"),
 
     url(r'^profile/edit/$', 'herobase.views.userprofile_edit', name='userprofile-edit'),
     url(r'^profile/private/$', 'herobase.views.userprofile', name='userprofile-private'),

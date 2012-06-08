@@ -49,7 +49,7 @@ class QuestCreateForm(forms.ModelForm):
                 ),
             ),
             FormActions(
-                Submit('save', 'Create', css_class='btn-large')
+                Submit('save', 'Create', css_class='btn')
             ),
         )
         super(QuestCreateForm, self).__init__(*args, **kwargs)
@@ -93,7 +93,7 @@ class UserProfileEdit(forms.ModelForm):
                 )
             ),
             FormActions(
-                Submit('save', 'Save', css_class='btn-large')
+                Submit('save', 'Save', css_class='btn')
             ),
         )
         super(UserProfileEdit, self).__init__(*args, **kwargs)
@@ -121,7 +121,7 @@ class UserProfilePrivacyEdit(forms.ModelForm):
                 )
             ),
             FormActions(
-                Submit('save', 'Save', css_class='btn-large')
+                Submit('save', 'Save', css_class='btn')
             ),
         )
         super(UserProfilePrivacyEdit, self).__init__(*args, **kwargs)

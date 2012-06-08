@@ -29,30 +29,37 @@ tr.new td {
 #map_geolocation label { width: auto; display:inline; }
 #map_geolocation img { max-height: none; max-width: none; }
 
-div .charicon {
+.charicon,
+[class^="charicon-"],
+[class*="charicon-"] {
     display: inline-block;
     line-height: 33px;
     width: 33px;
     height: 33px;
 }
 
-div .Scientist {
+.Scientist,
+.charicon-5 {
     background: url("../img/icon_scientist.png") center right no-repeat;
 }
 
-div .Gadgeteer {
+div .Gadgeteer,
+.charicon-1 {
     background: url("../img/icon_gadgeteer.png") center right no-repeat;
 }
 
-div .Action {
+div .Action,
+.charicon-3 {
     background: url("../img/icon_action.png") center right no-repeat;
 }
 
-div .Protective {
+div .Protective,
+.charicon-4 {
     background: url("../img/icon_protective.png") center right no-repeat;
 }
 
-div .Diplomat {
+div .Diplomat,
+.charicon-2 {
     background: url("../img/icon_diplomat.png") center right no-repeat;
 }
 
@@ -64,7 +71,7 @@ div .Diplomat {
 .quest-list a {
 }
 /* Scientist */
-.quest-list li.quest-class-0 a {
+.quest-list li.quest-class-5 a {
     background: url("../img/icon_scientist.png") no-repeat #e8e8e8 95% 95%;
 }
 /* Gadgeteer */
@@ -270,7 +277,9 @@ ul.navigation li a {
 /* Links in H1 */
 
 h1 a,
-h1 a:hover{
+h1 a:hover,
+h2 a,
+h2 a:hover {
     color: #000;
 }
 
@@ -385,6 +394,11 @@ h1 small{
 
 .usermenu {
     right: 0;
+}
+
+.sidebar-left {
+    border-right: 1px solid #CCCCCC;
+    padding-right: 30px;
 }
 
 /*

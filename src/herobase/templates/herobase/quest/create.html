@@ -2,6 +2,7 @@
 {% load crispy_forms_tags i18n static thumbnail %}
 
 {% block javascript %}
+    <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-collapse.js"></script>
     <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="{% get_static_prefix %}select2-2.0/select2.min.js"></script>
     <script type="text/javascript">
@@ -50,4 +51,9 @@
 
 {% block content %}
     {% crispy form %}
+
+    <h2><a data-toggle="collapse" data-target="#hero_classes"><span class="stripe">Was sind Heldenklassen?</span></a></h2>
+    <div id="hero_classes" class="collapse">
+        {% include "herobase/hero_classes.inc.html" %}
+    </div>
 {% endblock %}

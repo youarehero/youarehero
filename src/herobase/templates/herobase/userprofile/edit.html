@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block javascript %}
+
     <script type="text/javascript" src="{% get_static_prefix %}select2-2.0/select2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -48,4 +49,14 @@
 
 {% block content %}
     {% crispy form %}
+
+    <h2><span class="stripe">Was sind Heldenklassen?</span></h2>
+    <div id="hero_classes">
+        {% include "herobase/hero_classes.inc.html" %}
+    </div>
 {% endblock %}
+
+
+
+
+

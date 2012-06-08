@@ -4,15 +4,16 @@
         <img src="{% get_static_prefix %}/img/logo.png" alt="You Are Hero">
     </a>
 </div>
-
-{% if request.user.is_authenticated %}
-    {% include "herobase/userprofile/private_avatar.inc.html" %}
-    {% include "herobase/navigation.inc.html" %}
-{% else %}
-{#    <p></p>#}
-    <h2><span class="stripe">Mach mit!</span></h2>
-    <p>Zum Beispiel könntest Du helfen diesen Text hier durch einen wohlklingenden zu ersetzen.
-        Im Texte schreiben ist dieser Autor nämlich leider nur sehr eingeschränkt begabt.</p>
-    <a type="button" href="{% url django.contrib.auth.views.login %}" class="btn btn-large" id="join">Login</a> or
-    <a type="button" href="{% url registration_register %}" class="btn btn-primary btn-large" id="join">Join now!</a>
-{% endif %}
+<div class="sidebar-left">
+    {% if request.user.is_authenticated %}
+        {% include "herobase/userprofile/private_avatar.inc.html" %}
+        {% include "herobase/navigation.inc.html" %}
+    {% else %}
+    {#    <p></p>#}
+        <h2><span class="stripe">Mach mit!</span></h2>
+        <p>Zum Beispiel könntest Du helfen diesen Text hier durch einen wohlklingenden zu ersetzen.
+            Im Texte schreiben ist dieser Autor nämlich leider nur sehr eingeschränkt begabt.</p>
+        <a type="button" href="{% url django.contrib.auth.views.login %}" class="btn btn-large" id="join">Login</a> or
+        <a type="button" href="{% url registration_register %}" class="btn btn-primary btn-large" id="join">Join now!</a>
+    {% endif %}
+</div>
