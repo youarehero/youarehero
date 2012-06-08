@@ -2,7 +2,7 @@
 {% load i18n %}
 {% block content %}
     <div class="well">
-    <h1><span class="orange-stripe">Leader Board</span></h1>
+    <h1><span class="orange-stripe">Die aktivsten Helden</span></h1>
     <h2><span class="yellow-stripe">Nach Erfahrungspunkten</span></h2>
     <ul>
     {% for user in total|slice:":10" %}
