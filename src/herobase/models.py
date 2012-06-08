@@ -21,7 +21,7 @@ from heromessage.models import Message
 from south.modelsinspector import add_introspection_rules
 
 CLASS_CHOICES =  (
-    (0, "Scientist"),
+    (5, "Scientist"),
     (1, 'Gadgeteer'),
     (2, 'Diplomat'),
     (3, 'Action'),
@@ -375,7 +375,7 @@ class UserProfile(models.Model):
         help_text=_("Enable this if you want to share your location with other Heroes."))
 
     CLASS_AVATARS =  {
-        0: "scientist.jpg",
+        5: "scientist.jpg",
         1: 'gadgeteer.jpg',
         2: 'diplomat.jpg',
         3: 'action.jpg',
@@ -383,7 +383,7 @@ class UserProfile(models.Model):
 
     def avatar(self):
         file_name = "default.png"
-        if self.hero_class:
+        if self.hero_class  is not None:
             file_name = self.CLASS_AVATARS[self.hero_class]
         image = os.path.join('avatar/', file_name)
 
