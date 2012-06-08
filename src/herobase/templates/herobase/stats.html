@@ -27,7 +27,6 @@
             // Set chart options
             var options = {
                 'title':'The kind of quests you have completed.',
-                backgroundColor: "WhiteSmoke",
                 height: 320
             };
             // Instantiate and draw our chart, passing in some options.
@@ -44,7 +43,6 @@
             // Set chart options
             var options = {
                 'title':'Quests that are open right now.',
-                backgroundColor: "WhiteSmoke",
                 height: 320,
                 colors: {{ colors0 }}
             };
@@ -62,7 +60,6 @@
             // Set chart options
             var options = {
                 'title':'Quests that have been completed by class.',
-                backgroundColor: "WhiteSmoke",
                 height: 320,
                 colors: {{ colors1 }}
             };
@@ -74,7 +71,7 @@
     </script>
 {% endblock %}
 {% block content %}
-    <div class="well">
+    <div class="">
     <h3>You are Hero Statistik</h3>
 {#        <h3>You have completed {{ quests_completed }} quests</h3>#}
         <div id="hero_completed_quests"></div>
