@@ -119,14 +119,14 @@ div .Diplomat,
 .quest-list ul li h2{
     font-weight:bold;
     padding-bottom:10px;
-    font-family:"Coming Soon",arial,sans-serif;
+    /*font-family:"Coming Soon",arial,sans-serif;*/
     font-size: 140%;
     /*font-size:200%;*/
     line-height: 30px;
 }
 
 .quest-list ul li p{
-    font-family:"Coming Soon",arial,sans-serif;
+    /*font-family:"Coming Soon",arial,sans-serif;*/
     /*font-size:180%;*/
 }
 
