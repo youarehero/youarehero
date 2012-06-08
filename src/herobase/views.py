@@ -24,7 +24,7 @@ from django.db.models import Count, Sum
 logger = logging.getLogger('youarehero.herobase')
 
 def quest_list_view(request):
-    f = QuestFilter(request.GET, queryset=Quest.objects.all())
+    f = QuestFilter(request.GET, queryset=Quest.objects.order_by('-created'))
     return render(request, 'herobase/quest/list.html', {
         'filter': f,
         'quests': f.qs,
