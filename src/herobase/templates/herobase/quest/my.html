@@ -8,8 +8,8 @@
 
 {% block content %}
     <h1><span class="stripe">Meine Quests</span></h1>
-    <h1>Quests you have created</h1>
-    <h2>Current quests</h2>
+    <h2>Quests you have created</h2>
+    <h3>Current quests</h3>
     {% if quests_active %}
         <ul>
             {% for quest in quests_active %}
@@ -22,7 +22,7 @@
     {% else %}
         You don't have any currently active quests.
     {% endif %}
-    <h2>Old quests</h2>
+    <h3>Old quests</h3>
     {% if quests_old %}
         <ul>
             {% for quest in quests_old %}
@@ -41,7 +41,7 @@
 
 
 
-    <h1>Quests you are participating in</h1>
+    <h2>Quests you are participating in</h2>
     {% if quests_joined %}
         <ul>
             {% for quest in quests_joined %}
