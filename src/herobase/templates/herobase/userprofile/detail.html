@@ -8,10 +8,7 @@
 {% block javascript %}
     <script type="text/javascript">
         // Set a callback to run when the Google Visualization API is loaded.
-        var quests = {{ hero_completed_quests }};
-        if(quests.length > 0) {
-            google.setOnLoadCallback(hero_completed_quests);
-        }
+        google.setOnLoadCallback(hero_completed_quests);
         // Callback that creates and populates a data table,
         // instantiates the pie chart, passes in the data and
         // draws it.
