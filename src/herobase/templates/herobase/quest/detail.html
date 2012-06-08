@@ -1,10 +1,12 @@
 {% extends "herobase/layout-3-6-3.html" %}
 {% load i18n hero_actions hero_message %}
-
-{% block submenu %}
-    {% include "herobase/quest/submenu.inc.html"%}
+{% block javascript %}
+    <script>
+        $(function() {
+            confirm_button("form[name=action]");
+        });
+    </script>
 {% endblock %}
-
 {% block content %}
     <div class="quest-detail well quest-class-{{ quest.hero_class }}">
         <div class="page-header">

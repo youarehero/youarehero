@@ -49,7 +49,7 @@ class QuestCreateForm(forms.ModelForm):
                 ),
             ),
             FormActions(
-                Submit('save', 'Save', css_class='btn-large')
+                Submit('save', 'Create', css_class='btn-large')
             ),
         )
         super(QuestCreateForm, self).__init__(*args, **kwargs)
@@ -135,6 +135,7 @@ class UserRegistrationForm(RegistrationFormUniqueEmail):
     username = forms.CharField(max_length=75,
         widget=forms.TextInput(attrs={'class': 'required'}),
         label=_("Username"))
+
 
 class UserAuthenticationForm(AuthenticationForm):
     error_messages = AuthenticationForm.error_messages
