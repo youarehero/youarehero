@@ -53,10 +53,10 @@ family=Reenie+Beanie:regular"
             <div class="tab-pane active" id="grid">
                 <ul>
                     {% for quest in filter %}
-                        <li class="{{ quest.get_hero_class_display }}">
-                            <div draggable="true">
+                        <li class="quest-class-{{ quest.hero_class }}">
+                            <div>
                                 <a href="{% url quest-detail quest.id %}">
-                                    <h2>{{ quest.title|truncatechars:80 }}</h2>
+                                    <h2>{{ quest.title|truncatechars:50 }}</h2>
                                     <!--<p>{{ quest.description|truncatechars:80 }}</p>-->
                                 </a>
                             </div>

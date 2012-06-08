@@ -295,7 +295,7 @@ class Quest(models.Model, ActionMixin):
     def is_owner(self, request):
         return self.owner == request.user
 
-    def is_cancelled(self, request=None):
+    def is_canceled(self, request=None):
         return self.state == Quest.STATE_OWNER_CANCELED
 
     def is_open(self, request=None):
