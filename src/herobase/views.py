@@ -51,6 +51,7 @@ class QuestCreateView(CreateView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
+@login_required
 def quest_detail_view(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
     if not request.user.is_anonymous():
@@ -144,6 +145,7 @@ def adventure_update(request, quest_id):
 
     return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
 
+@login_required
 def userprofile(request, username=None):
     if username:
         user = get_object_or_404(User, username=username)
@@ -190,15 +192,16 @@ def userprofile_privacy_settings(request):
         'form': form
     })
 
-
+@login_required
 def leader_board(request):
-    total = User.objects.select_related().order_by('-userprofile__experience')
-    by_class = {}
-    for hero_class, class_name in CLASS_CHOICES:
-        by_class[class_name] = User.objects.select_related()\
-                                         .filter(userprofile__hero_class=hero_class)\
-                                         .order_by('-userprofile__experience')
+    total = User.objects.select_related().filter(userprofile__experience__gt=0).order_by('-userprofile__experience')
+#    by_class = {}
+#    for hero_class, class_name in CLASS_CHOICES:
+#        by_class[class_name] = User.objects.select_related()\
+#                                         .filter(userprofile__hero_class=hero_class)\
+#                                         .order_by('-userprofile__experience').filter('userprofile__experience')
 
+    top_creators = User.objects.filter(created_quests__state=Quest.STATE_OWNER_DONE).annotate(quest_count=Count('created_quests')).filter(quest_count__gt=0).order_by('-quest_count')
 #    by_quest_class = {}
 #    for hero_class, class_name in CLASS_CHOICES:
 #        by_quest_class[class_name] = User.objects.filter(
@@ -209,10 +212,11 @@ def leader_board(request):
 #            .order_by('-class_experience')
 
     return render(request, "herobase/leader_board.html", {'total': total,
-                                                         'by_class': by_class,
+#                                                         'by_class': by_class,
+                                                         'top_creators': top_creators
 #                                                         'by_quest_class': by_quest_class,
                                                          })
-
+@login_required
 def random_stats(request):
     user = request.user
     class_choices = dict(CLASS_CHOICES)
