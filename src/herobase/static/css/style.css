@@ -63,24 +63,24 @@ div .Diplomat {
 
 .quest-list a {
 }
-
-.quest-list .Scientist a {
+/* Scientist */
+.quest-list li.quest-class-0 a {
     background: url("../img/icon_scientist.png") no-repeat #e8e8e8 95% 95%;
 }
-
-.quest-list .Gadgeteer a {
+/* Gadgeteer */
+.quest-list li.quest-class-1 a {
     background: url("../img/icon_gadgeteer.png") no-repeat #ccffa7 95% 95%;
 }
-
-.quest-list .Diplomat a {
+/* Diplomat */
+.quest-list li.quest-class-2 a {
     background: url("../img/icon_diplomat.png") no-repeat #fff9b4 95% 95%;
 }
-
-.quest-list .Action a {
+/* Action */
+.quest-list li.quest-class-3 a {
     background: url("../img/icon_action.png") no-repeat #ffa19b 95% 95%;
 }
-
-.quest-list .Protective a {
+/* Protective */
+.quest-list li.quest-class-4 a {
     background: url("../img/icon_protective.png") no-repeat #bdcaff 95% 95%;
 }
 
@@ -354,3 +354,30 @@ h1 small{
     line-height: 29px;
 
 }
+/*
+[class^="quest-class-"] h1,
+[class*="quest-class-"] h1{
+    font-family: "Reenie Beanie", arial, sans-serif;
+}
+
+/* Scientist *
+div.quest-class-0 .page-header {
+    background: url("../img/icon_scientist.png") no-repeat #e8e8e8 95% 95%;
+}
+/* Gadgeteer *
+div.quest-class-1 .page-header {
+    background: url("../img/icon_gadgeteer.png") no-repeat #ccffa7 95% 95%;
+}
+/* Diplomat *
+div.quest-class-2 .page-header {
+    background: url("../img/icon_diplomat.png") no-repeat #fff9b4 95% 5%;
+}
+/* Action *
+div.quest-class-3 .page-header {
+    background: url("../img/icon_action.png") no-repeat #ffa19b 95% 5%;
+}
+/* Protective *
+div.quest-class-4 .page-header {
+    background: url("../img/icon_protective.png") no-repeat #bdcaff 95% 95%;
+}*/
+

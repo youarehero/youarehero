@@ -1,7 +1,7 @@
 {% extends "herobase/layout-3-6-3.html" %}
 {% load i18n hero_actions %}
 {% block content %}
-    <div class="quest-detail well well-large">
+    <div class="quest-detail well quest-class-{{ quest.hero_class }}">
         <div class="page-header">
             <h1>{{ quest.title }}
             <small>
