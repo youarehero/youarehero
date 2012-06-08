@@ -8,6 +8,11 @@
         });
     </script>
 {% endblock %}
+
+{% block submenu %}
+    {% include "herobase/quest/submenu.inc.html"%}
+{% endblock %}
+
 {% block content %}
     <div class="quest-detail well quest-class-{{ quest.hero_class }}">
         <div class="page-header">

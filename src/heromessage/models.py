@@ -24,6 +24,9 @@ class Message(models.Model):
     recipient = models.ForeignKey(User, related_name='sent_messages')
     sender = models.ForeignKey(User, related_name='received_messages')
 
+    class Meta:
+        ordering = ['-sent']
+
     @property
     def is_read(self):
         return self.read is not None

@@ -195,7 +195,8 @@ class Quest(models.Model, ActionMixin):
     modified = models.DateTimeField(auto_now=True)
 
     max_heroes = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
-    auto_accept = models.BooleanField(default=False)
+    auto_accept = models.BooleanField(default=False, verbose_name="automatisch akzeptieren",
+        help_text=_("Wenn aktiviert, akzeptierst Du Helden automatisch. Du kannst dann allerdings niemanden zurückweisen."))
 
     QUEST_LEVELS = (
         (1, '1 (Easy)'), (2, '2 (Okay)'), (3, '3 (Experienced)'), (4, '4 (Challenging)'), (5, 'Heroic')
