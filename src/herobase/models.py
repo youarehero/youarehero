@@ -403,8 +403,8 @@ class UserProfile(models.Model):
 
     about = models.TextField(blank=True, default='', help_text='Some text about you.')
 
-    receive_system_email = models.BooleanField(default=False)
-    receive_private_email = models.BooleanField(default=False)
+    receive_system_email = models.BooleanField(default=False, verbose_name="Bei Questaenderungen per Mail benachrichtigen.", help_text="Setze diesen Hacken wenn du bei Aenderungen an deinen Quests per Mail benachrichtigt werden willst")
+    receive_private_email = models.BooleanField(default=False, verbose_name="Bei privaten Nachrichten per Mail benachrichtigen.", help_text="Setze diesen Hacken wenn du bei Nachrichten von anderen NUtzern benachrichtigt werden willst")
 
     CLASS_AVATARS =  {
         5: "scientist.jpg",
