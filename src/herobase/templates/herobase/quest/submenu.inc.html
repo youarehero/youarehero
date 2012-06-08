@@ -1,5 +1,7 @@
-<ul>
-    <li><a href="{% url quest-my %}"><span class="stripe">Meine Quests</span></a></li>
-    <li><a href="{% url quest-create %}"><span class="stripe">neue Quest</span></a></li>
-    <li><a href="{% url quest-list %}"><span class="stripe">Suche Quests</span></a></li>
-</ul>
+{% if request.user.is_authenticated %}
+    <ul>
+        <li><a href="{% url quest-my %}"><span class="stripe">Meine Quests</span></a></li>
+        <li><a href="{% url quest-create %}"><span class="stripe">Quest erstellen</span></a></li>
+        <li><a href="{% url quest-list %}"><span class="stripe">Suche Quests</span></a></li>
+    </ul>
+{% endif %}

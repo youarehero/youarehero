@@ -380,6 +380,10 @@ h1 small{
     margin-right: 20px;
 }
 
+.user-menu {
+right: 0;
+}
+
 /*
 [class^="quest-class-"] h1,
 [class*="quest-class-"] h1{
