@@ -380,17 +380,30 @@ class UserProfile(models.Model):
         2: 'diplomat.jpg',
         3: 'action.jpg',
         4: 'protective.jpg'}
+    avatar_storage = FileSystemStorage(location=os.path.join(settings.PROJECT_ROOT, 'assets/'))
+
+    def avatar_thumbnails(self):
+        return self._avatar_thumbnails((50, 50))
+
+    def avatar_thumbnails_tiny(self):
+        return self._avatar_thumbnails((15, 15))
+
+    def _avatar_thumbnails(self, size):
+        thumbs = []
+        for id, image_name in self.CLASS_AVATARS.items():
+            image = os.path.join('avatar/', image_name)
+            thumbnailer = get_thumbnailer(self.avatar_storage, image)
+            thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality':90})
+            thumbs.append((id, os.path.join(settings.MEDIA_URL, thumbnail.url )))
+        return thumbs
 
     def avatar(self):
         file_name = "default.png"
         if self.hero_class  is not None:
             file_name = self.CLASS_AVATARS[self.hero_class]
         image = os.path.join('avatar/', file_name)
-
-        fs = FileSystemStorage(location=os.path.join(settings.PROJECT_ROOT, 'assets/'))
-
-        thumbnailer = get_thumbnailer(fs, image)
-        thumbnail = thumbnailer.get_thumbnail({'size': (270, 270), 'quality':70})
+        thumbnailer = get_thumbnailer(self.avatar_storage, image)
+        thumbnail = thumbnailer.get_thumbnail({'size': (270, 270), 'quality':90})
         return os.path.join(settings.MEDIA_URL, thumbnail.url )
 
     @property
