@@ -10,7 +10,7 @@ var confirm_button = function (elem, text) {
     return $(elem).each(function () {
         $(this).bind('click.confirm', function (e) {
             if(text === undefined) {
-                text = "Sind sie sicher?";
+                text = "Bist du sicher?";
             }
             var confirmation = confirm(text);
             if (!confirmation) {
