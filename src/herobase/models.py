@@ -1,5 +1,6 @@
 # -"- coding:utf-8 -"-
 from django.core.files.storage import FileSystemStorage
+from django.core.mail import send_mail
 from django.db.models.query import QuerySet
 from easy_thumbnails.files import get_thumbnailer
 import os
@@ -135,6 +136,13 @@ class Adventure(models.Model, ActionMixin):
     #### A C T I O N S ####
     def accept(self, request=None):
         self.state = self.STATE_OWNER_ACCEPTED
+        if not self.quest.auto_accept:
+            send_mail('YouAreHero - Du wurdest als Held Akzeptiert',
+                '''Du wurdest als Held akzeptiert. Es kann losgehen!.
+                 https://youarehero.net%s''' % self.quest.get_absolute_url(),
+                'noreply@youarehero.net',
+                [self.user.email],
+                fail_silently=False)
         self.save()
         self.quest.check_full()
         self.quest.save()
