@@ -155,16 +155,25 @@ def userprofile(request, username=None):
     rank = UserProfile.objects.filter(experience__gt=user.get_profile().experience).count() + 1
     hero_completed_quests = []
     class_choices = dict(CLASS_CHOICES)
+    color_dict = { 5: '#e8e8e8',
+                   1: '#ccffa7',
+                   2: '#fff9b4',
+                   3: '#ffa19b',
+                   4: '#bdcaff'}
+    colors = []
     for choice, count in user.adventures\
             .filter(quest__state=Quest.STATE_OWNER_DONE)\
             .filter(state=Adventure.STATE_OWNER_DONE)\
             .values_list('quest__hero_class')\
             .annotate(Count('quest__hero_class')):
+        colors.append(color_dict[choice])
         hero_completed_quests.append((class_choices[choice], count))
+
 
     return render(request, 'herobase/userprofile/detail.html', {
         'user': user,
         'rank': rank,
+        'colors': simplejson.dumps(colors),
         'completed_quest_count': user.adventures.filter(state=Adventure.STATE_OWNER_DONE).count(),
         'hero_completed_quests': mark_safe(simplejson.dumps(hero_completed_quests)),
     })
@@ -220,6 +229,13 @@ def leader_board(request):
 def random_stats(request):
     user = request.user
     class_choices = dict(CLASS_CHOICES)
+    color_dict = { 5: '#e8e8e8',
+                   1: '#ccffa7',
+                   2: '#fff9b4',
+                   3: '#ffa19b',
+                   4: '#bdcaff'}
+
+
 
     hero_completed_quests = []
     for choice, count in user.adventures\
@@ -229,18 +245,24 @@ def random_stats(request):
         .annotate(Count('quest__hero_class')):
         hero_completed_quests.append((class_choices[choice], count))
 
+    colors0 = []
     open_quest_types = []
     for choice, count in  Quest.objects.filter(state=Quest.STATE_OPEN).values_list('hero_class').annotate(Count('hero_class')):
         open_quest_types.append((class_choices[choice], count))
+        colors0.append(color_dict[choice])
 
+    colors1 = []
     completed_quest_types = []
     for choice, count in  Quest.objects.filter(state=Quest.STATE_OWNER_DONE).values_list('hero_class').annotate(Count('hero_class')):
         completed_quest_types.append((class_choices[choice], count))
+        colors1.append(color_dict[choice])
 
     context = {
         'hero_completed_quests': hero_completed_quests,
         'open_quest_types': open_quest_types,
         'completed_quest_types': completed_quest_types,
+        'colors0': colors0,
+        'colors1': colors1,
         }
     for key in context:
         context[key] = mark_safe(simplejson.dumps(list(context[key])))

@@ -45,7 +45,8 @@
             var options = {
                 'title':'Quests that are open right now.',
                 backgroundColor: "WhiteSmoke",
-                height: 320
+                height: 320,
+                colors: {{ colors0 }}
             };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.PieChart(document.getElementById('open_quest_types'));
@@ -62,7 +63,8 @@
             var options = {
                 'title':'Quests that have been completed by class.',
                 backgroundColor: "WhiteSmoke",
-                height: 320
+                height: 320,
+                colors: {{ colors1 }}
             };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.PieChart(document.getElementById('completed_quest_types'));
