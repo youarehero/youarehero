@@ -19,3 +19,6 @@ class MessageIntegrationTest(TestCase):
     def test_message_list(self):
         response = self.client.get(reverse('message-list'))
         self.assertContains(response, 'In')
+    def test_message_create_view(self):
+        response = self.client.get(reverse('message-create'))
+        self.assertContains(response, 'text')
