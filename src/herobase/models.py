@@ -1,6 +1,8 @@
 # -"- coding:utf-8 -"-
 from django.core.files.storage import FileSystemStorage
+from django.db.models.query import QuerySet
 from easy_thumbnails.files import get_thumbnailer
+from herobase.utils import generate_chainable_manager
 import os
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -66,12 +68,12 @@ class ActionMixin(object):
             f(request)
 
 
-class AdventureManager(models.Manager):
+class AdventureQuerySet(QuerySet):
    def active(self):
-       return super(AdventureManager, self).get_query_set().exclude(state=Adventure.STATE_HERO_CANCELED)
+       return self.exclude(state=Adventure.STATE_HERO_CANCELED)
 
 class Adventure(models.Model, ActionMixin):
-    objects = models.Manager()
+    objects = generate_chainable_manager(AdventureQuerySet)
 
     """Model the relationship between a User and a Quest she is engaged in."""
     user = models.ForeignKey(User, related_name='adventures')
@@ -144,14 +146,16 @@ class Adventure(models.Model, ActionMixin):
         self.state = self.STATE_OWNER_DONE
         self.save()
 
-class QuestManager(models.Manager):
+
+class QuestQuerySet(QuerySet):
     def active(self):
-        return super(QuestManager, self).get_query_set().exclude(state__in=(Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED))
+        return self.exclude(state__in=(Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED))
     def inactive(self):
-        return super(QuestManager, self).get_query_set().filter(state__in=(Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED))
+        return self.filter(state__in=(Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED))
+
 
 class Quest(models.Model, ActionMixin):
-    objects = QuestManager()
+    objects = generate_chainable_manager(QuestQuerySet)
 
     """A quest, owned by a user"""
     owner = models.ForeignKey(User, related_name='created_quests')

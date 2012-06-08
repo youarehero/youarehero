@@ -3,6 +3,7 @@ from django.contrib.auth.hashers import mask_hash, BasePasswordHasher
 from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext as _
 from django.conf import settings
+from django.db import models
 
 class PlainTextPasswordHasher(BasePasswordHasher):
     """
@@ -24,3 +25,22 @@ class PlainTextPasswordHasher(BasePasswordHasher):
             (_('algorithm'), self.algorithm),
             (_('hash'), mask_hash(encoded, show=3)),
         ])
+
+
+def generate_chainable_manager(qs_class):
+    class ChainableManager(models.Manager):
+        def __init__(self):
+            super(ChainableManager,self).__init__()
+            self.queryset_class = qs_class
+
+        def get_query_set(self):
+            return self.queryset_class(self.model)
+
+        def __getattr__(self, attr, *args):
+            try:
+                return getattr(self.__class__, attr, *args)
+            except AttributeError:
+                return getattr(self.get_query_set(), attr, *args)
+    return ChainableManager()
+
+
