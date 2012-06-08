@@ -147,6 +147,12 @@ def userprofile_public(request, username):
         'user': user
     })
 
+def userprofile_private(request):
+    user = request.user
+    return render(request, 'herobase/userprofile/private.html', {
+        'user': user
+    })
+
 @login_required
 def userprofile_edit(request):
     user = request.user

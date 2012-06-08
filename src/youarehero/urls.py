@@ -21,9 +21,10 @@ urlpatterns = patterns('',
 
     url(r'^abstact/$', 'herobase.views.abstract', name="abstract"),
 
-    url(r'^profile/$', 'herobase.views.userprofile_edit', name='userprofile-edit'),
-    url(r'^profile/privacy/$', 'herobase.views.userprofile_privacy_settings', name='userprofile-privacy-settings'),
-    url(r'^profile/(?P<username>.+)/$', 'herobase.views.userprofile_public', name='userprofile-public'),
+    url(r'^profile/edit/$', 'herobase.views.userprofile_edit', name='userprofile-edit'),
+    url(r'^profile/private/$', 'herobase.views.userprofile_private', name='userprofile-private'),
+    url(r'^profile/edit/privacy/$', 'herobase.views.userprofile_privacy_settings', name='userprofile-privacy-settings'),
+    url(r'^profile/public/(?P<username>.+)/$', 'herobase.views.userprofile_public', name='userprofile-public'),
 
     url(r'^messages/create/$', 'heromessage.views.message_create', name='message-create'),
     url(r'^messages/to/(?P<user_id>\d+)/$', 'heromessage.views.message_create', name='message-to'),    # todo: rename

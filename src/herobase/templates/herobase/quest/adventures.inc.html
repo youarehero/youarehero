@@ -15,8 +15,10 @@
                 <tr>
                     <td>
                         <a href="{% url userprofile-public adventure.user.username %}">
-                            <h4>{{ adventure.user }} {% message_user adventure.user %} </h4>
+                            {{ adventure.user }}
                         </a>
+                        {% message_user adventure.user %}
+
                     </td>
                     <td>{{ adventure.get_state_display }}</td>
                     <td>
@@ -26,7 +28,7 @@
                                 {% csrf_token %}
                                 <input type="hidden" name="adventure_id" value="{{ adventure.id }}"/>
                                 <input type="hidden" name="action" value="{{ action_name }}">
-                                <input type="submit" name="action_btn" class="btn" value="{{ action.verbose_name }}"/>
+                                <input type="submit" name="action_btn" class="btn btn-mini" value="{{ action.verbose_name }}"/>
                             </form>
                         {% endfor  %}
                     </td>

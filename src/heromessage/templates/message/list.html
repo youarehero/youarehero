@@ -16,8 +16,7 @@
                 <li class="active"><a href="#in" data-toggle="tab"><i class="icon-arrow-down"></i>In</a></li>
                 <li><a href="#out" data-toggle="tab"><i class="icon-arrow-up"></i>Out</a></li>
             </ul>
-            <div class="row">
-                <div class="span9">
+
 
                 <div class="tab-content">
                 <div class="tab-pane active" id="in">
@@ -40,10 +39,10 @@
                                     <td><a href="{% url userprofile-public message.sender.username %}">{{ message.sender }}</a></td>
                                     <td>{{ message.sent }}</td>
                                     <td>
-                                        <a class="btn btn-small" href="{% url message-reply message.pk %}">reply<i class=" icon-share-alt icon-black"></i></a>
-                                        <form method="post" action="{% url message-update message.pk %}">
+                                        <a class="btn btn-mini" href="{% url message-reply message.pk %}">reply<i class=" icon-share-alt icon-black"></i></a>
+                                        <form method="post" action="{% url message-update message.pk %}" class="inline">
                                             {% csrf_token %}
-                                            <button class="btn btn-small" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-black"></i></button>
+                                            <button class="btn btn-mini" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-black"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -77,9 +76,9 @@
                                     <td><a href="{% url userprofile-public message.recipient.username %}">{{ message.recipient }}</a></td>
                                     <td>{{ message.sent }}</td>
                                     <td>
-                                        <form method="post" action="{% url message-update message.pk %}">
+                                        <form method="post" action="{% url message-update message.pk %}" class="inline">
                                             {% csrf_token %}
-                                            <button class="btn btn-small" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-black"></i></button>
+                                            <button class="btn btn-mini" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-black"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -90,7 +89,6 @@
                         <p>You did not send any messages yet</p>
                     {% endif %}
                 </div>
-            </div>
-        </div>
+
     </div>
 {% endblock %}
