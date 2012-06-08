@@ -24,7 +24,7 @@ def message_create(request, user_id=None, message_id=None):
     else:
         initial = None
 
-    form = MessageForm(request.POST or None, initial=initial)
+    form = MessageForm(data=request.POST or None, initial=initial)
     if form.is_valid():
         message = form.save(commit=False)
         message.sender = request.user
