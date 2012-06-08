@@ -149,7 +149,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-
+    'endless_pagination',
     'south',
     'django_extensions',
     'south',
@@ -159,7 +159,7 @@ INSTALLED_APPS = (
     'django_filters',
     'easy_thumbnails',
 
-    'endless_pagination',
+
     # project specific installed apps
     'herobase',
     'heromessage',

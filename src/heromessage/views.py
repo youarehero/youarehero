@@ -7,12 +7,9 @@ from django.core.urlresolvers import reverse
 from django.db.models.query_utils import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response, get_object_or_404
-from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
-from django.views.generic.list import ListView
-from herobase.forms import UserProfileEdit
-from .models import Message
-from .forms import MessageForm
+from models import Message
+from forms import MessageForm
 import logging
 
 logger = logging.getLogger('youarehero.heromessage')

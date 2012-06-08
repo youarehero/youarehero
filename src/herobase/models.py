@@ -138,15 +138,13 @@ class Adventure(models.Model, ActionMixin):
     def accept(self, request=None):
         self.state = self.STATE_OWNER_ACCEPTED
         if not self.quest.auto_accept:
-            send_mail('YouAreHero - Du wurdest als Held Akzeptiert',
+            Message.send(get_system_user(), self.user,
+                'Du wurdest als Held Akzeptiert',
                 textwrap.dedent('''\
                 Du wurdest als Held akzeptiert. Es kann losgehen!
                 Verabredet dich jetzt mit dem Questgeber um die Quest zu erledigen.
 
-                Quest: https://youarehero.net%s''' % self.quest.get_absolute_url()),
-                'noreply@youarehero.net',
-                [self.user.email],
-                fail_silently=False)
+                Quest: https://youarehero.net%s''' % self.quest.get_absolute_url()))
         self.save()
         self.quest.check_full()
         self.quest.save()
@@ -292,26 +290,20 @@ class Quest(models.Model, ActionMixin):
         adventure, created = self.adventure_set.get_or_create(user=request.user)
         if adventure.state != Adventure.STATE_HERO_CANCELED:
             if self.auto_accept:
-                send_mail('YouAreHero - Ein Held hat sich beworben',
+                Message.send(get_system_user(), self.owner, 'Ein Held hat sich beworben',
                 textwrap.dedent('''\
                 Auf eine deiner Quests hat sich ein Held beworben.
                 Verabredet euch jetzt um die Quest zu erledigen.
 
-                Quest: https://youarehero.net%s''' % self.get_absolute_url()),
-                'noreply@youarehero.net',
-                [self.owner.email],
-                fail_silently=False)
+                Quest: https://youarehero.net%s''' % self.get_absolute_url()))
             else:
-                send_mail('YouAreHero - Ein Held hat sich beworben',
+                Message.send(get_system_user(), self.owner, 'Ein Held hat sich beworben',
                     textwrap.dedent('''\
                     Auf eine deiner Quests hat sich ein Held beworben.
                     Damit er auch mitmachen kann solltest du seine Teilnahme erlauben.
                     Verabredet euch dann um die Quest zu erledigen.
 
-                    Quest: https://youarehero.net%s''' % self.get_absolute_url()),
-                    'noreply@youarehero.net',
-                    [self.owner.email],
-                    fail_silently=False)
+                    Quest: https://youarehero.net%s''' % self.get_absolute_url()))
         if self.auto_accept:
             adventure.state = Adventure.STATE_OWNER_ACCEPTED
         else:
@@ -407,6 +399,11 @@ class UserProfile(models.Model):
 
     public_location = models.BooleanField(default=False, verbose_name=_("Location is public"),
         help_text=_("Enable this if you want to share your location with other Heroes."))
+
+    about = models.TextField(blank=True, default='', help_text='Some text about you.')
+
+    receive_system_email = models.BooleanField(default=False)
+    receive_private_email = models.BooleanField(default=False)
 
     CLASS_AVATARS =  {
         5: "scientist.jpg",
