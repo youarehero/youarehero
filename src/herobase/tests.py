@@ -218,7 +218,7 @@ class AuthenticatedIntegrationTest(TestCase):
             'level': 1,
             'experience': 1,
             'location': 'location',
-            'due_date': '11/11/13',
+            'due_date': '11.11.2013',
         })
         self.assertTrue(Quest.objects.filter(title='title', owner=self.user).exists())
 
