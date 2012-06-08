@@ -28,6 +28,7 @@ def message_create(request, user_id=None, message_id=None):
     if form.is_valid():
         message = form.save(commit=False)
         message.sender = request.user
+        message.save()
         messages.success(request, 'Message successfully sent')
         return HttpResponseRedirect(reverse('message-list'))
     return render(request, 'message/create.html', {'form': form})
