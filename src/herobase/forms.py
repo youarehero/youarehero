@@ -2,6 +2,7 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
 from django import forms
+from django.forms.util import ErrorList
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.bootstrap import FormActions
@@ -65,7 +66,7 @@ class QuestCreateForm(forms.ModelForm):
         data = super(QuestCreateForm, self).clean()
         if ('experience' in data and 'level' in data and
             int(data['experience']) > int(data['level']) * 100): # TODO experience formula
-            self._errors['experience'] = self._errors.get('experience', forms.ErrorList())
+            self._errors['experience'] = self._errors.get('experience', ErrorList())
             self._errors['experience'].append(_(u'Experience to high for level.'))
             del data['experience']
         return data
