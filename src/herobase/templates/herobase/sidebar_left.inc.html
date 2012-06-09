@@ -8,6 +8,7 @@
     {% if request.user.is_authenticated %}
         {% include "herobase/userprofile/private_avatar.inc.html" %}
         {% include "herobase/navigation.inc.html" %}
+        <p style="border: 1px solid orange; margin-bottom: 2em;">Falls ihr zwischem Vortrag und ~0:45 Nachrichten verschickt habt - die hat das System leider nie Verschickt :-(</p>
     {% else %}
     {#    <p></p>#}
         <h2><span class="stripe">Mach mit!</span></h2>
