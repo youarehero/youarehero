@@ -55,7 +55,7 @@
 
 {% endblock %}
 <script id="_webengage_script_tag" type="text/javascript">
-    $(document).ready(function () {
+    window.setTimeout(function () {
         window.webengageWidgetInit = window.webengageWidgetInit || function(){
             webengage.init({
                 licenseCode:"14507c80d"
@@ -72,7 +72,7 @@
             var _sNode = d.getElementById('_webengage_script_tag');
             _sNode.parentNode.insertBefore(_we, _sNode);
         })(document);
-    });
+    }, 500);
 </script>
 
 </body>
