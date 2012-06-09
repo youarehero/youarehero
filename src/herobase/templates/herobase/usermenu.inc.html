@@ -1,6 +1,7 @@
 {% load i18n %}
 
 {% if request.user.is_authenticated %}
+    <span class="span2">Falls ihr zwischem Vortrag und ~0:45 Nachrichten verschickt habt - die hat das System leider nie Verschickt :-(</span>
     <ul>
         <li><a href="{% url message-list %}">
             <i class="icon-envelope-large">
@@ -10,7 +11,6 @@
             </i>
         </a></li>
         <li><a href="{% url django.contrib.auth.views.logout %}"><span class="stripe">Logout</span></a></li>
-        <li>Falls ihr zwischem dem Vortrag auf der GPN und ~0:45 Nachrichten verschickt habt - die hat das System leider nie Verschickt :-(</li>
     </ul>
 {% endif %}
 
