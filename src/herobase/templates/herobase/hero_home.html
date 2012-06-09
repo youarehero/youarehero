@@ -15,11 +15,17 @@
             <a href="{% url userprofile-edit %}">hier</a>
         </p>
     {% else %}
-        <p>Hinter Deinem Namen steht Deine  <a href="{% url hero_classes %}">Heldenklasse</a>. Alle Quests in YAH! sind einer der fünf Heldenklassen zugeteilt. Du kannst aber jede Quest annehmen, auf die Du Lust hast.</p>
+        <p>Hinter Deinem Namen steht Deine  <a href="{% url hero_classes %}">Heldenklasse</a>.
+            Alle Quests in YAH! sind einer der fünf Heldenklassen zugeteilt.
+            Du kannst aber jede Quest annehmen, auf die Du Lust hast.</p>
     {% endif %}
     {% if not request.user.adventures.exists and not request.user.created_quests.exists %}
         <p>Es sieht so aus als hättest du noch keine Quest. Such' dir doch eine aus
             der <a href="{% url quest-list %}">Liste</a> aus oder
             <a href="{% url quest-create %}">erstelle</a> selbst seine.</p>
     {% endif %}
+
+    <h4>Übrigens</h4>
+    <p>Im Profil bei euren <a href="{% url userprofile-edit %}">Einstellungen</a> kannst Du die <strong>eMail-Benachrichtigung</strong> aktivieren.</p>
+
 {%  endblock %}
