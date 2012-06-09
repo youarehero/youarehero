@@ -378,7 +378,6 @@ h1 small{
     position: absolute;
     bottom: 0;
 }
-
 .submenu ul {
     margin-left: 0;
 }
@@ -387,7 +386,7 @@ h1 small{
     display: inline-block;
 }
 
-submenu li a {
+.submenu li a {
     color: #000;
     font-size: 15px;
     font-weight: bold;
