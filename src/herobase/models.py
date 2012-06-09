@@ -1,10 +1,12 @@
 # -"- coding:utf-8 -"-
+"""This module provides all the basic Quest related models for youarehero."""
+
+import os
 import textwrap
+
 from django.core.files.storage import FileSystemStorage
 from django.core.mail import send_mail
 from django.db.models.query import QuerySet
-from easy_thumbnails.files import get_thumbnailer
-import os
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError, PermissionDenied
@@ -13,15 +15,16 @@ from django.core.validators import MinValueValidator
 from django.db import models, transaction
 from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext_lazy as _
-
-# Create your models here.
 from django.db.models.signals import post_save, post_syncdb
 from django.utils.decorators import method_decorator
+
+from easy_thumbnails.files import get_thumbnailer
+from south.modelsinspector import add_introspection_rules
+
 from herobase.fields import LocationField
 from heromessage.models import Message
 
-from south.modelsinspector import add_introspection_rules
-
+# The classes a User can choose from.
 CLASS_CHOICES =  (
     (5, "Scientist"),
     (1, 'Gadgeteer'),
@@ -29,16 +32,35 @@ CLASS_CHOICES =  (
     (3, 'Action'),
     (4, 'Protective'))
 
-def negate(f):
-    def decorated(*args, **kwargs):
-        return not f(*args, **kwargs)
-    return decorated
 
 class ActionMixin(object):
+    """Provides a mixin to use in Models that want to implement actions."""
+
     def get_actions(self):
-        return []
+        """
+        Return a dict of actions representing available actions for a model
+        instance. To be overriden by the implementing model.
+
+        Example:
+
+            return {
+                'delete': {
+                    # a list of callables that serve as precodition for an action
+                    'conditions': (lambda request: request.user == self.owner, )
+                    # a list of callables that implement the business logic of an action
+                    'actions': (lambda request: self.delete(), ),
+                    # the string representation for the user
+                    'verbose_name': _(u"Delete"),
+                },
+            }
+        """
+        return {}
 
     def valid_actions_for(self, request):
+        """
+        Return a dict containing all actions that may be executed given a 
+        request.
+        """
         actions = self.get_actions()
         valid_actions = SortedDict()
         for name, action in actions.items():
@@ -51,6 +73,7 @@ class ActionMixin(object):
         return valid_actions
 
     def process_action(self, request, action_name):
+        """Execute an action if all its preconditions are satisfied."""
         actions = self.get_actions()
         if not action_name in actions:
             raise ValueError("not a valid action")
@@ -70,19 +93,22 @@ class ActionMixin(object):
 
 
 class AdventureQuerySet(QuerySet):
-   def active(self):
-       return self.exclude(state=Adventure.STATE_HERO_CANCELED)
+    def active(self):
+        """Show only adventures that have not been cancelled."""
+        return self.exclude(state=Adventure.STATE_HERO_CANCELED)
 
 class AdventureManager(models.Manager):
     def get_query_set(self):
         return AdventureQuerySet(model=self.model, using=self._db)
     def active(self):
+        """Show only adventures that have not been cancelled."""
         return self.get_query_set().active()
 
 class Adventure(models.Model, ActionMixin):
+    """Model the relationship between a User and a Quest she is engaged in."""
+
     objects = AdventureManager()
 
-    """Model the relationship between a User and a Quest she is engaged in."""
     user = models.ForeignKey(User, related_name='adventures')
     quest = models.ForeignKey('Quest')
     created = models.DateTimeField(auto_now_add=True)
@@ -107,7 +133,9 @@ class Adventure(models.Model, ActionMixin):
         ))
 
     def get_actions(self):
+        """Return a list of actions for the owner of the related quest."""
         actions = {
+            # allow adventure.user to participate in the quest
             'accept': {
                 'conditions': (self.quest.is_owner, self.quest.is_open,
                                lambda r: self.quest.is_open,
@@ -115,12 +143,14 @@ class Adventure(models.Model, ActionMixin):
                 'actions': (self.accept,),
                 'verbose_name': _(u"Akzeptieren"),
             },
+            # refuse adventure.user participation in the quest
             'refuse': {
                 'conditions': (self.quest.is_owner,
                                lambda r: self.state == self.STATE_HERO_APPLIED),
                 'actions': (self.refuse,),
                 'verbose_name': _(u"Zurückweisen"),
             },
+            # confirm that adventure.user participated in the quest
             'done': {
                 'conditions': (self.quest.is_owner,
                                lambda r: self.state == self.STATE_OWNER_ACCEPTED,
@@ -136,8 +166,10 @@ class Adventure(models.Model, ActionMixin):
 
     #### A C T I O N S ####
     def accept(self, request=None):
+        """Accept adventure.user as a participant and send a notification."""
         self.state = self.STATE_OWNER_ACCEPTED
-        if not self.quest.auto_accept:
+        # send a message if acceptance is not instantaneous
+        if not self.quest.auto_accept: 
             Message.send(get_system_user(), self.user,
                 'Du wurdest als Held Akzeptiert',
                 textwrap.dedent('''\
@@ -146,14 +178,19 @@ class Adventure(models.Model, ActionMixin):
 
                 Quest: https://youarehero.net%s''' % self.quest.get_absolute_url()))
         self.save()
+
+        # recalculate denormalized quest state (quest might be full now)
         self.quest.check_full()
         self.quest.save()
 
     def refuse(self, request=None):
+        """Deny adventure.user participation in the quest."""
+        # TODO : this should maybe generate a message?
         self.state = self.STATE_OWNER_REFUSED
         self.save()
 
     def done(self, request=None):
+        """Confirm a users participation in a quest."""
         profile = self.user.get_profile()
         profile.experience += self.quest.experience
         profile.save()
@@ -178,9 +215,9 @@ class QuestManager(models.Manager):
         return self.get_query_set().inactive()
 
 class Quest(models.Model, ActionMixin):
+    """A quest, owned by a user"""
     objects = QuestManager()
 
-    """A quest, owned by a user"""
     owner = models.ForeignKey(User, related_name='created_quests')
     title = models.CharField(max_length=255)
     description = models.TextField()
