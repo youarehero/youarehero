@@ -374,12 +374,11 @@ h1 small{
 
 /* SubMenu */
 
-@media (min-width: 768px) {
-    .submenu {
-        position: absolute;
-        bottom: 0;
-    }
+.submenu {
+    position: absolute;
+    bottom: 0;
 }
+
 .submenu ul {
     margin-left: 0;
 }
