@@ -13,6 +13,7 @@ Contents:
 
    herobase
 
+   heromessage
 
 Indices and tables
 ==================

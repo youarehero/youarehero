@@ -1,6 +1,6 @@
 herobase
 ========
-bla bla bla
+Quests, UserProfiles and all the basics.
 
 
 Models
