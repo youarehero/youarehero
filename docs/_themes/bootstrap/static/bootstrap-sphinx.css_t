@@ -10,8 +10,8 @@ body {
 }
 
 .navbar .brand {
-  color: #FFF;
-  text-shadow: #777 2px 2px 3px;
+  color: #eee;
+  text-shadow: #777 0px 1px 1px;
 }
 
 {%- block sidebarlogo %}
