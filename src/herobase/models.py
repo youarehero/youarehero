@@ -45,14 +45,12 @@ class ActionMixin(object):
 
             return {
                 'delete': {
-                    # a list of callables that serve as precodition for an action
-                    'conditions': (lambda request: request.user == self.owner, )
-                    # a list of callables that implement the business logic of an action
-                    'actions': (lambda request: self.delete(), ),
-                    # the string representation for the user
-                    'verbose_name': _(u"Delete"),
+                    'conditions': (lambda request: request.user == self.owner, ) # a list of callables that serve as precodition for an action
+                    'actions': (lambda request: self.delete(), ), # a list of callables that implement the business logic of an action
+                    'verbose_name': _(u"Delete"), # the string representation for the user
                 },
             }
+
         """
         return {}
 

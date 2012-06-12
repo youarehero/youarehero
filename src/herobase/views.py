@@ -24,6 +24,7 @@ from django.db.models import Count, Sum
 logger = logging.getLogger('youarehero.herobase')
 
 def quest_list_view(request):
+    """Basic quest list, with django-filter app"""
     f = QuestFilter(request.GET, queryset=Quest.objects.order_by('-created'))
     return render(request, 'herobase/quest/list.html', {
         'filter': f,
@@ -31,6 +32,7 @@ def quest_list_view(request):
     })
 
 class QuestCreateView(CreateView):
+    """Basic Quest create view. This generic view-class should be refactored to a normal view function"""
     context_object_name = "quest"
     form_class = QuestCreateForm
     template_name = "herobase/quest/create.html"
@@ -53,6 +55,7 @@ class QuestCreateView(CreateView):
 
 @login_required
 def quest_detail_view(request, quest_id):
+    """Render detail template for quest, and adventure if it exists."""
     quest = get_object_or_404(Quest, pk=quest_id)
     if not request.user.is_anonymous():
         try:
@@ -69,19 +72,23 @@ def quest_detail_view(request, quest_id):
     return render(request, "herobase/quest/detail.html", context)
 
 def home_view(request):
+    """Proxy view for switching between the hero and the public home view"""
     if request.user.is_authenticated():
         return hero_home_view(request)
     return render(request, "herobase/public_home.html", {'open_quests':
         Quest.objects.filter(state=Quest.STATE_OPEN)})
 
 def abstract(request):
+    """static you are hero abstract view."""
     return render(request, "herobase/abstract.html")
 
 def hero_classes(request):
+    """static view for explaining hero classes."""
     return render(request, "herobase/hero_classes.html")
 
 @login_required
 def hero_home_view(request):
+    """the hero home is only visible for authenticated heros."""
     user = request.user
     return render(request, 'herobase/hero_home.html',
             {
@@ -93,6 +100,7 @@ def hero_home_view(request):
 
 @login_required
 def quest_my(request):
+    """Views the quests the hero is envolved with."""
     user = request.user
     return render(request, 'herobase/quest/my.html',
             {
@@ -105,6 +113,7 @@ def quest_my(request):
 @require_POST
 @login_required
 def quest_update(request, quest_id):
+    """Handle POST data for quest-actions and redirect to quest-detail-view."""
     quest = get_object_or_404(Quest, pk=quest_id)
 
     if 'action' in request.POST:
@@ -123,6 +132,7 @@ def quest_update(request, quest_id):
 @require_POST
 @login_required
 def adventure_update(request, quest_id):
+    """Handle POST data for adventure-actions and redirect to quest-detail-view."""
     quest = get_object_or_404(Quest, pk=quest_id)
 
     if 'adventure_id' in request.POST:
@@ -147,6 +157,7 @@ def adventure_update(request, quest_id):
 
 @login_required
 def userprofile(request, username=None):
+    """Render Userprofile with some stats."""
     if username:
         user = get_object_or_404(User, username=username)
     else:
@@ -179,6 +190,7 @@ def userprofile(request, username=None):
 
 @login_required
 def userprofile_edit(request):
+    """Render the userprofile form and handle possible changes."""
     user = request.user
     form = UserProfileEdit(request.POST or None, instance=user.get_profile())
     if form.is_valid():
@@ -190,6 +202,7 @@ def userprofile_edit(request):
 
 @login_required
 def userprofile_privacy_settings(request):
+    """Render another userprofile form for privacy settings saved on the userprofile."""
     user = request.user
     form = UserProfilePrivacyEdit(request.POST or None, instance=user.get_profile())
     if form.is_valid():
@@ -202,6 +215,7 @@ def userprofile_privacy_settings(request):
 
 @login_required
 def leader_board(request):
+    """Render a view of the top heroes by rank."""
     total = User.objects.select_related().filter(userprofile__experience__gt=0).order_by('-userprofile__experience')
 #    by_class = {}
 #    for hero_class, class_name in CLASS_CHOICES:
@@ -226,6 +240,7 @@ def leader_board(request):
                                                          })
 @login_required
 def random_stats(request):
+    """Some general stats"""
     user = request.user
     class_choices = dict(CLASS_CHOICES)
     color_dict = { 5: '#e8e8e8',
@@ -273,6 +288,7 @@ def random_stats(request):
     return render(request, 'herobase/stats.html', context)
 
 def signups(request):
+    """Special view for nosy developers."""
     if request.user.is_authenticated() and request.user.is_staff:
         logged_in = '\n'.join('%s: %s' % (u.last_login, u.username) for u in User.objects.order_by('-last_login')[:20])
         signed_up = '\n'.join('%s: %s' % (u.date_joined, u.username) for u in User.objects.order_by('-date_joined')[:10])
