@@ -123,6 +123,7 @@ def quest_update(request, quest_id):
 @require_POST
 @login_required
 def adventure_update(request, quest_id):
+    """Update an adventure as the quest owner."""
     quest = get_object_or_404(Quest, pk=quest_id)
 
     if 'adventure_id' in request.POST:

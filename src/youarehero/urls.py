@@ -9,6 +9,7 @@ autocomplete_light.autodiscover()
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^docit/$', 'docit.views.url_list'),
     url(r'^quest/list/$', 'herobase.views.quest_list_view', name='quest-list'),
     url(r'^quest/my/$', 'herobase.views.quest_my', name='quest-my'),
     url(r'^quests/create/$', QuestCreateView.as_view(), name='quest-create'),
