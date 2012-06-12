@@ -1,5 +1,10 @@
 # -"- coding:utf-8 -"-
-"""This module provides all the basic Quest related models for You are HERO."""
+"""
+This module provides all the basic Quest related models for You are HERO.
+The most important are Quest, Userprofile (represents a hero) and Adventure.
+This module also contains the ActionMixin, which provides basic logic for model actions.
+The model actions connect state logic to the models.
+"""
 
 import os
 import textwrap

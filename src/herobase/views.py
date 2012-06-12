@@ -1,4 +1,6 @@
-# Create your views here.
+"""
+The Views module provide view functions, which were called by the url dispatcher, and aggregate some data for use in templates.
+"""
 from itertools import chain
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied

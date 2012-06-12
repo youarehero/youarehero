@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+This module provides the form-classes (definition) for the basic models, especially Quest, Adventure and Userprofile.
+"""
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
 from django import forms
@@ -15,6 +18,7 @@ from herobase.widgets import LocationWidget
 
 
 class QuestCreateForm(forms.ModelForm):
+    """The Basic Quest create form. Uses django-crispy-forms (FormHelper) for 2 column bootstrap output. """
     experience = forms.IntegerField(initial=100)
     level = forms.IntegerField(initial=1)
     location = forms.CharField(initial="GPN")
@@ -55,13 +59,14 @@ class QuestCreateForm(forms.ModelForm):
         )
         super(QuestCreateForm, self).__init__(*args, **kwargs)
 
-
+    # the quest level must be smaller or equal to hero level.
     def clean_level(self):
         data = self.cleaned_data['level']
         if self.request.user.get_profile().level < int(data):
             raise ValidationError("Your level is not high enough for this quest level!")
         return data
 
+    # the experience has something to do with the level too
     def clean(self):
         data = super(QuestCreateForm, self).clean()
         if ('experience' in data and 'level' in data and
@@ -77,6 +82,7 @@ class QuestCreateForm(forms.ModelForm):
 
 
 class UserProfileEdit(forms.ModelForm):
+    """Basic userprofile edit form. uses crispy-forms."""
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
@@ -110,6 +116,7 @@ class UserProfileEdit(forms.ModelForm):
         }
 
 class UserProfilePrivacyEdit(forms.ModelForm):
+    """Special userprofile edit form for the fields containing privacy settings."""
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
@@ -136,12 +143,14 @@ class UserProfilePrivacyEdit(forms.ModelForm):
 
 
 class UserRegistrationForm(RegistrationFormUniqueEmail):
+    """Custom Registration form with hero class and unique email."""
     username = forms.CharField(max_length=75,
         widget=forms.TextInput(attrs={'class': 'required'}),
         label=_("Username"))
 
 
 class UserAuthenticationForm(AuthenticationForm):
+    """Custom login form."""
     error_messages = AuthenticationForm.error_messages
     error_messages.update({'invalid_login': _("Please enter a correct e-mail address and password. "
                                 "Note that both fields are case-sensitive.")})
