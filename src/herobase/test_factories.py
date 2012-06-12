@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+"""
+The factories in this file create the basic You are HERO models with default values.
+With keyword arguments you can overwrite the default values.
+"""
 import datetime
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
@@ -6,6 +10,7 @@ from django.contrib.auth.models import User
 from herobase.models import Quest, CLASS_CHOICES, Adventure
 
 def factory(f):
+    """factory decorator: provides a counter for use as id for example."""
     def decorated(*args, **kwargs):
         decorated._created += 1
         kwargs['create_counter'] = decorated._created,
@@ -16,6 +21,7 @@ def factory(f):
 
 @factory
 def create_user(**kwargs):
+    """creates a user with username: user_<counter>."""
     create_counter = kwargs.pop('create_counter')
     user_data = {
         'username': 'user_%d'  % create_counter,
@@ -37,6 +43,7 @@ def create_user(**kwargs):
 
 @factory
 def create_quest(**kwargs):
+    """Create a quest. default state is "open". if no owner is given, create one."""
     create_counter = kwargs.pop('create_counter')
     quest_data = {'title': 'quest_%d' % create_counter,
                   'description': 'description',
@@ -53,6 +60,7 @@ def create_quest(**kwargs):
 
 @factory
 def create_adventure(quest, **kwargs):
+    """Creates an adventure. if no user is given, create one."""
     create_counter = kwargs.pop('create_counter')
     adventure_data = {
         'state': Adventure.STATE_HERO_APPLIED,

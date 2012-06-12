@@ -1,5 +1,10 @@
 # -"- coding:utf-8 -"-
-"""This module provides all the basic Quest related models for youarehero."""
+"""
+This module provides all the basic Quest related models for You are HERO.
+The most important are Quest, Userprofile (represents a hero) and Adventure.
+This module also contains the ActionMixin, which provides basic logic for model actions.
+The model actions connect state logic to the models.
+"""
 
 import os
 import textwrap
@@ -24,7 +29,7 @@ from south.modelsinspector import add_introspection_rules
 from herobase.fields import LocationField
 from heromessage.models import Message
 
-# The classes a User can choose from.
+# The classes a User can choose from. (Heroclasses)
 CLASS_CHOICES =  (
     (5, "Scientist"),
     (1, 'Gadgeteer'),
@@ -45,14 +50,12 @@ class ActionMixin(object):
 
             return {
                 'delete': {
-                    # a list of callables that serve as precodition for an action
-                    'conditions': (lambda request: request.user == self.owner, )
-                    # a list of callables that implement the business logic of an action
-                    'actions': (lambda request: self.delete(), ),
-                    # the string representation for the user
-                    'verbose_name': _(u"Delete"),
+                    'conditions': (lambda request: request.user == self.owner, ) # a list of callables that serve as precodition for an action
+                    'actions': (lambda request: self.delete(), ), # a list of callables that implement the business logic of an action
+                    'verbose_name': _(u"Delete"), # the string representation for the user
                 },
             }
+
         """
         return {}
 
@@ -94,14 +97,15 @@ class ActionMixin(object):
 
 class AdventureQuerySet(QuerySet):
     def active(self):
-        """Show only adventures that have not been cancelled."""
+        """Show only adventures that have not been canceled."""
         return self.exclude(state=Adventure.STATE_HERO_CANCELED)
 
 class AdventureManager(models.Manager):
+    """Custom Object Manager for Adventures, excluding canceled ones."""
     def get_query_set(self):
         return AdventureQuerySet(model=self.model, using=self._db)
     def active(self):
-        """Show only adventures that have not been cancelled."""
+        """Show only adventures that have not been canceled."""
         return self.get_query_set().active()
 
 class Adventure(models.Model, ActionMixin):
@@ -114,6 +118,7 @@ class Adventure(models.Model, ActionMixin):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
+    # The Adventure States are related to a Quest and a User
     STATE_NOT_SET = 0
     STATE_HERO_APPLIED = 1
     STATE_OWNER_REFUSED = 2
@@ -133,7 +138,9 @@ class Adventure(models.Model, ActionMixin):
         ))
 
     def get_actions(self):
-        """Return a list of actions for the owner of the related quest."""
+        """Returns a list of actions for the owner of the related quest.
+        These actions are related to the quest AND a hero AND are not hero-actions
+        (which are all on the quest). """
         actions = {
             # allow adventure.user to participate in the quest
             'accept': {
@@ -207,6 +214,7 @@ class QuestQuerySet(QuerySet):
 
 
 class QuestManager(models.Manager):
+    """Custom Quest Object Manager, for active and inactive Quests"""
     def get_query_set(self):
         return QuestQuerySet(model=self.model, using=self._db)
     def active(self):
@@ -215,7 +223,7 @@ class QuestManager(models.Manager):
         return self.get_query_set().inactive()
 
 class Quest(models.Model, ActionMixin):
-    """A quest, owned by a user"""
+    """A quest, owned by a user."""
     objects = QuestManager()
 
     owner = models.ForeignKey(User, related_name='created_quests')
@@ -242,6 +250,7 @@ class Quest(models.Model, ActionMixin):
     level = models.PositiveIntegerField(choices=QUEST_LEVELS)
     experience = models.PositiveIntegerField()
 
+    # States for the Quest. OPEN + FULL = ACTIVE, DONE + CANCELED = INACTIVE
     STATE_NOT_SET = 0
     STATE_OPEN = 1
     STATE_FULL = 2
@@ -258,36 +267,42 @@ class Quest(models.Model, ActionMixin):
     state = models.IntegerField(default=STATE_OPEN, choices=QUEST_STATES)
 
     def active_heroes(self):
-        """Return all accepted heroes and heros who claim to be done"""
+        """Return all heroes active on a quest. These are accepted heroes and heroes who claim to be done."""
         return self.heroes.filter(adventures__quest=self.pk,
             adventures__state__in=(Adventure.STATE_OWNER_ACCEPTED,
                                    Adventure.STATE_HERO_DONE))
 
     def accepted_heroes(self):
-        """Return all accepted heroes and heros who are done or claim so"""
+        """Return all accepted heroes and following states (heros who are done or claim so)"""
         return self.heroes.filter(adventures__quest=self.pk,
             adventures__state__in=(Adventure.STATE_OWNER_ACCEPTED,
                                    Adventure.STATE_OWNER_DONE,
                                    Adventure.STATE_HERO_DONE))
 
     def applying_heroes(self):
+        """Return all heroes, applying for the quest."""
         return self.heroes.filter(adventures__quest=self.pk,
             adventures__state=Adventure.STATE_HERO_APPLIED)
 
     def done_heroes(self):
+        """Return the heroes, who are done with the quest."""
         return self.heroes.filter(adventures__quest=self.pk,
             adventures__state=Adventure.STATE_OWNER_DONE)
 
     def remaining_slots(self):
+        """Number of heroes who may participate in the quest until maximum number of heroes is achieved"""
         return self.max_heroes - self.accepted_heroes().count()
 
     def clean(self):
+        """Clean function for form validation: Max XPs are associated to quest level"""
         if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
             raise ValidationError('Maximum experience for quest with level {0} is {1}'.format(self.level, self.level * 100))
 
 
     def get_actions(self):
+        """All actions on quests."""
         actions = SortedDict((
+            # Mark quest as done. The quest is completed and not longer active.
             ('done', {
                 'conditions': (self.is_owner, self.is_active,
                                lambda r: self.accepted_heroes()),
@@ -295,17 +310,19 @@ class Quest(models.Model, ActionMixin):
                 'verbose_name': _(u"Quest abschließen"),
 
                 }),
+            # Cancel the quest. The quest is not longer active.
             ('cancel', {
                 'conditions': (self.is_owner, self.is_active),
                 'actions': (self.cancel,),
                 'verbose_name': _("Quest abbrechen"),
                 }),
+            # A hero can apply for a quest, if it is open and she is not the owner or has already started an adventure.
             ('hero_apply', {
-                'conditions': (self.is_open, self.can_apply,
-                                self.is_open),
+                'conditions': (self.is_open, self.can_apply,),
                 'actions': (self.hero_apply, ),
                 'verbose_name': _("Bewerben"),
                 }),
+            # A hero can cancel his adventure, if she has started one.
             ('hero_cancel', {
                 'conditions': (self.is_active,
                                lambda r: r.user in (list(self.active_heroes()) + list(self.applying_heroes()))),
@@ -318,6 +335,7 @@ class Quest(models.Model, ActionMixin):
     ####  A C T I O N S ####
 
     def hero_cancel(self, request):
+        """Cancels an adventure on this quest."""
         adventure = self.adventure_set.get(user=request.user)
         adventure.state = Adventure.STATE_HERO_CANCELED
         adventure.save()
@@ -325,7 +343,9 @@ class Quest(models.Model, ActionMixin):
         self.save()
 
     def hero_apply(self, request):
+        """Applies a hero to the quest and create an adventure for her."""
         adventure, created = self.adventure_set.get_or_create(user=request.user)
+        # send a message when a hero applies for the first time
         if adventure.state != Adventure.STATE_HERO_CANCELED:
             if self.auto_accept:
                 Message.send(get_system_user(), self.owner, 'Ein Held hat sich beworben',
@@ -347,26 +367,21 @@ class Quest(models.Model, ActionMixin):
         else:
             adventure.state = Adventure.STATE_HERO_APPLIED
         adventure.save()
-#        Message.objects.create(
-#            sender=get_system_user(),
-#            recipient=adventure.quest.owner,
-#            text="%s applied to your Quest %s. Have a look at https://youarehero.net%s" % (
-#                request.user, adventure.quest.title,
-#                adventure.quest.get_absolute_url()),
-#            title="New Hero applied")
 
     def cancel(self, request=None):
+        """Cancels the whole quest."""
         self.state = self.STATE_OWNER_CANCELED
         self.save()
 
     def done(self, request=None):
-        # todo: xp und so
+        """Mark the quest as done. The quest is complete and inactive."""
 
         self.state = self.STATE_OWNER_DONE
         self.save()
 
     #### C O N D I T I O N S ####
     def needs_attention(self):
+        """Only for playtest. Later there should be Notifications for this."""
         return self.adventure_set.filter(state__in=(Adventure.STATE_HERO_APPLIED, Adventure.STATE_HERO_DONE)).exists()
 
     def is_owner(self, request):
@@ -391,7 +406,7 @@ class Quest(models.Model, ActionMixin):
         return self.state in (Quest.STATE_OWNER_CANCELED, Quest.STATE_OWNER_DONE)
 
     def check_full(self, request=None):
-        """Calculates if quest is full or not"""
+        """Calculates if quest is full or not. Needs to be called when a hero is accepted or cancels his adventure."""
         if self.is_closed():
             return
         if not self.max_heroes:
@@ -402,12 +417,15 @@ class Quest(models.Model, ActionMixin):
             self.state = Quest.STATE_FULL
 
     def can_apply(self, request):
+        """Additional conditions for applying heros."""
+        # The hero must not be the owner of the quest.
         if self.is_owner(request):
             return False
         try:
             adventure = self.adventure_set.get(user=request.user)
         except Adventure.DoesNotExist:
             return True
+        # And if there is an adventure already, it must be canceled
         return adventure.state in (Adventure.STATE_HERO_CANCELED, )
 
     #### M I S C ####
@@ -417,11 +435,12 @@ class Quest(models.Model, ActionMixin):
         return reverse("quest-detail", args=(self.pk,))
 
     def __unicode__(self):
+        """String representation"""
         return self.title
 
 
 class UserProfile(models.Model):
-
+    """This model extends a django user with additional hero information."""
     add_introspection_rules([], ["^herobase\.fields\.LocationField"])
 
     """Hold extended user information."""
@@ -430,6 +449,7 @@ class UserProfile(models.Model):
     location = models.CharField(max_length=255) # TODO : placeholder
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
 
+    # google geolocation
     geolocation = LocationField(_(u'geolocation'), max_length=100, default='48,8') # todo : fix default :-)
 
     created = models.DateTimeField(auto_now_add=True)
@@ -452,12 +472,15 @@ class UserProfile(models.Model):
     avatar_storage = FileSystemStorage(location=os.path.join(settings.PROJECT_ROOT, 'assets/'))
 
     def avatar_thumbnails(self):
+        """Return a list of avatar thumbnails 50x50"""
         return self._avatar_thumbnails((50, 50))
 
     def avatar_thumbnails_tiny(self):
+        """Return a list of avatar thumbnails 15x15"""
         return self._avatar_thumbnails((15, 15))
 
     def _avatar_thumbnails(self, size):
+        """Return a list of tuples (id,img_url) of avatar thumbnails."""
         thumbs = []
         for id, image_name in self.CLASS_AVATARS.items():
             image = os.path.join('avatar/', image_name)
@@ -467,6 +490,7 @@ class UserProfile(models.Model):
         return thumbs
 
     def avatar(self):
+        """Return a String, containing a path to a thumbnail-image 270x270."""
         file_name = "default.png"
         if self.hero_class  is not None:
             file_name = self.CLASS_AVATARS[self.hero_class]
@@ -486,10 +510,12 @@ class UserProfile(models.Model):
         return int(self.experience / 1000) + 1 # TODO: correct formula
 
     def relative_level_experience(self):
+        """Calculates percentage of XP for current level."""
         return (self.experience % 1000) / 10 # TODO: correct formula
 
     @property
     def unread_messages_count(self):
+        """Return number of unread messages."""
         return Message.objects.filter(recipient=self.user,read__isnull=True,recipient_deleted__isnull=True).count()
 
     def __unicode__(self):
@@ -535,5 +561,6 @@ user_activated.connect(login_on_activation)
 SYSTEM_USER_NAME = "YouAreHero"
 
 def get_system_user():
+    """Return an unique system-user. Creates one if not existing."""
     user, created = User.objects.get_or_create(username=SYSTEM_USER_NAME)
     return user

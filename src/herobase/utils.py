@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+Up to now here is only a plain password hasher for faster tests. Never use it elsewhere.
+"""
 from django.contrib.auth.hashers import mask_hash, BasePasswordHasher
 from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext as _
@@ -8,6 +11,7 @@ from django.db import models
 class PlainTextPasswordHasher(BasePasswordHasher):
     """
     I am an incredibly insecure algorithm you should *never* use;
+    I am only for faster tests.
     """
     algorithm = "plain"
 

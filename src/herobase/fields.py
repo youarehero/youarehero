@@ -3,7 +3,8 @@ from django.db import models
 from herobase.widgets import LocationWidget
 
 class LocationFormField(forms.CharField):
-
+    """ Custom Form field for geolocation
+    """
     def clean(self, value):
 
         if value is u'' or value is None:
@@ -18,7 +19,8 @@ class LocationFormField(forms.CharField):
         return "%f,%f" % (lat, lng)
 
 class LocationField(models.CharField):
-
+    """ Custom Field for geolocation
+    """
     def formfield(self, **kwargs):
         defaults = {
             'form_class': LocationFormField

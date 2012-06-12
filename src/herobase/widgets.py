@@ -1,3 +1,7 @@
+"""
+Custom Form Widgets for django models.
+"""
+
 from django import forms
 from django.db import models
 from django.utils.safestring import mark_safe
@@ -5,11 +9,12 @@ from django.utils.safestring import mark_safe
 DEFAULT_WIDTH = 400
 DEFAULT_HEIGHT = 300
 
-DEFAULT_LAT = 55.16
+DEFAULT_LAT = 55.16 #hmm, i like egypt
 DEFAULT_LNG = 61.4
 
 
 class LocationWidget(forms.TextInput):
+    """Custom geolocation widget."""
     def __init__(self, *args, **kw):
 
         """
