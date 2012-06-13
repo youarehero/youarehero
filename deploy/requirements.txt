@@ -13,13 +13,9 @@ django-crispy-forms==1.1.3
 django-extensions==0.8
 django-registration==0.8
 docutils==0.9
-factory-boy==1.1.3
-ipython==0.12.1
-logilab-astng==0.23.1
-logilab-common==0.57.1
-pycrypto==2.5
 pylint==0.25.1
 ssh==1.7.13
 wsgiref==0.1.2
 -e git+https://github.com/alex/django-filter.git@51b39fca089f2cb1d3d3501d2e164635fbe52864#egg=django_filter-dev
-django-endless-pagination==1.1
+easy-thumbnails==1.0.3
+Pillow==1.7.7

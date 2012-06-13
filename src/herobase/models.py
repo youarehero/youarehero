@@ -50,9 +50,12 @@ class ActionMixin(object):
 
             return {
                 'delete': {
-                    'conditions': (lambda request: request.user == self.owner, ) # a list of callables that serve as precodition for an action
-                    'actions': (lambda request: self.delete(), ), # a list of callables that implement the business logic of an action
-                    'verbose_name': _(u"Delete"), # the string representation for the user
+                    # a list of callables that serve as precodition for an action
+                    'conditions': (lambda request: request.user == self.owner, )
+                    # a list of callables that implement the business logic of an action
+                    'actions': (lambda request: self.delete(), ),
+                    # the string representation for the user
+                    'verbose_name': _(u"Delete"),
                 },
             }
 
@@ -214,7 +217,7 @@ class QuestQuerySet(QuerySet):
 
 
 class QuestManager(models.Manager):
-    """Custom Quest Object Manager, for active and inactive Quests"""
+    """Custom Quest Object Manager, for active and inactive `Quest` objects"""
     def get_query_set(self):
         return QuestQuerySet(model=self.model, using=self._db)
     def active(self):
@@ -241,10 +244,15 @@ class Quest(models.Model, ActionMixin):
 
     max_heroes = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
     auto_accept = models.BooleanField(default=False, verbose_name="automatisch akzeptieren",
-        help_text=_(u"Wenn aktiviert, akzeptierst Du Helden automatisch. Du kannst dann allerdings niemanden zurückweisen."))
+        help_text=_(u"Wenn aktiviert, akzeptierst Du Helden automatisch."
+                    u" Du kannst dann allerdings niemanden zurückweisen."))
 
     QUEST_LEVELS = (
-        (1, '1 (Easy)'), (2, '2 (Okay)'), (3, '3 (Experienced)'), (4, '4 (Challenging)'), (5, 'Heroic')
+        (1, '1 (Easy)'),
+        (2, '2 (Okay)'),
+        (3, '3 (Experienced)'),
+        (4, '4 (Challenging)'),
+        (5, 'Heroic')
     )
 
     level = models.PositiveIntegerField(choices=QUEST_LEVELS)
@@ -267,13 +275,15 @@ class Quest(models.Model, ActionMixin):
     state = models.IntegerField(default=STATE_OPEN, choices=QUEST_STATES)
 
     def active_heroes(self):
-        """Return all heroes active on a quest. These are accepted heroes and heroes who claim to be done."""
+        """Return all heroes active on a quest. These are accepted heroes
+         and heroes who claim to be done."""
         return self.heroes.filter(adventures__quest=self.pk,
             adventures__state__in=(Adventure.STATE_OWNER_ACCEPTED,
                                    Adventure.STATE_HERO_DONE))
 
     def accepted_heroes(self):
-        """Return all accepted heroes and following states (heros who are done or claim so)"""
+        """Return all accepted heroes and following states (heros who
+        are done or claim so)"""
         return self.heroes.filter(adventures__quest=self.pk,
             adventures__state__in=(Adventure.STATE_OWNER_ACCEPTED,
                                    Adventure.STATE_OWNER_DONE,
@@ -290,7 +300,8 @@ class Quest(models.Model, ActionMixin):
             adventures__state=Adventure.STATE_OWNER_DONE)
 
     def remaining_slots(self):
-        """Number of heroes who may participate in the quest until maximum number of heroes is achieved"""
+        """Number of heroes who may participate in the quest until maximum
+         number of heroes is achieved"""
         return self.max_heroes - self.accepted_heroes().count()
 
     def clean(self):
@@ -316,7 +327,8 @@ class Quest(models.Model, ActionMixin):
                 'actions': (self.cancel,),
                 'verbose_name': _("Quest abbrechen"),
                 }),
-            # A hero can apply for a quest, if it is open and she is not the owner or has already started an adventure.
+            # A hero can apply for a quest, if it is open and she is not the
+            # owner or has already started an adventure.
             ('hero_apply', {
                 'conditions': (self.is_open, self.can_apply,),
                 'actions': (self.hero_apply, ),
@@ -325,7 +337,8 @@ class Quest(models.Model, ActionMixin):
             # A hero can cancel his adventure, if she has started one.
             ('hero_cancel', {
                 'conditions': (self.is_active,
-                               lambda r: r.user in (list(self.active_heroes()) + list(self.applying_heroes()))),
+                               lambda r: r.user in (list(self.active_heroes())
+                                                  + list(self.applying_heroes()))),
                 'actions': (self.hero_cancel, ),
                 'verbose_name': _("Abbrechen"),
                 }),
@@ -382,7 +395,8 @@ class Quest(models.Model, ActionMixin):
     #### C O N D I T I O N S ####
     def needs_attention(self):
         """Only for playtest. Later there should be Notifications for this."""
-        return self.adventure_set.filter(state__in=(Adventure.STATE_HERO_APPLIED, Adventure.STATE_HERO_DONE)).exists()
+        return self.adventure_set.filter(state__in=(Adventure.STATE_HERO_APPLIED,
+                                                    Adventure.STATE_HERO_DONE)).exists()
 
     def is_owner(self, request):
         return self.owner == request.user
@@ -406,7 +420,8 @@ class Quest(models.Model, ActionMixin):
         return self.state in (Quest.STATE_OWNER_CANCELED, Quest.STATE_OWNER_DONE)
 
     def check_full(self, request=None):
-        """Calculates if quest is full or not. Needs to be called when a hero is accepted or cancels his adventure."""
+        """Calculates if quest is full or not. Needs to be called when
+        a hero is accepted or cancels his adventure."""
         if self.is_closed():
             return
         if not self.max_heroes:
@@ -460,8 +475,14 @@ class UserProfile(models.Model):
 
     about = models.TextField(blank=True, default='', help_text='Some text about you.')
 
-    receive_system_email = models.BooleanField(default=False, verbose_name="Bei Questaenderungen per Mail benachrichtigen.", help_text="Setze diesen Hacken wenn du bei Aenderungen an deinen Quests per Mail benachrichtigt werden willst")
-    receive_private_email = models.BooleanField(default=False, verbose_name="Bei privaten Nachrichten per Mail benachrichtigen.", help_text="Setze diesen Hacken wenn du bei Nachrichten von anderen NUtzern benachrichtigt werden willst")
+    receive_system_email = models.BooleanField(default=False,
+        verbose_name="Bei Questaenderungen per Mail benachrichtigen.",
+        help_text="Setze diesen Hacken wenn du bei Aenderungen an deinen"
+                  " Quests per Mail benachrichtigt werden willst")
+    receive_private_email = models.BooleanField(default=False,
+        verbose_name="Bei privaten Nachrichten per Mail benachrichtigen.",
+        help_text="Setze diesen Hacken wenn du bei Nachrichten von anderen "
+                  "Nutzern benachrichtigt werden willst")
 
     CLASS_AVATARS =  {
         5: "scientist.jpg",
@@ -516,7 +537,8 @@ class UserProfile(models.Model):
     @property
     def unread_messages_count(self):
         """Return number of unread messages."""
-        return Message.objects.filter(recipient=self.user,read__isnull=True,recipient_deleted__isnull=True).count()
+        return Message.objects.filter(recipient=self.user,read__isnull=True,
+            recipient_deleted__isnull=True).count()
 
     def __unicode__(self):
         return self.user.username
