@@ -18,11 +18,11 @@ Installation Guide
 ==================
 
 After cloning the git repository, you need ``pip`` and ``virtualenv`` installed on your system.
-You may use your operating system's package manager; E.g.::
+You may use your operating system's package manager::
 
     $ sudo apt-get install pip virtualenv
 
-or using ``easy_install``::
+or use ``easy_install``::
 
     $ easy_install pip; easy_install virtualenv
 
@@ -36,12 +36,13 @@ Browse to the project git dir and run::
 The script will make a virtual environment ready (in ``env/``) and install all required
 Django apps and python packages.
 
-Henceforth you need to ``activate`` your virtuel environment::
+From now on you need to ``activate`` your virtuel environment::
 
     $ source env/bin/activate
     (env)$
 
-You can ``deactivate`` the environment with::
+All commands starting with ``(env)$`` are assumed to run within your virtual env.
+Later you may want to ``deactivate`` the environment::
 
     (env)$ deactivate
     $
@@ -54,7 +55,7 @@ For developing purposes the default Database engine is ``sqlite``. Run::
     (env)$ src/manage.py syncdb
     (env)$ src/managy.py migrate
 
-for initial database setup. If you were asked to create a superuser, do so.
+for initial database setup. If you were asked to create a superuser, do so and continue.
 
 Start Development Server
 ------------------------
@@ -63,7 +64,8 @@ Now you are ready to test your installation::
 
     (env)$ src/manage.py runserver
 
-Try to visit `localhost on port 8000 <http://localhost:8000>`_.
+Try to visit `localhost on port 8000 <http://localhost:8000>`_. If everything is
+working correctly you should see the **You are HERO** public home view.
 
 Source Documentation
 ====================
