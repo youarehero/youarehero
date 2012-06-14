@@ -225,6 +225,7 @@ class QuestManager(models.Manager):
     def inactive(self):
         return self.get_query_set().inactive()
 
+
 class Quest(models.Model, ActionMixin):
     """A quest, owned by a user."""
     objects = QuestManager()
@@ -458,7 +459,6 @@ class UserProfile(models.Model):
     """This model extends a django user with additional hero information."""
     add_introspection_rules([], ["^herobase\.fields\.LocationField"])
 
-    """Hold extended user information."""
     user = models.OneToOneField(User)
     experience = models.PositiveIntegerField(default=0)
     location = models.CharField(max_length=255) # TODO : placeholder

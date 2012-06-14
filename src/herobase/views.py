@@ -7,7 +7,6 @@ from itertools import chain
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.utils import simplejson
-from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_POST
 from django.contrib import messages
@@ -17,7 +16,6 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 
-from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from filters import QuestFilter
 from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit
