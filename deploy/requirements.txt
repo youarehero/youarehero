@@ -15,6 +15,6 @@ docutils==0.9
 pylint==0.25.1
 ssh==1.7.13
 wsgiref==0.1.2
--e git+https://github.com/alex/django-filter.git@51b39fca089f2cb1d3d3501d2e164635fbe52864#egg=django_filter
 easy-thumbnails==1.0.3
 Pillow==1.7.7
+-e git://github.com/alex/django-filter.git#egg=django-filter
