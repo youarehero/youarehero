@@ -17,21 +17,37 @@ of the **You are HERO** project.
 Installation Guide
 ==================
 
+Bis das Projekt auf Github liegt: Mail uns mit ssh-key.
+
+Nachdem Du uns euren ssh-key habt zukommen lassen::
+
+    $ git clone ssh://username@queen.daenerys.de:54884/srv/git/youarehero
+
 After cloning the git repository, you need ``pip`` and ``virtualenv`` installed on your system.
 You may use your operating system's package manager::
 
-    $ sudo apt-get install pip virtualenv
+    $ sudo apt-get install python-pip python-virtualenv
 
 or use ``easy_install``::
 
     $ easy_install pip; easy_install virtualenv
+
+Sieht so aus als bräuchte man noch::
+
+    libjpeg(-dev) python(-dev)
+
+Aber das steht auch in der virtualenv anleitung ...
 
 Project Requirements
 --------------------
 
 Browse to the project git dir and run::
 
-    $ deploy/bootstrap_dev
+    $ deploy/bootstrap_dev ##########
+
+    # ACHTUNG: readline kaputt/ wenn ein module fehlt gibts keinen fehler
+    # Falls das script nich durchläuft:
+    # (env)$ pip install -r deploy/requirements.txt
 
 The script will make a virtual environment ready (in ``env/``) and install all required
 Django apps and python packages.
@@ -42,10 +58,6 @@ From now on you need to ``activate`` your virtuel environment::
     (env)$
 
 All commands starting with ``(env)$`` are assumed to run within your virtual env.
-Later you may want to ``deactivate`` the environment::
-
-    (env)$ deactivate
-    $
 
 Initialize Database
 -------------------
@@ -66,6 +78,14 @@ Now you are ready to test your installation::
 
 Try to visit `localhost on port 8000 <http://localhost:8000>`_. If everything is
 working correctly you should see the **You are HERO** public home view.
+
+Deactivate Virtual Env
+======================
+
+Later you may want to ``deactivate`` the environment::
+
+    (env)$ deactivate
+    $
 
 Source Documentation
 ====================
