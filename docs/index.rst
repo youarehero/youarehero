@@ -17,9 +17,9 @@ of the **You are HERO** project.
 Installation Guide
 ==================
 
-Bis das Projekt auf Github liegt: Mail uns mit ssh-key.
+Bis das Projekt auf Github liegt: Mail uns Deinen ssh-key.
 
-Nachdem Du uns euren ssh-key habt zukommen lassen::
+Nachdem Du uns Deinen ssh-key hast zukommen lassen::
 
     $ git clone ssh://username@queen.daenerys.de:54884/srv/git/youarehero
 
