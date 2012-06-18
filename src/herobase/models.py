@@ -46,11 +46,6 @@ def action(verbose_name=None, condition=None):
     def decorator(f):
         f.action = index
         f.verbose_name = verbose_name or f.__name__
-        if condition:
-            if isinstance(condition, basestring):
-                f.condition = condition
-            else:
-                f.condition = condition.__name__
         return f
     setattr(action, 'index', index + 1)
     return method_decorator(decorator)
@@ -81,7 +76,7 @@ class ActionMixin(object):
         valid_actions = SortedDict()
         for name in actions:
             action = getattr(self, name)
-            if not hasattr(action, 'condition') or getattr(self, action.condition)(request):
+            if action(request, validate_only=True):
                 valid_actions[name] = {'verbose_name': action.verbose_name}
         return valid_actions
 
@@ -91,9 +86,9 @@ class ActionMixin(object):
         if not action_name in actions:
             raise ValueError("not a valid action")
         action = getattr(self, action_name)
-        if hasattr(action, 'condition') and not getattr(self, action.condition)(request):
-            raise PermissionDenied("Can't execute action %s" % action)
-        action(request)
+        if not action(request, validate_only=True):
+            raise PermissionDenied(action_name)
+        return action(request)
 
 
 class AdventureQuerySet(QuerySet):
@@ -146,16 +141,15 @@ class Adventure(models.Model, ActionMixin):
     def __unicode__(self):
         return '%s - %s' % (self.quest.title, self.user.username)
 
-    #### A C T I O N S ####
-    def owner_can_accept(self, request):
-        return self.quest.is_open() and request.user == self.quest.owner and self.state == Adventure.STATE_HERO_APPLIED
-
-    @action(verbose_name=_("Accept"), condition=owner_can_accept)
-    def accept(self, request):
+    @action(verbose_name=_("Accept"))
+    def accept(self, request, validate_only=False):
         """Accept adventure.user as a participant and send a notification."""
+        valid = self.quest.is_open() and request.user == self.quest.owner and self.state == Adventure.STATE_HERO_APPLIED
+        if validate_only or not valid:
+            return valid
         self.state = self.STATE_OWNER_ACCEPTED
         # send a message if acceptance is not instantaneous
-        if not self.quest.auto_accept: 
+        if not self.quest.auto_accept:
             Message.send(get_system_user(), self.user,
                 'Du wurdest als Held Akzeptiert',
                 textwrap.dedent('''\
@@ -169,24 +163,24 @@ class Adventure(models.Model, ActionMixin):
         self.quest.save()
 
 
-    def owner_can_refuse(self, request):
-        return self.quest.owner == request.user and self.state == self.STATE_HERO_APPLIED
-
-    @action(verbose_name=_("Refuse"), condition=owner_can_refuse)
-    def refuse(self, request=None):
+    @action(verbose_name=_("Refuse"))
+    def refuse(self, request=None, validate_only=False):
         """Deny adventure.user participation in the quest."""
         # TODO : this should maybe generate a message?
+        valid = self.quest.owner == request.user and self.state == self.STATE_HERO_APPLIED
+        if validate_only or not valid:
+            return valid
         self.state = self.STATE_OWNER_REFUSED
         self.save()
 
-    def owner_can_mark_done(self, request):
-        return (self.quest.owner == request.user and
-                self.state == self.STATE_OWNER_ACCEPTED and
-                self.quest.state == Quest.STATE_OWNER_DONE)
-
-    @action(verbose_name=_("Done"), condition=owner_can_mark_done)
-    def done(self, request=None):
+    @action(verbose_name=_("Done"))
+    def done(self, request=None, validate_only=False):
         """Confirm a users participation in a quest."""
+        valid = (self.quest.owner == request.user and
+                 self.state == self.STATE_OWNER_ACCEPTED and
+                 self.quest.state == Quest.STATE_OWNER_DONE)
+        if validate_only or not valid:
+            return valid
         profile = self.user.get_profile()
         profile.experience += self.quest.experience
         profile.save()
@@ -291,33 +285,35 @@ class Quest(models.Model, ActionMixin):
             raise ValidationError('Maximum experience for quest with level {0} is {1}'.format(self.level, self.level * 100))
 
 
-    def hero_can_cancel(self, request):
-        return self.is_active() and Adventure.objects.in_progress().filter(quest=self, user=request.user).exists()
-
-    @action(verbose_name=_("Cancel"), condition=hero_can_cancel)
-    def hero_cancel(self, request):
+    @action(verbose_name=_("Cancel"))
+    def hero_cancel(self, request, validate_only=False):
         """Cancels an adventure on this quest."""
+        valid = self.is_active() and Adventure.objects.in_progress().filter(quest=self, user=request.user).exists()
+        if validate_only or not valid:
+            return valid
         adventure = self.adventure_set.get(user=request.user)
         adventure.state = Adventure.STATE_HERO_CANCELED
         adventure.save()
         self.check_full()
         self.save()
 
-    def hero_can_apply(self, request):
-        """Conditions for applying heroes."""
-        if not self.is_open():
-            return False
-        try:
-            adventure = self.adventure_set.get(user=request.user)
-        except Adventure.DoesNotExist:
-            return True
-        # iff we already have an adventure object the only reason for applying
-        # again is a previous cancellation
-        return adventure.state in (Adventure.STATE_HERO_CANCELED, )
-
-    @action(verbose_name=_("Apply"), condition=hero_can_apply)
-    def hero_apply(self, request):
+    @action(verbose_name=_("Apply"))
+    def hero_apply(self, request, validate_only=False):
         """Applies a hero to the quest and create an adventure for her."""
+        if not self.is_open():
+            valid = False
+        else:
+            try:
+                adventure = self.adventure_set.get(user=request.user)
+            except Adventure.DoesNotExist:
+                valid = True
+                    # iff we already have an adventure object the only reason for applying
+                # again is a previous cancellation
+            else:
+                valid = adventure.state in (Adventure.STATE_HERO_CANCELED, )
+        if validate_only or not valid:
+            return valid
+
         adventure, created = self.adventure_set.get_or_create(user=request.user)
         # send a message when a hero applies for the first time
         if adventure.state != Adventure.STATE_HERO_CANCELED:
@@ -342,21 +338,22 @@ class Quest(models.Model, ActionMixin):
             adventure.state = Adventure.STATE_HERO_APPLIED
         adventure.save()
 
-    def owner_can_cancel(self, request):
-        return self.owner == request.user and self.is_active()
-
-    @action(verbose_name=_("Cancel"), condition=owner_can_cancel)
-    def cancel(self, request=None):
+    @action(verbose_name=_("Cancel"))
+    def cancel(self, request, validate_only=False):
         """Cancels the whole quest."""
+        valid = self.owner == request.user and self.is_active()
+        if validate_only or not valid:
+            return valid
         self.state = self.STATE_OWNER_CANCELED
         self.save()
 
-    def owner_can_mark_done(self, request):
-        return self.owner == request.user and self.is_active() and self.accepted_heroes().exists()
-
-    @action(verbose_name=_("Mark as done"), condition=owner_can_mark_done)
-    def done(self, request=None):
+    @action(verbose_name=_("Mark as done"))
+    def done(self, request, validate_only=False):
         """Mark the quest as done. The quest is complete and inactive."""
+        valid = self.owner == request.user and self.is_active() and self.accepted_heroes().exists()
+        if validate_only or not valid:
+            return valid
+
         self.state = self.STATE_OWNER_DONE
         self.save()
 
