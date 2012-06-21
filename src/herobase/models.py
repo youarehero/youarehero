@@ -5,6 +5,8 @@ The most important are Quest, Userprofile (represents a hero) and Adventure.
 This module also contains the ActionMixin, which provides basic logic for model actions.
 The model actions connect state logic to the models.
 """
+from functools import wraps
+from operator import attrgetter
 
 import os
 import textwrap
@@ -14,17 +16,15 @@ from django.core.mail import send_mail
 from django.db.models.query import QuerySet
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError, PermissionDenied
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.core.validators import MinValueValidator
-from django.db import models, transaction
-from django.utils.datastructures import SortedDict
+from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.db.models.signals import post_save, post_syncdb
-from django.utils.decorators import method_decorator
-
+from django.db.models.signals import post_save
 from easy_thumbnails.files import get_thumbnailer
 from south.modelsinspector import add_introspection_rules
+from herobase.actions import ActionMixin, action
 
 from herobase.fields import LocationField
 from heromessage.models import Message
@@ -38,71 +38,16 @@ CLASS_CHOICES =  (
     (4, 'Protective'))
 
 
-class ActionMixin(object):
-    """Provides a mixin to use in Models that want to implement actions."""
-
-    def get_actions(self):
-        """
-        Return a dict of actions representing available actions for a model
-        instance. To be overriden by the implementing model.
-
-        Example:
-
-            return {
-                'delete': {
-                    # a list of callables that serve as precodition for an action
-                    'conditions': (lambda request: request.user == self.owner, )
-                    # a list of callables that implement the business logic of an action
-                    'actions': (lambda request: self.delete(), ),
-                    # the string representation for the user
-                    'verbose_name': _(u"Delete"),
-                },
-            }
-
-        """
-        return {}
-
-    def valid_actions_for(self, request):
-        """
-        Return a dict containing all actions that may be executed given a 
-        request.
-        """
-        actions = self.get_actions()
-        valid_actions = SortedDict()
-        for name, action in actions.items():
-            valid = True
-            for condition in action['conditions']:
-                if not condition(request):
-                    valid = False
-            if valid:
-                valid_actions[name] = action
-        return valid_actions
-
-    def process_action(self, request, action_name):
-        """Execute an action if all its preconditions are satisfied."""
-        actions = self.get_actions()
-        if not action_name in actions:
-            raise ValueError("not a valid action")
-
-        action = actions[action_name]
-
-        valid = True
-        for condition in action['conditions']:
-            if not condition(request):
-                valid = False
-
-        if not valid:
-            raise PermissionDenied("Can't execute action %s" % action)
-
-        for f in action['actions']:
-            f(request)
 
 
 class AdventureQuerySet(QuerySet):
     def active(self):
         """Show only adventures that have not been canceled."""
         return self.exclude(state=Adventure.STATE_HERO_CANCELED)
-
+    def in_progress(self):
+        return self.filter(state__in=(Adventure.STATE_HERO_APPLIED,
+                                      Adventure.STATE_OWNER_ACCEPTED,
+                                      Adventure.STATE_HERO_DONE))
 class AdventureManager(models.Manager):
     """Custom Object Manager for Adventures, excluding canceled ones."""
     def get_query_set(self):
@@ -110,6 +55,8 @@ class AdventureManager(models.Manager):
     def active(self):
         """Show only adventures that have not been canceled."""
         return self.get_query_set().active()
+    def in_progress(self):
+        return self.get_query_set().in_progress()
 
 class Adventure(models.Model, ActionMixin):
     """Model the relationship between a User and a Quest she is engaged in."""
@@ -140,46 +87,18 @@ class Adventure(models.Model, ActionMixin):
         (STATE_OWNER_DONE, u'Teilnahme bestätigt'),
         ))
 
-    def get_actions(self):
-        """Returns a list of actions for the owner of the related quest.
-        These actions are related to the quest AND a hero AND are not hero-actions
-        (which are all on the quest). """
-        actions = {
-            # allow adventure.user to participate in the quest
-            'accept': {
-                'conditions': (self.quest.is_owner, self.quest.is_open,
-                               lambda r: self.quest.is_open,
-                               lambda r: self.state == self.STATE_HERO_APPLIED),
-                'actions': (self.accept,),
-                'verbose_name': _(u"Akzeptieren"),
-            },
-            # refuse adventure.user participation in the quest
-            'refuse': {
-                'conditions': (self.quest.is_owner,
-                               lambda r: self.state == self.STATE_HERO_APPLIED),
-                'actions': (self.refuse,),
-                'verbose_name': _(u"Zurückweisen"),
-            },
-            # confirm that adventure.user participated in the quest
-            'done': {
-                'conditions': (self.quest.is_owner,
-                               lambda r: self.state == self.STATE_OWNER_ACCEPTED,
-                                lambda r: self.quest.state == Quest.STATE_OWNER_DONE),
-                'actions': (self.done,),
-                'verbose_name': _(u"Teilnahme bestätigen"),
-            },
-        }
-        return actions
-
     def __unicode__(self):
         return '%s - %s' % (self.quest.title, self.user.username)
 
-    #### A C T I O N S ####
-    def accept(self, request=None):
+    @action(verbose_name=_("Accept"))
+    def accept(self, request, validate_only=False):
         """Accept adventure.user as a participant and send a notification."""
+        valid = self.quest.is_open() and request.user == self.quest.owner and self.state == Adventure.STATE_HERO_APPLIED
+        if validate_only or not valid:
+            return valid
         self.state = self.STATE_OWNER_ACCEPTED
         # send a message if acceptance is not instantaneous
-        if not self.quest.auto_accept: 
+        if not self.quest.auto_accept:
             Message.send(get_system_user(), self.user,
                 'Du wurdest als Held Akzeptiert',
                 textwrap.dedent('''\
@@ -188,26 +107,35 @@ class Adventure(models.Model, ActionMixin):
 
                 Quest: https://youarehero.net%s''' % self.quest.get_absolute_url()))
         self.save()
-
         # recalculate denormalized quest state (quest might be full now)
         self.quest.check_full()
         self.quest.save()
 
-    def refuse(self, request=None):
+
+    @action(verbose_name=_("Refuse"))
+    def refuse(self, request=None, validate_only=False):
         """Deny adventure.user participation in the quest."""
         # TODO : this should maybe generate a message?
+        valid = self.quest.owner == request.user and self.state == self.STATE_HERO_APPLIED
+        if validate_only or not valid:
+            return valid
         self.state = self.STATE_OWNER_REFUSED
         self.save()
 
-    def done(self, request=None):
+    @action(verbose_name=_("Done"))
+    def done(self, request=None, validate_only=False):
         """Confirm a users participation in a quest."""
+        valid = (self.quest.owner == request.user and
+                 self.state == self.STATE_OWNER_ACCEPTED and
+                 self.quest.state == Quest.STATE_OWNER_DONE)
+        if validate_only or not valid:
+            return valid
         profile = self.user.get_profile()
         profile.experience += self.quest.experience
         profile.save()
 
         self.state = self.STATE_OWNER_DONE
         self.save()
-
 
 class QuestQuerySet(QuerySet):
     def active(self):
@@ -295,11 +223,6 @@ class Quest(models.Model, ActionMixin):
         return self.heroes.filter(adventures__quest=self.pk,
             adventures__state=Adventure.STATE_HERO_APPLIED)
 
-    def done_heroes(self):
-        """Return the heroes, who are done with the quest."""
-        return self.heroes.filter(adventures__quest=self.pk,
-            adventures__state=Adventure.STATE_OWNER_DONE)
-
     def remaining_slots(self):
         """Number of heroes who may participate in the quest until maximum
          number of heroes is achieved"""
@@ -311,53 +234,35 @@ class Quest(models.Model, ActionMixin):
             raise ValidationError('Maximum experience for quest with level {0} is {1}'.format(self.level, self.level * 100))
 
 
-    def get_actions(self):
-        """All actions on quests."""
-        actions = SortedDict((
-            # Mark quest as done. The quest is completed and not longer active.
-            ('done', {
-                'conditions': (self.is_owner, self.is_active,
-                               lambda r: self.accepted_heroes()),
-                'actions': (self.done, ),
-                'verbose_name': _(u"Quest abschließen"),
-
-                }),
-            # Cancel the quest. The quest is not longer active.
-            ('cancel', {
-                'conditions': (self.is_owner, self.is_active),
-                'actions': (self.cancel,),
-                'verbose_name': _("Quest abbrechen"),
-                }),
-            # A hero can apply for a quest, if it is open and she is not the
-            # owner or has already started an adventure.
-            ('hero_apply', {
-                'conditions': (self.is_open, self.can_apply,),
-                'actions': (self.hero_apply, ),
-                'verbose_name': _("Bewerben"),
-                }),
-            # A hero can cancel his adventure, if she has started one.
-            ('hero_cancel', {
-                'conditions': (self.is_active,
-                               lambda r: r.user in (list(self.active_heroes())
-                                                  + list(self.applying_heroes()))),
-                'actions': (self.hero_cancel, ),
-                'verbose_name': _("Abbrechen"),
-                }),
-            ))
-        return actions
-
-    ####  A C T I O N S ####
-
-    def hero_cancel(self, request):
+    @action(verbose_name=_("Cancel"))
+    def hero_cancel(self, request, validate_only=False):
         """Cancels an adventure on this quest."""
+        valid = self.is_active() and Adventure.objects.in_progress().filter(quest=self, user=request.user).exists()
+        if validate_only or not valid:
+            return valid
         adventure = self.adventure_set.get(user=request.user)
         adventure.state = Adventure.STATE_HERO_CANCELED
         adventure.save()
         self.check_full()
         self.save()
 
-    def hero_apply(self, request):
+    @action(verbose_name=_("Apply"))
+    def hero_apply(self, request, validate_only=False):
         """Applies a hero to the quest and create an adventure for her."""
+        if not self.is_open():
+            valid = False
+        else:
+            try:
+                adventure = self.adventure_set.get(user=request.user)
+            except Adventure.DoesNotExist:
+                valid = True
+                    # iff we already have an adventure object the only reason for applying
+                # again is a previous cancellation
+            else:
+                valid = adventure.state in (Adventure.STATE_HERO_CANCELED, )
+        if validate_only or not valid:
+            return valid
+
         adventure, created = self.adventure_set.get_or_create(user=request.user)
         # send a message when a hero applies for the first time
         if adventure.state != Adventure.STATE_HERO_CANCELED:
@@ -382,13 +287,21 @@ class Quest(models.Model, ActionMixin):
             adventure.state = Adventure.STATE_HERO_APPLIED
         adventure.save()
 
-    def cancel(self, request=None):
+    @action(verbose_name=_("Cancel"))
+    def cancel(self, request, validate_only=False):
         """Cancels the whole quest."""
+        valid = self.owner == request.user and self.is_active()
+        if validate_only or not valid:
+            return valid
         self.state = self.STATE_OWNER_CANCELED
         self.save()
 
-    def done(self, request=None):
+    @action(verbose_name=_("Mark as done"))
+    def done(self, request, validate_only=False):
         """Mark the quest as done. The quest is complete and inactive."""
+        valid = self.owner == request.user and self.is_active() and self.accepted_heroes().exists()
+        if validate_only or not valid:
+            return valid
 
         self.state = self.STATE_OWNER_DONE
         self.save()
@@ -398,9 +311,6 @@ class Quest(models.Model, ActionMixin):
         """Only for playtest. Later there should be Notifications for this."""
         return self.adventure_set.filter(state__in=(Adventure.STATE_HERO_APPLIED,
                                                     Adventure.STATE_HERO_DONE)).exists()
-
-    def is_owner(self, request):
-        return self.owner == request.user
 
     def is_canceled(self, request=None):
         return self.state == Quest.STATE_OWNER_CANCELED
@@ -431,18 +341,7 @@ class Quest(models.Model, ActionMixin):
             self.state = Quest.STATE_OPEN
         else:
             self.state = Quest.STATE_FULL
-
-    def can_apply(self, request):
-        """Additional conditions for applying heros."""
-        # The hero must not be the owner of the quest.
-        if self.is_owner(request):
-            return False
-        try:
-            adventure = self.adventure_set.get(user=request.user)
-        except Adventure.DoesNotExist:
-            return True
-        # And if there is an adventure already, it must be canceled
-        return adventure.state in (Adventure.STATE_HERO_CANCELED, )
+        self.save()
 
     #### M I S C ####
 
