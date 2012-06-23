@@ -135,7 +135,20 @@
             {% endfor %}
             </div>
         {% endif %}
-
+<table><tr><td><a name="fb_share"></a></td><td><a href="https://twitter.com/share" class="twitter-share-button" data-size="small" data-hashtags="yah!" data-count="none">Tweet</a>
+</td><td><g:plusone size="medium" annotation="none"></g:plusone></td><td></tr></table>
+<!-- Platzieren Sie diese Render-Anweisung an einer geeigneten Stelle. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
+        type="text/javascript">
+</script>
         {# owner #}
         {% if request.user == quest.owner %}
             {% include "herobase/quest/adventures.inc.html" %}
