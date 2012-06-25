@@ -2,15 +2,16 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.db import models
 from django.db.models.signals import post_save
-
+from django.utils.translation import ugettext as t
+from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 import logging
 
 logger = logging.getLogger('youarehero.heromessage')
 
 class Message(models.Model):
-    title = models.CharField(max_length=255)
-    text = models.TextField()
+    title = models.CharField(max_length=255, verbose_name=_("title"))
+    text = models.TextField(verbose_name=_("text"))
 
     sent = models.DateTimeField(auto_now_add=True)
     read = models.DateTimeField(blank=True, null=True)
@@ -21,8 +22,8 @@ class Message(models.Model):
     sender_archived = models.DateTimeField(blank=True, null=True)
     sender_deleted = models.DateTimeField(blank=True, null=True)
 
-    recipient = models.ForeignKey(User, related_name='sent_messages')
-    sender = models.ForeignKey(User, related_name='received_messages')
+    recipient = models.ForeignKey(User, related_name='sent_messages', verbose_name=_("recipient"))
+    sender = models.ForeignKey(User, related_name='received_messages', verbose_name=_("sender"))
 
     class Meta:
         ordering = ['-sent']
@@ -32,7 +33,7 @@ class Message(models.Model):
         return self.read is not None
 
     def __unicode__(self):
-        return '%s -> %s: %s' % (self.sender.username, self.recipient.username, self.title)
+        return '%s' % self.title
 
     @classmethod
     def send(cls, sender, recipient, title, text):
@@ -44,7 +45,7 @@ class Message(models.Model):
         )
 
 def send_email_for_message(message):
-    send_mail('You are Hero - neue Nachricht - %s' % message.title,
+    send_mail(t('You are Hero - new Message - %s') % message.title,
         message.text,
         'noreply@youarehero.net',
         [message.recipient.email],

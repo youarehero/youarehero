@@ -5,16 +5,16 @@
     <script type="text/javascript" src="{% get_static_prefix %}js/forms.js"></script>
     <script>
         $(function() {
-            confirm_button("button[name=delete]", "Diese Nachricht wirklich löschen? ");
+            confirm_button("button[name=delete]", "{% trans "Really delete this Message?" %}");
         });
     </script>
 {% endblock %}
 
 {% block content %}
             <ul class="nav nav-pills">
-                <li> <a href="{% url message-create %}" class="">Write</a></li>
-                <li class="active"><a href="#in" data-toggle="tab"><i class="icon-arrow-down"></i>In</a></li>
-                <li><a href="#out" data-toggle="tab"><i class="icon-arrow-up"></i>Out</a></li>
+                <li> <a href="{% url message-create %}" class="">{% trans "compose" %}</a></li>
+                <li class="active"><a href="#in" data-toggle="tab"><i class="icon-arrow-down"></i>{% trans "in" %}</a></li>
+                <li><a href="#out" data-toggle="tab"><i class="icon-arrow-up"></i>{% trans "out" %}</a></li>
             </ul>
 
 
@@ -24,10 +24,10 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>Subject</th>
-                                <th>From</th>
-                                <th>Date</th>
-                                <th>Actions</th>
+                                <th>{% trans "Subject" %}</th>
+                                <th>{% trans "From" %}</th>
+                                <th>{% trans "Date" %}</th>
+                                <th>{% trans "Actions" %}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -50,7 +50,7 @@
                             </tbody>
                         </table>
                     {% else %}
-                        <p>No messages yet :(</p>
+                        <p>{% trans "No messages yet." %}(</p>
                     {% endif %}
 
                 </div>
@@ -61,10 +61,10 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>Subject</th>
-                                <th>To</th>
-                                <th>Date</th>
-                                <th>Actions</th>
+                                <th>{% trans "Subject" %}</th>
+                                <th>{% trans "To" %}</th>
+                                <th>{% trans "Date" %}</th>
+                                <th>{% trans "Actions" %}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -78,7 +78,7 @@
                                     <td>
                                         <form method="post" action="{% url message-update message.pk %}" class="inline">
                                             {% csrf_token %}
-                                            <button class="btn btn-mini" type="submit" value="delete" name="delete">delete <i class="icon-trash icon-black"></i></button>
+                                            <button class="btn btn-mini" type="submit" value="delete" name="delete">{% trans "delete" %} <i class="icon-trash icon-black"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -86,7 +86,7 @@
                             </tbody>
                         </table>
                     {% else %}
-                        <p>You did not send any messages yet</p>
+                        <p>{% trans "You haven't sent any messages yet." %}</p>
                     {% endif %}
                 </div>
 

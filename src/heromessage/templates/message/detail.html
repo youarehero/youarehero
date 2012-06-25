@@ -1,4 +1,5 @@
 {% extends "herobase/layout-3-6-3.html" %}
+{% load i18n %}
 {% block javascript %}
     <script type="text/javascript">
     function linkify(text) {
@@ -17,17 +18,18 @@
             <div class="well well-small">
             <div class="page-header">
             {% if message.sender == request.user %}
-                <h4>Message to <a href="{% url userprofile-public message.recipient.username %}">{{ message.recipient }}</a> sent {{ message.sent }}</h4>
+
+                <h4>{% trans "Message to" %} <a href="{% url userprofile-public message.recipient.username %}">{{ message.recipient }}</a>
+                    {% trans "sent" %} {{ message.sent }}</h4>
             {% else %}
-                <h4>Message from <a href="{% url userprofile-public message.sender.username %}">{{ message.sender }}</a> received {{ message.sent }}</h4>
+                <h4>{% trans "Message from" %} <a href="{% url userprofile-public message.sender.username %}">{{ message.sender }}</a>
+                    {% trans "received" %} {{ message.sent }}</h4>
             {% endif %}
             </div>
-
-
                 <h3>{{ message.title }}</h3>
                 <p id="message_text">{{ message.text }}</p>
             </div>
-            <a href="{% url message-list %}">zurück zur Inbox</a>
+            <a href="{% url message-list %}">{% trans "Back to inbox" %}</a>
         </div>
 
     </div>

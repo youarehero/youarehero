@@ -78,19 +78,19 @@ class Adventure(models.Model, ActionMixin):
     STATE_OWNER_DONE = 6
 
     state = models.IntegerField(default=STATE_NOT_SET, choices=(
-        (STATE_NOT_SET, "kein Status"),
-        (STATE_HERO_APPLIED, u'beworben'),
-        (STATE_OWNER_REFUSED, u'zurückgewiesen'),
-        (STATE_HERO_CANCELED, u'abgebrochen'),
-        (STATE_OWNER_ACCEPTED, u'akzeptiert'),
-        (STATE_HERO_DONE, u'fordert Bestätigung an'),
-        (STATE_OWNER_DONE, u'Teilnahme bestätigt'),
+        (STATE_NOT_SET, _("state not set")),
+        (STATE_HERO_APPLIED, _("applied")),
+        (STATE_OWNER_REFUSED,_("rejected")),
+        (STATE_HERO_CANCELED, _("canceled")),
+        (STATE_OWNER_ACCEPTED, _("accepted")),
+        (STATE_HERO_DONE, _("confirmation requested")),
+        (STATE_OWNER_DONE, _("participation confirmed")),
         ))
 
     def __unicode__(self):
         return '%s - %s' % (self.quest.title, self.user.username)
 
-    @action(verbose_name=_("Accept"))
+    @action(verbose_name=_("accept"))
     def accept(self, request, validate_only=False):
         """Accept adventure.user as a participant and send a notification."""
         valid = self.quest.is_open() and request.user == self.quest.owner and self.state == Adventure.STATE_HERO_APPLIED
@@ -99,7 +99,7 @@ class Adventure(models.Model, ActionMixin):
         self.state = self.STATE_OWNER_ACCEPTED
         # send a message if acceptance is not instantaneous
         if not self.quest.auto_accept:
-            Message.send(get_system_user(), self.user,
+            Message.send(get_system_user(), self.user, # TODO FIXME : this shouldn't be a message but a notification
                 'Du wurdest als Held Akzeptiert',
                 textwrap.dedent('''\
                 Du wurdest als Held akzeptiert. Es kann losgehen!
@@ -112,7 +112,7 @@ class Adventure(models.Model, ActionMixin):
         self.quest.save()
 
 
-    @action(verbose_name=_("Refuse"))
+    @action(verbose_name=_("refuse"))
     def refuse(self, request=None, validate_only=False):
         """Deny adventure.user participation in the quest."""
         # TODO : this should maybe generate a message?
@@ -122,7 +122,7 @@ class Adventure(models.Model, ActionMixin):
         self.state = self.STATE_OWNER_REFUSED
         self.save()
 
-    @action(verbose_name=_("Done"))
+    @action(verbose_name=_("done"))
     def done(self, request=None, validate_only=False):
         """Confirm a users participation in a quest."""
         valid = (self.quest.owner == request.user and
@@ -172,16 +172,16 @@ class Quest(models.Model, ActionMixin):
     modified = models.DateTimeField(auto_now=True)
 
     max_heroes = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
-    auto_accept = models.BooleanField(default=False, verbose_name="automatisch akzeptieren",
-        help_text=_(u"Wenn aktiviert, akzeptierst Du Helden automatisch."
-                    u" Du kannst dann allerdings niemanden zurückweisen."))
+    auto_accept = models.BooleanField(default=False, verbose_name=_("accept automatically"),
+        help_text=_("If set heroes will be accepted automatically. "
+                    "This means that you won't be able to refuse an offer."))
 
     QUEST_LEVELS = (
-        (1, '1 (Easy)'),
-        (2, '2 (Okay)'),
-        (3, '3 (Experienced)'),
-        (4, '4 (Challenging)'),
-        (5, 'Heroic')
+        (1, _('1 (Easy)')),
+        (2, _('2 (Okay)')),
+        (3, _('3 (Experienced)')),
+        (4, _('4 (Challenging)')),
+        (5, _('Heroic'))
     )
 
     level = models.PositiveIntegerField(choices=QUEST_LEVELS)
@@ -195,10 +195,10 @@ class Quest(models.Model, ActionMixin):
     STATE_OWNER_CANCELED = 4
 
     QUEST_STATES = (
-            (STATE_OPEN , 'offen'),
-            (STATE_FULL , 'voll'),
-            (STATE_OWNER_DONE , 'abgeschlossen'),
-            (STATE_OWNER_CANCELED , 'abgebrochen'),
+            (STATE_OPEN , _("open")),
+            (STATE_FULL , _("full")),
+            (STATE_OWNER_DONE , _("done")),
+            (STATE_OWNER_CANCELED , _("cancelled")),
         )
 
     state = models.IntegerField(default=STATE_OPEN, choices=QUEST_STATES)
@@ -231,10 +231,10 @@ class Quest(models.Model, ActionMixin):
     def clean(self):
         """Clean function for form validation: Max XPs are associated to quest level"""
         if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
-            raise ValidationError('Maximum experience for quest with level {0} is {1}'.format(self.level, self.level * 100))
+            raise ValidationError(_('Maximum experience for quest with level {0} is {1}').format(self.level, self.level * 100))
 
 
-    @action(verbose_name=_("Cancel"))
+    @action(verbose_name=_("cancel"))
     def hero_cancel(self, request, validate_only=False):
         """Cancels an adventure on this quest."""
         valid = self.is_active() and Adventure.objects.in_progress().filter(quest=self, user=request.user).exists()
@@ -246,7 +246,7 @@ class Quest(models.Model, ActionMixin):
         self.check_full()
         self.save()
 
-    @action(verbose_name=_("Apply"))
+    @action(verbose_name=_("apply"))
     def hero_apply(self, request, validate_only=False):
         """Applies a hero to the quest and create an adventure for her."""
         if not self.is_open():
@@ -266,7 +266,7 @@ class Quest(models.Model, ActionMixin):
         adventure, created = self.adventure_set.get_or_create(user=request.user)
         # send a message when a hero applies for the first time
         if adventure.state != Adventure.STATE_HERO_CANCELED:
-            if self.auto_accept:
+            if self.auto_accept: # TODO FIXME : this should be a notification
                 Message.send(get_system_user(), self.owner, 'Ein Held hat sich beworben',
                 textwrap.dedent('''\
                 Auf eine deiner Quests hat sich ein Held beworben.
@@ -287,7 +287,7 @@ class Quest(models.Model, ActionMixin):
             adventure.state = Adventure.STATE_HERO_APPLIED
         adventure.save()
 
-    @action(verbose_name=_("Cancel"))
+    @action(verbose_name=_("cancel"))
     def cancel(self, request, validate_only=False):
         """Cancels the whole quest."""
         valid = self.owner == request.user and self.is_active()
@@ -296,7 +296,7 @@ class Quest(models.Model, ActionMixin):
         self.state = self.STATE_OWNER_CANCELED
         self.save()
 
-    @action(verbose_name=_("Mark as done"))
+    @action(verbose_name=_("mark as done"))
     def done(self, request, validate_only=False):
         """Mark the quest as done. The quest is complete and inactive."""
         valid = self.owner == request.user and self.is_active() and self.accepted_heroes().exists()
@@ -363,6 +363,8 @@ class UserProfile(models.Model):
     location = models.CharField(max_length=255) # TODO : placeholder
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
 
+    keep_email_after_gpn = models.DateTimeField(blank=True, null=True, editable=False)
+
     # google geolocation
     geolocation = LocationField(_(u'geolocation'), max_length=100, default='48,8') # todo : fix default :-)
 
@@ -372,16 +374,14 @@ class UserProfile(models.Model):
     public_location = models.BooleanField(default=False, verbose_name=_("Location is public"),
         help_text=_("Enable this if you want to share your location with other Heroes."))
 
-    about = models.TextField(blank=True, default='', help_text='Some text about you.')
+    about = models.TextField(blank=True, default='', help_text=_('Tell other heroes who you are.'))
 
     receive_system_email = models.BooleanField(default=False,
-        verbose_name="Bei Questaenderungen per Mail benachrichtigen.",
-        help_text="Setze diesen Hacken wenn du bei Aenderungen an deinen"
-                  " Quests per Mail benachrichtigt werden willst")
+        verbose_name=_("E-Mail on quest changes"),
+        help_text=_("Enable this if you want to receive an email notification when one of your quests needs attention."))
     receive_private_email = models.BooleanField(default=False,
-        verbose_name="Bei privaten Nachrichten per Mail benachrichtigen.",
-        help_text="Setze diesen Hacken wenn du bei Nachrichten von anderen "
-                  "Nutzern benachrichtigt werden willst")
+        verbose_name=_("E-Mail on private message"),
+        help_text=_("Enable this if you want to receive an email notification when someone sends you a private message."))
 
     CLASS_AVATARS =  {
         5: "scientist.jpg",
@@ -485,3 +485,5 @@ def get_system_user():
     """Return an unique system-user. Creates one if not existing."""
     user, created = User.objects.get_or_create(username=SYSTEM_USER_NAME)
     return user
+
+

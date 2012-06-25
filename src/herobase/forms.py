@@ -33,7 +33,8 @@ class QuestCreateForm(forms.ModelForm):
         #self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.layout = Layout(
             Fieldset(
-                'Create a Quest',
+                _('Create a Quest'),
+
                 Div(
                     Div(
                         'title',
@@ -63,7 +64,7 @@ class QuestCreateForm(forms.ModelForm):
     def clean_level(self):
         data = self.cleaned_data['level']
         if self.request.user.get_profile().level < int(data):
-            raise ValidationError("Your level is not high enough for this quest level!")
+            raise ValidationError(_("Your level is not high enough for this quest level!"))
         return data
 
     # the experience has something to do with the level too
