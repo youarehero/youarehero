@@ -363,6 +363,8 @@ class UserProfile(models.Model):
     location = models.CharField(max_length=255) # TODO : placeholder
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
 
+    keep_email_after_gpn = models.DateTimeField(blank=True, null=True, editable=False)
+
     # google geolocation
     geolocation = LocationField(_(u'geolocation'), max_length=100, default='48,8') # todo : fix default :-)
 
@@ -485,3 +487,5 @@ def get_system_user():
     """Return an unique system-user. Creates one if not existing."""
     user, created = User.objects.get_or_create(username=SYSTEM_USER_NAME)
     return user
+
+
