@@ -8,9 +8,12 @@ from django.db.models.query_utils import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.views.decorators.http import require_POST
+from django.utils.translation import ugettext as _
+
 from models import Message
 from forms import MessageForm
 import logging
+
 
 logger = logging.getLogger('youarehero.heromessage')
 
@@ -29,7 +32,7 @@ def message_create(request, user_id=None, message_id=None):
         message = form.save(commit=False)
         message.sender = request.user
         message.save()
-        messages.success(request, 'Message successfully sent')
+        messages.success(request, _('Message successfully sent'))
         return HttpResponseRedirect(reverse('message-list'))
     return render(request, 'message/create.html', {'form': form})
 
@@ -43,7 +46,7 @@ def message_update(request, message_id):
         elif message.sender == request.user:
             message.sender_deleted = datetime.now()
         message.save()
-        messages.success(request, "Message successfully deleted")
+        messages.success(request, _("Message successfully deleted"))
     return HttpResponseRedirect(reverse("message-list"))
 
 @login_required
