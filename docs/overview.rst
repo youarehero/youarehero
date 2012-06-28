@@ -31,6 +31,8 @@ We use `south <http://south.readthedocs.org>`_ for database migrations.
 
       (env)$ src/managy.py migrate
 
+In the ``deploy/`` directory you find the ``bootstrap_dev`` script
+
 Tests
 =====
 

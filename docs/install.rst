@@ -55,10 +55,9 @@ At last it installs all required
 
 .. ATTENTION::
    if the script breaks with an error while installing the requirements,
-   make sure the above dependencies (especially ``python-dev`` and ``libjpeg-dev``)
-   are installed on your system and try to reinstall the requirements::
+   follow the instructions for :ref:`installing requirements manually <install-requirements>`
+   in the next section.
 
-      (env)$ pip install -r deploy/requirements.txt
 
 The Virtual Environment
 =======================
@@ -74,15 +73,32 @@ From now on you need to ``activate`` your *virtuel environment*::
 .. NOTE::
    All commands starting with ``(env)$`` are assumed to run within your *virtual env*.
 
+.. _install-requirements:
+
+Install requirements manually
+-----------------------------
+
+If the script breaks or you pull the git repo later with modified requirements,
+you may want to install them manually.
+
+Make sure the above dependencies (especially ``python-dev`` and ``libjpeg-dev``)
+are installed on your system. To install the requirements type::
+
+  (env)$ pip install -r deploy/requirements.txt
+
+.. _virtualenv: <http://www.virtualenv.org>
+
 Initialize Database
 ===================
 
-For developing purposes the default Database engine is `sqlite <http://www.sqlite.org/docs.html>`_. Run::
+For developing purposes the default Database engine is `sqlite <http://www.sqlite.org/docs.html>`_,
+so you don't have to set up a custom database. Run::
 
     (env)$ src/manage.py syncdb
     (env)$ src/managy.py migrate
 
-for initial database setup. If you were asked to create a superuser, do so and continue.
+for initializing the local database. If you were asked to create a superuser, do so and continue.
+You will need this user to log into the ``django-admin`` and it is also your first hero.
 
 Start Development Server
 ========================
@@ -93,14 +109,6 @@ Now you are ready to test your installation::
 
 Try to visit `localhost on port 8000 <http://localhost:8000>`_. If everything is
 working correctly you should see your local **You are HERO** instance.
-
-.. NOTE::
-    Later you may want to ``deactivate`` the *virtuel environment*::
-
-        (env)$ deactivate
-        $
-
-.. _virtualenv: <http://www.virtualenv.org>
 
 Local Email Setup
 =================
@@ -114,4 +122,4 @@ If you want to send emails from your local machine, edit ``youarehero/settings/l
    EMAIL_HOST_PASSWORD =
    DEFAULT_FROM_EMAIL =
 
-and insert your email providers smtp, user and password, such as in an email-client.
+and insert an smtp-server, user and password, such as for an email-client.
