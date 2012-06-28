@@ -22,6 +22,7 @@ Contents
 
    install
    overview
+   howtos
 
 Source code documentation
 =========================

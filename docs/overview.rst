@@ -32,6 +32,12 @@ We use `south <http://south.readthedocs.org>`_ for database migrations.
       (env)$ src/managy.py migrate
 
 In the ``deploy/`` directory you find the ``bootstrap_dev`` script
+(see :ref:`bootstrap_dev`) and the requirements.txt
+(`pip freeze <http://www.pip-installer.org/en/latest/requirements.html#freezing-requirements>` output), which
+defines the python packages used in the projects `virtualenv <http://www.virtualenv.org>`_.
+
+Apart from that you can push your **tested** commits to the ``git repo`` and they will be
+automatically deployed on the develoment server.
 
 Tests
 =====

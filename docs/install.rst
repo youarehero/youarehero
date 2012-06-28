@@ -37,6 +37,7 @@ You should get an answer and subsequently be able to clone the repository::
 
     $ git clone ssh://username@queen.daenerys.de:54884/srv/git/youarehero <project_dir>
 
+.. _bootstrap_dev:
 
 The bootstrap script
 ====================
