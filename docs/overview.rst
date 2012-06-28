@@ -40,6 +40,9 @@ Tests are located in
 * :py:mod:`herobase.tests`
 * :py:mod:`heromessage.tests`
 
+`Django-coverage <https://bitbucket.org/kmike/django-coverage/>`_ generates
+`html <https://youarehero.net/coverage/>`_ with information about the test coverage of the project.
+
 More documentation follows...
 
 Other Components
@@ -49,6 +52,4 @@ Beside *Django* and the *project related apps* there are other components used i
 
 * This documentation is build with `sphinx <http://sphinx.pocoo.org/contents.html>`_.
   The documentation source is located in ``docs/``.
-* `Django-coverage <https://bitbucket.org/kmike/django-coverage/>`_ generates
-  `html <https://youarehero.net/coverage/>`_ with information about the test coverage of our project.
 * The most requirements are bundeled in an isolated `virtualenv <http://www.virtualenv.org>`_.
