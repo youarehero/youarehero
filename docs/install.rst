@@ -94,12 +94,24 @@ Now you are ready to test your installation::
 Try to visit `localhost on port 8000 <http://localhost:8000>`_. If everything is
 working correctly you should see your local **You are HERO** instance.
 
-Deactivate Virtual Env
-======================
+.. NOTE::
+    Later you may want to ``deactivate`` the *virtuel environment*::
 
-Later you may want to ``deactivate`` the *virtuel environment*::
-
-    (env)$ deactivate
-    $
+        (env)$ deactivate
+        $
 
 .. _virtualenv: <http://www.virtualenv.org>
+
+Local Email Setup
+=================
+
+If you want to send emails from your local machine, edit ``youarehero/settings/local.py``::
+
+   EMAIL_HOST =
+   EMAIL_HOST_USER =
+   EMAIL_USE_TLS = True
+   EMAIL_PORT = 25
+   EMAIL_HOST_PASSWORD =
+   DEFAULT_FROM_EMAIL =
+
+and insert your email providers smtp, user and password, such as in an email-client.

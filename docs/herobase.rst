@@ -9,7 +9,6 @@ Models
 .. automodule:: herobase.models
    :members:
 
-
 Views
 ~~~~~~
 .. automodule:: herobase.views

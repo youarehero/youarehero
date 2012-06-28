@@ -13,13 +13,15 @@ Assuming you know the Basics (models, views, urls) we can start with the special
 of the **You are HERO** project.
 
 The source code for this project is located in ``src/``. Note that Django 1.4 comes with a new
-directory structure. The project related files are located in ``src/youarehero/``.
+directory structure. You find the project related files in ``src/youarehero/``.
 
 By now there are the following custom apps:
 
-
 * :doc:`herobase` YAH basic models and behaviour
 * :doc:`heromessage` internal private messages
+
+Deployment
+==========
 
 We use `south <http://south.readthedocs.org>`_ for database migrations.
 
@@ -28,6 +30,15 @@ We use `south <http://south.readthedocs.org>`_ for database migrations.
    migrate one of the custom apps. Try::
 
       (env)$ src/managy.py migrate
+
+Tests
+=====
+
+**YAH** uses the `unittest module <http://docs.python.org/library/unittest.html>`_.
+Tests are located in
+
+* :py:mod:`herobase.tests`
+* :py:mod:`heromessage.tests`
 
 More documentation follows...
 
