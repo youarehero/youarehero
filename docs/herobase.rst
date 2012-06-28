@@ -1,6 +1,8 @@
 herobase
 ========
-Quests, UserProfiles and all the basics.
+The *herobase app* contains the core functionality of **You are Hero**.
+The Basic models are Quest, UserProfile and Adventure, a model which
+describes the relation between Quests and Users.
 
 Models
 ~~~~~~
