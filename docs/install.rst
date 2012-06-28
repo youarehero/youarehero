@@ -46,7 +46,7 @@ After cloning the git repository, browse to your project dir and run::
     $ deploy/bootstrap_dev
 
 The script makes a virtual environment ready (in ``env/``)
- and creates the ``static/``, ``media/`` and ``coverage/`` folders, which are
+and creates the ``static/``, ``media/`` and ``coverage/`` folders, which are
 not in the git repo, as they contain generated data.
 It also creates the local settings file (``src/youarehero/settings/local.py``) with no content but
 including the development settings.
