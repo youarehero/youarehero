@@ -1,0 +1,5 @@
+{% load static %}
+<table width="100%"><tr><td><h3 style="color:#FFFFFF">Quests</h3></td><td style="text-align:right"><img class="icon_small" src="{% get_media_prefix %}/icons/quest_add.png"
+><img class="icon_small" src="{% get_media_prefix %}/icons/quest_list.png" 
+><img class="icon_small" src="{% get_media_prefix %}/icons/quest.png"> 
+</td></tr></table>

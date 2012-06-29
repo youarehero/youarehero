@@ -1,4 +1,4 @@
-{% extends "herobase/layout-3-6-3.html" %}
+{% extends "herobase/mobile.html" %}
 {% load i18n hero_actions hero_message static %}
 {% block javascript %}
     <script type="text/javascript" src="{% get_static_prefix %}js/forms.js"></script>
@@ -9,36 +9,25 @@
     </script>
 {% endblock %}
 
-{% block submenu %}
-    {% include "herobase/quest/submenu.inc.html"%}
-{% endblock %}
+{% block head_menu %}{% include "herobase/quest/m_menu.html" %}{% endblock %}
+
+
 
 {% block content %}
     <div class="quest-detail well quest-class-{{ quest.hero_class }}">
-        <div class="page-header">
-            <h1>{{ quest.title }}
-            <small>
-                {{ quest.get_hero_class_display }}
-                <div class="charicon {{ quest.get_hero_class_display }}"/>
-            </small>
+        <div >
+            <h1><div class="{{ quest.get_hero_class_display }}"/>
+            {{ quest.title }}
+                
             </h1>
         </div>
         <div class="well">{{ quest.description }}</div>
-
-        <div class="row-fluid">
-            <div class="span6">
-                <dl class="dl-horizontal">
-                    <dt>{% trans "Auftraggeber" %}</dt><dd><a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>{% message_user quest.owner %}</dd>
-                    <dt>{% trans "location" %}</dt><dd>{{ quest.location }}</dd>
-                </dl>
-            </div>
-            <div class="span6">
-                <dl class="dl-horizontal">
-                    <dt>{% trans "Level" %}</dt><dd>{{ quest.level }}</dd>
-                    <dt>{% trans "experience" %}</dt><dd>{{ quest.experience }}</dd>
-                </dl>
-            </div>
-        </div>
+<table>
+<tr><th>{% trans "Auftraggeber" %}</th><th>{% trans "location" %}</th><th>{% trans "Level" %}</th><th>{% trans "experience" %}</th></tr><tr>
+<td><a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>{% message_user quest.owner %}</td>
+<td>{{ quest.location }}</td><td>{{ quest.level }}</td><td>{{ quest.experience }}</td></tr>
+</table>
+      
 
         {# Owner #}
         {% if request.user == quest.owner %}
@@ -135,21 +124,7 @@
             {% endfor %}
             </div>
         {% endif %}
-<table><tr><td><a name="fb_share"></a></td><td><a href="https://twitter.com/share" class="twitter-share-button" data-size="small" data-hashtags="yah!" data-count="none">Tweet</a>
-</td><td><g:plusone size="medium" annotation="none"></g:plusone></td><td><div id="diaspora" style="width: 153px;height:30px;background:url('{% get_media_prefix %}/icons/diaspora-share.png') no-repeat left top; background-position:0px 0px;" onClick="javascript:(function(){f='https://joindiaspora.com/bookmarklet?url='+encodeURIComponent(window.location.href)+'&title='+encodeURIComponent('Shared a link...')+'¬es='+encodeURIComponent(document.title)+'&v=1&';if(!window.open(f+'noui=1&jump=doclose','diasporav1','location=no,links=no,scrollbars=no,toolbar=no,width=620,height=400')){location.href=f+'jump=yes'; 
-document.getElementById('diaspora').style.backgroundPosition = '0 -90px';}else{document.getElementById('diaspora').style.backgroundPosition = '0 -60px';}})()"> </div></td></tr></table>
-<!-- Platzieren Sie diese Render-Anweisung an einer geeigneten Stelle. -->
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
-<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
-        type="text/javascript">
-</script>
+
         {# owner #}
         {% if request.user == quest.owner %}
             {% include "herobase/quest/adventures.inc.html" %}

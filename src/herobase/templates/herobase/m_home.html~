@@ -1,0 +1,31 @@
+{% extends "herobase/mobile.html" %}
+{% load hero_message %}
+{% block content %}
+
+    <h1><span class="stripe">Hallo {{ request.user.username }}!</span></h1>
+
+    <p>Dies ist dein <strong>Heldenbereich</strong>. Du kommst jederzeit auf diese Übersicht, wenn du links oben auf Deinen Namen oder das YAH!-Logo klickst.</p>
+
+    <p>Links siehst du ein Bild von deinem Charakter. Darunter Deinen Level und die Erfahrungspunkte, die Du schon gesammelt hast.</p>
+
+    {% if not request.user.get_profile.hero_class %}
+        <p>
+            Du hast noch keine Helden-Klasse gewählt. Gehe auf Profil und dann
+            Einstellungen um eine zu wählen oder klicke
+            <a href="{% url userprofile-edit %}">hier</a>
+        </p>
+    {% else %}
+        <p>Hinter Deinem Namen steht Deine  <a href="{% url hero_classes %}">Heldenklasse</a>.
+            Alle Quests in YAH! sind einer der fünf Heldenklassen zugeteilt.
+            Du kannst aber jede Quest annehmen, auf die Du Lust hast.</p>
+    {% endif %}
+    {% if not request.user.adventures.exists and not request.user.created_quests.exists %}
+        <p>Es sieht so aus als hättest du noch keine Quest. Such' dir doch eine aus
+            der <a href="{% url quest-list %}">Liste</a> aus oder
+            <a href="{% url quest-create %}">erstelle</a> selbst seine.</p>
+    {% endif %}
+
+    <h4>Übrigens</h4>
+    <p>Im Profil bei euren <a href="{% url userprofile-edit %}">Einstellungen</a> kannst Du die <strong>eMail-Benachrichtigung</strong> aktivieren.</p>
+
+{%  endblock %}
