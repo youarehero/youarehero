@@ -45,7 +45,15 @@ TIME_ZONE = 'Europe/Berlin'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'de'
+LANGUAGE_CODE = 'en'
+
+ugettext = lambda s: s
+LANGUAGES = (
+    ('de', ugettext('German')),
+    ('en', ugettext('English')),
+    )
+
+LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'src', 'locale'), )
 
 SITE_ID = 1
 
@@ -149,6 +157,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    #'rosetta',
     'endless_pagination',
     'south',
     'django_extensions',

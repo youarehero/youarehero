@@ -49,7 +49,7 @@
                 {% include "herobase/userprofile/public_avatar.inc.html" %}
             {% else %}
                 <h2><span class="stripe">{% trans "Thats you" %}</span></h2>
-                <p>{% trans "This is what other see when they visit your profile." %}</p>
+                <p>{% trans "This is what other see when they visit your profile" %}</p>
             {% endif %}
 
         </div>
@@ -57,7 +57,7 @@
             <h1><span class="stripe">{% trans "Profile" %}</span>
             </h1>
             <p>{{ user.get_profile.about }}</p>
-            <h3>{% trans "{{ user.username }} is ranked {{ rank }} in the ladder." %}</h3>
+            <h3>{%blocktrans with user.username as username %}{{ username }} is ranked {{ rank }} in the ladder.{%endblocktrans%}</h3>
             <dl class="dl-horizontal">
                 <dt>{% trans "Member since" %} </dt><dd>{{ user.get_profile.created|timesince }}</dd>
                 {% if user.get_profile.public_location %}

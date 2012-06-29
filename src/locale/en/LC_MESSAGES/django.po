@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-29 13:12+0200\n"
+"POT-Creation-Date: 2012-06-29 15:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -248,7 +248,7 @@ msgid "Thats you"
 msgstr ""
 
 #: herobase/templates/herobase/userprofile/detail.html:52
-msgid "This is what other see when they visit your profile."
+msgid "This is what other see when they visit your profile"
 msgstr ""
 
 #: herobase/templates/herobase/userprofile/detail.html:57
@@ -256,7 +256,8 @@ msgid "Profile"
 msgstr ""
 
 #: herobase/templates/herobase/userprofile/detail.html:60
-msgid "{{ user.username }} is ranked {{ rank }} in the ladder."
+#, python-format
+msgid "%(username)s is ranked %(rank)s in the ladder."
 msgstr ""
 
 #: herobase/templates/herobase/userprofile/detail.html:62
@@ -380,4 +381,12 @@ msgstr ""
 
 #: heromessage/templates/message/list.html:89
 msgid "You haven't sent any messages yet."
+msgstr ""
+
+#: youarehero/settings/base.py:52
+msgid "German"
+msgstr ""
+
+#: youarehero/settings/base.py:53
+msgid "English"
 msgstr ""
