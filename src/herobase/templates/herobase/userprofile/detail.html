@@ -48,23 +48,23 @@
                 </h1>
                 {% include "herobase/userprofile/public_avatar.inc.html" %}
             {% else %}
-                <h2><span class="stripe">Das bist Du</span></h2>
-                <p>Hier siehst Du, was andere Helden sehen, wenn sie Dein Profil aufrufen</p>
+                <h2><span class="stripe">{% trans "Thats you" %}</span></h2>
+                <p>{% trans "This is what other see when they visit your profile" %}</p>
             {% endif %}
 
         </div>
         <div class="span6">
-            <h1><span class="stripe">Profil</span>
+            <h1><span class="stripe">{% trans "Profile" %}</span>
             </h1>
             <p>{{ user.get_profile.about }}</p>
-            <h3>{{ user.username }} ist {{ rank }}. in der Bestenliste.</h3>
+            <h3>{%blocktrans with user.username as username %}{{ username }} is ranked {{ rank }} in the ladder.{%endblocktrans%}</h3>
             <dl class="dl-horizontal">
-                <dt>{% trans "Mitglied seit " %}</dt><dd>{{ user.get_profile.created|timesince }}</dd>
+                <dt>{% trans "Member since" %} </dt><dd>{{ user.get_profile.created|timesince }}</dd>
                 {% if user.get_profile.public_location %}
                     <dt>{% trans "Region" %}</dt><dd>{{ user.get_profile.location }}</dd>
                 {% endif %}
             {% if completed_quest_count %}
-                <dt>{% trans "Quests erledigt" %}</dt><dd>{{ completed_quest_count }}</dd>
+                <dt>{% trans "Quests done" %}</dt><dd>{{ completed_quest_count }}</dd>
             {% endif %}
             </dl>
             <div id="stats"></div>

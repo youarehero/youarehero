@@ -7,7 +7,7 @@
             <tr>
                 <th>Held</th>
                 <th>{% trans "Status" %}</th>
-                <th>{% trans "Aktionen" %}</th>
+                <th>{% trans "Actions" %}</th>
             </tr>
             </thead>
             <tbody>
@@ -37,6 +37,6 @@
             </tbody>
         </table>
     {% else %}
-        <h2>Leider hilft Dir noch niemand.</h2>
+        <h2>{% trans "Nobody is helping you yet." %}</h2>
     {% endif %}
 {% endif %}
