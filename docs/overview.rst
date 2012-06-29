@@ -31,6 +31,14 @@ We use `south <http://south.readthedocs.org>`_ for database migrations.
 
       (env)$ src/managy.py migrate
 
+In the ``deploy/`` directory you find the ``bootstrap_dev`` script
+(see :ref:`bootstrap_dev`) and the requirements.txt
+(`pip freeze <http://www.pip-installer.org/en/latest/requirements.html#freezing-requirements>` output), which
+defines the python packages used in the projects `virtualenv <http://www.virtualenv.org>`_.
+
+Apart from that you can push your **tested** commits to the ``git repo`` and they will be
+automatically deployed on the develoment server.
+
 Tests
 =====
 
@@ -39,6 +47,9 @@ Tests are located in
 
 * :py:mod:`herobase.tests`
 * :py:mod:`heromessage.tests`
+
+`Django-coverage <https://bitbucket.org/kmike/django-coverage/>`_ generates
+`html <https://youarehero.net/coverage/>`_ with information about the test coverage of the project.
 
 More documentation follows...
 
@@ -49,6 +60,4 @@ Beside *Django* and the *project related apps* there are other components used i
 
 * This documentation is build with `sphinx <http://sphinx.pocoo.org/contents.html>`_.
   The documentation source is located in ``docs/``.
-* `Django-coverage <https://bitbucket.org/kmike/django-coverage/>`_ generates
-  `html <https://youarehero.net/coverage/>`_ with information about the test coverage of our project.
 * The most requirements are bundeled in an isolated `virtualenv <http://www.virtualenv.org>`_.

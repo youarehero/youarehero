@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+'''
+This module provides the model-action functionality.
+'''
 from django.core.exceptions import PermissionDenied
 from django.utils.datastructures import SortedDict
 from django.utils.decorators import method_decorator

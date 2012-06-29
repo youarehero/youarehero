@@ -12,8 +12,7 @@ This is the developer documentation for
 web portal for real life quests with the objective to improve citizens' involvement.
 For more information read our `Blog <https://youarehero.net/blog/>`_.
 
-For briefly instructions on setting up a *local development environment* visit the :doc:`install`.
-
+For instructions on setting up a *local development environment* visit the :doc:`install`.
 
 Contents
 ========
@@ -23,6 +22,7 @@ Contents
 
    install
    overview
+   howtos
 
 Source code documentation
 =========================
