@@ -9,7 +9,7 @@ You are HERO documentation
 
 This is the developer documentation for
 `You are HERO <https://youarehero.net>`_, a `Django <https://www.djangoproject.com/>`_ based
-web portal for real life quests with the objective to improve citizens' involvement.
+web portal for real life quests with the objective of improving citizens' involvement.
 For more information read our `Blog <https://youarehero.net/blog/>`_.
 
 For instructions on setting up a *local development environment* visit the :doc:`install`.
