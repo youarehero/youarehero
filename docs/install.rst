@@ -35,7 +35,7 @@ Cloning the git repository
 Until the project is on Github, mail us your favorite *username* and *ssh pubkey*.
 You should get an answer and subsequently be able to clone the repository::
 
-    $ git clone ssh://username@queen.daenerys.de:54884/srv/git/youarehero <project_dir>
+    $ git clone ssh://git@queen.daenerys.de:54884/platform youarehero
 
 .. _bootstrap_dev:
 
@@ -66,7 +66,7 @@ The Virtual Environment
 The most requirements are installed in a isolated python environment, called `virtualenv`_.
 This happened in the last paragraph.
 
-From now on you need to ``activate`` your *virtuel environment*::
+From now on you need to ``activate`` your *virtual environment*::
 
     $ source env/bin/activate
     (env)$
