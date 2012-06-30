@@ -1,0 +1,28 @@
+{% extends "herobase/base.html" %}
+{% block content %}
+
+    <h1><span class="stripe">
+    <a href="{% url abstract %}">Was ist You Are Hero?</a></h1>
+
+    <p>Wir hoffen, dass du uns dabei hilfst, unsere Plattform zu verbessern
+    und dafür zu sorgen,
+    dass es ein Tool wird, das allen Spass macht.</p>
+    <p>Alle deine Daten und email-Adressen werden nach dem Playtest natürlich
+    gelöscht und auch zu keinem Zeitpunkt an Dritte weitergegeben.</p>
+    <p>Bei Rückfragen stehen wir jederzeit unter [info@youarehero.net] zur Verfügung
+    Wir wünschen dir viel Spass beim Spielen und freuen uns über jede Form
+    des Inputs,</p>
+    <p>dein YouareHERO-Team</p>
+ <a type="button" href="/m/accounts/login" class="btn btn-large" id="join">Login</a> or
+        <a type="button" href="{% url registration_register %}" class="btn btn-primary btn-large" id="join">Join now!</a>
+ 
+{%  endblock %}
+__
+{% block sidebar_right %}
+    <h3>Hier gehts zum</h3>
+    <h1><a href="http://85.214.109.2/hero/" target="_blank"><span class="yellow-stripe">Blog</span></a></h1>
+    <p>Da gibts noch mehr Infos und so.</p>
+    <h3>und hier gibts das</h3>
+    <h1><a href="http://www.youtube.com/watch?v=7gp4X-0XSQA" target="_blank"><span class="stripe">Video</span></a></h1>
+    <h3>auf Youtube</h3>
+{% endblock %}

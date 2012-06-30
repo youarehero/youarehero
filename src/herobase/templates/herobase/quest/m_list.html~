@@ -1,0 +1,129 @@
+{% extends "herobase/mobile.html" %}
+{% load static %}
+{% load i18n %}
+{% load endless %}
+ 
+{% block head_javascript %}
+    <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-popover.js"></script>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(function() {
+            $('.dropdown-menu p select, .dropdown label').click(function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+{% endblock %}
+{##}
+{#{% block css %}#}
+{#    <link  href="https://fonts.googleapis.com/css?family=Coming+Soon"#}
+{#           rel="stylesheet"#}
+{#           type="text/css">#}
+{#{% endblock %}#}
+{% block head_menu %}{% include "m_menu_quests.html" %}{% endblock %}
+
+
+{% block content %}
+
+    <div class="quest-list">
+        <form action="" method="get">
+        <div class="btn-toolbar">
+            
+            <input placeholder="Titel" style="margin-top: -12px;" name="title" value="{{ filter.form.data.title }}"/>
+            <div class="btn-group">
+
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    Mehr
+                    <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                    <p>{{ filter.form.level.label_tag }}{{ filter.form.level }}</p>
+                    <p>{{ filter.form.state.label_tag }}{{ filter.form.state }}</p>
+                    <p>{{ filter.form.hero_class.label_tag }}{{ filter.form.hero_class }}</p>
+                    {{ filter.form.ordering_field }}
+                </div>
+                <input class="btn" type="submit" value="Suchen"/>
+            </div>
+            {% paginate 12 quests %}
+            <span style="margin: -40px 0 0 20px;">{% show_pages %}</span>
+        </div>
+        </form>
+{##}
+{#        <p>{{ filter.form.level }}</p>#}
+{#        {{ filter.form.state }}#}
+        {#                    {{ filter.form.ordering }}#}
+{#        <p>{{ filter.form.ordering_field }}</p>                <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">#}
+{##}
+{#    </div>#}
+{#    </div>#}
+{##}
+{#    {{ filter.form.hero_class }}#}
+{#    {{ filter.form.title }}#}
+{##}
+{#    <input type="submit" value="#}
+        <div class="tab-content" style="padding-bottom: 38px">
+
+
+            <div class="tab-pane" id="grid">
+                <ul>
+
+                    {% for quest in quests %}
+                        <li class="quest-class-{{ quest.hero_class }}">
+                            <div>
+                                <a href="{% url quest-detail quest.id %}">
+                                    <h2>{{ quest.title|truncatechars:50 }}</h2>
+                                    <!--<p>{{ quest.description|truncatechars:80 }}</p>-->
+                                </a>
+                            </div>
+                        </li>
+
+                    {% empty %}
+                        {% if filter.is_filtered %}
+                            {% trans "No quests found matching your current criteria." %}
+                            <a href="./?state=1">{% trans "Show all." %}</a>
+                        {% else %}
+                            {% trans "There don't seem to be any quests." %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            <div class="tab-pane active" id="table">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                       
+                        <th>Quest</th>
+                        <th>Class</th>
+                        <th>Location</th>
+                        <th>Exp</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for quest in quests %}
+                        <tr  
+              onclick="document.location.href=('{% url m-quest-detail quest.id %}');">
+                            <a href="{% url quest-detail quest.id %}" >
+                            <td>
+                                {{ quest.title }}
+                            </td>
+                            <td><img src="{% static "img/icon_" %}{{ quest.get_hero_class_display|lower }}.png" /></td>
+                            <td>{{ quest.location }}</td>
+                            <td>
+                                {{ quest.experience }}
+                            </td>
+</a>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+</div>
+</div>
+</div>
+{% endblock %}
+
