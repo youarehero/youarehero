@@ -1,5 +1,4 @@
 Django==1.4
-Fabric==1.4.0
 Jinja2==2.6
 Pygments==1.5
 South==0.7.5
@@ -13,9 +12,7 @@ django-extensions==0.8
 django-registration==0.8
 docutils==0.9.1
 pylint==0.25.1
-ssh==1.7.13
 wsgiref==0.1.2
 easy-thumbnails==1.0.3
 Pillow==1.7.7
 -e git://github.com/alex/django-filter.git#egg=django-filter
-django-rosetta==0.6.8
