@@ -2,9 +2,12 @@ dirs:
 	install -d -m 0755 coverage
 	install -d -m 0755 media 
 env:
-	python virtualenv.py --distribute --no-site-packages env
+	# if env fails a new make should redo the env bootstrap 
+	python virtualenv.py --distribute env
 deps:
 	. env/bin/activate && pip install -r deploy/requirements.txt
+test-deps:
+	. env/bin/activate && pip install -r deploy/test-requirements.txt
 clean:
 	rm -f env
 syncdb:
@@ -17,7 +20,12 @@ static:
 	. env/bin/activate && src/manage.py collectstatic
 test:
 	. env/bin/activate && src/manage.py test
-
 bootstrap: dirs env deps static syncdb migrate test
 
+jenkins: dirs env deps test-deps 
+	ln -s src/youarehero/settings/jenkins.py /src/youarehero/settings/local.py
+	. env/bin/activate && src/manage.py jenkins
 
+
+
+.PHONY: env syncdb migrate static
