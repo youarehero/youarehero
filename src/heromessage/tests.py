@@ -39,5 +39,3 @@ class MessageIntegrationTest(TestCase):
         profile.save()
         message = Message.objects.create(sender=self.user, recipient=self.user, text='text', title='themailtitle')
         self.assertFalse(any(mail.outbox))
-    def test_send_message(self):
-        self.assertTrue(False)
