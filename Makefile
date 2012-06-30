@@ -23,7 +23,7 @@ test:
 bootstrap: dirs env deps static syncdb migrate test
 
 jenkins: dirs env deps test-deps 
-	ln -s src/youarehero/settings/jenkins.py /src/youarehero/settings/local.py
+	ln -s jenkins.py src/youarehero/settings/local.py
 	. env/bin/activate && src/manage.py jenkins
 
 
