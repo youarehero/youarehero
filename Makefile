@@ -3,7 +3,7 @@ dirs:
 	install -d -m 0755 media 
 env:
 	# if env fails a new make should redo the env bootstrap 
-	python virtualenv.py --distribute env
+	python virtualenv.py  env
 deps:
 	. env/bin/activate && pip install -r deploy/requirements.txt
 test-deps:
