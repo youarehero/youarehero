@@ -31,18 +31,10 @@ from django.db.models import Count, Sum
 logger = logging.getLogger('youarehero.herobase')
 
 @login_required
-def quest_list_view(request):
+def quest_list_view(request, template='herobase/quest/list.html'):
     """Basic quest list, with django-filter app"""
     f = QuestFilter(request.GET, queryset=Quest.objects.order_by('-created'))
-    return render(request, 'herobase/quest/list.html', {
-        'filter': f,
-        'quests': f.qs,
-    })
-@login_required
-def m_quest_list_view(request):
-    """Basic quest list, with django-filter app"""
-    f = QuestFilter(request.GET, queryset=Quest.objects.order_by('-created'))
-    return render(request, 'herobase/quest/m_list.html', {
+    return render(request, template, {
         'filter': f,
         'quests': f.qs,
     })
@@ -70,7 +62,7 @@ class QuestCreateView(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 @login_required
-def quest_detail_view(request, quest_id):
+def quest_detail_view(request, quest_id, template="herobase/quest/detail.html"):
     """Render detail template for quest, and adventure if it exists."""
     quest = get_object_or_404(Quest, pk=quest_id)
     if not request.user.is_anonymous():
@@ -84,27 +76,7 @@ def quest_detail_view(request, quest_id):
         'quest': quest,
         'adventure': adventure,
     }
-
-    return render(request, "herobase/quest/detail.html", context)
-
-@login_required
-def m_quest_detail_view(request, quest_id):
-    """Render detail template for quest, and adventure if it exists."""
-    quest = get_object_or_404(Quest, pk=quest_id)
-    if not request.user.is_anonymous():
-        try:
-            adventure = quest.adventure_set.get(user=request.user)
-        except Adventure.DoesNotExist:
-            adventure = None
-    else:
-        adventure = None
-    context = {
-        'quest': quest,
-        'adventure': adventure,
-    }
-
-    return render(request, "herobase/quest/m_detail.html", context)
-
+    return render(request, template, context)
 
 def home_view(request):
     """Proxy view for switching between the hero and the public home view"""
@@ -117,7 +89,7 @@ def home_view(request):
 def m_home_view(request):
     """Proxy view for switching between the hero and the public home view"""
     if request.user.is_authenticated():
-        return m_hero_home_view(request)
+        return hero_home_view(request, template='herobase/m_home.html')
     return render(request, "herobase/m_public_home.html", {'open_quests':
         Quest.objects.filter(state=Quest.STATE_OPEN)})
 
@@ -130,10 +102,10 @@ def hero_classes(request):
     return render(request, "herobase/hero_classes.html")
 
 @login_required
-def hero_home_view(request):
+def hero_home_view(request, template='herobase/hero_home.html'):
     """the hero home is only visible for authenticated heros."""
     user = request.user
-    return render(request, 'herobase/hero_home.html',
+    return render(request, template,
             {
              #'profile': user.get_profile(),
              'quests_active': user.created_quests.active().order_by('-created'),
@@ -141,17 +113,6 @@ def hero_home_view(request):
              'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)
              })
 
-@login_required
-def m_hero_home_view(request):
-    """the hero home is only visible for authenticated heros."""
-    user = request.user
-    return render(request, 'herobase/m_home.html',
-            {
-             #'profile': user.get_profile(),
-             'quests_active': user.created_quests.active().order_by('-created'),
-             'quests_old': user.created_quests.inactive().order_by('-created'),
-             'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)
-             })
 
 @login_required
 def quest_my(request):
