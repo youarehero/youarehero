@@ -69,6 +69,28 @@ class QuestCreateView(CreateView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
+class QuestCreateViewM(CreateView):
+    """Basic Quest create view. This generic view-class should be refactored to a normal view function"""
+    context_object_name = "quest"
+    form_class = QuestCreateForm
+    template_name = "herobase/quest/m_create.html"
+    success_url = '../%(id)s/'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(QuestCreateViewM, self).dispatch(*args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super(QuestCreateViewM, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.owner = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url_m())
+
 @login_required
 def quest_detail_view(request, quest_id):
     """Render detail template for quest, and adventure if it exists."""
@@ -156,6 +178,18 @@ def quest_my(request):
     """Views the quests the hero is envolved with."""
     user = request.user
     return render(request, 'herobase/quest/my.html',
+            {
+            #'profile': user.get_profile(),
+            'quests_active': user.created_quests.active().order_by('-created'),
+            'quests_old': user.created_quests.inactive().order_by('-created'),
+            'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)
+        })
+
+@login_required
+def m_quest_my(request):
+    """Views the quests the hero is envolved with."""
+    user = request.user
+    return render(request, 'herobase/quest/m_my.html',
             {
             #'profile': user.get_profile(),
             'quests_active': user.created_quests.active().order_by('-created'),

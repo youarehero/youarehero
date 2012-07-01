@@ -4,6 +4,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from herobase.forms import UserRegistrationForm, UserAuthenticationForm
 from herobase.views import QuestCreateView
+from herobase.views import QuestCreateViewM
 import autocomplete_light
 autocomplete_light.autodiscover()
 admin.autodiscover()
@@ -14,15 +15,16 @@ urlpatterns = patterns('',
     url(r'^quest/list/$', 'herobase.views.quest_list_view', name='quest-list'),
     url(r'^m/quest/list/$', 'herobase.views.m_quest_list_view', name='m-quest-list'),
     url(r'^quest/my/$', 'herobase.views.quest_my', name='quest-my'),
+    url(r'^m/quest/my/$', 'herobase.views.m_quest_my', name='m-quest-my'),
     url(r'^quests/create/$', QuestCreateView.as_view(), name='quest-create'),
+    url(r'^m/quests/create/$', QuestCreateViewM.as_view(), name='m-quest-create'),  
     url(r'^quests/(?P<quest_id>\d+)/$', 'herobase.views.quest_detail_view', name='quest-detail'),
     url(r'^m/quests/(?P<quest_id>\d+)/$', 'herobase.views.m_quest_detail_view', name='m-quest-detail'),
     url(r'^quests/(?P<quest_id>\d+)/quest_update/',
         'herobase.views.quest_update', name='quest-update'),
     url(r'^quests/(?P<quest_id>\d+)/adventure_update/',
         'herobase.views.adventure_update', name='adventure-update'),
-    url(r'^m$', 'herobase.views.home_view',{'template_name': 'm_home.html',
-             'authentication_form': UserAuthenticationForm}, name='m-home'),
+    url(r'^m$', 'herobase.views.m_home_view', name='m-home'),
     url(r'^$', 'herobase.views.home_view', name='home'),
     url(r'^abstract/$', 'herobase.views.abstract', name="abstract"),
     url(r'^hero_classes/$', 'herobase.views.hero_classes', name="hero_classes"),
@@ -86,3 +88,9 @@ if settings.DEBUG:
             }),
     ) + urlpatterns
 
+from django.conf import settings
+
+if 'rosetta' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+            url(r'^rosetta/', include('rosetta.urls')),
+            )

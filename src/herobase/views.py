@@ -69,6 +69,28 @@ class QuestCreateView(CreateView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
+class QuestCreateViewM(CreateView):
+    """Basic Quest create view. This generic view-class should be refactored to a normal view function"""
+    context_object_name = "quest"
+    form_class = QuestCreateForm
+    template_name = "herobase/quest/m_create.html"
+    success_url = '../%(id)s/'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(QuestCreateViewM, self).dispatch(*args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super(QuestCreateViewM, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.owner = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url_m())
+
 @login_required
 def quest_detail_view(request, quest_id):
     """Render detail template for quest, and adventure if it exists."""
@@ -163,6 +185,18 @@ def quest_my(request):
             'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)
         })
 
+@login_required
+def m_quest_my(request):
+    """Views the quests the hero is envolved with."""
+    user = request.user
+    return render(request, 'herobase/quest/m_my.html',
+            {
+            #'profile': user.get_profile(),
+            'quests_active': user.created_quests.active().order_by('-created'),
+            'quests_old': user.created_quests.inactive().order_by('-created'),
+            'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)
+        })
+
 @require_POST
 @login_required
 def quest_update(request, quest_id):
@@ -230,6 +264,37 @@ def userprofile(request, username=None):
 
 
     return render(request, 'herobase/userprofile/detail.html', {
+        'user': user,
+        'rank': rank,
+        'colors': mark_safe(simplejson.dumps(colors)),
+        'completed_quest_count': user.adventures.filter(state=Adventure.STATE_OWNER_DONE).count(),
+        'hero_completed_quests': mark_safe(simplejson.dumps(hero_completed_quests)),
+    })
+def m_userprofile(request, username=None):
+    """Render Userprofile with some stats."""
+    if username:
+        user = get_object_or_404(User, username=username)
+    else:
+        user = request.user
+
+    rank = UserProfile.objects.filter(experience__gt=user.get_profile().experience).count() + 1
+    hero_completed_quests = []
+    class_choices = dict(CLASS_CHOICES)
+    color_dict = { 5: '#e8e8e8',
+                   1: '#ccffa7',
+                   2: '#fff9b4',
+                   3: '#ffa19b',
+                   4: '#bdcaff'}
+    colors = []
+    for choice, count in user.adventures\
+            .filter(state=Adventure.STATE_OWNER_DONE)\
+            .values_list('quest__hero_class')\
+            .annotate(Count('quest__hero_class')):
+        colors.append(color_dict[choice])
+        hero_completed_quests.append((class_choices[choice], count))
+
+
+    return render(request, 'herobase/userprofile/m_detail.html', {
         'user': user,
         'rank': rank,
         'colors': mark_safe(simplejson.dumps(colors)),

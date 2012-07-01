@@ -1,5 +1,7 @@
 {% extends "herobase/mobile.html" %}
+{% load static %}
 {% load hero_message %}
+{% block head_menu %}{% endblock %}
 {% block content %}
 
     <h1><span class="stripe">Hallo {{ request.user.username }}!</span></h1>
