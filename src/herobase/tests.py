@@ -293,7 +293,3 @@ class AuthenticatedIntegrationTest(TestCase):
         quest = create_quest(owner=self.user)
         response = self.client.get(reverse('quest-detail', args=(quest.pk,)))
         self.assertContains(response, quest.title)
-
-    def test_fail(self):
-        """Fail so we can test jenkins output."""
-        self.assertTrue(False)
