@@ -23,8 +23,7 @@ test:
 bootstrap: dirs env deps static syncdb migrate test
 
 jenkins: dirs env deps test-deps 
-	DJANGO_SETTINGS_MODULE := youarehero.settings.jenkins
-	. env/bin/activate && src/manage.py jenkins
+	. env/bin/activate && DJANGO_SETTINGS_MODULE=youarehero.settings.jenkins src/manage.py jenkins
 
 
 
