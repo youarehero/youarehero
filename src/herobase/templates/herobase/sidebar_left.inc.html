@@ -1,4 +1,4 @@
-{% load i18n static %}
+{% load i18n static crispy_forms_tags %}
 <div id="logo" class="page-header-100">
     <a href="{% url home %}">
         <img src="{% get_static_prefix %}/img/logo.png" alt="You Are Hero">
@@ -8,13 +8,12 @@
     {% if request.user.is_authenticated %}
         {% include "herobase/userprofile/private_avatar.inc.html" %}
         {% include "herobase/navigation.inc.html" %}
-        <p style="border: 1px solid orange; margin-bottom: 2em;">Falls ihr zwischem Vortrag und ~0:45 Nachrichten verschickt habt - die hat das System leider nie Verschickt :-(</p>
     {% else %}
-    {#    <p></p>#}
-        <h2><span class="stripe">Mach mit!</span></h2>
-        <p>Zum Beispiel könntest Du helfen diesen Text hier durch einen wohlklingenden zu ersetzen.
-            Im Texte schreiben ist dieser Autor nämlich leider nur sehr eingeschränkt begabt.</p>
-        <a type="button" href="{% url django.contrib.auth.views.login %}" class="btn btn-large" id="join">Login</a> or
-        <a type="button" href="{% url registration_register %}" class="btn btn-primary btn-large" id="join">Join now!</a>
+        <h2>{% trans "Login" %}</h2>
+        {% crispy login_form %}
+        <p>
+            <a href="{% url auth_password_reset %}">{% trans "Forgotten password?" %}</a>
+        </p>
     {% endif %}
 </div>
+

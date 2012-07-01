@@ -207,7 +207,7 @@ class UnauthenticatedIntegrationTest(TestCase):
         """Check if there is any response, and check for a "join"-button in the home-view."""
         client = Client()
         response = client.get('/')
-        self.assertContains(response, 'Join')
+        self.assertContains(response, 'login')
 
     def test_quest_create(self):
         """If a anonymous user want to create a quest, he is redirected to the login form."""
