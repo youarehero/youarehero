@@ -47,6 +47,14 @@ TIME_ZONE = 'Europe/Berlin'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'de'
 
+ugettext = lambda s: s
+LANGUAGES = (
+    ('de', ugettext('German')),
+    ('en', ugettext('English')),
+    )
+
+LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'src', 'locale'), )
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -150,6 +158,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    #'rosetta',
     'endless_pagination',
     'south',
     'django_extensions',

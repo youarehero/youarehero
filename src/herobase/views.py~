@@ -110,9 +110,8 @@ def home_view(request):
     """Proxy view for switching between the hero and the public home view"""
     if request.user.is_authenticated():
         return hero_home_view(request)
-    return render(request, "herobase/public_home.html", {
-        'open_quests': Quest.objects.filter(state=Quest.STATE_OPEN)})
-
+    return render(request, "herobase/public_home.html", {'open_quests':
+        Quest.objects.filter(state=Quest.STATE_OPEN)})
 @login_required
 def m_home_view(request):
     """Proxy view for switching between the hero and the public home view"""
@@ -140,7 +139,6 @@ def hero_home_view(request):
              'quests_old': user.created_quests.inactive().order_by('-created'),
              'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)
              })
-
 @login_required
 def m_hero_home_view(request):
     """the hero home is only visible for authenticated heros."""
