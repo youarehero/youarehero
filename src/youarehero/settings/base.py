@@ -45,7 +45,7 @@ TIME_ZONE = 'Europe/Berlin'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'de'
 
 ugettext = lambda s: s
 LANGUAGES = (
@@ -143,6 +143,7 @@ TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
                                "django.core.context_processors.static",
                                "django.contrib.messages.context_processors.messages",
                                'django.core.context_processors.request',
+                               'herobase.context_processors.auth',
     )
 
 INSTALLED_APPS = (

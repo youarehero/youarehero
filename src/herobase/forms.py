@@ -5,6 +5,7 @@ This module provides the form-classes (definition) for the basic models, especia
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
 from django import forms
+from django.core.urlresolvers import reverse
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext_lazy as _
 
@@ -156,10 +157,26 @@ class UserAuthenticationForm(AuthenticationForm):
     error_messages.update({'invalid_login': _("Please enter a correct e-mail address and password. "
                                 "Note that both fields are case-sensitive.")})
     email = forms.EmailField(label=_("E-mail"), max_length=75)
+
     def __init__(self, request=None, *args, **kwargs):
+
+        self.helper = FormHelper()
+        self.helper.help_text_inline = True
+        self.helper.add_input(Submit('submit', _("Log in")))
+        self.helper.form_class = "well"
+        self.helper.form_action = reverse('auth_login')
+
         super(UserAuthenticationForm, self).__init__(request, *args, **kwargs)
         del self.fields['username']
         self.fields.keyOrder.reverse()
+
+        email = self.fields['email']
+        email.label = ""
+        email.widget = forms.TextInput(attrs={'placeholder':'email'})
+
+        password = self.fields['password']
+        password.label = ""
+        password.widget = forms.PasswordInput(attrs={'placeholder':'password'})
 
     def clean_email(self):
         self.cleaned_data['username'] = self.cleaned_data['email']

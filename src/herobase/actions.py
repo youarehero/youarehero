@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 '''
-This module provides the model-action functionality.
+This module provides a custom Model-Action functionality.
+Model-Actions are methods on models (decorated with @action), which changes
+the model states in a defined way.
 '''
 from django.core.exceptions import PermissionDenied
 from django.utils.datastructures import SortedDict
