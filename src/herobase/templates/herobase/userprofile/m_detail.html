@@ -1,0 +1,75 @@
+{% extends "herobase/mobile.html" %}
+{% load i18n static humanize %}
+{% block head_menu %}<h3>Prifle</h3>{% endblock %}
+{% block head_javascript %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.google.com/uds/api/visualization/1.0/02323762feeb560baea0acc98c4c4e09/format+en,default,corechart.I.js"></script>
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.setOnLoadCallback(hero_completed_quests);
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function hero_completed_quests() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Class');
+            data.addColumn('number', 'Quests');
+            data.addRows({{ hero_completed_quests }});
+
+            // Set chart options
+            var options = {
+                'title':'Klassen der Quests die {{ user.username }} abgeschlossen hat.',
+                height: 320,
+                pieSliceTextStyle: { color: "black" },
+                colors: {{ colors }}
+            };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('stats'));
+            chart.draw(data, options);
+        }
+    </script>
+{% endblock %}
+{% block submenu %}
+    {% if request.user == user %}
+        {% include "herobase/userprofile/submenu.inc.html" %}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    
+            
+                <h1> <table><tr><td><img src="{{ user.get_profile.avatar }}" alt="{{ user.username }}" width="70px"></td><td><span class="stripe">{{ user.username }}</span><br>
+                    <small>{{ user.get_profile.get_hero_class_display }}</small></td></tr></table>
+                </h1>
+               
+<div class="experience">
+    <h4 class="pull-right">{{ user.get_profile.experience }} XP</h4>
+    <h4>Level: {{ user.get_profile.level }}</h4>
+    <div class="progress">
+        <div class="bar" style="width: {{ user.get_profile.relative_level_experience }}%;"></div>
+    </div>
+</div>
+           	
+       
+            <h1><span class="stripe">{% trans "Profile" %}</span>
+            </h1>
+            <p>{{ user.get_profile.about }}</p>
+            <h3>{%blocktrans with user.username as username %}{{ username }} is ranked {{ rank }} in the ladder.{%endblocktrans%}</h3>
+            <dl class="dl-horizontal">
+                <dt>{% trans "Member since" %} </dt><dd>{{ user.get_profile.created|timesince }}</dd>
+                {% if user.get_profile.public_location %}
+                    <dt>{% trans "Region" %}</dt><dd>{{ user.get_profile.location }}</dd>
+                {% endif %}
+            {% if completed_quest_count %}
+                <dt>{% trans "Quests done" %}</dt><dd>{{ completed_quest_count }}</dd>
+            {% endif %}
+            </dl>
+            <div id="stats_disabled"></div>
+        </div>
+
+    </div>
+{% endblock %}
