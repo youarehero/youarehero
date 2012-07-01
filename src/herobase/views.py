@@ -23,7 +23,7 @@ from django.utils.decorators import method_decorator
 
 from django.views.generic.edit import CreateView
 from filters import QuestFilter
-from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit
+from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit, UserAuthenticationForm
 from herobase.models import Quest, Adventure, CLASS_CHOICES, UserProfile
 import logging
 from django.db.models import Count, Sum
@@ -82,8 +82,12 @@ def home_view(request):
     """Proxy view for switching between the hero and the public home view"""
     if request.user.is_authenticated():
         return hero_home_view(request)
-    return render(request, "herobase/public_home.html", {'open_quests':
-        Quest.objects.filter(state=Quest.STATE_OPEN)})
+
+    login_form = UserAuthenticationForm
+    return render(request, "herobase/public_home.html", {
+        'open_quests': Quest.objects.filter(state=Quest.STATE_OPEN),
+        'login_form': login_form,
+    })
 
 def abstract(request):
     """static you are hero abstract view."""

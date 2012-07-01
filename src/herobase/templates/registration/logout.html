@@ -1,9 +1,10 @@
 {% extends "herobase/layout-3-6-3.html" %}
+{% load i18n %}
 {% block content %}
         <div class="row-fluid">
             <div class="span16">
-                <h1>You are successfully logged out</h1>
-            <a href="{% url django.contrib.auth.views.login %}">Login again.</a>
+                <h1>{% trans "Good bye!" %}</h1>
+                <p>{% trans 'Thank you for using "You are Hero". We hope to see you soon.' %}</p>
             </div>
         </div>
 {% endblock %}
