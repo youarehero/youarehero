@@ -2,4 +2,4 @@
 try:
     from local import *
 except ImportError:
-    print "No local settings module defined"
+    print "WARNING: No local settings module defined"
