@@ -81,7 +81,7 @@ class QuestCreateViewM(CreateView):
         self.object = form.save(commit=False)
         self.object.owner = self.request.user
         self.object.save()
-        return HttpResponseRedirect(self.get_success_url_m())
+        return HttpResponseRedirect(self.get_success_url())
 
 @login_required
 def quest_detail_view(request, quest_id, template="herobase/quest/detail.html"):
