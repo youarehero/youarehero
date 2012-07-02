@@ -4,7 +4,6 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from herobase.forms import UserRegistrationForm, UserAuthenticationForm
 from herobase.views import QuestCreateView
-from herobase.views import QuestCreateViewM
 import autocomplete_light
 autocomplete_light.autodiscover()
 admin.autodiscover()
@@ -17,9 +16,11 @@ urlpatterns = patterns('',
         kwargs={'template': 'herobase/quest/m_list.html'}),
 
     url(r'^quest/my/$', 'herobase.views.quest_my', name='quest-my'),
-    url(r'^m/quest/my/$', 'herobase.views.m_quest_my', name='m-quest-my'),
+    url(r'^m/quest/my/$', 'herobase.views.quest_my', name='m-quest-my',
+        kwargs={'template': 'herobase/quest/m_my.html'}),
+
     url(r'^quests/create/$', QuestCreateView.as_view(), name='quest-create'),
-    url(r'^m/quests/create/$', QuestCreateViewM.as_view(), name='m-quest-create'),  
+    url(r'^m/quests/create/$', QuestCreateView.as_view(template_name="herobase/quest/m_create.html"), name='m-quest-create'),  
     url(r'^quests/(?P<quest_id>\d+)/$', 'herobase.views.quest_detail_view', name='quest-detail'),
 
     url(r'^m/quests/(?P<quest_id>\d+)/$', 'herobase.views.quest_detail_view', name='m-quest-detail',
@@ -37,10 +38,12 @@ urlpatterns = patterns('',
 
     url(r'^profile/edit/$', 'herobase.views.userprofile_edit', name='userprofile-edit'),
     url(r'^profile/private/$', 'herobase.views.userprofile', name='userprofile-private'),
-    url(r'^m/profile/private/$', 'herobase.views.m_userprofile', name='m-userprofile-private'),
+    url(r'^m/profile/private/$', 'herobase.views.userprofile', name='m-userprofile-private',
+        kwargs={'template': 'herobase/userprofile/m_detail.html'}),
     url(r'^profile/edit/privacy/$', 'herobase.views.userprofile_privacy_settings', name='userprofile-privacy-settings'),
     url(r'^profile/public/(?P<username>.+)/$', 'herobase.views.userprofile', name='userprofile-public'),
-    url(r'^m/profile/public/(?P<username>.+)/$', 'herobase.views.m_userprofile', name='m-userprofile-public'),
+    url(r'^m/profile/public/(?P<username>.+)/$', 'herobase.views.userprofile', name='m-userprofile-public',
+        kwargs={'template': 'herobase/userprofile/m_detail.html'}),
 
 
     url(r'^messages/create/$', 'heromessage.views.message_create', name='message-create'),
