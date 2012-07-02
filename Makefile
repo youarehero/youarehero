@@ -15,16 +15,13 @@ syncdb:
 migrate:
 	. env/bin/activate && src/manage.py migrate
 static:
-	rm -rf static
 	install -d -m 0755 static 
-	. env/bin/activate && src/manage.py collectstatic
+	. env/bin/activate && src/manage.py collectstatic --noinput
 test:
 	. env/bin/activate && src/manage.py test
 bootstrap: dirs env deps static syncdb migrate test
 
 jenkins: dirs env deps test-deps 
 	. env/bin/activate && DJANGO_SETTINGS_MODULE=youarehero.settings.jenkins src/manage.py jenkins
-
-
 
 .PHONY: env syncdb migrate static
