@@ -86,6 +86,7 @@ url(r'^m/accounts/login/$',
         },
         name='registration_register'),
     (r'^accounts/', include('registration.backends.default.urls')),
+(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': 'static/img/favicon.ico'}),
 )
 
 from django.conf import settings
