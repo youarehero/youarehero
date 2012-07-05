@@ -24,8 +24,11 @@ bootstrap: dirs env deps static syncdb migrate test
 jenkins: dirs env deps test-deps 
 	. env/bin/activate && DJANGO_SETTINGS_MODULE=youarehero.settings.jenkins src/manage.py jenkins
 
-deploy: dirs env deps static syncdb migrate test
+git-force-update:
+	git reset --hard && git pull
+	
+deploy: git-force-update dirs env deps static syncdb migrate test
 	service apache2 reload
 
 
-.PHONY: env deps test-deps clean syncdb migrate static test bootstrap jenkins deploy
+.PHONY: env deps test-deps clean syncdb migrate static test bootstrap jenkins deploy git-force-update
