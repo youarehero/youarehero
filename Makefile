@@ -11,9 +11,9 @@ test-deps:
 clean:
 	rm -f env
 syncdb:
-	. env/bin/activate && src/manage.py syncdb
+	. env/bin/activate && src/manage.py syncdb --noinput
 migrate:
-	. env/bin/activate && src/manage.py migrate
+	. env/bin/activate && src/manage.py migrate --noinput
 static:
 	install -d -m 0755 static 
 	. env/bin/activate && src/manage.py collectstatic --noinput
@@ -24,4 +24,8 @@ bootstrap: dirs env deps static syncdb migrate test
 jenkins: dirs env deps test-deps 
 	. env/bin/activate && DJANGO_SETTINGS_MODULE=youarehero.settings.jenkins src/manage.py jenkins
 
-.PHONY: env syncdb migrate static
+deploy: dirs env deps static syncdb migrate test
+	service apache2 reload
+
+
+.PHONY: env syncdb migrate static jenkins deploy
