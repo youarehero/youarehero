@@ -26,8 +26,9 @@ jenkins: dirs env deps test-deps
 
 git-force-update:
 	git reset --hard && git pull
-	
-deploy: git-force-update dirs env deps static syncdb migrate test
+docs:
+	. env/bin/activate && cd docs && make clean html
+deploy: git-force-update dirs env deps static docs syncdb migrate test 
 
-.PHONY: env deps test-deps clean syncdb migrate static test bootstrap jenkins deploy git-force-update
+.PHONY: env deps test-deps clean syncdb migrate static test bootstrap jenkins deploy git-force-update docs
 
