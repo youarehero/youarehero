@@ -272,7 +272,7 @@ class Quest(models.Model, ActionMixin):
                 Auf eine deiner Quests hat sich ein Held beworben.
                 Verabredet euch jetzt um die Quest zu erledigen.
 
-                Quest: %s''' % request.build_absolute_uri(self.quest.get_absolute_url())))
+                Quest: %s''' % request.build_absolute_uri(self.get_absolute_url())))
             else:
                 Message.send(get_system_user(), self.owner, 'Ein Held hat sich beworben',
                     textwrap.dedent('''\
@@ -280,7 +280,7 @@ class Quest(models.Model, ActionMixin):
                     Damit er auch mitmachen kann solltest du seine Teilnahme erlauben.
                     Verabredet euch dann um die Quest zu erledigen.
 
-                    Quest: %s''' % request.build_absolute_uri(self.quest.get_absolute_url())))
+                    Quest: %s''' % request.build_absolute_uri(self.get_absolute_url())))
         if self.auto_accept:
             adventure.state = Adventure.STATE_OWNER_ACCEPTED
         else:
