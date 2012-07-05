@@ -28,8 +28,6 @@ git-force-update:
 	git reset --hard && git pull
 	
 deploy: git-force-update dirs env deps static syncdb migrate test
-	service apache2 reload
-
 
 .PHONY: env deps test-deps clean syncdb migrate static test bootstrap jenkins deploy git-force-update
 
