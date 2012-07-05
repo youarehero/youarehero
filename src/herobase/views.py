@@ -90,8 +90,8 @@ def home_view(request):
 def m_home_view(request):
     """Proxy view for switching between the hero and the public home view"""
     if request.user.is_authenticated():
-        return hero_home_view(request, template='herobase/m_home.html')
-    return render(request, "herobase/m_public_home.html", {'open_quests':
+        return hero_home_view(request, template='herobase/m/home.html')
+    return render(request, "herobase/m/public_home.html", {'open_quests':
         Quest.objects.filter(state=Quest.STATE_OPEN)})
 
 def abstract(request):
