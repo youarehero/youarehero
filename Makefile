@@ -28,4 +28,4 @@ deploy: dirs env deps static syncdb migrate test
 	service apache2 reload
 
 
-.PHONY: env syncdb migrate static jenkins deploy
+.PHONY: env deps test-deps clean syncdb migrate static test bootstrap jenkins deploy
