@@ -1,0 +1,86 @@
+// Variables
+
+@import "../bootstrap/less/variables.less";
+@import "../bootstrap/less/mixins.less";
+
+// Bootstrap specific fixes
+// -----------------------
+
+// Inputs in small Grid column
+.span3 .well{
+
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"],
+    .uneditable-input {
+        max-width: 171px;
+    }
+}
+// well Divs
+.well {
+    margin-top: 6px;
+}
+
+// Navigation white
+.navbar-inner {
+    .box-shadow(@white);
+}
+
+.navbar .nav > li > a {
+    text-shadow: none;
+    padding: 4px 5px 6px;
+}
+
+
+// Layout
+//------------------------
+
+#header {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+// Team Hints
+// -----------------------
+#team_hints {
+    position: fixed;
+    bottom: 0;
+    left: 30%;
+    background: @grayDark;
+    a {
+        margin-right: 15px;
+    }
+}
+
+// Icons
+//------------------------
+
+
+.icon-custom-home { background: url(../img/icons/home.png) 50% 0 no-repeat transparent; }
+.icon-custom-quest { background: url(../img/icons/quest.png) 50% 0 no-repeat transparent; }
+.icon-custom-profil { background: url(../img/icons/profil.png) 50% 0 no-repeat transparent; }
+.icon-custom-stats { background: url(../img/icons/stats.png) 50% 0 no-repeat transparent; }
+.icon-custom-mail { background: url(../img/icons/mail.png) 50% 0 no-repeat transparent; }
+.icon-custom-leader { background: url(../img/icons/leader.png) 50% 0 no-repeat transparent; }
+
+[class^="icon-custom-"],
+[class*=" icon-custom-"] {
+    width: 27px;
+    height: 32px;
+    .ie7-restore-right-whitespace();
+    line-height: 32px;
+    background-size: 100% auto;
+}

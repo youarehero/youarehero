@@ -1,9 +1,5 @@
 {% load i18n static crispy_forms_tags %}
-<div id="logo" class="page-header-100">
-    <a href="{% url home %}">
-        <img src="{% get_static_prefix %}/img/logo.png" alt="You Are Hero">
-    </a>
-</div>
+
 <div class="sidebar-left">
     {% if request.user.is_authenticated %}
         {% include "herobase/userprofile/private_avatar.inc.html" %}
