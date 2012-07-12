@@ -1,5 +1,5 @@
 {% extends "herobase/base.html" %}
-{% load static %}
+{% load i18n static hero_base %}
 {% block layout %}
     <div class="row">
         <div class="span3">
@@ -24,6 +24,17 @@
         <div class="span3">
             {% block sidebar_right %}
                &nbsp;
+                {% suggest_quests 3 as quests %}
+                    {% if quests %}
+                        <div class="quest-list">
+                            <h3>{% trans "Suggested quests" %}</h3>
+                            <ul>
+                                {% for quest in quests %}
+                                    {% include "herobase/quest/postit.inc.html" %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
             {% endblock %}
         </div><!--/span-->
     </div>

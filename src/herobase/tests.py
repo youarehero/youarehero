@@ -293,3 +293,12 @@ class AuthenticatedIntegrationTest(TestCase):
         quest = create_quest(owner=self.user)
         response = self.client.get(reverse('quest-detail', args=(quest.pk,)))
         self.assertContains(response, quest.title)
+
+
+    def test_suggested_quests(self):
+        """A user should be presented with quest suggestions."""
+
+        master = create_user()
+        quest = create_quest(owner=master, title='suggested_quest_0')
+        response = self.client.get('/')
+        self.assertContains(response, quest.title)

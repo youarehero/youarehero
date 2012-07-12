@@ -76,15 +76,7 @@
                 <ul>
 
                     {% for quest in quests %}
-                        <li class="quest-class-{{ quest.hero_class }}">
-                            <div>
-                                <a href="{% url quest-detail quest.id %}">
-                                    <h2>{{ quest.title|truncatechars:50 }}</h2>
-                                    <!--<p>{{ quest.description|truncatechars:80 }}</p>-->
-                                </a>
-                            </div>
-                        </li>
-
+                           {% include "herobase/quest/postit.inc.html" %}
                     {% empty %}
                         {% if filter.is_filtered %}
                             {% trans "No quests found matching your current criteria." %}

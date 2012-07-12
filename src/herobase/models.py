@@ -7,6 +7,7 @@ The model actions connect state logic to the models.
 """
 from functools import wraps
 from operator import attrgetter
+from random import randint
 
 import os
 import textwrap
@@ -142,6 +143,8 @@ class QuestQuerySet(QuerySet):
         return self.exclude(state__in=(Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED))
     def inactive(self):
         return self.filter(state__in=(Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED))
+    def open(self):
+        return self.filter(state=Quest.STATE_OPEN)
 
 
 class QuestManager(models.Manager):
@@ -152,6 +155,8 @@ class QuestManager(models.Manager):
         return self.get_query_set().active()
     def inactive(self):
         return self.get_query_set().inactive()
+    def open(self):
+        return self.get_query_set().open()
 
 
 class Quest(models.Model, ActionMixin):
@@ -345,6 +350,19 @@ class Quest(models.Model, ActionMixin):
 
     #### M I S C ####
 
+    @classmethod
+    def get_suggested_quests(cls, user, count):
+        """Return a (random) list of suggested quests for the user."""
+        quests = Quest.objects.open()
+        if user.is_authenticated():
+            quests = quests.exclude(owner=user)
+        quest_count = quests.count()
+        if quest_count > 0:
+            return set(quests[randint(0, quest_count - 1)] for i in range(count))
+        else:
+            return set()
+
+
     def get_absolute_url(self):
         """Get the url for this quests detail page."""
         return reverse("quest-detail", args=(self.pk,))
@@ -444,6 +462,7 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return self.user.username
+
 
 def create_user_profile(sender, instance, created, **kwargs):
     """Create a user profile on user account creation."""

@@ -143,7 +143,7 @@ TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
                                "django.core.context_processors.static",
                                "django.contrib.messages.context_processors.messages",
                                'django.core.context_processors.request',
-                               'herobase.context_processors.auth',
+                               'herobase.context_processors.login_form',
     )
 
 INSTALLED_APPS = (
