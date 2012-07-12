@@ -18,7 +18,7 @@
         <div class="page-header">
             <h1>{{ quest.title }}
             <small>
-                {{ quest.get_hero_class_display }}
+                {{ quest.get_hero_class_display|default:_("all classes") }}
                 <div class="charicon {{ quest.get_hero_class_display }}"/>
             </small>
             </h1>

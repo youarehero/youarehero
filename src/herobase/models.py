@@ -170,7 +170,7 @@ class Quest(models.Model, ActionMixin):
     location = models.CharField(max_length=255) # TODO : placeholder
     due_date = models.DateTimeField()
 
-    hero_class = models.IntegerField(choices=CLASS_CHOICES)
+    hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
     heroes = models.ManyToManyField(User, through=Adventure, related_name='quests')
 
     created = models.DateTimeField(auto_now_add=True)
