@@ -9,6 +9,14 @@
     </script>
 {% endblock %}
 
+{% block meta %}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="You Are Hero - {{ quest.title }}" />
+    <meta property="og:site_name" content="You Are Hero" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="{{ quest.description }}" />
+{% endblock %}
+
 {% block submenu %}
     {% include "herobase/quest/submenu.inc.html"%}
 {% endblock %}

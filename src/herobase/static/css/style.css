@@ -123,6 +123,7 @@ div .Diplomat,
     font-size: 140%;
     /*font-size:200%;*/
     line-height: 30px;
+    word-wrap: break-word;
 }
 
 .quest-list ul li p{
