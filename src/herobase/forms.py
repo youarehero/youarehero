@@ -163,8 +163,11 @@ class UserAuthenticationForm(AuthenticationForm):
         self.helper.help_text_inline = True
         self.helper.add_input(Submit('submit', _("Log in")))
         self.helper.form_class = "well"
-        #self.helper.form_action = reverse('auth_login')
-
+        if request:
+            if request.is_mobile:
+                self.helper.form_action = reverse('auth_login-m')
+            else:
+                self.helper.form_action = reverse('auth_login')
         super(UserAuthenticationForm, self).__init__(request, *args, **kwargs)
         del self.fields['username']
         self.fields.keyOrder.reverse()
