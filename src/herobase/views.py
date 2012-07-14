@@ -15,7 +15,7 @@ from django.utils import simplejson
 from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_POST
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from utils import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
@@ -86,13 +86,12 @@ def home_view(request):
     return render(request, "herobase/public_home.html", {
         'open_quests': Quest.objects.filter(state=Quest.STATE_OPEN)})
 
-@login_required
+
 def m_home_view(request):
     """Proxy view for switching between the hero and the public home view"""
-    if request.user.is_authenticated():
-        return hero_home_view(request, template='herobase/m/home.html')
-    return render(request, "herobase/m/public_home.html", {'open_quests':
-        Quest.objects.filter(state=Quest.STATE_OPEN)})
+    return hero_home_view(request, template='herobase/m/home.html')
+#    return render(request, "herobase/m/public_home.html", {'open_quests':
+#        Quest.objects.filter(state=Quest.STATE_OPEN)})
 
 def abstract(request):
     """static you are hero abstract view."""

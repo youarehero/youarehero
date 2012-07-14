@@ -1,7 +1,7 @@
 # Create your views here.
 from datetime import datetime
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from herobase.utils import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db.models.query_utils import Q
