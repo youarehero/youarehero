@@ -159,12 +159,11 @@ class UserAuthenticationForm(AuthenticationForm):
     email = forms.EmailField(label=_("E-mail"), max_length=75)
 
     def __init__(self, request=None, *args, **kwargs):
-
         self.helper = FormHelper()
         self.helper.help_text_inline = True
         self.helper.add_input(Submit('submit', _("Log in")))
         self.helper.form_class = "well"
-        self.helper.form_action = reverse('auth_login')
+        #self.helper.form_action = reverse('auth_login')
 
         super(UserAuthenticationForm, self).__init__(request, *args, **kwargs)
         del self.fields['username']
