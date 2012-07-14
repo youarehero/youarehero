@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-12 18:13+0200\n"
+"POT-Creation-Date: 2012-07-14 19:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,55 +61,55 @@ msgstr ""
 msgid "E-mail"
 msgstr "E-Mail"
 
-#: herobase/forms.py:165 herobase/templates/registration/m/login.html:8
+#: herobase/forms.py:164 herobase/templates/registration/m/login.html:8
 msgid "Log in"
 msgstr "Einloggen"
 
-#: herobase/models.py:82
+#: herobase/models.py:83
 msgid "state not set"
 msgstr "Zustand nicht gesetzt"
 
-#: herobase/models.py:83
+#: herobase/models.py:84
 msgid "applied"
 msgstr "beworben"
 
-#: herobase/models.py:84
+#: herobase/models.py:85
 msgid "rejected"
 msgstr "abgelehnt"
 
-#: herobase/models.py:85
+#: herobase/models.py:86
 msgid "canceled"
 msgstr "abgebrochen"
 
-#: herobase/models.py:86
+#: herobase/models.py:87
 msgid "accepted"
 msgstr "angenommen"
 
-#: herobase/models.py:87
+#: herobase/models.py:88
 msgid "confirmation requested"
 msgstr "Bestätigung angefordert"
 
-#: herobase/models.py:88
+#: herobase/models.py:89
 msgid "participation confirmed"
 msgstr "Teilnahme bestätigt"
 
-#: herobase/models.py:94
+#: herobase/models.py:95
 msgid "accept"
 msgstr "annehmen"
 
-#: herobase/models.py:116
+#: herobase/models.py:117
 msgid "refuse"
 msgstr "ablehnen"
 
-#: herobase/models.py:126 herobase/models.py:205
+#: herobase/models.py:127 herobase/models.py:206
 msgid "done"
 msgstr "erledigt"
 
-#: herobase/models.py:180
+#: herobase/models.py:181
 msgid "accept automatically"
 msgstr "automatisch annehmen"
 
-#: herobase/models.py:181
+#: herobase/models.py:182
 msgid ""
 "If set heroes will be accepted automatically. This means that you won't be "
 "able to refuse an offer."
@@ -117,75 +117,75 @@ msgstr ""
 "Wenn aktiv werden Helden automatisch angenommen. Das bedeutet das Du "
 "Hilfsangebote nicht ablehnen kannst."
 
-#: herobase/models.py:185
+#: herobase/models.py:186
 msgid "1 (Easy)"
 msgstr "1 (Einfach)"
 
-#: herobase/models.py:186
+#: herobase/models.py:187
 msgid "2 (Okay)"
 msgstr "2 (Normal)"
 
-#: herobase/models.py:187
+#: herobase/models.py:188
 msgid "3 (Experienced)"
 msgstr "3 (Erfahren)"
 
-#: herobase/models.py:188
+#: herobase/models.py:189
 msgid "4 (Challenging)"
 msgstr "4 (Herausfordernd)"
 
-#: herobase/models.py:189
+#: herobase/models.py:190
 msgid "Heroic"
 msgstr "Heroisch"
 
-#: herobase/models.py:203
+#: herobase/models.py:204
 msgid "open"
 msgstr "offen"
 
-#: herobase/models.py:204
+#: herobase/models.py:205
 msgid "full"
 msgstr "voll"
 
-#: herobase/models.py:206
+#: herobase/models.py:207
 msgid "cancelled"
 msgstr "abgebrochen"
 
-#: herobase/models.py:239
+#: herobase/models.py:240
 msgid "Maximum experience for quest with level {0} is {1}"
 msgstr "Maximale Erfahrung für einen Level {0} Quest ist {1}"
 
-#: herobase/models.py:242 herobase/models.py:295
+#: herobase/models.py:243 herobase/models.py:296
 msgid "cancel"
 msgstr "abbrechen"
 
-#: herobase/models.py:254
+#: herobase/models.py:255
 msgid "apply"
 msgstr "übernehmen"
 
-#: herobase/models.py:304
+#: herobase/models.py:305
 msgid "mark as done"
 msgstr "als erledigt markieren"
 
-#: herobase/models.py:390
+#: herobase/models.py:391
 msgid "geolocation"
-msgstr ""
+msgstr "Ort"
 
-#: herobase/models.py:395
+#: herobase/models.py:396
 msgid "Location is public"
 msgstr "Standort ist öffentlich"
 
-#: herobase/models.py:396
+#: herobase/models.py:397
 msgid "Enable this if you want to share your location with other Heroes."
 msgstr "Wenn aktiv können andere Helden deinen Standort sehen."
 
-#: herobase/models.py:398
+#: herobase/models.py:399
 msgid "Tell other heroes who you are."
 msgstr "Erzähle anderen Helden wer Du bist"
 
-#: herobase/models.py:401
+#: herobase/models.py:402
 msgid "E-Mail on quest changes"
 msgstr "E-Mail bei Quest-Änderungen"
 
-#: herobase/models.py:402
+#: herobase/models.py:403
 msgid ""
 "Enable this if you want to receive an email notification when one of your "
 "quests needs attention."
@@ -193,11 +193,11 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail benachrichtigung sobald ein Quest an dem "
 "Du beteiligt bist deine Aufmerksamkeit benötigt."
 
-#: herobase/models.py:404
+#: herobase/models.py:405
 msgid "E-Mail on private message"
 msgstr "E-Mail bei privaten Nachrichten"
 
-#: herobase/models.py:405
+#: herobase/models.py:406
 msgid ""
 "Enable this if you want to receive an email notification when someone sends "
 "you a private message."
@@ -205,17 +205,17 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail wenn andere Nutzer dir eine Nachricht "
 "schreiben."
 
-#: herobase/utils.py:29
+#: herobase/utils.py:32
 msgid "algorithm"
 msgstr "Algorithmus"
 
-#: herobase/utils.py:30
+#: herobase/utils.py:33
 msgid "hash"
 msgstr "Hash"
 
 #: herobase/templates/herobase/layout-3-6-3.html:30
 msgid "Suggested quests"
-msgstr ""
+msgstr "Vorgeschlagene Quests"
 
 #: herobase/templates/herobase/public_home.html:4
 msgid "Questdesign"
@@ -253,39 +253,39 @@ msgstr "Aktionen"
 msgid "Nobody is helping you yet."
 msgstr "Noch hilft Dir niemand."
 
-#: herobase/templates/herobase/quest/detail.html:21
+#: herobase/templates/herobase/quest/detail.html:30
 msgid "all classes"
 msgstr "alle Klassen"
 
-#: herobase/templates/herobase/quest/detail.html:31
+#: herobase/templates/herobase/quest/detail.html:40
 msgid "Author"
 msgstr "Autor"
 
-#: herobase/templates/herobase/quest/detail.html:32
+#: herobase/templates/herobase/quest/detail.html:41
 msgid "Location"
 msgstr "Ort"
 
-#: herobase/templates/herobase/quest/detail.html:37
+#: herobase/templates/herobase/quest/detail.html:46
 #: herobase/templates/herobase/quest/m/detail.html:26
 msgid "Level"
 msgstr "Level"
 
-#: herobase/templates/herobase/quest/detail.html:38
+#: herobase/templates/herobase/quest/detail.html:47
 msgid "Experience"
 msgstr "Erfahrung"
 
 #: herobase/templates/herobase/quest/list.html:82
-#: herobase/templates/herobase/quest/m/list.html:85
+#: herobase/templates/herobase/quest/m/list.html:86
 msgid "No quests found matching your current criteria."
 msgstr "Keine Quests die deiner Suchanfrage entsprechen gefunden."
 
 #: herobase/templates/herobase/quest/list.html:83
-#: herobase/templates/herobase/quest/m/list.html:86
+#: herobase/templates/herobase/quest/m/list.html:87
 msgid "Show all."
 msgstr "Alle Anzeigen."
 
 #: herobase/templates/herobase/quest/list.html:85
-#: herobase/templates/herobase/quest/m/list.html:88
+#: herobase/templates/herobase/quest/m/list.html:89
 msgid "There don't seem to be any quests."
 msgstr "Es gibt keine Quests."
 
