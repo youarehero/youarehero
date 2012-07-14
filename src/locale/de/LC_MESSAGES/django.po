@@ -337,7 +337,7 @@ msgstr "Erledigte Quests"
 
 #: herobase/templates/registration/login.html:12
 msgid "You don't have an account yet?"
-msgstr ""
+msgstr "Du hast noch keinen Account?"
 
 #: herobase/templates/registration/login.html:13
 msgid "Join now!"
@@ -345,11 +345,11 @@ msgstr "Melde dich an!"
 
 #: herobase/templates/registration/logout.html:6
 msgid "Good bye!"
-msgstr ""
+msgstr "Auf wiedersehen!"
 
 #: herobase/templates/registration/logout.html:7
 msgid "Thank you for using \"You are Hero\". We hope to see you soon."
-msgstr ""
+msgstr "Vielen Dank für die Benutzung von \"You are Hero\". Beehren Sie uns bald wieder."
 
 #: herobase/templates/registration/registration_form.html:11
 msgid "register"
