@@ -226,10 +226,9 @@ def userprofile_privacy_settings(request):
         'form': form
     })
 
-@login_required
 def leader_board(request):
     """Render a view of the top heroes by rank."""
-    total = User.objects.select_related().filter(userprofile__experience__gt=0).order_by('-userprofile__experience')
+#    total = User.objects.select_related().filter(userprofile__experience__gt=0).order_by('-userprofile__experience')
 #    by_class = {}
 #    for hero_class, class_name in CLASS_CHOICES:
 #        by_class[class_name] = User.objects.select_related()\
@@ -245,6 +244,9 @@ def leader_board(request):
 #            adventures__quest__state=Quest.STATE_OWNER_DONE)\
 #            .annotate(class_experience=Sum('adventures__quest__experience'))\
 #            .order_by('-class_experience')
+
+    total = request.user.get_profile().get_related_leaderboard()
+
 
     return render(request, "herobase/leader_board.html", {'total': total,
 #                                                         'by_class': by_class,

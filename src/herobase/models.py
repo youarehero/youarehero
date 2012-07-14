@@ -6,6 +6,7 @@ This module also contains the ActionMixin, which provides basic logic for model 
 The model actions connect state logic to the models.
 """
 from functools import wraps
+from itertools import chain
 from operator import attrgetter
 from random import randint
 
@@ -366,7 +367,7 @@ class Quest(models.Model, ActionMixin):
     def get_absolute_url(self):
         """Get the url for this quests detail page."""
         return reverse("quest-detail", args=(self.pk,))
-    def get_absolute_m_url(self):
+    def get_absolute_murl(self):
         """Get the url for this quests detail page."""
         return reverse("m-quest-detail", args=(self.pk,))
 
@@ -459,6 +460,15 @@ class UserProfile(models.Model):
         """Return number of unread messages."""
         return Message.objects.filter(recipient=self.user,read__isnull=True,
             recipient_deleted__isnull=True).count()
+
+    def get_related_leaderboard(self):
+
+        better = User.objects.select_related().filter(userprofile__experience__gt=self.user.userprofile.experience).order_by('-userprofile__experience')[:3]
+        size = better.count()
+        worse =  User.objects.select_related().filter(userprofile__experience__lte=self.user.userprofile.experience).order_by('-userprofile__experience')[:(7-size)]
+        total = list(chain(better, worse))
+
+        return total
 
     def __unicode__(self):
         return self.user.username

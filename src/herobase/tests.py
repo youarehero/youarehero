@@ -4,13 +4,14 @@ These will pass when you run "manage.py test".
 
 Some tests...
 """
+from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import RequestFactory, Client
 from django.test.testcases import SimpleTestCase, TransactionTestCase
 from django.test.utils import override_settings
-from herobase.models import Quest, Adventure
+from herobase.models import Quest, Adventure, UserProfile
 from herobase.test_factories import create_adventure
 from test_factories import create_quest, create_user
 
@@ -302,3 +303,23 @@ class AuthenticatedIntegrationTest(TestCase):
         quest = create_quest(owner=master, title='suggested_quest_0')
         response = self.client.get('/')
         self.assertContains(response, quest.title)
+
+class LeaderBoardTest(TestCase):
+
+    def test_leaderboard_ok(self):
+        """Check if leaderboard is correctly ordered"""
+        for i in range(7,0,-1):
+            user = create_user()
+            profile = user.get_profile()
+            if (i == 4):
+                theuser = user
+            profile.experience = i * 100
+            profile.save()
+
+        self.assertEqual(list(User.objects.order_by('-userprofile__experience')),
+                                 theuser.get_profile().get_related_leaderboard())
+
+
+
+
+
