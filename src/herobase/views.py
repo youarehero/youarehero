@@ -62,7 +62,6 @@ class QuestCreateView(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-@login_required
 def quest_detail_view(request, quest_id, template="herobase/quest/detail.html"):
     """Render detail template for quest, and adventure if it exists."""
     quest = get_object_or_404(Quest, pk=quest_id)

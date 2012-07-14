@@ -23,6 +23,7 @@
 {#           rel="stylesheet"#}
 {#           type="text/css">#}
 {#{% endblock %}#}
+
 {% block head_menu %}{% include "herobase/quest/m/menu.html" %}{% endblock %}
 
 
@@ -108,11 +109,11 @@
                         <tr  
               onclick="document.location.href=('{% url m-quest-detail quest.id %}');">
                             <a href="{% url quest-detail quest.id %}" >
-                            <td>
-                                {{ quest.title }}
+                            <td style="text-wrap:normal;word-wrap:break-word">
+                                {{ quest.title|truncatechars:22  }}
                             </td>
-                            <td><img src="{% static "img/icon_" %}{{ quest.get_hero_class_display|lower }}.png" /></td>
-                            <td>{{ quest.location }}</td>
+                            <td style="text-align:center"><img style="height:20px" src="{% static "img/icon_" %}{{ quest.get_hero_class_display|lower }}.png" /></td>
+                            <td>{{ quest.location|truncatechars:10 }}</td>
                             <td>
                                 {{ quest.experience }}
                             </td>

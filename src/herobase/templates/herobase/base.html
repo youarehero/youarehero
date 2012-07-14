@@ -21,6 +21,9 @@
     {% block css %}
     {% endblock %}
 
+    {% block meta %}
+    {% endblock %}
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -54,26 +57,7 @@
 {% block javascript %}
 
 {% endblock %}
-<script id="_webengage_script_tag" type="text/javascript">
-    window.setTimeout(function () {
-        window.webengageWidgetInit = window.webengageWidgetInit || function(){
-            webengage.init({
-                licenseCode:"14507c80d"
-            }).onReady(function(){
-                        webengage.render();
-                    });
-        };
 
-        (function(d){
-            var _we = d.createElement('script');
-            _we.type = 'text/javascript';
-            _we.async = true;
-            _we.src = (d.location.protocol == 'https:' ? "//ssl.widgets.webengage.com" : "//cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-3.0.js";
-            var _sNode = d.getElementById('_webengage_script_tag');
-            _sNode.parentNode.insertBefore(_we, _sNode);
-        })(document);
-    }, 500);
-</script>
 
 </body>
 </html>
