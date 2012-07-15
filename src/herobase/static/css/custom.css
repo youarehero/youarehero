@@ -121,3 +121,21 @@ ul.menu li [class*=" icon-custom-"] {
 [class*=" icon-custom-"]:last-child {
   *margin-left: 0;
 }
+.avatar {
+  font-weight: bold;
+}
+.heroclass-action {
+  color: #ffa19b;
+}
+.heroclass-scientist {
+  color: #e8e8e8;
+}
+.heroclass-diplomat {
+  color: #fff9b4;
+}
+.heroclass-gatgeteer {
+  color: #ccffa7;
+}
+.heroclass-protective {
+  color: #bdcaff;
+}
