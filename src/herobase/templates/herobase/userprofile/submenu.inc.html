@@ -1,7 +1,9 @@
 {% if request.user.is_authenticated %}
-    <ul>
-        <li><a href="{% url userprofile-private %}"><span class="stripe">Mein Profil</span></a></li>
-        <li><a href="{% url userprofile-edit %}"><span class="stripe">Einstellungen</span></a></li>
-        <li><a href="{% url userprofile-privacy-settings %}"><span class="stripe">Privatsphäre</span></a></li>
-    </ul>
+    {% if request.user == user %}
+        <ul>
+            <li><a href="{% url userprofile-private %}"><span class="stripe">Mein Profil</span></a></li>
+            <li><a href="{% url userprofile-edit %}"><span class="stripe">Einstellungen</span></a></li>
+            <li><a href="{% url userprofile-privacy-settings %}"><span class="stripe">Privatsphäre</span></a></li>
+        </ul>
+    {% endif %}
 {% endif %}

@@ -24,6 +24,10 @@
 {#           type="text/css">#}
 {#{% endblock %}#}
 
+{% block page_title %}
+    <h1>{% trans "Quests" %}</h1>
+{% endblock %}
+
 {% block submenu %}
     {% include "herobase/quest/submenu.inc.html"%}
 {% endblock %}

@@ -1,7 +1,10 @@
 {% extends "herobase/layout/layout-3-6-3.html" %}
 {% load crispy_forms_tags i18n static %}
 
+{% block page_title %}
+    <h1>{% trans "Account-activation failed" %}</h1>
+{% endblock %}
+
 {% block content %}
-    <h1>Account-activation failed.</h1>
-    <p>Sorry, the activation key "{{ activation_key }}" is invalid.</p>
+    <p>{% trans 'Sorry, the activation key "{{ activation_key }}" is invalid.' %}</p>
 {%  endblock %}
