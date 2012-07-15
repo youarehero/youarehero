@@ -1,5 +1,5 @@
 {% if request.user.is_authenticated %}
-    <ul>
+    <ul class="nav">
         <li><a href="{% url quest-my %}"><span class="stripe">Meine Quests</span></a></li>
         <li><a href="{% url quest-create %}"><span class="stripe">Quest erstellen</span></a></li>
         <li><a href="{% url quest-list %}?state=1"><span class="stripe">Quests finden</span></a></li>

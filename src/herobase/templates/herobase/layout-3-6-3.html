@@ -1,41 +1,21 @@
 {% extends "herobase/base.html" %}
-{% load i18n static hero_base %}
-{% block layout %}
-    <div class="row">
-        <div class="span3">
-            {% block sidebar_left %}
-                {% include "herobase/sidebar_left.inc.html" %}
-            {% endblock %}
-        </div><!--/span-->
-        <div class="span9 header">
-            <div class="submenu">
-                {% block submenu %}&nbsp;{% endblock %}
-            </div>
-            <div class="submenu usermenu">
-                {% include "herobase/usermenu.inc.html" %}
-            </div>
-        </div>
-        <div class="span6">
-            <div class="container-fluid">
-                {% include "herobase/messages.inc.html" %}
-            </div>
-            {% block content %}&nbsp;{% endblock %}
-        </div><!--/span-->
-        <div class="span3">
-            {% block sidebar_right %}
-               &nbsp;
-                {% suggest_quests 3 as quests %}
-                    {% if quests %}
-                        <div class="quest-list">
-                            <h3>{% trans "Suggested quests" %}</h3>
-                            <ul>
-                                {% for quest in quests %}
-                                    {% include "herobase/quest/postit.inc.html" %}
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %}
-            {% endblock %}
-        </div><!--/span-->
-    </div>
+
+{% block page %}
+
+    <div class="span3 sidebar-left">
+        {% block sidebar_left %}
+            {% include "herobase/sidebar_left.inc.html" %}
+        {% endblock %}
+    </div><!--/span-->
+
+    <div class="span6">
+        {% block content %}&nbsp;{% endblock %}
+    </div><!--/span-->
+
+    <div class="span3 sidebar-right">
+        {% block sidebar_right %}
+            &nbsp;
+        {% endblock %}
+    </div><!--/span-->
+
 {% endblock %}

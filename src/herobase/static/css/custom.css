@@ -1,0 +1,119 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.span3 .well select,
+.span3 .well textarea,
+.span3 .well input[type="text"],
+.span3 .well input[type="password"],
+.span3 .well input[type="datetime"],
+.span3 .well input[type="datetime-local"],
+.span3 .well input[type="date"],
+.span3 .well input[type="month"],
+.span3 .well input[type="time"],
+.span3 .well input[type="week"],
+.span3 .well input[type="number"],
+.span3 .well input[type="email"],
+.span3 .well input[type="url"],
+.span3 .well input[type="search"],
+.span3 .well input[type="tel"],
+.span3 .well input[type="color"],
+.span3 .well .uneditable-input {
+  max-width: 171px;
+}
+.well {
+  margin-top: 6px;
+}
+#menu {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#menu ul {
+  list-style: none;
+  margin: 0 0 0 -10px;
+}
+#menu ul li {
+  float: left;
+  margin: 0 0 0 10px;
+}
+#menu ul li a {
+  margin: 6px 0 0 0;
+}
+#header {
+  margin-top: 25px;
+}
+.container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: 960px;
+}
+.page-header {
+  border-bottom: 0px none;
+  margin: 31px 0 15px 20px;
+  padding-bottom: 0px;
+}
+.sidebar-left {
+  margin-right: 10px;
+}
+#team_hints {
+  position: fixed;
+  bottom: 0;
+  left: 30%;
+  background: #333333;
+}
+#team_hints a {
+  margin: 2px 10px;
+}
+.icon-custom-home {
+  background: url(../img/icons/home.png) 50% 0 no-repeat transparent;
+}
+.icon-custom-quest {
+  background: url(../img/icons/quest.png) 50% 0 no-repeat transparent;
+}
+.icon-custom-profil {
+  background: url(../img/icons/profil.png) 50% 0 no-repeat transparent;
+}
+.icon-custom-stats {
+  background: url(../img/icons/stats.png) 50% 0 no-repeat transparent;
+}
+.icon-custom-mail {
+  background: url(../img/icons/mail.png) 50% 0 no-repeat transparent;
+}
+.icon-custom-leader {
+  background: url(../img/icons/leader.png) 50% 0 no-repeat transparent;
+}
+[class^="icon-custom-"],
+[class*=" icon-custom-"] {
+  width: 27px;
+  height: 32px;
+  *margin-right: .3em;
+  line-height: 32px;
+  background-size: 100% auto;
+}
+[class^="icon-custom-"]:last-child,
+[class*=" icon-custom-"]:last-child {
+  *margin-left: 0;
+}

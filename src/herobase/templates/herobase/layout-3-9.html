@@ -1,26 +1,15 @@
 {% extends "herobase/base.html" %}
-{% load static %}
 
-{% block layout %}
-    <div class="row">
-        <div class="span3">
-            {% block sidebar_left %}
-                {% include "herobase/sidebar_left.inc.html" %}
-            {% endblock %}
-        </div><!--/span-->
-        <div class="span9 header">
-            <div class="submenu">
-                {% block submenu %}&nbsp;{% endblock %}
-            </div>
-            <div class="submenu usermenu">
-                {% include "herobase/usermenu.inc.html" %}
-            </div>
-        </div>
-        <div class="span9">
-            <div class="container-fluid">
-                {% include "herobase/messages.inc.html" %}
-            </div>
-            {% block content %}{% endblock %}
-        </div><!--/span-->
-    </div>
+{% block page %}
+
+    <div class="span3 sidebar-left">
+        {% block sidebar_left %}
+            {% include "herobase/sidebar_left.inc.html" %}
+        {% endblock %}
+    </div><!--/span3-->
+
+    <div class="span9">
+        {% block content %}&nbsp;{% endblock %}
+    </div><!--/span9-->
+
 {% endblock %}
