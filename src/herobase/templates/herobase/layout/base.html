@@ -59,45 +59,35 @@
         </div>
     </div>
 
-    <div id="menu" class="row">
+    <div id="menubar" class="row">
         <div class="span3 sidebar-left">
             <ul id="mainmenu" class="menu">
-                <li>
-                    <a href="{% url home %}"><i class="icon-custom-home"></i></a>
-                </li>
-                <li>
-                    <a href="{% url quest-my %}"><i class="icon-custom-quest"></i></a>
-                </li>
-                <li>
-                    <a href="{% url userprofile-private %}"><i class="icon-custom-profil"></i></a>
-                </li>
-                <li>
-                    <a href="{% url stats %}"><i class="icon-custom-stats"></i></a>
-                </li>
-                <li>
-                    <a href="{% url leader-board %}"><i class="icon-custom-leader"></i></a>
-                </li>
-                <li>
-                    <a href="{% url home %}"><i class="icon-custom-mail"></i></a>
-                </li>
+                <li><a href="{% url home %}"><i class="icon-custom-home"></i></a></li>
+                <li><a href="{% url quest-my %}"><i class="icon-custom-quest"></i></a></li>
+                <li><a href="{% url userprofile-private %}"><i class="icon-custom-profil"></i></a></li>
+                <li><a href="{% url stats %}"><i class="icon-custom-stats"></i></a></li>
+                <li><a href="{% url leader-board %}"><i class="icon-custom-leader"></i></a></li>
+
             </ul>
         </div>
         <div class="span9">
+            <ul class="menu pull-right">
+                <li><a href="{% url message-list %}"><i class="icon-custom-mail"></i></a></li>
+                <li><a href="{% url auth_logout %}">Logout</a></li>
+            </ul>
             {% block submenu %}{% endblock %}
         </div>
     </div>
 
     <div class="row">
         {% block page %}
-            {% block sidebar_left %}{% endblock %}
-            {% block content %}{% endblock %}
-            {% block sidebar_right %}{% endblock %}
+            &nbsp;
         {% endblock %}
     </div>
 {% endblock %}
 </div><!--/container-->
 {% if request.user.is_staff %}
-    <div id="team_hints"><a href="/admin/signups/">signups</a><a href="/admin/">admin</a><a href="/coverage/">tests</a><a href="/docs/">docs</a><a href="/wiki/">wiki</a></div>
+    <div id="team_hints"><a href="/admin/signups/">signups</a><a href="/admin/">admin</a><a href="/env/lib/python2.7/site-packages/coverage">tests</a><a href="/env/lib/python2.7/site-packages/docs">docs</a><a href="/wiki/">wiki</a></div>
 {% endif %}
     <!-- Le javascript
    ================================================== -->

@@ -1,0 +1,10 @@
+{% if messages %}
+    <div id="notifications">
+        {% for notification in messages %}
+            <div class="alert {% if notification.tags %} alert-{{notification.tags}} {% endif %}">
+                <a class="close" data-dismiss="alert" href="#">×</a>
+                {{ notification }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

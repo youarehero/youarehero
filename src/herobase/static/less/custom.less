@@ -35,19 +35,20 @@
 }
 
 // Navigation
-#menu {
-    margin-top: 10px;
+#menubar {
     margin-bottom: 10px;
-    ul {
-        list-style: none;
-        margin: 0 0 0 -10px;
+    font-weight: bold;
+}
+ul.menu {
+    list-style: none;
+    margin: 0 0 0 -10px;
 
-        li {
-            float: left;
-            margin: 0 0 0 10px;
-            a {
-                margin: 6px 0 0 0;
-            }
+    li {
+        float: left;
+        margin: 6px 0 0 10px;
+        [class^="icon-custom-"],
+        [class*=" icon-custom-"] {
+            margin-top: -6px;
         }
     }
 }
@@ -67,12 +68,15 @@
 //
 .page-header {
     border-bottom: 0px none;
-    margin: 31px 0 15px 20px;
+    margin: 32px 0 15px 20px;
     padding-bottom: 0px;
 }
 
 .sidebar-left {
     margin-right: 10px;
+}
+.sidebar-right {
+    margin-left: 30px;
 }
 
 // Team Hints

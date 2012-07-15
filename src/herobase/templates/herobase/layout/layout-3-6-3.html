@@ -1,14 +1,17 @@
-{% extends "herobase/base.html" %}
+{% extends "herobase/layout/base.html" %}
 {% load i18n hero_base %}
 {% block page %}
 
     <div class="span3 sidebar-left">
         {% block sidebar_left %}
-            {% include "herobase/sidebar_left.inc.html" %}
+            {% include "herobase/layout/sidebar_left.inc.html" %}
         {% endblock %}
     </div><!--/span-->
 
     <div class="span6">
+        <div class="container-fluid">
+            {% include "herobase/layout/messages.inc.html" %}
+        </div>
         {% block content %}&nbsp;{% endblock %}
     </div><!--/span-->
 
