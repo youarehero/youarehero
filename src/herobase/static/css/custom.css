@@ -47,9 +47,8 @@
 .well {
   margin-top: 6px;
 }
-#menubar {
-  margin-top: 0px;
-  margin-bottom: 0px;
+.menubar {
+  margin-bottom: 10px;
   font-weight: bold;
 }
 ul.menu {
