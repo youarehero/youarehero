@@ -1,9 +1,31 @@
 {% load i18n static crispy_forms_tags %}
 
-<div class="sidebar-left">
     {% if request.user.is_authenticated %}
-        {% include "herobase/userprofile/private_avatar.inc.html" %}
-        {% include "herobase/navigation.inc.html" %}
+        {# Username and Avatar #}
+        <img src="{{ request.user.get_profile.avatar }}" alt="{{ request.user.username }}">
+        <h4 class="pull-right">{{ request.user.get_profile.get_hero_class_display }}</h4>
+        <h4><a href="{% url userprofile-private %}">{{ request.user.username }}</a></h4>
+        <h4 class="pull-right">{{ request.user.get_profile.experience }} XP</h4>
+        <h4>Level: {{ request.user.get_profile.level }}</h4>
+
+        <div class="row">
+        <span class="span1">{{ request.user.get_profile.get_hero_class_display }}: {{ request.user.get_profile.level }}</span>
+        <span class="span1"><strong>{{ request.user.username }}</strong></span>
+        <span class="span1">{{ request.user.get_profile.experience }} XP</span>
+        </div>
+        <div class="progress">
+            <div class="bar" style="width: {{ request.user.get_profile.relative_level_experience }}%;"></div>
+        </div>
+
+        {# Long Navigation #}
+        <ul id="main-navigation" class="navigation">
+            <li><a href="{% url quest-my %}">Quests</a></li>
+            <li><a href="{% url userprofile-private %}">Profil</a></li>
+            <!--<li><a href="{% url userprofile-privacy-settings %}">Privatsphäre</a></li>-->
+            <li><a href="{% url leader-board %}">Top Heroes</a></li>
+            <li><a href="{% url stats %}">Stats</a></li>
+            <li><a target="_blank" href="http://webengage.com/s/~3dij6ek">Fragebogen (1min)</a></li>
+        </ul>
     {% else %}
         <h2>{% trans "Login" %}</h2>
         {% crispy login_form %}
@@ -11,5 +33,5 @@
             <a href="{% url auth_password_reset %}">{% trans "Forgotten password?" %}</a>
         </p>
     {% endif %}
-</div>
+
 

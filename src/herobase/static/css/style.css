@@ -1,21 +1,4 @@
-#team_hints { /* development only */
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    border: 1px solid #add8e6;
-    background-color: #ffc533;
-    border-radius: 3px;
-}
 
-#team_hints a{
-    margin: 0 1em;
-}
-
-a.text {
-    text-decoration: none;
-    color: #232566;
-
-}
 
 .quest-list-item .content p, .quest-list-item .content h2 {
     font-family: 'Coming Soon', cursive;
@@ -316,27 +299,6 @@ h1 small{
     border: 2px solid black;
 }
 
-/* allgemeiner weißer page header */
-.page-header-100 {
-    min-height: 100px;
-    padding: 25px 10px 10px;
-    position:relative;
-}
-
-.header {
-    height: 100px;
-    position: relative;
-    padding: 25px 0px 10px;
-}
-
-/* LOGO */
-#logo {
-    padding: 25px 10px 10px;
-}
-#logo img {
-    margin-left: -27px;
-}
-
 /* Navigation + Nav Icons */
 #main-navigation {
     margin-top: 30px;
@@ -401,31 +363,4 @@ h1 small{
     border-right: 1px solid #CCCCCC;
     padding-right: 30px;
 }
-
-/*
-[class^="quest-class-"] h1,
-[class*="quest-class-"] h1{
-    font-family: "Reenie Beanie", arial, sans-serif;
-}
-
-/* Scientist *
-div.quest-class-0 .page-header {
-    background: url("../img/icon_scientist.png") no-repeat #e8e8e8 95% 95%;
-}
-/* Gadgeteer *
-div.quest-class-1 .page-header {
-    background: url("../img/icon_gadgeteer.png") no-repeat #ccffa7 95% 95%;
-}
-/* Diplomat *
-div.quest-class-2 .page-header {
-    background: url("../img/icon_diplomat.png") no-repeat #fff9b4 95% 5%;
-}
-/* Action *
-div.quest-class-3 .page-header {
-    background: url("../img/icon_action.png") no-repeat #ffa19b 95% 5%;
-}
-/* Protective *
-div.quest-class-4 .page-header {
-    background: url("../img/icon_protective.png") no-repeat #bdcaff 95% 95%;
-}*/
 

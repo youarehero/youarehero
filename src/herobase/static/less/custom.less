@@ -34,23 +34,45 @@
     margin-top: 6px;
 }
 
-// Navigation white
-.navbar-inner {
-    .box-shadow(@white);
-}
+// Navigation
+#menu {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    ul {
+        list-style: none;
+        margin: 0 0 0 -10px;
 
-.navbar .nav > li > a {
-    text-shadow: none;
-    padding: 4px 5px 6px;
+        li {
+            float: left;
+            margin: 0 0 0 10px;
+            a {
+                margin: 6px 0 0 0;
+            }
+        }
+    }
 }
-
 
 // Layout
 //------------------------
 
 #header {
     margin-top: 25px;
-    margin-bottom: 10px;
+}
+
+// we have two larger spaces between the content and the sidebars
+.container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: 960px; //940px;
+}
+
+//
+.page-header {
+    border-bottom: 0px none;
+    margin: 31px 0 15px 20px;
+    padding-bottom: 0px;
+}
+
+.sidebar-left {
+    margin-right: 10px;
 }
 
 // Team Hints
@@ -61,7 +83,7 @@
     left: 30%;
     background: @grayDark;
     a {
-        margin-right: 15px;
+        margin: 2px 10px;
     }
 }
 
