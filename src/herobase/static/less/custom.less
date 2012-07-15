@@ -6,7 +6,7 @@
 // Bootstrap specific fixes
 // -----------------------
 
-// Inputs in small Grid column
+// Inputs in small Grid column FIX
 .span3 .well{
     select,
     textarea,
@@ -110,14 +110,42 @@ ul.menu {
     background-size: 100% auto;
 }
 
+.badge {
+    border-radius: 10px;
+    padding: 0px 7px 0px 5px;
+    text-shadow: none;
+    font-size: 13px;
+}
+.badge-orange {
+    background-color: @secondary;
+}
+
+[class^="icon-custom"] .badge,
+[class*=" icon-custom"] .badge {
+    position: relative;
+    bottom: -1px;
+}
+
 // Avatar
+//------------------------
 .avatar {
     font-weight: bold;
 }
 
-//Heroclasses
+.portrait img {
+    margin: 10px 0px;
+}
+
+.experience .progress {
+    border: 2px solid black;
+}
+
+// Heroclasses
+//------------------------
 .heroclass-action { color: @action; }
 .heroclass-scientist { color: @scientist; }
 .heroclass-diplomat { color: @diplomat; }
 .heroclass-gatgeteer { color: @gadgeteer; }
 .heroclass-protective { color: @protective; }
+
+

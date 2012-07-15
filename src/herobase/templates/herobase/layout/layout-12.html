@@ -1,13 +1,8 @@
 {% extends "herobase/layout/base.html" %}
 
 {% block page %}
-    <div class="row">
-        <div class="span12">
-            <div class="page-header">&nbsp;</div>
-            <div class="container-fluid">
-                {% include "herobase/layout/messages.inc.html" %}
-            </div>
-            {% block content %}{% endblock %}
-        </div>
+    <div class="span12">
+        {% include "herobase/layout/messages.inc.html" %}
+        {% block content %}{% endblock %}
     </div>
 {% endblock %}

@@ -73,7 +73,11 @@
         <div class="span9">
             {% if request.user.is_authenticated %}
                 <ul class="menu pull-right">
-                    <li><a href="{% url message-list %}"><i class="icon-custom-mail"></i></a></li>
+                    <li><a href="{% url message-list %}"><i class="icon-custom-mail">
+                        {% if request.user.get_profile.unread_messages_count != 0 %}
+                            <span class="badge badge-orange"> {{ request.user.get_profile.unread_messages_count }}</span>
+                        {% endif %}
+                    </i></a></li>
                     <li><a href="{% url auth_logout %}">Logout</a></li>
                 </ul>
             {% endif %}
