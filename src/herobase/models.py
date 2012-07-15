@@ -367,7 +367,7 @@ class Quest(models.Model, ActionMixin):
     def get_absolute_url(self):
         """Get the url for this quests detail page."""
         return reverse("quest-detail", args=(self.pk,))
-    def get_absolute_murl(self):
+    def get_absolute_m_url(self):
         """Get the url for this quests detail page."""
         return reverse("m-quest-detail", args=(self.pk,))
 
