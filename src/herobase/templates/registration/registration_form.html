@@ -1,10 +1,13 @@
-{% extends "herobase/layout-3-6-3.html" %}
+{% extends "herobase/layout/layout-3-6-3.html" %}
 {% load crispy_forms_tags i18n static %}
 
+{% block page_title %}
+    <h1>{% trans "Registration" %}</h1>
+{% endblock %}
+
 {% block content %}
-    <h1>Be a Hero!</h1>
-    <p>Being a hero is exciting. Try it yourself!</p>
-    <h2>Registration</h2>
+    <h2>{% trans "Be a Hero!" %}</h2>
+    <p>{% trans "Being a hero is exciting. Try it yourself!" %}</p>
 
     <form method="post" action="." class="well">{% csrf_token %}
         {{ form|crispy }}

@@ -1,7 +1,11 @@
-{% extends "herobase/layout-3-6-3.html" %}
+{% extends "herobase/layout/layout-3-6-3.html" %}
 {% load static i18n %}
+
+{% block page_title %}
+    <h1>{% trans "Questdesign in real life" %}</h1>
+{% endblock %}
+
 {% block content %}
-    <h1><span class="stripe">{% trans "Questdesign" %}</span> {% trans "in real life" %}</h1>
     <h2>{% trans "YAH Development Server " %}</h2>
 
     <p><a href="{% url abstract %}">Was ist You Are Hero?</a></p>

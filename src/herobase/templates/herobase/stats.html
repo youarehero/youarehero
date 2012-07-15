@@ -1,4 +1,4 @@
-{% extends "herobase/layout-3-9.html" %}
+{% extends "herobase/layout/layout-3-9.html" %}
 {% load i18n %}
 {% block head_javascript %}
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -72,9 +72,13 @@
         }
     </script>
 {% endblock %}
+
+{% block page_title %}
+    <h1>{% trans "Statistics" %}</h1>
+{% endblock %}
+
 {% block content %}
-    <div class="">
-    <h3>You are Hero Statistik</h3>
+    <div>
 {#        <h3>You have completed {{ quests_completed }} quests</h3>#}
         <div id="hero_completed_quests"></div>
         <div id="completed_quests_by_class"></div>

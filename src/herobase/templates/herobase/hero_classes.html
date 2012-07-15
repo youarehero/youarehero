@@ -1,7 +1,10 @@
-{% extends "herobase/layout-3-6-3.html" %}
+{% extends "herobase/layout/layout-3-6-3.html" %}
 {% load static i18n %}
 
+{% block page_title %}
+    <h1>Heldenklassen</h1>
+{% endblock %}
+
 {% block content %}
-    <h1><span class="stripe">Heldenklassen</span></h1>
     {% include "herobase/hero_classes.inc.html" %}
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "herobase/layout-3-9.html" %}
+{% extends "herobase/layout/layout-3-9.html" %}
 {% load static %}
 {% load i18n %}
 {% load endless %}
@@ -23,6 +23,10 @@
 {#           rel="stylesheet"#}
 {#           type="text/css">#}
 {#{% endblock %}#}
+
+{% block page_title %}
+    <h1>{% trans "Quests" %}</h1>
+{% endblock %}
 
 {% block submenu %}
     {% include "herobase/quest/submenu.inc.html"%}

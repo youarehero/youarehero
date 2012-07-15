@@ -1,7 +1,7 @@
 {% if request.user.is_authenticated %}
-    <ul>
-        <li><a href="{% url quest-my %}"><span class="stripe">Meine Quests</span></a></li>
-        <li><a href="{% url quest-create %}"><span class="stripe">Quest erstellen</span></a></li>
-        <li><a href="{% url quest-list %}?state=1"><span class="stripe">Quests finden</span></a></li>
+    <ul class="menu">
+        <li><a href="{% url quest-my %}">Meine Quests</a></li>
+        <li><a href="{% url quest-create %}">Quest erstellen</a></li>
+        <li><a href="{% url quest-list %}?state=1">Quests finden</a></li>
     </ul>
 {% endif %}

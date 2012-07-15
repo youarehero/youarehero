@@ -257,7 +257,8 @@ def random_stats(request):
     """Some general stats"""
     user = request.user
     class_choices = dict(CLASS_CHOICES)
-    color_dict = { 5: '#e8e8e8',
+    color_dict = { None: "#ff0000",
+                    5: '#e8e8e8',
                    1: '#ccffa7',
                    2: '#fff9b4',
                    3: '#ffa19b',
@@ -271,12 +272,12 @@ def random_stats(request):
         .filter(state=Adventure.STATE_OWNER_DONE)\
         .values_list('quest__hero_class')\
         .annotate(Count('quest__hero_class')):
-        hero_completed_quests.append((class_choices[choice], count))
+        hero_completed_quests.append((class_choices.get(choice, None), count))
 
     colors0 = []
     open_quest_types = []
     for choice, count in  Quest.objects.filter(state=Quest.STATE_OPEN).values_list('hero_class').annotate(Count('hero_class')):
-        open_quest_types.append((class_choices[choice], count))
+        open_quest_types.append((class_choices.get(choice, None), count))
         colors0.append(color_dict[choice])
 
     colors1 = []

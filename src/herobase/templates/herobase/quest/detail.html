@@ -1,4 +1,4 @@
-{% extends "herobase/layout-3-6-3.html" %}
+{% extends "herobase/layout/layout-3-6-3.html" %}
 {% load i18n hero_actions hero_message static %}
 {% block javascript %}
     <script type="text/javascript" src="{% get_static_prefix %}js/forms.js"></script>
@@ -22,15 +22,19 @@
     {% include "herobase/quest/submenu.inc.html"%}
 {% endblock %}
 
+{% block page_title %}
+    <h1>{% trans "Quests" %}</h1>
+{% endblock %}
+
 {% block content %}
     <div class="quest-detail well quest-class-{{ quest.hero_class }}">
         <div class="page-header">
-            <h1>{{ quest.title }}
-            <small>
-                {{ quest.get_hero_class_display|default:_("all classes") }}
-                <div class="charicon {{ quest.get_hero_class_display }}"/>
-            </small>
-            </h1>
+            <h2>{{ quest.title }}
+                <small>
+                    {{ quest.get_hero_class_display|default:_("all classes") }}
+                    <div class="charicon {{ quest.get_hero_class_display }}"/>
+                </small>
+            </h2>
         </div>
         <div class="well">{{ quest.description|linebreaks }}</div>
 

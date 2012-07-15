@@ -1,9 +1,11 @@
-{% extends "herobase/layout-3-6-3.html" %}
+{% extends "herobase/layout/layout-3-6-3.html" %}
 {% load i18n hero_message %}
+
+{% block page_title %}
+    <h1>Hallo {{ request.user.username }}!</h1>
+{% endblock %}
+
 {% block content %}
-
-    <h1><span class="stripe">Hallo {{ request.user.username }}!</span></h1>
-
     <p>Dies ist dein <strong>Heldenbereich</strong>. Du kommst jederzeit auf diese Übersicht, wenn du links oben auf Deinen Namen oder das YAH!-Logo klickst.</p>
 
     <p>Links siehst du ein Bild von deinem Charakter. Darunter Deinen Level und die Erfahrungspunkte, die Du schon gesammelt hast.</p>

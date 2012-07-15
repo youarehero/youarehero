@@ -1,10 +1,10 @@
-{% extends "herobase/layout-3-6-3.html" %}
+{% extends "herobase/layout/layout-3-6-3.html" %}
 {% load i18n %}
+
+{% block page_title %}
+    <h1>{% trans "Good bye!" %}</h1>
+{% endblock %}
+
 {% block content %}
-        <div class="row-fluid">
-            <div class="span16">
-                <h1>{% trans "Good bye!" %}</h1>
-                <p>{% trans 'Thank you for using "You are Hero". We hope to see you soon.' %}</p>
-            </div>
-        </div>
+    <p>{% trans 'Thank you for using "You are Hero". We hope to see you soon.' %}</p>
 {% endblock %}

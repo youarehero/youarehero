@@ -1,0 +1,34 @@
+{% extends "herobase/layout/base.html" %}
+{% load i18n hero_base %}
+{% block page %}
+
+    <div class="span3 sidebar-left">
+        {% block sidebar_left %}
+            {% include "herobase/layout/sidebar_left.inc.html" %}
+        {% endblock %}
+    </div><!--/span-->
+
+    <div class="span6">
+        <div class="container-fluid">
+            {% include "herobase/layout/messages.inc.html" %}
+        </div>
+        {% block content %}&nbsp;{% endblock %}
+    </div><!--/span-->
+
+    <div class="span3 sidebar-right">
+        {% block sidebar_right %}
+            {% suggest_quests 3 as quests %}
+            {% if quests %}
+                <div class="quest-list">
+                    <h3>{% trans "Suggested quests" %}</h3>
+                    <ul>
+                        {% for quest in quests %}
+                            {% include "herobase/quest/postit.inc.html" %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endblock %}
+    </div><!--/span-->
+
+{% endblock %}
