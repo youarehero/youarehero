@@ -7,13 +7,13 @@
 
             <h4><a href="{% url userprofile-private %}">{{ request.user.username }}</a></h4>
 
-            <div class="row">
+            <div class="status row">
             <span class="span1">{% trans "Level" %}: {{ request.user.get_profile.level }}</span>
             <span class="span1 {{ request.user.get_profile.get_hero_class_display|lower }}">{{ request.user.get_profile.get_hero_class_display }}</span>
             <span class="span1">{% trans "XP" %}: {{ request.user.get_profile.experience }}</span>
             </div>
             <div class="progress">
-                <div class="bar" style="width: {{ request.user.get_profile.relative_level_experience }}%;"></div>
+                <div class="bar {{ request.user.get_profile.get_hero_class_display|lower }}" style="width: {{ request.user.get_profile.relative_level_experience }}%;"></div>
             </div>
         </div>
         {# Long Navigation #}

@@ -5,19 +5,26 @@
 
 // Navigation
 .menubar {
-    margin-bottom: 10px;
+    margin-bottom: 14px;
     font-weight: bold;
+    a {
+        color: @grayDark;
+    }
 }
 ul.menu {
     list-style: none;
-    margin: 0 0 0 -10px;
+    margin: 5px 0 5px -15px;
 
     li {
         float: left;
-        margin: 6px 0 0 10px;
+        margin: 9px 0 0 15px;
+        [class^="icon-"],
+        [class*=" icon-"] {
+            margin: 1px 0px 0px 0px;
+        }
         [class^="icon-custom-"],
         [class*=" icon-custom-"] {
-            margin-top: -6px;
+            margin: -9px -10px 0px 0px;
         }
     }
 }
@@ -53,60 +60,80 @@ ul.menu {
 // Icons
 //------------------------
 
-
-.icon-custom-home { background: url(../img/icons/home.png) 50% 0 no-repeat transparent; }
-.icon-custom-quest { background: url(../img/icons/quest.png) 50% 0 no-repeat transparent; }
-.icon-custom-profil { background: url(../img/icons/profil.png) 50% 0 no-repeat transparent; }
-.icon-custom-stats { background: url(../img/icons/stats.png) 50% 0 no-repeat transparent; }
-.icon-custom-mail { background: url(../img/icons/mail.png) 50% 0 no-repeat transparent; }
-.icon-custom-leader { background: url(../img/icons/leader.png) 50% 0 no-repeat transparent; }
+.icon-custom-home { background: url(../img/icons/home.png) 0 0 no-repeat transparent; }
+.icon-custom-quest { background: url(../img/icons/quest.png) 0 0 no-repeat transparent; }
+.icon-custom-profile { background: url(../img/icons/profile.png) 0 0 no-repeat transparent; }
+.icon-custom-stats { background: url(../img/icons/stats.png) 0 0 no-repeat transparent; }
+.icon-custom-message { background: url(../img/icons/message.png) 0 0 no-repeat transparent; }
+.icon-custom-leader { background: url(../img/icons/leader.png) 0 0 no-repeat transparent; }
+.icon-custom-allies { background: url(../img/icons/allies.png) 0 0 no-repeat transparent; }
+.icon-custom-groups { background: url(../img/icons/groups.png) 0 0 no-repeat transparent; }
+.icon-custom-message-create { background: url(../img/icons/message_create.png) 0 0 no-repeat transparent; }
+.icon-custom-my-heroes { background: url(../img/icons/my_heroes.png) 0 0 no-repeat transparent; }
+.icon-custom-my-stats { background: url(../img/icons/my_stats.png) 0 0 no-repeat transparent; }
+.icon-custom-profile-detail { background: url(../img/icons/profile_detail.png) 0 0 no-repeat transparent; }
+.icon-custom-profile-edit { background: url(../img/icons/profile_edit.png) 0 0 no-repeat transparent; }
+.icon-custom-quest-create { background: url(../img/icons/quest_create.png) 0 0 no-repeat transparent; }
+.icon-custom-quest-edit { background: url(../img/icons/quest_edit.png) 0 0 no-repeat transparent; }
+.icon-custom-quest-find { background: url(../img/icons/quest_find.png) 0 0 no-repeat transparent; }
+.icon-custom-social { background: url(../img/icons/social.png) 0 0 no-repeat transparent; }
 
 [class^="icon-custom-"],
 [class*="icon-custom-"] {
-    width: 27px;
+    width: 32px;
     height: 32px;
     .ie7-restore-right-whitespace();
     line-height: 32px;
-    background-size: 100% auto;
+    &:hover {
+        .scale(1.3);
+    }
 }
 
 // Badges - little number of notifications
 .badge {
-    border-radius: 10px;
-    padding: 0px 7px 0px 5px;
+    border-radius: 0px;
+    padding: 0px 3px 0px 2px;
     text-shadow: none;
-    font-size: 13px;
-}
-.badge-orange {
-    background-color: @secondary;
+    font-size: 10px;
+    background-color: @action;
 }
 
 [class^="icon-custom"] .badge,
 [class*="icon-custom"] .badge {
     position: relative;
-    bottom: -1px;
+    bottom: -8px;
+    left: 3px;
 }
 
 // Avatar
 //------------------------
 .avatar {
     font-weight: bold;
+    img {
+        margin: 0px 0px 10px 0px;
+    }
+    .status {
+        margin-top: 1px;
+        margin-bottom: 2px;
+    }
+    .progress {
+        border: 2px solid black;
+        .bar.action { #gradient > .vertical(lighten(@action, 15%), @action); }
+        .bar.scientist { #gradient > .vertical(lighten(@scientist, 15%), @scientist); }
+        .bar.gadgeteer { #gradient > .vertical(lighten(@gadgeteer, 15%), @gadgeteer); }
+        .bar.diplomat { #gradient > .vertical(lighten(@diplomatLight, 15%), @diplomatLight); }
+        .bar.protective { #gradient > .vertical(lighten(@protective, 15%), @protective); }
+
+    }
 }
 
-.portrait img {
-    margin: 0px 0px 10px 0px;
-}
-
-.avatar .progress {
-    border: 2px solid black;
-}
 
 // Heroclasses
 //------------------------
 span.action { color: @action; }
 span.scientist { color: @scientist; }
 span.diplomat { color: @diplomat; }
-span.gatgeteer { color: @gadgeteer; }
+span.gadgeteer { color: @gadgeteer; }
 span.protective { color: @protective; }
 
 
@@ -116,17 +143,18 @@ ul.questboard {
     list-style: none;
     margin: 0 0 0 -20px;
     li {
-        margin-left: 20px;
+        margin: 0px 0px 20px 20px;
         float:left;
 
         .postit {
-            width: 140px;
-            height: 140px;
+            width: 136px;
+            height: 136px;
             padding: 7px 9px;
             word-wrap: break-word;
-            background: @yellowLight;
+            #gradient > .directional(@white, @grayLighter, 135deg);
             border: 3px solid @orange;
             text-decoration: none;
+            color: @grayDark;
 
             display: block;
             position: relative;
@@ -134,11 +162,11 @@ ul.questboard {
             .rotate(-6deg);
             .transition(transform .2s linear);
         }
-        .postit.action { border-color: @action; }
-        .postit.scientist { border-color: @scientist; }
-        .postit.diplomat { border-color: @diplomat; }
-        .postit.gadgeteer { border-color: @gadgeteer; }
-        .postit.protective { border-color: @protective; }
+        .postit.action { border-color: @action; h4 { color: @action; }}
+        .postit.scientist { border-color: @scientist; h4 { color: @scientist; }}
+        .postit.diplomat { border-color: @diplomat; h4 { color: @diplomat; }}
+        .postit.gadgeteer { border-color: @gadgeteer; h4 { color: @gadgeteer; }}
+        .postit.protective { border-color: @protective; h4 { color: @protective; }}
 
         &:nth-child(even) .postit { .rotate(4deg); top:5px;}
         &:nth-child(3n) .postit { .rotate(-3deg); top:-4px;}
@@ -150,6 +178,31 @@ ul.questboard {
 
 // overflow fix for tab content (we want to see the postits)
 .tab-content { overflow: visible; }
+
+// Questboard on public home
+.questboard.home {
+    position: relative;
+    li {
+        .postit {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            background: url(../../static/img/stripes.png) 0 0 no-repeat scroll;
+            background-size: 100%;
+            img {
+                max-width: 136px;
+                max-height: 112px;
+                position: absolute;
+                bottom: 7px;
+            }
+        }
+
+        &:nth-child(even) .postit { top:-10px; left: 250px;}
+        &:nth-child(3n) .postit { top:80px; left: 490px;}
+        &:nth-child(4n) .postit { top:210px; left: 125px;}
+        &:nth-child(5n) .postit { top:240px; left: 325px;}
+    }
+}
 
 // Bootstrap specific fixes
 // -----------------------

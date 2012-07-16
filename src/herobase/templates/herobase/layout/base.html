@@ -64,26 +64,32 @@
     <div class="menubar row">
         <div class="span3 sidebar-left">
             <ul id="mainmenu" class="menu">
-                <li><a href="{% url home %}"><i class="icon-custom-home"></i></a></li>
-                <li><a href="{% url quest-my %}"><i class="icon-custom-quest"></i></a></li>
-                <li><a href="{% url userprofile-private %}"><i class="icon-custom-profil"></i></a></li>
-                <li><a href="{% url stats %}"><i class="icon-custom-stats"></i></a></li>
-                <li><a href="{% url leader-board %}"><i class="icon-custom-leader"></i></a></li>
-
-            </ul>
-        </div>
-        <div class="span9">
-            {% if request.user.is_authenticated %}
-                <ul class="menu pull-right">
-                    <li><a href="{% url message-list %}"><i class="icon-custom-mail">
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url home %}" rel="tooltip" title="{% trans 'Home' %}"><i class="icon-custom-home"></i></a></li>
+                    <li><a href="{% url quest-my %}" rel="tooltip" title="{% trans 'My Quests' %}"><i class="icon-custom-quest"></i></a></li>
+                    <li><a href="{% url userprofile-private %}" rel="tooltip" title="{% trans 'Profile' %}"><i class="icon-custom-profile"></i></a></li>
+                    <li><a href="{% url stats %}" rel="tooltip" title="{% trans 'Statistics' %}"><i class="icon-custom-stats"></i></a></li>
+                    <li><a href="{% url leader-board %}" rel="tooltip" title="{% trans 'Leader board' %}"><i class="icon-custom-leader"></i></a></li>
+                    <li><a href="{% url message-list %}" rel="tooltip" title="{% trans 'Private Messages' %}"><i class="icon-custom-message">
                         {% if request.user.get_profile.unread_messages_count != 0 %}
-                            <span class="badge badge-orange"> {{ request.user.get_profile.unread_messages_count }}</span>
+                            <span class="badge"> {{ request.user.get_profile.unread_messages_count }}</span>
                         {% endif %}
                     </i></a></li>
-                    <li><a href="{% url auth_logout %}">Logout</a></li>
+                {% else %}
+                    &nbsp;
+                {% endif %}
+            </ul>
+        </div>
+        <div class="span6">
+            {% block submenu %}&nbsp;{% endblock %}
+        </div>
+        <div class="span3 sidebar-right">
+            {% if request.user.is_authenticated %}
+                <ul class="menu">
+
+                    <li><a href="{% url auth_logout %}"><i class="icon-off"></i> Logout</a></li>
                 </ul>
             {% endif %}
-            {% block submenu %}{% endblock %}
         </div>
     </div>
 
@@ -101,6 +107,7 @@
    ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{% get_static_prefix %}bootstrap/js/bootstrap.js"></script>
+<script src="{% get_static_prefix %}bootstrap/js/bootstrap-tooltip.js"></script>
 {% block javascript %}
 
 {% endblock %}

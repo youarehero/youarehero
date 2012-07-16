@@ -1,31 +1,41 @@
-{% extends "herobase/layout/layout-3-6-3.html" %}
+{% extends "herobase/layout/layout-3-9.html" %}
 {% load static i18n %}
 
 {% block page_title %}
-    <h1>{% trans "Questdesign in real life" %}</h1>
+    <h1>&nbsp;</h1>
 {% endblock %}
 
 {% block content %}
-    <h2>{% trans "YAH Development Server " %}</h2>
-
-    <p><a href="{% url abstract %}">Was ist You Are Hero?</a></p>
-
-    <p>Wir hoffen, dass du uns dabei hilfst, unsere Plattform zu verbessern
-    und dafür zu sorgen,
-    dass es ein Tool wird, das allen Spass macht.</p>
-    <p>Alle deine Daten und E-Mail-Adressen werden nach dem Playtest natürlich
-    gelöscht und auch zu keinem Zeitpunkt an Dritte weitergegeben.</p>
-    <p>Bei Rückfragen stehen wir jederzeit unter [info@youarehero.net] zur Verfügung
-    Wir wünschen dir viel Spass beim Spielen und freuen uns über jede Form
-    des Inputs,</p>
-    <p>dein YouareHERO-Team</p>
+    <ul class="questboard home">
+        <li>
+            <a href="/blog/" target="_blank" class="postit diplomat">
+                <h4>News/Blog</h4>
+                <img src="{% get_static_prefix %}img/home/blog.png" alt="Blog">
+            </a>
+        </li>
+        <li>
+            <a href="http://www.youtube.com/watch?v=7gp4X-0XSQA" target="_blank" class="postit action">
+                <h4>Video</h4>
+                <img src="{% get_static_prefix %}img/home/video.png" alt="Blog">
+            </a>
+        </li>
+        <li>
+            <a href="{% url registration_register %}" target="_blank" class="postit">
+                <h4>Register now</h4>
+                <img src="{% get_static_prefix %}img/home/register.png" alt="Blog">
+            </a>
+        </li>
+        <li>
+            <a href="https://youarehero.net/blog/about-us-you-are-hero-questdesign-im-real-life/" target="_blank" class="postit gadgeteer">
+                <h4>What's it all about?</h4>
+                <img src="{% get_static_prefix %}img/home/about.png" alt="Blog">
+            </a>
+        </li>
+        <li>
+            <a href="https://youarehero.net/blog/contact/" target="_blank" class="postit protective">
+                <h4>Join us</h4>
+                <img src="{% get_static_prefix %}img/home/joinus.png" alt="Blog">
+            </a>
+        </li>
+    </ul>
 {%  endblock %}
-
-{% block sidebar_right %}
-    <h3>Hier gehts zum</h3>
-    <h1><a href="/blog/" target="_blank"><span class="yellow-stripe">Blog</span></a></h1>
-    <p>Da gibts noch mehr Infos und so.</p>
-    <h3>und hier gibts das</h3>
-    <h1><a href="http://www.youtube.com/watch?v=7gp4X-0XSQA" target="_blank"><span class="stripe">Video</span></a></h1>
-    <h3>auf Youtube</h3>
-{% endblock %}
