@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-14 19:34+0200\n"
+"POT-Creation-Date: 2012-07-16 14:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,7 +61,9 @@ msgstr ""
 msgid "E-mail"
 msgstr "E-Mail"
 
-#: herobase/forms.py:164 herobase/templates/registration/m/login.html:8
+#: herobase/forms.py:164
+#: herobase/templates/registration/password_reset_complete.html:10
+#: herobase/templates/registration/m/login.html:8
 msgid "Log in"
 msgstr "Einloggen"
 
@@ -213,29 +215,43 @@ msgstr "Algorithmus"
 msgid "hash"
 msgstr "Hash"
 
-#: herobase/templates/herobase/layout-3-6-3.html:30
-msgid "Suggested quests"
-msgstr "Vorgeschlagene Quests"
-
-#: herobase/templates/herobase/public_home.html:4
-msgid "Questdesign"
-msgstr "Questdesign"
-
-#: herobase/templates/herobase/public_home.html:4
-msgid "in real life"
-msgstr "im Real Life"
+#: herobase/templates/herobase/leader_board.html:5
+msgid "Leaderboard"
+msgstr ""
 
 #: herobase/templates/herobase/public_home.html:5
+msgid "Questdesign in real life"
+msgstr "Questdesign im Real Life"
+
+#: herobase/templates/herobase/public_home.html:9
 msgid "YAH Development Server "
 msgstr "YAH-Entwicklungs-Server"
 
-#: herobase/templates/herobase/sidebar_left.inc.html:12
-#: herobase/templates/registration/login.html:4
+#: herobase/templates/herobase/stats.html:77
+msgid "Statistics"
+msgstr "Statistik"
+
+#: herobase/templates/herobase/layout/layout-3-6-3.html:21
+msgid "Suggested quests"
+msgstr "Vorgeschlagene Quests"
+
+#: herobase/templates/herobase/layout/sidebar_left.inc.html:11
+#: herobase/templates/herobase/quest/detail.html:50
+#: herobase/templates/herobase/quest/m/detail.html:26
+msgid "Level"
+msgstr "Level"
+
+#: herobase/templates/herobase/layout/sidebar_left.inc.html:13
+msgid "XP"
+msgstr ""
+
+#: herobase/templates/herobase/layout/sidebar_left.inc.html:29
+#: herobase/templates/registration/login.html:9
 msgid "Login"
 msgstr "Anmelden"
 
-#: herobase/templates/herobase/sidebar_left.inc.html:15
-#: herobase/templates/registration/login.html:9
+#: herobase/templates/herobase/layout/sidebar_left.inc.html:32
+#: herobase/templates/registration/login.html:14
 msgid "Forgotten password?"
 msgstr "Passwort vergessen?"
 
@@ -253,41 +269,49 @@ msgstr "Aktionen"
 msgid "Nobody is helping you yet."
 msgstr "Noch hilft Dir niemand."
 
-#: herobase/templates/herobase/quest/detail.html:30
+#: herobase/templates/herobase/quest/create.html:51
+msgid "Create Quest"
+msgstr "Eine Quest erstellen"
+
+#: herobase/templates/herobase/quest/detail.html:26
+#: herobase/templates/herobase/quest/list.html:28
+msgid "Quests"
+msgstr "Quests"
+
+#: herobase/templates/herobase/quest/detail.html:34
 msgid "all classes"
 msgstr "alle Klassen"
 
-#: herobase/templates/herobase/quest/detail.html:40
+#: herobase/templates/herobase/quest/detail.html:44
 msgid "Author"
 msgstr "Autor"
 
-#: herobase/templates/herobase/quest/detail.html:41
+#: herobase/templates/herobase/quest/detail.html:45
 msgid "Location"
 msgstr "Ort"
 
-#: herobase/templates/herobase/quest/detail.html:46
-#: herobase/templates/herobase/quest/m/detail.html:26
-msgid "Level"
-msgstr "Level"
-
-#: herobase/templates/herobase/quest/detail.html:47
+#: herobase/templates/herobase/quest/detail.html:51
 msgid "Experience"
 msgstr "Erfahrung"
 
-#: herobase/templates/herobase/quest/list.html:82
+#: herobase/templates/herobase/quest/list.html:84
 #: herobase/templates/herobase/quest/m/list.html:86
 msgid "No quests found matching your current criteria."
 msgstr "Keine Quests die deiner Suchanfrage entsprechen gefunden."
 
-#: herobase/templates/herobase/quest/list.html:83
+#: herobase/templates/herobase/quest/list.html:85
 #: herobase/templates/herobase/quest/m/list.html:87
 msgid "Show all."
 msgstr "Alle Anzeigen."
 
-#: herobase/templates/herobase/quest/list.html:85
+#: herobase/templates/herobase/quest/list.html:87
 #: herobase/templates/herobase/quest/m/list.html:89
 msgid "There don't seem to be any quests."
 msgstr "Es gibt keine Quests."
+
+#: herobase/templates/herobase/quest/my.html:6
+msgid "My Quests"
+msgstr "Meine Quests"
 
 #: herobase/templates/herobase/quest/m/detail.html:26
 msgid "Auftraggeber"
@@ -301,59 +325,179 @@ msgstr "Ort"
 msgid "experience"
 msgstr "Erfahrung"
 
-#: herobase/templates/herobase/userprofile/detail.html:51
-msgid "Thats you"
-msgstr "Das bist Du."
-
-#: herobase/templates/herobase/userprofile/detail.html:52
-msgid "This is what your profile looks like to other heroes."
-msgstr "So sieht dein Profil für andere Helden aus."
-
-#: herobase/templates/herobase/userprofile/detail.html:57
+#: herobase/templates/herobase/userprofile/detail.html:37
+#: herobase/templates/herobase/userprofile/edit.html:47
+#: herobase/templates/herobase/userprofile/privacy_settings.html:5
 #: herobase/templates/herobase/userprofile/m/detail.html:58
 msgid "Profile"
 msgstr "Profil"
 
+#: herobase/templates/herobase/userprofile/detail.html:54
+msgid "Thats you"
+msgstr "Das bist Du."
+
+#: herobase/templates/herobase/userprofile/detail.html:55
+msgid "This is what your profile looks like to other heroes."
+msgstr "So sieht dein Profil für andere Helden aus."
+
 #: herobase/templates/herobase/userprofile/detail.html:60
+msgid "About"
+msgstr ""
+
+#: herobase/templates/herobase/userprofile/detail.html:62
 #: herobase/templates/herobase/userprofile/m/detail.html:61
 #, python-format
 msgid "%(username)s is ranked %(rank)s in the ladder."
 msgstr "%(username)s ist auf Platz %(rank)s in der Bestenliste."
 
-#: herobase/templates/herobase/userprofile/detail.html:62
+#: herobase/templates/herobase/userprofile/detail.html:64
 #: herobase/templates/herobase/userprofile/m/detail.html:63
 msgid "Member since"
 msgstr "Mitglied seit"
 
-#: herobase/templates/herobase/userprofile/detail.html:64
+#: herobase/templates/herobase/userprofile/detail.html:66
 #: herobase/templates/herobase/userprofile/m/detail.html:65
 msgid "Region"
 msgstr "Region"
 
-#: herobase/templates/herobase/userprofile/detail.html:67
+#: herobase/templates/herobase/userprofile/detail.html:69
 #: herobase/templates/herobase/userprofile/m/detail.html:68
 msgid "Quests done"
 msgstr "Erledigte Quests"
 
-#: herobase/templates/registration/login.html:12
+#: herobase/templates/registration/activate.html:5
+msgid "Account-activation failed"
+msgstr "Account-Bestätigung fehlgeschlagen"
+
+#: herobase/templates/registration/activate.html:9
+#, python-format
+msgid "Sorry, the activation key \"%(activation_key)s\" is invalid."
+msgstr "Der Aktivierungsschlüssel \"%(activation_key)s\" ist ungültig. "
+
+#: herobase/templates/registration/activation_complete.html:5
+msgid "Account activation complete"
+msgstr "Account-Aktivierung abgeschlossen."
+
+#: herobase/templates/registration/activation_complete.html:11
+#, python-format
+msgid ""
+"Welcome Hero %(user.username)s, <br>\n"
+"        your account is now active.\n"
+"        Start <a href=\"%(quest-list-url)s\">browsing open quests</a>\n"
+"        or <a href=\"%(quest-create-url)s\">create your own quest</a>.\n"
+"    "
+msgstr ""
+"Willkommen Held %(user.username)s, <br>\n"
+"dein Account ist jetzt aktiviert."
+"        Schau in die <a href=\"%(quest-list-url)s\">Quest-Liste</a>\n"
+"        oder <a href=\"%(quest-create-url)s\"> stelle selbst einen Quest ein.</a>.\n"
+" "
+""
+
+#: herobase/templates/registration/login.html:17
 msgid "You don't have an account yet?"
 msgstr "Du hast noch keinen Account?"
 
-#: herobase/templates/registration/login.html:13
+#: herobase/templates/registration/login.html:18
 msgid "Join now!"
 msgstr "Melde dich an!"
 
-#: herobase/templates/registration/logout.html:6
+#: herobase/templates/registration/logout.html:5
 msgid "Good bye!"
 msgstr "Auf wiedersehen!"
 
-#: herobase/templates/registration/logout.html:7
+#: herobase/templates/registration/logout.html:9
 msgid "Thank you for using \"You are Hero\". We hope to see you soon."
 msgstr ""
 "Vielen Dank für die Benutzung von \"You are Hero\". Beehren Sie uns bald "
 "wieder."
 
-#: herobase/templates/registration/registration_form.html:11
+#: herobase/templates/registration/password_reset_complete.html:5
+msgid "Password reset complete"
+msgstr ""
+
+#: herobase/templates/registration/password_reset_complete.html:9
+msgid "Your password has been set. You may go ahead and log in now."
+msgstr ""
+
+#: herobase/templates/registration/password_reset_confirm.html:5
+#: herobase/templates/registration/password_reset_done.html:5
+#: herobase/templates/registration/password_reset_form.html:5
+msgid "Password reset"
+msgstr ""
+
+#: herobase/templates/registration/password_reset_confirm.html:10
+msgid "Confirm password reset"
+msgstr ""
+
+#: herobase/templates/registration/password_reset_confirm.html:11
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: herobase/templates/registration/password_reset_confirm.html:16
+msgid "Change my password"
+msgstr ""
+
+#: herobase/templates/registration/password_reset_confirm.html:20
+msgid "Password reset failed"
+msgstr ""
+
+#: herobase/templates/registration/password_reset_confirm.html:22
+#, python-format
+msgid ""
+"\n"
+"            The password reset link was invalid, possibly because it has "
+"already been used.\n"
+"            Please request a <a href=\"%(password-reset-url)s\">new password."
+"</a>\n"
+"        "
+msgstr ""
+
+#: herobase/templates/registration/password_reset_done.html:9
+msgid ""
+"We've e-mailed you instructions for setting your password to the e-mail "
+"address you submitted. You should be receiving it shortly."
+msgstr ""
+"Wir haben dir eine E-Mail mit den Schritten die du zur Passwort-Änderung "
+"benötigst gemailt.Du solltest sie in kürze Erhalten."
+
+#: herobase/templates/registration/password_reset_form.html:9
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll e-mail "
+"instructions for setting a new one."
+msgstr ""
+"Passwort vergessen? Gib deine E-Mail-Adresse ein und wir schicken dir "
+"Informationen um ein neues Passwort festzulegen"
+
+#: herobase/templates/registration/password_reset_form.html:15
+msgid "Reset my password"
+msgstr "Password zurücksetzen"
+
+#: herobase/templates/registration/registration_complete.html:5
+msgid "Registration complete"
+msgstr "Registrierung abgeschlossen"
+
+#: herobase/templates/registration/registration_complete.html:9
+msgid ""
+"An email containing account-activation information has been sent to the "
+"email-address you specified in the registration form."
+msgstr ""
+
+#: herobase/templates/registration/registration_form.html:5
+msgid "Registration"
+msgstr "Registrierung"
+
+#: herobase/templates/registration/registration_form.html:9
+msgid "Be a Hero!"
+msgstr "Sei ein Held!"
+
+#: herobase/templates/registration/registration_form.html:10
+msgid "Being a hero is exciting. Try it yourself!"
+msgstr "Ein Held zu sein ist aufregend. Mach mit!"
+
+#: herobase/templates/registration/registration_form.html:14
 msgid "register"
 msgstr "registrieren"
 
@@ -393,7 +537,7 @@ msgstr "Nachricht erfolgreich verschickt"
 msgid "Message successfully deleted"
 msgstr "Nachricht erfolgreich gelöscht"
 
-#: heromessage/templates/message/create.html:7
+#: heromessage/templates/message/create.html:11
 #: heromessage/templates/message/detail.html:32
 msgid "Back to inbox"
 msgstr "Zurück zum Posteingang"
@@ -467,3 +611,6 @@ msgstr ""
 #: youarehero/settings/base.py:53
 msgid "English"
 msgstr ""
+
+#~ msgid "Questdesign"
+#~ msgstr "Questdesign"

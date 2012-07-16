@@ -6,5 +6,11 @@
 {% endblock %}
 
 {% block content %}
-    <p>{% trans 'Welcome Hero {{ user.username }}, <br>your account is now activ. Start <a href="{% url quest-list %}">browsing open quests</a> or <a href="{% url quest-create %}">create your own quest</a>.' %}</p>
+    {% url quest-list as quest-list-url %}
+    {% url quest-create as quest-create-url %}
+    <p>{%blocktrans with user.username as username %}Welcome Hero {{ user.username }}, <br>
+        your account is now active.
+        Start <a href="{{ quest-list-url }}">browsing open quests</a>
+        or <a href="{{ quest-create-url }}">create your own quest</a>.
+    {%endblocktrans%}</p>
 {% endblock %}
