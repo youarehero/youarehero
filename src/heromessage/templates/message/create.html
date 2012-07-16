@@ -1,8 +1,12 @@
 {% extends "herobase/layout/layout-3-6-3.html" %}
 {% load crispy_forms_tags i18n static %}
 
-{% block content %}
+{% block head_javascript %}
     {% include 'autocomplete_light/static.html' %}
+{% endblock %}
+
+{% block content %}
+
     {% crispy form %}
     <a href="{% url message-list %}">{% trans "Back to inbox" %}</a>
 {% endblock %}

@@ -1,37 +1,7 @@
-// Variables
+// Import from bootstrap
 
 @import "../bootstrap/less/variables.less";
 @import "../bootstrap/less/mixins.less";
-
-// Bootstrap specific fixes
-// -----------------------
-
-// Inputs in small Grid column FIX
-.span3 .well{
-    select,
-    textarea,
-    input[type="text"],
-    input[type="password"],
-    input[type="datetime"],
-    input[type="datetime-local"],
-    input[type="date"],
-    input[type="month"],
-    input[type="time"],
-    input[type="week"],
-    input[type="number"],
-    input[type="email"],
-    input[type="url"],
-    input[type="search"],
-    input[type="tel"],
-    input[type="color"],
-    .uneditable-input {
-        max-width: 171px;
-    }
-}
-// well Divs
-.well {
-    margin-top: 6px;
-}
 
 // Navigation
 .menubar {
@@ -78,17 +48,7 @@ ul.menu {
     margin-left: 30px;
 }
 
-// Team Hints
-// -----------------------
-#team_hints {
-    position: fixed;
-    bottom: 0;
-    left: 30%;
-    background: @grayDark;
-    a {
-        margin: 2px 10px;
-    }
-}
+
 
 // Icons
 //------------------------
@@ -102,7 +62,7 @@ ul.menu {
 .icon-custom-leader { background: url(../img/icons/leader.png) 50% 0 no-repeat transparent; }
 
 [class^="icon-custom-"],
-[class*=" icon-custom-"] {
+[class*="icon-custom-"] {
     width: 27px;
     height: 32px;
     .ie7-restore-right-whitespace();
@@ -110,6 +70,7 @@ ul.menu {
     background-size: 100% auto;
 }
 
+// Badges - little number of notifications
 .badge {
     border-radius: 10px;
     padding: 0px 7px 0px 5px;
@@ -121,7 +82,7 @@ ul.menu {
 }
 
 [class^="icon-custom"] .badge,
-[class*=" icon-custom"] .badge {
+[class*="icon-custom"] .badge {
     position: relative;
     bottom: -1px;
 }
@@ -133,19 +94,111 @@ ul.menu {
 }
 
 .portrait img {
-    margin: 10px 0px;
+    margin: 0px 0px 10px 0px;
 }
 
-.experience .progress {
+.avatar .progress {
     border: 2px solid black;
 }
 
 // Heroclasses
 //------------------------
-.heroclass-action { color: @action; }
-.heroclass-scientist { color: @scientist; }
-.heroclass-diplomat { color: @diplomat; }
-.heroclass-gatgeteer { color: @gadgeteer; }
-.heroclass-protective { color: @protective; }
+span.action { color: @action; }
+span.scientist { color: @scientist; }
+span.diplomat { color: @diplomat; }
+span.gatgeteer { color: @gadgeteer; }
+span.protective { color: @protective; }
 
 
+// Questboard, Postits
+//------------------------
+ul.questboard {
+    list-style: none;
+    margin: 0 0 0 -20px;
+    li {
+        margin-left: 20px;
+        float:left;
+
+        .postit {
+            width: 140px;
+            height: 140px;
+            padding: 7px 9px;
+            word-wrap: break-word;
+            background: @yellowLight;
+            border: 3px solid @orange;
+            text-decoration: none;
+
+            display: block;
+            position: relative;
+            .box-shadow(-2px 2px 4px rgba(33,33,33,.4));
+            .rotate(-6deg);
+            .transition(transform .2s linear);
+        }
+        .postit.action { border-color: @action; }
+        .postit.scientist { border-color: @scientist; }
+        .postit.diplomat { border-color: @diplomat; }
+        .postit.gadgeteer { border-color: @gadgeteer; }
+        .postit.protective { border-color: @protective; }
+
+        &:nth-child(even) .postit { .rotate(4deg); top:5px;}
+        &:nth-child(3n) .postit { .rotate(-3deg); top:-4px;}
+        &:nth-child(4n) .postit { .rotate(-1deg); top:7px;}
+        &:nth-child(5n) .postit { .rotate(5deg); top:-2px;}
+        .postit:hover, .postit:active { .scale(1.25); z-index: 5; .box-shadow(-3px 3px 5px rgba(33,33,33,.4)); }
+    }
+}
+
+// overflow fix for tab content (we want to see the postits)
+.tab-content { overflow: visible; }
+
+// Bootstrap specific fixes
+// -----------------------
+
+// Inputs in small Grid column FIX
+.span3 .well{
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"],
+    .uneditable-input {
+        max-width: 171px;
+    }
+}
+// well Divs
+.well {
+    margin-top: 6px;
+}
+
+// autocomplete light bootstrap FIX
+.autocomplete_light_widget .autocomplete { margin-bottom: 0px; }
+.autocomplete_light_widget .deck { padding-left: 0px; margin: 0; }
+.autocomplete_light_widget .deck li { background: #f9f9fb; border: 1px solid #CCCCCC; border-radius: 3px 3px 3px 3px; color: #555555; display: inline-block; font-size: 13px; height: 18px; line-height: 18px; margin-bottom: 0px; padding: 4px 3px 4px 5px; width: 210px; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; }
+.autocomplete_light_widget .deck li .remove { float: right; background-image: url("../bootstrap/img/glyphicons-halflings.png"); background-position: 14px 14px; background-repeat: no-repeat; display: inline-block; height: 14px; line-height: 14px; vertical-align: text-top; width: 14px; background-position: -312px 0; margin-right: 2px; }
+.autocomplete_light_widget .deck li .remove:hover { background-position: -312px 0; }
+.autocomplete_light_widget .yourlabs_autocomplete.inner_container { width: 221px; border-radius: 3px 3px 3px 3px; left: 0px; border: 1px solid #CCCCCC; }
+.autocomplete_light_widget .yourlabs_autocomplete.inner_container ul { border-radius: 3px 3px 3px 3px; }
+
+
+// Team Hints
+// -----------------------
+#team_hints {
+    position: fixed;
+    bottom: 0;
+    left: 30%;
+    background: @grayDark;
+    a {
+        margin: 2px 10px;
+    }
+}

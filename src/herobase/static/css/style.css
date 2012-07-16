@@ -52,6 +52,7 @@ div .Diplomat,
 
 
 .quest-list a {
+
 }
 /* Scientist */
 .quest-list li.quest-class-5 a {
@@ -216,7 +217,7 @@ form.inline {
 
 #_deck li .remove {
     float: right;
-    background-image: url("../../static/bootstrap/img/glyphicons-halflings.png");
+    background-image: url("../bootstrap/img/glyphicons-halflings.png");
     background-position: 14px 14px;
     background-repeat: no-repeat;
     display: inline-block;

@@ -9,7 +9,7 @@
 
             <div class="row">
             <span class="span1">{% trans "Level" %}: {{ request.user.get_profile.level }}</span>
-            <span class="span1 heroclass-{{ request.user.get_profile.get_hero_class_display|lower }}">{{ request.user.get_profile.get_hero_class_display }}</span>
+            <span class="span1 {{ request.user.get_profile.get_hero_class_display|lower }}">{{ request.user.get_profile.get_hero_class_display }}</span>
             <span class="span1">{% trans "XP" %}: {{ request.user.get_profile.experience }}</span>
             </div>
             <div class="progress">

@@ -1,8 +1,6 @@
-<li class="quest-class-{{ quest.hero_class }}">
-    <div class="postit">
-        <a href="{% url quest-detail quest.id %}">
-            <h2>{{ quest.title|truncatechars:50 }}</h2>
-            <!--<p>{{ quest.description|truncatechars:80 }}</p>-->
-        </a>
-    </div>
+<li>
+    <a href="{% url quest-detail quest.id %}" class="postit {{ quest.get_hero_class_display|lower }}">
+        <h4>{{ quest.title|truncatechars:50 }}</h4>
+        <p>{{ quest.description|truncatechars:80 }}</p>
+    </a>
 </li>

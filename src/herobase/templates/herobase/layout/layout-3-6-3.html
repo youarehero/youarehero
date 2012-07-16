@@ -18,14 +18,12 @@
             {% if request.user.is_authenticated %}
                 {% suggest_quests 3 as quests %}
                 {% if quests %}
-                    <div class="quest-list">
-                        <h3>{% trans "Suggested quests" %}</h3>
-                        <ul>
-                            {% for quest in quests %}
-                                {% include "herobase/quest/postit.inc.html" %}
-                            {% endfor %}
-                        </ul>
-                    </div>
+                    <h3>{% trans "Suggested quests" %}</h3>
+                    <ul class="questboard">
+                        {% for quest in quests %}
+                            {% include "herobase/quest/postit.inc.html" %}
+                        {% endfor %}
+                    </ul>
                 {% endif %}
             {% endif %}
         {% endblock %}
