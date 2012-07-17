@@ -16,15 +16,15 @@
                 <div class="bar {{ request.user.get_profile.get_hero_class_display|lower }}" style="width: {{ request.user.get_profile.relative_level_experience }}%;"></div>
             </div>
         </div>
-        {# Long Navigation #}
-        <ul id="main-navigation" class="navigation">
-            <li><a href="{% url quest-my %}">Quests</a></li>
-            <li><a href="{% url userprofile-private %}">Profil</a></li>
-            <!--<li><a href="{% url userprofile-privacy-settings %}">Privatsphäre</a></li>-->
-            <li><a href="{% url leader-board %}">Top Heroes</a></li>
-            <li><a href="{% url stats %}">Stats</a></li>
-            <li><a target="_blank" href="http://webengage.com/s/~3dij6ek">Fragebogen (1min)</a></li>
-        </ul>
+{#        Long Navigation#}
+{#        <ul id="main-navigation" class="navigation">#}
+{#            <li><a href="{% url quest-my %}">Quests</a></li>#}
+{#            <li><a href="{% url userprofile-private %}">Profil</a></li>#}
+{#            <!--<li><a href="{% url userprofile-privacy-settings %}">Privatsphäre</a></li>-->#}
+{#            <li><a href="{% url leader-board %}">Top Heroes</a></li>#}
+{#            <li><a href="{% url stats %}">Stats</a></li>#}
+{#            <li><a target="_blank" href="http://webengage.com/s/~3dij6ek">Fragebogen (1min)</a></li>#}
+{#        </ul>#}
     {% else %}
         <h2>{% trans "Login" %}</h2>
         {% crispy login_form %}
