@@ -22,6 +22,7 @@ Contents
 
    install
    overview
+   theming
    howtos
 
 Source code documentation
