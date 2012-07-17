@@ -19,6 +19,7 @@
                 {% suggest_quests 3 as quests %}
                 {% if quests %}
                     <h3>{% trans "Suggested quests" %}</h3>
+                    <br>
                     <ul class="questboard">
                         {% for quest in quests %}
                             {% include "herobase/quest/postit.inc.html" %}
