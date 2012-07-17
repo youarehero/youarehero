@@ -217,6 +217,14 @@ class UnauthenticatedIntegrationTest(TestCase):
         self.assertTrue(response, '%s?next=%s' % (reverse('django.contrib.auth.views.login'), reverse('quest-create')))
 
 
+    def test_leaderboard(self):
+        """An anonymous user can visit the leader board."""
+        client = Client()
+        testman = create_user(username='testman')
+        testman.get_profile().experience = 10*6
+        testman.get_profile().save()
+        response = client.get(reverse('leader-board'))
+        self.assertContains(response, testman.username)
 
 @override_settings(PASSWORD_HASHERS=('herobase.utils.PlainTextPasswordHasher', ))
 class AuthenticatedIntegrationTest(TestCase):
@@ -304,8 +312,9 @@ class AuthenticatedIntegrationTest(TestCase):
         response = self.client.get('/')
         self.assertContains(response, quest.title)
 
-class LeaderBoardTest(TestCase):
 
+
+class LeaderBoardTest(TestCase):
     def test_leaderboard_ok(self):
         """Check if leaderboard is correctly ordered"""
         for i in range(7,0,-1):
