@@ -151,7 +151,8 @@ ul.questboard {
             height: 136px;
             padding: 7px 9px;
             word-wrap: break-word;
-            #gradient > .directional(@white, @grayLighter, 135deg);
+            //#gradient > .directional(@white, @grayLighter, 135deg);
+            background: #f7f7f7;
             border: 3px solid @orange;
             text-decoration: none;
             color: @grayDark;
@@ -189,11 +190,14 @@ ul.questboard {
             left: 40px;
             background: url(../../static/img/stripes.png) 0 0 no-repeat scroll;
             background-size: 100%;
+            text-align: center;
             img {
                 max-width: 136px;
                 max-height: 112px;
                 position: absolute;
                 bottom: 7px;
+                left: 50%;
+                margin-left: -65px;
             }
         }
 
