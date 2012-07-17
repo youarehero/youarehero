@@ -163,11 +163,17 @@ class UserAuthenticationForm(AuthenticationForm):
         self.helper.help_text_inline = True
         self.helper.add_input(Submit('submit', _("Log in")))
         self.helper.form_class = "well"
+
         if request:
             if request.is_mobile:
                 self.helper.form_action = reverse('auth_login-m')
             else:
                 self.helper.form_action = reverse('auth_login')
+
+        # make sure to use the next parameter iff exists
+        if request and 'next' in request.GET:
+            self.helper.form_action += "?next=" + request.GET.get('next')
+
         super(UserAuthenticationForm, self).__init__(request, *args, **kwargs)
         del self.fields['username']
         self.fields.keyOrder.reverse()

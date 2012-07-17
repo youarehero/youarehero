@@ -47,8 +47,7 @@ def login_required(function):
                 login_url = reverse('auth_login-m')
             else:
                 login_url = reverse('auth_login')
-            url = request.build_absolute_uri()
-            print url
+            url = request.build_absolute_uri() # this should be request.path
             return HttpResponseRedirect("%s?next=%s" % (login_url, url))
         else:
             return function(request, *args, **kwargs)
