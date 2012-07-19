@@ -11,6 +11,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory, Client
 from django.test.testcases import SimpleTestCase, TransactionTestCase
 from django.test.utils import override_settings
+from herobase import models
 from herobase.models import Quest, Adventure, UserProfile
 from herobase.test_factories import create_adventure
 from test_factories import create_quest, create_user
@@ -312,6 +313,12 @@ class AuthenticatedIntegrationTest(TestCase):
         response = self.client.get('/')
         self.assertContains(response, quest.title)
 
+    def test_stats(self):
+        """A user should be able to see the statistics."""
+        quest = create_quest(title='0', hero_class=3)
+        response = self.client.get(reverse('stats'))
+        self.assertContains(response, 'Stat')
+        self.assertContains(response, 'uest')
 
 
 class LeaderBoardTest(TestCase):
