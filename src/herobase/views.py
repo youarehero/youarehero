@@ -225,15 +225,18 @@ def userprofile_privacy_settings(request):
         'form': form
     })
 
+@login_required
 def leader_board(request):
     """Render a view of the top heroes by rank."""
     top_creators = User.objects.filter(created_quests__state=Quest.STATE_OWNER_DONE).annotate(quest_count=Count('created_quests')).filter(quest_count__gt=0).order_by('-quest_count')
+    local = None
     if request.user.is_authenticated():
-        total = request.user.get_profile().get_related_leaderboard()
+        total, local = request.user.get_profile().get_related_leaderboard()
     else:
         total = User.objects.select_related().filter(userprofile__experience__gt=0).order_by('-userprofile__experience')
 
     return render(request, "herobase/leader_board.html", {'total': total,
+                                                          'local': local,
                                                          'top_creators': top_creators,
                                                          'myname': request.user.username
                                                          })

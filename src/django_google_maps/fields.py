@@ -19,6 +19,7 @@
 
 from django.db import models
 from django.core import exceptions
+from geopy.point import Point
 
 __all__ = ('AddressField', 'GeoLocationField')
 
@@ -86,6 +87,9 @@ class GeoPt(object):
                 'Expected float, received %s (a %s).' % (geo_part, typename(geo_part))
             )
         return geo_part
+
+    def toPoint(self):
+        return Point(self.lat, self.lon)
 
 class AddressField(models.CharField):
     pass

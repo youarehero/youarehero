@@ -10,6 +10,7 @@ from itertools import chain
 from operator import attrgetter
 from random import randint
 from easy_maps.models import Address
+import geopy
 import herobase
 
 import os
@@ -30,6 +31,7 @@ from easy_thumbnails.files import get_thumbnailer
 from django_google_maps import fields as map_fields
 from south.modelsinspector import add_introspection_rules
 from herobase.actions import ActionMixin, action
+from geopy import distance
 
 from herobase.fields import LocationField
 from heromessage.models import Message
@@ -377,10 +379,43 @@ class Quest(models.Model, ActionMixin):
         """String representation"""
         return self.title
 
+class DistanceManager(models.Manager):
+    def __init__(self):
+        super(DistanceManager, self).__init__()
+
+    def near(self, point=None, distance=None):
+        if not (point and distance):
+            return []
+
+        queryset = super(DistanceManager, self).get_query_set()
+
+        # prune down the set of all locations to something we can quickly check precisely
+        #rough_distance = geopy.distance.arc_degrees(arcminutes=geopy.distance.nm(kilometers=distance)) * 2
+        #queryset = queryset.filter(
+         #   latitude__range=(point.lat - rough_distance, point.lat + rough_distance),
+        #    longitude__range=(point.lon - rough_distance, point.lon + rough_distance)
+       # )
+
+        items = []
+        for item in queryset:
+            if item.geolocation.lat and item.geolocation.lon:
+                exact_distance = geopy.distance.distance(
+                    (point.lat , point.lon),
+                    (item.geolocation.lat, item.geolocation.lon)
+                )
+                if exact_distance.kilometers <= distance:
+                    items.append(item)
+
+        queryset = queryset.filter(id__in=[l.id for l in items])
+        return queryset
+
 
 class UserProfile(models.Model):
     """This model extends a django user with additional hero information."""
     add_introspection_rules([], ["^herobase\.fields\.LocationField"])
+
+    objects = models.Manager()
+    localobjects = DistanceManager()
 
     user = models.OneToOneField(User)
     experience = models.PositiveIntegerField(default=0)
@@ -440,7 +475,7 @@ class UserProfile(models.Model):
     def avatar(self):
         """Return a String, containing a path to a thumbnail-image 270x270."""
         file_name = "default.png"
-        if self.hero_class  is not None:
+        if self.hero_class is not None:
             file_name = self.CLASS_AVATARS[self.hero_class]
         image = os.path.join('avatar/', file_name)
         thumbnailer = get_thumbnailer(self.avatar_storage, image)
@@ -482,12 +517,24 @@ class UserProfile(models.Model):
     def rank(self):
         return list(User.objects.select_related().order_by( '-userprofile__experience', 'username' )).index(self.user) + 1
 
+    @property
+    def localrank(self):
+        return list(UserProfile.localobjects.near(self.geolocation,40).select_related().order_by( '-experience', 'user__username' )).index(self) + 1
+
+    def distance(self, origin):
+        return distance.distance(self.geolocation.toPoint(),origin)
 
     def get_related_leaderboard(self):
-        return self.get_related_leaderboard_size(5,3)
+        return self.get_related_leaderboard_size(5,3,True)
 
-    def get_related_leaderboard_size(self, hoodsize, topcount):
+    def get_related_leaderboard_size(self, hoodsize, topcount, getlocal=False):
+        if not getlocal:
+            return self.get_related_leaderboard_qs_size(UserProfile.objects,hoodsize,topcount)
+        else:
+            return (self.get_related_leaderboard_qs_size(UserProfile.objects,hoodsize,topcount),
+                    self.get_related_leaderboard_qs_size(UserProfile.localobjects.near(self.geolocation,40),hoodsize,topcount))
 
+    def get_related_leaderboard_qs_size(self, profilequeryset, hoodsize, topcount):
         neighbourhood = []
         separator = []
 
@@ -496,15 +543,14 @@ class UserProfile(models.Model):
             separator = [get_dummy_user()]
 
         if self.rank > hoodsize:
-            neighbourhood = User.objects.select_related().exclude(pk=get_system_user().pk).order_by('-userprofile__experience', 'username')[(self.rank-(hoodsize/2)-1):(self.rank+hoodsize/2)]
+            neighbourhood = profilequeryset.select_related().exclude(pk=get_system_user().pk).order_by('-experience', 'user__username')[(self.rank-(hoodsize/2)-1):(self.rank+hoodsize/2)]
         else:
             topcount = hoodsize
-        top = User.objects.select_related().order_by('-userprofile__experience', 'username')[:topcount]
-
-
+        top = profilequeryset.select_related().order_by('-experience', 'user__username')[:topcount]
         total = list(chain(top, separator, neighbourhood))
 
         return total
+
 
     def __unicode__(self):
         return self.user.username
@@ -555,6 +601,6 @@ def get_system_user():
     return user
 
 def get_dummy_user():
-    return UserProfile(user=User(username="dummy")).user
+    return UserProfile(user=User(username="dummy"))
 
 
