@@ -7,5 +7,4 @@ django-registration==0.8
 easy-thumbnails==1.0.3
 Pillow==1.7.7
 -e git://github.com/alex/django-filter.git#egg=django-filter
-django-easy-maps
 geopy

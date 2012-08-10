@@ -11,7 +11,6 @@ from django.template import Template, Context
 from django.forms import TextInput
 
 
-
 class GoogleMapsAddressWidget(TextInput):
     "a widget that will place a google map right after the #id_address field"
 
