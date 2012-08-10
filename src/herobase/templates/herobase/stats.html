@@ -81,9 +81,8 @@
     <div>
 {#        <h3>You have completed {{ quests_completed }} quests</h3>#}
         <div id="hero_completed_quests"></div>
-        <div id="completed_quests_by_class"></div>
-        <div id="open_quest_types"></div>
-        <div id="completed_quest_types"></div>
+        <div id="open_quest_types">{% trans "There are no open quests." %}</div>
+        <div id="completed_quest_types">{% trans "There are no completed quests." %}</div>
 
     </div>
 {% endblock %}

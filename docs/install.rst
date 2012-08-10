@@ -124,3 +124,4 @@ If you want to send emails from your local machine, edit ``youarehero/settings/l
    DEFAULT_FROM_EMAIL =
 
 and insert an smtp-server, user and password, such as for an email-client.
+
