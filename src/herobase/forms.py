@@ -12,7 +12,10 @@ from django.utils.translation import ugettext_lazy as _
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset, Div
+from django_google_maps import widgets as map_widgets
+from django_google_maps.widgets import GoogleMapsAddressWidget
 from registration.forms import RegistrationFormUniqueEmail
+from easy_maps.widgets import AddressWithMapWidget
 
 from herobase.models import Quest, UserProfile
 from herobase.widgets import LocationWidget
@@ -98,7 +101,10 @@ class UserProfileEdit(forms.ModelForm):
                 Div(
                     'hero_class',
                     'about',
-                    'location',
+                    #'location',
+                    #'geolocation',
+                    'address',
+                    'geolocation',
                     'receive_system_email',
                     'receive_private_email',
                     #   'geolocation',
@@ -112,9 +118,9 @@ class UserProfileEdit(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('location', 'about', 'hero_class', 'receive_system_email', 'receive_private_email' )# 'geolocation')
+        fields = ('about', 'hero_class', 'receive_system_email', 'receive_private_email', 'address', 'geolocation')# 'geolocation')
         widgets = {
-            'title': LocationWidget,
+            'geolocation' : GoogleMapsAddressWidget()
         }
 
 class UserProfilePrivacyEdit(forms.ModelForm):

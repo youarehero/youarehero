@@ -9,6 +9,8 @@ from functools import wraps
 from itertools import chain
 from operator import attrgetter
 from random import randint
+from easy_maps.models import Address
+import herobase
 
 import os
 import textwrap
@@ -25,6 +27,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from easy_thumbnails.files import get_thumbnailer
+from django_google_maps import fields as map_fields
 from south.modelsinspector import add_introspection_rules
 from herobase.actions import ActionMixin, action
 
@@ -387,7 +390,11 @@ class UserProfile(models.Model):
     keep_email_after_gpn = models.DateTimeField(blank=True, null=True, editable=False)
 
     # google geolocation
-    geolocation = LocationField(_(u'geolocation'), max_length=100, default='48,8') # todo : fix default :-)
+    #geolocation = LocationField(_(u'geolocation'), max_length=100, default='48,8') # todo : fix default :-)
+    #address = models.TextField(Address, max_length=300, null=True, default=Address(address="test", latitude=2.222, longitude=2.12232323))
+
+    address = map_fields.AddressField(max_length=200, default="HfG Karlsruhe, Karlsruhe, Deutschland")
+    geolocation = map_fields.GeoLocationField(max_length=100,default='49.001925,8.383703')
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

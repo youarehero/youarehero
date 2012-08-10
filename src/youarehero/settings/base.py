@@ -168,8 +168,9 @@ INSTALLED_APPS = (
     'crispy_forms',
     'autocomplete_light',
     'django_filters',
+    'easy_maps',
     'easy_thumbnails',
-
+    'django_google_maps',
 
     # project specific installed apps
     'herobase',
@@ -185,6 +186,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 
 LOGIN_REDIRECT_URL = reverse_lazy('home')
+EASY_MAPS_GOOGLE_KEY = 'AIzaSyAIxdNoZy_insQdebICwE4nNa9ZHNNVNfg'
 
 
 TEST_RUNNER = 'youarehero.test_runner.ProjectTestRunner'
