@@ -34,6 +34,11 @@
                     var mapElem = document.getElementById("map-canvas");
                     var input = document.getElementById('id_address');
                     var autocomplete = new google.maps.places.Autocomplete(input);
+                    $("input").keypress(function(e) {
+                        if(e.which == 13) {
+                            return false;
+                        }
+                    });
 
 
                 {% block map_options_js %}
