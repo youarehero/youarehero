@@ -6,14 +6,23 @@
 {% endblock %}
 
 {% block content %}
-    <div class="well">
-    <h2>Nach Erfahrungspunkten</h2>
-    <ul>
+    <div>
+        <h2>Nach Erfahrungspunkten</h2>
+        <ul class="leaderboard">
     {% for user in total|slice:":10" %}
-        <li><a href="{% url userprofile-public user.username %}">{{ user.username }}: {{ user.get_profile.experience }} Erfahrung ({{ user.get_profile.get_hero_class_display}})</a></li>
+        {% if user.username == "dummy" %}
+            <li class="more"><a href="#">...</a></li>
+        {% else %}
+            <li {% if user.username == myname %} class="self" {% endif %}>
+                <div class="position">{{ user.get_profile.rank }}.</div>
+                <img src="{{ user.get_profile.avatar_thumb }}"></a>
+                <div class="user"><a href="{% url userprofile-public user.username %}">{{ user.username }}</a></div>
+                <div class="meta">{{ user.get_profile.experience }} XP</div>
+            </li>
+        {% endif %}
     {% endfor %}
-    </ul>
-    <h2><span class="yellow-stripe">Nach Organisierten Quests</span></h2>
+        </ul>
+        <h2><span class="yellow-stripe">Nach Organisierten Quests</span></h2>
     <ul>
         {% for user in top_creators|slice:":10" %}
             <li><a href="{% url userprofile-public user.username %}">{{ user.username }}: {{ user.quest_count }} Quests</a></li>

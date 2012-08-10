@@ -234,7 +234,8 @@ def leader_board(request):
         total = User.objects.select_related().filter(userprofile__experience__gt=0).order_by('-userprofile__experience')
 
     return render(request, "herobase/leader_board.html", {'total': total,
-                                                         'top_creators': top_creators
+                                                         'top_creators': top_creators,
+                                                         'myname': request.user.username
                                                          })
 @login_required
 def random_stats(request):

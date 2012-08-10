@@ -41,7 +41,6 @@ CLASS_CHOICES =  (
 
 
 
-
 class AdventureQuerySet(QuerySet):
     def active(self):
         """Show only adventures that have not been canceled."""
@@ -442,6 +441,17 @@ class UserProfile(models.Model):
         return os.path.join(settings.MEDIA_URL, thumbnail.url )
 
     @property
+    def avatar_thumb(self):
+        """Return a String, containing a path to a thumbnail-image 40x40."""
+        file_name = "default.png"
+        if self.hero_class  is not None:
+            file_name = self.CLASS_AVATARS[self.hero_class]
+        image = os.path.join('avatar/', file_name)
+        thumbnailer = get_thumbnailer(self.avatar_storage, image)
+        thumbnail = thumbnailer.get_thumbnail({'size': (50, 50), 'quality':90})
+        return os.path.join(settings.MEDIA_URL, thumbnail.url )
+
+    @property
     def get_geolocation(self):
         if self.geolocation:
             return self.geolocation.split(',')
@@ -461,12 +471,31 @@ class UserProfile(models.Model):
         return Message.objects.filter(recipient=self.user,read__isnull=True,
             recipient_deleted__isnull=True).count()
 
-    def get_related_leaderboard(self):
+    @property
+    def rank(self):
+        return list(User.objects.select_related().order_by( '-userprofile__experience' )).index(self.user) + 1
 
-        better = User.objects.select_related().filter(userprofile__experience__gt=self.user.userprofile.experience).order_by('-userprofile__experience')[:3]
-        size = better.count()
-        worse =  User.objects.select_related().filter(userprofile__experience__lte=self.user.userprofile.experience).order_by('-userprofile__experience')[:(7-size)]
-        total = list(chain(better, worse))
+
+    def get_related_leaderboard(self):
+        return self.get_related_leaderboard_size(5,3)
+
+    def get_related_leaderboard_size(self, hoodsize, topcount):
+
+        neighbourhood = []
+        separator = []
+
+        #only show the separator if there is a separation between topusers and the displayed range
+        if self.rank != topcount + hoodsize/2 + 1:
+            separator = [get_dummy_user()]
+
+        if self.rank > hoodsize:
+            neighbourhood = User.objects.select_related().exclude(pk=get_system_user().pk).order_by('-userprofile__experience')[(self.rank-(hoodsize/2)-1):(self.rank+hoodsize/2)]
+        else:
+            topcount = hoodsize
+        top = User.objects.select_related().order_by('-userprofile__experience')[:topcount]
+
+
+        total = list(chain(top, separator, neighbourhood))
 
         return total
 
@@ -517,5 +546,8 @@ def get_system_user():
     """Return an unique system-user. Creates one if not existing."""
     user, created = User.objects.get_or_create(username=SYSTEM_USER_NAME)
     return user
+
+def get_dummy_user():
+    return UserProfile(user=User(username="dummy")).user
 
 
