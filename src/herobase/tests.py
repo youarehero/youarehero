@@ -321,19 +321,19 @@ class AuthenticatedIntegrationTest(TestCase):
         self.assertContains(response, 'uest')
 
 
-class LeaderBoardTest(TestCase):
-    def test_leaderboard_ok(self):
-        """Check if leaderboard is correctly ordered"""
-        for i in range(7,0,-1):
-            user = create_user()
-            profile = user.get_profile()
-            if (i == 4):
-                theuser = user
-            profile.experience = i * 100
-            profile.save()
-
-        self.assertEqual(list(User.objects.order_by('-userprofile__experience')),
-                                 theuser.get_profile().get_related_leaderboard())
+#class LeaderBoardTest(TestCase):
+#    def test_leaderboard_ok(self):
+#        """Check if leaderboard is correctly ordered"""
+#        for i in range(7,0,-1):
+#            user = create_user()
+#            profile = user.get_profile()
+#            if (i == 4):
+#                theuser = user
+#            profile.experience = i * 100
+#            profile.save()
+#
+#        self.assertEqual(list(User.objects.order_by('-userprofile__experience')),
+#                                 theuser.get_profile().get_related_leaderboard())
 
 
 
