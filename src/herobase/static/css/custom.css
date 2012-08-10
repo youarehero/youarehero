@@ -473,8 +473,8 @@ ul.leaderboard {
     padding: 5px 20px 10px 15px;
     margin: 25px 0 0 0;
     display: inline-block;
-    min-width: 300px;
-
+    min-width: 320px;
+    width: 90%
 }
 
 ul.leaderboard a {
@@ -554,6 +554,7 @@ ul.leaderboard li .position {
     font-weight: 600;
     color: #333;
     text-shadow: 0 1px 0 white;
+    width: 40px;
 }
 
 ul.leaderboard li.more a {

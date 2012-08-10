@@ -473,7 +473,7 @@ class UserProfile(models.Model):
 
     @property
     def rank(self):
-        return list(User.objects.select_related().order_by( '-userprofile__experience' )).index(self.user) + 1
+        return list(User.objects.select_related().order_by( '-userprofile__experience', 'username' )).index(self.user) + 1
 
 
     def get_related_leaderboard(self):
@@ -489,10 +489,10 @@ class UserProfile(models.Model):
             separator = [get_dummy_user()]
 
         if self.rank > hoodsize:
-            neighbourhood = User.objects.select_related().exclude(pk=get_system_user().pk).order_by('-userprofile__experience')[(self.rank-(hoodsize/2)-1):(self.rank+hoodsize/2)]
+            neighbourhood = User.objects.select_related().exclude(pk=get_system_user().pk).order_by('-userprofile__experience', 'username')[(self.rank-(hoodsize/2)-1):(self.rank+hoodsize/2)]
         else:
             topcount = hoodsize
-        top = User.objects.select_related().order_by('-userprofile__experience')[:topcount]
+        top = User.objects.select_related().order_by('-userprofile__experience', 'username')[:topcount]
 
 
         total = list(chain(top, separator, neighbourhood))
