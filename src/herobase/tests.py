@@ -321,6 +321,7 @@ class AuthenticatedIntegrationTest(TestCase):
         self.assertContains(response, 'uest')
 
 
+
 #class LeaderBoardTest(TestCase):
 #    def test_leaderboard_ok(self):
 #        """Check if leaderboard is correctly ordered"""
@@ -334,6 +335,7 @@ class AuthenticatedIntegrationTest(TestCase):
 #
 #        self.assertEqual(list(User.objects.order_by('-userprofile__experience')),
 #                                 theuser.get_profile().get_related_leaderboard())
+#
 
 
 
