@@ -6,45 +6,60 @@
 {% endblock %}
 
 {% block content %}
-    <div>
-        <h2>global</h2>
-        <ul class="leaderboard">
-    {% for userprofile in total|slice:":10" %}
-        {% if userprofile.user.username == "dummy" %}
-            <li class="more"><a href="#">...</a></li>
-        {% else %}
-            <li {% if userprofile.user.username == myname %} class="self" {% endif %}>
+    <ul class="nav nav-pills">
+        <li class="active"><a href="#global" data-toggle="tab"><i class="icon-globe"></i><h3>{% trans "global" %}</h3></a></li>
+        {% if local %}
+            <li><a href="#local" data-toggle="tab"><i class="icon-map-marker"></i><h3>{% trans "local" %}</h3></a></li>
+            <li><a href="#friends" data-toggle="tab"><i class="icon-user"></i><h3>{% trans "friends" %}</h3></a></li>
+        {% endif %}
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="global">
+            <h3>Global Ranking</h3>
+            <ul class="leaderboard">
+                {% for userprofile in total|slice:":10" %}
+                {% if userprofile.user.username == "dummy" %}
+                <li class="more"><a href="#">...</a></li>
+                {% else %}
+                <li {% if userprofile.user.username == myname %} class="self" {% endif %}>
                 <div class="position">{{ userprofile.rank }}.</div>
                 <img src="{{ userprofile.avatar_thumb }}"></a>
                 <div class="user"><a href="{% url userprofile-public userprofile.user.username %}">{{ userprofile.user.username }}</a></div>
                 <div class="meta">{{ userprofile.experience }} XP</div>
-            </li>
-        {% endif %}
-    {% endfor %}
-        </ul>
-        {% if local %}
-        <h2>local</h2>
-        <ul class="leaderboard">
-            {% for userprofile in local|slice:":10" %}
-                {% if userprofile.user.username == "dummy" %}
-                    <li class="more"><a href="#">...</a></li>
-                {% else %}
-                    <li {% if userprofile.user.username == myname %} class="self" {% endif %}>
-                        <div class="position">{{ userprofile.localrank }}.</div>
-                        <img src="{{ userprofile.avatar_thumb }}"></a>
-                        <div class="user"><a href="{% url userprofile-public userprofile.user.username %}">{{ userprofile.user.username }}</a></div>
-                        <div class="meta">{{ userprofile.experience }} XP</div>
-                    </li>
+                </li>
                 {% endif %}
-            {% endfor %}
-        </ul>
-        {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="tab-pane" id="local">
+            <h3>Local Ranking</h3>
+            <ul class="leaderboard">
+                    {% for userprofile in local|slice:":10" %}
+                        {% if userprofile.user.username == "dummy" %}
+                            <li class="more"><a href="#">...</a></li>
+                        {% else %}
+                            <li {% if userprofile.user.username == myname %} class="self" {% endif %}>
+                            <div class="position">{{ userprofile.localrank }}.</div>
+                            <img src="{{ userprofile.avatar_thumb }}"></a>
+                            <div class="user"><a href="{% url userprofile-public userprofile.user.username %}">{{ userprofile.user.username }}</a></div>
+                            <div class="meta">{{ userprofile.experience }} XP</div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+        </div>
+        <div class="tab-pane" id="friends">
+            implement me
+        </div>
+    </div>
+
+<!--    <div>
         <h2><span class="yellow-stripe">Nach Organisierten Quests</span></h2>
     <ul>
         {% for user in top_creators|slice:":10" %}
             <li><a href="{% url userprofile-public user.username %}">{{ user.username }}: {{ user.quest_count }} Quests</a></li>
         {% endfor %}
-    </ul>
+    </ul>-->
 {#    <h3>Nach Klasse</h3>#}
 {#    {% for class_name, leaders in by_class.items  %}#}
 {#        <h4>{{ class_name }}</h4>#}
