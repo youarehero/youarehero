@@ -19,7 +19,10 @@ static:
 	. env/bin/activate && src/manage.py collectstatic --noinput
 test:
 	. env/bin/activate && src/manage.py test
+
 bootstrap: dirs env deps static syncdb migrate test
+
+bootstrap-dev: dirs env deps
 
 jenkins: dirs env deps test-deps 
 	. env/bin/activate && DJANGO_SETTINGS_MODULE=youarehero.settings.jenkins src/manage.py jenkins
@@ -28,5 +31,5 @@ docs:
 	. env/bin/activate && cd docs && make clean html
 deploy: dirs env deps static docs syncdb migrate test 
 
-.PHONY: env deps test-deps clean syncdb migrate static test bootstrap jenkins deploy git-force-update docs
+.PHONY: env deps test-deps clean syncdb migrate static test bootstrap jenkins deploy git-force-update docs bootstrap-dev
 

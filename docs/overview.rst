@@ -31,8 +31,7 @@ We use `south <http://south.readthedocs.org>`_ for database migrations.
 
       (env)$ src/managy.py migrate
 
-In the ``deploy/`` directory you find the ``bootstrap_dev`` script
-(see :ref:`bootstrap_dev`) and the requirements.txt
+In the ``deploy/`` directory you find the requirements.txt
 (`pip freeze <http://www.pip-installer.org/en/latest/requirements.html#freezing-requirements>` output), which
 defines the python packages used in the projects `virtualenv <http://www.virtualenv.org>`_.
 
@@ -60,4 +59,4 @@ Beside *Django* and the *project related apps* there are other components used i
 
 * This documentation is build with `sphinx <http://sphinx.pocoo.org/contents.html>`_.
   The documentation source is located in ``docs/``.
-* The most requirements are bundeled in an isolated `virtualenv <http://www.virtualenv.org>`_.
+* Most requirements are bundeled in an isolated `virtualenv <http://www.virtualenv.org>`_.

@@ -44,13 +44,12 @@ The bootstrap script
 
 After cloning the git repository, browse to your project dir and run::
 
-    $ deploy/bootstrap_dev
+    $ make bootstrap-dev
 
-The script makes a virtual environment ready (in ``env/``)
+The script creates a virtual environment (in ``env/``)
 and creates the ``static/``, ``media/`` and ``coverage/`` folders, which are
 not in the git repo, as they contain generated data.
-It also creates the local settings file (``src/youarehero/settings/local.py``) with no content but
-including the development settings.
+It also creates a local settings file (``src/youarehero/settings/local.py``) which contains the development settings.
 At last it installs all required
 *django apps* and *python packages* inside the *virtual env*.
 
