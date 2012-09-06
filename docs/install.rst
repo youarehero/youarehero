@@ -32,10 +32,7 @@ or on MacOS::
 Cloning the git repository
 ==========================
 
-Until the project is on Github, mail us your favorite *username* and *ssh pubkey*.
-You should get an answer and subsequently be able to clone the repository::
-
-    $ git clone ssh://git@queen.daenerys.de:54884/platform youarehero
+    $ git clone https://github.com/youarehero/youarehero.git
 
 .. _bootstrap_dev:
 
