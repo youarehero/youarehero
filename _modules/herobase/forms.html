@@ -158,7 +158,10 @@
 <span class="kn">from</span> <span class="nn">crispy_forms.bootstrap</span> <span class="kn">import</span> <span class="n">FormActions</span>
 <span class="kn">from</span> <span class="nn">crispy_forms.helper</span> <span class="kn">import</span> <span class="n">FormHelper</span>
 <span class="kn">from</span> <span class="nn">crispy_forms.layout</span> <span class="kn">import</span> <span class="n">Submit</span><span class="p">,</span> <span class="n">Layout</span><span class="p">,</span> <span class="n">Fieldset</span><span class="p">,</span> <span class="n">Div</span>
+<span class="kn">from</span> <span class="nn">django_google_maps</span> <span class="kn">import</span> <span class="n">widgets</span> <span class="k">as</span> <span class="n">map_widgets</span>
+<span class="kn">from</span> <span class="nn">django_google_maps.widgets</span> <span class="kn">import</span> <span class="n">GoogleMapsAddressWidget</span>
 <span class="kn">from</span> <span class="nn">registration.forms</span> <span class="kn">import</span> <span class="n">RegistrationFormUniqueEmail</span>
+<span class="kn">from</span> <span class="nn">easy_maps.widgets</span> <span class="kn">import</span> <span class="n">AddressWithMapWidget</span>
 
 <span class="kn">from</span> <span class="nn">herobase.models</span> <span class="kn">import</span> <span class="n">Quest</span><span class="p">,</span> <span class="n">UserProfile</span>
 <span class="kn">from</span> <span class="nn">herobase.widgets</span> <span class="kn">import</span> <span class="n">LocationWidget</span>
@@ -244,7 +247,10 @@
                 <span class="n">Div</span><span class="p">(</span>
                     <span class="s">&#39;hero_class&#39;</span><span class="p">,</span>
                     <span class="s">&#39;about&#39;</span><span class="p">,</span>
-                    <span class="s">&#39;location&#39;</span><span class="p">,</span>
+                    <span class="c">#&#39;location&#39;,</span>
+                    <span class="c">#&#39;geolocation&#39;,</span>
+                    <span class="s">&#39;address&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;geolocation&#39;</span><span class="p">,</span>
                     <span class="s">&#39;receive_system_email&#39;</span><span class="p">,</span>
                     <span class="s">&#39;receive_private_email&#39;</span><span class="p">,</span>
                     <span class="c">#   &#39;geolocation&#39;,</span>
@@ -258,9 +264,9 @@
 
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">UserProfile</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;location&#39;</span><span class="p">,</span> <span class="s">&#39;about&#39;</span><span class="p">,</span> <span class="s">&#39;hero_class&#39;</span><span class="p">,</span> <span class="s">&#39;receive_system_email&#39;</span><span class="p">,</span> <span class="s">&#39;receive_private_email&#39;</span> <span class="p">)</span><span class="c"># &#39;geolocation&#39;)</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;about&#39;</span><span class="p">,</span> <span class="s">&#39;hero_class&#39;</span><span class="p">,</span> <span class="s">&#39;receive_system_email&#39;</span><span class="p">,</span> <span class="s">&#39;receive_private_email&#39;</span><span class="p">,</span> <span class="s">&#39;address&#39;</span><span class="p">,</span> <span class="s">&#39;geolocation&#39;</span><span class="p">)</span><span class="c"># &#39;geolocation&#39;)</span>
         <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s">&#39;title&#39;</span><span class="p">:</span> <span class="n">LocationWidget</span><span class="p">,</span>
+            <span class="s">&#39;geolocation&#39;</span> <span class="p">:</span> <span class="n">GoogleMapsAddressWidget</span><span class="p">()</span>
         <span class="p">}</span>
 </div>
 <div class="viewcode-block" id="UserProfilePrivacyEdit"><a class="viewcode-back" href="../../herobase.html#herobase.forms.UserProfilePrivacyEdit">[docs]</a><span class="k">class</span> <span class="nc">UserProfilePrivacyEdit</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
@@ -305,12 +311,20 @@
     <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;E-mail&quot;</span><span class="p">),</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">helper</span> <span class="o">=</span> <span class="n">FormHelper</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">help_text_inline</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">Submit</span><span class="p">(</span><span class="s">&#39;submit&#39;</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s">&quot;Log in&quot;</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">form_class</span> <span class="o">=</span> <span class="s">&quot;well&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">form_action</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;auth_login&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">request</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">is_mobile</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">form_action</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;auth_login-m&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">form_action</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;auth_login&#39;</span><span class="p">)</span>
+
+        <span class="c"># make sure to use the next parameter iff exists</span>
+        <span class="k">if</span> <span class="n">request</span> <span class="ow">and</span> <span class="s">&#39;next&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">form_action</span> <span class="o">+=</span> <span class="s">&quot;?next=&quot;</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;next&#39;</span><span class="p">)</span>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">UserAuthenticationForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;username&#39;</span><span class="p">]</span>

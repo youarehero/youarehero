@@ -148,7 +148,10 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Up to now here is only a plain password hasher for faster tests. Never use it elsewhere.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth</span> <span class="kn">import</span> <span class="n">REDIRECT_FIELD_NAME</span>
 <span class="kn">from</span> <span class="nn">django.contrib.auth.hashers</span> <span class="kn">import</span> <span class="n">mask_hash</span><span class="p">,</span> <span class="n">BasePasswordHasher</span>
+<span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponseRedirect</span>
 <span class="kn">from</span> <span class="nn">django.utils.datastructures</span> <span class="kn">import</span> <span class="n">SortedDict</span>
 <span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="kn">import</span> <span class="n">ugettext</span> <span class="k">as</span> <span class="n">_</span>
 <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
@@ -174,7 +177,27 @@
         <span class="k">return</span> <span class="n">SortedDict</span><span class="p">([</span>
             <span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&#39;algorithm&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span><span class="p">),</span>
             <span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&#39;hash&#39;</span><span class="p">),</span> <span class="n">mask_hash</span><span class="p">(</span><span class="n">encoded</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="mi">3</span><span class="p">)),</span>
-        <span class="p">])</span></div>
+        <span class="p">])</span>
+
+
+</div>
+<div class="viewcode-block" id="login_required"><a class="viewcode-back" href="../../herobase.html#herobase.utils.login_required">[docs]</a><span class="k">def</span> <span class="nf">login_required</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator for views that checks that the user is logged in, redirecting</span>
+<span class="sd">    to the log-in page if necessary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">decorated</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">is_mobile</span><span class="p">:</span>
+                <span class="n">login_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;auth_login-m&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">login_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;auth_login&#39;</span><span class="p">)</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">build_absolute_uri</span><span class="p">()</span> <span class="c"># this should be request.path</span>
+            <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">?next=</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">login_url</span><span class="p">,</span> <span class="n">url</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">decorated</span></div>
 </pre></div>
 
 </div>

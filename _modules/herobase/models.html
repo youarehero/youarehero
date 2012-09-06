@@ -152,7 +152,12 @@
 <span class="sd">The model actions connect state logic to the models.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
 <span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">attrgetter</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+<span class="kn">from</span> <span class="nn">easy_maps.models</span> <span class="kn">import</span> <span class="n">Address</span>
+<span class="kn">import</span> <span class="nn">geopy</span>
+<span class="kn">import</span> <span class="nn">herobase</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
@@ -169,8 +174,10 @@
 <span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="kn">import</span> <span class="n">ugettext_lazy</span> <span class="k">as</span> <span class="n">_</span>
 <span class="kn">from</span> <span class="nn">django.db.models.signals</span> <span class="kn">import</span> <span class="n">post_save</span>
 <span class="kn">from</span> <span class="nn">easy_thumbnails.files</span> <span class="kn">import</span> <span class="n">get_thumbnailer</span>
+<span class="kn">from</span> <span class="nn">django_google_maps</span> <span class="kn">import</span> <span class="n">fields</span> <span class="k">as</span> <span class="n">map_fields</span>
 <span class="kn">from</span> <span class="nn">south.modelsinspector</span> <span class="kn">import</span> <span class="n">add_introspection_rules</span>
 <span class="kn">from</span> <span class="nn">herobase.actions</span> <span class="kn">import</span> <span class="n">ActionMixin</span><span class="p">,</span> <span class="n">action</span>
+<span class="kn">from</span> <span class="nn">geopy</span> <span class="kn">import</span> <span class="n">distance</span>
 
 <span class="kn">from</span> <span class="nn">herobase.fields</span> <span class="kn">import</span> <span class="n">LocationField</span>
 <span class="kn">from</span> <span class="nn">heromessage.models</span> <span class="kn">import</span> <span class="n">Message</span>
@@ -182,7 +189,6 @@
     <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;Diplomat&#39;</span><span class="p">),</span>
     <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#39;Action&#39;</span><span class="p">),</span>
     <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&#39;Protective&#39;</span><span class="p">))</span>
-
 
 
 
@@ -251,7 +257,7 @@
 <span class="s">                Du wurdest als Held akzeptiert. Es kann losgehen!</span>
 <span class="s">                Verabredet dich jetzt mit dem Questgeber um die Quest zu erledigen.</span>
 
-<span class="s">                Quest: https://youarehero.net</span><span class="si">%s</span><span class="s">&#39;&#39;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">quest</span><span class="o">.</span><span class="n">get_absolute_url</span><span class="p">()))</span>
+<span class="s">                Quest: </span><span class="si">%s</span><span class="s">&#39;&#39;&#39;</span> <span class="o">%</span> <span class="n">request</span><span class="o">.</span><span class="n">build_absolute_uri</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">quest</span><span class="o">.</span><span class="n">get_absolute_url</span><span class="p">())))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
         <span class="c"># recalculate denormalized quest state (quest might be full now)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">quest</span><span class="o">.</span><span class="n">check_full</span><span class="p">()</span>
@@ -288,6 +294,8 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">state__in</span><span class="o">=</span><span class="p">(</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">,</span> <span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OWNER_CANCELED</span><span class="p">))</span>
     <span class="k">def</span> <span class="nf">inactive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state__in</span><span class="o">=</span><span class="p">(</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">,</span> <span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OWNER_CANCELED</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OPEN</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="QuestManager"><a class="viewcode-back" href="../../herobase.html#herobase.models.QuestManager">[docs]</a><span class="k">class</span> <span class="nc">QuestManager</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Manager</span><span class="p">):</span>
@@ -298,6 +306,8 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_query_set</span><span class="p">()</span><span class="o">.</span><span class="n">active</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">inactive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_query_set</span><span class="p">()</span><span class="o">.</span><span class="n">inactive</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_query_set</span><span class="p">()</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
 
 </div>
 <div class="viewcode-block" id="Quest"><a class="viewcode-back" href="../../herobase.html#herobase.models.Quest">[docs]</a><span class="k">class</span> <span class="nc">Quest</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">ActionMixin</span><span class="p">):</span>
@@ -311,7 +321,7 @@
     <span class="n">location</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span> <span class="c"># TODO : placeholder</span>
     <span class="n">due_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">()</span>
 
-    <span class="n">hero_class</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">CLASS_CHOICES</span><span class="p">)</span>
+    <span class="n">hero_class</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">CLASS_CHOICES</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">heroes</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">through</span><span class="o">=</span><span class="n">Adventure</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&#39;quests&#39;</span><span class="p">)</span>
 
     <span class="n">created</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -418,7 +428,7 @@
 <span class="s">                Auf eine deiner Quests hat sich ein Held beworben.</span>
 <span class="s">                Verabredet euch jetzt um die Quest zu erledigen.</span>
 
-<span class="s">                Quest: https://youarehero.net</span><span class="si">%s</span><span class="s">&#39;&#39;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_absolute_url</span><span class="p">()))</span>
+<span class="s">                Quest: </span><span class="si">%s</span><span class="s">&#39;&#39;&#39;</span> <span class="o">%</span> <span class="n">request</span><span class="o">.</span><span class="n">build_absolute_uri</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_absolute_url</span><span class="p">())))</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">Message</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">get_system_user</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">owner</span><span class="p">,</span> <span class="s">&#39;Ein Held hat sich beworben&#39;</span><span class="p">,</span>
                     <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s">&#39;&#39;&#39;</span><span class="se">\</span>
@@ -426,7 +436,7 @@
 <span class="s">                    Damit er auch mitmachen kann solltest du seine Teilnahme erlauben.</span>
 <span class="s">                    Verabredet euch dann um die Quest zu erledigen.</span>
 
-<span class="s">                    Quest: https://youarehero.net</span><span class="si">%s</span><span class="s">&#39;&#39;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_absolute_url</span><span class="p">()))</span>
+<span class="s">                    Quest: </span><span class="si">%s</span><span class="s">&#39;&#39;&#39;</span> <span class="o">%</span> <span class="n">request</span><span class="o">.</span><span class="n">build_absolute_uri</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_absolute_url</span><span class="p">())))</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_accept</span><span class="p">:</span>
             <span class="n">adventure</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">Adventure</span><span class="o">.</span><span class="n">STATE_OWNER_ACCEPTED</span>
         <span class="k">else</span><span class="p">:</span>
@@ -491,21 +501,67 @@
 
     <span class="c">#### M I S C ####</span>
 </div>
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Quest.get_suggested_quests"><a class="viewcode-back" href="../../herobase.html#herobase.models.Quest.get_suggested_quests">[docs]</a>    <span class="k">def</span> <span class="nf">get_suggested_quests</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a (random) list of suggested quests for the user.&quot;&quot;&quot;</span>
+        <span class="n">quests</span> <span class="o">=</span> <span class="n">Quest</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+            <span class="n">quests</span> <span class="o">=</span> <span class="n">quests</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">quest_count</span> <span class="o">=</span> <span class="n">quests</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">quest_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">quests</span><span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">quest_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">set</span><span class="p">()</span>
+
+</div>
 <div class="viewcode-block" id="Quest.get_absolute_url"><a class="viewcode-back" href="../../herobase.html#herobase.models.Quest.get_absolute_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_absolute_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the url for this quests detail page.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&quot;quest-detail&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pk</span><span class="p">,))</span></div>
-<div class="viewcode-block" id="Quest.get_absolute_murl"><a class="viewcode-back" href="../../herobase.html#herobase.models.Quest.get_absolute_murl">[docs]</a>    <span class="k">def</span> <span class="nf">get_absolute_murl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Quest.get_absolute_m_url"><a class="viewcode-back" href="../../herobase.html#herobase.models.Quest.get_absolute_m_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_absolute_m_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the url for this quests detail page.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&quot;m-quest-detail&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pk</span><span class="p">,))</span>
 </div>
     <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;String representation&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
-
 </div>
+<span class="k">class</span> <span class="nc">DistanceManager</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Manager</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DistanceManager</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">near</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">point</span> <span class="ow">and</span> <span class="n">distance</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="n">queryset</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DistanceManager</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_query_set</span><span class="p">()</span>
+
+        <span class="c"># prune down the set of all locations to something we can quickly check precisely</span>
+        <span class="c">#rough_distance = geopy.distance.arc_degrees(arcminutes=geopy.distance.nm(kilometers=distance)) * 2</span>
+        <span class="c">#queryset = queryset.filter(</span>
+         <span class="c">#   latitude__range=(point.lat - rough_distance, point.lat + rough_distance),</span>
+        <span class="c">#    longitude__range=(point.lon - rough_distance, point.lon + rough_distance)</span>
+       <span class="c"># )</span>
+
+        <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">queryset</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">geolocation</span><span class="o">.</span><span class="n">lat</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">geolocation</span><span class="o">.</span><span class="n">lon</span><span class="p">:</span>
+                <span class="n">exact_distance</span> <span class="o">=</span> <span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">lat</span> <span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">lon</span><span class="p">),</span>
+                    <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">geolocation</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">geolocation</span><span class="o">.</span><span class="n">lon</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">exact_distance</span><span class="o">.</span><span class="n">kilometers</span> <span class="o">&lt;=</span> <span class="n">distance</span><span class="p">:</span>
+                    <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+        <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id__in</span><span class="o">=</span><span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">items</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">queryset</span>
+
+
 <div class="viewcode-block" id="UserProfile"><a class="viewcode-back" href="../../herobase.html#herobase.models.UserProfile">[docs]</a><span class="k">class</span> <span class="nc">UserProfile</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This model extends a django user with additional hero information.&quot;&quot;&quot;</span>
     <span class="n">add_introspection_rules</span><span class="p">([],</span> <span class="p">[</span><span class="s">&quot;^herobase\.fields\.LocationField&quot;</span><span class="p">])</span>
+
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Manager</span><span class="p">()</span>
+    <span class="n">localobjects</span> <span class="o">=</span> <span class="n">DistanceManager</span><span class="p">()</span>
 
     <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
     <span class="n">experience</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PositiveIntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -515,7 +571,11 @@
     <span class="n">keep_email_after_gpn</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">editable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
     <span class="c"># google geolocation</span>
-    <span class="n">geolocation</span> <span class="o">=</span> <span class="n">LocationField</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">u&#39;geolocation&#39;</span><span class="p">),</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&#39;48,8&#39;</span><span class="p">)</span> <span class="c"># todo : fix default :-)</span>
+    <span class="c">#geolocation = LocationField(_(u&#39;geolocation&#39;), max_length=100, default=&#39;48,8&#39;) # todo : fix default :-)</span>
+    <span class="c">#address = models.TextField(Address, max_length=300, null=True, default=Address(address=&quot;test&quot;, latitude=2.222, longitude=2.12232323))</span>
+
+    <span class="n">address</span> <span class="o">=</span> <span class="n">map_fields</span><span class="o">.</span><span class="n">AddressField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;HfG Karlsruhe, Karlsruhe, Deutschland&quot;</span><span class="p">)</span>
+    <span class="n">geolocation</span> <span class="o">=</span> <span class="n">map_fields</span><span class="o">.</span><span class="n">GeoLocationField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;49.001925,8.383703&#39;</span><span class="p">)</span>
 
     <span class="n">created</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">modified</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -561,11 +621,22 @@
 <div class="viewcode-block" id="UserProfile.avatar"><a class="viewcode-back" href="../../herobase.html#herobase.models.UserProfile.avatar">[docs]</a>    <span class="k">def</span> <span class="nf">avatar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a String, containing a path to a thumbnail-image 270x270.&quot;&quot;&quot;</span>
         <span class="n">file_name</span> <span class="o">=</span> <span class="s">&quot;default.png&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hero_class</span>  <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hero_class</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">file_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CLASS_AVATARS</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">hero_class</span><span class="p">]</span>
         <span class="n">image</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;avatar/&#39;</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
         <span class="n">thumbnailer</span> <span class="o">=</span> <span class="n">get_thumbnailer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">avatar_storage</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
         <span class="n">thumbnail</span> <span class="o">=</span> <span class="n">thumbnailer</span><span class="o">.</span><span class="n">get_thumbnail</span><span class="p">({</span><span class="s">&#39;size&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">270</span><span class="p">,</span> <span class="mi">270</span><span class="p">),</span> <span class="s">&#39;quality&#39;</span><span class="p">:</span><span class="mi">90</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_URL</span><span class="p">,</span> <span class="n">thumbnail</span><span class="o">.</span><span class="n">url</span> <span class="p">)</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="UserProfile.avatar_thumb"><a class="viewcode-back" href="../../herobase.html#herobase.models.UserProfile.avatar_thumb">[docs]</a>    <span class="k">def</span> <span class="nf">avatar_thumb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a String, containing a path to a thumbnail-image 40x40.&quot;&quot;&quot;</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="s">&quot;default.png&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hero_class</span>  <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">file_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CLASS_AVATARS</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">hero_class</span><span class="p">]</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;avatar/&#39;</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+        <span class="n">thumbnailer</span> <span class="o">=</span> <span class="n">get_thumbnailer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">avatar_storage</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+        <span class="n">thumbnail</span> <span class="o">=</span> <span class="n">thumbnailer</span><span class="o">.</span><span class="n">get_thumbnail</span><span class="p">({</span><span class="s">&#39;size&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="s">&#39;quality&#39;</span><span class="p">:</span><span class="mi">90</span><span class="p">})</span>
         <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_URL</span><span class="p">,</span> <span class="n">thumbnail</span><span class="o">.</span><span class="n">url</span> <span class="p">)</span>
 </div>
     <span class="nd">@property</span>
@@ -588,8 +659,48 @@
         <span class="k">return</span> <span class="n">Message</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">recipient</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span><span class="n">read__isnull</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
             <span class="n">recipient_deleted__isnull</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </div>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rank</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span> <span class="s">&#39;-userprofile__experience&#39;</span><span class="p">,</span> <span class="s">&#39;username&#39;</span> <span class="p">))</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">localrank</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">UserProfile</span><span class="o">.</span><span class="n">localobjects</span><span class="o">.</span><span class="n">near</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geolocation</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span><span class="o">.</span><span class="n">select_related</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span> <span class="s">&#39;-experience&#39;</span><span class="p">,</span> <span class="s">&#39;user__username&#39;</span> <span class="p">))</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">origin</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">distance</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geolocation</span><span class="o">.</span><span class="n">toPoint</span><span class="p">(),</span><span class="n">origin</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_related_leaderboard</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_related_leaderboard_size</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_related_leaderboard_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hoodsize</span><span class="p">,</span> <span class="n">topcount</span><span class="p">,</span> <span class="n">getlocal</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">getlocal</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_related_leaderboard_qs_size</span><span class="p">(</span><span class="n">UserProfile</span><span class="o">.</span><span class="n">objects</span><span class="p">,</span><span class="n">hoodsize</span><span class="p">,</span><span class="n">topcount</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_related_leaderboard_qs_size</span><span class="p">(</span><span class="n">UserProfile</span><span class="o">.</span><span class="n">objects</span><span class="p">,</span><span class="n">hoodsize</span><span class="p">,</span><span class="n">topcount</span><span class="p">),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">get_related_leaderboard_qs_size</span><span class="p">(</span><span class="n">UserProfile</span><span class="o">.</span><span class="n">localobjects</span><span class="o">.</span><span class="n">near</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geolocation</span><span class="p">,</span><span class="mi">40</span><span class="p">),</span><span class="n">hoodsize</span><span class="p">,</span><span class="n">topcount</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">get_related_leaderboard_qs_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profilequeryset</span><span class="p">,</span> <span class="n">hoodsize</span><span class="p">,</span> <span class="n">topcount</span><span class="p">):</span>
+        <span class="n">neighbourhood</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">separator</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c">#only show the separator if there is a separation between topusers and the displayed range</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">!=</span> <span class="n">topcount</span> <span class="o">+</span> <span class="n">hoodsize</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">separator</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_dummy_user</span><span class="p">()]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">&gt;</span> <span class="n">hoodsize</span><span class="p">:</span>
+            <span class="n">neighbourhood</span> <span class="o">=</span> <span class="n">profilequeryset</span><span class="o">.</span><span class="n">select_related</span><span class="p">()</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">get_system_user</span><span class="p">()</span><span class="o">.</span><span class="n">pk</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-experience&#39;</span><span class="p">,</span> <span class="s">&#39;user__username&#39;</span><span class="p">)[(</span><span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="o">-</span><span class="p">(</span><span class="n">hoodsize</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):(</span><span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="o">+</span><span class="n">hoodsize</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">topcount</span> <span class="o">=</span> <span class="n">hoodsize</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">profilequeryset</span><span class="o">.</span><span class="n">select_related</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-experience&#39;</span><span class="p">,</span> <span class="s">&#39;user__username&#39;</span><span class="p">)[:</span><span class="n">topcount</span><span class="p">]</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">separator</span><span class="p">,</span> <span class="n">neighbourhood</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">total</span>
+
+
     <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span>
+
 </div>
 <div class="viewcode-block" id="create_user_profile"><a class="viewcode-back" href="../../herobase.html#herobase.models.create_user_profile">[docs]</a><span class="k">def</span> <span class="nf">create_user_profile</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create a user profile on user account creation.&quot;&quot;&quot;</span>
@@ -634,7 +745,10 @@
     <span class="sd">&quot;&quot;&quot;Return an unique system-user. Creates one if not existing.&quot;&quot;&quot;</span>
     <span class="n">user</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">SYSTEM_USER_NAME</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">user</span>
-</pre></div></div>
+</div>
+<span class="k">def</span> <span class="nf">get_dummy_user</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">UserProfile</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&quot;dummy&quot;</span><span class="p">))</span>
+</pre></div>
 
 </div>
 <footer class="footer">

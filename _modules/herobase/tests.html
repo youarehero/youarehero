@@ -150,13 +150,15 @@
 
 <span class="sd">Some tests...</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
 <span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">PermissionDenied</span>
 <span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
 <span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
 <span class="kn">from</span> <span class="nn">django.test.client</span> <span class="kn">import</span> <span class="n">RequestFactory</span><span class="p">,</span> <span class="n">Client</span>
 <span class="kn">from</span> <span class="nn">django.test.testcases</span> <span class="kn">import</span> <span class="n">SimpleTestCase</span><span class="p">,</span> <span class="n">TransactionTestCase</span>
 <span class="kn">from</span> <span class="nn">django.test.utils</span> <span class="kn">import</span> <span class="n">override_settings</span>
-<span class="kn">from</span> <span class="nn">herobase.models</span> <span class="kn">import</span> <span class="n">Quest</span><span class="p">,</span> <span class="n">Adventure</span>
+<span class="kn">from</span> <span class="nn">herobase</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">herobase.models</span> <span class="kn">import</span> <span class="n">Quest</span><span class="p">,</span> <span class="n">Adventure</span><span class="p">,</span> <span class="n">UserProfile</span>
 <span class="kn">from</span> <span class="nn">herobase.test_factories</span> <span class="kn">import</span> <span class="n">create_adventure</span>
 <span class="kn">from</span> <span class="nn">test_factories</span> <span class="kn">import</span> <span class="n">create_quest</span><span class="p">,</span> <span class="n">create_user</span>
 
@@ -362,6 +364,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">?next=</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;django.contrib.auth.views.login&#39;</span><span class="p">),</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;quest-create&#39;</span><span class="p">)))</span>
 
 
+    <span class="c">#todo be fixxed</span>
+    <span class="c">#def test_leaderboard(self):</span>
+    <span class="c">#    &quot;&quot;&quot;An anonymous user can visit the leader board.&quot;&quot;&quot;</span>
+    <span class="c">#    client = Client()</span>
+     <span class="c">#   testman = create_user(username=&#39;testman&#39;)</span>
+     <span class="c">#   testman.get_profile().experience = 10*6</span>
+      <span class="c">#  testman.get_profile().save()</span>
+       <span class="c"># response = client.get(reverse(&#39;leader-board&#39;))</span>
+       <span class="c"># self.assertEqual(response., testman.username)</span>
 </div></div>
 <span class="nd">@override_settings</span><span class="p">(</span><span class="n">PASSWORD_HASHERS</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;herobase.utils.PlainTextPasswordHasher&#39;</span><span class="p">,</span> <span class="p">))</span>
 <div class="viewcode-block" id="AuthenticatedIntegrationTest"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest">[docs]</a><span class="k">class</span> <span class="nc">AuthenticatedIntegrationTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
@@ -438,8 +449,41 @@
         <span class="sd">&quot;&quot;&quot;An owner can see quest-details.&quot;&quot;&quot;</span>
         <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;quest-detail&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">pk</span><span class="p">,)))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">title</span><span class="p">)</span></div></div>
-</pre></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.test_suggested_quests"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_suggested_quests">[docs]</a>    <span class="k">def</span> <span class="nf">test_suggested_quests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A user should be presented with quest suggestions.&quot;&quot;&quot;</span>
+
+        <span class="n">master</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">()</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="n">master</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;suggested_quest_0&#39;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.test_stats"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_stats">[docs]</a>    <span class="k">def</span> <span class="nf">test_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A user should be able to see the statistics.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&#39;0&#39;</span><span class="p">,</span> <span class="n">hero_class</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;stats&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">&#39;Stat&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">&#39;uest&#39;</span><span class="p">)</span>
+
+
+
+<span class="c">#class LeaderBoardTest(TestCase):</span>
+<span class="c">#    def test_leaderboard_ok(self):</span>
+<span class="c">#        &quot;&quot;&quot;Check if leaderboard is correctly ordered&quot;&quot;&quot;</span>
+<span class="c">#        for i in range(7,0,-1):</span>
+<span class="c">#            user = create_user()</span>
+<span class="c">#            profile = user.get_profile()</span>
+<span class="c">#            if (i == 4):</span>
+<span class="c">#                theuser = user</span>
+<span class="c">#            profile.experience = i * 100</span>
+<span class="c">#            profile.save()</span>
+<span class="c">#</span>
+<span class="c">#        self.assertEqual(list(User.objects.order_by(&#39;-userprofile__experience&#39;)),</span>
+<span class="c">#                                 theuser.get_profile().get_related_leaderboard())</span>
+<span class="c">#</span>
+</pre></div></div></div>
 
 </div>
 <footer class="footer">
