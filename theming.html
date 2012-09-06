@@ -1,0 +1,238 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Theming Guide &mdash; youarehero 0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bootstrap.js"></script>
+    <link rel="top" title="youarehero 0.0 documentation" href="index.html" />
+    <link rel="next" title="How To’s" href="howtos.html" />
+    <link rel="prev" title="Overview" href="overview.html" />
+<script type="text/javascript">
+(function () {
+  /**
+   * Patch TOC list.
+   *
+   * Will mutate the underlying span to have a correct ul for nav.
+   *
+   * @param $span: Span containing nested UL's to mutate.
+   * @param minLevel: Starting level for nested lists. (1: global, 2: local).
+   */
+  var patchToc = function ($ul, minLevel) {
+    var findA;
+
+    // Find all a "internal" tags, traversing recursively.
+    findA = function ($elem, level) {
+      var level = level || 0,
+        $items = $elem.find("> li > a.internal, > ul, > li > ul");
+
+      // Iterate everything in order.
+      $items.each(function (index, item) {
+        var $item = $(item),
+          tag = item.tagName.toLowerCase(),
+          pad = 15 + ((level - minLevel) * 10);
+
+        if (tag === 'a' && level >= minLevel) {
+          // Add to existing padding.
+          $item.css('padding-left', pad + "px");
+          console.log(level, $item, 'padding-left', pad + "px");
+        } else if (tag === 'ul') {
+          // Recurse.
+          findA($item, level + 1);
+        }
+      });
+    };
+
+    console.log("HERE");
+    findA($ul);
+  };
+
+  $(document).ready(function () {
+    // Add styling, structure to TOC's.
+    $(".dropdown-menu").each(function () {
+      $(this).find("ul").each(function (index, item){
+        var $item = $(item);
+        $item.addClass('unstyled');
+      });
+      $(this).find("li").each(function () {
+        $(this).parent().append(this);
+      });
+    });
+
+    // Patch in level.
+    patchToc($("ul.globaltoc"), 2);
+    patchToc($("ul.localtoc"), 2);
+
+    // Enable dropdown.
+    $('.dropdown-toggle').dropdown();
+  });
+}());
+</script>
+
+  </head>
+  <body>
+  <div id="navbar" class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="index.html">youarehero</a>
+        <span class="navbar-text pull-left"><b>0.0</b></span>
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            
+              <li class="dropdown">
+  <a href="index.html" class="dropdown-toggle" data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Theming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howtos.html">How To&#8217;s</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="herobase.html">herobase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heromessage.html">heromessage</a></li>
+</ul>
+</ul>
+</li>
+              <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Theming Guide</a><ul>
+<li><a class="reference internal" href="#base-css">Base CSS</a></li>
+<li><a class="reference internal" href="#less">LESS</a><ul>
+<li><a class="reference internal" href="#less-setup">LESS Setup</a></li>
+<li><a class="reference internal" href="#watchr-setup">Watchr Setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+  <!--<span class="localtoc"><ul>
+<li><a class="reference internal" href="#">Theming Guide</a><ul>
+<li><a class="reference internal" href="#base-css">Base CSS</a></li>
+<li><a class="reference internal" href="#less">LESS</a><ul>
+<li><a class="reference internal" href="#less-setup">LESS Setup</a></li>
+<li><a class="reference internal" href="#watchr-setup">Watchr Setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</span>-->
+</li>
+            
+            
+              
+  <li><a href="overview.html"
+         title="previous chapter">&laquo; Overview</a></li>
+  <li><a href="howtos.html"
+         title="next chapter">How To&#8217;s &raquo;</a></li>
+            
+            
+              
+  <li><a href="_sources/theming.txt"
+         rel="nofollow">Source</a></li>
+            
+          </ul>
+          
+            
+<form class="navbar-search pull-right" style="margin-bottom:-3px;" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+   
+  <div class="section" id="theming-guide">
+<h1>Theming Guide<a class="headerlink" href="#theming-guide" title="Permalink to this headline">¶</a></h1>
+<p>For now the <tt class="docutils literal"><span class="pre">herobase</span> <span class="pre">module</span></tt> holds all templates, stylesheets and other theming related files.</p>
+<div class="section" id="base-css">
+<h2>Base CSS<a class="headerlink" href="#base-css" title="Permalink to this headline">¶</a></h2>
+<p>First of all we use <a class="reference external" href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a> as a kind of base stylesheet and design.
+It comes with a lot of nice CSS classes and JS scripts. Especially the Forms, Buttons and Buttonbars look fancy
+across all modern browsers. At the same time we use the grid-system only slightly modfied.</p>
+<p>Bootstrap is located in <tt class="docutils literal"><span class="pre">src/herobase/static/bootstrap/</span></tt> and its CSS is linked per default by the <tt class="docutils literal"><span class="pre">base.html</span></tt> template.</p>
+</div>
+<div class="section" id="less">
+<h2>LESS<a class="headerlink" href="#less" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://lesscss.org/">Less</a> is a Language for generating CSS. The Bootstrap CSS can be build from LESS sources,
+which allows us changing colors and other variables easily.</p>
+<p>In Bootstrap&#8217;s LESS files we only touch <tt class="docutils literal"><span class="pre">bootstrap/less/variables.less</span></tt>. You find all custom LESS code in
+<tt class="docutils literal"><span class="pre">src/herobase/static/less/custom.less</span></tt>.</p>
+<div class="section" id="less-setup">
+<h3>LESS Setup<a class="headerlink" href="#less-setup" title="Permalink to this headline">¶</a></h3>
+<p>To customize the LESS files you need a LESS compiler. Basically LESS could be compiled by <tt class="docutils literal"><span class="pre">less.js</span></tt> directly in the browser.
+Since such a build takes &gt;4 sec on my (old) machine and it would be annoying to take care about consistent files,
+this is nothing for the git repo, and we recommend the commandline tool <tt class="docutils literal"><span class="pre">lessc</span></tt>.</p>
+<p>First install the node package manager:</p>
+<blockquote>
+<div>$ sudo apt-get install npm</div></blockquote>
+<p>Afterwards install less and some bootstrap-dependencies:</p>
+<blockquote>
+<div>$ npm install -g less jshint recess uglify-js</div></blockquote>
+<p>Now you can compile Bootstrap with:</p>
+<blockquote>
+<div>$ lessc src/herobase/static/bootstrap/less/bootstrap.less &gt; src/herobase/static/bootstrap/css/bootstrap.css</div></blockquote>
+<p>And our custom less:</p>
+<blockquote>
+<div>$ lessc src/herobase/static/less/custom.less &gt; src/herobase/static/css/custom.css</div></blockquote>
+</div>
+<div class="section" id="watchr-setup">
+<h3>Watchr Setup<a class="headerlink" href="#watchr-setup" title="Permalink to this headline">¶</a></h3>
+<p>With <a class="reference external" href="https://github.com/mynyml/watchr">watchr</a> you can automatically rebuild a <tt class="docutils literal"><span class="pre">.less</span></tt> file every time you edit the file.
+A watchr script for the above files is <tt class="docutils literal"><span class="pre">deploy/less.watchr</span></tt>.</p>
+<p>Install <tt class="docutils literal"><span class="pre">rubygems</span></tt>:</p>
+<blockquote>
+<div>$ sudo apt-get install rubygems</div></blockquote>
+<p>And afterwards <tt class="docutils literal"><span class="pre">watchr</span></tt>:</p>
+<blockquote>
+<div>$ gem install watchr</div></blockquote>
+<p>Run watchr-script in the project-root:</p>
+<blockquote>
+<div>$ watchr deploy/less.watchr</div></blockquote>
+</div>
+</div>
+</div>
+
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>
+        &copy; Copyright 2012, entwicklungshelden.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

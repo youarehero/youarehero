@@ -1,0 +1,455 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>herobase.tests &mdash; youarehero 0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap.js"></script>
+    <link rel="top" title="youarehero 0.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+<script type="text/javascript">
+(function () {
+  /**
+   * Patch TOC list.
+   *
+   * Will mutate the underlying span to have a correct ul for nav.
+   *
+   * @param $span: Span containing nested UL's to mutate.
+   * @param minLevel: Starting level for nested lists. (1: global, 2: local).
+   */
+  var patchToc = function ($ul, minLevel) {
+    var findA;
+
+    // Find all a "internal" tags, traversing recursively.
+    findA = function ($elem, level) {
+      var level = level || 0,
+        $items = $elem.find("> li > a.internal, > ul, > li > ul");
+
+      // Iterate everything in order.
+      $items.each(function (index, item) {
+        var $item = $(item),
+          tag = item.tagName.toLowerCase(),
+          pad = 15 + ((level - minLevel) * 10);
+
+        if (tag === 'a' && level >= minLevel) {
+          // Add to existing padding.
+          $item.css('padding-left', pad + "px");
+          console.log(level, $item, 'padding-left', pad + "px");
+        } else if (tag === 'ul') {
+          // Recurse.
+          findA($item, level + 1);
+        }
+      });
+    };
+
+    console.log("HERE");
+    findA($ul);
+  };
+
+  $(document).ready(function () {
+    // Add styling, structure to TOC's.
+    $(".dropdown-menu").each(function () {
+      $(this).find("ul").each(function (index, item){
+        var $item = $(item);
+        $item.addClass('unstyled');
+      });
+      $(this).find("li").each(function () {
+        $(this).parent().append(this);
+      });
+    });
+
+    // Patch in level.
+    patchToc($("ul.globaltoc"), 2);
+    patchToc($("ul.localtoc"), 2);
+
+    // Enable dropdown.
+    $('.dropdown-toggle').dropdown();
+  });
+}());
+</script>
+
+  </head>
+  <body>
+  <div id="navbar" class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="../../index.html">youarehero</a>
+        <span class="navbar-text pull-left"><b>0.0</b></span>
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            
+              <li class="dropdown">
+  <a href="../../index.html" class="dropdown-toggle" data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theming.html">Theming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howtos.html">How To&#8217;s</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../herobase.html">herobase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../heromessage.html">heromessage</a></li>
+</ul>
+</ul>
+</li>
+              <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"></ul>
+  <!--<span class="localtoc"></span>-->
+</li>
+            
+            
+              
+            
+            
+              
+            
+          </ul>
+          
+            
+<form class="navbar-search pull-right" style="margin-bottom:-3px;" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+   
+  <h1>Source code for herobase.tests</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This file demonstrates writing tests using the unittest module.</span>
+<span class="sd">These will pass when you run &quot;manage.py test&quot;.</span>
+
+<span class="sd">Some tests...</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">PermissionDenied</span>
+<span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">django.test.client</span> <span class="kn">import</span> <span class="n">RequestFactory</span><span class="p">,</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">django.test.testcases</span> <span class="kn">import</span> <span class="n">SimpleTestCase</span><span class="p">,</span> <span class="n">TransactionTestCase</span>
+<span class="kn">from</span> <span class="nn">django.test.utils</span> <span class="kn">import</span> <span class="n">override_settings</span>
+<span class="kn">from</span> <span class="nn">herobase.models</span> <span class="kn">import</span> <span class="n">Quest</span><span class="p">,</span> <span class="n">Adventure</span>
+<span class="kn">from</span> <span class="nn">herobase.test_factories</span> <span class="kn">import</span> <span class="n">create_adventure</span>
+<span class="kn">from</span> <span class="nn">test_factories</span> <span class="kn">import</span> <span class="n">create_quest</span><span class="p">,</span> <span class="n">create_user</span>
+
+
+<div class="viewcode-block" id="fake_request"><a class="viewcode-back" href="../../herobase.html#herobase.tests.fake_request">[docs]</a><span class="k">def</span> <span class="nf">fake_request</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s">&#39;/&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;create a fake request for testing purposes.&quot;&quot;&quot;</span>
+    <span class="n">factory</span> <span class="o">=</span> <span class="n">RequestFactory</span><span class="p">()</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">return</span> <span class="n">request</span>
+</div>
+<div class="viewcode-block" id="QuestTest"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest">[docs]</a><span class="k">class</span> <span class="nc">QuestTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Basic Unittests for Quest cycle. (applay, accept, cancel, done, ...)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="QuestTest.test_invalid_action_raises_value_error"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_invalid_action_raises_value_error">[docs]</a>    <span class="k">def</span> <span class="nf">test_invalid_action_raises_value_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Not allowed action should raise an exception.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+            <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;nosuchaction&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_owner_cancel"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_owner_cancel">[docs]</a>    <span class="k">def</span> <span class="nf">test_owner_cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If there is a open quest, the owner should be able to cancel that quest.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s">&#39;cancel&#39;</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;cancel&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">is_canceled</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_other_cancel_not_valid"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_other_cancel_not_valid">[docs]</a>    <span class="k">def</span> <span class="nf">test_other_cancel_not_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If I&#39;m not the owner, I should not be able to cancel the quest.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">not_owner</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">not_owner</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s">&#39;cancel&#39;</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_other_cancel_denied"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_other_cancel_denied">[docs]</a>    <span class="k">def</span> <span class="nf">test_other_cancel_denied</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If I&#39;m not the owner and I try to process the &quot;cancel&quot; action, I get an exception.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">not_owner</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">not_owner</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">PermissionDenied</span><span class="p">):</span>
+            <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;cancel&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">is_canceled</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_hero_apply"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_hero_apply">[docs]</a>    <span class="k">def</span> <span class="nf">test_hero_apply</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If there is a open quest, and I&#39;m not the owner, I should be able to apply for that quest.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">hero</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">hero</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s">&#39;hero_apply&#39;</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;hero_apply&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="n">hero</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">heroes</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_hero_apply_full_not_valid"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_hero_apply_full_not_valid">[docs]</a>    <span class="k">def</span> <span class="nf">test_hero_apply_full_not_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If the quest is full, I should not be able to apply for the quest.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_FULL</span><span class="p">)</span>
+        <span class="n">hero</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">hero</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s">&#39;hero_apply&#39;</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">PermissionDenied</span><span class="p">):</span>
+            <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;hero_apply&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="n">hero</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">heroes</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_hero_cancel_not_valid"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_hero_cancel_not_valid">[docs]</a>    <span class="k">def</span> <span class="nf">test_hero_cancel_not_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If I&#39;m a hero, not participating in a quest, I should not be able to cancel.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">hero</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">hero</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s">&#39;hero_cancel&#39;</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">PermissionDenied</span><span class="p">):</span>
+            <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;hero_cancel&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_hero_cancel"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_hero_cancel">[docs]</a>    <span class="k">def</span> <span class="nf">test_hero_cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If I&#39;m a hero, participating in a quest, I should be able to cancel my participation.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">adventure</span> <span class="o">=</span> <span class="n">create_adventure</span><span class="p">(</span><span class="n">quest</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">adventure</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s">&#39;hero_cancel&#39;</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;hero_cancel&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="n">adventure</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">active_heroes</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_owner_accept"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_owner_accept">[docs]</a>    <span class="k">def</span> <span class="nf">test_owner_accept</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If I&#39;m the owner of a open quest, and a hero is applying, I should be able to accept her.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">adventure</span> <span class="o">=</span> <span class="n">create_adventure</span><span class="p">(</span><span class="n">quest</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s">&#39;accept&#39;</span><span class="p">,</span> <span class="n">adventure</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="n">adventure</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;accept&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="n">adventure</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">accepted_heroes</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_owner_done_no_heroes"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_owner_done_no_heroes">[docs]</a>    <span class="k">def</span> <span class="nf">test_owner_done_no_heroes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If there was no hero accepted for my quest, I can&#39;t mark the quest as &quot;done&quot;.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s">&#39;done&#39;</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">PermissionDenied</span><span class="p">):</span>
+            <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;done&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">is_done</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_owner_done_valid"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_owner_done_valid">[docs]</a>    <span class="k">def</span> <span class="nf">test_owner_done_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If there is at least one accepted hero for my quest, I should be able to mark the quest as &quot;done&quot;.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+        <span class="n">adventure</span> <span class="o">=</span> <span class="n">create_adventure</span><span class="p">(</span><span class="n">quest</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">Adventure</span><span class="o">.</span><span class="n">STATE_OWNER_ACCEPTED</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s">&#39;done&#39;</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;done&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">is_done</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_owner_done_done_not_valid"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_owner_done_done_not_valid">[docs]</a>    <span class="k">def</span> <span class="nf">test_owner_done_done_not_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If my quest is already marked as &quot;done&quot;, i should not be able to mark it again.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+        <span class="n">adventure</span> <span class="o">=</span> <span class="n">create_adventure</span><span class="p">(</span><span class="n">quest</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">Adventure</span><span class="o">.</span><span class="n">STATE_OWNER_ACCEPTED</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s">&#39;done&#39;</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">PermissionDenied</span><span class="p">):</span>
+            <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;done&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">is_done</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_owner_refuse"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_owner_refuse">[docs]</a>    <span class="k">def</span> <span class="nf">test_owner_refuse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The owner is able to refuse a applying hero.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">adventure</span> <span class="o">=</span> <span class="n">create_adventure</span><span class="p">(</span><span class="n">quest</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s">&#39;refuse&#39;</span><span class="p">,</span> <span class="n">adventure</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="n">adventure</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;refuse&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="n">adventure</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">applying_heroes</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="n">adventure</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">accepted_heroes</span><span class="p">())</span>
+
+</div>
+<div class="viewcode-block" id="QuestTest.test_adventure_done"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_adventure_done">[docs]</a>    <span class="k">def</span> <span class="nf">test_adventure_done</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A hero should be able to mark his adventure as &quot;done&quot;, if he was accepted.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">)</span>
+        <span class="n">adventure</span> <span class="o">=</span> <span class="n">create_adventure</span><span class="p">(</span><span class="n">quest</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">Adventure</span><span class="o">.</span><span class="n">STATE_OWNER_ACCEPTED</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s">&#39;done&#39;</span><span class="p">,</span> <span class="n">adventure</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="n">adventure</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;done&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">adventure</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">Adventure</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="QuestTest.test_adventure_done_hero_actions"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_adventure_done_hero_actions">[docs]</a>    <span class="k">def</span> <span class="nf">test_adventure_done_hero_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If my adventure is done, I&#39;m not able to cancel or apply for the quest again.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">adventure</span> <span class="o">=</span> <span class="n">create_adventure</span><span class="p">(</span><span class="n">quest</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">Adventure</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">adventure</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s">&#39;hero_apply&#39;</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s">&#39;hero_cancel&#39;</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">PermissionDenied</span><span class="p">):</span>
+            <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;hero_apply&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">PermissionDenied</span><span class="p">):</span>
+            <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;hero_cancel&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_adventure_done_owner_actions"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_adventure_done_owner_actions">[docs]</a>    <span class="k">def</span> <span class="nf">test_adventure_done_owner_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If a hero is done with an adventure, the owner is not able to accept, refuse or mark him done again.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">adventure</span> <span class="o">=</span> <span class="n">create_adventure</span><span class="p">(</span><span class="n">quest</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">Adventure</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s">&#39;accept&#39;</span><span class="p">,</span> <span class="n">adventure</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s">&#39;refuse&#39;</span><span class="p">,</span> <span class="n">adventure</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s">&#39;done&#39;</span><span class="p">,</span> <span class="n">adventure</span><span class="o">.</span><span class="n">valid_actions_for</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">PermissionDenied</span><span class="p">):</span>
+            <span class="n">adventure</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;accept&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">PermissionDenied</span><span class="p">):</span>
+            <span class="n">adventure</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;refuse&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">PermissionDenied</span><span class="p">):</span>
+            <span class="n">adventure</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;done&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_check_quest_full"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_check_quest_full">[docs]</a>    <span class="k">def</span> <span class="nf">test_check_quest_full</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A quest with max_heroes=1 should be full, if there is one accepted hero.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">(</span><span class="n">max_heroes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">adventure</span> <span class="o">=</span> <span class="n">create_adventure</span><span class="p">(</span><span class="n">quest</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">is_full</span><span class="p">())</span>
+        <span class="n">adventure</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;accept&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">is_full</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">is_open</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="QuestTest.test_check_quest_not_full"><a class="viewcode-back" href="../../herobase.html#herobase.tests.QuestTest.test_check_quest_not_full">[docs]</a>    <span class="k">def</span> <span class="nf">test_check_quest_not_full</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A quest with max_heroes=2, shoould be open with one accepted hero.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">(</span><span class="n">max_heroes</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">adventure</span> <span class="o">=</span> <span class="n">create_adventure</span><span class="p">(</span><span class="n">quest</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">fake_request</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+        <span class="n">adventure</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;accept&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">is_full</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">is_open</span><span class="p">())</span>
+
+</div></div>
+<div class="viewcode-block" id="UnauthenticatedIntegrationTest"><a class="viewcode-back" href="../../herobase.html#herobase.tests.UnauthenticatedIntegrationTest">[docs]</a><span class="k">class</span> <span class="nc">UnauthenticatedIntegrationTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Integration Tests for the public part of the Homepage. Some things should be seen, other not.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="UnauthenticatedIntegrationTest.test_homepage"><a class="viewcode-back" href="../../herobase.html#herobase.tests.UnauthenticatedIntegrationTest.test_homepage">[docs]</a>    <span class="k">def</span> <span class="nf">test_homepage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if there is any response, and check for a &quot;join&quot;-button in the home-view.&quot;&quot;&quot;</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">&#39;login&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="UnauthenticatedIntegrationTest.test_quest_create"><a class="viewcode-back" href="../../herobase.html#herobase.tests.UnauthenticatedIntegrationTest.test_quest_create">[docs]</a>    <span class="k">def</span> <span class="nf">test_quest_create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If a anonymous user want to create a quest, he is redirected to the login form.&quot;&quot;&quot;</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;quest-create&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">?next=</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;django.contrib.auth.views.login&#39;</span><span class="p">),</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;quest-create&#39;</span><span class="p">)))</span>
+
+
+</div></div>
+<span class="nd">@override_settings</span><span class="p">(</span><span class="n">PASSWORD_HASHERS</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;herobase.utils.PlainTextPasswordHasher&#39;</span><span class="p">,</span> <span class="p">))</span>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest">[docs]</a><span class="k">class</span> <span class="nc">AuthenticatedIntegrationTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Integration tests for protected part of the homepage.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.setUp"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Start with logged in user&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logged_in</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">credentials</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.test_logged_in"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_logged_in">[docs]</a>    <span class="k">def</span> <span class="nf">test_logged_in</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;check login&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logged_in</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.test_authenticated_homepage"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_authenticated_homepage">[docs]</a>    <span class="k">def</span> <span class="nf">test_authenticated_homepage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;check for username on home view.&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.test_quest_create"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_quest_create">[docs]</a>    <span class="k">def</span> <span class="nf">test_quest_create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A user should be able to create a quest.&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;quest-create&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">&#39;Level&#39;</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;quest-create&#39;</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+            <span class="s">&#39;title&#39;</span><span class="p">:</span> <span class="s">&#39;title&#39;</span><span class="p">,</span>
+            <span class="s">&#39;description&#39;</span><span class="p">:</span> <span class="s">&#39;description&#39;</span><span class="p">,</span>
+            <span class="s">&#39;hero_class&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;max_heroes&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;level&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;experience&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;location&#39;</span><span class="p">:</span> <span class="s">&#39;location&#39;</span><span class="p">,</span>
+            <span class="s">&#39;due_date&#39;</span><span class="p">:</span> <span class="s">&#39;11.11.2013&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">Quest</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.test_quest_list"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_quest_list">[docs]</a>    <span class="k">def</span> <span class="nf">test_quest_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A user should be able to visit the quest-list-view.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&#39;aquestcreated&#39;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;quest-list&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">&#39;aquestcreated&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.test_quest_detail"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_quest_detail">[docs]</a>    <span class="k">def</span> <span class="nf">test_quest_detail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A owner should be able to see his quest detail-view and a hero applying for that quest.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&#39;questwithadventure&#39;</span><span class="p">,</span> <span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">adventure</span> <span class="o">=</span> <span class="n">create_adventure</span><span class="p">(</span><span class="n">quest</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;quest-detail&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span> <span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">adventure</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.test_user_edit"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_user_edit">[docs]</a>    <span class="k">def</span> <span class="nf">test_user_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A user should be able to see his userprofile-edit-form.&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;userprofile-edit&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.test_user_security_edit"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_user_security_edit">[docs]</a>    <span class="k">def</span> <span class="nf">test_user_security_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A user should be able to see his userprofile-privacy-settings-form.&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;userprofile-privacy-settings&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.test_user_profile"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_user_profile">[docs]</a>    <span class="k">def</span> <span class="nf">test_user_profile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A user should be able to see another users public profile.&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;userprofile-public&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">,)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.test_quest_details_as_hero"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_quest_details_as_hero">[docs]</a>    <span class="k">def</span> <span class="nf">test_quest_details_as_hero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A hero can see quest-details.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;quest-detail&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">pk</span><span class="p">,)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="AuthenticatedIntegrationTest.test_quest_details_as_owner"><a class="viewcode-back" href="../../herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_quest_details_as_owner">[docs]</a>    <span class="k">def</span> <span class="nf">test_quest_details_as_owner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;An owner can see quest-details.&quot;&quot;&quot;</span>
+        <span class="n">quest</span> <span class="o">=</span> <span class="n">create_quest</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;quest-detail&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">pk</span><span class="p">,)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">quest</span><span class="o">.</span><span class="n">title</span><span class="p">)</span></div></div>
+</pre></div>
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>
+        &copy; Copyright 2012, entwicklungshelden.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

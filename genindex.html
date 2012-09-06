@@ -1,0 +1,717 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Index &mdash; youarehero 0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bootstrap.js"></script>
+    <link rel="top" title="youarehero 0.0 documentation" href="index.html" />
+<script type="text/javascript">
+(function () {
+  /**
+   * Patch TOC list.
+   *
+   * Will mutate the underlying span to have a correct ul for nav.
+   *
+   * @param $span: Span containing nested UL's to mutate.
+   * @param minLevel: Starting level for nested lists. (1: global, 2: local).
+   */
+  var patchToc = function ($ul, minLevel) {
+    var findA;
+
+    // Find all a "internal" tags, traversing recursively.
+    findA = function ($elem, level) {
+      var level = level || 0,
+        $items = $elem.find("> li > a.internal, > ul, > li > ul");
+
+      // Iterate everything in order.
+      $items.each(function (index, item) {
+        var $item = $(item),
+          tag = item.tagName.toLowerCase(),
+          pad = 15 + ((level - minLevel) * 10);
+
+        if (tag === 'a' && level >= minLevel) {
+          // Add to existing padding.
+          $item.css('padding-left', pad + "px");
+          console.log(level, $item, 'padding-left', pad + "px");
+        } else if (tag === 'ul') {
+          // Recurse.
+          findA($item, level + 1);
+        }
+      });
+    };
+
+    console.log("HERE");
+    findA($ul);
+  };
+
+  $(document).ready(function () {
+    // Add styling, structure to TOC's.
+    $(".dropdown-menu").each(function () {
+      $(this).find("ul").each(function (index, item){
+        var $item = $(item);
+        $item.addClass('unstyled');
+      });
+      $(this).find("li").each(function () {
+        $(this).parent().append(this);
+      });
+    });
+
+    // Patch in level.
+    patchToc($("ul.globaltoc"), 2);
+    patchToc($("ul.localtoc"), 2);
+
+    // Enable dropdown.
+    $('.dropdown-toggle').dropdown();
+  });
+}());
+</script>
+
+  </head>
+  <body>
+  <div id="navbar" class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="index.html">youarehero</a>
+        <span class="navbar-text pull-left"><b>0.0</b></span>
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            
+              <li class="dropdown">
+  <a href="index.html" class="dropdown-toggle" data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howtos.html">How To&#8217;s</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="herobase.html">herobase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heromessage.html">heromessage</a></li>
+</ul>
+</ul>
+</li>
+              <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"></ul>
+  <!--<span class="localtoc"></span>-->
+</li>
+            
+            
+
+   
+              
+            
+
+            
+              
+            
+          </ul>
+          
+            
+<form class="navbar-search pull-right" style="margin-bottom:-3px;" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+   
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.views.abstract">abstract() (in module herobase.views)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.Adventure.accept">accept() (herobase.models.Adventure method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.Quest.accepted_heroes">accepted_heroes() (herobase.models.Quest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.AdventureManager.active">active() (herobase.models.AdventureManager method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.Quest.active_heroes">active_heroes() (herobase.models.Quest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.Adventure">Adventure (class in herobase.models)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.AdventureManager">AdventureManager (class in herobase.models)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.models.Quest.applying_heroes">applying_heroes() (herobase.models.Quest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest">AuthenticatedIntegrationTest (class in herobase.tests)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.UserProfile.avatar">avatar() (herobase.models.UserProfile method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.UserProfile.avatar_thumb">avatar_thumb (herobase.models.UserProfile attribute)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.UserProfile.avatar_thumbnails">avatar_thumbnails() (herobase.models.UserProfile method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.UserProfile.avatar_thumbnails_tiny">avatar_thumbnails_tiny() (herobase.models.UserProfile method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.models.Quest.cancel">cancel() (herobase.models.Quest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.Quest.check_full">check_full() (herobase.models.Quest method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.models.Quest.clean">clean() (herobase.models.Quest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.create_user_profile">create_user_profile() (in module herobase.models)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.models.Adventure.done">done() (herobase.models.Adventure method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="herobase.html#herobase.models.Quest.done">(herobase.models.Quest method)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.backends.EmailAuthBackend">EmailAuthBackend (class in herobase.backends)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.test_factories.factory">factory() (in module herobase.test_factories)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.fake_request">fake_request() (in module herobase.tests)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.views.QuestCreateView.form_class">form_class (herobase.views.QuestCreateView attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.models.Quest.get_absolute_m_url">get_absolute_m_url() (herobase.models.Quest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.Quest.get_absolute_url">get_absolute_url() (herobase.models.Quest method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.models.Quest.get_suggested_quests">get_suggested_quests() (herobase.models.Quest class method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.get_system_user">get_system_user() (in module herobase.models)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.models.Quest.hero_apply">hero_apply() (herobase.models.Quest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.Quest.hero_cancel">hero_cancel() (herobase.models.Quest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.views.hero_classes">hero_classes() (in module herobase.views)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#module-herobase.backends">herobase.backends (module)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#module-herobase.fields">herobase.fields (module)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#module-herobase.forms">herobase.forms (module)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#module-herobase.models">herobase.models (module)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#module-herobase.test_factories">herobase.test_factories (module)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#module-herobase.tests">herobase.tests (module)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#module-herobase.utils">herobase.utils (module)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#module-herobase.views">herobase.views (module)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#module-herobase.widgets">herobase.widgets (module)</a>
+  </dt>
+
+      
+  <dt><a href="heromessage.html#module-heromessage.models">heromessage.models (module)</a>
+  </dt>
+
+      
+  <dt><a href="heromessage.html#module-heromessage.tests">heromessage.tests (module)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.views.home_view">home_view() (in module herobase.views)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.models.UserProfile.level">level (herobase.models.UserProfile attribute)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.fields.LocationField">LocationField (class in herobase.fields)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.fields.LocationFormField">LocationFormField (class in herobase.fields)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.widgets.LocationWidget">LocationWidget (class in herobase.widgets)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.login_on_activation">login_on_activation() (in module herobase.models)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.utils.login_required">login_required() (in module herobase.utils)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.views.m_home_view">m_home_view() (in module herobase.views)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="heromessage.html#heromessage.models.Message">Message (class in heromessage.models)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.models.Quest.needs_attention">needs_attention() (herobase.models.Quest method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.utils.PlainTextPasswordHasher">PlainTextPasswordHasher (class in herobase.utils)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.models.Quest">Quest (class in herobase.models)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.views.quest_detail_view">quest_detail_view() (in module herobase.views)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.forms.QuestCreateForm">QuestCreateForm (class in herobase.forms)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.views.QuestCreateView">QuestCreateView (class in herobase.views)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.QuestManager">QuestManager (class in herobase.models)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest">QuestTest (class in herobase.tests)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.models.Adventure.refuse">refuse() (herobase.models.Adventure method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.UserProfile.relative_level_experience">relative_level_experience() (herobase.models.UserProfile method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.models.Quest.remaining_slots">remaining_slots() (herobase.models.Quest method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.setUp">setUp() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.views.signups">signups() (in module herobase.views)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_adventure_done">test_adventure_done() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_adventure_done_hero_actions">test_adventure_done_hero_actions() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_adventure_done_owner_actions">test_adventure_done_owner_actions() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_authenticated_homepage">test_authenticated_homepage() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_check_quest_full">test_check_quest_full() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_check_quest_not_full">test_check_quest_not_full() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_hero_apply">test_hero_apply() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_hero_apply_full_not_valid">test_hero_apply_full_not_valid() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_hero_cancel">test_hero_cancel() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_hero_cancel_not_valid">test_hero_cancel_not_valid() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.UnauthenticatedIntegrationTest.test_homepage">test_homepage() (herobase.tests.UnauthenticatedIntegrationTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_invalid_action_raises_value_error">test_invalid_action_raises_value_error() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_logged_in">test_logged_in() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_other_cancel_denied">test_other_cancel_denied() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_other_cancel_not_valid">test_other_cancel_not_valid() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_owner_accept">test_owner_accept() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_owner_cancel">test_owner_cancel() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_owner_done_done_not_valid">test_owner_done_done_not_valid() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_owner_done_no_heroes">test_owner_done_no_heroes() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_owner_done_valid">test_owner_done_valid() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.QuestTest.test_owner_refuse">test_owner_refuse() (herobase.tests.QuestTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_quest_create">test_quest_create() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="herobase.html#herobase.tests.UnauthenticatedIntegrationTest.test_quest_create">(herobase.tests.UnauthenticatedIntegrationTest method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_quest_detail">test_quest_detail() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_quest_details_as_hero">test_quest_details_as_hero() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_quest_details_as_owner">test_quest_details_as_owner() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_quest_list">test_quest_list() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_stats">test_stats() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_suggested_quests">test_suggested_quests() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_user_edit">test_user_edit() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_user_profile">test_user_profile() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.tests.AuthenticatedIntegrationTest.test_user_security_edit">test_user_security_edit() (herobase.tests.AuthenticatedIntegrationTest method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.tests.UnauthenticatedIntegrationTest">UnauthenticatedIntegrationTest (class in herobase.tests)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.UserProfile.unread_messages_count">unread_messages_count (herobase.models.UserProfile attribute)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.forms.UserAuthenticationForm">UserAuthenticationForm (class in herobase.forms)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.models.UserProfile">UserProfile (class in herobase.models)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="herobase.html#herobase.forms.UserProfileEdit">UserProfileEdit (class in herobase.forms)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.forms.UserProfilePrivacyEdit">UserProfilePrivacyEdit (class in herobase.forms)</a>
+  </dt>
+
+      
+  <dt><a href="herobase.html#herobase.forms.UserRegistrationForm">UserRegistrationForm (class in herobase.forms)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>
+        &copy; Copyright 2012, entwicklungshelden.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

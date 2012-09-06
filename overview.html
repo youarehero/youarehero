@@ -1,0 +1,239 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Overview &mdash; youarehero 0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bootstrap.js"></script>
+    <link rel="top" title="youarehero 0.0 documentation" href="index.html" />
+    <link rel="next" title="Theming Guide" href="theming.html" />
+    <link rel="prev" title="Installation Guide" href="install.html" />
+<script type="text/javascript">
+(function () {
+  /**
+   * Patch TOC list.
+   *
+   * Will mutate the underlying span to have a correct ul for nav.
+   *
+   * @param $span: Span containing nested UL's to mutate.
+   * @param minLevel: Starting level for nested lists. (1: global, 2: local).
+   */
+  var patchToc = function ($ul, minLevel) {
+    var findA;
+
+    // Find all a "internal" tags, traversing recursively.
+    findA = function ($elem, level) {
+      var level = level || 0,
+        $items = $elem.find("> li > a.internal, > ul, > li > ul");
+
+      // Iterate everything in order.
+      $items.each(function (index, item) {
+        var $item = $(item),
+          tag = item.tagName.toLowerCase(),
+          pad = 15 + ((level - minLevel) * 10);
+
+        if (tag === 'a' && level >= minLevel) {
+          // Add to existing padding.
+          $item.css('padding-left', pad + "px");
+          console.log(level, $item, 'padding-left', pad + "px");
+        } else if (tag === 'ul') {
+          // Recurse.
+          findA($item, level + 1);
+        }
+      });
+    };
+
+    console.log("HERE");
+    findA($ul);
+  };
+
+  $(document).ready(function () {
+    // Add styling, structure to TOC's.
+    $(".dropdown-menu").each(function () {
+      $(this).find("ul").each(function (index, item){
+        var $item = $(item);
+        $item.addClass('unstyled');
+      });
+      $(this).find("li").each(function () {
+        $(this).parent().append(this);
+      });
+    });
+
+    // Patch in level.
+    patchToc($("ul.globaltoc"), 2);
+    patchToc($("ul.localtoc"), 2);
+
+    // Enable dropdown.
+    $('.dropdown-toggle').dropdown();
+  });
+}());
+</script>
+
+  </head>
+  <body>
+  <div id="navbar" class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="index.html">youarehero</a>
+        <span class="navbar-text pull-left"><b>0.0</b></span>
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            
+              <li class="dropdown">
+  <a href="index.html" class="dropdown-toggle" data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howtos.html">How To&#8217;s</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="herobase.html">herobase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heromessage.html">heromessage</a></li>
+</ul>
+</ul>
+</li>
+              <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Overview</a><ul>
+<li><a class="reference internal" href="#django">Django</a></li>
+<li><a class="reference internal" href="#deployment">Deployment</a></li>
+<li><a class="reference internal" href="#tests">Tests</a></li>
+<li><a class="reference internal" href="#other-components">Other Components</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+  <!--<span class="localtoc"><ul>
+<li><a class="reference internal" href="#">Overview</a><ul>
+<li><a class="reference internal" href="#django">Django</a></li>
+<li><a class="reference internal" href="#deployment">Deployment</a></li>
+<li><a class="reference internal" href="#tests">Tests</a></li>
+<li><a class="reference internal" href="#other-components">Other Components</a></li>
+</ul>
+</li>
+</ul>
+</span>-->
+</li>
+            
+            
+              
+  <li><a href="install.html"
+         title="previous chapter">&laquo; Installation Guide</a></li>
+  <li><a href="theming.html"
+         title="next chapter">Theming Guide &raquo;</a></li>
+            
+            
+              
+  <li><a href="_sources/overview.txt"
+         rel="nofollow">Source</a></li>
+            
+          </ul>
+          
+            
+<form class="navbar-search pull-right" style="margin-bottom:-3px;" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+   
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="django">
+<h2>Django<a class="headerlink" href="#django" title="Permalink to this headline">¶</a></h2>
+<p><strong>You are HERO</strong> is based on <a class="reference external" href="https://www.djangoproject.com/">Django</a>, a python web-framework.
+The <a class="reference external" href="https://docs.djangoproject.com/">Django documentation</a> is detailed
+and we recommend the <a class="reference external" href="https://docs.djangoproject.com/en/1.4/intro/tutorial01/">Tutorial</a>.</p>
+<p>Assuming you know the Basics (models, views, urls) we can start with the special characteristics
+of the <strong>You are HERO</strong> project.</p>
+<p>The source code for this project is located in <tt class="docutils literal"><span class="pre">src/</span></tt>. Note that Django 1.4 comes with a new
+directory structure. You find the project related files in <tt class="docutils literal"><span class="pre">src/youarehero/</span></tt>.</p>
+<p>By now there are the following custom apps:</p>
+<ul class="simple">
+<li><a class="reference internal" href="herobase.html"><em>herobase</em></a> YAH basic models and behaviour</li>
+<li><a class="reference internal" href="heromessage.html"><em>heromessage</em></a> internal private messages</li>
+</ul>
+</div>
+<div class="section" id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h2>
+<p>We use <a class="reference external" href="http://south.readthedocs.org">south</a> for database migrations.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you get an database related error after pulling the git repo, it may be necessary to
+migrate one of the custom apps. Try:</p>
+<div class="last highlight-python"><pre>(env)$ src/managy.py migrate</pre>
+</div>
+</div>
+<p>In the <tt class="docutils literal"><span class="pre">deploy/</span></tt> directory you find the requirements.txt
+(<cite>pip freeze &lt;http://www.pip-installer.org/en/latest/requirements.html#freezing-requirements&gt;</cite> output), which
+defines the python packages used in the projects <a class="reference external" href="http://www.virtualenv.org">virtualenv</a>.</p>
+<p>Apart from that you can push your <strong>tested</strong> commits to the <tt class="docutils literal"><span class="pre">git</span> <span class="pre">repo</span></tt> and they will be
+automatically deployed on the develoment server.</p>
+</div>
+<div class="section" id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
+<p><strong>YAH</strong> uses the <a class="reference external" href="http://docs.python.org/library/unittest.html">unittest module</a>.
+Tests are located in</p>
+<ul class="simple">
+<li><a class="reference internal" href="herobase.html#module-herobase.tests" title="herobase.tests"><tt class="xref py py-mod docutils literal"><span class="pre">herobase.tests</span></tt></a></li>
+<li><a class="reference internal" href="heromessage.html#module-heromessage.tests" title="heromessage.tests"><tt class="xref py py-mod docutils literal"><span class="pre">heromessage.tests</span></tt></a></li>
+</ul>
+<p><a class="reference external" href="https://bitbucket.org/kmike/django-coverage/">Django-coverage</a> generates
+<a class="reference external" href="https://youarehero.net/coverage/">html</a> with information about the test coverage of the project.</p>
+<p>More documentation follows...</p>
+</div>
+<div class="section" id="other-components">
+<h2>Other Components<a class="headerlink" href="#other-components" title="Permalink to this headline">¶</a></h2>
+<p>Beside <em>Django</em> and the <em>project related apps</em> there are other components used in this project:</p>
+<ul class="simple">
+<li>This documentation is build with <a class="reference external" href="http://sphinx.pocoo.org/contents.html">sphinx</a>.
+The documentation source is located in <tt class="docutils literal"><span class="pre">docs/</span></tt>.</li>
+<li>Most requirements are bundeled in an isolated <a class="reference external" href="http://www.virtualenv.org">virtualenv</a>.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>
+        &copy; Copyright 2012, entwicklungshelden.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

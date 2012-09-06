@@ -1,0 +1,297 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation Guide &mdash; youarehero 0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bootstrap.js"></script>
+    <link rel="top" title="youarehero 0.0 documentation" href="index.html" />
+    <link rel="next" title="Overview" href="overview.html" />
+    <link rel="prev" title="You are HERO documentation" href="index.html" />
+<script type="text/javascript">
+(function () {
+  /**
+   * Patch TOC list.
+   *
+   * Will mutate the underlying span to have a correct ul for nav.
+   *
+   * @param $span: Span containing nested UL's to mutate.
+   * @param minLevel: Starting level for nested lists. (1: global, 2: local).
+   */
+  var patchToc = function ($ul, minLevel) {
+    var findA;
+
+    // Find all a "internal" tags, traversing recursively.
+    findA = function ($elem, level) {
+      var level = level || 0,
+        $items = $elem.find("> li > a.internal, > ul, > li > ul");
+
+      // Iterate everything in order.
+      $items.each(function (index, item) {
+        var $item = $(item),
+          tag = item.tagName.toLowerCase(),
+          pad = 15 + ((level - minLevel) * 10);
+
+        if (tag === 'a' && level >= minLevel) {
+          // Add to existing padding.
+          $item.css('padding-left', pad + "px");
+          console.log(level, $item, 'padding-left', pad + "px");
+        } else if (tag === 'ul') {
+          // Recurse.
+          findA($item, level + 1);
+        }
+      });
+    };
+
+    console.log("HERE");
+    findA($ul);
+  };
+
+  $(document).ready(function () {
+    // Add styling, structure to TOC's.
+    $(".dropdown-menu").each(function () {
+      $(this).find("ul").each(function (index, item){
+        var $item = $(item);
+        $item.addClass('unstyled');
+      });
+      $(this).find("li").each(function () {
+        $(this).parent().append(this);
+      });
+    });
+
+    // Patch in level.
+    patchToc($("ul.globaltoc"), 2);
+    patchToc($("ul.localtoc"), 2);
+
+    // Enable dropdown.
+    $('.dropdown-toggle').dropdown();
+  });
+}());
+</script>
+
+  </head>
+  <body>
+  <div id="navbar" class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="index.html">youarehero</a>
+        <span class="navbar-text pull-left"><b>0.0</b></span>
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            
+              <li class="dropdown">
+  <a href="index.html" class="dropdown-toggle" data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">Theming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howtos.html">How To&#8217;s</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="herobase.html">herobase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heromessage.html">heromessage</a></li>
+</ul>
+</ul>
+</li>
+              <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Installation Guide</a><ul>
+<li><a class="reference internal" href="#preparation-and-dependencies">Preparation and Dependencies</a></li>
+<li><a class="reference internal" href="#cloning-the-git-repository">Cloning the git repository</a></li>
+<li><a class="reference internal" href="#the-bootstrap-script">The bootstrap script</a></li>
+<li><a class="reference internal" href="#the-virtual-environment">The Virtual Environment</a><ul>
+<li><a class="reference internal" href="#install-requirements-manually">Install requirements manually</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#initialize-database">Initialize Database</a></li>
+<li><a class="reference internal" href="#start-development-server">Start Development Server</a></li>
+<li><a class="reference internal" href="#local-email-setup">Local Email Setup</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+  <!--<span class="localtoc"><ul>
+<li><a class="reference internal" href="#">Installation Guide</a><ul>
+<li><a class="reference internal" href="#preparation-and-dependencies">Preparation and Dependencies</a></li>
+<li><a class="reference internal" href="#cloning-the-git-repository">Cloning the git repository</a></li>
+<li><a class="reference internal" href="#the-bootstrap-script">The bootstrap script</a></li>
+<li><a class="reference internal" href="#the-virtual-environment">The Virtual Environment</a><ul>
+<li><a class="reference internal" href="#install-requirements-manually">Install requirements manually</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#initialize-database">Initialize Database</a></li>
+<li><a class="reference internal" href="#start-development-server">Start Development Server</a></li>
+<li><a class="reference internal" href="#local-email-setup">Local Email Setup</a></li>
+</ul>
+</li>
+</ul>
+</span>-->
+</li>
+            
+            
+              
+  <li><a href="index.html"
+         title="previous chapter">&laquo; You are HERO documentation</a></li>
+  <li><a href="overview.html"
+         title="next chapter">Overview &raquo;</a></li>
+            
+            
+              
+  <li><a href="_sources/install.txt"
+         rel="nofollow">Source</a></li>
+            
+          </ul>
+          
+            
+<form class="navbar-search pull-right" style="margin-bottom:-3px;" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+   
+  <div class="section" id="installation-guide">
+<h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Permalink to this headline">¶</a></h1>
+<p>This section describes how to set up a local development environment for the <strong>You are HERO</strong> project.
+Since <tt class="docutils literal"><span class="pre">python</span></tt> is a platform independent language, it should be possible on most operating systems.
+However, the focus of this document is on Unix based systems like MacOS or Ubuntu/linux.</p>
+<div class="section" id="preparation-and-dependencies">
+<h2>Preparation and Dependencies<a class="headerlink" href="#preparation-and-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>First of all you need <a class="reference external" href="http://www.python.org/download/">python 2.7</a> and
+the version control system <a class="reference external" href="http://git-scm.com/book/en/Getting-Started-Installing-Git">git</a>.
+On most Unix based systems <tt class="docutils literal"><span class="pre">python</span></tt> is already installed, but you&#8217;ll need the
+<tt class="docutils literal"><span class="pre">python-dev</span></tt> package to compile <tt class="docutils literal"><span class="pre">pillow</span></tt> later. For the same reason you will need <tt class="docutils literal"><span class="pre">libjpeg-dev</span></tt>.</p>
+<p>Further you need <a class="reference external" href="&lt;http://www.virtualenv.org&gt;">virtualenv</a> to create a isolated python environment,
+which we use for handling all other requirements.</p>
+<p>You may use your operating system&#8217;s package manager:</p>
+<div class="highlight-python"><pre>$ sudo apt-get install git python-dev python-virtualenv libjpeg-dev</pre>
+</div>
+<p>or use <tt class="docutils literal"><span class="pre">easy_install</span></tt>:</p>
+<div class="highlight-python"><pre>$ easy_install virtualenv</pre>
+</div>
+<p>or on MacOS:</p>
+<div class="highlight-python"><pre>coming soon...</pre>
+</div>
+</div>
+<div class="section" id="cloning-the-git-repository">
+<h2>Cloning the git repository<a class="headerlink" href="#cloning-the-git-repository" title="Permalink to this headline">¶</a></h2>
+<p>Until the project is on Github, mail us your favorite <em>username</em> and <em>ssh pubkey</em>.
+You should get an answer and subsequently be able to clone the repository:</p>
+<div class="highlight-python"><pre>$ git clone ssh://git@queen.daenerys.de:54884/platform youarehero</pre>
+</div>
+</div>
+<div class="section" id="the-bootstrap-script">
+<span id="bootstrap-dev"></span><h2>The bootstrap script<a class="headerlink" href="#the-bootstrap-script" title="Permalink to this headline">¶</a></h2>
+<p>After cloning the git repository, browse to your project dir and run:</p>
+<div class="highlight-python"><pre>$ make bootstrap-dev</pre>
+</div>
+<p>The script creates a virtual environment (in <tt class="docutils literal"><span class="pre">env/</span></tt>)
+and creates the <tt class="docutils literal"><span class="pre">static/</span></tt>, <tt class="docutils literal"><span class="pre">media/</span></tt> and <tt class="docutils literal"><span class="pre">coverage/</span></tt> folders, which are
+not in the git repo, as they contain generated data.
+It also creates a local settings file (<tt class="docutils literal"><span class="pre">src/youarehero/settings/local.py</span></tt>) which contains the development settings.
+At last it installs all required
+<em>django apps</em> and <em>python packages</em> inside the <em>virtual env</em>.</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">if the script breaks with an error while installing the requirements,
+follow the instructions for <a class="reference internal" href="#install-requirements"><em>installing requirements manually</em></a>
+in the next section.</p>
+</div>
+</div>
+<div class="section" id="the-virtual-environment">
+<h2>The Virtual Environment<a class="headerlink" href="#the-virtual-environment" title="Permalink to this headline">¶</a></h2>
+<p>The most requirements are installed in a isolated python environment, called <a class="reference external" href="&lt;http://www.virtualenv.org&gt;">virtualenv</a>.
+This happened in the last paragraph.</p>
+<p>From now on you need to <tt class="docutils literal"><span class="pre">activate</span></tt> your <em>virtual environment</em>:</p>
+<div class="highlight-python"><pre>$ source env/bin/activate
+(env)$</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All commands starting with <tt class="docutils literal"><span class="pre">(env)$</span></tt> are assumed to run within your <em>virtual env</em>.</p>
+</div>
+<div class="section" id="install-requirements-manually">
+<span id="install-requirements"></span><h3>Install requirements manually<a class="headerlink" href="#install-requirements-manually" title="Permalink to this headline">¶</a></h3>
+<p>If the script breaks or you pull the git repo later with modified requirements,
+you may want to install them manually.</p>
+<p>Make sure the above dependencies (especially <tt class="docutils literal"><span class="pre">python-dev</span></tt> and <tt class="docutils literal"><span class="pre">libjpeg-dev</span></tt>)
+are installed on your system. To install the requirements type:</p>
+<div class="highlight-python"><pre>(env)$ pip install -r deploy/requirements.txt</pre>
+</div>
+</div>
+</div>
+<div class="section" id="initialize-database">
+<h2>Initialize Database<a class="headerlink" href="#initialize-database" title="Permalink to this headline">¶</a></h2>
+<p>For developing purposes the default Database engine is <a class="reference external" href="http://www.sqlite.org/docs.html">sqlite</a>,
+so you don&#8217;t have to set up a custom database. Run:</p>
+<div class="highlight-python"><pre>(env)$ src/manage.py syncdb
+(env)$ src/managy.py migrate</pre>
+</div>
+<p>for initializing the local database. If you were asked to create a superuser, do so and continue.
+You will need this user to log into the <tt class="docutils literal"><span class="pre">django-admin</span></tt> and it is also your first hero.</p>
+</div>
+<div class="section" id="start-development-server">
+<h2>Start Development Server<a class="headerlink" href="#start-development-server" title="Permalink to this headline">¶</a></h2>
+<p>Now you are ready to test your installation:</p>
+<div class="highlight-python"><pre>(env)$ src/manage.py runserver</pre>
+</div>
+<p>Try to visit <a class="reference external" href="http://localhost:8000">localhost on port 8000</a>. If everything is
+working correctly you should see your local <strong>You are HERO</strong> instance.</p>
+</div>
+<div class="section" id="local-email-setup">
+<h2>Local Email Setup<a class="headerlink" href="#local-email-setup" title="Permalink to this headline">¶</a></h2>
+<p>If you want to send emails from your local machine, edit <tt class="docutils literal"><span class="pre">youarehero/settings/local.py</span></tt>:</p>
+<div class="highlight-python"><pre>EMAIL_HOST =
+EMAIL_HOST_USER =
+EMAIL_USE_TLS = True
+EMAIL_PORT = 25
+EMAIL_HOST_PASSWORD =
+DEFAULT_FROM_EMAIL =</pre>
+</div>
+<p>and insert an smtp-server, user and password, such as for an email-client.</p>
+</div>
+</div>
+
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>
+        &copy; Copyright 2012, entwicklungshelden.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

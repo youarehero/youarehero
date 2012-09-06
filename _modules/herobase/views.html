@@ -1,0 +1,529 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>herobase.views &mdash; youarehero 0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap.js"></script>
+    <link rel="top" title="youarehero 0.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+<script type="text/javascript">
+(function () {
+  /**
+   * Patch TOC list.
+   *
+   * Will mutate the underlying span to have a correct ul for nav.
+   *
+   * @param $span: Span containing nested UL's to mutate.
+   * @param minLevel: Starting level for nested lists. (1: global, 2: local).
+   */
+  var patchToc = function ($ul, minLevel) {
+    var findA;
+
+    // Find all a "internal" tags, traversing recursively.
+    findA = function ($elem, level) {
+      var level = level || 0,
+        $items = $elem.find("> li > a.internal, > ul, > li > ul");
+
+      // Iterate everything in order.
+      $items.each(function (index, item) {
+        var $item = $(item),
+          tag = item.tagName.toLowerCase(),
+          pad = 15 + ((level - minLevel) * 10);
+
+        if (tag === 'a' && level >= minLevel) {
+          // Add to existing padding.
+          $item.css('padding-left', pad + "px");
+          console.log(level, $item, 'padding-left', pad + "px");
+        } else if (tag === 'ul') {
+          // Recurse.
+          findA($item, level + 1);
+        }
+      });
+    };
+
+    console.log("HERE");
+    findA($ul);
+  };
+
+  $(document).ready(function () {
+    // Add styling, structure to TOC's.
+    $(".dropdown-menu").each(function () {
+      $(this).find("ul").each(function (index, item){
+        var $item = $(item);
+        $item.addClass('unstyled');
+      });
+      $(this).find("li").each(function () {
+        $(this).parent().append(this);
+      });
+    });
+
+    // Patch in level.
+    patchToc($("ul.globaltoc"), 2);
+    patchToc($("ul.localtoc"), 2);
+
+    // Enable dropdown.
+    $('.dropdown-toggle').dropdown();
+  });
+}());
+</script>
+
+  </head>
+  <body>
+  <div id="navbar" class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="../../index.html">youarehero</a>
+        <span class="navbar-text pull-left"><b>0.0</b></span>
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            
+              <li class="dropdown">
+  <a href="../../index.html" class="dropdown-toggle" data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theming.html">Theming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howtos.html">How To&#8217;s</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../herobase.html">herobase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../heromessage.html">heromessage</a></li>
+</ul>
+</ul>
+</li>
+              <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"></ul>
+  <!--<span class="localtoc"></span>-->
+</li>
+            
+            
+              
+            
+            
+              
+            
+          </ul>
+          
+            
+<form class="navbar-search pull-right" style="margin-bottom:-3px;" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+   
+  <h1>Source code for herobase.views</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The Views module provide view functions, which were called by the</span>
+<span class="sd">`url dispatcher &lt;https://docs.djangoproject.com/en/1.4/topics/http/urls/&gt;`_,</span>
+<span class="sd">and aggregate some data for use in templates.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">signing</span>
+<span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">PermissionDenied</span>
+<span class="kn">from</span> <span class="nn">django.core.mail</span> <span class="kn">import</span> <span class="n">send_mail</span>
+<span class="kn">from</span> <span class="nn">django.core.signing</span> <span class="kn">import</span> <span class="n">Signer</span>
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">simplejson</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+<span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_POST</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">messages</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponseRedirect</span><span class="p">,</span> <span class="n">Http404</span><span class="p">,</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">get_object_or_404</span>
+<span class="kn">from</span> <span class="nn">django.utils.decorators</span> <span class="kn">import</span> <span class="n">method_decorator</span>
+
+<span class="kn">from</span> <span class="nn">django.views.generic.edit</span> <span class="kn">import</span> <span class="n">CreateView</span>
+<span class="kn">from</span> <span class="nn">filters</span> <span class="kn">import</span> <span class="n">QuestFilter</span>
+<span class="kn">from</span> <span class="nn">herobase.forms</span> <span class="kn">import</span> <span class="n">QuestCreateForm</span><span class="p">,</span> <span class="n">UserProfileEdit</span><span class="p">,</span> <span class="n">UserProfilePrivacyEdit</span>
+<span class="kn">from</span> <span class="nn">herobase.models</span> <span class="kn">import</span> <span class="n">Quest</span><span class="p">,</span> <span class="n">Adventure</span><span class="p">,</span> <span class="n">CLASS_CHOICES</span><span class="p">,</span> <span class="n">UserProfile</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Count</span><span class="p">,</span> <span class="n">Sum</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">&#39;youarehero.herobase&#39;</span><span class="p">)</span>
+
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="quest_list_view"><a class="viewcode-back" href="../../herobase.html#herobase.views.quest_list_view">[docs]</a><span class="k">def</span> <span class="nf">quest_list_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s">&#39;herobase/quest/list.html&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Basic quest list, with django-filter app&quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">QuestFilter</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="n">queryset</span><span class="o">=</span><span class="n">Quest</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-created&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s">&#39;filter&#39;</span><span class="p">:</span> <span class="n">f</span><span class="p">,</span>
+        <span class="s">&#39;quests&#39;</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">qs</span><span class="p">,</span>
+    <span class="p">})</span>
+</div>
+<div class="viewcode-block" id="QuestCreateView"><a class="viewcode-back" href="../../herobase.html#herobase.views.QuestCreateView">[docs]</a><span class="k">class</span> <span class="nc">QuestCreateView</span><span class="p">(</span><span class="n">CreateView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Basic Quest create view. This generic view-class should be refactored to a normal view function&quot;&quot;&quot;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s">&quot;quest&quot;</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="n">QuestCreateForm</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s">&quot;herobase/quest/create.html&quot;</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="s">&#39;../</span><span class="si">%(id)s</span><span class="s">/&#39;</span>
+
+    <span class="nd">@method_decorator</span><span class="p">(</span><span class="n">login_required</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">QuestCreateView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_form_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">QuestCreateView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_form_kwargs</span><span class="p">()</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;request&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span>
+        <span class="k">return</span> <span class="n">kwargs</span>
+
+    <span class="k">def</span> <span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_success_url</span><span class="p">())</span>
+
+</div>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="quest_detail_view"><a class="viewcode-back" href="../../herobase.html#herobase.views.quest_detail_view">[docs]</a><span class="k">def</span> <span class="nf">quest_detail_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">quest_id</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s">&quot;herobase/quest/detail.html&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Render detail template for quest, and adventure if it exists.&quot;&quot;&quot;</span>
+    <span class="n">quest</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Quest</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">quest_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_anonymous</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">adventure</span> <span class="o">=</span> <span class="n">quest</span><span class="o">.</span><span class="n">adventure_set</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">Adventure</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="n">adventure</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">adventure</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;quest&#39;</span><span class="p">:</span> <span class="n">quest</span><span class="p">,</span>
+        <span class="s">&#39;adventure&#39;</span><span class="p">:</span> <span class="n">adventure</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="home_view"><a class="viewcode-back" href="../../herobase.html#herobase.views.home_view">[docs]</a><span class="k">def</span> <span class="nf">home_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Proxy view for switching between the hero and the public home view&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">hero_home_view</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&quot;herobase/public_home.html&quot;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s">&#39;open_quests&#39;</span><span class="p">:</span> <span class="n">Quest</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OPEN</span><span class="p">)})</span>
+</div>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="m_home_view"><a class="viewcode-back" href="../../herobase.html#herobase.views.m_home_view">[docs]</a><span class="k">def</span> <span class="nf">m_home_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Proxy view for switching between the hero and the public home view&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">hero_home_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s">&#39;herobase/m/home.html&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&quot;herobase/m/public_home.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;open_quests&#39;</span><span class="p">:</span>
+        <span class="n">Quest</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OPEN</span><span class="p">)})</span>
+</div>
+<div class="viewcode-block" id="abstract"><a class="viewcode-back" href="../../herobase.html#herobase.views.abstract">[docs]</a><span class="k">def</span> <span class="nf">abstract</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;static you are hero abstract view.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&quot;herobase/abstract.html&quot;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="hero_classes"><a class="viewcode-back" href="../../herobase.html#herobase.views.hero_classes">[docs]</a><span class="k">def</span> <span class="nf">hero_classes</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;static view for explaining hero classes.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&quot;herobase/hero_classes.html&quot;</span><span class="p">)</span>
+</div>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="hero_home_view"><a class="viewcode-back" href="../../herobase.html#herobase.views.hero_home_view">[docs]</a><span class="k">def</span> <span class="nf">hero_home_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s">&#39;herobase/hero_home.html&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;the hero home is only visible for authenticated heros.&quot;&quot;&quot;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span>
+            <span class="p">{</span>
+             <span class="c">#&#39;profile&#39;: user.get_profile(),</span>
+             <span class="s">&#39;quests_active&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">created_quests</span><span class="o">.</span><span class="n">active</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-created&#39;</span><span class="p">),</span>
+             <span class="s">&#39;quests_old&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">created_quests</span><span class="o">.</span><span class="n">inactive</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-created&#39;</span><span class="p">),</span>
+             <span class="s">&#39;quests_joined&#39;</span><span class="p">:</span> <span class="n">Quest</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">active</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">adventure__user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">adventure__user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">adventure__state</span><span class="o">=</span><span class="n">Adventure</span><span class="o">.</span><span class="n">STATE_HERO_CANCELED</span><span class="p">)</span>
+             <span class="p">})</span>
+
+</div>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="quest_my"><a class="viewcode-back" href="../../herobase.html#herobase.views.quest_my">[docs]</a><span class="k">def</span> <span class="nf">quest_my</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s">&#39;herobase/quest/my.html&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Views the quests the hero is envolved with.&quot;&quot;&quot;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span>
+            <span class="p">{</span>
+            <span class="c">#&#39;profile&#39;: user.get_profile(),</span>
+            <span class="s">&#39;quests_active&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">created_quests</span><span class="o">.</span><span class="n">active</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-created&#39;</span><span class="p">),</span>
+            <span class="s">&#39;quests_old&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">created_quests</span><span class="o">.</span><span class="n">inactive</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-created&#39;</span><span class="p">),</span>
+            <span class="s">&#39;quests_joined&#39;</span><span class="p">:</span> <span class="n">Quest</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">active</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">adventure__user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">adventure__user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">adventure__state</span><span class="o">=</span><span class="n">Adventure</span><span class="o">.</span><span class="n">STATE_HERO_CANCELED</span><span class="p">)</span>
+        <span class="p">})</span>
+</div>
+<span class="nd">@require_POST</span>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="quest_update"><a class="viewcode-back" href="../../herobase.html#herobase.views.quest_update">[docs]</a><span class="k">def</span> <span class="nf">quest_update</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">quest_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Handle POST data for quest-actions and redirect to quest-detail-view.&quot;&quot;&quot;</span>
+    <span class="n">quest</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Quest</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">quest_id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s">&#39;action&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">:</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s">&#39;action&#39;</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">quest</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PermissionDenied</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;No action submitted.&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;quest-detail&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span> <span class="p">)))</span>
+</div>
+<span class="nd">@require_POST</span>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="adventure_update"><a class="viewcode-back" href="../../herobase.html#herobase.views.adventure_update">[docs]</a><span class="k">def</span> <span class="nf">adventure_update</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">quest_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Handle POST data for adventure-actions and redirect to quest-detail-view.&quot;&quot;&quot;</span>
+    <span class="n">quest</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Quest</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">quest_id</span><span class="p">)</span>
+
+    <span class="n">adventure_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;adventure_id&#39;</span><span class="p">)</span>
+    <span class="n">adventure</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">adventure_set</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">adventure_id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s">&#39;action&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">:</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s">&#39;action&#39;</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">adventure</span><span class="o">.</span><span class="n">process_action</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PermissionDenied</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;No action submitted.&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&#39;quest-detail&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">quest</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span> <span class="p">)))</span>
+</div>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="userprofile"><a class="viewcode-back" href="../../herobase.html#herobase.views.userprofile">[docs]</a><span class="k">def</span> <span class="nf">userprofile</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s">&#39;herobase/userprofile/detail.html&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Render Userprofile with some stats.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">username</span><span class="p">:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+
+    <span class="n">rank</span> <span class="o">=</span> <span class="n">UserProfile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">experience__gt</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">get_profile</span><span class="p">()</span><span class="o">.</span><span class="n">experience</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">hero_completed_quests</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">class_choices</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">CLASS_CHOICES</span><span class="p">)</span>
+    <span class="n">color_dict</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">5</span><span class="p">:</span> <span class="s">&#39;#e8e8e8&#39;</span><span class="p">,</span>
+                   <span class="mi">1</span><span class="p">:</span> <span class="s">&#39;#ccffa7&#39;</span><span class="p">,</span>
+                   <span class="mi">2</span><span class="p">:</span> <span class="s">&#39;#fff9b4&#39;</span><span class="p">,</span>
+                   <span class="mi">3</span><span class="p">:</span> <span class="s">&#39;#ffa19b&#39;</span><span class="p">,</span>
+                   <span class="mi">4</span><span class="p">:</span> <span class="s">&#39;#bdcaff&#39;</span><span class="p">}</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">choice</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">user</span><span class="o">.</span><span class="n">adventures</span>\
+            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">Adventure</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">)</span>\
+            <span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">&#39;quest__hero_class&#39;</span><span class="p">)</span>\
+            <span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">Count</span><span class="p">(</span><span class="s">&#39;quest__hero_class&#39;</span><span class="p">)):</span>
+        <span class="n">colors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">color_dict</span><span class="p">[</span><span class="n">choice</span><span class="p">])</span>
+        <span class="n">hero_completed_quests</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">class_choices</span><span class="p">[</span><span class="n">choice</span><span class="p">],</span> <span class="n">count</span><span class="p">))</span>
+
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+        <span class="s">&#39;rank&#39;</span><span class="p">:</span> <span class="n">rank</span><span class="p">,</span>
+        <span class="s">&#39;colors&#39;</span><span class="p">:</span> <span class="n">mark_safe</span><span class="p">(</span><span class="n">simplejson</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">colors</span><span class="p">)),</span>
+        <span class="s">&#39;completed_quest_count&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">adventures</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">Adventure</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+        <span class="s">&#39;hero_completed_quests&#39;</span><span class="p">:</span> <span class="n">mark_safe</span><span class="p">(</span><span class="n">simplejson</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">hero_completed_quests</span><span class="p">)),</span>
+    <span class="p">})</span>
+
+</div>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="userprofile_edit"><a class="viewcode-back" href="../../herobase.html#herobase.views.userprofile_edit">[docs]</a><span class="k">def</span> <span class="nf">userprofile_edit</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Render the userprofile form and handle possible changes.&quot;&quot;&quot;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">UserProfileEdit</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span> <span class="ow">or</span> <span class="bp">None</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">get_profile</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+        <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;Profile successfully changed&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;herobase/userprofile/edit.html&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span>
+    <span class="p">})</span>
+</div>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="userprofile_privacy_settings"><a class="viewcode-back" href="../../herobase.html#herobase.views.userprofile_privacy_settings">[docs]</a><span class="k">def</span> <span class="nf">userprofile_privacy_settings</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Render another userprofile form for privacy settings saved on the userprofile.&quot;&quot;&quot;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">UserProfilePrivacyEdit</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span> <span class="ow">or</span> <span class="bp">None</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">get_profile</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+        <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;Privacy settings successfully changed&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;herobase/userprofile/privacy_settings.html&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span>
+    <span class="p">})</span>
+</div>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="leader_board"><a class="viewcode-back" href="../../herobase.html#herobase.views.leader_board">[docs]</a><span class="k">def</span> <span class="nf">leader_board</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Render a view of the top heroes by rank.&quot;&quot;&quot;</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">userprofile__experience__gt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-userprofile__experience&#39;</span><span class="p">)</span>
+<span class="c">#    by_class = {}</span>
+<span class="c">#    for hero_class, class_name in CLASS_CHOICES:</span>
+<span class="c">#        by_class[class_name] = User.objects.select_related()\</span>
+<span class="c">#                                         .filter(userprofile__hero_class=hero_class)\</span>
+<span class="c">#                                         .order_by(&#39;-userprofile__experience&#39;).filter(&#39;userprofile__experience&#39;)</span>
+
+    <span class="n">top_creators</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">created_quests__state</span><span class="o">=</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">quest_count</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s">&#39;created_quests&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">quest_count__gt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-quest_count&#39;</span><span class="p">)</span>
+<span class="c">#    by_quest_class = {}</span>
+<span class="c">#    for hero_class, class_name in CLASS_CHOICES:</span>
+<span class="c">#        by_quest_class[class_name] = User.objects.filter(</span>
+<span class="c">#            adventures__quest__hero_class=hero_class,</span>
+<span class="c">#            adventures__state=Adventure.STATE_OWNER_DONE,</span>
+<span class="c">#            adventures__quest__state=Quest.STATE_OWNER_DONE)\</span>
+<span class="c">#            .annotate(class_experience=Sum(&#39;adventures__quest__experience&#39;))\</span>
+<span class="c">#            .order_by(&#39;-class_experience&#39;)</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&quot;herobase/leader_board.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;total&#39;</span><span class="p">:</span> <span class="n">total</span><span class="p">,</span>
+<span class="c">#                                                         &#39;by_class&#39;: by_class,</span>
+                                                         <span class="s">&#39;top_creators&#39;</span><span class="p">:</span> <span class="n">top_creators</span>
+<span class="c">#                                                         &#39;by_quest_class&#39;: by_quest_class,</span>
+                                                         <span class="p">})</span></div>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="random_stats"><a class="viewcode-back" href="../../herobase.html#herobase.views.random_stats">[docs]</a><span class="k">def</span> <span class="nf">random_stats</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Some general stats&quot;&quot;&quot;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+    <span class="n">class_choices</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">CLASS_CHOICES</span><span class="p">)</span>
+    <span class="n">color_dict</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">5</span><span class="p">:</span> <span class="s">&#39;#e8e8e8&#39;</span><span class="p">,</span>
+                   <span class="mi">1</span><span class="p">:</span> <span class="s">&#39;#ccffa7&#39;</span><span class="p">,</span>
+                   <span class="mi">2</span><span class="p">:</span> <span class="s">&#39;#fff9b4&#39;</span><span class="p">,</span>
+                   <span class="mi">3</span><span class="p">:</span> <span class="s">&#39;#ffa19b&#39;</span><span class="p">,</span>
+                   <span class="mi">4</span><span class="p">:</span> <span class="s">&#39;#bdcaff&#39;</span><span class="p">}</span>
+
+
+
+    <span class="n">hero_completed_quests</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">choice</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">user</span><span class="o">.</span><span class="n">adventures</span>\
+        <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">quest__state</span><span class="o">=</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">Adventure</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">&#39;quest__hero_class&#39;</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">Count</span><span class="p">(</span><span class="s">&#39;quest__hero_class&#39;</span><span class="p">)):</span>
+        <span class="n">hero_completed_quests</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">class_choices</span><span class="p">[</span><span class="n">choice</span><span class="p">],</span> <span class="n">count</span><span class="p">))</span>
+
+    <span class="n">colors0</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">open_quest_types</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">choice</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span>  <span class="n">Quest</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OPEN</span><span class="p">)</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">&#39;hero_class&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">Count</span><span class="p">(</span><span class="s">&#39;hero_class&#39;</span><span class="p">)):</span>
+        <span class="n">open_quest_types</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">class_choices</span><span class="p">[</span><span class="n">choice</span><span class="p">],</span> <span class="n">count</span><span class="p">))</span>
+        <span class="n">colors0</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">color_dict</span><span class="p">[</span><span class="n">choice</span><span class="p">])</span>
+
+    <span class="n">colors1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">completed_quest_types</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">choice</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span>  <span class="n">Quest</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">)</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">&#39;hero_class&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">Count</span><span class="p">(</span><span class="s">&#39;hero_class&#39;</span><span class="p">)):</span>
+        <span class="n">completed_quest_types</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">class_choices</span><span class="p">[</span><span class="n">choice</span><span class="p">],</span> <span class="n">count</span><span class="p">))</span>
+        <span class="n">colors1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">color_dict</span><span class="p">[</span><span class="n">choice</span><span class="p">])</span>
+
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;hero_completed_quests&#39;</span><span class="p">:</span> <span class="n">hero_completed_quests</span><span class="p">,</span>
+        <span class="s">&#39;open_quest_types&#39;</span><span class="p">:</span> <span class="n">open_quest_types</span><span class="p">,</span>
+        <span class="s">&#39;completed_quest_types&#39;</span><span class="p">:</span> <span class="n">completed_quest_types</span><span class="p">,</span>
+        <span class="s">&#39;colors0&#39;</span><span class="p">:</span> <span class="n">colors0</span><span class="p">,</span>
+        <span class="s">&#39;colors1&#39;</span><span class="p">:</span> <span class="n">colors1</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">context</span><span class="p">:</span>
+        <span class="n">context</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="n">simplejson</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">context</span><span class="p">[</span><span class="n">key</span><span class="p">])))</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+        <span class="s">&#39;quests_completed&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">adventures</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">quest__state</span><span class="o">=</span><span class="n">Quest</span><span class="o">.</span><span class="n">STATE_OWNER_DONE</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;herobase/stats.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="signups"><a class="viewcode-back" href="../../herobase.html#herobase.views.signups">[docs]</a><span class="k">def</span> <span class="nf">signups</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Special view for nosy developers.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">()</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_staff</span><span class="p">:</span>
+        <span class="n">logged_in</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">last_login</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-last_login&#39;</span><span class="p">)[:</span><span class="mi">20</span><span class="p">])</span>
+        <span class="n">signed_up</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">date_joined</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-date_joined&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">&#39;Logged in </span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s">Joined</span><span class="se">\n</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">logged_in</span><span class="p">,</span> <span class="n">signed_up</span><span class="p">),</span> <span class="n">mimetype</span><span class="o">=</span><span class="s">&#39;text/plain&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">Http404</span><span class="p">()</span>
+
+
+
+
+</div>
+<span class="k">def</span> <span class="nf">send_keep_account_mails</span><span class="p">():</span>
+    <span class="k">return</span> <span class="c"># TODO : test this, correct text, send mails</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;raphael&#39;</span><span class="p">)</span>
+    <span class="n">mail_template</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s">Liebe Heldinnen, liebe Helden</span>
+
+<span class="s">Erstmal vielen Dank für das Erstellen eures Accounts und die Teilnahme</span>
+<span class="s">an dem Playtest bei der GPN.</span>
+<span class="s">Wir haben sehr viel Feedback bekommen und viele gute Anregungen für</span>
+<span class="s">die Weiterentwicklung der Plattform.</span>
+
+
+<span class="s">Wenn ihr weiter über YAH auf dem Laufenden gehalten werden wollt,</span>
+<span class="s"> dann klickt bitte auf den Bestätigungslink.</span>
+
+<span class="s">{url}</span>
+
+<span class="s">Alle Accounts die nicht innerhalb der nächsten Woche bestätigen</span>
+<span class="s">werden wir wie angekündigt löschen.</span>
+
+
+<span class="s">VIELEN DANK FÜRS MITMACHEN und viel Spass bei all euren zukünftigen</span>
+<span class="s">Heldentaten - ob nun mit Plattform oder ohne :)</span>
+
+<span class="s">YAH!!!</span>
+<span class="s">&quot;&quot;&quot;</span>
+
+    <span class="n">signer</span> <span class="o">=</span> <span class="n">Signer</span><span class="p">(</span><span class="n">salt</span><span class="o">=</span><span class="s">&#39;keep-email&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">signer</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+        <span class="n">relative_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;keep-email&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">email</span><span class="p">,))</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;https://youarehero.net</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">relative_url</span>
+
+        <span class="n">mail_text</span> <span class="o">=</span> <span class="n">mail_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">send_mail</span><span class="p">(</span><span class="s">&quot;You Are Hero&quot;</span><span class="p">,</span> <span class="n">mail_text</span><span class="p">,</span> <span class="n">from_email</span><span class="o">=</span><span class="s">&#39;noreply@youarehero.net&#39;</span><span class="p">,</span> <span class="n">recipient_list</span><span class="o">=</span><span class="p">[</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">confirm_keep_email</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+    <span class="n">signer</span> <span class="o">=</span> <span class="n">Signer</span><span class="p">(</span><span class="n">salt</span><span class="o">=</span><span class="s">&#39;keep-email&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">signer</span><span class="o">.</span><span class="n">unsign</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">signing</span><span class="o">.</span><span class="n">BadSignature</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">&quot;I&#39;m afraid i can&#39;t do that dave.&quot;</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s">&#39;text/plain&#39;</span><span class="p">)</span>
+
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">get_profile</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">profile</span><span class="o">.</span><span class="n">keep_email_after_gpn</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">&quot;Already keeping email for </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">email</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s">&#39;text/plain&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">profile</span><span class="o">.</span><span class="n">keep_email_after_gpn</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">profile</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">&quot;Keeping email for </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">email</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s">&#39;text/plain&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>
+        &copy; Copyright 2012, entwicklungshelden.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

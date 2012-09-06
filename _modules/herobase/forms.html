@@ -1,0 +1,342 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>herobase.forms &mdash; youarehero 0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap.js"></script>
+    <link rel="top" title="youarehero 0.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+<script type="text/javascript">
+(function () {
+  /**
+   * Patch TOC list.
+   *
+   * Will mutate the underlying span to have a correct ul for nav.
+   *
+   * @param $span: Span containing nested UL's to mutate.
+   * @param minLevel: Starting level for nested lists. (1: global, 2: local).
+   */
+  var patchToc = function ($ul, minLevel) {
+    var findA;
+
+    // Find all a "internal" tags, traversing recursively.
+    findA = function ($elem, level) {
+      var level = level || 0,
+        $items = $elem.find("> li > a.internal, > ul, > li > ul");
+
+      // Iterate everything in order.
+      $items.each(function (index, item) {
+        var $item = $(item),
+          tag = item.tagName.toLowerCase(),
+          pad = 15 + ((level - minLevel) * 10);
+
+        if (tag === 'a' && level >= minLevel) {
+          // Add to existing padding.
+          $item.css('padding-left', pad + "px");
+          console.log(level, $item, 'padding-left', pad + "px");
+        } else if (tag === 'ul') {
+          // Recurse.
+          findA($item, level + 1);
+        }
+      });
+    };
+
+    console.log("HERE");
+    findA($ul);
+  };
+
+  $(document).ready(function () {
+    // Add styling, structure to TOC's.
+    $(".dropdown-menu").each(function () {
+      $(this).find("ul").each(function (index, item){
+        var $item = $(item);
+        $item.addClass('unstyled');
+      });
+      $(this).find("li").each(function () {
+        $(this).parent().append(this);
+      });
+    });
+
+    // Patch in level.
+    patchToc($("ul.globaltoc"), 2);
+    patchToc($("ul.localtoc"), 2);
+
+    // Enable dropdown.
+    $('.dropdown-toggle').dropdown();
+  });
+}());
+</script>
+
+  </head>
+  <body>
+  <div id="navbar" class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="../../index.html">youarehero</a>
+        <span class="navbar-text pull-left"><b>0.0</b></span>
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            
+              <li class="dropdown">
+  <a href="../../index.html" class="dropdown-toggle" data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theming.html">Theming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howtos.html">How To&#8217;s</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../herobase.html">herobase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../heromessage.html">heromessage</a></li>
+</ul>
+</ul>
+</li>
+              <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"></ul>
+  <!--<span class="localtoc"></span>-->
+</li>
+            
+            
+              
+            
+            
+              
+            
+          </ul>
+          
+            
+<form class="navbar-search pull-right" style="margin-bottom:-3px;" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+   
+  <h1>Source code for herobase.forms</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module provides the form-classes (definition) for the basic models, especially Quest, Adventure and Userprofile.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.forms</span> <span class="kn">import</span> <span class="n">AuthenticationForm</span>
+<span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">ValidationError</span>
+<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span> <span class="nn">django.forms.util</span> <span class="kn">import</span> <span class="n">ErrorList</span>
+<span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="kn">import</span> <span class="n">ugettext_lazy</span> <span class="k">as</span> <span class="n">_</span>
+
+<span class="kn">from</span> <span class="nn">crispy_forms.bootstrap</span> <span class="kn">import</span> <span class="n">FormActions</span>
+<span class="kn">from</span> <span class="nn">crispy_forms.helper</span> <span class="kn">import</span> <span class="n">FormHelper</span>
+<span class="kn">from</span> <span class="nn">crispy_forms.layout</span> <span class="kn">import</span> <span class="n">Submit</span><span class="p">,</span> <span class="n">Layout</span><span class="p">,</span> <span class="n">Fieldset</span><span class="p">,</span> <span class="n">Div</span>
+<span class="kn">from</span> <span class="nn">registration.forms</span> <span class="kn">import</span> <span class="n">RegistrationFormUniqueEmail</span>
+
+<span class="kn">from</span> <span class="nn">herobase.models</span> <span class="kn">import</span> <span class="n">Quest</span><span class="p">,</span> <span class="n">UserProfile</span>
+<span class="kn">from</span> <span class="nn">herobase.widgets</span> <span class="kn">import</span> <span class="n">LocationWidget</span>
+
+
+<div class="viewcode-block" id="QuestCreateForm"><a class="viewcode-back" href="../../herobase.html#herobase.forms.QuestCreateForm">[docs]</a><span class="k">class</span> <span class="nc">QuestCreateForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The Basic Quest create form. Uses django-crispy-forms (FormHelper) for 2 column bootstrap output. &quot;&quot;&quot;</span>
+    <span class="n">experience</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">initial</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">initial</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">initial</span><span class="o">=</span><span class="s">&quot;GPN&quot;</span><span class="p">)</span>
+    <span class="n">due_date</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">DateTimeInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;autocomplete&#39;</span><span class="p">:</span> <span class="s">&#39;off&#39;</span><span class="p">}))</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span> <span class="o">=</span> <span class="n">FormHelper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">form_method</span> <span class="o">=</span> <span class="s">&#39;post&#39;</span>
+       <span class="c"># self.helper.form_action = &#39;quest-create&#39;</span>
+       <span class="c"># self.helper.form_class = &#39;form-horizontal&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;request&#39;</span><span class="p">)</span>
+
+        <span class="c">#self.helper.add_input(Submit(&#39;submit&#39;, &#39;Submit&#39;))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span>
+            <span class="n">Fieldset</span><span class="p">(</span>
+                <span class="n">_</span><span class="p">(</span><span class="s">&#39;Create a Quest&#39;</span><span class="p">),</span>
+
+                <span class="n">Div</span><span class="p">(</span>
+                    <span class="n">Div</span><span class="p">(</span>
+                        <span class="s">&#39;title&#39;</span><span class="p">,</span>
+                        <span class="s">&#39;hero_class&#39;</span><span class="p">,</span>
+                        <span class="s">&#39;description&#39;</span><span class="p">,</span>
+                        <span class="n">css_class</span><span class="o">=</span><span class="s">&quot;span3&quot;</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="n">Div</span><span class="p">(</span>
+                        <span class="s">&#39;level&#39;</span><span class="p">,</span>
+                        <span class="s">&#39;experience&#39;</span><span class="p">,</span>
+                        <span class="s">&#39;max_heroes&#39;</span><span class="p">,</span>
+                        <span class="s">&#39;auto_accept&#39;</span><span class="p">,</span>
+                        <span class="s">&#39;location&#39;</span><span class="p">,</span>
+                        <span class="s">&#39;due_date&#39;</span><span class="p">,</span>
+                        <span class="n">css_class</span><span class="o">=</span><span class="s">&quot;span3&quot;</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="n">css_class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+            <span class="n">FormActions</span><span class="p">(</span>
+                <span class="n">Submit</span><span class="p">(</span><span class="s">&#39;save&#39;</span><span class="p">,</span> <span class="s">&#39;Create&#39;</span><span class="p">,</span> <span class="n">css_class</span><span class="o">=</span><span class="s">&#39;btn&#39;</span><span class="p">)</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">QuestCreateForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c"># the quest level must be smaller or equal to hero level.</span>
+    <span class="k">def</span> <span class="nf">clean_level</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;level&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">get_profile</span><span class="p">()</span><span class="o">.</span><span class="n">level</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;Your level is not high enough for this quest level!&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="c"># the experience has something to do with the level too</span>
+    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">QuestCreateForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="s">&#39;experience&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span> <span class="s">&#39;level&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">and</span>
+            <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;experience&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;level&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span><span class="p">):</span> <span class="c"># TODO experience formula</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_errors</span><span class="p">[</span><span class="s">&#39;experience&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_errors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;experience&#39;</span><span class="p">,</span> <span class="n">ErrorList</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_errors</span><span class="p">[</span><span class="s">&#39;experience&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">u&#39;Experience to high for level.&#39;</span><span class="p">))</span>
+            <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;experience&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Quest</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="s">&#39;description&#39;</span><span class="p">,</span> <span class="s">&#39;max_heroes&#39;</span><span class="p">,</span> <span class="s">&#39;location&#39;</span><span class="p">,</span> <span class="s">&#39;due_date&#39;</span><span class="p">,</span> <span class="s">&#39;hero_class&#39;</span><span class="p">,</span> <span class="s">&#39;level&#39;</span> <span class="p">,</span><span class="s">&#39;experience&#39;</span><span class="p">,</span> <span class="s">&#39;auto_accept&#39;</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="UserProfileEdit"><a class="viewcode-back" href="../../herobase.html#herobase.forms.UserProfileEdit">[docs]</a><span class="k">class</span> <span class="nc">UserProfileEdit</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Basic userprofile edit form. uses crispy-forms.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span> <span class="o">=</span> <span class="n">FormHelper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">form_method</span> <span class="o">=</span> <span class="s">&#39;post&#39;</span>
+        <span class="c">#self.helper.form_action = &#39;user-edit&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">form_class</span> <span class="o">=</span> <span class="s">&#39;form-horizontal&#39;</span>
+
+        <span class="c">#self.helper.add_input(Submit(&#39;submit&#39;, &#39;Submit&#39;))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span>
+            <span class="n">Fieldset</span><span class="p">(</span>
+                <span class="n">_</span><span class="p">(</span><span class="s">&#39;Edit your Profile&#39;</span><span class="p">),</span>
+                <span class="n">Div</span><span class="p">(</span>
+                    <span class="s">&#39;hero_class&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;about&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;location&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;receive_system_email&#39;</span><span class="p">,</span>
+                    <span class="s">&#39;receive_private_email&#39;</span><span class="p">,</span>
+                    <span class="c">#   &#39;geolocation&#39;,</span>
+                <span class="p">)</span>
+            <span class="p">),</span>
+            <span class="n">FormActions</span><span class="p">(</span>
+                <span class="n">Submit</span><span class="p">(</span><span class="s">&#39;save&#39;</span><span class="p">,</span> <span class="s">&#39;Save&#39;</span><span class="p">,</span> <span class="n">css_class</span><span class="o">=</span><span class="s">&#39;btn&#39;</span><span class="p">)</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">UserProfileEdit</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">UserProfile</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;location&#39;</span><span class="p">,</span> <span class="s">&#39;about&#39;</span><span class="p">,</span> <span class="s">&#39;hero_class&#39;</span><span class="p">,</span> <span class="s">&#39;receive_system_email&#39;</span><span class="p">,</span> <span class="s">&#39;receive_private_email&#39;</span> <span class="p">)</span><span class="c"># &#39;geolocation&#39;)</span>
+        <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;title&#39;</span><span class="p">:</span> <span class="n">LocationWidget</span><span class="p">,</span>
+        <span class="p">}</span>
+</div>
+<div class="viewcode-block" id="UserProfilePrivacyEdit"><a class="viewcode-back" href="../../herobase.html#herobase.forms.UserProfilePrivacyEdit">[docs]</a><span class="k">class</span> <span class="nc">UserProfilePrivacyEdit</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Special userprofile edit form for the fields containing privacy settings.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span> <span class="o">=</span> <span class="n">FormHelper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">form_method</span> <span class="o">=</span> <span class="s">&#39;post&#39;</span>
+        <span class="c">#self.helper.form_action = &#39;userprofile-privacy-settings&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">form_class</span> <span class="o">=</span> <span class="s">&#39;form-horizontal&#39;</span>
+
+        <span class="c">#self.helper.add_input(Submit(&#39;submit&#39;, &#39;Submit&#39;))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span>
+            <span class="n">Fieldset</span><span class="p">(</span>
+                <span class="n">_</span><span class="p">(</span><span class="s">&#39;Privacy Settings&#39;</span><span class="p">),</span>
+                <span class="n">Div</span><span class="p">(</span>
+                    <span class="s">&#39;public_location&#39;</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">),</span>
+            <span class="n">FormActions</span><span class="p">(</span>
+                <span class="n">Submit</span><span class="p">(</span><span class="s">&#39;save&#39;</span><span class="p">,</span> <span class="s">&#39;Save&#39;</span><span class="p">,</span> <span class="n">css_class</span><span class="o">=</span><span class="s">&#39;btn&#39;</span><span class="p">)</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">UserProfilePrivacyEdit</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">UserProfile</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;public_location&#39;</span><span class="p">,</span> <span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="UserRegistrationForm"><a class="viewcode-back" href="../../herobase.html#herobase.forms.UserRegistrationForm">[docs]</a><span class="k">class</span> <span class="nc">UserRegistrationForm</span><span class="p">(</span><span class="n">RegistrationFormUniqueEmail</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Custom Registration form with hero class and unique email.&quot;&quot;&quot;</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;class&#39;</span><span class="p">:</span> <span class="s">&#39;required&#39;</span><span class="p">}),</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;Username&quot;</span><span class="p">))</span>
+
+</div>
+<div class="viewcode-block" id="UserAuthenticationForm"><a class="viewcode-back" href="../../herobase.html#herobase.forms.UserAuthenticationForm">[docs]</a><span class="k">class</span> <span class="nc">UserAuthenticationForm</span><span class="p">(</span><span class="n">AuthenticationForm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Custom login form.&quot;&quot;&quot;</span>
+    <span class="n">error_messages</span> <span class="o">=</span> <span class="n">AuthenticationForm</span><span class="o">.</span><span class="n">error_messages</span>
+    <span class="n">error_messages</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s">&#39;invalid_login&#39;</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="s">&quot;Please enter a correct e-mail address and password. &quot;</span>
+                                <span class="s">&quot;Note that both fields are case-sensitive.&quot;</span><span class="p">)})</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;E-mail&quot;</span><span class="p">),</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span> <span class="o">=</span> <span class="n">FormHelper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">help_text_inline</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">Submit</span><span class="p">(</span><span class="s">&#39;submit&#39;</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s">&quot;Log in&quot;</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">form_class</span> <span class="o">=</span> <span class="s">&quot;well&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">helper</span><span class="o">.</span><span class="n">form_action</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;auth_login&#39;</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">UserAuthenticationForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;username&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">keyOrder</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+
+        <span class="n">email</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;email&#39;</span><span class="p">]</span>
+        <span class="n">email</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+        <span class="n">email</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;placeholder&#39;</span><span class="p">:</span><span class="s">&#39;email&#39;</span><span class="p">})</span>
+
+        <span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;password&#39;</span><span class="p">]</span>
+        <span class="n">password</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+        <span class="n">password</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;placeholder&#39;</span><span class="p">:</span><span class="s">&#39;password&#39;</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">clean_email</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;username&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;email&#39;</span><span class="p">]</span></div>
+</pre></div>
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>
+        &copy; Copyright 2012, entwicklungshelden.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

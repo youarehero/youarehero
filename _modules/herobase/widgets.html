@@ -1,0 +1,257 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>herobase.widgets &mdash; youarehero 0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap.js"></script>
+    <link rel="top" title="youarehero 0.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+<script type="text/javascript">
+(function () {
+  /**
+   * Patch TOC list.
+   *
+   * Will mutate the underlying span to have a correct ul for nav.
+   *
+   * @param $span: Span containing nested UL's to mutate.
+   * @param minLevel: Starting level for nested lists. (1: global, 2: local).
+   */
+  var patchToc = function ($ul, minLevel) {
+    var findA;
+
+    // Find all a "internal" tags, traversing recursively.
+    findA = function ($elem, level) {
+      var level = level || 0,
+        $items = $elem.find("> li > a.internal, > ul, > li > ul");
+
+      // Iterate everything in order.
+      $items.each(function (index, item) {
+        var $item = $(item),
+          tag = item.tagName.toLowerCase(),
+          pad = 15 + ((level - minLevel) * 10);
+
+        if (tag === 'a' && level >= minLevel) {
+          // Add to existing padding.
+          $item.css('padding-left', pad + "px");
+          console.log(level, $item, 'padding-left', pad + "px");
+        } else if (tag === 'ul') {
+          // Recurse.
+          findA($item, level + 1);
+        }
+      });
+    };
+
+    console.log("HERE");
+    findA($ul);
+  };
+
+  $(document).ready(function () {
+    // Add styling, structure to TOC's.
+    $(".dropdown-menu").each(function () {
+      $(this).find("ul").each(function (index, item){
+        var $item = $(item);
+        $item.addClass('unstyled');
+      });
+      $(this).find("li").each(function () {
+        $(this).parent().append(this);
+      });
+    });
+
+    // Patch in level.
+    patchToc($("ul.globaltoc"), 2);
+    patchToc($("ul.localtoc"), 2);
+
+    // Enable dropdown.
+    $('.dropdown-toggle').dropdown();
+  });
+}());
+</script>
+
+  </head>
+  <body>
+  <div id="navbar" class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="../../index.html">youarehero</a>
+        <span class="navbar-text pull-left"><b>0.0</b></span>
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            
+              <li class="dropdown">
+  <a href="../../index.html" class="dropdown-toggle" data-toggle="dropdown">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theming.html">Theming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howtos.html">How To&#8217;s</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../herobase.html">herobase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../heromessage.html">heromessage</a></li>
+</ul>
+</ul>
+</li>
+              <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"></ul>
+  <!--<span class="localtoc"></span>-->
+</li>
+            
+            
+              
+            
+            
+              
+            
+          </ul>
+          
+            
+<form class="navbar-search pull-right" style="margin-bottom:-3px;" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+   
+  <h1>Source code for herobase.widgets</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Custom Form Widgets for django models.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+
+<span class="n">DEFAULT_WIDTH</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">DEFAULT_HEIGHT</span> <span class="o">=</span> <span class="mi">300</span>
+
+<span class="n">DEFAULT_LAT</span> <span class="o">=</span> <span class="mf">55.16</span> <span class="c">#hmm, i like egypt</span>
+<span class="n">DEFAULT_LNG</span> <span class="o">=</span> <span class="mf">61.4</span>
+
+
+<div class="viewcode-block" id="LocationWidget"><a class="viewcode-back" href="../../herobase.html#herobase.widgets.LocationWidget">[docs]</a><span class="k">class</span> <span class="nc">LocationWidget</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Custom geolocation widget.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        credits go to https://gist.github.com/1196589</span>
+<span class="sd">        + was important to add css styles for correct display</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_width</span> <span class="o">=</span> <span class="n">kw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;map_width&quot;</span><span class="p">,</span> <span class="n">DEFAULT_WIDTH</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_height</span> <span class="o">=</span> <span class="n">kw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;map_height&quot;</span><span class="p">,</span> <span class="n">DEFAULT_HEIGHT</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">LocationWidget</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inner_widget</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">HiddenInput</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">lat</span><span class="p">,</span> <span class="n">lng</span> <span class="o">=</span> <span class="n">DEFAULT_LAT</span><span class="p">,</span> <span class="n">DEFAULT_LNG</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">unicode</span><span class="p">):</span>
+                <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">lat</span><span class="p">,</span> <span class="n">lng</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+        <span class="n">js</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;</span>
+<span class="s">&lt;script type=&quot;application/javascript&quot; src=&quot;https://maps.google.com/maps/api/js?sensor=false&quot;&gt;&lt;/script&gt;</span>
+<span class="s">&lt;script&gt;</span>
+
+<span class="s">&lt;!--</span>
+<span class="s">    var map_</span><span class="si">%(name)s</span><span class="s">;</span>
+<span class="s">    </span>
+<span class="s">    function savePosition_</span><span class="si">%(name)s</span><span class="s">(point)</span>
+<span class="s">    {</span>
+<span class="s">        var input = document.getElementById(&quot;id_</span><span class="si">%(name)s</span><span class="s">&quot;);</span>
+<span class="s">        input.value = point.lat().toFixed(6) + &quot;,&quot; + point.lng().toFixed(6);</span>
+<span class="s">        map_</span><span class="si">%(name)s</span><span class="s">.panTo(point);</span>
+<span class="s">    }</span>
+<span class="s">    </span>
+<span class="s">    function load_</span><span class="si">%(name)s</span><span class="s">() {</span>
+<span class="s">        var point = new google.maps.LatLng(</span><span class="si">%(lat)f</span><span class="s">, </span><span class="si">%(lng)f</span><span class="s">);</span>
+
+<span class="s">        var options = {</span>
+<span class="s">            zoom: 13,</span>
+<span class="s">            maxZoom: 13,</span>
+<span class="s">            center: point,</span>
+<span class="s">            mapTypeId: google.maps.MapTypeId.ROADMAP,</span>
+<span class="s">            mapTypeControl: false,</span>
+<span class="s">            streetViewControl: false,</span>
+
+<span class="s">        };</span>
+<span class="s">        </span>
+<span class="s">        map_</span><span class="si">%(name)s</span><span class="s"> = new google.maps.Map(document.getElementById(&quot;map_</span><span class="si">%(name)s</span><span class="s">&quot;), options);</span>
+
+<span class="s">        var marker = new google.maps.Marker({</span>
+<span class="s">                map: map_</span><span class="si">%(name)s</span><span class="s">,</span>
+<span class="s">                draggable: true,</span>
+<span class="s">                position: new google.maps.LatLng(</span><span class="si">%(lat)f</span><span class="s">, </span><span class="si">%(lng)f</span><span class="s">),</span>
+<span class="s">        });</span>
+<span class="s">        google.maps.event.addListener(marker, &#39;dragend&#39;, function(mouseEvent) {</span>
+<span class="s">            savePosition_</span><span class="si">%(name)s</span><span class="s">(mouseEvent.latLng);</span>
+<span class="s">        });</span>
+
+<span class="s">    }</span>
+<span class="s">    </span>
+<span class="s">    $(function() {</span>
+<span class="s">        load_</span><span class="si">%(name)s</span><span class="s">();</span>
+<span class="s">    });</span>
+
+<span class="s">//--&gt;</span>
+<span class="s">&lt;/script&gt;</span>
+<span class="s">        &#39;&#39;&#39;</span> <span class="o">%</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="n">lat</span><span class="p">,</span> <span class="n">lng</span><span class="o">=</span><span class="n">lng</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inner_widget</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">%f</span><span class="s">,</span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lng</span><span class="p">),</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s">&#39;id_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">))</span>
+        <span class="n">html</span> <span class="o">+=</span> <span class="s">&#39;&lt;div id=&quot;map_</span><span class="si">%s</span><span class="s">&quot; style=&quot;width: </span><span class="si">%d</span><span class="s">px; height: </span><span class="si">%d</span><span class="s">px&quot;&gt;&lt;/div&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_height</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">mark_safe</span><span class="p">(</span><span class="n">js</span> <span class="o">+</span> <span class="n">html</span><span class="p">)</span>
+
+    <span class="c">#TODO check how to integrate this media with crispy form and change the way script is inserted at top now</span>
+    <span class="k">class</span> <span class="nc">Media</span><span class="p">:</span>
+        <span class="n">js</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s">&#39;http://maps.google.com/maps/api/js?sensor=false&#39;</span><span class="p">,</span>
+            <span class="p">)</span></div>
+</pre></div>
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>
+        &copy; Copyright 2012, entwicklungshelden.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
