@@ -9,8 +9,11 @@ from functools import wraps
 from itertools import chain
 from operator import attrgetter
 from random import randint
-from easy_maps.models import Address
+from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.models import ContentType
+#from easy_maps.models import Address
 import geopy
+from geopy.distance import distance
 import herobase
 
 import os
@@ -31,7 +34,7 @@ from easy_thumbnails.files import get_thumbnailer
 from django_google_maps import fields as map_fields
 from south.modelsinspector import add_introspection_rules
 from herobase.actions import ActionMixin, action
-from geopy import distance
+
 
 from herobase.fields import LocationField
 from heromessage.models import Message
@@ -522,7 +525,7 @@ class UserProfile(models.Model):
         return list(UserProfile.localobjects.near(self.geolocation,40).select_related().order_by( '-experience', 'user__username' )).index(self) + 1
 
     def distance(self, origin):
-        return distance.distance(self.geolocation.toPoint(),origin)
+        return distance(self.geolocation.toPoint(),origin)
 
     def get_related_leaderboard(self):
         return self.get_related_leaderboard_size(5,3,True)
@@ -579,7 +582,24 @@ class Location(models.Model):
         abstract = True
         # plz, hausnummer, strasse, stadt, bundesland
 
-
+class AbuseReport(models.Model):
+    
+     TYPE_NOT_SET=0
+     TYPE_SPAM=1
+     TYPE_ILLEGAL_CONTENT=2
+     TYPE_HATE_SPEECH=3
+     text = models.TextField(verbose_name=_("text"))
+     type = models.IntegerField(default=TYPE_NOT_SET, choices=(
+        (TYPE_NOT_SET, _("type not set")),
+         (TYPE_SPAM, _("spam")),
+        (TYPE_ILLEGAL_CONTENT,_("illegal content")),
+        (TYPE_HATE_SPEECH, _("hate speech")),
+        ))
+     reporter = models.ForeignKey(User, related_name='reported report')
+     content_type = models.ForeignKey(ContentType)
+     object_id = models.PositiveIntegerField()
+     content_object = generic.GenericForeignKey('content_type', 'object_id')
+     
 # wohin damit?
 
 from registration.signals import user_activated
