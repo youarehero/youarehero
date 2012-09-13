@@ -92,7 +92,7 @@ For developing purposes the default Database engine is `sqlite <http://www.sqlit
 so you don't have to set up a custom database. Run::
 
     (env)$ src/manage.py syncdb
-    (env)$ src/managy.py migrate
+    (env)$ src/manage.py migrate
 
 for initializing the local database. If you were asked to create a superuser, do so and continue.
 You will need this user to log into the ``django-admin`` and it is also your first hero.
