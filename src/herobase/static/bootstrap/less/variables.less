@@ -45,15 +45,22 @@
 
 @yellowLight: #FFFFcc;
 
+// new style
+@iconBackground: #147427;
+@iconFontColor: #ffd263;
+
+@contentBackground: #ffd263;
+@headerBackground: #B46B0C;
+
 // Scaffolding
 // -------------------------
-@bodyBackground:        @white;
+@bodyBackground:        #0B1923; //@white;
 @textColor:             @grayDark;
 
 
 // Links
 // -------------------------
-@linkColor:             @primary;//#08c;
+@linkColor:             #08c;
 @linkColorHover:        darken(@linkColor, 15%);
 
 
@@ -209,12 +216,14 @@
 
 // Default 940px grid
 // -------------------------
-@gridColumns:             12;
-@gridColumnWidth:         60px;
+
+@gridColumns:             9; // 12;
+@gridColumnWidth:         80px; // 60px;
 @gridGutterWidth:         20px;
-@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+@gridSpaceWidth:          60px; // additional
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1)) + @gridSpaceWidth;
 
 // Fluid grid
 // -------------------------
-@fluidGridColumnWidth:    6.382978723%;
+@fluidGridColumnWidth:    8.510638297%; //6.382978723%;
 @fluidGridGutterWidth:    2.127659574%;

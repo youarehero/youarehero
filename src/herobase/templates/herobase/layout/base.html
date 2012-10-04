@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n hero_base %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,59 +47,76 @@
 
 <body>
 
-<div class="container">
 
 {% block layout %}
-    <div id="header" class="row">
-        <div class="span3 sidebar-left">
-            <a href="{% url home %}">
-                <img id="logo" src="{% get_static_prefix %}/img/logo.png" alt="You Are Hero">
+    <div id="layout">
+        <div class="span2 sidebar-left">
+            <a id="logo" href="{% url home %}" class="clearfix">
+                <img src="{% get_static_prefix %}/img/logo.png" alt="You Are Hero">
             </a>
-        </div>
-        <div class="span9 page-header">
-            {% block page_title %}<h1>You are HERO</h1>{% endblock %}
-        </div>
-    </div>
-
-    <div class="menubar row">
-        <div class="span3 sidebar-left">
-            <ul id="mainmenu" class="menu">
-                {% if request.user.is_authenticated %}
-                    <li><a href="{% url home %}" rel="tooltip" title="{% trans 'Home' %}"><i class="icon-custom-home"></i></a></li>
-                    <li><a href="{% url quest-my %}" rel="tooltip" title="{% trans 'My Quests' %}"><i class="icon-custom-quest"></i></a></li>
-                    <li><a href="{% url userprofile-private %}" rel="tooltip" title="{% trans 'Profile' %}"><i class="icon-custom-profile"></i></a></li>
-                    <li><a href="{% url stats %}" rel="tooltip" title="{% trans 'Statistics' %}"><i class="icon-custom-stats"></i></a></li>
-                    <li><a href="{% url leader-board %}" rel="tooltip" title="{% trans 'Leader board' %}"><i class="icon-custom-leader"></i></a></li>
-                    <li><a href="{% url message-list %}" rel="tooltip" title="{% trans 'Private Messages' %}"><i class="icon-custom-message">
-                        {% if request.user.get_profile.unread_messages_count != 0 %}
-                            <span class="badge"> {{ request.user.get_profile.unread_messages_count }}</span>
-                        {% endif %}
-                    </i></a></li>
-                {% else %}
-                    &nbsp;
-                {% endif %}
-            </ul>
-        </div>
-        <div class="span6">
-            {% block submenu %}&nbsp;{% endblock %}
-        </div>
-        <div class="span3 sidebar-right">
             {% if request.user.is_authenticated %}
-                <ul class="menu">
-
-                    <li><a href="{% url auth_logout %}"><i class="icon-off"></i> Logout</a></li>
+                <ul class="icons clearfix">
+                    <li><a href="{% url home %}" rel="tooltip" title="{% trans 'Home' %}">
+                        <i class="icon-custom-home"></i><br>{% trans 'Home' %}</a></li>
+                    <li><a href="{% url quest-my %}" rel="tooltip" title="{% trans 'My Quests' %}">
+                        <i class="icon-custom-quest"></i><br>{% trans 'My Quests' %}</a></li>
+                    <li><a href="{% url userprofile-private %}" rel="tooltip" title="{% trans 'Profile' %}">
+                        <i class="icon-custom-profile"></i><br>{% trans 'Profile' %}</a></li>
+                    <li><a href="{% url stats %}" rel="tooltip" title="{% trans 'Statistics' %}">
+                        <i class="icon-custom-stats"></i><br>{% trans 'Statistics' %}</a></li>
+                    <li><a href="{% url leader-board %}" rel="tooltip" title="{% trans 'Leader board' %}">
+                        <i class="icon-custom-leader"></i><br>{% trans 'Leader board' %}</a></li>
+                    <li><a href="{% url message-list %}" rel="tooltip" title="{% trans 'Private Messages' %}">
+                        <i class="icon-custom-message">
+                            {% if request.user.get_profile.unread_messages_count != 0 %}
+                                <span class="badge"> {{ request.user.get_profile.unread_messages_count }}</span>
+                            {% endif %}
+                        </i><br>{% trans 'Private Messages' %}</a></li>
                 </ul>
             {% endif %}
-        </div>
-    </div>
+            {% block sidebar_left %}
+                {% include "herobase/layout/sidebar_left.inc.html" %}
+            {% endblock %}
+            {% if request.user.is_authenticated %}
+                {% suggest_quests 3 as quests %}
+                {% if quests %}
+                    <h3>{% trans "Suggested quests" %}</h3>
+                    <br>
+                    <ul class="questboard">
+                        {% for quest in quests %}
+                            {% include "herobase/quest/postit.inc.html" %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endif %}
+        </div> <!-- end sidebar-left -->
 
-    <div class="row">
-        {% block page %}
-            &nbsp;
-        {% endblock %}
+        <div id="page" class="span6">
+            <div class="header">
+                {% block page_title %}<h1>You are HERO</h1>{% endblock %}
+                <div class="navbar submenu">
+                    {% block submenu %}&nbsp;{% endblock %}
+                </div>
+            </div>
+            <div class="content">
+                {% include "herobase/layout/messages.inc.html" %}
+                {% block content %}&nbsp;{% endblock %}
+            </div>
+        </div> <!-- end page -->
+
+        <div class="span1 sidebar-right">
+            <ul class="icons clearfix">
+                {% if request.user.is_authenticated %}
+                <li><a href="{% url auth_logout %}"><i class="icon-off"></i> Logout</a></li>
+                {% endif %}
+            </ul>
+            {% block sidebar_right %}
+
+            {% endblock %}
+        </div> <!-- end sidebar-right -->
     </div>
 {% endblock %}
-</div><!--/container-->
+
 {% if request.user.is_staff %}
     <div id="team_hints"><a href="/admin/signups/">signups</a><a href="/admin/">admin</a><a href="/env/lib/python2.7/site-packages/coverage">tests</a><a href="/env/lib/python2.7/site-packages/docs">docs</a><a href="/wiki/">wiki</a></div>
 {% endif %}
