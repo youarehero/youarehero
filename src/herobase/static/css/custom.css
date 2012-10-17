@@ -44,31 +44,31 @@ ul.icons li [class^="icon-custom-"],
 ul.icons li [class*=" icon-custom-"] {
   margin: 0px 0px 0px 0px;
 }
-#logo img {
-  margin-bottom: 20px;
+ul.icons li.small {
+  width: 50px;
+  height: 50px;
 }
-body {
-  padding-top: 20px;
+.logo img {
+  width: 220px;
+}
+#butler {
+  margin-top: 50px;
 }
 .sidebar-left {
   margin-right: 20px;
 }
 .sidebar-right {
-  margin-left: 40px;
+  float: left;
+  width: 120px;
+  margin-left: 20px;
 }
 #layout {
   width: 940px;
-  margin-right: auto;
-  margin-left: auto;
-  *zoom: 1;
 }
-#layout:before,
-#layout:after {
-  display: table;
-  content: "";
-}
-#layout:after {
-  clear: both;
+.page-header {
+  border-bottom: 0px none;
+  margin: 20px 0;
+  padding-bottom: 0px;
 }
 #page {
   background: #ffd263;
@@ -179,22 +179,23 @@ body {
   bottom: -8px;
   left: 3px;
 }
-.avatar {
+.avatar-small {
   background: #147427;
-  font-weight: bold;
   padding: 5px;
+  width: 180px;
+  margin-right: 20px;
 }
-.avatar img {
+.avatar-small img {
   margin-right: 10px;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   float: left;
 }
-.avatar .progress {
+.avatar-small .progress {
   margin-bottom: 0;
   border: 2px solid black;
 }
-.avatar .progress .bar.action {
+.avatar-small .progress .bar.action {
   background-color: #db6352;
   background-image: -moz-linear-gradient(top, #e07a6b, #d3412c);
   background-image: -ms-linear-gradient(top, #e07a6b, #d3412c);
@@ -205,7 +206,7 @@ body {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e07a6b', endColorstr='#d3412c', GradientType=0);
 }
-.avatar .progress .bar.scientist {
+.avatar-small .progress .bar.scientist {
   background-color: #959695;
   background-image: -moz-linear-gradient(top, #a4a5a4, #7e7f7e);
   background-image: -ms-linear-gradient(top, #a4a5a4, #7e7f7e);
@@ -216,7 +217,7 @@ body {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4a5a4', endColorstr='#7e7f7e', GradientType=0);
 }
-.avatar .progress .bar.gadgeteer {
+.avatar-small .progress .bar.gadgeteer {
   background-color: #75ad9f;
   background-image: -moz-linear-gradient(top, #88baad, #5a9b8a);
   background-image: -ms-linear-gradient(top, #88baad, #5a9b8a);
@@ -227,7 +228,7 @@ body {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#88baad', endColorstr='#5a9b8a', GradientType=0);
 }
-.avatar .progress .bar.diplomat {
+.avatar-small .progress .bar.diplomat {
   background-color: #e9e977;
   background-image: -moz-linear-gradient(top, #edee91, #e3e34f);
   background-image: -ms-linear-gradient(top, #edee91, #e3e34f);
@@ -238,7 +239,7 @@ body {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#edee91', endColorstr='#e3e34f', GradientType=0);
 }
-.avatar .progress .bar.protective {
+.avatar-small .progress .bar.protective {
   background-color: #4e83a3;
   background-image: -moz-linear-gradient(top, #5a93b6, #3c6b87);
   background-image: -ms-linear-gradient(top, #5a93b6, #3c6b87);

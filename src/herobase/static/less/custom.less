@@ -6,72 +6,89 @@
 // Navigation
 
 ul.icons {
-    list-style: none;
-    margin: 0 0 0 -20px;
+  list-style: none;
+  margin: 0 0 0 -20px;
+  li {
+    padding: 5px;
+    float: left;
+    width: 70px;
+    height: 70px;
+    background: @iconBackground;
+    a {color: @iconFontColor;}
+    margin: 0px 0px 20px 20px;
 
-    li {
-        padding: 5px;
-        float: left;
-        width: 70px;
-        height: 70px;
-        background: @iconBackground;
-        a {color: @iconFontColor;}
-        margin: 0px 0px 20px 20px;
-
-        [class^="icon-custom-"],
-        [class*=" icon-custom-"] {
-            margin: 0px 0px 0px 0px;
-        }
-
+    [class^="icon-custom-"],
+    [class*=" icon-custom-"] {
+      margin: 0px 0px 0px 0px;
     }
+    &.small {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
 }
 
 // Logo
-#logo img {
-    margin-bottom: 20px;
+.logo {
+  img {
+    width: 220px;
+  }
 }
 
+// Butler
+
+#butler {
+  margin-top: 50px;
+}
 // Layout
 //------------------------
 
 body {
-    padding-top: 20px;
+//  padding-top: 20px;
 }
 
 .sidebar-left {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 .sidebar-right {
-    margin-left: 40px;
+  float: left;
+  width: 120px;
+  margin-left: 20px;
 }
 
 // Layout
 
 #layout {
-    width: @gridRowWidth;
-    .container-fixed();
+  width: @gridRowWidth;
 }
 
 // page
+.page-header {
+  border-bottom: 0px none;
+  margin: 20px 0;
+  padding-bottom: 0px;
+}
+
 #page {
-    background: @contentBackground;
-    .header {
-        background: @headerBackground;
-        h1 {
-            padding: 0 10px;
-            border-bottom: 1px solid darken(@headerBackground, 15%);
-        }
-        .submenu {
-            border-top: 1px solid lighten(@headerBackground, 15%);
-            border-bottom: 1px solid darken(@headerBackground, 15%);
-            .clearfix()
-        }
+  background: @contentBackground;
+  .header {
+    background: @headerBackground;
+    h1 {
+      padding: 0 10px;
+      border-bottom: 1px solid darken(@headerBackground, 15%);
     }
+    .submenu {
+      border-top: 1px solid lighten(@headerBackground, 15%);
+      border-bottom: 1px solid darken(@headerBackground, 15%);
+      .clearfix()
+    }
+  }
 
 
-    .content {
-        padding: 5px 10px;
-    }
+  .content {
+    padding: 5px 10px;
+  }
 }
 
 
@@ -99,56 +116,57 @@ body {
 
 [class^="icon-custom-"],
 [class*="icon-custom-"] {
-    width: 32px;
-    height: 32px;
-    .ie7-restore-right-whitespace();
-    line-height: 32px;
-    &:hover {
-        .scale(1.3);
-    }
+  width: 32px;
+  height: 32px;
+  .ie7-restore-right-whitespace();
+  line-height: 32px;
+  &:hover {
+    .scale(1.3);
+  }
 }
 
 // Badges - little number of notifications
 .badge {
-    border-radius: 0px;
-    padding: 0px 3px 0px 2px;
-    text-shadow: none;
-    font-size: 10px;
-    background-color: @action;
+  border-radius: 0px;
+  padding: 0px 3px 0px 2px;
+  text-shadow: none;
+  font-size: 10px;
+  background-color: @action;
 }
 
 [class^="icon-custom"] .badge,
 [class*="icon-custom"] .badge {
-    position: relative;
-    bottom: -8px;
-    left: 3px;
+  position: relative;
+  bottom: -8px;
+  left: 3px;
 }
 
 // Avatar
 //------------------------
-.avatar {
-    background: @iconBackground;
-    font-weight: bold;
-    padding: 5px;
-    img {
-        margin-right: 10px;
-        width: 80px;
-        height: 80px;
-        float: left;
-    }
-    .status {
+.avatar-small {
+  background: @iconBackground;
+  padding: 5px;
+  width: 180px;
+  margin-right: 20px;
+  img {
+    margin-right: 10px;
+    width: 70px;
+    height: 70px;
+    float: left;
+  }
+  .status {
 
-    }
-    .progress {
-        margin-bottom: 0;
-        border: 2px solid black;
-        .bar.action { #gradient > .vertical(lighten(@action, 15%), @action); }
-        .bar.scientist { #gradient > .vertical(lighten(@scientist, 15%), @scientist); }
-        .bar.gadgeteer { #gradient > .vertical(lighten(@gadgeteer, 15%), @gadgeteer); }
-        .bar.diplomat { #gradient > .vertical(lighten(@diplomatLight, 15%), @diplomatLight); }
-        .bar.protective { #gradient > .vertical(lighten(@protective, 15%), @protective); }
+  }
+  .progress {
+    margin-bottom: 0;
+    border: 2px solid black;
+    .bar.action { #gradient > .vertical(lighten(@action, 15%), @action); }
+    .bar.scientist { #gradient > .vertical(lighten(@scientist, 15%), @scientist); }
+    .bar.gadgeteer { #gradient > .vertical(lighten(@gadgeteer, 15%), @gadgeteer); }
+    .bar.diplomat { #gradient > .vertical(lighten(@diplomatLight, 15%), @diplomatLight); }
+    .bar.protective { #gradient > .vertical(lighten(@protective, 15%), @protective); }
 
-    }
+  }
 }
 
 // Heroclasses
@@ -163,41 +181,41 @@ span.protective { color: @protective; }
 // Questboard, Postits
 //------------------------
 ul.questboard {
-    list-style: none;
-    margin: 0 0 0 -20px;
-    li {
-        margin: 0px 0px 20px 20px;
-        float:left;
+  list-style: none;
+  margin: 0 0 0 -20px;
+  li {
+    margin: 0px 0px 20px 20px;
+    float:left;
 
-        .postit {
-            width: 136px;
-            height: 136px;
-            padding: 7px 9px;
-            word-wrap: break-word;
-            //#gradient > .directional(@white, @grayLighter, 135deg);
-            background: #f7f7ff;
-            border: 3px solid @orange;
-            text-decoration: none;
-            color: @grayDark;
+    .postit {
+      width: 136px;
+      height: 136px;
+      padding: 7px 9px;
+      word-wrap: break-word;
+    //#gradient > .directional(@white, @grayLighter, 135deg);
+      background: #f7f7ff;
+      border: 3px solid @orange;
+      text-decoration: none;
+      color: @grayDark;
 
-            display: block;
-            position: relative;
-            .box-shadow(-2px 2px 4px rgba(33,33,33,.4));
-            .rotate(-6deg);
-            .transition(transform .2s linear);
-        }
-        .postit.action { border-color: @action; h4 { color: @action; }}
-        .postit.scientist { border-color: @scientist; h4 { color: @scientist; }}
-        .postit.diplomat { border-color: @diplomat; h4 { color: @diplomat; }}
-        .postit.gadgeteer { border-color: @gadgeteer; h4 { color: @gadgeteer; }}
-        .postit.protective { border-color: @protective; h4 { color: @protective; }}
-
-        &:nth-child(even) .postit { .rotate(4deg); top:5px;}
-        &:nth-child(3n) .postit { .rotate(-3deg); top:-4px;}
-        &:nth-child(4n) .postit { .rotate(-1deg); top:7px;}
-        &:nth-child(5n) .postit { .rotate(5deg); top:-2px;}
-        .postit:hover, .postit:active { .scale(1.25); z-index: 5; .box-shadow(-3px 3px 5px rgba(33,33,33,.4)); }
+      display: block;
+      position: relative;
+      .box-shadow(-2px 2px 4px rgba(33,33,33,.4));
+      .rotate(-6deg);
+      .transition(transform .2s linear);
     }
+    .postit.action { border-color: @action; h4 { color: @action; }}
+    .postit.scientist { border-color: @scientist; h4 { color: @scientist; }}
+    .postit.diplomat { border-color: @diplomat; h4 { color: @diplomat; }}
+    .postit.gadgeteer { border-color: @gadgeteer; h4 { color: @gadgeteer; }}
+    .postit.protective { border-color: @protective; h4 { color: @protective; }}
+
+    &:nth-child(even) .postit { .rotate(4deg); top:5px;}
+    &:nth-child(3n) .postit { .rotate(-3deg); top:-4px;}
+    &:nth-child(4n) .postit { .rotate(-1deg); top:7px;}
+    &:nth-child(5n) .postit { .rotate(5deg); top:-2px;}
+    .postit:hover, .postit:active { .scale(1.25); z-index: 5; .box-shadow(-3px 3px 5px rgba(33,33,33,.4)); }
+  }
 }
 
 // overflow fix for tab content (we want to see the postits)
@@ -205,30 +223,30 @@ ul.questboard {
 
 // Questboard on public home
 .questboard.home {
-    position: relative;
-    li {
-        .postit {
-            position: absolute;
-            top: 20px;
-            left: 40px;
-            background: url(../../static/img/stripes.png) 0 0 no-repeat scroll;
-            background-size: 100%;
-            text-align: center;
-            img {
-                max-width: 136px;
-                max-height: 112px;
-                position: absolute;
-                bottom: 7px;
-                left: 50%;
-                margin-left: -65px;
-            }
-        }
-
-        &:nth-child(even) .postit { top:-10px; left: 250px;}
-        &:nth-child(3n) .postit { top:80px; left: 490px;}
-        &:nth-child(4n) .postit { top:210px; left: 125px;}
-        &:nth-child(5n) .postit { top:240px; left: 325px;}
+  position: relative;
+  li {
+    .postit {
+      position: absolute;
+      top: 20px;
+      left: 40px;
+      background: url(../../static/img/stripes.png) 0 0 no-repeat scroll;
+      background-size: 100%;
+      text-align: center;
+      img {
+        max-width: 136px;
+        max-height: 112px;
+        position: absolute;
+        bottom: 7px;
+        left: 50%;
+        margin-left: -65px;
+      }
     }
+
+    &:nth-child(even) .postit { top:-10px; left: 250px;}
+    &:nth-child(3n) .postit { top:80px; left: 490px;}
+    &:nth-child(4n) .postit { top:210px; left: 125px;}
+    &:nth-child(5n) .postit { top:240px; left: 325px;}
+  }
 }
 
 // Bootstrap specific fixes
@@ -236,25 +254,25 @@ ul.questboard {
 
 // Inputs in small Grid column FIX
 .span3 .well{
-    select,
-    textarea,
-    input[type="text"],
-    input[type="password"],
-    input[type="datetime"],
-    input[type="datetime-local"],
-    input[type="date"],
-    input[type="month"],
-    input[type="time"],
-    input[type="week"],
-    input[type="number"],
-    input[type="email"],
-    input[type="url"],
-    input[type="search"],
-    input[type="tel"],
-    input[type="color"],
-    .uneditable-input {
-        max-width: 171px;
-    }
+  select,
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="color"],
+  .uneditable-input {
+    max-width: 171px;
+  }
 }
 
 // autocomplete light bootstrap FIX
@@ -270,11 +288,11 @@ ul.questboard {
 // Team Hints
 // -----------------------
 #team_hints {
-    position: fixed;
-    bottom: 0;
-    left: 30%;
-    background: @grayDark;
-    a {
-        margin: 2px 10px;
-    }
+  position: fixed;
+  bottom: 0;
+  left: 30%;
+  background: @grayDark;
+  a {
+    margin: 2px 10px;
+  }
 }
