@@ -15,6 +15,8 @@ from django.utils import simplejson
 from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+from herorecommend import recommend_for_user
+from herorecommend.forms import UserSkillEditForm
 from utils import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.core.urlresolvers import reverse
@@ -33,7 +35,10 @@ logger = logging.getLogger('youarehero.herobase')
 @login_required
 def quest_list_view(request, template='herobase/quest/list.html'):
     """Basic quest list, with django-filter app"""
-    f = QuestFilter(request.GET, queryset=Quest.objects.order_by('-created'))
+    if request.user.is_authenticated():
+        f = QuestFilter(request.GET, queryset=recommend_for_user(request.user, order_by=['-created']))
+    else:
+        f = QuestFilter(request.GET, queryset=Quest.objects.active().order_by('-created'))
     return render(request, template, {
         'filter': f,
         'quests': f.qs,
@@ -107,9 +112,9 @@ def hero_home_view(request, template='herobase/hero_home.html'):
     return render(request, template,
             {
              #'profile': user.get_profile(),
-             'quests_active': user.created_quests.active().order_by('-created'),
-             'quests_old': user.created_quests.inactive().order_by('-created'),
-             'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)
+             'quests_active': user.created_quests.active().order_by('-created')[:10],
+             'quests_old': user.created_quests.inactive().order_by('-created')[:10],
+             'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)[:10]
              })
 
 
@@ -120,9 +125,9 @@ def quest_my(request, template='herobase/quest/my.html'):
     return render(request, template,
             {
             #'profile': user.get_profile(),
-            'quests_active': user.created_quests.active().order_by('-created'),
-            'quests_old': user.created_quests.inactive().order_by('-created'),
-            'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)
+            'quests_active': user.created_quests.active().order_by('-created')[:10],
+            'quests_old': user.created_quests.inactive().order_by('-created')[:10],
+            'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)[:10]
         })
 
 @require_POST
@@ -224,6 +229,14 @@ def userprofile_privacy_settings(request):
     return render(request, 'herobase/userprofile/privacy_settings.html', {
         'form': form
     })
+
+@login_required
+def userprofile_skill_settings(request):
+    form = UserSkillEditForm(request.POST or None, instance=request.user.selected_skills)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('.')
+    return render(request, 'herobase/userprofile/skill_settings.html', {'form': form})
 
 @login_required
 def leader_board(request):

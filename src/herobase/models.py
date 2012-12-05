@@ -181,8 +181,8 @@ class Quest(models.Model, ActionMixin):
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
     heroes = models.ManyToManyField(User, through=Adventure, related_name='quests')
 
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True, db_index=True)
+    modified = models.DateTimeField(auto_now=True, db_index=True)
 
     max_heroes = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
     auto_accept = models.BooleanField(default=False, verbose_name=_("accept automatically"),
