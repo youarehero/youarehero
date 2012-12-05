@@ -3,7 +3,6 @@ Custom Form Widgets for django models.
 """
 
 from django import forms
-from django.db import models
 from django.utils.safestring import mark_safe
 
 DEFAULT_WIDTH = 400

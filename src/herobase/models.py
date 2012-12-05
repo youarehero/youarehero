@@ -5,22 +5,14 @@ The most important are Quest, Userprofile (represents a hero) and Adventure.
 This module also contains the ActionMixin, which provides basic logic for model actions.
 The model actions connect state logic to the models.
 """
-from functools import wraps
-from itertools import chain
-from operator import attrgetter
 from random import randint
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
-#from easy_maps.models import Address
-import geopy
-from geopy.distance import distance
-import herobase
 
 import os
 import textwrap
 
 from django.core.files.storage import FileSystemStorage
-from django.core.mail import send_mail
 from django.db.models.query import QuerySet
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -31,15 +23,12 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from easy_thumbnails.files import get_thumbnailer
-from django_google_maps import fields as map_fields
 from south.modelsinspector import add_introspection_rules
 from herobase.actions import ActionMixin, action
 
-
-from herobase.fields import LocationField
 from heromessage.models import Message
 
-# The classes a User can choose from. (Heroclasses)
+# The classes a User can choose from. (Hero classes)
 CLASS_CHOICES =  (
     (5, "Scientist"),
     (1, 'Gadgeteer'),
@@ -47,6 +36,32 @@ CLASS_CHOICES =  (
     (3, 'Action'),
     (4, 'Protective'))
 
+
+class LocationMixin(models.Model):
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
+    textual = models.CharField(max_length=255, blank=True)
+
+    LOCATION_GRANULARITY_NONE = 0
+    LOCATION_GRANULARITY_GPS = 1
+    LOCATION_GRANULARITY_ADDRESS = 2
+    LOCATION_GRANULARITY_DISTRICT = 3
+    LOCATION_GRANULARITY_CITY = 4
+
+    granularity = models.IntegerField(default=LOCATION_GRANULARITY_NONE,
+        choices=((LOCATION_GRANULARITY_NONE, _(u"no location")),
+                 (LOCATION_GRANULARITY_GPS, _(u"GPS")),
+                 (LOCATION_GRANULARITY_ADDRESS, _(u"address")),
+                 (LOCATION_GRANULARITY_DISTRICT, _(u"district")),
+                 (LOCATION_GRANULARITY_CITY, _(u"city")),
+        ))
+
+    @property
+    def has_location(self):
+        return not self.granularity == self.LOCATION_GRANULARITY_NONE
+
+    class Meta:
+        abstract = True
 
 
 class AdventureQuerySet(QuerySet):
@@ -167,7 +182,7 @@ class QuestManager(models.Manager):
         return self.get_query_set().open()
 
 
-class Quest(models.Model, ActionMixin):
+class Quest(models.Model, LocationMixin, ActionMixin):
     """A quest, owned by a user."""
     objects = QuestManager()
 
@@ -370,7 +385,6 @@ class Quest(models.Model, ActionMixin):
         else:
             return set()
 
-
     def get_absolute_url(self):
         """Get the url for this quests detail page."""
         return reverse("quest-detail", args=(self.pk,))
@@ -382,79 +396,17 @@ class Quest(models.Model, ActionMixin):
         """String representation"""
         return self.title
 
-class DistanceManager(models.Manager):
-    def __init__(self):
-        super(DistanceManager, self).__init__()
-
-    def near(self, point=None, distance=None):
-        if not (point and distance):
-            return []
-
-        queryset = super(DistanceManager, self).get_query_set()
-
-        # prune down the set of all locations to something we can quickly check precisely
-        #rough_distance = geopy.distance.arc_degrees(arcminutes=geopy.distance.nm(kilometers=distance)) * 2
-        #queryset = queryset.filter(
-         #   latitude__range=(point.lat - rough_distance, point.lat + rough_distance),
-        #    longitude__range=(point.lon - rough_distance, point.lon + rough_distance)
-       # )
-
-        items = []
-        for item in queryset:
-            if item.geolocation.lat and item.geolocation.lon:
-                exact_distance = geopy.distance.distance(
-                    (point.lat , point.lon),
-                    (item.geolocation.lat, item.geolocation.lon)
-                )
-                if exact_distance.kilometers <= distance:
-                    items.append(item)
-
-        queryset = queryset.filter(id__in=[l.id for l in items])
-        return queryset
 
 
-class UserProfile(models.Model):
-    """This model extends a django user with additional hero information."""
-    add_introspection_rules([], ["^herobase\.fields\.LocationField"])
-
-    objects = models.Manager()
-    localobjects = DistanceManager()
-
-    user = models.OneToOneField(User)
-    experience = models.PositiveIntegerField(default=0)
-    location = models.CharField(max_length=255) # TODO : placeholder
-    hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
-
-    keep_email_after_gpn = models.DateTimeField(blank=True, null=True, editable=False)
-
-    # google geolocation
-    #geolocation = LocationField(_(u'geolocation'), max_length=100, default='48,8') # todo : fix default :-)
-    #address = models.TextField(Address, max_length=300, null=True, default=Address(address="test", latitude=2.222, longitude=2.12232323))
-
-    address = map_fields.AddressField(max_length=200, default="HfG Karlsruhe, Karlsruhe, Deutschland")
-    geolocation = map_fields.GeoLocationField(max_length=100,default='49.001925,8.383703')
-
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-
-    public_location = models.BooleanField(default=False, verbose_name=_("Location is public"),
-        help_text=_("Enable this if you want to share your location with other Heroes."))
-
-    about = models.TextField(blank=True, default='', help_text=_('Tell other heroes who you are.'))
-
-    receive_system_email = models.BooleanField(default=False,
-        verbose_name=_("E-Mail on quest changes"),
-        help_text=_("Enable this if you want to receive an email notification when one of your quests needs attention."))
-    receive_private_email = models.BooleanField(default=False,
-        verbose_name=_("E-Mail on private message"),
-        help_text=_("Enable this if you want to receive an email notification when someone sends you a private message."))
-
-    CLASS_AVATARS =  {
+class AvatarImageMixin(object):
+    # FIXME: this should be done by templatetags
+    CLASS_AVATARS = {
         5: "scientist.jpg",
         1: 'gadgeteer.jpg',
         2: 'diplomat.jpg',
         3: 'action.jpg',
         4: 'protective.jpg'}
+
     avatar_storage = FileSystemStorage(location=os.path.join(settings.PROJECT_ROOT, 'assets/'))
 
     def avatar_thumbnails(self):
@@ -471,8 +423,8 @@ class UserProfile(models.Model):
         for id, image_name in self.CLASS_AVATARS.items():
             image = os.path.join('avatar/', image_name)
             thumbnailer = get_thumbnailer(self.avatar_storage, image)
-            thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality':90})
-            thumbs.append((id, os.path.join(settings.MEDIA_URL, thumbnail.url )))
+            thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality': 90})
+            thumbs.append((id, os.path.join(settings.MEDIA_URL, thumbnail.url)))
         return thumbs
 
     def avatar(self):
@@ -482,8 +434,9 @@ class UserProfile(models.Model):
             file_name = self.CLASS_AVATARS[self.hero_class]
         image = os.path.join('avatar/', file_name)
         thumbnailer = get_thumbnailer(self.avatar_storage, image)
-        thumbnail = thumbnailer.get_thumbnail({'size': (270, 270), 'quality':90})
-        return os.path.join(settings.MEDIA_URL, thumbnail.url )
+        thumbnail = thumbnailer.get_thumbnail({'size': (270, 270),
+                                               'quality': 90})
+        return os.path.join(settings.MEDIA_URL, thumbnail.url)
 
     @property
     def avatar_thumb(self):
@@ -493,13 +446,45 @@ class UserProfile(models.Model):
             file_name = self.CLASS_AVATARS[self.hero_class]
         image = os.path.join('avatar/', file_name)
         thumbnailer = get_thumbnailer(self.avatar_storage, image)
-        thumbnail = thumbnailer.get_thumbnail({'size': (50, 50), 'quality':90})
-        return os.path.join(settings.MEDIA_URL, thumbnail.url )
+        thumbnail = thumbnailer.get_thumbnail({'size': (50, 50), 'quality': 90})
+        return os.path.join(settings.MEDIA_URL, thumbnail.url)
 
-    @property
-    def get_geolocation(self):
-        if self.geolocation:
-            return self.geolocation.split(',')
+
+class UserProfile(models.Model, AvatarImageMixin, LocationMixin):
+    """This model extends a django user with additional hero information."""
+    add_introspection_rules([], ["^herobase\.fields\.LocationField"])
+
+    objects = models.Manager()
+
+    user = models.OneToOneField(User)
+    experience = models.PositiveIntegerField(default=0)
+    location = models.CharField(max_length=255) # TODO : placeholder
+    hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True,
+        null=True)
+
+    keep_email_after_gpn = models.DateTimeField(blank=True, null=True,
+        editable=False)
+
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    public_location = models.BooleanField(default=False,
+        verbose_name=_("Location is public"),
+        help_text=_("Enable this if you want to share "
+                    "your location with other Heroes."))
+
+    about = models.TextField(blank=True, default='',
+        help_text=_('Tell other heroes who you are.'))
+
+    receive_system_email = models.BooleanField(default=False,
+        verbose_name=_("E-Mail on quest changes"),
+        help_text=_("Enable this if you want to receive an email notification "
+                    "when one of your quests needs attention."))
+
+    receive_private_email = models.BooleanField(default=False,
+        verbose_name=_("E-Mail on private message"),
+        help_text=_("Enable this if you want to receive an email notification "
+                    "when someone sends you a private message."))
 
     @property
     def level(self):
@@ -520,43 +505,33 @@ class UserProfile(models.Model):
     def rank(self):
         return list(User.objects.select_related().order_by( '-userprofile__experience', 'username' )).index(self.user) + 1
 
-    @property
-    def localrank(self):
-        return list(UserProfile.localobjects.near(self.geolocation,40).select_related().order_by( '-experience', 'user__username' )).index(self) + 1
-
-    def distance(self, origin):
-        return distance(self.geolocation.toPoint(),origin)
-
-    def get_related_leaderboard(self):
-        return self.get_related_leaderboard_size(5,3,True)
-
-    def get_related_leaderboard_size(self, hoodsize, topcount, getlocal=False):
-        if not getlocal:
-            return self.get_related_leaderboard_qs_size(UserProfile.objects,hoodsize,topcount)
-        else:
-            return (self.get_related_leaderboard_qs_size(UserProfile.objects,hoodsize,topcount),
-                    self.get_related_leaderboard_qs_size(UserProfile.localobjects.near(self.geolocation,40),hoodsize,topcount))
-
-    def get_related_leaderboard_qs_size(self, profilequeryset, hoodsize, topcount):
-        neighbourhood = []
-        separator = []
-
-        #only show the separator if there is a separation between topusers and the displayed range
-        if self.rank != topcount + hoodsize/2 + 1:
-            separator = [get_dummy_user()]
-
-        if self.rank > hoodsize:
-            neighbourhood = profilequeryset.select_related().exclude(pk=get_system_user().pk).order_by('-experience', 'user__username')[(self.rank-(hoodsize/2)-1):(self.rank+hoodsize/2)]
-        else:
-            topcount = hoodsize
-        top = profilequeryset.select_related().order_by('-experience', 'user__username')[:topcount]
-        total = list(chain(top, separator, neighbourhood))
-
-        return total
-
-
     def __unicode__(self):
         return self.user.username
+
+    def get_global_relative_leaderboard(self, top_count=3, neighbourhood_size=5):
+        """
+        Returns a location based relative leaderboard for this userprofile
+        containing the top rated users as well as those close in rank.
+
+        :param top_count: The top n users to include
+        :param neighbourhood_size: The number of users with similar ranks to be included
+        """
+        # FIXME: we need to add the  ranks to the qs
+        raise NotImplementedError("Need to re-implement as per docstring")
+
+    def get_local_relative_leaderboard(self, top_count=3, neighbourhood_size=5):
+        """
+        Returns a relative leaderboard for this userprofile containing the top
+        rated users as well as those close in rank.
+
+        :param top_count: The top n users to include
+        :param neighbourhood_size: The number of users with similar ranks to be included
+        """
+        if not self.has_location:
+            raise ValueError
+        # FIXME: we need to add the  ranks to the qs
+        raise NotImplementedError("Need to re-implement as per docstring")
+
 
 
 def create_user_profile(sender, instance, created, **kwargs):
@@ -569,38 +544,25 @@ def create_user_profile(sender, instance, created, **kwargs):
 post_save.connect(create_user_profile, sender=User)
 
 
-class Location(models.Model):
-    latitude = models.FloatField()
-    longitude = models.FloatField()
 
-    zip_code = models.CharField(max_length=255)
-    country = models.CharField(max_length=255)
-    state = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    street = models.CharField(max_length=255)
-    class Meta:
-        abstract = True
-        # plz, hausnummer, strasse, stadt, bundesland
 
 class AbuseReport(models.Model):
-    
-     TYPE_NOT_SET=0
-     TYPE_SPAM=1
-     TYPE_ILLEGAL_CONTENT=2
-     TYPE_HATE_SPEECH=3
-     text = models.TextField(verbose_name=_("text"))
-     type = models.IntegerField(default=TYPE_NOT_SET, choices=(
+    TYPE_NOT_SET = 0
+    TYPE_SPAM = 1
+    TYPE_ILLEGAL_CONTENT = 2
+    TYPE_HATE_SPEECH = 3
+    text = models.TextField(verbose_name=_("text"))
+    type = models.IntegerField(default=TYPE_NOT_SET, choices=(
         (TYPE_NOT_SET, _("type not set")),
-         (TYPE_SPAM, _("spam")),
-        (TYPE_ILLEGAL_CONTENT,_("illegal content")),
+        (TYPE_SPAM, _("spam")),
+        (TYPE_ILLEGAL_CONTENT, _("illegal content")),
         (TYPE_HATE_SPEECH, _("hate speech")),
         ))
-     reporter = models.ForeignKey(User, related_name='reported report')
-     content_type = models.ForeignKey(ContentType)
-     object_id = models.PositiveIntegerField()
-     content_object = generic.GenericForeignKey('content_type', 'object_id')
-     
-# wohin damit?
+    reporter = models.ForeignKey(User, related_name='reported report')
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField()
+    content_object = generic.GenericForeignKey('content_type', 'object_id')
+
 
 from registration.signals import user_activated
 from django.contrib.auth import login, authenticate

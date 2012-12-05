@@ -91,23 +91,18 @@ class UserProfileEdit(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        #self.helper.form_action = 'user-edit'
         self.helper.form_class = 'form-horizontal'
 
-        #self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.layout = Layout(
             Fieldset(
                 _('Edit your Profile'),
                 Div(
                     'hero_class',
                     'about',
-                    #'location',
-                    #'geolocation',
                     'address',
                     'geolocation',
                     'receive_system_email',
                     'receive_private_email',
-                    #   'geolocation',
                 )
             ),
             FormActions(
