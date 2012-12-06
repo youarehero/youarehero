@@ -12,10 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset, Div
-from django_google_maps import widgets as map_widgets
-from django_google_maps.widgets import GoogleMapsAddressWidget
 from registration.forms import RegistrationFormUniqueEmail
-from easy_maps.widgets import AddressWithMapWidget
 
 from herobase.models import Quest, UserProfile
 from herobase.widgets import LocationWidget
@@ -86,8 +83,18 @@ class QuestCreateForm(forms.ModelForm):
         fields = ('title', 'description', 'max_heroes', 'location', 'due_date', 'hero_class', 'level' ,'experience', 'auto_accept')
 
 
+    latitude = forms.FloatField(widget=forms.HiddenInput)
+    longitude = forms.FloatField(widget=forms.HiddenInput)
+    location_granularity = forms.IntegerField(widget=forms.HiddenInput)
+    address = forms.TextInput()
+
 class UserProfileEdit(forms.ModelForm):
     """Basic userprofile edit form. uses crispy-forms."""
+    latitude = forms.FloatField(widget=forms.HiddenInput)
+    longitude = forms.FloatField(widget=forms.HiddenInput)
+    location_granularity = forms.IntegerField(widget=forms.HiddenInput)
+    address = forms.CharField(widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
+
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
@@ -100,7 +107,6 @@ class UserProfileEdit(forms.ModelForm):
                     'hero_class',
                     'about',
                     'address',
-                    'geolocation',
                     'receive_system_email',
                     'receive_private_email',
                 )
@@ -113,10 +119,10 @@ class UserProfileEdit(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('about', 'hero_class', 'receive_system_email', 'receive_private_email', 'address', 'geolocation')# 'geolocation')
-        widgets = {
-            'geolocation' : GoogleMapsAddressWidget()
-        }
+        fields = ('about', 'hero_class',
+                  'receive_system_email', 'receive_private_email',
+                  'address', 'latitude', 'longitude', 'location_granularity')
+
 
 class UserProfilePrivacyEdit(forms.ModelForm):
     """Special userprofile edit form for the fields containing privacy settings."""

@@ -40,7 +40,7 @@ CLASS_CHOICES =  (
 class LocationMixin(models.Model):
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
-    textual = models.CharField(max_length=255, blank=True)
+    address = models.CharField(max_length=255, blank=True)
 
     LOCATION_GRANULARITY_NONE = 0
     LOCATION_GRANULARITY_GPS = 1
@@ -48,7 +48,7 @@ class LocationMixin(models.Model):
     LOCATION_GRANULARITY_DISTRICT = 3
     LOCATION_GRANULARITY_CITY = 4
 
-    granularity = models.IntegerField(default=LOCATION_GRANULARITY_NONE,
+    location_granularity = models.IntegerField(default=LOCATION_GRANULARITY_NONE,
         choices=((LOCATION_GRANULARITY_NONE, _(u"no location")),
                  (LOCATION_GRANULARITY_GPS, _(u"GPS")),
                  (LOCATION_GRANULARITY_ADDRESS, _(u"address")),
@@ -58,7 +58,7 @@ class LocationMixin(models.Model):
 
     @property
     def has_location(self):
-        return not self.granularity == self.LOCATION_GRANULARITY_NONE
+        return not self.location_granularity == self.LOCATION_GRANULARITY_NONE
 
     class Meta:
         abstract = True
@@ -182,7 +182,7 @@ class QuestManager(models.Manager):
         return self.get_query_set().open()
 
 
-class Quest(models.Model, LocationMixin, ActionMixin):
+class Quest(LocationMixin, ActionMixin, models.Model):
     """A quest, owned by a user."""
     objects = QuestManager()
 
@@ -450,7 +450,7 @@ class AvatarImageMixin(object):
         return os.path.join(settings.MEDIA_URL, thumbnail.url)
 
 
-class UserProfile(models.Model, AvatarImageMixin, LocationMixin):
+class UserProfile(LocationMixin, models.Model):
     """This model extends a django user with additional hero information."""
     add_introspection_rules([], ["^herobase\.fields\.LocationField"])
 
@@ -528,7 +528,7 @@ class UserProfile(models.Model, AvatarImageMixin, LocationMixin):
         :param neighbourhood_size: The number of users with similar ranks to be included
         """
         if not self.has_location:
-            raise ValueError
+            return []
         # FIXME: we need to add the  ranks to the qs
         raise NotImplementedError("Need to re-implement as per docstring")
 
