@@ -9,11 +9,11 @@ $(function () {
         // FIXME: granularity
         var latlng = new google.maps.LatLng($latitudeField.val(), $longitudeField.val());
 
-        var $map = $("<div></div>")
+        var $map = $('<div></div>')
             .attr("id", "map_" + $addressField.attr("id"))
-            .insertAfter($addressField)
-            .css({'width': '400px', 'height': '400px'});
-        var mapElem = $map[0];
+            .attr("class", "map")
+            .css({"width": "400px", "height": "400px"})
+            .insertAfter($addressField);
 
         var autocomplete = new google.maps.places.Autocomplete($addressField[0]);
         $addressField.keypress(function (e) {
@@ -27,7 +27,7 @@ $(function () {
             center: latlng,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        var map = new google.maps.Map(mapElem, mapOptions);
+        var map = new google.maps.Map($map[0], mapOptions);
         var geocoder = new google.maps.Geocoder();
 
         var marker = new google.maps.Marker({

@@ -450,7 +450,7 @@ class AvatarImageMixin(object):
         return os.path.join(settings.MEDIA_URL, thumbnail.url)
 
 
-class UserProfile(LocationMixin, models.Model):
+class UserProfile(LocationMixin, models.Model, AvatarImageMixin):
     """This model extends a django user with additional hero information."""
     add_introspection_rules([], ["^herobase\.fields\.LocationField"])
 

@@ -29,7 +29,7 @@ class LocationWidget(forms.TextInput):
         return super(LocationWidget, self).render(name, value, attrs=attrs)
 
     class Media:
-        js = ("https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false",
+        js = ("https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false",
               "js/location_widget.js",)
 
 class OldLocationWidget(forms.TextInput):

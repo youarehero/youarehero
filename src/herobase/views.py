@@ -213,6 +213,7 @@ def userprofile_edit(request):
     if form.is_valid():
         form.save()
         messages.success(request, 'Profile successfully changed')
+        return HttpResponseRedirect(reverse("userprofile-edit"))
     return render(request, 'herobase/userprofile/edit.html', {
         'form': form
     })
