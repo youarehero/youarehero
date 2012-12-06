@@ -15,7 +15,7 @@ from django.utils import simplejson
 from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_POST
 from django.contrib import messages
-from herorecommend import recommend_for_user
+from herorecommend import recommend_for_user, recommend, recommend_local
 from herorecommend.forms import UserSkillEditForm
 from utils import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -36,7 +36,7 @@ logger = logging.getLogger('youarehero.herobase')
 def quest_list_view(request, template='herobase/quest/list.html'):
     """Basic quest list, with django-filter app"""
     if request.user.is_authenticated():
-        f = QuestFilter(request.GET, queryset=recommend_for_user(request.user, order_by=['-created']))
+        f = QuestFilter(request.GET, queryset=recommend_local(request.user, order_by=['-created']))
     else:
         f = QuestFilter(request.GET, queryset=Quest.objects.active().order_by('-created'))
     return render(request, template, {

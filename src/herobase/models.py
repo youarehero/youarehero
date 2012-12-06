@@ -38,8 +38,8 @@ CLASS_CHOICES =  (
 
 
 class LocationMixin(models.Model):
-    latitude = models.FloatField(null=True)
-    longitude = models.FloatField(null=True)
+    latitude = models.FloatField(null=True, db_index=True)
+    longitude = models.FloatField(null=True, db_index=True)
     address = models.CharField(max_length=255, blank=True)
 
     LOCATION_GRANULARITY_NONE = 0
@@ -47,6 +47,7 @@ class LocationMixin(models.Model):
     LOCATION_GRANULARITY_ADDRESS = 2
     LOCATION_GRANULARITY_DISTRICT = 3
     LOCATION_GRANULARITY_CITY = 4
+    LOCATION_GRANULARITY_UNKNOWN = 5
 
     location_granularity = models.IntegerField(default=LOCATION_GRANULARITY_NONE,
         choices=((LOCATION_GRANULARITY_NONE, _(u"no location")),
@@ -54,11 +55,20 @@ class LocationMixin(models.Model):
                  (LOCATION_GRANULARITY_ADDRESS, _(u"address")),
                  (LOCATION_GRANULARITY_DISTRICT, _(u"district")),
                  (LOCATION_GRANULARITY_CITY, _(u"city")),
+                 (LOCATION_GRANULARITY_UNKNOWN, _(u"unknown")),
         ))
 
     @property
     def has_location(self):
         return not self.location_granularity == self.LOCATION_GRANULARITY_NONE
+
+    def save(self, force_insert=False, force_update=False, using=None):
+        if (self.latitude and self.longitude
+            and self.location_granularity == self.LOCATION_GRANULARITY_NONE):
+            self.location_granularity = self.LOCATION_GRANULARITY_UNKNOWN
+        return super(LocationMixin, self).save(force_insert, force_update,
+            using)
+
 
     class Meta:
         abstract = True
@@ -195,6 +205,8 @@ class Quest(LocationMixin, ActionMixin, models.Model):
 
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
     heroes = models.ManyToManyField(User, through=Adventure, related_name='quests')
+
+    remote = models.BooleanField(default=False, verbose_name=_(u"Can be done remotely"))
 
     created = models.DateTimeField(auto_now_add=True, db_index=True)
     modified = models.DateTimeField(auto_now=True, db_index=True)
