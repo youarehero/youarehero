@@ -20,11 +20,12 @@ class LocationWidget(forms.TextInput):
 
     def render(self, name, value, attrs=None):
         attrs = attrs or {}
-        attrs.update({'data-location-field': "true",
+        attrs.update({'data-is-address-field': "true",
                       'data-latitude-field': self.latitude_field,
                       'data-longitude-field': self.longitude_field,
                       'data-granularity-field': self.granularity_field,
         })
+
         return super(LocationWidget, self).render(name, value, attrs=attrs)
 
     class Media:
