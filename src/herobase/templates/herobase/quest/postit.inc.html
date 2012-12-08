@@ -3,7 +3,7 @@
         <span class="pull-right">{{ quest.experience }} EP</span>
         <h4>{{ quest.title|truncatechars:50 }} {{ quest.created }}</h4>
         <h5>{{ quest.weight }}= {{ quest.profile.get_skills }}</h5>
-        <p>{{ quest.description|truncatechars:80 }} ({{ quest.latitude}}, {{ quest.longitude }})</p>
+        <p>{{ quest.description|truncatechars:80 }} {{ quest.distance }} ({{ quest.latitude}}, {{ quest.longitude }})</p>
 
     </a>
 </li>

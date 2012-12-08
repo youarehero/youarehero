@@ -7,18 +7,19 @@ and aggregate some data for use in templates.
 from datetime import datetime
 from itertools import chain
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.core import signing
 from django.core.exceptions import PermissionDenied
 from django.core.mail import send_mail
 from django.core.signing import Signer
-from django.utils import simplejson
+from django.utils import simplejson as json
 from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from herorecommend import recommend_for_user, recommend, recommend_local
 from herorecommend.forms import UserSkillEditForm
 from utils import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect, Http404, HttpResponse, HttpResponseForbidden
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
@@ -36,7 +37,7 @@ logger = logging.getLogger('youarehero.herobase')
 def quest_list_view(request, template='herobase/quest/list.html'):
     """Basic quest list, with django-filter app"""
     if request.user.is_authenticated():
-        f = QuestFilter(request.GET, queryset=recommend_local(request.user, order_by=['-created']))
+        f = QuestFilter(request.GET, queryset=recommend(request.user, order_by=['-created']))
     else:
         f = QuestFilter(request.GET, queryset=Quest.objects.active().order_by('-created'))
     return render(request, template, {
@@ -199,9 +200,9 @@ def userprofile(request, username=None, template='herobase/userprofile/detail.ht
     return render(request, template, {
         'user': user,
         'rank': rank,
-        'colors': mark_safe(simplejson.dumps(colors)),
+        'colors': mark_safe(json.dumps(colors)),
         'completed_quest_count': user.adventures.filter(state=Adventure.STATE_OWNER_DONE).count(),
-        'hero_completed_quests': mark_safe(simplejson.dumps(hero_completed_quests)),
+        'hero_completed_quests': mark_safe(json.dumps(hero_completed_quests)),
     })
 
 
@@ -300,7 +301,7 @@ def random_stats(request):
         'colors1': colors1,
         }
     for key in context:
-        context[key] = mark_safe(simplejson.dumps(list(context[key])))
+        context[key] = mark_safe(json.dumps(list(context[key])))
 
     context.update({
         'quests_completed': user.adventures.filter(quest__state=Quest.STATE_OWNER_DONE).count()
@@ -375,5 +376,13 @@ def confirm_keep_email(request, action):
         profile.save()
         return HttpResponse("Keeping email for %s" % email, mimetype='text/plain')
 
+@require_POST
+@login_required
+def like(request, quest_id):
+    quest = get_object_or_404(Quest, pk=quest_id)
+    like, created = Like.objects.get_or_create(user=request.user, quest=quest)
 
+    if created:
+        like.send(sender=request.user, quest=quest) 
 
+    return HttpResponse(json.dumps({'success': True}), mimetype='application/json')

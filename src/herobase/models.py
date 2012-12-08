@@ -36,6 +36,9 @@ CLASS_CHOICES =  (
     (3, 'Action'),
     (4, 'Protective'))
 
+class Like(models.Model):
+    user = models.ForeignKey(User)
+    quest = models.ForeignKey('Quest')
 
 class LocationMixin(models.Model):
     latitude = models.FloatField(null=True, db_index=True)

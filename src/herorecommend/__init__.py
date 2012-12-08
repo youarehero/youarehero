@@ -1,20 +1,19 @@
+from django.core.cache import cache
 from models import QuestRating, SKILLS
 from herobase.models import Quest
+from signals import like, apply, participate, participate_plus
 
-__all__ = ['recommend', 'recommend_local', 'recommend_remote', 'rate_quest']
+__all__ = ['recommend', 'recommend_local', 'recommend_remote', 'like', 'apply',
+        'participate', 'participate_plus']
 
-def rate_quest(user, quest, action):
-    QuestRating.rate(user, quest, action)
 
 def filter_by_location(qs, latitude, longitude, radius_km=50):
     dlat = (1/110.0)* radius_km
     dlon = (1/70.0) * radius_km
-#    (abs(latitude - %s)/110.0 + abs(longitude - %s)/70.0) as dist
-
-    # WHERE country="DE" AND
     distance = """sqrt(pow(110 * (latitude - %s), 2) + pow(70 * (longitude - %s), 2))""" % (latitude, longitude)
-    return qs.extra(where=["latitude>%s AND latitude<%s AND longitude>%s AND longitude<%s AND " + distance],
-        params=(latitude - dlat, latitude + dlat, longitude - dlon, longitude + dlon), )
+    return qs.filter(latitude__range=(latitude - dlat, latitude + dlat), longitude__range=(longitude - dlon, longitude + dlon)).extra(
+        select={'distance': distance}
+    )
 
 
 def recommend(user, fields=('title', 'description', 'state', 'location', 'remote', 'latitude', 'longitude'),
@@ -62,7 +61,7 @@ def recommend_for_user(user, fields=('title', 'description', 'state'),
     if order_by:
         order_fields.extend(order_by)
     
-    result_fields = ['weight', 'profile__average', 'id', 'pk', 'remote']
+    result_fields = ['weight', 'profile__average', 'id', 'pk', 'remote', 'distance']
     if fields:
         result_fields = list(fields) + result_fields
 
@@ -83,8 +82,10 @@ def recommend_for_user(user, fields=('title', 'description', 'state'),
     numerator_sql = '%s * root_sum_of_squares' % up_root_sum_of_squares
 
     sql = '(%s) / (%s)' % (denominator_sql, numerator_sql) # fixme DIV BY ZERO
-    return (queryset
+    sql += '+ COALESCE(pow(2.718, -(sqrt(pow(110 * (latitude - %s), 2) + pow(70 * (longitude - %s), 2)))/10), 0)' % (user.get_profile().latitude, user.get_profile().longitude)
+    recommended = (queryset
             .select_related('profile')
             .extra(select={'weight': sql})
-            .order_by(*order_fields)
-            .values(*result_fields))
+            .order_by(*order_fields))
+           # .values(*result_fields))
+    return recommended

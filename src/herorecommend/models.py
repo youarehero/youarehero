@@ -5,6 +5,8 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from herobase.models import Quest
+from signals import like, apply, participate, participate_plus
+
 
 
 
@@ -183,4 +185,22 @@ def create_user_rating_profiles(sender, instance=None, created=False, **kwargs):
         UserSelectionProfile.objects.get_or_create(user=instance)
         UserRatingProfile.objects.get_or_create(user=instance)
         UserCombinedProfile.objects.get_or_create(user=instance)
+
+
+@receiver(like, sender=User)
+def on_like(sender, quest, **kwargs):
+    QuestRating.rate(quest, quest, 'like')
+
+@receiver(apply, sender=User)
+def on_apply(sender, quest, **kwargs):
+    QuestRating.rate(quest, quest, 'apply')
+
+@receiver(participate, sender=User)
+def on_participate(sender, quest, **kwargs):
+    QuestRating.rate(quest, quest, 'participate')
+
+@receiver(participate_plus, sender=User)
+def on_participate_plus(sender, quest, **kwargs):
+    QuestRating.rate(quest, quest, 'participate_plus')
+
 
