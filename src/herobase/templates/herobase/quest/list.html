@@ -34,7 +34,7 @@
 {% endblock %}
 
 {% block content %}
-    {% cache 60 quests request.user.pk filter.form.level filter.form.state filter.form.hero_class request.GET.page %}
+{# {% cache 60 quests request.user.pk filter.form.level filter.form.state filter.form.hero_class request.GET.page %} #}
     <div class="quest-list">
         <form action="" method="get">
         <div class="btn-toolbar">
@@ -107,5 +107,5 @@
             </div>
         </div>
     </div>
-    {% endcache %}
+    {# {% endcache %} #}
 {% endblock %}

@@ -7,13 +7,32 @@ __all__ = ['recommend', 'recommend_local', 'recommend_remote', 'like', 'apply',
         'participate', 'participate_plus']
 
 
-def filter_by_location(qs, latitude, longitude, radius_km=50):
+def filter_by_location(queryset, latitude, longitude, radius_km=50):
     dlat = (1/110.0)* radius_km
     dlon = (1/70.0) * radius_km
     distance = """sqrt(pow(110 * (latitude - %s), 2) + pow(70 * (longitude - %s), 2))""" % (latitude, longitude)
-    return qs.filter(latitude__range=(latitude - dlat, latitude + dlat), longitude__range=(longitude - dlon, longitude + dlon)).extra(
-        select={'distance': distance}
-    )
+    return (queryset
+            .extra(select={'distance': distance})
+            .filter(latitude__range=(latitude - dlat, latitude + dlat),
+                    longitude__range=(longitude - dlon, longitude + dlon)))
+
+def recommend_top(user, n, fields=('title', 'description', 'state', 'location',
+        'remote', 'latitude', 'longitude'), queryset=None, order_by=None):
+
+    above_average = [skill for skill in SKILLS if
+            getattr(user.combined_profile, skill) > user.combined_profile.average]
+    quests = recommend(user, fields=fields, queryset=queryset)[:3*n]
+
+    suggestions = [] 
+    for quest in quests:
+        print quest, ':',
+        for skill in quest.profile.get_skills():
+            print skill, getattr(user.combined_profile, skill), user.combined_profile.average,
+        print
+        
+    return suggestions
+
+
 
 
 def recommend(user, fields=('title', 'description', 'state', 'location', 'remote', 'latitude', 'longitude'),
@@ -66,26 +85,28 @@ def recommend_for_user(user, fields=('title', 'description', 'state'),
         result_fields = list(fields) + result_fields
 
     up = user.combined_profile
-
     up_deltas = {}
     up_average = up.average
     for skill in SKILLS:
         up_deltas[skill] = getattr(up, skill) - up_average
 
     up_root_sum_of_squares = sum(w**2 for w in up_deltas.values()) ** 0.5
+    if up_root_sum_of_squares == 0:
+        sql = '1'
+    else:
+        denominator = []
+        for skill in SKILLS:
+            denominator.append('(%s * delta_%s)' % (up_deltas[skill], skill))
+        denominator_sql = '(%s)' % (' + '.join(denominator))
 
-    denominator = []
-    for skill in SKILLS:
-        denominator.append('(%s * delta_%s)' % (up_deltas[skill], skill))
-    denominator_sql = '(%s)' % (' + '.join(denominator))
+        numerator_sql = '%s * root_sum_of_squares' % up_root_sum_of_squares
 
-    numerator_sql = '%s * root_sum_of_squares' % up_root_sum_of_squares
-
-    sql = '(%s) / (%s)' % (denominator_sql, numerator_sql) # fixme DIV BY ZERO
-    sql += '+ COALESCE(pow(2.718, -(sqrt(pow(110 * (latitude - %s), 2) + pow(70 * (longitude - %s), 2)))/10), 0)' % (user.get_profile().latitude, user.get_profile().longitude)
+        sql = '(%s) / (%s)' % (denominator_sql, numerator_sql) # fixme DIV BY ZERO
+        sql += '+ COALESCE(pow(2.718, -(sqrt(pow(110 * (latitude - %s), 2) + pow(70 * (longitude - %s), 2)))/10), 0)' % (user.get_profile().latitude, user.get_profile().longitude)
     recommended = (queryset
             .select_related('profile')
             .extra(select={'weight': sql})
             .order_by(*order_fields))
            # .values(*result_fields))
     return recommended
+

@@ -5,15 +5,15 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_POST
 from herobase.models import Quest
-from herorecommend import recommend
+from herorecommend import recommend_top 
 
 
 def recommend(request):
-    user = User.objects.get(pk=randint(6,105))
-    quests = recommend(user)
+    user = User.objects.get(pk=randint(104,104))
+    quests = recommend_top(user, 4)
 #    paginator = Paginator(quests, 10)
 #    page = paginator.page(1)
-    page = {'object_list': quests[:10]}
+    page = {'object_list': quests}
     return render(request, 'herorecommend/benchmark.html', {'user': user, 'page': page})
 
 

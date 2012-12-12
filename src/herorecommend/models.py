@@ -8,11 +8,47 @@ from herobase.models import Quest
 from signals import like, apply, participate, participate_plus
 
 
-
+MIN_SELECTED_SKILLS = 5
+MIN_RATED_QUESTS = 5
 
 SELECTION_PROFILE_WEIGHT = 1.0
 
-SKILLS = ["example%d" % i for i in range(50)]
+# SKILLS = ["example%d" % i for i in range(50)]
+SKILLS = [
+    "outdoor_action",
+    "community",
+    "german",
+    "english",
+    "french",
+    "spanish",
+    "arabic",
+    "biology",
+    "chemistry",
+    "mathematics",
+    "economics",
+    "history", 
+    "sports", 
+    "cooking_baking", 
+    "shopping", 
+    "teaching", 
+    "handicrafts", 
+    "needlework", 
+    "crafts", 
+    "computers", 
+    "programming", 
+    "graphics_design", 
+    "design", 
+    "chores", 
+    "gardening", 
+    "electrics", 
+    "writing",
+    "handle_animals",
+    "video",
+    "audio",
+    "photography",
+    "transportation",
+    "driving",
+    ]
 
 # Rating stuff:
 # on event [apply/participate/cancel/...] -> rate quest for user
@@ -117,13 +153,28 @@ class UserCombinedProfile(SkillBase):
         selection_profile, created = UserSelectionProfile.objects.get_or_create(user=self.user)
         rating_profile, created = UserRatingProfile.objects.get_or_create(user=self.user)
 
+        if len(selection_profile.get_skills()) < MIN_SELECTED_SKILLS:
+            get_selected_skill = lambda skill: 0
+        else:
+            get_selected_skill = lambda skill: getattr(selection_profile, skill)
+
+        if self.user.ratings.count() < MIN_RATED_QUESTS:
+            get_rated_skill = lambda skill: 0
+        else:
+            get_rated_skill = lambda skill: getattr(rating_profile, skill)
+        
+        
+
         rating_norm = rating_profile.norm
         for skill in SKILLS:
-            if rating_norm:
-                weight = (getattr(selection_profile, skill) * SELECTION_PROFILE_WEIGHT +
-                          getattr(rating_profile, skill) / rating_norm)
+            if rating_norm and rating_norm > 1:
+                weight = (get_selected_skill(skill) * SELECTION_PROFILE_WEIGHT +
+                          get_rated_skill(skill) / rating_norm)
+            elif rating_norm:
+                weight = (get_selected_skill(skill) * SELECTION_PROFILE_WEIGHT +
+                          get_rated_skill(skill))
             else:
-                weight = getattr(selection_profile, skill) * SELECTION_PROFILE_WEIGHT
+                weight = get_selected_skill(skill) * SELECTION_PROFILE_WEIGHT
             setattr(self, skill, weight)
         self.save()
     update.alters_data = True
@@ -187,20 +238,18 @@ def create_user_rating_profiles(sender, instance=None, created=False, **kwargs):
         UserCombinedProfile.objects.get_or_create(user=instance)
 
 
-@receiver(like, sender=User)
+@receiver(like)
 def on_like(sender, quest, **kwargs):
-    QuestRating.rate(quest, quest, 'like')
+    QuestRating.rate(sender, quest, 'like')
 
-@receiver(apply, sender=User)
+@receiver(apply)
 def on_apply(sender, quest, **kwargs):
-    QuestRating.rate(quest, quest, 'apply')
+    QuestRating.rate(sender, quest, 'apply')
 
-@receiver(participate, sender=User)
+@receiver(participate)
 def on_participate(sender, quest, **kwargs):
-    QuestRating.rate(quest, quest, 'participate')
+    QuestRating.rate(sender, quest, 'participate')
 
-@receiver(participate_plus, sender=User)
+@receiver(participate_plus)
 def on_participate_plus(sender, quest, **kwargs):
-    QuestRating.rate(quest, quest, 'participate_plus')
-
-
+    QuestRating.rate(sender, quest, 'participate_plus')

@@ -30,7 +30,8 @@ from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyE
 from herobase.models import Quest, Adventure, CLASS_CHOICES, UserProfile
 import logging
 from django.db.models import Count, Sum
-
+import herorecommend.signals as recommender_signals 
+from herorecommend.models import MIN_SELECTED_SKILLS
 logger = logging.getLogger('youarehero.herobase')
 
 @login_required
@@ -235,10 +236,16 @@ def userprofile_privacy_settings(request):
 @login_required
 def userprofile_skill_settings(request):
     form = UserSkillEditForm(request.POST or None, instance=request.user.selected_skills)
+
     if form.is_valid():
         form.save()
         return HttpResponseRedirect('.')
-    return render(request, 'herobase/userprofile/skill_settings.html', {'form': form})
+
+    context = { 'selected': len(request.user.selected_skills.get_skills()),
+                'minimum': MIN_SELECTED_SKILLS,
+                'form': form,
+            }
+    return render(request, 'herobase/userprofile/skill_settings.html', context)
 
 @login_required
 def leader_board(request):
@@ -378,11 +385,11 @@ def confirm_keep_email(request, action):
 
 @require_POST
 @login_required
-def like(request, quest_id):
+def like_quest(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
     like, created = Like.objects.get_or_create(user=request.user, quest=quest)
 
     if created:
-        like.send(sender=request.user, quest=quest) 
+        recommender_signals.like.send(sender=request.user, quest=quest) 
 
     return HttpResponse(json.dumps({'success': True}), mimetype='application/json')
