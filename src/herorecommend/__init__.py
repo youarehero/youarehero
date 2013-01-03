@@ -1,4 +1,5 @@
 from django.core.cache import cache
+from django.db import connection
 from models import QuestRating, SKILLS
 from herobase.models import Quest
 from signals import like, apply, participate, participate_plus
@@ -40,18 +41,19 @@ def recommend(user, fields=('title', 'description', 'state', 'location', 'remote
     if queryset is None:
         queryset = Quest.objects.active()
 
-
     remote = queryset.filter(remote=True)
     if user.get_profile().has_location:
         local = filter_by_location(queryset.filter(remote=False),
             user.get_profile().latitude,
             user.get_profile().longitude)
         queryset = local | remote
+        local = True
     else:
         queryset = remote
+        local = False
 
     return recommend_for_user(user, fields=fields, queryset=queryset,
-            order_by=order_by)
+            order_by=order_by, local=local)
 
 def recommend_remote(user, fields=('title', 'description', 'state'),
         queryset=None, order_by=None):
@@ -60,7 +62,7 @@ def recommend_remote(user, fields=('title', 'description', 'state'),
 
     queryset = queryset.filter(remote=True)
     return recommend_for_user(user, fields=fields, queryset=queryset,
-            order_by=order_by)
+            order_by=order_by, local=False)
 
 def recommend_local(user, fields=('title', 'description', 'state'),
         queryset=None, order_by=None):
@@ -69,10 +71,11 @@ def recommend_local(user, fields=('title', 'description', 'state'),
 
     queryset = queryset.filter(remote=False)
     return recommend_for_user(user, fields=fields, queryset=queryset,
-            order_by=order_by)
+            order_by=order_by, local=True)
+
 
 def recommend_for_user(user, fields=('title', 'description', 'state'),
-        queryset=None, order_by=None):
+        local=False, queryset=None, order_by=None):
     if queryset is None:
         queryset = Quest.objects.active()
 
@@ -80,7 +83,9 @@ def recommend_for_user(user, fields=('title', 'description', 'state'),
     if order_by:
         order_fields.extend(order_by)
     
-    result_fields = ['weight', 'profile__average', 'id', 'pk', 'remote', 'distance']
+    result_fields = ['weight', 'profile__average', 'id', 'pk', 'remote']
+    if local:
+        result_fields.append('distance')
     if fields:
         result_fields = list(fields) + result_fields
 
@@ -103,6 +108,11 @@ def recommend_for_user(user, fields=('title', 'description', 'state'),
 
         sql = '(%s) / (%s)' % (denominator_sql, numerator_sql) # fixme DIV BY ZERO
         sql += '+ COALESCE(pow(2.718, -(sqrt(pow(110 * (latitude - %s), 2) + pow(70 * (longitude - %s), 2)))/10), 0)' % (user.get_profile().latitude, user.get_profile().longitude)
+        sql += '+ (random()/5)'
+
+    cursor = connection.cursor()
+    cursor.execute("SELECT SETSEED(%s)" % (1/user.pk))
+
     recommended = (queryset
             .select_related('profile')
             .extra(select={'weight': sql})
