@@ -233,9 +233,10 @@ def update_combined_profile(sender, instance=None, **kwargs):
 @receiver(post_save, sender=User)
 def create_user_rating_profiles(sender, instance=None, created=False, **kwargs):
     if created:
+        UserCombinedProfile.objects.get_or_create(user=instance)
         UserSelectionProfile.objects.get_or_create(user=instance)
         UserRatingProfile.objects.get_or_create(user=instance)
-        UserCombinedProfile.objects.get_or_create(user=instance)
+
 
 
 @receiver(like)
