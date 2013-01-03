@@ -1,8 +1,17 @@
 <li>
     <a href="{% url quest-detail quest.id %}" class="postit {{ quest.get_hero_class_display|lower }}">
-        <span class="pull-right">{{ quest.experience }} EP</span>
-        <h4>{{ quest.title|truncatechars:50 }}</h4>
-        <p>{{ quest.description|truncatechars:80 }}</p>
+        {# <span class="pull-right">{{ quest.experience }} EP</span> #}
+        <h4>{{ quest.title|truncatechars:12 }} {{ quest.weight|floatformat:"3" }}</h4>
+            <h5>
+        <span>
+            {{quest.profile.get_skills|join:', '}}{% if not quest.distance%} (remote)
+            {% else %} (local&nbsp;{{quest.distance|floatformat:"0"}}&nbsp;km){% endif %}
+        </span>
+            </h5>
+        <p>
+            {{ quest.description|truncatechars:60 }}
+            {# {{ quest.distance }} ({{ quest.latitude}}, {{ quest.longitude }}) #}
+        </p>
 
     </a>
 </li>

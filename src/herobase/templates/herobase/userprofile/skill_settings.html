@@ -1,0 +1,21 @@
+{% extends "herobase/layout/layout-3-6-3.html" %}
+{% load crispy_forms_tags i18n static %}
+
+{% block page_title %}
+    <h1>{% trans "Skills" %}</h1>
+{% endblock %}
+
+{% block submenu %}
+    {% include "herobase/userprofile/submenu.inc.html" %}
+{% endblock %}
+
+{% block content %}
+    {% if selected < minimum %}
+    <span class="label label-warning">
+    {% blocktrans %}You have only selected {{ selected }} skills. Please select
+    at least {{ minimum }} to get personalized results.{%endblocktrans%}
+    </span>
+
+    {% endif %}
+    {% crispy form %}
+{% endblock %}

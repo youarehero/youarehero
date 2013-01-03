@@ -175,11 +175,13 @@ INSTALLED_APPS = (
     # project specific installed apps
     'herobase',
     'heromessage',
+    'herorecommend',
     )
 
 TEST_APPS = (
     'herobase',
     'heromessage',
+    'herorecommend',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7

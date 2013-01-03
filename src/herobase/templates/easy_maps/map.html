@@ -10,10 +10,9 @@
         {% block html %}
             <!-- HTML map container -->
             <div id="map-canvas"
-
                  style="width: {{ width }}px; height: {{ height }}px;"
-
                  class="easy-map-googlemap">
+
                 {% block noscript %}
                     <noscript>
                         <img alt="Map of {{ map.address }}" src="http://maps.google.com/maps/api/staticmap?center={{ lat }},{{ long }}&zoom={{ zoom }}&markers=color:blue%C7{{ lat }},{{ long }}&size={{ width }}x{{ height }}&sensor=false">

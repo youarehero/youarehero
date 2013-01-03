@@ -1,0 +1,11 @@
+{% extends "herobase/layout/layout-12.html" %}
+
+
+{% block content %}
+    <h1>Recommendations for user {{ user }}</h1>
+    <ul>
+        {% for quest in page.object_list %}
+            <li>{{ quest.title }} {{ quest.weight }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

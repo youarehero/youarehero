@@ -2,6 +2,7 @@
 {% load static %}
 {% load i18n %}
 {% load endless %}
+{% load cache %}
 
 {% block head_javascript %}
     <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-tooltip.js"></script>
@@ -33,7 +34,7 @@
 {% endblock %}
 
 {% block content %}
-
+{# {% cache 60 quests request.user.pk filter.form.level filter.form.state filter.form.hero_class request.GET.page %} #}
     <div class="quest-list">
         <form action="" method="get">
         <div class="btn-toolbar">
@@ -60,19 +61,6 @@
             <span style="margin: -40px 0 0 20px;">{% show_pages %}</span>
         </div>
         </form>
-{##}
-{#        <p>{{ filter.form.level }}</p>#}
-{#        {{ filter.form.state }}#}
-        {#                    {{ filter.form.ordering }}#}
-{#        <p>{{ filter.form.ordering_field }}</p>                <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">#}
-{##}
-{#    </div>#}
-{#    </div>#}
-{##}
-{#    {{ filter.form.hero_class }}#}
-{#    {{ filter.form.title }}#}
-{##}
-{#    <input type="submit" value="#}
         <div class="tab-content" style="padding-bottom: 38px">
             <div class="tab-pane active" id="grid">
                 <ul class="questboard">
@@ -89,8 +77,6 @@
                     {% endfor %}
                 </ul>
             </div>
-
-
             <div class="tab-pane" id="table">
                 <table class="table table-bordered">
                     <thead>
@@ -119,4 +105,7 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+    {# {% endcache %} #}
 {% endblock %}

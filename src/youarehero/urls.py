@@ -9,6 +9,9 @@ autocomplete_light.autodiscover()
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^recommend/$', 'herorecommend.views.recommend', name='recommend'),
+    url(r'^recommend/rate/(?P<quest_id>\d+),(?P<rating>\d)/$', 'herorecommend.views.rate', name='rate'),
+
     url(r'^keep_email/(.+)/', 'herobase.views.confirm_keep_email', name='keep-email'),
 
     url(r'^quest/list/$', 'herobase.views.quest_list_view', name='quest-list'),
@@ -37,6 +40,7 @@ urlpatterns = patterns('',
     url(r'^hero_classes/$', 'herobase.views.hero_classes', name="hero_classes"),
 
     url(r'^profile/edit/$', 'herobase.views.userprofile_edit', name='userprofile-edit'),
+    url(r'^profile/edit/skills/$', 'herobase.views.userprofile_skill_settings', name='userprofile-skill-settings'),
     url(r'^profile/private/$', 'herobase.views.userprofile', name='userprofile-private'),
     url(r'^m/profile/private/$', 'herobase.views.userprofile', name='m-userprofile-private',
         kwargs={'template': 'herobase/userprofile/m/detail.html'}),

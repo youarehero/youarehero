@@ -7,16 +7,19 @@ and aggregate some data for use in templates.
 from datetime import datetime
 from itertools import chain
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.core import signing
 from django.core.exceptions import PermissionDenied
 from django.core.mail import send_mail
 from django.core.signing import Signer
-from django.utils import simplejson
+from django.utils import simplejson as json
 from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+from herorecommend import recommend_for_user, recommend, recommend_local
+from herorecommend.forms import UserSkillEditForm
 from utils import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.http import HttpResponseRedirect, Http404, HttpResponse, HttpResponseForbidden
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
@@ -27,13 +30,17 @@ from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyE
 from herobase.models import Quest, Adventure, CLASS_CHOICES, UserProfile
 import logging
 from django.db.models import Count, Sum
-
+import herorecommend.signals as recommender_signals 
+from herorecommend.models import MIN_SELECTED_SKILLS
 logger = logging.getLogger('youarehero.herobase')
 
 @login_required
 def quest_list_view(request, template='herobase/quest/list.html'):
     """Basic quest list, with django-filter app"""
-    f = QuestFilter(request.GET, queryset=Quest.objects.order_by('-created'))
+    if request.user.is_authenticated():
+        f = QuestFilter(request.GET, queryset=recommend(request.user, order_by=['-created']))
+    else:
+        f = QuestFilter(request.GET, queryset=Quest.objects.active().order_by('-created'))
     return render(request, template, {
         'filter': f,
         'quests': f.qs,
@@ -107,9 +114,9 @@ def hero_home_view(request, template='herobase/hero_home.html'):
     return render(request, template,
             {
              #'profile': user.get_profile(),
-             'quests_active': user.created_quests.active().order_by('-created'),
-             'quests_old': user.created_quests.inactive().order_by('-created'),
-             'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)
+             'quests_active': user.created_quests.active().order_by('-created')[:10],
+             'quests_old': user.created_quests.inactive().order_by('-created')[:10],
+             'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)[:10]
              })
 
 
@@ -120,9 +127,9 @@ def quest_my(request, template='herobase/quest/my.html'):
     return render(request, template,
             {
             #'profile': user.get_profile(),
-            'quests_active': user.created_quests.active().order_by('-created'),
-            'quests_old': user.created_quests.inactive().order_by('-created'),
-            'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)
+            'quests_active': user.created_quests.active().order_by('-created')[:10],
+            'quests_old': user.created_quests.inactive().order_by('-created')[:10],
+            'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)[:10]
         })
 
 @require_POST
@@ -194,9 +201,9 @@ def userprofile(request, username=None, template='herobase/userprofile/detail.ht
     return render(request, template, {
         'user': user,
         'rank': rank,
-        'colors': mark_safe(simplejson.dumps(colors)),
+        'colors': mark_safe(json.dumps(colors)),
         'completed_quest_count': user.adventures.filter(state=Adventure.STATE_OWNER_DONE).count(),
-        'hero_completed_quests': mark_safe(simplejson.dumps(hero_completed_quests)),
+        'hero_completed_quests': mark_safe(json.dumps(hero_completed_quests)),
     })
 
 
@@ -208,6 +215,7 @@ def userprofile_edit(request):
     if form.is_valid():
         form.save()
         messages.success(request, 'Profile successfully changed')
+        return HttpResponseRedirect(reverse("userprofile-edit"))
     return render(request, 'herobase/userprofile/edit.html', {
         'form': form
     })
@@ -226,20 +234,38 @@ def userprofile_privacy_settings(request):
     })
 
 @login_required
+def userprofile_skill_settings(request):
+    form = UserSkillEditForm(request.POST or None, instance=request.user.selected_skills)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('.')
+
+    context = { 'selected': len(request.user.selected_skills.get_skills()),
+                'minimum': MIN_SELECTED_SKILLS,
+                'form': form,
+            }
+    return render(request, 'herobase/userprofile/skill_settings.html', context)
+
+@login_required
 def leader_board(request):
     """Render a view of the top heroes by rank."""
     top_creators = User.objects.filter(created_quests__state=Quest.STATE_OWNER_DONE).annotate(quest_count=Count('created_quests')).filter(quest_count__gt=0).order_by('-quest_count')
-    local = None
-    if request.user.is_authenticated():
-        total, local = request.user.get_profile().get_related_leaderboard()
-    else:
-        total = User.objects.select_related().filter(userprofile__experience__gt=0).order_by('-userprofile__experience')
 
-    return render(request, "herobase/leader_board.html", {'total': total,
-                                                          'local': local,
-                                                         'top_creators': top_creators,
-                                                         'myname': request.user.username
-                                                         })
+    if request.user.is_authenticated():
+        global_board = request.user.get_profile().get_local_relative_leaderboard()
+        local_board = request.user.get_profile().get_local_relative_leaderboard()
+    else:
+        global_board = User.objects.select_related().filter(userprofile__experience__gt=0).order_by('-userprofile__experience')
+        local_board = None
+
+    return render(request, "herobase/leader_board.html", {
+        'global_board': global_board,
+        'local_board': local_board,
+        'top_creators': top_creators,
+    })
+
+
 @login_required
 def random_stats(request):
     """Some general stats"""
@@ -282,7 +308,7 @@ def random_stats(request):
         'colors1': colors1,
         }
     for key in context:
-        context[key] = mark_safe(simplejson.dumps(list(context[key])))
+        context[key] = mark_safe(json.dumps(list(context[key])))
 
     context.update({
         'quests_completed': user.adventures.filter(quest__state=Quest.STATE_OWNER_DONE).count()
@@ -357,5 +383,13 @@ def confirm_keep_email(request, action):
         profile.save()
         return HttpResponse("Keeping email for %s" % email, mimetype='text/plain')
 
+@require_POST
+@login_required
+def like_quest(request, quest_id):
+    quest = get_object_or_404(Quest, pk=quest_id)
+    like, created = Like.objects.get_or_create(user=request.user, quest=quest)
 
+    if created:
+        recommender_signals.like.send(sender=request.user, quest=quest) 
 
+    return HttpResponse(json.dumps({'success': True}), mimetype='application/json')

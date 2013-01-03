@@ -3,7 +3,6 @@ Custom Form Widgets for django models.
 """
 
 from django import forms
-from django.db import models
 from django.utils.safestring import mark_safe
 
 DEFAULT_WIDTH = 400
@@ -12,8 +11,28 @@ DEFAULT_HEIGHT = 300
 DEFAULT_LAT = 55.16 #hmm, i like egypt
 DEFAULT_LNG = 61.4
 
-
 class LocationWidget(forms.TextInput):
+    def __init__(self, latitude_field, longitude_field, granularity_field, attrs=None):
+        super(LocationWidget, self).__init__(attrs=attrs)
+        self.latitude_field = latitude_field
+        self.longitude_field = longitude_field
+        self.granularity_field = granularity_field
+
+    def render(self, name, value, attrs=None):
+        attrs = attrs or {}
+        attrs.update({'data-is-address-field': "true",
+                      'data-latitude-field': self.latitude_field,
+                      'data-longitude-field': self.longitude_field,
+                      'data-granularity-field': self.granularity_field,
+        })
+
+        return super(LocationWidget, self).render(name, value, attrs=attrs)
+
+    class Media:
+        js = ("https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false",
+              "js/location_widget.js",)
+
+class OldLocationWidget(forms.TextInput):
     """Custom geolocation widget."""
     def __init__(self, *args, **kw):
 
