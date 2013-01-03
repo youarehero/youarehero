@@ -19,9 +19,6 @@ def filter_by_location(queryset, latitude, longitude, radius_km=50):
 
 def recommend_top(user, n, fields=('title', 'description', 'state', 'location',
         'remote', 'latitude', 'longitude'), queryset=None, order_by=None):
-
-    above_average = [skill for skill in SKILLS if
-            getattr(user.combined_profile, skill) > user.combined_profile.average]
     quests = recommend(user, fields=fields, queryset=queryset)[:3*n]
 
     suggestions = [] 
@@ -32,9 +29,6 @@ def recommend_top(user, n, fields=('title', 'description', 'state', 'location',
         print
         
     return suggestions
-
-
-
 
 def recommend(user, fields=('title', 'description', 'state', 'location', 'remote', 'latitude', 'longitude'),
         queryset=None, order_by=None):
