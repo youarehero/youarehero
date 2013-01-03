@@ -1,15 +1,20 @@
-{% load i18n %}
+{% load i18n static %}
 
-{% if request.user.is_authenticated %}
-    <ul>
-        <li><a href="{% url message-list %}">
-            <i class="icon-envelope-large">
-                {% if request.user.get_profile.unread_messages_count != 0 %}
-                    <span class="badge badge-orange"> {{ request.user.get_profile.unread_messages_count }}</span>
-                {% endif %}
-            </i>
-        </a></li>
-        <li><a href="{% url django.contrib.auth.views.logout %}"><span class="stripe">Logout</span></a></li>
-    </ul>
-{% endif %}
+{# Username and Avatar #}
+<ul class="icons pull-right">
+    <li class="small"><a href="{% url auth_logout %}"><i class="icon-off"></i> Logout</a></li>
+</ul>
+<div class="avatar-small pull-right">
+    <img src="{{ request.user.get_profile.avatar }}" alt="{{ request.user.username }}">
+
+    <h4><a href="{% url userprofile-private %}">{{ request.user.username }}</a></h4>
+    {#  <span class="{{ request.user.get_profile.get_hero_class_display|lower }}">{{ request.user.get_profile.get_hero_class_display }}</span><br>#}
+    <span class="">{% trans "Level" %}: {{ request.user.get_profile.level }}</span>
+
+
+    <div class="progress" rel="tooltip" title="{% trans "XP" %}: {{ request.user.get_profile.experience }}">
+        <div class="bar {{ request.user.get_profile.get_hero_class_display|lower }}" style="width: {{ request.user.get_profile.relative_level_experience }}%;"></div>
+    </div>
+</div>
+
 
