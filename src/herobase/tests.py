@@ -269,7 +269,6 @@ class AuthenticatedIntegrationTest(TestCase):
         """A user should be able to visit the quest-list-view."""
         quest = create_quest(title='aquest')
         response = self.client.get(reverse('quest-list'))
-        print response
         self.assertContains(response, 'aquest')
 
     def test_quest_detail(self):
