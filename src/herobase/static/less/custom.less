@@ -6,11 +6,14 @@
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
+h1 {
+  line-height: 40px;
+}
 
 // Logo
 .logo {
   img {
-//    width: 220px;
+  //    width: 220px;
   }
 }
 
@@ -58,20 +61,19 @@ body {
 
 #page-container {
   width: 600px;
-  margin: 0 0px 0 0px;
+  margin: 0;
 }
 
 #page-title {
   padding:  0 10px;
-  color: @lightTextColor;
   font-variant: small-caps;
-  background-color: @headerBackground;
+  background-color: @baseBackgroundHeader;
+  .clearfix;
 }
 #submenu {
   padding:  0 10px;
-  color: @lightTextColor;
   font-variant: small-caps;
-  background-color: @headerBackground;
+  background-color: @baseBackgroundHeader;
   ul.page-tabs {
     margin-left: -10px;
     margin-bottom: 0px;
@@ -82,30 +84,28 @@ body {
       margin-right: 20px;
       background: rgba(0, 0, 0, 0.3);
       padding: 10px;
+      line-height: 20px;
     }
     a {
-      color: @lightTextColor;
+      color: @textColor;
     }
     .clearfix;
   }
+  .clearfix;
 }
 #page-content {
-  padding:  0 10px;
-  color: @lightTextColor;
-  background-color: @contentBackground;
+  padding:  10px;
+  background-color: @baseBackground;
+  .clearfix;
 }
+
+.help-block, .help-inline {
+  color: @grayLight;
+}
+
 
 // Icons
 //------------------------
-
-ul.grid {
-  list-style: none;
-  margin: 0 0 0 -20px;
-  li {
-    float: left;
-    margin: 0px 0px 20px 20px;
-  }
-}
 
 .icon-home { background: url("../img/icons_80.png") 0 0 no-repeat transparent; }
 .icon-billboard { background: url("../img/icons_80.png") -80px 0 no-repeat transparent; }
@@ -132,15 +132,11 @@ ul.grid {
   display: block;
   width: 80px;
   height: 80px;
-  color: @iconFontColor;
-  background-color: @iconBackground;
   font-style: normal;
   font-family: 'Open Sans Condensed', sans-serif;
   font-variant: small-caps;
   white-space: nowrap;
-  //
   .ie7-restore-right-whitespace();
-//  line-height: 32px;
   span {
     left: 5px;
     position: relative;
@@ -157,12 +153,39 @@ ul.grid {
   }
 }
 
-ul.content-grid {
-  margin-left: -10px;
-  margin-top: 10px;
+// Grids
+
+ul.grid {
+  list-style: none;
+  margin: 0 0 0 -20px;
   li {
-    background: #ddd;
-    color: @textColor;
+    float: left;
+    margin: 0px 0px 20px 20px;
+  }
+}
+
+ul.menu-grid {
+  li {
+    background-color: @menuBackground;
+    a {
+      color: @menuTextColor;
+    }
+    color: @menuTextColor;
+    &.on,
+    &:hover {
+      background-color: @menuBackgroundHover;
+      a {
+        color: @menuTextColorHover;
+      }
+    }
+  }
+}
+
+ul.small-grid {
+  list-style: none;
+  margin-left: -10px;
+  li {
+    float: left;
     margin: 0px 0px 10px 10px;
     h3, p {
       margin-left: 6px;
@@ -174,10 +197,10 @@ ul.content-grid {
     &.mini { width: 185px; }
     &.large { width: 365px; }
   }
-  &.icons-top li { margin-top: 20px; }
+  &.icons-top li { margin-top: 10px; }
   &.icons-right li { margin-right: 10px; }
   &.icons-bottom li { margin-bottom: 20px; }
-  &.icons-left li { margin-left: 30px; }
+  &.icons-left li { margin-left: 20px; }
   .border-icons-top-left,
   .border-icons-top-right,
   .border-icons-bottom-right,
@@ -189,9 +212,6 @@ ul.content-grid {
     left:  -30px;
     top: -10px;
     li {
-      i {
-        background-color: #bbb;
-      }
       margin: 0 0 0 10px;
       padding: 0;
       width: 40px;
@@ -202,13 +222,28 @@ ul.content-grid {
     left: 10px;
     float: right;
   }
-
   .border-icons-bottom-right,
   .border-icons-bottom-left {
     top:  10px;
   }
   .clearfix;
 }
+
+ul.box-grid {
+  li {
+    background: @boxBackground;
+    color: @boxTextColor;
+  }
+  .border-icons-top-left,
+  .border-icons-top-right,
+  .border-icons-bottom-right,
+  .border-icons-bottom-left {
+    li {
+      background-color: @boxIconBackground;
+    }
+  }
+}
+
 // Badges - little number of notifications
 .badge {
   border-radius: 0px;
@@ -225,10 +260,39 @@ ul.content-grid {
   left: 3px;
 }
 
+// Forms
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"],
+input[type="datetime-local"], input[type="date"], input[type="month"],
+input[type="time"], input[type="week"], input[type="number"],
+input[type="email"], input[type="url"], input[type="search"],
+input[type="tel"], input[type="color"], .uneditable-input {
+//  border: 0px none;
+//  .border-radius(0);
+}
+
+form {
+  background: @grayLighter;
+  font-variant: small-caps;
+}
+.select2-container .select2-choice {
+  border: 0px none;
+  .border-radius(0);
+  width: 212px;
+  height: 28px;
+  line-height: 28px;
+}
+.form-actions {
+  border: 0px none;
+  .btn {
+    float: right;
+  }
+}
+
 // Avatar
 //------------------------
 .avatar-small {
-  background: @iconBackground;
+  background: @baseBackground;
   padding: 5px;
   width: 110px;
   margin-right: 0px;
@@ -373,7 +437,7 @@ ul.questboard {
 #team_hints {
   position: fixed;
   bottom: 0;
-  left: 30%;
+  right: 0;
   background: @grayDark;
   a {
     margin: 2px 10px;

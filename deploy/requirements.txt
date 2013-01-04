@@ -8,3 +8,4 @@ easy-thumbnails==1.0.3
 Pillow==1.7.7
 -e git://github.com/alex/django-filter.git#egg=django-filter
 geopy
+django-activelink
