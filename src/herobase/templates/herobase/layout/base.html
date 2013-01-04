@@ -10,7 +10,7 @@
     <link href="/static/img/favicon.ico" rel="icon" type="image/x-icon">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+{#    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>#}
 
     <!-- Le styles -->
 
@@ -51,8 +51,8 @@
                         <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">
                     </a>
                     {% if request.user.is_authenticated %}
-                        <ul class="icons pull-right">
-                            <li class="small"><a href="{% url auth_logout %}"><i class="icon-off"></i> Logout</a></li>
+                        <ul class="grid pull-right">
+                            <li><a href="{% url auth_logout %}"><i class="icon-logout icon-small"><span>{% trans "Logout" %}</span></i></a></li>
                         </ul>
                     {% endif %}
                     {% block site_header %}
@@ -75,7 +75,7 @@
             {% endblock %}
             {% block page_container %}
                 <div id="page-container" class="span6 row">
-                    <div id="page-header">
+                    <div id="page-title">
                         {% block page_title %}<h1>You are HERO</h1>{% endblock %}
                     </div>
                     <div id="submenu">
@@ -93,7 +93,7 @@
                         {% if request.user.is_authenticated %}
                             {% include "herobase/userprofile/detail_mini.html" %}
                             <div id="butler">
-                                <img src="{% get_static_prefix %}img/butler/butler_120.png" alt="Butler">
+                                <img src="{% get_static_prefix %}img/butler.png" alt="Butler">
                             </div>
                         {% endif %}
                     {% endblock %}

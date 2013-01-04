@@ -25,8 +25,13 @@
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
-.logo img {
-  width: 220px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
 }
 #butler {
   margin-top: 20px;
@@ -36,7 +41,7 @@ body {
   background: url("../img/city.jpg") no-repeat scroll 50% 0 #333333;
 }
 .sidebar-left {
-  margin-right: 0px;
+  margin-right: 20px;
 }
 .sidebar-right {
   float: left;
@@ -51,69 +56,174 @@ body {
   margin: 20px 0px 20px -20px;
 }
 #page-container {
+  width: 600px;
+  margin: 0 0px 0 0px;
+}
+#page-title {
   padding: 0 10px;
+  color: #eeeeee;
+  font-variant: small-caps;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+#submenu {
+  padding: 0 10px;
+  color: #eeeeee;
+  font-variant: small-caps;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+#submenu ul.page-tabs {
+  margin-left: -10px;
+  margin-bottom: 0px;
+  list-style: none;
+  *zoom: 1;
+}
+#submenu ul.page-tabs li {
+  display: block;
+  float: left;
+  margin-right: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+}
+#submenu ul.page-tabs a {
+  color: #eeeeee;
+}
+#submenu ul.page-tabs:before,
+#submenu ul.page-tabs:after {
+  display: table;
+  content: "";
+}
+#submenu ul.page-tabs:after {
+  clear: both;
+}
+#page-content {
+  padding: 0 10px;
+  color: #eeeeee;
   background-color: rgba(0, 0, 0, 0.35);
 }
-#page-container h1 {
-  padding: 0 10px;
-}
-ul.icons {
+ul.grid {
   list-style: none;
   margin: 0 0 0 -20px;
 }
-ul.icons li {
+ul.grid li {
   float: left;
-  background: transparent;
   margin: 0px 0px 20px 20px;
 }
-ul.icons li a {
-  color: #eeeeee;
-}
-ul.icons li [class^="icon-custom-"],
-ul.icons li [class*=" icon-custom-"] {
-  margin: 0px 0px 0px 0px;
-}
-ul.icons li.small {
-  width: 50px;
-  height: 50px;
-}
-.menu-icon-dashboard {
+.icon-dashboard {
   background: url("../img/icons_80.png") 0 0 no-repeat transparent;
 }
-.menu-icon-billboard {
+.icon-billboard {
   background: url("../img/icons_80.png") -80px 0 no-repeat transparent;
 }
-.menu-icon-messages {
+.icon-messages {
   background: url("../img/icons_80.png") -160px 0 no-repeat transparent;
 }
-.menu-icon-calendar {
+.icon-calendar {
   background: url(../img/icons_80.png) -240px 0 no-repeat transparent;
 }
-.menu-icon-new {
+.icon-new {
   background: url(../img/icons_80.png) -320px 0 no-repeat transparent;
 }
-.menu-icon-my-quests {
+.icon-my-quests {
   background: url(../img/icons_80.png) -400px 0 no-repeat transparent;
 }
-[class^="menu-icon-"],
-[class*="menu-icon-"] {
+.icon-delete {
+  background: url("../img/operations.png") 0 0 no-repeat transparent;
+}
+.icon-edit {
+  background: url("../img/operations.png") -40px 0 no-repeat transparent;
+}
+.icon-arrow {
+  background: url("../img/operations.png") -80px 0 no-repeat transparent;
+}
+.icon-mail {
+  background: url("../img/operations.png") -120px 0 no-repeat transparent;
+}
+.icon-time-short {
+  background: url("../img/operations.png") -160px 0 no-repeat transparent;
+}
+.icon-time-middle {
+  background: url("../img/operations.png") -200px 0 no-repeat transparent;
+}
+.icon-time-long {
+  background: url("../img/operations.png") -240px 0 no-repeat transparent;
+}
+.icon-logout {
+  background: url("../img/operations.png") -280px 0 no-repeat transparent;
+}
+[class^="icon-"],
+[class*="icon-"] {
   margin: 0px 0px 0px 0px;
   display: block;
   width: 80px;
   height: 80px;
+  color: #eeeeee;
+  background-color: rgba(0, 0, 0, 0.25);
   font-style: normal;
   font-family: 'Open Sans Condensed', sans-serif;
+  font-variant: small-caps;
+  white-space: nowrap;
   *margin-right: .3em;
 }
-[class^="menu-icon-"]:last-child,
-[class*="menu-icon-"]:last-child {
+[class^="icon-"]:last-child,
+[class*="icon-"]:last-child {
   *margin-left: 0;
 }
-[class^="menu-icon-"] span,
-[class*="menu-icon-"] span {
+[class^="icon-"] span,
+[class*="icon-"] span {
   left: 5px;
   position: relative;
   top: 60px;
+}
+.icon-small {
+  width: 40px;
+  height: 40px;
+}
+.icon-small span {
+  left: 0px;
+  top: 40px;
+}
+ul.content-grid {
+  *zoom: 1;
+}
+ul.content-grid li {
+  background: rgba(255, 255, 255, 0.5);
+  margin: 20px 10px 20px 30px;
+  padding-left: 10px;
+}
+ul.content-grid .border-icons-top-left,
+ul.content-grid .border-icons-top-right,
+ul.content-grid .border-icons-bottom-right,
+ul.content-grid .border-icons-bottom-left {
+  list-style: none;
+  margin: 0;
+  position: relative;
+  float: left;
+  left: -30px;
+  top: -10px;
+}
+ul.content-grid .border-icons-top-left li,
+ul.content-grid .border-icons-top-right li,
+ul.content-grid .border-icons-bottom-right li,
+ul.content-grid .border-icons-bottom-left li {
+  margin: 0 0 0 10px;
+  padding: 0;
+}
+ul.content-grid .border-icons-top-right,
+ul.content-grid .border-icons-bottom-right {
+  left: 10px;
+  float: right;
+}
+ul.content-grid .border-icons-bottom-right,
+ul.content-grid .border-icons-bottom-left {
+  top: 10px;
+}
+ul.content-grid:before,
+ul.content-grid:after {
+  display: table;
+  content: "";
+}
+ul.content-grid:after {
+  clear: both;
 }
 .badge {
   border-radius: 0px;
@@ -122,14 +232,14 @@ ul.icons li.small {
   font-size: 10px;
   background-color: #d3412c;
 }
-[class^="icon-custom"] .badge,
-[class*="icon-custom"] .badge {
+[class^="icon-"] .badge,
+[class*="icon-"] .badge {
   position: relative;
   bottom: -8px;
   left: 3px;
 }
 .avatar-small {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.25);
   padding: 5px;
   width: 110px;
   margin-right: 0px;

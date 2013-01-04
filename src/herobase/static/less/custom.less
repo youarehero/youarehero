@@ -3,19 +3,18 @@
 @import "../bootstrap/less/variables.less";
 @import "../bootstrap/less/mixins.less";
 
-// Navigation
-
-
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
 
 // Logo
 .logo {
   img {
-    width: 220px;
+//    width: 220px;
   }
 }
 
 // Butler
-
 #butler {
   margin-top: 20px;
 }
@@ -29,7 +28,7 @@ body {
 }
 
 .sidebar-left {
-  margin-right: 0px;
+  margin-right: 20px;
 }
 .sidebar-right {
   float: left;
@@ -50,58 +49,85 @@ body {
 
 
 #page-container {
-  padding:  0 10px;
-//  margin-left: -10px;
-  background-color: @contentBackground;
-  h1 {
-    padding: 0 10px;
-  }
+  width: 600px;
+  margin: 0 0px 0 0px;
 }
 
-
+#page-title {
+  padding:  0 10px;
+  color: @lightTextColor;
+  font-variant: small-caps;
+  background-color: @headerBackground;
+}
+#submenu {
+  padding:  0 10px;
+  color: @lightTextColor;
+  font-variant: small-caps;
+  background-color: @headerBackground;
+  ul.page-tabs {
+    margin-left: -10px;
+    margin-bottom: 0px;
+    list-style: none;
+    li {
+      display: block;
+      float: left;
+      margin-right: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 10px;
+    }
+    a {
+      color: @lightTextColor;
+    }
+    .clearfix;
+  }
+}
+#page-content {
+  padding:  0 10px;
+  color: @lightTextColor;
+  background-color: @contentBackground;
+}
 
 // Icons
 //------------------------
 
-ul.icons {
+ul.grid {
   list-style: none;
   margin: 0 0 0 -20px;
   li {
-  //    padding: 5px;
     float: left;
-  //    width: 70px;
-  //    height: 70px;
-    background: @iconBackground;
-    a {color: @iconFontColor;}
     margin: 0px 0px 20px 20px;
-
-    [class^="icon-custom-"],
-    [class*=" icon-custom-"] {
-      margin: 0px 0px 0px 0px;
-    }
-    &.small {
-      width: 50px;
-      height: 50px;
-    }
   }
 }
 
-.menu-icon-dashboard { background: url("../img/icons_80.png") 0 0 no-repeat transparent; }
-.menu-icon-billboard { background: url("../img/icons_80.png") -80px 0 no-repeat transparent; }
-.menu-icon-messages { background: url("../img/icons_80.png") -160px 0 no-repeat transparent; }
-.menu-icon-calendar { background: url(../img/icons_80.png) -240px 0 no-repeat transparent; }
-.menu-icon-new { background: url(../img/icons_80.png) -320px 0 no-repeat transparent; }
-.menu-icon-my-quests { background: url(../img/icons_80.png) -400px 0 no-repeat transparent; }
+.icon-dashboard { background: url("../img/icons_80.png") 0 0 no-repeat transparent; }
+.icon-billboard { background: url("../img/icons_80.png") -80px 0 no-repeat transparent; }
+.icon-messages { background: url("../img/icons_80.png") -160px 0 no-repeat transparent; }
+.icon-calendar { background: url(../img/icons_80.png) -240px 0 no-repeat transparent; }
+.icon-new { background: url(../img/icons_80.png) -320px 0 no-repeat transparent; }
+.icon-my-quests { background: url(../img/icons_80.png) -400px 0 no-repeat transparent; }
 
+.icon-delete { background: url("../img/operations.png") 0 0 no-repeat transparent; }
+.icon-edit { background: url("../img/operations.png") -40px 0 no-repeat transparent; }
+.icon-arrow { background: url("../img/operations.png") -80px 0 no-repeat transparent; }
+.icon-mail { background: url("../img/operations.png") -120px 0 no-repeat transparent; }
+.icon-time-short { background: url("../img/operations.png") -160px 0 no-repeat transparent; }
+.icon-time-middle { background: url("../img/operations.png") -200px 0 no-repeat transparent; }
+.icon-time-long { background: url("../img/operations.png") -240px 0 no-repeat transparent; }
+.icon-logout { background: url("../img/operations.png") -280px 0 no-repeat transparent; }
 
-[class^="menu-icon-"],
-[class*="menu-icon-"] {
+[class^="icon-"],
+[class*="icon-"] {
   margin: 0px 0px 0px 0px;
   display: block;
   width: 80px;
   height: 80px;
+  color: @iconFontColor;
+  background-color: @iconBackground;
   font-style: normal;
   font-family: 'Open Sans Condensed', sans-serif;
+  font-variant: small-caps;
+  white-space: nowrap;
+  //
   .ie7-restore-right-whitespace();
 //  line-height: 32px;
   span {
@@ -111,6 +137,48 @@ ul.icons {
   }
 }
 
+.icon-small {
+  width: 40px;
+  height: 40px;
+  span {
+    left: 0px;
+    top: 40px;
+  }
+}
+
+ul.content-grid {
+  li {
+    background: rgba(255,255,255,0.5);
+    margin: 20px 10px 20px 30px;
+    padding-left: 10px;
+  }
+  .border-icons-top-left,
+  .border-icons-top-right,
+  .border-icons-bottom-right,
+  .border-icons-bottom-left {
+    list-style: none;
+    margin:  0;
+    position: relative;
+    float: left;
+    left:  -30px;
+    top: -10px;
+    li {
+      margin: 0 0 0 10px;
+      padding: 0;
+    }
+  }
+  .border-icons-top-right,
+  .border-icons-bottom-right {
+    left: 10px;
+    float: right;
+  }
+
+  .border-icons-bottom-right,
+  .border-icons-bottom-left {
+    top:  10px;
+  }
+  .clearfix;
+}
 // Badges - little number of notifications
 .badge {
   border-radius: 0px;
@@ -120,8 +188,8 @@ ul.icons {
   background-color: @action;
 }
 
-[class^="icon-custom"] .badge,
-[class*="icon-custom"] .badge {
+[class^="icon-"] .badge,
+[class*="icon-"] .badge {
   position: relative;
   bottom: -8px;
   left: 3px;
