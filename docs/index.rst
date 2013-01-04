@@ -24,6 +24,7 @@ Contents
    overview
    theming
    howtos
+   design_notes
 
 Source code documentation
 =========================
