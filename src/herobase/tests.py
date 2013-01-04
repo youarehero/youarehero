@@ -5,14 +5,15 @@ These will pass when you run "manage.py test".
 Some tests...
 """
 from django.contrib.auth.models import User
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ValidationError
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import RequestFactory, Client
 from django.test.testcases import SimpleTestCase, TransactionTestCase
 from django.test.utils import override_settings
-from herobase import models
+from herobase import models, quest_livecycle
 from herobase.models import Quest, Adventure, UserProfile
+import herobase.quest_livecycle
 from herobase.test_factories import create_adventure
 from test_factories import create_quest, create_user
 
@@ -29,178 +30,92 @@ class QuestTest(TestCase):
     """
     Basic Unittests for Quest cycle. (applay, accept, cancel, done, ...)
     """
-
-    def test_invalid_action_raises_value_error(self):
-        """Not allowed action should raise an exception."""
-        quest = create_quest()
-        request = fake_request(quest.owner)
-        with self.assertRaises(ValueError):
-            quest.process_action(request, 'nosuchaction')
-
     def test_owner_cancel(self):
         """If there is a open quest, the owner should be able to cancel that quest."""
         quest = create_quest()
-        request = fake_request(quest.owner)
-        self.assertIn('cancel', quest.valid_actions_for(request))
-        quest.process_action(request, 'cancel')
-        self.assertTrue(quest.is_canceled())
-
-    def test_other_cancel_not_valid(self):
-        """If I'm not the owner, I should not be able to cancel the quest."""
-        quest = create_quest()
-        not_owner = create_user()
-        request = fake_request(not_owner)
-        self.assertNotIn('cancel', quest.valid_actions_for(request))
-
-    def test_other_cancel_denied(self):
-        """If I'm not the owner and I try to process the "cancel" action, I get an exception."""
-        quest = create_quest()
-        not_owner = create_user()
-        request = fake_request(not_owner)
-        with self.assertRaises(PermissionDenied):
-            quest.process_action(request, 'cancel')
-        self.assertFalse(quest.is_canceled())
+        quest_livecycle.owner_quest_cancel(quest)
+        self.assertTrue(quest.canceled)
 
     def test_hero_apply(self):
         """If there is a open quest, and I'm not the owner, I should be able to apply for that quest."""
         quest = create_quest()
         hero = create_user()
-        request = fake_request(hero)
-        self.assertIn('hero_apply', quest.valid_actions_for(request))
-        quest.process_action(request, 'hero_apply')
-        self.assertIn(hero, quest.heroes.all())
+        quest_livecycle.hero_quest_apply(quest, hero)
 
     def test_hero_apply_full_not_valid(self):
         """If the quest is full, I should not be able to apply for the quest."""
-        quest = create_quest(state=Quest.STATE_FULL)
-        hero = create_user()
-        request = fake_request(hero)
-        self.assertNotIn('hero_apply', quest.valid_actions_for(request))
-        with self.assertRaises(PermissionDenied):
-            quest.process_action(request, 'hero_apply')
-        self.assertNotIn(hero, quest.heroes.all())
+        quest = create_quest(max_heroes=1)
+        hero0 = create_user()
+        hero1 = create_user()
+
+        quest_livecycle.hero_quest_apply(quest, hero0)
+        quest_livecycle.hero_quest_apply(quest, hero1)
+
+        quest_livecycle.owner_hero_accept(quest, hero0)
+
+        with self.assertRaises(ValidationError):
+            quest_livecycle.owner_hero_accept(quest, hero1)
 
     def test_hero_cancel_not_valid(self):
         """If I'm a hero, not participating in a quest, I should not be able to cancel."""
         quest = create_quest()
         hero = create_user()
-        request = fake_request(hero)
-        self.assertNotIn('hero_cancel', quest.valid_actions_for(request))
-        with self.assertRaises(PermissionDenied):
-            quest.process_action(request, 'hero_cancel')
+
+        with self.assertRaises(ValidationError):
+            quest_livecycle.hero_quest_cancel(quest, hero)
+
 
     def test_hero_cancel(self):
         """If I'm a hero, participating in a quest, I should be able to cancel my participation."""
         quest = create_quest()
         adventure = create_adventure(quest)
-        request = fake_request(adventure.user)
-        self.assertIn('hero_cancel', quest.valid_actions_for(request))
-        quest.process_action(request, 'hero_cancel')
-        self.assertNotIn(adventure.user, quest.active_heroes())
+        quest_livecycle.hero_quest_cancel(quest, adventure.user)
+        self.assertTrue(quest.adventure_set.get(user=adventure.user).canceled)
 
     def test_owner_accept(self):
         """If I'm the owner of a open quest, and a hero is applying, I should be able to accept her."""
         quest = create_quest()
         adventure = create_adventure(quest)
-        request = fake_request(quest.owner)
-        self.assertIn('accept', adventure.valid_actions_for(request))
-        adventure.process_action(request, 'accept')
+        quest_livecycle.owner_hero_accept(quest, adventure.user)
         self.assertIn(adventure.user, quest.accepted_heroes())
 
     def test_owner_done_no_heroes(self):
         """If there was no hero accepted for my quest, I can't mark the quest as "done"."""
         quest = create_quest()
-        request = fake_request(quest.owner)
-        self.assertNotIn('done', quest.valid_actions_for(request))
-        with self.assertRaises(PermissionDenied):
-            quest.process_action(request, 'done')
-        self.assertFalse(quest.is_done())
+        with self.assertRaises(ValidationError):
+            quest_livecycle.owner_quest_done(quest)
+        self.assertFalse(quest.done)
 
     def test_owner_done_valid(self):
         """If there is at least one accepted hero for my quest, I should be able to mark the quest as "done"."""
         quest = create_quest()
-        request = fake_request(quest.owner)
-        adventure = create_adventure(quest, state=Adventure.STATE_OWNER_ACCEPTED)
-        self.assertIn('done', quest.valid_actions_for(request))
-        quest.process_action(request, 'done')
-        self.assertTrue(quest.is_done())
+        adventure = create_adventure(quest, accepted=True)
+        quest_livecycle.owner_quest_done(quest)
+        self.assertTrue(quest.done)
 
     def test_owner_done_done_not_valid(self):
         """If my quest is already marked as "done", i should not be able to mark it again."""
-        quest = create_quest(state=Quest.STATE_OWNER_DONE)
-        request = fake_request(quest.owner)
-        adventure = create_adventure(quest, state=Adventure.STATE_OWNER_ACCEPTED)
-        self.assertNotIn('done', quest.valid_actions_for(request))
-        with self.assertRaises(PermissionDenied):
-            quest.process_action(request, 'done')
-        self.assertTrue(quest.is_done())
+        quest = create_quest(done=True)
+        adventure = create_adventure(quest, accepted=True)
+        with self.assertRaises(ValidationError):
+            quest_livecycle.owner_quest_done(quest)
+        self.assertTrue(quest.done)
 
-    def test_owner_refuse(self):
-        """The owner is able to refuse a applying hero."""
+    def test_owner_reject(self):
+        """The owner is able to reject a applying hero."""
         quest = create_quest()
         adventure = create_adventure(quest)
-        request = fake_request(quest.owner)
-        self.assertIn('refuse', adventure.valid_actions_for(request))
-        adventure.process_action(request, 'refuse')
+        quest_livecycle.owner_hero_reject(quest, adventure.user)
         self.assertNotIn(adventure.user, quest.applying_heroes())
         self.assertNotIn(adventure.user, quest.accepted_heroes())
 
 
     def test_adventure_done(self):
         """A hero should be able to mark his adventure as "done", if he was accepted."""
-        quest = create_quest(state=Quest.STATE_OWNER_DONE)
-        adventure = create_adventure(quest, state=Adventure.STATE_OWNER_ACCEPTED)
-        request = fake_request(quest.owner)
-        self.assertIn('done', adventure.valid_actions_for(request))
-        adventure.process_action(request, 'done')
-        self.assertEqual(adventure.state, Adventure.STATE_OWNER_DONE)
+        quest = create_quest(done=True)
+        adventure = create_adventure(quest, accepted=True)
+        quest_livecycle.hero_quest_done(quest, adventure.user)
 
-
-    def test_adventure_done_hero_actions(self):
-        """If my adventure is done, I'm not able to cancel or apply for the quest again."""
-        quest = create_quest()
-        adventure = create_adventure(quest, state=Adventure.STATE_OWNER_DONE)
-        request = fake_request(adventure.user)
-        self.assertNotIn('hero_apply', quest.valid_actions_for(request))
-        self.assertNotIn('hero_cancel', quest.valid_actions_for(request))
-        with self.assertRaises(PermissionDenied):
-            quest.process_action(request, 'hero_apply')
-        with self.assertRaises(PermissionDenied):
-            quest.process_action(request, 'hero_cancel')
-
-    def test_adventure_done_owner_actions(self):
-        """If a hero is done with an adventure, the owner is not able to accept, refuse or mark him done again."""
-        quest = create_quest()
-        adventure = create_adventure(quest, state=Adventure.STATE_OWNER_DONE)
-        request = fake_request(quest.owner)
-        self.assertNotIn('accept', adventure.valid_actions_for(request))
-        self.assertNotIn('refuse', adventure.valid_actions_for(request))
-        self.assertNotIn('done', adventure.valid_actions_for(request))
-        with self.assertRaises(PermissionDenied):
-            adventure.process_action(request, 'accept')
-        with self.assertRaises(PermissionDenied):
-            adventure.process_action(request, 'refuse')
-        with self.assertRaises(PermissionDenied):
-            adventure.process_action(request, 'done')
-
-    def test_check_quest_full(self):
-        """A quest with max_heroes=1 should be full, if there is one accepted hero."""
-        quest = create_quest(max_heroes=1)
-        adventure = create_adventure(quest)
-        request = fake_request(quest.owner)
-        self.assertFalse(quest.is_full())
-        adventure.process_action(request, 'accept')
-        self.assertTrue(quest.is_full())
-        self.assertFalse(quest.is_open())
-
-    def test_check_quest_not_full(self):
-        """A quest with max_heroes=2, shoould be open with one accepted hero."""
-        quest = create_quest(max_heroes=2)
-        adventure = create_adventure(quest)
-        request = fake_request(quest.owner)
-        adventure.process_action(request, 'accept')
-        self.assertFalse(quest.is_full())
-        self.assertTrue(quest.is_open())
 
 
 class UnauthenticatedIntegrationTest(TestCase):

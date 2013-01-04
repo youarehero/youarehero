@@ -135,19 +135,7 @@
             <p>Diese Herausforderung braucht noch Helden. Wenn Dir die Beschreibung zusagt, kannst Du Dich bewerben.</p>
         {% endif %}
 
-        {# quest actions #}
-        {% valid_actions_for quest as valid_actions %}
-        {% if valid_actions %}
-            <div class="form-actions">
-            {% for action_name, action in valid_actions.items %}
-                <form action="{% url quest-update quest.id %}" method="post" class="inline">
-                    {% csrf_token %}
-                    <input type="hidden" name="action" value="{{ action_name }}">
-                    <input type="submit" name="action_btn" class="btn" value="{{ action.verbose_name }}"/>
-                </form>
-            {% endfor %}
-            </div>
-        {% endif %}
+        {# FIXME: quest actions #}
 <table>
     <tr><td><a name="fb_share"></a></td>
     <td><a href="https://twitter.com/share" class="twitter-share-button" data-size="small" data-hashtags="yah!" data-count="none">Tweet</a></td>

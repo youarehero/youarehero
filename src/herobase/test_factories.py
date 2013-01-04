@@ -50,7 +50,6 @@ def create_quest(**kwargs):
 
                   'experience': 1,
                   'hero_class': CLASS_CHOICES[0][0],
-                  'level': 1,
                   'due_date': datetime.date.today() + datetime.timedelta(days=1)
     }
     quest_data.update(kwargs)
@@ -63,7 +62,6 @@ def create_adventure(quest, **kwargs):
     """Creates an adventure. if no user is given, create one."""
     create_counter = kwargs.pop('create_counter')
     adventure_data = {
-        'state': Adventure.STATE_HERO_APPLIED,
         'quest': quest,
     }
     adventure_data.update(kwargs)

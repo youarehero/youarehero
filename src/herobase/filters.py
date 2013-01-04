@@ -9,9 +9,6 @@ NO_CHOICE = (('', _('Any')),)
 
 class QuestFilter(django_filters.FilterSet):
     """Django-filters filter class. Defines the filters for the quest-list-view."""
-    hero_class = django_filters.ChoiceFilter(choices=NO_CHOICE + CLASS_CHOICES)
-    level = django_filters.ChoiceFilter(lookup_type='contains', choices=NO_CHOICE + Quest.QUEST_LEVELS)
-    state = django_filters.ChoiceFilter(choices=NO_CHOICE + Quest.QUEST_STATES)
     title = django_filters.CharFilter(lookup_type="icontains")
 
     def is_filtered(self):

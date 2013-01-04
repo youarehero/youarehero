@@ -32,7 +32,7 @@ def recommend_top(user, n, fields=('title', 'description', 'state', 'location',
 def recommend(user, fields=('title', 'description', 'state', 'location', 'remote', 'latitude', 'longitude'),
         queryset=None, order_by=None):
     if queryset is None:
-        queryset = Quest.objects.active()
+        queryset = Quest.objects.filter(open=True)
 
     remote = queryset.filter(remote=True)
     if user.get_profile().has_location:
@@ -51,7 +51,7 @@ def recommend(user, fields=('title', 'description', 'state', 'location', 'remote
 def recommend_remote(user, fields=('title', 'description', 'state'),
         queryset=None, order_by=None):
     if queryset is None:
-        queryset = Quest.objects.active()
+        queryset = Quest.objects.filter(open=True)
 
     queryset = queryset.filter(remote=True)
     return recommend_for_user(user, fields=fields, queryset=queryset,
@@ -60,7 +60,7 @@ def recommend_remote(user, fields=('title', 'description', 'state'),
 def recommend_local(user, fields=('title', 'description', 'state'),
         queryset=None, order_by=None):
     if queryset is None:
-        queryset = Quest.objects.active()
+        queryset = Quest.objects.filter(open=True)
 
     queryset = queryset.filter(remote=False)
     return recommend_for_user(user, fields=fields, queryset=queryset,
@@ -70,7 +70,7 @@ def recommend_local(user, fields=('title', 'description', 'state'),
 def recommend_for_user(user, fields=('title', 'description', 'state'),
         local=False, queryset=None, order_by=None):
     if queryset is None:
-        queryset = Quest.objects.active()
+        queryset = Quest.objects.filter(open=True)
 
     order_fields = ['-weight']
     if order_by:

@@ -21,7 +21,6 @@ from herobase.widgets import LocationWidget
 class QuestCreateForm(forms.ModelForm):
     """The Basic Quest create form. Uses django-crispy-forms (FormHelper) for 2 column bootstrap output. """
     experience = forms.IntegerField(initial=100)
-    level = forms.IntegerField(initial=1)
     due_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'autocomplete': 'off'}))
 
     latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
@@ -40,21 +39,22 @@ class QuestCreateForm(forms.ModelForm):
         self.helper.layout = Layout(
             Div(
                 Div(
-                    'title',
-                    'hero_class',
-                    'description',
-                    css_class="span3",
+                    Div(
+                        'title',
+                        'hero_class',
+                        'description',
+                        css_class="span3",
+                    ),
+                    Div(
+                        'experience',
+                        'max_heroes',
+                        'auto_accept',
+                        'address',
+                        'due_date',
+                        css_class="span3",
+                    ),
+                    css_class="row",
                 ),
-                Div(
-                    'level',
-                    'experience',
-                    'max_heroes',
-                    'auto_accept',
-                    'address',
-                    'due_date',
-                    css_class="span3",
-                ),
-                css_class="row",
             ),
             FormActions(
                 Submit('save', 'Create', css_class='btn')
@@ -63,27 +63,11 @@ class QuestCreateForm(forms.ModelForm):
         super(QuestCreateForm, self).__init__(*args, **kwargs)
         self.fields['location_granularity'].widget = forms.HiddenInput()
 
-    # the quest level must be smaller or equal to hero level.
-    def clean_level(self):
-        data = self.cleaned_data['level']
-        if self.request.user.get_profile().level < int(data):
-            raise ValidationError(_("Your level is not high enough for this quest level!"))
-        return data
-
-    # the experience has something to do with the level too
-    def clean(self):
-        data = super(QuestCreateForm, self).clean()
-        if ('experience' in data and 'level' in data and
-            int(data['experience']) > int(data['level']) * 100): # TODO experience formula
-            self._errors['experience'] = self._errors.get('experience', ErrorList())
-            self._errors['experience'].append(_(u'Experience to high for level.'))
-            del data['experience']
-        return data
 
     class Meta:
         model = Quest
         fields = ('title', 'description', 'max_heroes', 'address', 'due_date',
-                  'hero_class', 'level' ,'experience', 'auto_accept',
+                  'hero_class' ,'experience', 'auto_accept',
                   'latitude', 'longitude', 'location_granularity')
 
 

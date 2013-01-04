@@ -5,6 +5,7 @@ The most important are Quest, Userprofile (represents a hero) and Adventure.
 This module also contains the ActionMixin, which provides basic logic for model actions.
 The model actions connect state logic to the models.
 """
+from datetime import datetime
 from random import randint
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
@@ -24,7 +25,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from easy_thumbnails.files import get_thumbnailer
 from south.modelsinspector import add_introspection_rules
-from herobase.actions import ActionMixin, action
 
 from heromessage.models import Message
 
@@ -79,129 +79,55 @@ class LocationMixin(models.Model):
         abstract = True
 
 
-class AdventureQuerySet(QuerySet):
-    def active(self):
-        """Show only adventures that have not been canceled."""
-        return self.exclude(state=Adventure.STATE_HERO_CANCELED)
-    def in_progress(self):
-        return self.filter(state__in=(Adventure.STATE_HERO_APPLIED,
-                                      Adventure.STATE_OWNER_ACCEPTED,
-                                      Adventure.STATE_HERO_DONE))
-
-
-class AdventureManager(models.Manager):
-    """Custom Object Manager for Adventures, excluding canceled ones."""
-    def get_query_set(self):
-        return AdventureQuerySet(model=self.model, using=self._db)
-    def active(self):
-        """Show only adventures that have not been canceled."""
-        return self.get_query_set().active()
-    def in_progress(self):
-        return self.get_query_set().in_progress()
-
-
-class Adventure(models.Model, ActionMixin):
-    """Model the relationship between a User and a Quest she is engaged in."""
-
-    objects = AdventureManager()
+class Adventure(models.Model):
 
     user = models.ForeignKey(User, related_name='adventures')
     quest = models.ForeignKey('Quest')
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    # The Adventure States are related to a Quest and a User
-    STATE_NOT_SET = 0
-    STATE_HERO_APPLIED = 1
-    STATE_OWNER_REFUSED = 2
-    STATE_HERO_CANCELED = 3
-    STATE_OWNER_ACCEPTED = 4
-    STATE_HERO_DONE = 5
-    STATE_OWNER_DONE = 6
+    accepted = models.BooleanField(default=False)
+    accepted_time = models.DateTimeField(null=True, blank=True, editable=False)
 
-    state = models.IntegerField(default=STATE_NOT_SET, choices=(
-        (STATE_NOT_SET, _("state not set")),
-        (STATE_HERO_APPLIED, _("applied")),
-        (STATE_OWNER_REFUSED,_("rejected")),
-        (STATE_HERO_CANCELED, _("canceled")),
-        (STATE_OWNER_ACCEPTED, _("accepted")),
-        (STATE_HERO_DONE, _("confirmation requested")),
-        (STATE_OWNER_DONE, _("participation confirmed")),
-        ))
+    rejected = models.BooleanField(default=False)
+    rejected_time = models.DateTimeField(null=True, blank=True, editable=False)
+
+    canceled = models.BooleanField(default=False)
+    canceled_time = models.DateTimeField(null=True, blank=True, editable=False)
+
+    done = models.BooleanField(default=False)
+    done_time = models.DateTimeField(null=True, blank=True, editable=False)
+
+    def save(self, force_insert=False, force_update=False, using=None):
+        if self.accepted and not self.accepted_time:
+            self.accepted_time = datetime.now()
+        if self.rejected and not self.rejected_time:
+            self.rejected_time = datetime.now()
+        if self.done and not self.done_time:
+            self.done_time = datetime.now()
+        if self.canceled and not self.canceled_time:
+            self.canceled_time = datetime.now()
+        return super(Adventure, self).save(force_insert, force_update, using)
+
 
     def __unicode__(self):
         return '%s - %s' % (self.quest.title, self.user.username)
 
-    @action(verbose_name=_("accept"))
-    def accept(self, request, validate_only=False):
-        """Accept adventure.user as a participant and send a notification."""
-        valid = self.quest.is_open() and request.user == self.quest.owner and self.state == Adventure.STATE_HERO_APPLIED
-        if validate_only or not valid:
-            return valid
-        self.state = self.STATE_OWNER_ACCEPTED
-        # send a message if acceptance is not instantaneous
-        if not self.quest.auto_accept:
-            Message.send(get_system_user(), self.user, # TODO FIXME : this shouldn't be a message but a notification
-                'Du wurdest als Held Akzeptiert',
-                textwrap.dedent('''\
-                Du wurdest als Held akzeptiert. Es kann losgehen!
-                Verabredet dich jetzt mit dem Questgeber um die Quest zu erledigen.
-
-                Quest: %s''' % request.build_absolute_uri(self.quest.get_absolute_url())))
-        self.save()
-        # recalculate denormalized quest state (quest might be full now)
-        self.quest.check_full()
-        self.quest.save()
-
-
-    @action(verbose_name=_("refuse"))
-    def refuse(self, request=None, validate_only=False):
-        """Deny adventure.user participation in the quest."""
-        # TODO : this should maybe generate a message?
-        valid = self.quest.owner == request.user and self.state == self.STATE_HERO_APPLIED
-        if validate_only or not valid:
-            return valid
-        self.state = self.STATE_OWNER_REFUSED
-        self.save()
-
-    @action(verbose_name=_("done"))
-    def done(self, request=None, validate_only=False):
-        """Confirm a users participation in a quest."""
-        valid = (self.quest.owner == request.user and
-                 self.state == self.STATE_OWNER_ACCEPTED and
-                 self.quest.state == Quest.STATE_OWNER_DONE)
-        if validate_only or not valid:
-            return valid
-        profile = self.user.get_profile()
-        profile.experience += self.quest.experience
-        profile.save()
-
-        self.state = self.STATE_OWNER_DONE
-        self.save()
-
 
 class QuestQuerySet(QuerySet):
-    def active(self):
-        return self.exclude(state__in=(Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED))
-    def inactive(self):
-        return self.filter(state__in=(Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED))
     def open(self):
-        return self.filter(state=Quest.STATE_OPEN)
+        return self.filter(open=True)
 
 
 class QuestManager(models.Manager):
     """Custom Quest Object Manager, for active and inactive `Quest` objects"""
     def get_query_set(self):
         return QuestQuerySet(model=self.model, using=self._db)
-    def active(self):
-        return self.get_query_set().active()
-    def inactive(self):
-        return self.get_query_set().inactive()
     def open(self):
         return self.get_query_set().open()
 
 
-class Quest(LocationMixin, ActionMixin, models.Model):
+class Quest(LocationMixin, models.Model):
     """A quest, owned by a user."""
     objects = QuestManager()
 
@@ -214,7 +140,7 @@ class Quest(LocationMixin, ActionMixin, models.Model):
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
     heroes = models.ManyToManyField(User, through=Adventure, related_name='quests')
 
-    remote = models.BooleanField(default=False, verbose_name=_(u"Can be done remotely"))
+    remote = models.BooleanField(default=True, verbose_name=_(u"Can be done remotely"))
 
     created = models.DateTimeField(auto_now_add=True, db_index=True)
     modified = models.DateTimeField(auto_now=True, db_index=True)
@@ -224,186 +150,61 @@ class Quest(LocationMixin, ActionMixin, models.Model):
         help_text=_("If set heroes will be accepted automatically. "
                     "This means that you won't be able to refuse an offer."))
 
-    QUEST_LEVELS = (
-        (1, _('1 (Easy)')),
-        (2, _('2 (Okay)')),
-        (3, _('3 (Experienced)')),
-        (4, _('4 (Challenging)')),
-        (5, _('Heroic'))
-    )
-
-    level = models.PositiveIntegerField(choices=QUEST_LEVELS)
     experience = models.PositiveIntegerField()
 
-    # States for the Quest. OPEN + FULL = ACTIVE, DONE + CANCELED = INACTIVE
-    STATE_NOT_SET = 0
-    STATE_OPEN = 1
-    STATE_FULL = 2
-    STATE_OWNER_DONE = 3
-    STATE_OWNER_CANCELED = 4
+    # still needs heroes
+    open = models.BooleanField(default=True)
 
-    QUEST_STATES = (
-            (STATE_OPEN , _("open")),
-            (STATE_FULL , _("full")),
-            (STATE_OWNER_DONE , _("done")),
-            (STATE_OWNER_CANCELED , _("cancelled")),
-        )
+    # owner has canceled the quest
+    canceled = models.BooleanField(default=False)
+    canceled_time = models.DateTimeField(null=True, blank=True, editable=False)
 
-    state = models.IntegerField(default=STATE_OPEN, choices=QUEST_STATES)
+    # owner has marked quest as done
+    done = models.BooleanField(default=False)
+    done_time = models.DateTimeField(null=True, blank=True, editable=False)
+
+    # owner has started the quest
+    started = models.BooleanField(default=False)
+    started_time = models.DateTimeField(null=True, blank=True, editable=False)
+
+    level = models.IntegerField(editable=False, default=1)
+
+    def save(self, force_insert=False, force_update=False, using=None):
+        self.open = not self.pk or (not self.done and not self.canceled and
+                     self.adventure_set.filter(accepted=True, canceled=False).count() < self.max_heroes)
+
+        if self.canceled and not self.canceled_time:
+            self.canceled_time = datetime.now()
+        if self.started and not self.started_time:
+            self.started_time = datetime.now()
+        if self.done and not self.done_time:
+            self.done_time = datetime.now()
+
+        return super(Quest, self).save(force_insert, force_update, using)
 
     def active_heroes(self):
         """Return all heroes active on a quest. These are accepted heroes
          and heroes who claim to be done."""
         return self.heroes.filter(adventures__quest=self.pk,
-            adventures__state__in=(Adventure.STATE_OWNER_ACCEPTED,
-                                   Adventure.STATE_HERO_DONE))
+            adventure__accepted=True)
 
     def accepted_heroes(self):
         """Return all accepted heroes and following states (heros who
         are done or claim so)"""
         return self.heroes.filter(adventures__quest=self.pk,
-            adventures__state__in=(Adventure.STATE_OWNER_ACCEPTED,
-                                   Adventure.STATE_OWNER_DONE,
-                                   Adventure.STATE_HERO_DONE))
+            adventures__accepted=True,
+            adventures__canceled=False)
 
     def applying_heroes(self):
         """Return all heroes, applying for the quest."""
         return self.heroes.filter(adventures__quest=self.pk,
-            adventures__state=Adventure.STATE_HERO_APPLIED)
+            adventures__canceled=False,
+            adventures__rejected=False)
 
     def remaining_slots(self):
         """Number of heroes who may participate in the quest until maximum
          number of heroes is achieved"""
         return self.max_heroes - self.accepted_heroes().count()
-
-    def clean(self):
-        """Clean function for form validation: Max XPs are associated to quest level"""
-        if self.experience and self.level and self.experience > self.level * 100: # TODO experience formula
-            raise ValidationError(_('Maximum experience for quest with level {0} is {1}').format(self.level, self.level * 100))
-
-
-    @action(verbose_name=_("cancel"))
-    def hero_cancel(self, request, validate_only=False):
-        """Cancels an adventure on this quest."""
-        valid = self.is_active() and Adventure.objects.in_progress().filter(quest=self, user=request.user).exists()
-        if validate_only or not valid:
-            return valid
-        adventure = self.adventure_set.get(user=request.user)
-        adventure.state = Adventure.STATE_HERO_CANCELED
-        adventure.save()
-        self.check_full()
-        self.save()
-
-    @action(verbose_name=_("apply"))
-    def hero_apply(self, request, validate_only=False):
-        """Applies a hero to the quest and create  an adventure for her."""
-        if not self.is_open():
-            valid = False
-        else:
-            try:
-                adventure = self.adventure_set.get(user=request.user)
-            except Adventure.DoesNotExist:
-                valid = True
-                    # iff we already have an adventure object the only reason for applying
-                # again is a previous cancellation
-            else:
-                valid = adventure.state in (Adventure.STATE_HERO_CANCELED, )
-        if validate_only or not valid:
-            return valid
-
-        adventure, created = self.adventure_set.get_or_create(user=request.user)
-        # send a message when a hero applies for the first time
-        if adventure.state != Adventure.STATE_HERO_CANCELED:
-            if self.auto_accept: # TODO FIXME : this should be a notification
-                Message.send(get_system_user(), self.owner, 'Ein Held hat sich beworben',
-                textwrap.dedent('''\
-                Auf eine deiner Quests hat sich ein Held beworben.
-                Verabredet euch jetzt um die Quest zu erledigen.
-
-                Quest: %s''' % request.build_absolute_uri(self.get_absolute_url())))
-            else:
-                Message.send(get_system_user(), self.owner, 'Ein Held hat sich beworben',
-                    textwrap.dedent('''\
-                    Auf eine deiner Quests hat sich ein Held beworben.
-                    Damit er auch mitmachen kann solltest du seine Teilnahme erlauben.
-                    Verabredet euch dann um die Quest zu erledigen.
-
-                    Quest: %s''' % request.build_absolute_uri(self.get_absolute_url())))
-        if self.auto_accept:
-            adventure.state = Adventure.STATE_OWNER_ACCEPTED
-        else:
-            adventure.state = Adventure.STATE_HERO_APPLIED
-        adventure.save()
-
-    @action(verbose_name=_("cancel"))
-    def cancel(self, request, validate_only=False):
-        """Cancels the whole quest."""
-        valid = self.owner == request.user and self.is_active()
-        if validate_only or not valid:
-            return valid
-        self.state = self.STATE_OWNER_CANCELED
-        self.save()
-
-    @action(verbose_name=_("mark as done"))
-    def done(self, request, validate_only=False):
-        """Mark the quest as done. The quest is complete and inactive."""
-        valid = self.owner == request.user and self.is_active() and self.accepted_heroes().exists()
-        if validate_only or not valid:
-            return valid
-
-        self.state = self.STATE_OWNER_DONE
-        self.save()
-
-    #### C O N D I T I O N S ####
-    def needs_attention(self):
-        """Only for playtest. Later there should be Notifications for this."""
-        return self.adventure_set.filter(state__in=(Adventure.STATE_HERO_APPLIED,
-                                                    Adventure.STATE_HERO_DONE)).exists()
-
-    def is_canceled(self, request=None):
-        return self.state == Quest.STATE_OWNER_CANCELED
-
-    def is_open(self, request=None):
-        return self.state == Quest.STATE_OPEN
-
-    def is_done(self, request=None):
-        return self.state == Quest.STATE_OWNER_DONE
-
-    def is_full(self, request=None):
-        return self.state == Quest.STATE_FULL
-
-    def is_active(self, request=None):
-        return self.state in (Quest.STATE_OPEN, Quest.STATE_FULL)
-
-    def is_closed(self, request=None):
-        return self.state in (Quest.STATE_OWNER_CANCELED, Quest.STATE_OWNER_DONE)
-
-    def check_full(self, request=None):
-        """Calculates if quest is full or not. Needs to be called when
-        a hero is accepted or cancels his adventure."""
-        if self.is_closed():
-            return
-        if not self.max_heroes:
-            return
-        if self.accepted_heroes().count() < self.max_heroes:
-            self.state = Quest.STATE_OPEN
-        else:
-            self.state = Quest.STATE_FULL
-        self.save()
-
-    #### M I S C ####
-
-    @classmethod
-    def get_suggested_quests(cls, user, count):
-        """Return a (random) list of suggested quests for the user."""
-        quests = Quest.objects.open()
-        if user.is_authenticated():
-            quests = quests.exclude(owner=user)
-        quest_count = quests.count()
-        if quest_count > 0:
-            return set(quests[randint(0, quest_count - 1)] for i in range(count))
-        else:
-            return set()
 
     def get_absolute_url(self):
         """Get the url for this quests detail page."""

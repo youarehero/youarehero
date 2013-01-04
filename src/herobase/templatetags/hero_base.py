@@ -4,6 +4,7 @@ from django import template
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 from herobase.models import Quest
+from herorecommend import recommend
 
 register = template.Library()
 
@@ -19,4 +20,4 @@ def suggest_quests(context, count):
     except ValueError:
         count = 3
     request = context['request']
-    return Quest.get_suggested_quests(request.user, count)
+    return recommend(request.user)[:count]

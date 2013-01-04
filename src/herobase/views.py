@@ -9,13 +9,14 @@ from itertools import chain
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core import signing
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ValidationError
 from django.core.mail import send_mail
 from django.core.signing import Signer
 from django.utils import simplejson as json
 from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+from herobase import quest_livecycle
 from herorecommend import recommend_for_user, recommend, recommend_local
 from herorecommend.forms import UserSkillEditForm
 from utils import login_required
@@ -23,6 +24,7 @@ from django.http import HttpResponseRedirect, Http404, HttpResponse, HttpRespons
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
+from django.utils.translation import ugettext as _
 
 from django.views.generic.edit import CreateView
 from filters import QuestFilter
@@ -40,7 +42,7 @@ def quest_list_view(request, template='herobase/quest/list.html'):
     if request.user.is_authenticated():
         f = QuestFilter(request.GET, queryset=recommend(request.user, order_by=['-created']))
     else:
-        f = QuestFilter(request.GET, queryset=Quest.objects.active().order_by('-created'))
+        f = QuestFilter(request.GET, queryset=Quest.objects.filter(open=True).order_by('-created'))
     return render(request, template, {
         'filter': f,
         'quests': f.qs,
@@ -90,7 +92,7 @@ def home_view(request):
     if request.user.is_authenticated():
         return hero_home_view(request)
     return render(request, "herobase/public_home.html", {
-        'open_quests': Quest.objects.filter(state=Quest.STATE_OPEN)})
+        'open_quests': Quest.objects.filter(open=True)})
 
 
 def m_home_view(request):
@@ -114,9 +116,9 @@ def hero_home_view(request, template='herobase/hero_home.html'):
     return render(request, template,
             {
              #'profile': user.get_profile(),
-             'quests_active': user.created_quests.active().order_by('-created')[:10],
-             'quests_old': user.created_quests.inactive().order_by('-created')[:10],
-             'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)[:10]
+             'quests_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:10],
+             'quests_old': user.created_quests.filter(done=True).order_by('-created')[:10],
+             'quests_joined': Quest.objects.filter(canceled=False, adventure__user=user, adventure__canceled=False)[:10]
              })
 
 
@@ -134,43 +136,56 @@ def quest_my(request, template='herobase/quest/my.html'):
 
 @require_POST
 @login_required
-def quest_update(request, quest_id):
+def owner_update_quest(request, quest_id):
     """Handle POST data for quest-actions and redirect to quest-detail-view."""
     quest = get_object_or_404(Quest, pk=quest_id)
+    if not quest.owner == request.user:
+        return HttpResponseForbidden("You are not the owner of this quest.")
 
-    if 'action' in request.POST:
-        action = request.POST['action']
-        try:
-            quest.process_action(request, action)
-        except ValueError, e:
-            messages.error(request, e.message)
-        except PermissionDenied, e:
-            messages.error(request, e.message)
+    # start / cancel / done / document
+
+    action = request.POST.get('action')
+    if action == 'start':
+        message_for_heroes = request.POST.get('message_for_heroes')
+        quest_livecycle.owner_quest_start(quest, message_for_heroes)
+    elif action == 'cancel':
+        quest_livecycle.owner_quest_cancel(quest)
+    elif action == 'done':
+        quest_livecycle.owner_quest_done(quest)
     else:
-        messages.error(request, 'No action submitted.')
+        raise ValidationError('No known action specified')
+    return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
+
+@require_POST
+@login_required
+def owner_update_hero(request, quest_id, hero_id):
+    quest = get_object_or_404(Quest, pk=quest_id)
+    hero = get_object_or_404(User, pk=hero_id)
+
+    if not quest.owner == request.user:
+        return HttpResponseForbidden("You are not the owner of this quest.")
+
+    action = request.POST.get('action')
+    if action == 'accept':
+        quest_livecycle.owner_hero_accept(quest, hero)
+    elif action == 'reject':
+        quest_livecycle.owner_hero_reject(quest, hero)
+    else:
+        raise ValidationError('No known action specified')
 
     return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
 
 @require_POST
 @login_required
-def adventure_update(request, quest_id):
+def hero_update_quest(request, quest_id):
     """Handle POST data for adventure-actions and redirect to quest-detail-view."""
     quest = get_object_or_404(Quest, pk=quest_id)
 
-    adventure_id = request.POST.get('adventure_id')
-    adventure = get_object_or_404(quest.adventure_set, pk=adventure_id)
-
-    if 'action' in request.POST:
-        action = request.POST['action']
-        try:
-            adventure.process_action(request, action)
-        except ValueError, e:
-            messages.error(request, e.message)
-        except PermissionDenied, e:
-            messages.error(request, e.message)
-    else:
-        messages.error(request, 'No action submitted.')
-
+    action = request.POST.get('action')
+    if action == 'apply':
+        quest_livecycle.hero_quest_apply(quest)
+    elif action == 'cancel':
+        quest_livecycle.hero_quest_cancel(quest)
     return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
 
 @login_required
@@ -191,7 +206,7 @@ def userprofile(request, username=None, template='herobase/userprofile/detail.ht
                    4: '#bdcaff'}
     colors = []
     for choice, count in user.adventures\
-            .filter(state=Adventure.STATE_OWNER_DONE)\
+            .filter(done=True)\
             .values_list('quest__hero_class')\
             .annotate(Count('quest__hero_class')):
         colors.append(color_dict[choice])
@@ -202,7 +217,7 @@ def userprofile(request, username=None, template='herobase/userprofile/detail.ht
         'user': user,
         'rank': rank,
         'colors': mark_safe(json.dumps(colors)),
-        'completed_quest_count': user.adventures.filter(state=Adventure.STATE_OWNER_DONE).count(),
+        'completed_quest_count': user.adventures.filter(done=True).count(),
         'hero_completed_quests': mark_safe(json.dumps(hero_completed_quests)),
     })
 
@@ -282,21 +297,21 @@ def random_stats(request):
 
     hero_completed_quests = []
     for choice, count in user.adventures\
-        .filter(quest__state=Quest.STATE_OWNER_DONE)\
-        .filter(state=Adventure.STATE_OWNER_DONE)\
+        .filter(quest__done=True)\
+        .filter(done=True)\
         .values_list('quest__hero_class')\
         .annotate(Count('quest__hero_class')):
         hero_completed_quests.append((class_choices.get(choice), count))
 
     colors0 = []
     open_quest_types = []
-    for choice, count in  Quest.objects.filter(state=Quest.STATE_OPEN).values_list('hero_class').annotate(Count('hero_class')):
+    for choice, count in  Quest.objects.filter(open=True).values_list('hero_class').annotate(Count('hero_class')):
         open_quest_types.append((class_choices.get(choice), count))
         colors0.append(color_dict[choice])
 
     colors1 = []
     completed_quest_types = []
-    for choice, count in  Quest.objects.filter(state=Quest.STATE_OWNER_DONE).values_list('hero_class').annotate(Count('hero_class')):
+    for choice, count in  Quest.objects.filter(open=True).values_list('hero_class').annotate(Count('hero_class')):
         completed_quest_types.append((class_choices.get(choice) , count))
         colors1.append(color_dict[choice])
 
@@ -311,7 +326,7 @@ def random_stats(request):
         context[key] = mark_safe(json.dumps(list(context[key])))
 
     context.update({
-        'quests_completed': user.adventures.filter(quest__state=Quest.STATE_OWNER_DONE).count()
+        'quests_completed': user.adventures.filter(quest__done=True).count()
     })
 
     return render(request, 'herobase/stats.html', context)
