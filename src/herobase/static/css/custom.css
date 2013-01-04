@@ -54,6 +54,10 @@ ul.icons li.small {
 #butler {
   margin-top: 50px;
 }
+body {
+  color: #000;
+  background: url("/static/img/city.jpg") no-repeat scroll 50% 0 #333333;
+}
 .sidebar-left {
   margin-right: 20px;
 }
