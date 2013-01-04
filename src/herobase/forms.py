@@ -7,6 +7,7 @@ from django.core.exceptions import ValidationError
 from django import forms
 from django.core.urlresolvers import reverse
 from django.forms.util import ErrorList
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.bootstrap import FormActions
@@ -57,7 +58,7 @@ class QuestCreateForm(forms.ModelForm):
                 ),
             ),
             FormActions(
-                Submit('save', 'Create', css_class='btn')
+                Submit('save', 'Save', css_class='btn')
             ),
         )
         super(QuestCreateForm, self).__init__(*args, **kwargs)

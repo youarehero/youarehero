@@ -371,12 +371,43 @@ ul.box-grid .border-icons-bottom-left li {
   bottom: -8px;
   left: 3px;
 }
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  border-top: 1px solid #999999;
+  border-left: 1px solid #a6a6a6;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+}
 form {
+  padding: 10px;
+  margin-right: 10px;
   background: #eeeeee;
+  color: #222222;
   font-variant: small-caps;
 }
+form .span3 {
+  width: 265px;
+}
 .select2-container .select2-choice {
-  border: 0px none;
+  border-top: 1px solid #999999;
+  border-left: 1px solid #a6a6a6;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  background: #ffffff;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -384,11 +415,35 @@ form {
   height: 28px;
   line-height: 28px;
 }
+.select2-container .select2-choice div {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
 .form-actions {
+  margin: 0 -10px -10px 0;
+  padding: 0;
   border: 0px none;
+  position: relative;
+  top: 10px;
+  left: 10px;
 }
 .form-actions .btn {
+  background: #bbbbbb;
+  margin-left: 10px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
   float: right;
+  border: 0px none;
+  min-width: 40px;
+}
+.form-actions .btn[type=submit] {
+  padding: 0;
+  width: 40px;
+  height: 0px;
+  padding-top: 40px;
+  background: url("../img/operations.png") -80px 0 no-repeat #bbbbbb;
 }
 .avatar-small {
   background: rgba(0, 0, 0, 0.35);
