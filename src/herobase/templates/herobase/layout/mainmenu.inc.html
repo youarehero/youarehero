@@ -2,8 +2,8 @@
 
 {% if request.user.is_authenticated %}
     <ul class="grid clearfix">
-        <li><a href="{% url home %}" rel="tooltip" title="{% trans 'Dashboard' %}">
-            <i class="icon-dashboard"><span>{% trans 'Dashboard' %}</span></i></a></li>
+        <li><a href="{% url home %}" rel="tooltip" title="{% trans 'Home' %}">
+            <i class="icon-home"><span>{% trans 'Home' %}</span></i></a></li>
         <li><a href="{% url quest-list %}" rel="tooltip" title="{% trans 'Billboard' %}">
             <i class="icon-billboard"><span>{% trans 'Billboard' %}</span></i></a></li>
         <li><a href="{% url quest-create %}" rel="tooltip" title="{% trans 'Create new Quest' %}">
