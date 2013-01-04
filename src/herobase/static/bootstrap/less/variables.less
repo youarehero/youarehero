@@ -46,27 +46,29 @@
 @yellowLight: #FFFFcc;
 
 // new style
-@iconBackground: #147427;
-@iconFontColor: #ffd263;
+@iconBackground: rgba(0,0,0,0.25);
+@iconFontColor: @grayLighter;
 
-@contentBackground: #ffd263;
-@headerBackground: #B46B0C;
+@contentBackground: rgba(0,0,0,0.35);
+@headerBackground: rgba(0,0,0,0.25);
+
+@lightTextColor: @grayLighter;
 
 // Scaffolding
 // -------------------------
-@bodyBackground:        #0B1923; //@white;
+@bodyBackground:        #0B1923; //@white; // not used
 @textColor:             @grayDark;
 
 
 // Links
 // -------------------------
-@linkColor:             #08c;
+@linkColor:             #aaa;
 @linkColorHover:        darken(@linkColor, 15%);
 
 
 // Typography
 // -------------------------
-@sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+@sansFontFamily:        'Open Sans', sans-serif; //"Helvetica Neue", Helvetica, Arial, sans-serif;
 @serifFontFamily:       Georgia, "Times New Roman", Times, serif;
 @monoFontFamily:        Menlo, Monaco, Consolas, "Courier New", monospace;
 
