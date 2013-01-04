@@ -22,14 +22,19 @@ class QuestCreateForm(forms.ModelForm):
     """The Basic Quest create form. Uses django-crispy-forms (FormHelper) for 2 column bootstrap output. """
     experience = forms.IntegerField(initial=100)
     level = forms.IntegerField(initial=1)
-    location = forms.CharField(initial="GPN")
     due_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'autocomplete': 'off'}))
+
+    latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    address = forms.CharField(widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
+
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
        # self.helper.form_action = 'quest-create'
        # self.helper.form_class = 'form-horizontal'
         self.request = kwargs.pop('request')
+
 
         #self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.layout = Layout(
@@ -48,7 +53,7 @@ class QuestCreateForm(forms.ModelForm):
                         'experience',
                         'max_heroes',
                         'auto_accept',
-                        'location',
+                        'address',
                         'due_date',
                         css_class="span3",
                     ),
@@ -60,6 +65,7 @@ class QuestCreateForm(forms.ModelForm):
             ),
         )
         super(QuestCreateForm, self).__init__(*args, **kwargs)
+        self.fields['location_granularity'].widget = forms.HiddenInput()
 
     # the quest level must be smaller or equal to hero level.
     def clean_level(self):
@@ -80,19 +86,16 @@ class QuestCreateForm(forms.ModelForm):
 
     class Meta:
         model = Quest
-        fields = ('title', 'description', 'max_heroes', 'location', 'due_date', 'hero_class', 'level' ,'experience', 'auto_accept')
+        fields = ('title', 'description', 'max_heroes', 'address', 'due_date',
+                  'hero_class', 'level' ,'experience', 'auto_accept',
+                  'latitude', 'longitude', 'location_granularity')
 
 
-    latitude = forms.FloatField(widget=forms.HiddenInput)
-    longitude = forms.FloatField(widget=forms.HiddenInput)
-    location_granularity = forms.IntegerField(widget=forms.HiddenInput)
-    address = forms.TextInput()
 
 class UserProfileEdit(forms.ModelForm):
     """Basic userprofile edit form. uses crispy-forms."""
-    latitude = forms.FloatField(widget=forms.HiddenInput)
-    longitude = forms.FloatField(widget=forms.HiddenInput)
-    location_granularity = forms.IntegerField(widget=forms.HiddenInput)
+    latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     address = forms.CharField(widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
 
     def __init__(self, *args, **kwargs):
@@ -109,6 +112,9 @@ class UserProfileEdit(forms.ModelForm):
                     'address',
                     'receive_system_email',
                     'receive_private_email',
+                    'latitude',
+                    'longitude',
+                    'location_granularity',
                 )
             ),
             FormActions(
@@ -116,6 +122,7 @@ class UserProfileEdit(forms.ModelForm):
             ),
         )
         super(UserProfileEdit, self).__init__(*args, **kwargs)
+        self.fields['location_granularity'].widget = forms.HiddenInput()
 
     class Meta:
         model = UserProfile
