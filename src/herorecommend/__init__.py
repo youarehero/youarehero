@@ -104,7 +104,9 @@ def recommend_for_user(user, fields=('title', 'description', 'state'),
         sql += '+ (random()/5)'
 
     cursor = connection.cursor()
-    cursor.execute("SELECT SETSEED(%s)" % (1/user.pk))
+    if cursor.db.vendor != 'sqlite':
+        cursor.execute("SELECT SETSEED(%s)" % (1/user.pk))
+    cursor.close()
 
     recommended = (queryset
             .select_related('profile')
