@@ -44,66 +44,79 @@
 </head>
 
 <body>
-    <div id="layout" class="container">
-        <div class="row page-header">
-                <a href="{% url home %}" class="logo pull-left">
-                    <img src="{% get_static_prefix %}/img/logo.png" alt="You Are Hero">
-                </a>
-                {% if request.user.is_authenticated %}
-                    {% include "herobase/layout/usermenu.inc.html" %}
-                {% endif %}
-        </div>
+    <div id="layout-container" class="container">
+        {% block site_header_container %}
+            <div id="site-header-container" class="row">
+                <div class="span100">
+                    <a href="{% url home %}" class="logo pull-left">
+                        <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">
+                    </a>
+                    {% if request.user.is_authenticated %}
+                        <ul class="icons pull-right">
+                            <li class="small"><a href="{% url auth_logout %}"><i class="icon-off"></i> Logout</a></li>
+                        </ul>
+                    {% endif %}
+                    {% block site_header %}
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
         <div class="row">
-            <div class="span2 sidebar-left">
-                {% if request.user.is_authenticated %}
+            {% block sidebar_left_container %}
+                <div id="sidebar-left-container" class="span2 sidebar-left">
                     {% include "herobase/layout/mainmenu.inc.html" %}
-                {% else %}
-                    <h2>{% trans "Login" %}</h2>
-                    {% crispy login_form %}
-                    <p>
-                        <a href="{% url auth_password_reset %}">{% trans "Forgotten password?" %}</a>
-                    </p>
-                {% endif %}
-            </div> <!-- end sidebar-left -->
-            <div id="page" class="span6">
-                <div class="header">
+                    {% if not request.user.is_authenticated %}
+                        <h2>{% trans "Login" %}</h2>
+                        {% crispy login_form %}
+                        <p>
+                            <a href="{% url auth_password_reset %}">{% trans "Forgotten password?" %}</a>
+                        </p>
+                    {% endif %}
+                </div> <!-- end sidebar-left -->
+            {% endblock %}
+            {% block page_container %}
+                <div id="page-header" class="span6">
                     {% block page_title %}<h1>You are HERO</h1>{% endblock %}
-                    <div class="navbar submenu">
+                    <div class="submenu">
                         {% block submenu %}&nbsp;{% endblock %}
                     </div>
                 </div>
-                <div class="content">
+                <div id="page-content" class="span6">
                     {% include "herobase/layout/messages.inc.html" %}
                     {% block content %}&nbsp;{% endblock %}
-                </div>
-            </div> <!-- end page -->
-            <div class="sidebar-right">
-                {% if request.user.is_authenticated %}
-                    <div id="butler">
-                        <img src="{% get_static_prefix %}/img/butler/butler_120.png" alt="Butler">
-                    </div>
+                </div> <!-- end page -->
+            {% endblock %}
+            {% block sidebar_right_container %}
+                <div id="sidebar-right-container" class="sidebar-right">
                     {% block sidebar_right %}
-
+                        {% if request.user.is_authenticated %}
+                            {% include "herobase/userprofile/detail_mini.html" %}
+                            <div id="butler">
+                                <img src="{% get_static_prefix %}img/butler/butler_120.png" alt="Butler">
+                            </div>
+                        {% endif %}
                     {% endblock %}
-                {% endif %}
-            </div> <!-- end sidebar-right -->
+                </div> <!-- end sidebar-right -->
+            {% endblock %}
         </div>
-    <div class="row page-footer">
-        <div class="span9">
-            {% if request.user.is_authenticated %}
-                {% suggest_quests 3 as quests %}
-                {% if quests %}
-                    <h3>{% trans "Suggested quests" %}</h3>
-                    <br>
-                    <ul class="questboard">
-                        {% for quest in quests %}
-                            {% include "herobase/quest/postit.inc.html" %}
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            {% endif %}
-        </div>
-    </div>
+        {% block site_footer_container %}
+            <div id="page-footer" class="row">
+                <div class="span100">
+                    {% if request.user.is_authenticated %}
+                        {% suggest_quests 3 as quests %}
+                        {% if quests %}
+                            <h3>{% trans "Suggested quests" %}</h3>
+                            <br>
+                            <ul class="questboard">
+                                {% for quest in quests %}
+                                    {% include "herobase/quest/postit.inc.html" %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        {% endblock %}
     </div>
 
 {% if request.user.is_staff %}

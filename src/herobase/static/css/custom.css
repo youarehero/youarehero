@@ -66,7 +66,8 @@ body {
   width: 120px;
   margin-left: 20px;
 }
-#layout {
+#layout-container,
+.span100 {
   width: 940px;
 }
 .page-header {
@@ -186,8 +187,8 @@ body {
 .avatar-small {
   background: #147427;
   padding: 5px;
-  width: 180px;
-  margin-right: 20px;
+  width: 110px;
+  margin-right: 0px;
 }
 .avatar-small img {
   margin-right: 10px;

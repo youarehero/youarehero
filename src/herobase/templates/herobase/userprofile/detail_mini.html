@@ -1,10 +1,8 @@
 {% load i18n static %}
 
 {# Username and Avatar #}
-<ul class="icons pull-right">
-    <li class="small"><a href="{% url auth_logout %}"><i class="icon-off"></i> Logout</a></li>
-</ul>
-<div class="avatar-small pull-right">
+
+<div class="avatar-small">
     <img src="{{ request.user.get_profile.avatar }}" alt="{{ request.user.username }}">
 
     <h4><a href="{% url userprofile-private %}">{{ request.user.username }}</a></h4>

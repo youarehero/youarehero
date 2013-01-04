@@ -1,20 +1,31 @@
 {% load i18n static crispy_forms_tags %}
 
-<ul class="icons clearfix">
-    <li><a href="{% url home %}" rel="tooltip" title="{% trans 'Home' %}">
-        <i class="icon-custom-home"></i><br>{% trans 'Home' %}</a></li>
-    <li><a href="{% url quest-my %}" rel="tooltip" title="{% trans 'My Quests' %}">
-        <i class="icon-custom-quest"></i><br>{% trans 'My Quests' %}</a></li>
-    <li><a href="{% url userprofile-private %}" rel="tooltip" title="{% trans 'Profile' %}">
-        <i class="icon-custom-profile"></i><br>{% trans 'Profile' %}</a></li>
-    <li><a href="{% url stats %}" rel="tooltip" title="{% trans 'Statistics' %}">
-        <i class="icon-custom-stats"></i><br>{% trans 'Statistics' %}</a></li>
-    <li><a href="{% url leader-board %}" rel="tooltip" title="{% trans 'Leader board' %}">
-        <i class="icon-custom-leader"></i><br>{% trans 'Leader board' %}</a></li>
-    <li><a href="{% url message-list %}" rel="tooltip" title="{% trans 'Private Messages' %}">
-        <i class="icon-custom-message">
-            {% if request.user.get_profile.unread_messages_count != 0 %}
-                <span class="badge"> {{ request.user.get_profile.unread_messages_count }}</span>
-            {% endif %}
-        </i><br>{% trans 'Private Messages' %}</a></li>
-</ul>
+{% if request.user.is_authenticated %}
+    <ul class="icons clearfix">
+        <li><a href="{% url home %}" rel="tooltip" title="{% trans 'Home' %}">
+            <i class="icon-custom-home"></i><br>{% trans 'Home' %}</a></li>
+        <li><a href="{% url quest-my %}" rel="tooltip" title="{% trans 'My Quests' %}">
+            <i class="icon-custom-quest"></i><br>{% trans 'My Quests' %}</a></li>
+        <li><a href="{% url userprofile-private %}" rel="tooltip" title="{% trans 'Profile' %}">
+            <i class="icon-custom-profile"></i><br>{% trans 'Profile' %}</a></li>
+        <li><a href="{% url stats %}" rel="tooltip" title="{% trans 'Statistics' %}">
+            <i class="icon-custom-stats"></i><br>{% trans 'Statistics' %}</a></li>
+        <li><a href="{% url leader-board %}" rel="tooltip" title="{% trans 'Leader board' %}">
+            <i class="icon-custom-leader"></i><br>{% trans 'Leader board' %}</a></li>
+        <li><a href="{% url message-list %}" rel="tooltip" title="{% trans 'Private Messages' %}">
+            <i class="icon-custom-message">
+                {% if request.user.get_profile.unread_messages_count != 0 %}
+                    <span class="badge"> {{ request.user.get_profile.unread_messages_count }}</span>
+                {% endif %}
+            </i><br>{% trans 'Private Messages' %}</a></li>
+    </ul>
+{% else %}
+    <ul class="icons clearfix">
+        <li><a href="{% url home %}" rel="tooltip" title="{% trans 'Home' %}">
+            <i class="icon-custom-home"></i><br>{% trans 'Home' %}</a></li>
+        <li><a href="{% url stats %}" rel="tooltip" title="{% trans 'Statistics' %}">
+            <i class="icon-custom-stats"></i><br>{% trans 'Statistics' %}</a></li>
+        <li><a href="{% url leader-board %}" rel="tooltip" title="{% trans 'Leader board' %}">
+            <i class="icon-custom-leader"></i><br>{% trans 'Leader board' %}</a></li>
+    </ul>
+{% endif %}
