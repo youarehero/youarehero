@@ -25,41 +25,18 @@
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
-ul.icons {
-  list-style: none;
-  margin: 0 0 0 -20px;
-}
-ul.icons li {
-  padding: 5px;
-  float: left;
-  width: 70px;
-  height: 70px;
-  background: #147427;
-  margin: 0px 0px 20px 20px;
-}
-ul.icons li a {
-  color: #ffd263;
-}
-ul.icons li [class^="icon-custom-"],
-ul.icons li [class*=" icon-custom-"] {
-  margin: 0px 0px 0px 0px;
-}
-ul.icons li.small {
-  width: 50px;
-  height: 50px;
-}
 .logo img {
   width: 220px;
 }
 #butler {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 body {
-  color: #000;
-  background: url("/static/img/city.jpg") no-repeat scroll 50% 0 #333333;
+  font-family: 'Open Sans', sans-serif;
+  background: url("../img/city.jpg") no-repeat scroll 50% 0 #333333;
 }
 .sidebar-left {
-  margin-right: 20px;
+  margin-right: 0px;
 }
 .sidebar-right {
   float: left;
@@ -70,106 +47,73 @@ body {
 .span100 {
   width: 940px;
 }
-.page-header {
-  border-bottom: 0px none;
-  margin: 20px 0;
-  padding-bottom: 0px;
+#site-header-container {
+  margin: 20px 0px 20px -20px;
 }
-#page {
-  background: #ffd263;
-}
-#page .header {
-  background: #b46b0c;
-}
-#page .header h1 {
+#page-container {
   padding: 0 10px;
-  border-bottom: 1px solid #6c4007;
+  background-color: rgba(0, 0, 0, 0.35);
 }
-#page .header .submenu {
-  border-top: 1px solid #f0941d;
-  border-bottom: 1px solid #6c4007;
-  *zoom: 1;
+#page-container h1 {
+  padding: 0 10px;
 }
-#page .header .submenu:before,
-#page .header .submenu:after {
-  display: table;
-  content: "";
+ul.icons {
+  list-style: none;
+  margin: 0 0 0 -20px;
 }
-#page .header .submenu:after {
-  clear: both;
+ul.icons li {
+  float: left;
+  background: transparent;
+  margin: 0px 0px 20px 20px;
 }
-#page .content {
-  padding: 5px 10px;
+ul.icons li a {
+  color: #eeeeee;
 }
-.icon-custom-home {
-  background: url(../img/icons/home.png) 0 0 no-repeat transparent;
+ul.icons li [class^="icon-custom-"],
+ul.icons li [class*=" icon-custom-"] {
+  margin: 0px 0px 0px 0px;
 }
-.icon-custom-quest {
-  background: url(../img/icons/quest.png) 0 0 no-repeat transparent;
+ul.icons li.small {
+  width: 50px;
+  height: 50px;
 }
-.icon-custom-profile {
-  background: url(../img/icons/profile.png) 0 0 no-repeat transparent;
+.menu-icon-dashboard {
+  background: url("../img/icons_80.png") 0 0 no-repeat transparent;
 }
-.icon-custom-stats {
-  background: url(../img/icons/stats.png) 0 0 no-repeat transparent;
+.menu-icon-billboard {
+  background: url("../img/icons_80.png") -80px 0 no-repeat transparent;
 }
-.icon-custom-message {
-  background: url(../img/icons/message.png) 0 0 no-repeat transparent;
+.menu-icon-messages {
+  background: url("../img/icons_80.png") -160px 0 no-repeat transparent;
 }
-.icon-custom-leader {
-  background: url(../img/icons/leader.png) 0 0 no-repeat transparent;
+.menu-icon-calendar {
+  background: url(../img/icons_80.png) -240px 0 no-repeat transparent;
 }
-.icon-custom-allies {
-  background: url(../img/icons/allies.png) 0 0 no-repeat transparent;
+.menu-icon-new {
+  background: url(../img/icons_80.png) -320px 0 no-repeat transparent;
 }
-.icon-custom-groups {
-  background: url(../img/icons/groups.png) 0 0 no-repeat transparent;
+.menu-icon-my-quests {
+  background: url(../img/icons_80.png) -400px 0 no-repeat transparent;
 }
-.icon-custom-message-create {
-  background: url(../img/icons/message_create.png) 0 0 no-repeat transparent;
-}
-.icon-custom-my-heroes {
-  background: url(../img/icons/my_heroes.png) 0 0 no-repeat transparent;
-}
-.icon-custom-my-stats {
-  background: url(../img/icons/my_stats.png) 0 0 no-repeat transparent;
-}
-.icon-custom-profile-detail {
-  background: url(../img/icons/profile_detail.png) 0 0 no-repeat transparent;
-}
-.icon-custom-profile-edit {
-  background: url(../img/icons/profile_edit.png) 0 0 no-repeat transparent;
-}
-.icon-custom-quest-create {
-  background: url(../img/icons/quest_create.png) 0 0 no-repeat transparent;
-}
-.icon-custom-quest-edit {
-  background: url(../img/icons/quest_edit.png) 0 0 no-repeat transparent;
-}
-.icon-custom-quest-find {
-  background: url(../img/icons/quest_find.png) 0 0 no-repeat transparent;
-}
-.icon-custom-social {
-  background: url(../img/icons/social.png) 0 0 no-repeat transparent;
-}
-[class^="icon-custom-"],
-[class*="icon-custom-"] {
-  width: 32px;
-  height: 32px;
+[class^="menu-icon-"],
+[class*="menu-icon-"] {
+  margin: 0px 0px 0px 0px;
+  display: block;
+  width: 80px;
+  height: 80px;
+  font-style: normal;
+  font-family: 'Open Sans Condensed', sans-serif;
   *margin-right: .3em;
-  line-height: 32px;
 }
-[class^="icon-custom-"]:last-child,
-[class*="icon-custom-"]:last-child {
+[class^="menu-icon-"]:last-child,
+[class*="menu-icon-"]:last-child {
   *margin-left: 0;
 }
-[class^="icon-custom-"]:hover,
-[class*="icon-custom-"]:hover {
-  -webkit-transform: scale(1.3);
-  -moz-transform: scale(1.3);
-  -ms-transform: scale(1.3);
-  -o-transform: scale(1.3);
-  transform: scale(1.3);
+[class^="menu-icon-"] span,
+[class*="menu-icon-"] span {
+  left: 5px;
+  position: relative;
+  top: 60px;
 }
 .badge {
   border-radius: 0px;
@@ -185,7 +129,7 @@ body {
   left: 3px;
 }
 .avatar-small {
-  background: #147427;
+  background: transparent;
   padding: 5px;
   width: 110px;
   margin-right: 0px;

@@ -5,29 +5,7 @@
 
 // Navigation
 
-ul.icons {
-  list-style: none;
-  margin: 0 0 0 -20px;
-  li {
-    padding: 5px;
-    float: left;
-    width: 70px;
-    height: 70px;
-    background: @iconBackground;
-    a {color: @iconFontColor;}
-    margin: 0px 0px 20px 20px;
 
-    [class^="icon-custom-"],
-    [class*=" icon-custom-"] {
-      margin: 0px 0px 0px 0px;
-    }
-    &.small {
-      width: 50px;
-      height: 50px;
-    }
-  }
-
-}
 
 // Logo
 .logo {
@@ -39,19 +17,19 @@ ul.icons {
 // Butler
 
 #butler {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 // Layout
 //------------------------
 
 body {
 //  padding-top: 20px;
-  color: #000;
-  background: url("/static/img/city.jpg") no-repeat scroll 50% 0 #333;
+  font-family: 'Open Sans', sans-serif;
+  background: url("../img/city.jpg") no-repeat scroll 50% 0 #333;
 }
 
 .sidebar-left {
-  margin-right: 20px;
+  margin-right: 0px;
 }
 .sidebar-right {
   float: left;
@@ -65,32 +43,18 @@ body {
   width: @gridRowWidth;
 }
 
-// page
-.page-header {
-  border-bottom: 0px none;
-  margin: 20px 0;
-  padding-bottom: 0px;
+// site-header
+#site-header-container {
+  margin: 20px 0px 20px -20px;
 }
 
 
-#page {
-  background: @contentBackground;
-  .header {
-    background: @headerBackground;
-    h1 {
-      padding: 0 10px;
-      border-bottom: 1px solid darken(@headerBackground, 15%);
-    }
-    .submenu {
-      border-top: 1px solid lighten(@headerBackground, 15%);
-      border-bottom: 1px solid darken(@headerBackground, 15%);
-      .clearfix()
-    }
-  }
-
-
-  .content {
-    padding: 5px 10px;
+#page-container {
+  padding:  0 10px;
+//  margin-left: -10px;
+  background-color: @contentBackground;
+  h1 {
+    padding: 0 10px;
   }
 }
 
@@ -99,32 +63,51 @@ body {
 // Icons
 //------------------------
 
-.icon-custom-home { background: url(../img/icons/home.png) 0 0 no-repeat transparent; }
-.icon-custom-quest { background: url(../img/icons/quest.png) 0 0 no-repeat transparent; }
-.icon-custom-profile { background: url(../img/icons/profile.png) 0 0 no-repeat transparent; }
-.icon-custom-stats { background: url(../img/icons/stats.png) 0 0 no-repeat transparent; }
-.icon-custom-message { background: url(../img/icons/message.png) 0 0 no-repeat transparent; }
-.icon-custom-leader { background: url(../img/icons/leader.png) 0 0 no-repeat transparent; }
-.icon-custom-allies { background: url(../img/icons/allies.png) 0 0 no-repeat transparent; }
-.icon-custom-groups { background: url(../img/icons/groups.png) 0 0 no-repeat transparent; }
-.icon-custom-message-create { background: url(../img/icons/message_create.png) 0 0 no-repeat transparent; }
-.icon-custom-my-heroes { background: url(../img/icons/my_heroes.png) 0 0 no-repeat transparent; }
-.icon-custom-my-stats { background: url(../img/icons/my_stats.png) 0 0 no-repeat transparent; }
-.icon-custom-profile-detail { background: url(../img/icons/profile_detail.png) 0 0 no-repeat transparent; }
-.icon-custom-profile-edit { background: url(../img/icons/profile_edit.png) 0 0 no-repeat transparent; }
-.icon-custom-quest-create { background: url(../img/icons/quest_create.png) 0 0 no-repeat transparent; }
-.icon-custom-quest-edit { background: url(../img/icons/quest_edit.png) 0 0 no-repeat transparent; }
-.icon-custom-quest-find { background: url(../img/icons/quest_find.png) 0 0 no-repeat transparent; }
-.icon-custom-social { background: url(../img/icons/social.png) 0 0 no-repeat transparent; }
+ul.icons {
+  list-style: none;
+  margin: 0 0 0 -20px;
+  li {
+  //    padding: 5px;
+    float: left;
+  //    width: 70px;
+  //    height: 70px;
+    background: @iconBackground;
+    a {color: @iconFontColor;}
+    margin: 0px 0px 20px 20px;
 
-[class^="icon-custom-"],
-[class*="icon-custom-"] {
-  width: 32px;
-  height: 32px;
+    [class^="icon-custom-"],
+    [class*=" icon-custom-"] {
+      margin: 0px 0px 0px 0px;
+    }
+    &.small {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+.menu-icon-dashboard { background: url("../img/icons_80.png") 0 0 no-repeat transparent; }
+.menu-icon-billboard { background: url("../img/icons_80.png") -80px 0 no-repeat transparent; }
+.menu-icon-messages { background: url("../img/icons_80.png") -160px 0 no-repeat transparent; }
+.menu-icon-calendar { background: url(../img/icons_80.png) -240px 0 no-repeat transparent; }
+.menu-icon-new { background: url(../img/icons_80.png) -320px 0 no-repeat transparent; }
+.menu-icon-my-quests { background: url(../img/icons_80.png) -400px 0 no-repeat transparent; }
+
+
+[class^="menu-icon-"],
+[class*="menu-icon-"] {
+  margin: 0px 0px 0px 0px;
+  display: block;
+  width: 80px;
+  height: 80px;
+  font-style: normal;
+  font-family: 'Open Sans Condensed', sans-serif;
   .ie7-restore-right-whitespace();
-  line-height: 32px;
-  &:hover {
-    .scale(1.3);
+//  line-height: 32px;
+  span {
+    left: 5px;
+    position: relative;
+    top: 60px;
   }
 }
 
