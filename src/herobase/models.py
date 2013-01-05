@@ -36,14 +36,16 @@ CLASS_CHOICES =  (
     (3, 'Action'),
     (4, 'Protective'))
 
+
 class Like(models.Model):
     user = models.ForeignKey(User)
     quest = models.ForeignKey('Quest')
 
+
 class LocationMixin(models.Model):
-    latitude = models.FloatField(null=True, db_index=True)
-    longitude = models.FloatField(null=True, db_index=True)
-    address = models.CharField(max_length=255, blank=True)
+    latitude = models.FloatField(null=True, db_index=True, blank=True)
+    longitude = models.FloatField(null=True, db_index=True, blank=True)
+    address = models.CharField(max_length=255, blank=True, default='')
 
     LOCATION_GRANULARITY_NONE = 0
     LOCATION_GRANULARITY_GPS = 1
@@ -85,6 +87,8 @@ class AdventureQuerySet(QuerySet):
         return self.filter(state__in=(Adventure.STATE_HERO_APPLIED,
                                       Adventure.STATE_OWNER_ACCEPTED,
                                       Adventure.STATE_HERO_DONE))
+
+
 class AdventureManager(models.Manager):
     """Custom Object Manager for Adventures, excluding canceled ones."""
     def get_query_set(self):
@@ -94,6 +98,7 @@ class AdventureManager(models.Manager):
         return self.get_query_set().active()
     def in_progress(self):
         return self.get_query_set().in_progress()
+
 
 class Adventure(models.Model, ActionMixin):
     """Model the relationship between a User and a Quest she is engaged in."""
@@ -174,6 +179,7 @@ class Adventure(models.Model, ActionMixin):
         self.state = self.STATE_OWNER_DONE
         self.save()
 
+
 class QuestQuerySet(QuerySet):
     def active(self):
         return self.exclude(state__in=(Quest.STATE_OWNER_DONE, Quest.STATE_OWNER_CANCELED))
@@ -203,7 +209,6 @@ class Quest(LocationMixin, ActionMixin, models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
 
-    location = models.CharField(max_length=255) # TODO : placeholder
     due_date = models.DateTimeField()
 
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
@@ -291,7 +296,7 @@ class Quest(LocationMixin, ActionMixin, models.Model):
 
     @action(verbose_name=_("apply"))
     def hero_apply(self, request, validate_only=False):
-        """Applies a hero to the quest and create an adventure for her."""
+        """Applies a hero to the quest and create  an adventure for her."""
         if not self.is_open():
             valid = False
         else:
@@ -410,7 +415,6 @@ class Quest(LocationMixin, ActionMixin, models.Model):
     def __unicode__(self):
         """String representation"""
         return self.title
-
 
 
 class AvatarImageMixin(object):

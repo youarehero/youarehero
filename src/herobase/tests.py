@@ -258,8 +258,10 @@ class AuthenticatedIntegrationTest(TestCase):
             'max_heroes': 1,
             'level': 1,
             'experience': 1,
-            'location': 'location',
+
             'due_date': '11.11.2013',
+            'address': 'address',
+            'location_granularity': 0,
         })
         self.assertTrue(Quest.objects.filter(title='title', owner=self.user).exists())
 
