@@ -269,25 +269,62 @@ input[type="email"], input[type="url"], input[type="search"],
 input[type="tel"], input[type="color"], .uneditable-input {
 //  border: 0px none;
 //  .border-radius(0);
+  border-top: 1px solid darken(@inputBorder, 20%);
+  border-left: 1px solid darken(@inputBorder, 15%);
+  border-right: 1px solid @inputBorder;
+  border-bottom: 1px solid @inputBorder;
 }
 
 form {
-  background: @grayLighter;
+  padding: 10px;
+  margin-right: 10px;
+  background: @boxBackground;
+  color: @boxTextColor;
   font-variant: small-caps;
+  .span3 {
+    width: 265px;
+  }
 }
 .select2-container .select2-choice {
-  border: 0px none;
+  border-top: 1px solid darken(@inputBorder, 20%);
+  border-left: 1px solid darken(@inputBorder, 15%);
+  border-right: 1px solid @inputBorder;
+  border-bottom: 1px solid @inputBorder;
+  background: @inputBackground;
   .border-radius(0);
   width: 212px;
   height: 28px;
   line-height: 28px;
-}
-.form-actions {
-  border: 0px none;
-  .btn {
-    float: right;
+  div {
+    .border-radius(0);
   }
 }
+.form-actions {
+  margin: 0 -10px -10px 0;
+  padding: 0;
+  border: 0px none;
+  position: relative;
+  top: 10px;
+  left: 10px;
+  .btn {
+    background: @boxIconBackground;
+    margin-left: 10px;
+    .border-radius(0);
+    float: right;
+    border: 0px none;
+    min-width: 40px;
+  // special icon btns
+    &[type=submit] {
+      padding: 0;
+      width:  40px;
+      height: 0px;
+      padding-top: 40px;
+      background: url("../img/operations.png") -80px 0 no-repeat @boxIconBackground;
+    }
+  }
+}
+
+
 
 // Avatar
 //------------------------
