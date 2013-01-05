@@ -33,6 +33,9 @@ h5,
 h6 {
   font-weight: normal;
 }
+h1 {
+  line-height: 40px;
+}
 #butler {
   margin-top: 20px;
 }
@@ -65,19 +68,27 @@ body {
 }
 #page-container {
   width: 600px;
-  margin: 0 0px 0 0px;
+  margin: 0;
 }
 #page-title {
   padding: 0 10px;
-  color: #eeeeee;
   font-variant: small-caps;
   background-color: rgba(0, 0, 0, 0.25);
+  *zoom: 1;
+}
+#page-title:before,
+#page-title:after {
+  display: table;
+  content: "";
+}
+#page-title:after {
+  clear: both;
 }
 #submenu {
   padding: 0 10px;
-  color: #eeeeee;
   font-variant: small-caps;
   background-color: rgba(0, 0, 0, 0.25);
+  *zoom: 1;
 }
 #submenu ul.page-tabs {
   margin-left: -10px;
@@ -91,6 +102,7 @@ body {
   margin-right: 20px;
   background: rgba(0, 0, 0, 0.3);
   padding: 10px;
+  line-height: 20px;
 }
 #submenu ul.page-tabs a {
   color: #eeeeee;
@@ -103,18 +115,30 @@ body {
 #submenu ul.page-tabs:after {
   clear: both;
 }
+#submenu:before,
+#submenu:after {
+  display: table;
+  content: "";
+}
+#submenu:after {
+  clear: both;
+}
 #page-content {
-  padding: 0 10px;
-  color: #eeeeee;
+  padding: 10px;
   background-color: rgba(0, 0, 0, 0.35);
+  *zoom: 1;
 }
-ul.grid {
-  list-style: none;
-  margin: 0 0 0 -20px;
+#page-content:before,
+#page-content:after {
+  display: table;
+  content: "";
 }
-ul.grid li {
-  float: left;
-  margin: 0px 0px 20px 20px;
+#page-content:after {
+  clear: both;
+}
+.help-block,
+.help-inline {
+  color: #999999;
 }
 .icon-home {
   background: url("../img/icons_80.png") 0 0 no-repeat transparent;
@@ -176,8 +200,6 @@ ul.grid li {
   display: block;
   width: 80px;
   height: 80px;
-  color: #eeeeee;
-  background-color: rgba(0, 0, 0, 0.25);
   font-style: normal;
   font-family: 'Open Sans Condensed', sans-serif;
   font-variant: small-caps;
@@ -226,52 +248,74 @@ ul.grid li {
   left: 0px;
   top: 40px;
 }
-ul.content-grid {
+ul.grid {
+  list-style: none;
+  margin: 0 0 0 -20px;
+}
+ul.grid li {
+  float: left;
+  margin: 0px 0px 20px 20px;
+}
+ul.menu-grid li {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #222222;
+}
+ul.menu-grid li a {
+  color: #222222;
+}
+ul.menu-grid li.on,
+ul.menu-grid li:hover {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+ul.menu-grid li.on a,
+ul.menu-grid li:hover a {
+  color: #eeeeee;
+}
+ul.small-grid {
+  list-style: none;
   margin-left: -10px;
-  margin-top: 10px;
   *zoom: 1;
 }
-ul.content-grid li {
-  background: #ddd;
-  color: #333333;
+ul.small-grid li {
+  float: left;
   margin: 0px 0px 10px 10px;
 }
-ul.content-grid li h3,
-ul.content-grid li p {
+ul.small-grid li h3,
+ul.small-grid li p {
   margin-left: 6px;
   margin-right: 6px;
 }
-ul.content-grid li.half {
+ul.small-grid li.half {
   width: 275px;
 }
-ul.content-grid li.small {
+ul.small-grid li.small {
   width: 235px;
 }
-ul.content-grid li.big {
+ul.small-grid li.big {
   width: 315px;
 }
-ul.content-grid li.mini {
+ul.small-grid li.mini {
   width: 185px;
 }
-ul.content-grid li.large {
+ul.small-grid li.large {
   width: 365px;
 }
-ul.content-grid.icons-top li {
-  margin-top: 20px;
+ul.small-grid.icons-top li {
+  margin-top: 10px;
 }
-ul.content-grid.icons-right li {
+ul.small-grid.icons-right li {
   margin-right: 10px;
 }
-ul.content-grid.icons-bottom li {
+ul.small-grid.icons-bottom li {
   margin-bottom: 20px;
 }
-ul.content-grid.icons-left li {
-  margin-left: 30px;
+ul.small-grid.icons-left li {
+  margin-left: 20px;
 }
-ul.content-grid .border-icons-top-left,
-ul.content-grid .border-icons-top-right,
-ul.content-grid .border-icons-bottom-right,
-ul.content-grid .border-icons-bottom-left {
+ul.small-grid .border-icons-top-left,
+ul.small-grid .border-icons-top-right,
+ul.small-grid .border-icons-bottom-right,
+ul.small-grid .border-icons-bottom-left {
   list-style: none;
   margin: 0;
   position: relative;
@@ -279,36 +323,40 @@ ul.content-grid .border-icons-bottom-left {
   left: -30px;
   top: -10px;
 }
-ul.content-grid .border-icons-top-left li,
-ul.content-grid .border-icons-top-right li,
-ul.content-grid .border-icons-bottom-right li,
-ul.content-grid .border-icons-bottom-left li {
+ul.small-grid .border-icons-top-left li,
+ul.small-grid .border-icons-top-right li,
+ul.small-grid .border-icons-bottom-right li,
+ul.small-grid .border-icons-bottom-left li {
   margin: 0 0 0 10px;
   padding: 0;
   width: 40px;
 }
-ul.content-grid .border-icons-top-left li i,
-ul.content-grid .border-icons-top-right li i,
-ul.content-grid .border-icons-bottom-right li i,
-ul.content-grid .border-icons-bottom-left li i {
-  background-color: #bbb;
-}
-ul.content-grid .border-icons-top-right,
-ul.content-grid .border-icons-bottom-right {
+ul.small-grid .border-icons-top-right,
+ul.small-grid .border-icons-bottom-right {
   left: 10px;
   float: right;
 }
-ul.content-grid .border-icons-bottom-right,
-ul.content-grid .border-icons-bottom-left {
+ul.small-grid .border-icons-bottom-right,
+ul.small-grid .border-icons-bottom-left {
   top: 10px;
 }
-ul.content-grid:before,
-ul.content-grid:after {
+ul.small-grid:before,
+ul.small-grid:after {
   display: table;
   content: "";
 }
-ul.content-grid:after {
+ul.small-grid:after {
   clear: both;
+}
+ul.box-grid li {
+  background: #eeeeee;
+  color: #222222;
+}
+ul.box-grid .border-icons-top-left li,
+ul.box-grid .border-icons-top-right li,
+ul.box-grid .border-icons-bottom-right li,
+ul.box-grid .border-icons-bottom-left li {
+  background-color: #bbbbbb;
 }
 .badge {
   border-radius: 0px;
@@ -323,8 +371,27 @@ ul.content-grid:after {
   bottom: -8px;
   left: 3px;
 }
+form {
+  background: #eeeeee;
+  font-variant: small-caps;
+}
+.select2-container .select2-choice {
+  border: 0px none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  width: 212px;
+  height: 28px;
+  line-height: 28px;
+}
+.form-actions {
+  border: 0px none;
+}
+.form-actions .btn {
+  float: right;
+}
 .avatar-small {
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.35);
   padding: 5px;
   width: 110px;
   margin-right: 0px;
@@ -623,7 +690,7 @@ ul.questboard li .postit:active {
 #team_hints {
   position: fixed;
   bottom: 0;
-  left: 30%;
+  right: 0;
   background: #333333;
 }
 #team_hints a {

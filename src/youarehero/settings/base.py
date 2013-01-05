@@ -171,6 +171,7 @@ INSTALLED_APPS = (
     'easy_maps',
     'easy_thumbnails',
     'django_google_maps',
+    'activelink',
 
     # project specific installed apps
     'herobase',

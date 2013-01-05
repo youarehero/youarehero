@@ -46,18 +46,24 @@
 @yellowLight: #FFFFcc;
 
 // new style
-@iconBackground: rgba(0,0,0,0.25);
-@iconFontColor: @grayLighter;
+@baseBackground: rgba(0,0,0,0.35);
+@baseBackgroundHeader: rgba(0,0,0,0.25);
 
-@contentBackground: rgba(0,0,0,0.35);
-@headerBackground: rgba(0,0,0,0.25);
+@boxBackground: @grayLighter;
+@boxBackgroundHeader: @grayLight;
+@boxIconBackground: #bbb;
 
-@lightTextColor: @grayLighter;
+@menuBackground: rgba(255,255,255,0.5);
+@menuBackgroundHover: @baseBackground;
+@menuTextColor: @grayDarker;
+@menuTextColorHover: @grayLighter;
+
+@boxTextColor: @grayDarker;
 
 // Scaffolding
 // -------------------------
 @bodyBackground:        #0B1923; //@white; // not used
-@textColor:             @grayDark;
+@textColor:             @grayLighter;
 
 
 // Links
@@ -117,11 +123,11 @@
 
 // Forms
 // -------------------------
-@inputBackground:               @white;
-@inputBorder:                   #ccc;
-@inputBorderRadius:             3px;
-@inputDisabledBackground:       @grayLighter;
-@formActionsBackground:         #f5f5f5;
+@inputBackground:               @grayLighter; //@white;
+@inputBorder:                   @grayLighter; //#ccc;
+@inputBorderRadius:             0px; //3px;
+@inputDisabledBackground:       @grayLight;
+@formActionsBackground:         transparent; //#f5f5f5;
 
 // Dropdowns
 // -------------------------

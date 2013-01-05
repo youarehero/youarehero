@@ -38,27 +38,23 @@ class QuestCreateForm(forms.ModelForm):
 
         #self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.layout = Layout(
-            Fieldset(
-                _('Create a Quest'),
-
+            Div(
                 Div(
-                    Div(
-                        'title',
-                        'hero_class',
-                        'description',
-                        css_class="span3",
-                    ),
-                    Div(
-                        'level',
-                        'experience',
-                        'max_heroes',
-                        'auto_accept',
-                        'address',
-                        'due_date',
-                        css_class="span3",
-                    ),
-                    css_class="row",
+                    'title',
+                    'hero_class',
+                    'description',
+                    css_class="span3",
                 ),
+                Div(
+                    'level',
+                    'experience',
+                    'max_heroes',
+                    'auto_accept',
+                    'address',
+                    'due_date',
+                    css_class="span3",
+                ),
+                css_class="row",
             ),
             FormActions(
                 Submit('save', 'Create', css_class='btn')

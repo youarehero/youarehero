@@ -1,16 +1,21 @@
-{% load i18n static crispy_forms_tags %}
+{% load i18n static crispy_forms_tags activelink %}
 
 {% if request.user.is_authenticated %}
-    <ul class="grid clearfix">
-        <li><a href="{% url home %}" rel="tooltip" title="{% trans 'Home' %}">
+    <ul class="grid menu-grid clearfix">
+        <li class="{% ifactive "home" %}on{% else %}off{% endifactive %}">
+            <a href="{% url home %}" rel="tooltip" title="{% trans 'Home' %}">
             <i class="icon-home"><span>{% trans 'Home' %}</span></i></a></li>
-        <li><a href="{% url quest-list %}" rel="tooltip" title="{% trans 'Billboard' %}">
+        <li class="{% ifactive "quest-list" %}on{% else %}off{% endifactive %}">
+            <a href="{% url quest-list %}" rel="tooltip" title="{% trans 'Billboard' %}">
             <i class="icon-billboard"><span>{% trans 'Billboard' %}</span></i></a></li>
-        <li><a href="{% url quest-create %}" rel="tooltip" title="{% trans 'Create new Quest' %}">
+        <li class="{% ifactive "quest-create" %}on{% else %}off{% endifactive %}">
+            <a href="{% url quest-create %}" rel="tooltip" title="{% trans 'Create new Quest' %}">
             <i class="icon-new"><span>{% trans 'New' %}</span></i></a></li>
-        <li><a href="{% url quest-my %}" rel="tooltip" title="{% trans 'My Quests' %}">
+        <li class="{% ifstartswith "quest-my" %}on{% else %}off{% endifstartswith %}">
+            <a href="{% url quest-my %}" rel="tooltip" title="{% trans 'My Quests' %}">
             <i class="icon-my-quests"><span>{% trans 'My Quests' %}</span></i></a></li>
-        <li><a href="{% url message-list %}" rel="tooltip" title="{% trans 'Private Messages' %}">
+        <li class="{% ifactive "message-list" %}on{% else %}off{% endifactive %}">
+            <a href="{% url message-list %}" rel="tooltip" title="{% trans 'Private Messages' %}">
             <i class="icon-messages">
                 {% if request.user.get_profile.unread_messages_count != 0 %}
                     <span class="badge"> {{ request.user.get_profile.unread_messages_count }}</span>
