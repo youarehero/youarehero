@@ -1,0 +1,9 @@
+{% load i18n activelink %}
+<ul class="page-tabs">
+    <li class="{% ifactive "home" %}on{% else %}off{% endifactive %}">
+        <a href="{% url message-create %}" class="">{% trans "compose" %}</a></li>
+    <li class="{% ifactive "message-list" %}on{% else %}off{% endifactive %}">
+        <a href="{% url message-list %}"><i class="icon-arrow-down"></i>{% trans "in" %}</a></li>
+    <li class="{% ifactive "message-list" %}on{% else %}off{% endifactive %}">
+        <a href="{% url message-list %}"><i class="icon-arrow-up"></i>{% trans "out" %}</a></li>
+</ul>

@@ -10,6 +10,14 @@
     </script>
 {% endblock %}
 
+{% block submenu %}
+    {% include "message/submenu.inc.html"%}
+{% endblock %}
+
+{% block page_title %}
+    <h1>{% trans "Messages" %}</h1>
+{% endblock %}
+
 {% block content %}
             <ul class="nav nav-pills">
                 <li> <a href="{% url message-create %}" class="">{% trans "compose" %}</a></li>

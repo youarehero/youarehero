@@ -16,19 +16,26 @@ class MessageForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
 #        self.helper.form_action = 'message-c'
-        self.helper.form_class = 'well form-horizontal'
+        self.helper.form_class = 'form'
 
         self.helper.layout = Layout(
-            Fieldset(
-                _('Send a new Message'),
+            Div(
                 Div(
-                    Field(
-                        'recipient',
-                        #HTML('<input type="text" data-provide="typeahead">'),
+                    'recipient',
+                    css_class="span3",
                     ),
+                Div(
                     'title',
+                    css_class="span3",
+                    ),
+                css_class="row",
+            ),
+            Div(
+                Div(
                     'text',
-                )
+                    css_class="span6",
+                ),
+                css_class="row",
             ),
             FormActions(
                 Submit('save', 'Send', css_class='btn-primary btn-large')
