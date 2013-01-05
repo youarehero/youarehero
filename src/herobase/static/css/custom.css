@@ -158,8 +158,20 @@ ul.grid li {
 .icon-logout {
   background: url("../img/operations.png") -280px 0 no-repeat transparent;
 }
-[class^="icon-"],
-[class*="icon-"] {
+.icon-home,
+.icon-billboard,
+.icon-messages,
+.icon-calendar,
+.icon-new,
+.icon-my-quests,
+.icon-delete,
+.icon-edit,
+.icon-arrow,
+.icon-mail,
+.icon-time-short,
+.icon-time-middle,
+.icon-time-long,
+.icon-logout {
   margin: 0px 0px 0px 0px;
   display: block;
   width: 80px;
@@ -172,12 +184,36 @@ ul.grid li {
   white-space: nowrap;
   *margin-right: .3em;
 }
-[class^="icon-"]:last-child,
-[class*="icon-"]:last-child {
+.icon-home:last-child,
+.icon-billboard:last-child,
+.icon-messages:last-child,
+.icon-calendar:last-child,
+.icon-new:last-child,
+.icon-my-quests:last-child,
+.icon-delete:last-child,
+.icon-edit:last-child,
+.icon-arrow:last-child,
+.icon-mail:last-child,
+.icon-time-short:last-child,
+.icon-time-middle:last-child,
+.icon-time-long:last-child,
+.icon-logout:last-child {
   *margin-left: 0;
 }
-[class^="icon-"] span,
-[class*="icon-"] span {
+.icon-home span,
+.icon-billboard span,
+.icon-messages span,
+.icon-calendar span,
+.icon-new span,
+.icon-my-quests span,
+.icon-delete span,
+.icon-edit span,
+.icon-arrow span,
+.icon-mail span,
+.icon-time-short span,
+.icon-time-middle span,
+.icon-time-long span,
+.icon-logout span {
   left: 5px;
   position: relative;
   top: 60px;
