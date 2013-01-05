@@ -21,9 +21,20 @@
 
                     </td>
                     <td>{{ adventure.get_state_display }}</td>
+                    {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
                     <td>
-                        {# FIXME: actions #}
+                        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post" class="inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="accept">
+                            <input type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept" %}"/>
+                        </form>
+                        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post" class="inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="reject">
+                            <input type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Reject" %}"/>
+                        </form>
                     </td>
+                {% endif %}
                 </tr>
             {% endfor %}
             </tbody>

@@ -79,7 +79,23 @@ class LocationMixin(models.Model):
         abstract = True
 
 
+class AdventureQuerySet(QuerySet):
+    def applying(self):
+        """Show only adventures that have not been canceled."""
+        return self.filter(canceled=False, accepted=False, rejected=False)
+
+
+class AdventureManager(models.Manager):
+    """Custom Object Manager for Adventures, excluding canceled ones."""
+    def get_query_set(self):
+        return AdventureQuerySet(model=self.model, using=self._db)
+    def applying(self):
+        """Show only adventures that have not been canceled."""
+        return self.get_query_set().applying()
+
+
 class Adventure(models.Model):
+    objects = AdventureManager()
 
     user = models.ForeignKey(User, related_name='adventures')
     quest = models.ForeignKey('Quest')
@@ -97,6 +113,31 @@ class Adventure(models.Model):
 
     done = models.BooleanField(default=False)
     done_time = models.DateTimeField(null=True, blank=True, editable=False)
+
+    # The Adventure States are related to a Quest and a User
+    STATE_NOT_SET = 0
+    STATE_HERO_APPLIED = 1
+    STATE_OWNER_REFUSED = 2
+    STATE_HERO_CANCELED = 3
+    STATE_OWNER_ACCEPTED = 4
+    STATE_HERO_DONE = 5
+    STATE_OWNER_DONE = 6
+    STATE_NO_STATE = 10000
+
+    state = models.IntegerField(default=STATE_NO_STATE, choices=(
+        (STATE_NOT_SET, _("state not set")),
+        (STATE_HERO_APPLIED, _("applied")),
+        (STATE_OWNER_REFUSED,_("rejected")),
+        (STATE_HERO_CANCELED, _("canceled")),
+        (STATE_OWNER_ACCEPTED, _("accepted")),
+        (STATE_HERO_DONE, _("confirmation requested")),
+        (STATE_OWNER_DONE, _("participation confirmed")),
+        (STATE_NO_STATE, _("no state")),
+    ))
+
+    @property
+    def applying(self):
+        return not self.rejected and not self.accepted and not self.canceled
 
     def save(self, force_insert=False, force_update=False, using=None):
         if self.accepted and not self.accepted_time:
@@ -166,6 +207,24 @@ class Quest(LocationMixin, models.Model):
     # owner has started the quest
     started = models.BooleanField(default=False)
     started_time = models.DateTimeField(null=True, blank=True, editable=False)
+
+    # States for the Quest. OPEN + FULL = ACTIVE, DONE + CANCELED = INACTIVE
+    STATE_NOT_SET = 0
+    STATE_OPEN = 1
+    STATE_FULL = 2
+    STATE_OWNER_DONE = 3
+    STATE_OWNER_CANCELED = 4
+    STATE_NO_STATE = 1000
+
+    QUEST_STATES = (
+        (STATE_OPEN , _("open")),
+        (STATE_FULL , _("full")),
+        (STATE_OWNER_DONE , _("done")),
+        (STATE_OWNER_CANCELED , _("canceled")),
+        (STATE_NO_STATE, _("no state")),
+    )
+
+    state = models.IntegerField(default=STATE_NO_STATE, choices=QUEST_STATES)
 
     level = models.IntegerField(editable=False, default=1)
 

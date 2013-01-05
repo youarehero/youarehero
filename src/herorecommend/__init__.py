@@ -1,4 +1,3 @@
-from django.core.cache import cache
 from django.db import connection
 from models import QuestRating, SKILLS
 from herobase.models import Quest
@@ -20,7 +19,7 @@ def filter_by_location(queryset, latitude, longitude, radius_km=50):
 def recommend_top(user, n, fields=('title', 'description', 'state', 'location',
         'remote', 'latitude', 'longitude'), queryset=None, order_by=None):
     quests = recommend(user, fields=fields, queryset=queryset)[:3*n]
-    suggestions = [] 
+    suggestions = []
     for quest in quests:
         print quest, ':',
         for skill in quest.profile.get_skills():

@@ -129,9 +129,9 @@ def quest_my(request, template='herobase/quest/my.html'):
     return render(request, template,
             {
             #'profile': user.get_profile(),
-            'quests_active': user.created_quests.active().order_by('-created')[:10],
-            'quests_old': user.created_quests.inactive().order_by('-created')[:10],
-            'quests_joined': Quest.objects.active().filter(adventure__user=user).exclude(adventure__user=user, adventure__state=Adventure.STATE_HERO_CANCELED)[:10]
+            'quests_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:10],
+            'quests_old': user.created_quests.exclude(canceled=False, done=False).order_by('-created')[:10],
+            'quests_joined': Quest.objects.filter(canceled=False, done=False).filter(adventure__user=user)[:10]
         })
 
 @require_POST

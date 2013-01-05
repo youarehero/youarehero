@@ -1,0 +1,5 @@
+{% extends "heronotification/notification_base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "A hero is applying for your quest" %} {{ notification.target.quest.title }}{% endblock %}
+{% block content %}If you want to accept or reject him go to the page {{ notification.target.quest.get_absolute_url }}{% endblock %}
