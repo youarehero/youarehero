@@ -108,7 +108,7 @@ ul.grid li {
   float: left;
   margin: 0px 0px 20px 20px;
 }
-.icon-dashboard {
+.icon-home {
   background: url("../img/icons_80.png") 0 0 no-repeat transparent;
 }
 .icon-billboard {
@@ -195,6 +195,7 @@ ul.content-grid li {
 ul.content-grid li h3,
 ul.content-grid li p {
   margin-left: 6px;
+  margin-right: 6px;
 }
 ul.content-grid li.half {
   width: 275px;
