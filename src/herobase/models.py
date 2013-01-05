@@ -98,7 +98,7 @@ class Adventure(models.Model):
     objects = AdventureManager()
 
     user = models.ForeignKey(User, related_name='adventures')
-    quest = models.ForeignKey('Quest')
+    quest = models.ForeignKey('Quest', related_name='adventures')
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
@@ -230,7 +230,7 @@ class Quest(LocationMixin, models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None):
         self.open = not self.pk or (not self.done and not self.canceled and
-                     self.adventure_set.filter(accepted=True, canceled=False).count() < self.max_heroes)
+                     self.adventures.filter(accepted=True, canceled=False).count() < self.max_heroes)
 
         if self.canceled and not self.canceled_time:
             self.canceled_time = datetime.now()

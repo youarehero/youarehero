@@ -74,17 +74,20 @@ class QuestCreateView(CreateView):
 def quest_detail_view(request, quest_id, template="herobase/quest/detail.html"):
     """Render detail template for quest, and adventure if it exists."""
     quest = get_object_or_404(Quest, pk=quest_id)
-    if not request.user.is_anonymous():
-        try:
-            adventure = quest.adventure_set.get(user=request.user)
-        except Adventure.DoesNotExist:
-            adventure = None
-    else:
-        adventure = None
+
     context = {
         'quest': quest,
-        'adventure': adventure,
     }
+
+    if request.user == quest.owner:
+        template = 'herobase/quest/owner_detail.html'
+    elif request.user.is_authenticated():
+        try:
+            context['adventure'] = quest.adventures.get(user=request.user, canceled=False)
+            template = 'herobase/quest/hero_detail.html'
+        except Adventure.DoesNotExist:
+            pass
+
     return render(request, template, context)
 
 def home_view(request):
@@ -118,7 +121,7 @@ def hero_home_view(request, template='herobase/hero_home.html'):
              #'profile': user.get_profile(),
              'quests_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:10],
              'quests_old': user.created_quests.filter(done=True).order_by('-created')[:10],
-             'quests_joined': Quest.objects.filter(canceled=False, adventure__user=user, adventure__canceled=False)[:10]
+             'quests_joined': Quest.objects.filter(canceled=False, adventures__user=user, adventures__canceled=False)[:10]
              })
 
 
@@ -131,7 +134,7 @@ def quest_my(request, template='herobase/quest/my.html'):
             #'profile': user.get_profile(),
             'quests_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:10],
             'quests_old': user.created_quests.exclude(canceled=False, done=False).order_by('-created')[:10],
-            'quests_joined': Quest.objects.filter(canceled=False, done=False).filter(adventure__user=user)[:10]
+            'quests_joined': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user)[:10]
         })
 
 @require_POST
@@ -181,11 +184,16 @@ def hero_update_quest(request, quest_id):
     """Handle POST data for adventure-actions and redirect to quest-detail-view."""
     quest = get_object_or_404(Quest, pk=quest_id)
 
+    if quest.owner == request.user:
+        raise ValidationError("Im afraid I can't let you do that.")
+
     action = request.POST.get('action')
     if action == 'apply':
-        quest_livecycle.hero_quest_apply(quest)
+        quest_livecycle.hero_quest_apply(quest, request.user)
     elif action == 'cancel':
-        quest_livecycle.hero_quest_cancel(quest)
+        quest_livecycle.hero_quest_cancel(quest, request.user)
+    else:
+        raise ValidationError('No known action specified')
     return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
 
 @login_required

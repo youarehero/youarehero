@@ -18,7 +18,7 @@ def owner_hero_accept(quest, hero):
         raise ValidationError("Can't accept heroes into a quest that isn't open.")
 
     try:
-        adventure = quest.adventure_set.get(user=hero, rejected=False, accepted=False)
+        adventure = quest.adventures.get(user=hero, rejected=False, accepted=False)
     except Adventure.DoesNotExist:
         raise ValidationError("Can't accept a hero who is not applying.")
 
@@ -35,7 +35,7 @@ def owner_hero_reject(quest, hero):
         raise ValidationError("Can't reject heroes when a quest isn't open.")
 
     try:
-        adventure = quest.adventure_set.get(user=hero, accepted=False, rejected=False)
+        adventure = quest.adventures.get(user=hero, accepted=False, rejected=False)
     except Adventure.DoesNotExist:
         raise ValidationError("Can't reject a hero who is not applying.")
 
@@ -70,14 +70,14 @@ def hero_quest_apply(quest, hero):
     if not quest.open:
         raise ValidationError("Can not apply for a quest that isn't open.")
 
-    if quest.adventure_set.filter(user=hero, canceled=False).exists():
+    if quest.adventures.filter(user=hero, canceled=False).exists():
         raise ValidationError("Can only apply once.")
 
-    if quest.adventure_set.filter(user=hero, accepted=True).exists():
+    if quest.adventures.filter(user=hero, accepted=True).exists():
         raise ValidationError("Can not apply after being accepted.")
 
-    adventure, created = quest.adventure_set.get_or_create(user=hero)
-    if created and adventure.canceled:
+    adventure, created = quest.adventures.get_or_create(user=hero)
+    if adventure.canceled:
         adventure.canceled = False
         adventure.canceled_time = None
         adventure.save()
@@ -90,13 +90,13 @@ def hero_quest_cancel(quest, hero):
     if not quest.open or quest.canceled or quest.done:
         raise ValidationError("You can't cancel participation at this time.")
 
-    if quest.adventure_set.filter(user=hero, canceled=True).exists():
+    if quest.adventures.filter(user=hero, canceled=True).exists():
         raise ValidationError("You can't cancel multiple times.")
 
-    if not quest.adventure_set.filter(user=hero).exists():
+    if not quest.adventures.filter(user=hero).exists():
         raise ValidationError("You need to apply before cancelling.")
 
-    adventure = quest.adventure_set.get(user=hero)
+    adventure = quest.adventures.get(user=hero)
     adventure.canceled = True
     adventure.save()
     quest.save()

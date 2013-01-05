@@ -70,7 +70,7 @@ class QuestTest(TestCase):
         quest = create_quest()
         adventure = create_adventure(quest)
         quest_livecycle.hero_quest_cancel(quest, adventure.user)
-        self.assertTrue(quest.adventure_set.get(user=adventure.user).canceled)
+        self.assertTrue(quest.adventures.get(user=adventure.user).canceled)
 
     def test_owner_accept(self):
         """If I'm the owner of a open quest, and a hero is applying, I should be able to accept her."""
