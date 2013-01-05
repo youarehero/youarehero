@@ -267,9 +267,9 @@ class AuthenticatedIntegrationTest(TestCase):
 
     def test_quest_list(self):
         """A user should be able to visit the quest-list-view."""
-        quest = create_quest(title='aquestcreated')
+        quest = create_quest(title='aquest')
         response = self.client.get(reverse('quest-list'))
-        self.assertContains(response, 'aquestcreated')
+        self.assertContains(response, 'aquest')
 
     def test_quest_detail(self):
         """A owner should be able to see his quest detail-view and a hero applying for that quest."""
