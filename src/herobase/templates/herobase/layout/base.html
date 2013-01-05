@@ -44,6 +44,7 @@
 
 <body>
     <div id="background"></div>
+    <div id="background-top"></div>
     <div id="layout-container" class="container">
         {% block site_header_container %}
             <div id="site-header-container" class="row">
@@ -52,8 +53,8 @@
                         <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">
                     </a>
                     {% if request.user.is_authenticated %}
-                        <ul class="grid pull-right">
-                            <li><a href="{% url auth_logout %}"><i class="icon-logout icon-small"><span>{% trans "Logout" %}</span></i></a></li>
+                        <ul class="small-grid menu-grid pull-right">
+                            <li><a href="{% url auth_logout %}"><i class="icon-yah-logout icon-40"><span>{% trans "Logout" %}</span></i></a></li>
                         </ul>
                     {% endif %}
                     {% block site_header %}

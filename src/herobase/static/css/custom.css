@@ -25,6 +25,293 @@
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
+[class^="icon-yah"],
+[class*=" icon-yah"] {
+  margin: 0px 0px 0px 0px;
+  display: block;
+  width: 80px;
+  height: 80px;
+  font-style: normal;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-variant: small-caps;
+  white-space: nowrap;
+  *margin-right: .3em;
+  background-image: url("../img/icons_80.png");
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+}
+[class^="icon-yah"]:last-child,
+[class*=" icon-yah"]:last-child {
+  *margin-left: 0;
+}
+[class^="icon-yah"] span,
+[class*=" icon-yah"] span {
+  left: 5px;
+  position: relative;
+  top: 60px;
+}
+.icon-yah-home {
+  background-position: 0        0;
+}
+.icon-yah-billboard {
+  background-position: -80px 0;
+}
+.icon-yah-messages {
+  background-position: -160px 0;
+}
+.icon-yah-calendar {
+  background-position: -240px 0;
+}
+.icon-yah-new {
+  background-position: -320px 0;
+}
+.icon-yah-my-quests {
+  background-position: -400px 0;
+}
+.icon-yah-delete {
+  background-position: -480px 0;
+}
+.icon-yah-edit {
+  background-position: -560px 0;
+}
+.icon-yah-arrow {
+  background-position: -640px 0;
+}
+.icon-yah-mail-all {
+  background-position: -720px 0;
+}
+.icon-yah-time-short {
+  background-position: -800px 0;
+}
+.icon-yah-time-middle {
+  background-position: -880px 0;
+}
+.icon-yah-time-long {
+  background-position: -960px 0;
+}
+.icon-yah-logout {
+  background-position: -1040px 0;
+}
+.icon-yah-category {
+  background-position: -1120px 0;
+}
+.icon-yah-distance {
+  background-position: -1200px 0;
+}
+.icon-yah-social {
+  background-position: -1280px 0;
+}
+.icon-yah-like {
+  background-position: -1360px 0;
+}
+.icon-yah-upload {
+  background-position: -1440px 0;
+}
+.icon-yah-ok {
+  background-position: -1520px 0;
+}
+.icon-yah-ok-all {
+  background-position: -1600px 0;
+}
+.icon-yah-mail {
+  background-position: -1680px 0;
+}
+.icon-40 {
+  width: 40px;
+  height: 40px;
+  background-image: url("../img/icons_40.png");
+}
+.icon-40 span {
+  left: 0px;
+  top: 40px;
+}
+.icon-40.icon-yah-home {
+  background-position: 0        0;
+}
+.icon-40.icon-yah-billboard {
+  background-position: -40px 0;
+}
+.icon-40.icon-yah-messages {
+  background-position: -80px 0;
+}
+.icon-40.icon-yah-calendar {
+  background-position: -120px 0;
+}
+.icon-40.icon-yah-new {
+  background-position: -160px 0;
+}
+.icon-40.icon-yah-my-quests {
+  background-position: -200px 0;
+}
+.icon-40.icon-yah-delete {
+  background-position: -240px 0;
+}
+.icon-40.icon-yah-edit {
+  background-position: -280px 0;
+}
+.icon-40.icon-yah-arrow {
+  background-position: -320px 0;
+}
+.icon-40.icon-yah-mail-all {
+  background-position: -360px 0;
+}
+.icon-40.icon-yah-time-short {
+  background-position: -400px 0;
+}
+.icon-40.icon-yah-time-middle {
+  background-position: -440px 0;
+}
+.icon-40.icon-yah-time-long {
+  background-position: -480px 0;
+}
+.icon-40.icon-yah-logout {
+  background-position: -520px 0;
+}
+.icon-40.icon-yah-category {
+  background-position: -560px 0;
+}
+.icon-40.icon-yah-distance {
+  background-position: -600px 0;
+}
+.icon-40.icon-yah-social {
+  background-position: -640px 0;
+}
+.icon-40.icon-yah-like {
+  background-position: -680px 0;
+}
+.icon-40.icon-yah-upload {
+  background-position: -720px 0;
+}
+.icon-40.icon-yah-ok {
+  background-position: -760px 0;
+}
+.icon-40.icon-yah-ok-all {
+  background-position: -800px 0;
+}
+.icon-40.icon-yah-mail {
+  background-position: -840px 0;
+}
+.icon-30 {
+  width: 30px;
+  height: 30px;
+  background-image: url("../img/icons_30.png");
+}
+.icon-30 span {
+  left: 0px;
+  top: 30px;
+}
+.icon-30.icon-yah-home {
+  background-position: 0        0;
+}
+.icon-30.icon-yah-billboard {
+  background-position: -30px 0;
+}
+.icon-30.icon-yah-messages {
+  background-position: -60px 0;
+}
+.icon-30.icon-yah-calendar {
+  background-position: -90px 0;
+}
+.icon-30.icon-yah-new {
+  background-position: -120px 0;
+}
+.icon-30.icon-yah-my-quests {
+  background-position: -150px 0;
+}
+.icon-30.icon-yah-delete {
+  background-position: -180px 0;
+}
+.icon-30.icon-yah-edit {
+  background-position: -210px 0;
+}
+.icon-30.icon-yah-arrow {
+  background-position: -240px 0;
+}
+.icon-30.icon-yah-mail-all {
+  background-position: -270px 0;
+}
+.icon-30.icon-yah-time-short {
+  background-position: -300px 0;
+}
+.icon-30.icon-yah-time-middle {
+  background-position: -330px 0;
+}
+.icon-30.icon-yah-time-long {
+  background-position: -360px 0;
+}
+.icon-30.icon-yah-logout {
+  background-position: -390px 0;
+}
+.icon-30.icon-yah-category {
+  background-position: -420px 0;
+}
+.icon-30.icon-yah-distance {
+  background-position: -450px 0;
+}
+.icon-30.icon-yah-social {
+  background-position: -480px 0;
+}
+.icon-30.icon-yah-like {
+  background-position: -510px 0;
+}
+.icon-30.icon-yah-upload {
+  background-position: -540px 0;
+}
+.icon-30.icon-yah-ok {
+  background-position: -570px 0;
+}
+.icon-30.icon-yah-ok-all {
+  background-position: -600px 0;
+}
+.icon-30.icon-yah-mail {
+  background-position: -630px 0;
+}
+ul.page-tabs {
+  margin-left: -10px;
+  margin-bottom: 0px;
+  list-style: none;
+}
+ul.page-tabs li {
+  display: block;
+  float: left;
+  margin-left: -10px;
+  margin-right: -5px;
+  background: url("../img/tabs.png");
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  padding: 18px 20px 2px;
+  line-height: 20px;
+}
+ul.page-tabs li:nth-child(even) {
+  background-position: -300px 0px;
+}
+ul.page-tabs li:nth-child(3n) {
+  background-position: -600px 0px;
+}
+ul.page-tabs li:nth-child(4n) {
+  background-position: -900px 0px;
+}
+ul.page-tabs li:nth-child(5n) {
+  background-position: -1200px 0px;
+}
+ul.page-tabs li:hover {
+  background-position: 0px -40px;
+}
+ul.page-tabs li:hover:nth-child(even) {
+  background-position: -300px -40px;
+}
+ul.page-tabs li:hover:nth-child(3n) {
+  background-position: -600px -40px;
+}
+ul.page-tabs li:hover:nth-child(4n) {
+  background-position: -900px -40px;
+}
+ul.page-tabs li:hover:nth-child(5n) {
+  background-position: -1200px -40px;
+}
+ul.page-tabs a {
+  color: #eeeeee;
+}
 h1,
 h2,
 h3,
@@ -42,14 +329,19 @@ h1 {
 body {
   font-family: 'Open Sans', sans-serif;
 }
-#background {
+#background,
+#background-top {
   width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1000;
+  z-index: -100;
   background: url("../img/city.jpg") no-repeat scroll 50% 0 #333333;
+}
+#background-top {
+  height: 180px;
+  z-index: 100;
 }
 .sidebar-left {
   margin-right: 20px;
@@ -59,22 +351,45 @@ body {
   width: 120px;
   margin-left: 20px;
 }
-#layout-container,
+#layout-container {
+  width: 940px;
+  position: relative;
+}
 .span100 {
   width: 940px;
 }
 #site-header-container {
   margin: 20px 0px 20px -20px;
+  z-index: 200;
+  position: fixed;
+}
+#sidebar-left-container {
+  z-index: 200;
+  position: fixed;
+  top: 100px;
+}
+#sidebar-right-container {
+  z-index: 200;
+  position: fixed;
+  top: 100px;
+  margin-left: 840px;
 }
 #page-container {
   width: 600px;
   margin: 0;
+  position: relative;
+  left: 220px;
 }
 #page-title {
   padding: 0 10px;
   font-variant: small-caps;
   background-color: rgba(0, 0, 0, 0.25);
   *zoom: 1;
+  position: fixed;
+  top: 100px;
+  z-index: 200;
+  width: 580px;
+  overflow: hidden;
 }
 #page-title:before,
 #page-title:after {
@@ -85,47 +400,21 @@ body {
   clear: both;
 }
 #submenu {
-  padding: 0 10px;
+  position: fixed;
+  z-index: 200;
+  top: 140px;
+  height: 40px;
+  width: 580px;
+  overflow: hidden;
+  padding: 0px 10px;
   font-variant: small-caps;
   background-color: rgba(0, 0, 0, 0.25);
-  *zoom: 1;
-}
-#submenu ul.page-tabs {
-  margin-left: -10px;
-  margin-bottom: 0px;
-  list-style: none;
-  *zoom: 1;
-}
-#submenu ul.page-tabs li {
-  display: block;
-  float: left;
-  margin-right: 20px;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 10px;
-  line-height: 20px;
-}
-#submenu ul.page-tabs a {
-  color: #eeeeee;
-}
-#submenu ul.page-tabs:before,
-#submenu ul.page-tabs:after {
-  display: table;
-  content: "";
-}
-#submenu ul.page-tabs:after {
-  clear: both;
-}
-#submenu:before,
-#submenu:after {
-  display: table;
-  content: "";
-}
-#submenu:after {
-  clear: both;
 }
 #page-content {
+  position: relative;
+  top: 180px;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.35);
+  background-color: rgba(0, 0, 0, 0.45);
   *zoom: 1;
 }
 #page-content:before,
@@ -140,114 +429,6 @@ body {
 .help-inline {
   color: #999999;
 }
-.icon-home {
-  background: url("../img/icons_80.png") 0 0 no-repeat transparent;
-}
-.icon-billboard {
-  background: url("../img/icons_80.png") -80px 0 no-repeat transparent;
-}
-.icon-messages {
-  background: url("../img/icons_80.png") -160px 0 no-repeat transparent;
-}
-.icon-calendar {
-  background: url(../img/icons_80.png) -240px 0 no-repeat transparent;
-}
-.icon-new {
-  background: url(../img/icons_80.png) -320px 0 no-repeat transparent;
-}
-.icon-my-quests {
-  background: url(../img/icons_80.png) -400px 0 no-repeat transparent;
-}
-.icon-delete {
-  background: url("../img/operations.png") 0 0 no-repeat transparent;
-}
-.icon-edit {
-  background: url("../img/operations.png") -40px 0 no-repeat transparent;
-}
-.icon-arrow {
-  background: url("../img/operations.png") -80px 0 no-repeat transparent;
-}
-.icon-mail {
-  background: url("../img/operations.png") -120px 0 no-repeat transparent;
-}
-.icon-time-short {
-  background: url("../img/operations.png") -160px 0 no-repeat transparent;
-}
-.icon-time-middle {
-  background: url("../img/operations.png") -200px 0 no-repeat transparent;
-}
-.icon-time-long {
-  background: url("../img/operations.png") -240px 0 no-repeat transparent;
-}
-.icon-logout {
-  background: url("../img/operations.png") -280px 0 no-repeat transparent;
-}
-.icon-home,
-.icon-billboard,
-.icon-messages,
-.icon-calendar,
-.icon-new,
-.icon-my-quests,
-.icon-delete,
-.icon-edit,
-.icon-arrow,
-.icon-mail,
-.icon-time-short,
-.icon-time-middle,
-.icon-time-long,
-.icon-logout {
-  margin: 0px 0px 0px 0px;
-  display: block;
-  width: 80px;
-  height: 80px;
-  font-style: normal;
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-variant: small-caps;
-  white-space: nowrap;
-  *margin-right: .3em;
-}
-.icon-home:last-child,
-.icon-billboard:last-child,
-.icon-messages:last-child,
-.icon-calendar:last-child,
-.icon-new:last-child,
-.icon-my-quests:last-child,
-.icon-delete:last-child,
-.icon-edit:last-child,
-.icon-arrow:last-child,
-.icon-mail:last-child,
-.icon-time-short:last-child,
-.icon-time-middle:last-child,
-.icon-time-long:last-child,
-.icon-logout:last-child {
-  *margin-left: 0;
-}
-.icon-home span,
-.icon-billboard span,
-.icon-messages span,
-.icon-calendar span,
-.icon-new span,
-.icon-my-quests span,
-.icon-delete span,
-.icon-edit span,
-.icon-arrow span,
-.icon-mail span,
-.icon-time-short span,
-.icon-time-middle span,
-.icon-time-long span,
-.icon-logout span {
-  left: 5px;
-  position: relative;
-  top: 60px;
-}
-.icon-small {
-  width: 40px;
-  height: 40px;
-}
-.icon-small span {
-  left: 0px;
-  top: 40px;
-}
 ul.grid {
   list-style: none;
   margin: 0 0 0 -20px;
@@ -257,19 +438,28 @@ ul.grid li {
   margin: 0px 0px 20px 20px;
 }
 ul.menu-grid li {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: #222222;
-}
-ul.menu-grid li a {
-  color: #222222;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 ul.menu-grid li.on,
 ul.menu-grid li:hover {
-  background-color: rgba(0, 0, 0, 0.35);
+  background-color: rgba(0, 0, 0, 0.45);
+}
+ul.menu-grid li a {
+  color: #eeeeee;
 }
 ul.menu-grid li.on a,
 ul.menu-grid li:hover a {
+  color: #ffffff;
+}
+ul.menu-grid.grid li {
   color: #eeeeee;
+}
+ul.menu-grid.grid li a {
+  color: #eeeeee;
+}
+ul.menu-grid.grid li.on a,
+ul.menu-grid.grid li:hover a {
+  color: #ffffff;
 }
 ul.small-grid {
   list-style: none;
@@ -329,7 +519,9 @@ ul.small-grid .border-icons-bottom-right li,
 ul.small-grid .border-icons-bottom-left li {
   margin: 0 0 0 10px;
   padding: 0;
-  width: 40px;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 ul.small-grid .border-icons-top-right,
 ul.small-grid .border-icons-bottom-right {
@@ -351,6 +543,12 @@ ul.small-grid:after {
 ul.box-grid li {
   background: #eeeeee;
   color: #222222;
+}
+ul.box-grid li a {
+  color: #777777;
+}
+ul.box-grid li a:hover {
+  color: #373737;
 }
 ul.box-grid .border-icons-top-left li,
 ul.box-grid .border-icons-top-right li,
@@ -443,10 +641,10 @@ form .span3 {
   width: 40px;
   height: 0px;
   padding-top: 40px;
-  background: url("../img/operations.png") -80px 0 no-repeat #bbbbbb;
+  background: url("../img/icons_40.png") -760px 0 no-repeat #bbbbbb;
 }
 .avatar-small {
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.45);
   padding: 5px;
   width: 110px;
   margin-right: 0px;

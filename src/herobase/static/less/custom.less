@@ -3,6 +3,9 @@
 @import "../bootstrap/less/variables.less";
 @import "../bootstrap/less/mixins.less";
 
+@import "icons.less";
+@import "tabs.less";
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
@@ -28,14 +31,19 @@ body {
 //  padding-top: 20px;
   font-family: 'Open Sans', sans-serif;
 }
-#background {
+#background,
+#background-top {
   width:  100%;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1000;
+  z-index: -100;
   background: url("../img/city.jpg") no-repeat scroll 50% 0 #333;
+}
+#background-top {
+  height: 180px;
+  z-index: 100;
 }
 
 .sidebar-left {
@@ -48,7 +56,10 @@ body {
 }
 
 // Layout
-#layout-container,
+#layout-container {
+  width: @gridRowWidth;
+  position: relative;
+}
 .span100 {
   width: @gridRowWidth;
 }
@@ -56,12 +67,27 @@ body {
 // site-header
 #site-header-container {
   margin: 20px 0px 20px -20px;
+  z-index: 200;
+  position: fixed;
 }
 
+#sidebar-left-container {
+  z-index: 200;
+  position: fixed;
+  top: 100px;
+}
+#sidebar-right-container {
+  z-index: 200;
+  position: fixed;
+  top: 100px;
+  margin-left: 840px;
+}
 
 #page-container {
   width: 600px;
   margin: 0;
+  position: relative;
+  left: 220px;
 }
 
 #page-title {
@@ -69,31 +95,26 @@ body {
   font-variant: small-caps;
   background-color: @baseBackgroundHeader;
   .clearfix;
+  position: fixed;
+  top: 100px;
+  z-index: 200;
+  width: 580px;
+  overflow: hidden;
 }
 #submenu {
-  padding:  0 10px;
+  position: fixed;
+  z-index: 200;
+  top: 140px;
+  height:  40px;
+  width: 580px;
+  overflow: hidden;
+  padding:  0px 10px;
   font-variant: small-caps;
   background-color: @baseBackgroundHeader;
-  ul.page-tabs {
-    margin-left: -10px;
-    margin-bottom: 0px;
-    list-style: none;
-    li {
-      display: block;
-      float: left;
-      margin-right: 20px;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 10px;
-      line-height: 20px;
-    }
-    a {
-      color: @textColor;
-    }
-    .clearfix;
-  }
-  .clearfix;
 }
 #page-content {
+  position: relative;
+  top: 180px;
   padding:  10px;
   background-color: @baseBackground;
   .clearfix;
@@ -104,54 +125,7 @@ body {
 }
 
 
-// Icons
-//------------------------
 
-.icon-home { background: url("../img/icons_80.png") 0 0 no-repeat transparent; }
-.icon-billboard { background: url("../img/icons_80.png") -80px 0 no-repeat transparent; }
-.icon-messages { background: url("../img/icons_80.png") -160px 0 no-repeat transparent; }
-.icon-calendar { background: url(../img/icons_80.png) -240px 0 no-repeat transparent; }
-.icon-new { background: url(../img/icons_80.png) -320px 0 no-repeat transparent; }
-.icon-my-quests { background: url(../img/icons_80.png) -400px 0 no-repeat transparent; }
-
-.icon-delete { background: url("../img/operations.png") 0 0 no-repeat transparent; }
-.icon-edit { background: url("../img/operations.png") -40px 0 no-repeat transparent; }
-.icon-arrow { background: url("../img/operations.png") -80px 0 no-repeat transparent; }
-.icon-mail { background: url("../img/operations.png") -120px 0 no-repeat transparent; }
-.icon-time-short { background: url("../img/operations.png") -160px 0 no-repeat transparent; }
-.icon-time-middle { background: url("../img/operations.png") -200px 0 no-repeat transparent; }
-.icon-time-long { background: url("../img/operations.png") -240px 0 no-repeat transparent; }
-.icon-logout { background: url("../img/operations.png") -280px 0 no-repeat transparent; }
-
-.icon-home, .icon-billboard, .icon-messages,
-.icon-calendar, .icon-new, .icon-my-quests,
-.icon-delete, .icon-edit, .icon-arrow,
-.icon-mail, .icon-time-short, .icon-time-middle,
-.icon-time-long, .icon-logout {
-  margin: 0px 0px 0px 0px;
-  display: block;
-  width: 80px;
-  height: 80px;
-  font-style: normal;
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-variant: small-caps;
-  white-space: nowrap;
-  .ie7-restore-right-whitespace();
-  span {
-    left: 5px;
-    position: relative;
-    top: 60px;
-  }
-}
-
-.icon-small {
-  width: 40px;
-  height: 40px;
-  span {
-    left: 0px;
-    top: 40px;
-  }
-}
 
 // Grids
 
@@ -167,15 +141,23 @@ ul.grid {
 ul.menu-grid {
   li {
     background-color: @menuBackground;
-    a {
-      color: @menuTextColor;
-    }
-    color: @menuTextColor;
     &.on,
     &:hover {
       background-color: @menuBackgroundHover;
-      a {
-        color: @menuTextColorHover;
+    }
+    a { color: @linkColor; }
+    &.on,
+    &:hover {
+      a { color: @linkColorHover; }
+    }
+  }
+  &.grid {
+    li {
+      a { color: @menuTextColor; }
+      color: @menuTextColor;
+      &.on,
+      &:hover {
+        a { color: @menuTextColorHover; }
       }
     }
   }
@@ -214,7 +196,8 @@ ul.small-grid {
     li {
       margin: 0 0 0 10px;
       padding: 0;
-      width: 40px;
+//      width: 40px;
+      .box-shadow(2px 2px 5px rgba(0,0,0,0.5));
     }
   }
   .border-icons-top-right,
@@ -233,6 +216,12 @@ ul.box-grid {
   li {
     background: @boxBackground;
     color: @boxTextColor;
+    a {
+      color:  @boxLinkColor;
+      &:hover {
+        color: @boxLinkColorHover;
+      }
+    }
   }
   .border-icons-top-left,
   .border-icons-top-right,
@@ -319,7 +308,7 @@ form {
       width:  40px;
       height: 0px;
       padding-top: 40px;
-      background: url("../img/operations.png") -80px 0 no-repeat @boxIconBackground;
+      background: url("../img/icons_40.png") -760px 0 no-repeat @boxIconBackground;
     }
   }
 }
