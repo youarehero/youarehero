@@ -183,12 +183,45 @@ ul.grid li {
   top: 40px;
 }
 ul.content-grid {
+  margin-left: -10px;
+  margin-top: 10px;
   *zoom: 1;
 }
 ul.content-grid li {
-  background: rgba(255, 255, 255, 0.5);
-  margin: 20px 10px 20px 30px;
-  padding-left: 10px;
+  background: #ddd;
+  color: #333333;
+  margin: 0px 0px 10px 10px;
+}
+ul.content-grid li h3,
+ul.content-grid li p {
+  margin-left: 6px;
+}
+ul.content-grid li.half {
+  width: 275px;
+}
+ul.content-grid li.small {
+  width: 235px;
+}
+ul.content-grid li.big {
+  width: 315px;
+}
+ul.content-grid li.mini {
+  width: 185px;
+}
+ul.content-grid li.large {
+  width: 365px;
+}
+ul.content-grid.icons-top li {
+  margin-top: 20px;
+}
+ul.content-grid.icons-right li {
+  margin-right: 10px;
+}
+ul.content-grid.icons-bottom li {
+  margin-bottom: 20px;
+}
+ul.content-grid.icons-left li {
+  margin-left: 30px;
 }
 ul.content-grid .border-icons-top-left,
 ul.content-grid .border-icons-top-right,
@@ -207,6 +240,13 @@ ul.content-grid .border-icons-bottom-right li,
 ul.content-grid .border-icons-bottom-left li {
   margin: 0 0 0 10px;
   padding: 0;
+  width: 40px;
+}
+ul.content-grid .border-icons-top-left li i,
+ul.content-grid .border-icons-top-right li i,
+ul.content-grid .border-icons-bottom-right li i,
+ul.content-grid .border-icons-bottom-left li i {
+  background-color: #bbb;
 }
 ul.content-grid .border-icons-top-right,
 ul.content-grid .border-icons-bottom-right {

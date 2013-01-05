@@ -147,11 +147,26 @@ ul.grid {
 }
 
 ul.content-grid {
+  margin-left: -10px;
+  margin-top: 10px;
   li {
-    background: rgba(255,255,255,0.5);
-    margin: 20px 10px 20px 30px;
-    padding-left: 10px;
+    background: #ddd;
+    color: @textColor;
+    margin: 0px 0px 10px 10px;
+//    width: 275px;
+    h3, p {
+      margin-left: 6px;
+    }
+    &.half { width: 275px; }
+    &.small { width: 235px; }
+    &.big { width: 315px; }
+    &.mini { width: 185px; }
+    &.large { width: 365px; }
   }
+  &.icons-top li { margin-top: 20px; }
+  &.icons-right li { margin-right: 10px; }
+  &.icons-bottom li { margin-bottom: 20px; }
+  &.icons-left li { margin-left: 30px; }
   .border-icons-top-left,
   .border-icons-top-right,
   .border-icons-bottom-right,
@@ -163,8 +178,12 @@ ul.content-grid {
     left:  -30px;
     top: -10px;
     li {
+      i {
+        background-color: #bbb;
+      }
       margin: 0 0 0 10px;
       padding: 0;
+      width: 40px;
     }
   }
   .border-icons-top-right,
