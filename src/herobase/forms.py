@@ -151,7 +151,7 @@ class UserAuthenticationForm(AuthenticationForm):
     error_messages = AuthenticationForm.error_messages
     error_messages.update({'invalid_login': _("Please enter a correct e-mail address and password. "
                                 "Note that both fields are case-sensitive.")})
-    email = forms.EmailField(label=_("E-mail"), max_length=75)
+    email = forms.CharField(label=_("E-mail"), max_length=75)
 
     def __init__(self, request=None, *args, **kwargs):
         self.helper = FormHelper()

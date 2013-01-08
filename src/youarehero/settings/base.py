@@ -265,7 +265,8 @@ THUMBNAIL_ALIASES = {
         },
     }
 
-AUTHENTICATION_BACKENDS = ('herobase.backends.EmailAuthBackend',
-                           'django.contrib.auth.backends.ModelBackend',)
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
+                           'herobase.backends.EmailAuthBackend',
+                           )
 
 

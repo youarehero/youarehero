@@ -5,6 +5,7 @@
 .clearfix:after {
   display: table;
   content: "";
+  line-height: 0;
 }
 .clearfix:after {
   clear: both;
@@ -19,10 +20,9 @@
 .input-block-level {
   display: block;
   width: 100%;
-  min-height: 28px;
+  min-height: 30px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
 [class^="icon-yah"],
@@ -39,10 +39,6 @@
   background-image: url("../img/icons_80.png");
   background-position: 0px 0px;
   background-repeat: no-repeat;
-}
-[class^="icon-yah"]:last-child,
-[class*=" icon-yah"]:last-child {
-  *margin-left: 0;
 }
 [class^="icon-yah"] span,
 [class*=" icon-yah"] span {
@@ -369,7 +365,7 @@ body {
   top: 100px;
 }
 #sidebar-right-container {
-  z-index: 200;
+  z-index: 1045;
   position: fixed;
   top: 100px;
   margin-left: 840px;
@@ -395,6 +391,7 @@ body {
 #page-title:after {
   display: table;
   content: "";
+  line-height: 0;
 }
 #page-title:after {
   clear: both;
@@ -421,6 +418,7 @@ body {
 #page-content:after {
   display: table;
   content: "";
+  line-height: 0;
 }
 #page-content:after {
   clear: both;
@@ -442,8 +440,27 @@ ul.grid:before,
 ul.grid:after {
   display: table;
   content: "";
+  line-height: 0;
 }
 ul.grid:after {
+  clear: both;
+}
+ul.small-grid {
+  list-style: none;
+  margin: 0 0 0 -10px;
+  *zoom: 1;
+}
+ul.small-grid li {
+  float: left;
+  margin: 0px 0px 10px 10px;
+}
+ul.small-grid:before,
+ul.small-grid:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+ul.small-grid:after {
   clear: both;
 }
 ul.menu-grid li {
@@ -648,57 +665,52 @@ form .span3 {
 .avatar-small .progress .bar.action {
   background-color: #db6352;
   background-image: -moz-linear-gradient(top, #e07a6b, #d3412c);
-  background-image: -ms-linear-gradient(top, #e07a6b, #d3412c);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e07a6b), to(#d3412c));
   background-image: -webkit-linear-gradient(top, #e07a6b, #d3412c);
   background-image: -o-linear-gradient(top, #e07a6b, #d3412c);
-  background-image: linear-gradient(top, #e07a6b, #d3412c);
+  background-image: linear-gradient(to bottom, #e07a6b, #d3412c);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e07a6b', endColorstr='#d3412c', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe07a6b', endColorstr='#ffd3412c', GradientType=0);
 }
 .avatar-small .progress .bar.scientist {
   background-color: #959695;
   background-image: -moz-linear-gradient(top, #a4a5a4, #7e7f7e);
-  background-image: -ms-linear-gradient(top, #a4a5a4, #7e7f7e);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#a4a5a4), to(#7e7f7e));
   background-image: -webkit-linear-gradient(top, #a4a5a4, #7e7f7e);
   background-image: -o-linear-gradient(top, #a4a5a4, #7e7f7e);
-  background-image: linear-gradient(top, #a4a5a4, #7e7f7e);
+  background-image: linear-gradient(to bottom, #a4a5a4, #7e7f7e);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4a5a4', endColorstr='#7e7f7e', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa4a5a4', endColorstr='#ff7e7f7e', GradientType=0);
 }
 .avatar-small .progress .bar.gadgeteer {
   background-color: #75ad9f;
   background-image: -moz-linear-gradient(top, #88baad, #5a9b8a);
-  background-image: -ms-linear-gradient(top, #88baad, #5a9b8a);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#88baad), to(#5a9b8a));
   background-image: -webkit-linear-gradient(top, #88baad, #5a9b8a);
   background-image: -o-linear-gradient(top, #88baad, #5a9b8a);
-  background-image: linear-gradient(top, #88baad, #5a9b8a);
+  background-image: linear-gradient(to bottom, #88baad, #5a9b8a);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#88baad', endColorstr='#5a9b8a', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff88baad', endColorstr='#ff5a9b8a', GradientType=0);
 }
 .avatar-small .progress .bar.diplomat {
   background-color: #e9e977;
   background-image: -moz-linear-gradient(top, #edee91, #e3e34f);
-  background-image: -ms-linear-gradient(top, #edee91, #e3e34f);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#edee91), to(#e3e34f));
   background-image: -webkit-linear-gradient(top, #edee91, #e3e34f);
   background-image: -o-linear-gradient(top, #edee91, #e3e34f);
-  background-image: linear-gradient(top, #edee91, #e3e34f);
+  background-image: linear-gradient(to bottom, #edee91, #e3e34f);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#edee91', endColorstr='#e3e34f', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffedee91', endColorstr='#ffe3e34f', GradientType=0);
 }
 .avatar-small .progress .bar.protective {
   background-color: #4e83a3;
   background-image: -moz-linear-gradient(top, #5a93b6, #3c6b87);
-  background-image: -ms-linear-gradient(top, #5a93b6, #3c6b87);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5a93b6), to(#3c6b87));
   background-image: -webkit-linear-gradient(top, #5a93b6, #3c6b87);
   background-image: -o-linear-gradient(top, #5a93b6, #3c6b87);
-  background-image: linear-gradient(top, #5a93b6, #3c6b87);
+  background-image: linear-gradient(to bottom, #5a93b6, #3c6b87);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5a93b6', endColorstr='#3c6b87', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5a93b6', endColorstr='#ff3c6b87', GradientType=0);
 }
 span.action {
   color: #d3412c;
@@ -715,168 +727,23 @@ span.gadgeteer {
 span.protective {
   color: #3c6b87;
 }
-ul.questboard {
-  list-style: none;
-  margin: 0 0 0 -20px;
-}
-ul.questboard li {
-  margin: 0px 0px 20px 20px;
-  float: left;
-}
-ul.questboard li .postit {
-  width: 136px;
-  height: 136px;
-  padding: 7px 9px;
-  word-wrap: break-word;
-  background: #f7f7ff;
-  border: 3px solid #ff8a31;
-  text-decoration: none;
-  color: #333333;
-  display: block;
-  position: relative;
-  -webkit-box-shadow: -2px 2px 4px rgba(33, 33, 33, 0.4);
-  -moz-box-shadow: -2px 2px 4px rgba(33, 33, 33, 0.4);
-  box-shadow: -2px 2px 4px rgba(33, 33, 33, 0.4);
-  -webkit-transform: rotate(-6deg);
-  -moz-transform: rotate(-6deg);
-  -ms-transform: rotate(-6deg);
-  -o-transform: rotate(-6deg);
-  transform: rotate(-6deg);
-  -webkit-transition: transform 0.2s linear;
-  -moz-transition: transform 0.2s linear;
-  -ms-transition: transform 0.2s linear;
-  -o-transition: transform 0.2s linear;
-  transition: transform 0.2s linear;
-}
-ul.questboard li .postit.action {
-  border-color: #d3412c;
-}
-ul.questboard li .postit.action h4 {
-  color: #d3412c;
-}
-ul.questboard li .postit.scientist {
-  border-color: #7e7f7e;
-}
-ul.questboard li .postit.scientist h4 {
-  color: #7e7f7e;
-}
-ul.questboard li .postit.diplomat {
-  border-color: #c2c036;
-}
-ul.questboard li .postit.diplomat h4 {
-  color: #c2c036;
-}
-ul.questboard li .postit.gadgeteer {
-  border-color: #5a9b8a;
-}
-ul.questboard li .postit.gadgeteer h4 {
-  color: #5a9b8a;
-}
-ul.questboard li .postit.protective {
-  border-color: #3c6b87;
-}
-ul.questboard li .postit.protective h4 {
-  color: #3c6b87;
-}
-ul.questboard li:nth-child(even) .postit {
-  -webkit-transform: rotate(4deg);
-  -moz-transform: rotate(4deg);
-  -ms-transform: rotate(4deg);
-  -o-transform: rotate(4deg);
-  transform: rotate(4deg);
-  top: 5px;
-}
-ul.questboard li:nth-child(3n) .postit {
-  -webkit-transform: rotate(-3deg);
-  -moz-transform: rotate(-3deg);
-  -ms-transform: rotate(-3deg);
-  -o-transform: rotate(-3deg);
-  transform: rotate(-3deg);
-  top: -4px;
-}
-ul.questboard li:nth-child(4n) .postit {
-  -webkit-transform: rotate(-1deg);
-  -moz-transform: rotate(-1deg);
-  -ms-transform: rotate(-1deg);
-  -o-transform: rotate(-1deg);
-  transform: rotate(-1deg);
-  top: 7px;
-}
-ul.questboard li:nth-child(5n) .postit {
-  -webkit-transform: rotate(5deg);
-  -moz-transform: rotate(5deg);
-  -ms-transform: rotate(5deg);
-  -o-transform: rotate(5deg);
-  transform: rotate(5deg);
-  top: -2px;
-}
-ul.questboard li .postit:hover,
-ul.questboard li .postit:active {
-  -webkit-transform: scale(1.25);
-  -moz-transform: scale(1.25);
-  -ms-transform: scale(1.25);
-  -o-transform: scale(1.25);
-  transform: scale(1.25);
-  z-index: 5;
-  -webkit-box-shadow: -3px 3px 5px rgba(33, 33, 33, 0.4);
-  -moz-box-shadow: -3px 3px 5px rgba(33, 33, 33, 0.4);
-  box-shadow: -3px 3px 5px rgba(33, 33, 33, 0.4);
-}
-.tab-content {
-  overflow: visible;
-}
-.questboard.home {
-  position: relative;
-}
-.questboard.home li .postit {
-  position: absolute;
-  top: 20px;
-  left: 40px;
-  background: url(../../static/img/stripes.png) 0 0 no-repeat scroll;
-  background-size: 100%;
-  text-align: center;
-}
-.questboard.home li .postit img {
-  max-width: 136px;
-  max-height: 112px;
-  position: absolute;
-  bottom: 7px;
-  left: 50%;
-  margin-left: -65px;
-}
-.questboard.home li:nth-child(even) .postit {
-  top: -10px;
-  left: 250px;
-}
-.questboard.home li:nth-child(3n) .postit {
-  top: 80px;
-  left: 490px;
-}
-.questboard.home li:nth-child(4n) .postit {
-  top: 210px;
-  left: 125px;
-}
-.questboard.home li:nth-child(5n) .postit {
-  top: 240px;
-  left: 325px;
-}
-.span3 .well select,
-.span3 .well textarea,
-.span3 .well input[type="text"],
-.span3 .well input[type="password"],
-.span3 .well input[type="datetime"],
-.span3 .well input[type="datetime-local"],
-.span3 .well input[type="date"],
-.span3 .well input[type="month"],
-.span3 .well input[type="time"],
-.span3 .well input[type="week"],
-.span3 .well input[type="number"],
-.span3 .well input[type="email"],
-.span3 .well input[type="url"],
-.span3 .well input[type="search"],
-.span3 .well input[type="tel"],
-.span3 .well input[type="color"],
-.span3 .well .uneditable-input {
+.span2 .box select,
+.span2 .box textarea,
+.span2 .box input[type="text"],
+.span2 .box input[type="password"],
+.span2 .box input[type="datetime"],
+.span2 .box input[type="datetime-local"],
+.span2 .box input[type="date"],
+.span2 .box input[type="month"],
+.span2 .box input[type="time"],
+.span2 .box input[type="week"],
+.span2 .box input[type="number"],
+.span2 .box input[type="email"],
+.span2 .box input[type="url"],
+.span2 .box input[type="search"],
+.span2 .box input[type="tel"],
+.span2 .box input[type="color"],
+.span2 .box .uneditable-input {
   max-width: 171px;
 }
 .autocomplete_light_widget .autocomplete {

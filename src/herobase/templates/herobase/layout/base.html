@@ -1,4 +1,4 @@
-{% load static i18n hero_base crispy_forms_tags %}
+{% load static i18n hero_base crispy_forms_tags activelink %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +14,7 @@
 
     <!-- Le styles -->
 
-    <script src="{% get_static_prefix %}js/jquery-1.7.2.min.js"></script>
+    <script src="{% get_static_prefix %}js/jquery-1.8.3.min.js"></script>
 
     {% block head_javascript %}
     {% endblock %}
@@ -43,6 +43,7 @@
 </head>
 
 <body>
+{% block body %}
     <div id="background"></div>
     <div id="background-top"></div>
     <div id="layout-container" class="container">
@@ -52,11 +53,13 @@
                     <a href="{% url home %}" class="logo pull-left">
                         <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">
                     </a>
-                    {% if request.user.is_authenticated %}
-                        <ul class="small-grid menu-grid pull-right">
+                    <ul class="small-grid menu-grid pull-right">
+                        {% if request.user.is_authenticated %}
                             <li><a href="{% url auth_logout %}"><i class="icon-yah-logout icon-40"><span>{% trans "Logout" %}</span></i></a></li>
-                        </ul>
-                    {% endif %}
+                        {% else %}
+                            <li><a href="{% url auth_login %}"><i class="icon-yah-arrow icon-40"><span>{% trans "Login" %}</span></i></a></li>
+                        {% endif %}
+                    </ul>
                     {% block site_header %}
                     {% endblock %}
                 </div>
@@ -66,13 +69,6 @@
             {% block sidebar_left_container %}
                 <div id="sidebar-left-container" class="span2 sidebar-left">
                     {% include "herobase/layout/mainmenu.inc.html" %}
-                    {% if not request.user.is_authenticated %}
-                        <h2>{% trans "Login" %}</h2>
-                        {% crispy login_form %}
-                        <p>
-                            <a href="{% url auth_password_reset %}">{% trans "Forgotten password?" %}</a>
-                        </p>
-                    {% endif %}
                 </div> <!-- end sidebar-left -->
             {% endblock %}
             {% block page_container %}
@@ -94,9 +90,7 @@
                     {% block sidebar_right %}
                         {% if request.user.is_authenticated %}
                             {% include "herobase/userprofile/detail_mini.html" %}
-                            <div id="butler">
-                                <img src="{% get_static_prefix %}img/butler.png" alt="Butler">
-                            </div>
+                            {% include "herobase/butler.inc.html" %}
                         {% endif %}
                     {% endblock %}
                 </div> <!-- end sidebar-right -->
@@ -121,6 +115,7 @@
             </div>
         {% endblock %}
     </div>
+{% endblock %}
 
 {% if request.user.is_staff %}
     <div id="team_hints"><a href="/admin/signups/">signups</a><a href="/admin/">admin</a><a href="/env/lib/python2.7/site-packages/coverage">tests</a><a href="/env/lib/python2.7/site-packages/docs">docs</a><a href="/wiki/">wiki</a></div>
@@ -129,7 +124,8 @@
    ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{% get_static_prefix %}bootstrap/js/bootstrap.js"></script>
-<script src="{% get_static_prefix %}bootstrap/js/bootstrap-tooltip.js"></script>
+{#<script src="{% get_static_prefix %}bootstrap/js/bootstrap-tooltip.js"></script>#}
+{#<script src="{% get_static_prefix %}bootstrap/js/bootstrap-modal.js"></script>#}
 {% block javascript %}
 {% endblock %}
 

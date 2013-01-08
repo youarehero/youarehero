@@ -77,7 +77,7 @@ body {
   top: 100px;
 }
 #sidebar-right-container {
-  z-index: 200;
+  z-index: 1045;
   position: fixed;
   top: 100px;
   margin-left: 840px;
@@ -135,6 +135,16 @@ ul.grid {
   li {
     float: left;
     margin: 0px 0px 20px 20px;
+  }
+  .clearfix;
+}
+
+ul.small-grid {
+  list-style: none;
+  margin: 0 0 0 -10px;
+  li {
+    float: left;
+    margin: 0px 0px 10px 10px;
   }
   .clearfix;
 }
@@ -328,82 +338,11 @@ span.gadgeteer { color: @gadgeteer; }
 span.protective { color: @protective; }
 
 
-// Questboard, Postits
-//------------------------
-ul.questboard {
-  list-style: none;
-  margin: 0 0 0 -20px;
-  li {
-    margin: 0px 0px 20px 20px;
-    float:left;
-
-    .postit {
-      width: 136px;
-      height: 136px;
-      padding: 7px 9px;
-      word-wrap: break-word;
-    //#gradient > .directional(@white, @grayLighter, 135deg);
-      background: #f7f7ff;
-      border: 3px solid @orange;
-      text-decoration: none;
-      color: @grayDark;
-
-      display: block;
-      position: relative;
-      .box-shadow(-2px 2px 4px rgba(33,33,33,.4));
-      .rotate(-6deg);
-      .transition(transform .2s linear);
-    }
-    .postit.action { border-color: @action; h4 { color: @action; }}
-    .postit.scientist { border-color: @scientist; h4 { color: @scientist; }}
-    .postit.diplomat { border-color: @diplomat; h4 { color: @diplomat; }}
-    .postit.gadgeteer { border-color: @gadgeteer; h4 { color: @gadgeteer; }}
-    .postit.protective { border-color: @protective; h4 { color: @protective; }}
-
-    &:nth-child(even) .postit { .rotate(4deg); top:5px;}
-    &:nth-child(3n) .postit { .rotate(-3deg); top:-4px;}
-    &:nth-child(4n) .postit { .rotate(-1deg); top:7px;}
-    &:nth-child(5n) .postit { .rotate(5deg); top:-2px;}
-    .postit:hover, .postit:active { .scale(1.25); z-index: 5; .box-shadow(-3px 3px 5px rgba(33,33,33,.4)); }
-  }
-}
-
-// overflow fix for tab content (we want to see the postits)
-.tab-content { overflow: visible; }
-
-// Questboard on public home
-.questboard.home {
-  position: relative;
-  li {
-    .postit {
-      position: absolute;
-      top: 20px;
-      left: 40px;
-      background: url(../../static/img/stripes.png) 0 0 no-repeat scroll;
-      background-size: 100%;
-      text-align: center;
-      img {
-        max-width: 136px;
-        max-height: 112px;
-        position: absolute;
-        bottom: 7px;
-        left: 50%;
-        margin-left: -65px;
-      }
-    }
-
-    &:nth-child(even) .postit { top:-10px; left: 250px;}
-    &:nth-child(3n) .postit { top:80px; left: 490px;}
-    &:nth-child(4n) .postit { top:210px; left: 125px;}
-    &:nth-child(5n) .postit { top:240px; left: 325px;}
-  }
-}
-
 // Bootstrap specific fixes
 // -----------------------
 
 // Inputs in small Grid column FIX
-.span3 .well{
+.span2 .box{
   select,
   textarea,
   input[type="text"],
