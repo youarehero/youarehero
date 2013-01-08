@@ -27,6 +27,7 @@
 {% endblock %}
 
 {% block content %}
+    <h1>Du bisch en Held!</h1>
     <form method="POST" action="{% url hero-update-quest quest.pk %}">
         {% csrf_token %}
         <input type="submit" name="action" value="apply"/>
@@ -47,7 +48,7 @@
         <div class="row-fluid">
             <div class="span6">
                 <dl class="dl-horizontal">
-                        <dt>{% trans "Author" %}</dt><dd><a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>{% message_user quest.owner %}</dd>
+                    <dt>{% trans "Author" %}</dt><dd><a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>{% message_user quest.owner %}</dd>
                     <dt>{% trans "Location" %}</dt><dd>{{ quest.location }}</dd>
                 </dl>
             </div>
@@ -73,7 +74,7 @@
                     {% if quest.active_heroes.exists %}
                         {% if not quest.is_full %}
                             <p>Du hast schon {{ quest.active_heroes.count }} Held{{ quest.active_heroes.count|pluralize:" der dir hilft,en die Dir helfen" }}.
-                            Noch {{ quest.remaining_slots }} Held{{ quest.remaining_slots|pluralize:" kann,en können" }} teilnehmen.</p>
+                                Noch {{ quest.remaining_slots }} Held{{ quest.remaining_slots|pluralize:" kann,en können" }} teilnehmen.</p>
                         {% else %}
                             <p>Dir {{ quest.max_heroes|pluralize:"hilft,helfen" }} {{ quest.max_heroes }} Held{{ quest.max_heroes|pluralize:"en" }}. Deine Quest ist voll.</p>
                         {% endif %}
@@ -95,7 +96,7 @@
             <p>Der Auftraggeber
                 (<a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>)
                 hat diese Quest leider abgebrochen.</p>
-        {# Hero #}
+            {# Hero #}
         {% elif adventure %}
             {% if adventure.state == adventure.STATE_HERO_APPLIED %}
                 <h2>Du hast Dich beworben</h2>
@@ -141,26 +142,26 @@
         {% endif %}
 
         {# FIXME: quest actions #}
-<table>
-    <tr><td><a name="fb_share"></a></td>
-    <td><a href="https://twitter.com/share" class="twitter-share-button" data-size="small" data-hashtags="yah!" data-count="none">Tweet</a></td>
-    <td><g:plusone size="medium" annotation="none"></g:plusone></td>
-    <td><a href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2Fyouarehero.net{{request.get_full_path|urlencode }}&media={{ "https://youarehero.net/static/img/logo.png"|urlencode}}&description={{ quest.description|urlencode }}" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a></td>
-    <td><div id="diaspora" style="width: 153px;height:30px;background:url('{% get_static_prefix %}img/icons/diaspora-share.png') no-repeat left top; background-position:0px 0px;" onClick="javascript:(function(){f='https://joindiaspora.com/bookmarklet?url='+encodeURIComponent(window.location.href)+'&title='+encodeURIComponent('Shared a link...')+'¬es='+encodeURIComponent(document.title)+'&v=1&';if(!window.open(f+'noui=1&jump=doclose','diasporav1','location=no,links=no,scrollbars=no,toolbar=no,width=620,height=400')){location.href=f+'jump=yes'; document.getElementById('diaspora').style.backgroundPosition = '0 -90px';}else{document.getElementById('diaspora').style.backgroundPosition = '0 -60px';}})()"> </div></td>
+        <table>
+            <tr><td><a name="fb_share"></a></td>
+                <td><a href="https://twitter.com/share" class="twitter-share-button" data-size="small" data-hashtags="yah!" data-count="none">Tweet</a></td>
+                <td><g:plusone size="medium" annotation="none"></g:plusone></td>
+                <td><a href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2Fyouarehero.net{{request.get_full_path|urlencode }}&media={{ "https://youarehero.net/static/img/logo.png"|urlencode}}&description={{ quest.description|urlencode }}" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a></td>
+                <td><div id="diaspora" style="width: 153px;height:30px;background:url('{% get_static_prefix %}img/icons/diaspora-share.png') no-repeat left top; background-position:0px 0px;" onClick="javascript:(function(){f='https://joindiaspora.com/bookmarklet?url='+encodeURIComponent(window.location.href)+'&title='+encodeURIComponent('Shared a link...')+'¬es='+encodeURIComponent(document.title)+'&v=1&';if(!window.open(f+'noui=1&jump=doclose','diasporav1','location=no,links=no,scrollbars=no,toolbar=no,width=620,height=400')){location.href=f+'jump=yes'; document.getElementById('diaspora').style.backgroundPosition = '0 -90px';}else{document.getElementById('diaspora').style.backgroundPosition = '0 -60px';}})()"> </div></td>
 
-    </tr></table>
-<!-- Platzieren Sie diese Render-Anweisung an einer geeigneten Stelle. -->
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
-<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
-        type="text/javascript">
-</script>
+            </tr></table>
+        <!-- Platzieren Sie diese Render-Anweisung an einer geeigneten Stelle. -->
+        <script type="text/javascript">
+            (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/plusone.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+        </script>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share"
+                type="text/javascript">
+        </script>
         {# owner #}
         {% if request.user == quest.owner %}
             {% include "herobase/quest/adventures.inc.html" %}

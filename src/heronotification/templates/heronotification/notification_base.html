@@ -1,0 +1,17 @@
+<li>
+    {% block icons-top-right %}
+    <ul class="border-icons-top-right">
+        <li><i class="icon-delete icon-small"></i></li>
+        <li><i class="icon-edit icon-small"></i></li>
+    </ul>
+    {% endblock %}
+    <h3>{% block headline %}{% endblock %}</h3>
+    <p>{% block content %}{% endblock %}</p>
+
+    {% block icons-bottom-right %}
+    <ul class="border-icons-bottom-right">
+        <li><i class="icon-time-middle icon-small"></i></li>
+        <li><i class="icon-arrow icon-small"></i></li>
+    </ul>
+    {% endblock %}
+</li>
