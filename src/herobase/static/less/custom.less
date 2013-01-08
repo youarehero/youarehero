@@ -136,6 +136,7 @@ ul.grid {
     float: left;
     margin: 0px 0px 20px 20px;
   }
+  .clearfix;
 }
 
 ul.menu-grid {
@@ -163,73 +164,53 @@ ul.menu-grid {
   }
 }
 
-ul.small-grid {
-  list-style: none;
-  margin-left: -10px;
-  li {
-    float: left;
-    margin: 0px 0px 10px 10px;
-    h3, p {
-      margin-left: 6px;
-      margin-right: 6px;
-    }
-    &.half { width: 275px; }
-    &.small { width: 235px; }
-    &.big { width: 315px; }
-    &.mini { width: 185px; }
-    &.large { width: 365px; }
-  }
-  &.icons-top li { margin-top: 10px; }
-  &.icons-right li { margin-right: 10px; }
-  &.icons-bottom li { margin-bottom: 20px; }
-  &.icons-left li { margin-left: 20px; }
-  .border-icons-top-left,
-  .border-icons-top-right,
-  .border-icons-bottom-right,
-  .border-icons-bottom-left {
-    list-style: none;
-    margin:  0;
-    position: relative;
-    float: left;
-    left:  -30px;
-    top: -10px;
-    li {
-      margin: 0 0 0 10px;
-      padding: 0;
-//      width: 40px;
-      .box-shadow(2px 2px 5px rgba(0,0,0,0.5));
+ul.box-grid li,
+.box {
+  background: @boxBackground;
+  color: @boxTextColor;
+  a {
+    color:  @boxLinkColor;
+    &:hover {
+      color: @boxLinkColorHover;
     }
   }
-  .border-icons-top-right,
-  .border-icons-bottom-right {
-    left: 10px;
-    float: right;
+  &.half { width: 275px; }
+  &.small { width: 235px; }
+  &.big { width: 315px; }
+  &.mini { width: 185px; }
+  &.large { width: 365px; }
+  &.full { width: 570px; }
+  h1, h2, h3, h4, h5, h6, p, img {
+    margin-left:5px;
+    margin-right: 5px;
   }
-  .border-icons-bottom-right,
-  .border-icons-bottom-left {
-    top:  10px;
-  }
-  .clearfix;
 }
 
-ul.box-grid {
-  li {
-    background: @boxBackground;
-    color: @boxTextColor;
-    a {
-      color:  @boxLinkColor;
-      &:hover {
-        color: @boxLinkColorHover;
-      }
-    }
+
+.yah-btn {
+  background: @boxIconBackground;
+  display: inline-block;
+  &.bottom-right,
+  &.top-right {
+    display: block;
+    float: right;
   }
-  .border-icons-top-left,
-  .border-icons-top-right,
-  .border-icons-bottom-right,
-  .border-icons-bottom-left {
-    li {
-      background-color: @boxIconBackground;
-    }
+  &.bottom-left,
+  &.top-left {
+    display: block;
+    float: left;
+  }
+  &.bottom-right {
+    margin: 0px -13px -6px 20px;
+  }
+  &.bottom-left {
+//    margin: -30px 20px 0 -10px;
+  }
+  &.top-right {
+    margin: -6px -13px 0px 20px;
+  }
+  &.top-left {
+//    margin: 0 20px -30px -10px;
   }
 }
 
@@ -265,10 +246,7 @@ input[type="tel"], input[type="color"], .uneditable-input {
 }
 
 form {
-  padding: 10px;
-  margin-right: 10px;
-  background: @boxBackground;
-  color: @boxTextColor;
+
   font-variant: small-caps;
   .span3 {
     width: 265px;

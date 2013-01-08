@@ -7,6 +7,11 @@
         $(function() {
             confirm_button("button[name=delete]", "{% trans "Really delete this Message?" %}");
         });
+        // this is for switching tabs on pageload :-)
+        $(function () {
+            var activeTab = $('[href=' + location.hash + ']');
+            activeTab && activeTab.tab('show');
+        });
     </script>
 {% endblock %}
 

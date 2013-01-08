@@ -33,7 +33,7 @@ class QuestCreateForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
        # self.helper.form_action = 'quest-create'
-       # self.helper.form_class = 'form-horizontal'
+        self.helper.form_class = 'box'
         self.request = kwargs.pop('request')
 
 
