@@ -37,7 +37,7 @@ from herorecommend.models import MIN_SELECTED_SKILLS
 logger = logging.getLogger('youarehero.herobase')
 
 @login_required
-def quest_list_view(request, template='herobase/quest/list.html'):
+def quest_list_view(request, template='herobase/quest/list_in.html'):
     """Basic quest list, with django-filter app"""
     if request.user.is_authenticated():
         f = QuestFilter(request.GET, queryset=recommend(request.user, order_by=['-created']))

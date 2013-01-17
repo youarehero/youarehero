@@ -15,8 +15,8 @@
         <li class="{% ifstartswith "quest-my" %}on{% else %}off{% endifstartswith %}">
             <a href="{% url quest-my %}" rel="tooltip" title="{% trans 'My Quests' %}">
                 <i class="icon-yah-my-quests"><span>{% trans 'My Quests' %}</span></i></a></li>
-        <li class="{% ifactive "message-list" %}on{% else %}off{% endifactive %}">
-            <a href="{% url message-list %}" rel="tooltip" title="{% trans 'Private Messages' %}">
+        <li class="{% ifactive "message-list-in" %}on{% else %}off{% endifactive %}">
+            <a href="{% url message-list-in %}" rel="tooltip" title="{% trans 'Private Messages' %}">
                 <i class="icon-yah-messages">
                     {% if request.user.get_profile.unread_messages_count != 0 %}
                         <span class="badge"> {{ request.user.get_profile.unread_messages_count }}</span>

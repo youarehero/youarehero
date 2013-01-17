@@ -8,10 +8,25 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
+  margin: 0;
 }
 h1 {
   line-height: 40px;
+  font-size: 32px;
 }
+h2 {
+  line-height: 40px;
+  font-size: 24px;
+}
+h3 {
+  line-height: 20px;
+  font-size: 18px;
+}
+h4 {
+  line-height: 20px;
+  font-size: 14px;
+}
+
 
 // Logo
 .logo {
@@ -80,11 +95,11 @@ body {
   z-index: 1045;
   position: fixed;
   top: 100px;
-  margin-left: 840px;
+  margin-left: (8 * @gridColumnWidth) + (@gridGutterWidth * 7) + @gridSpaceWidth;
 }
 
 #page-container {
-  width: 600px;
+  width: @gridContentWidth;
   margin: 0;
   position: relative;
   left: 220px;
@@ -97,8 +112,9 @@ body {
   .clearfix;
   position: fixed;
   top: 100px;
+  height: 40px;
   z-index: 200;
-  width: 580px;
+  width: (@gridContentWidth - 20px); // padding
   overflow: hidden;
 }
 #submenu {
@@ -106,7 +122,7 @@ body {
   z-index: 200;
   top: 140px;
   height:  40px;
-  width: 580px;
+  width: (@gridContentWidth - 20px); // padding
   overflow: hidden;
   padding:  0px 10px;
   font-variant: small-caps;
@@ -115,7 +131,7 @@ body {
 #page-content {
   position: relative;
   top: 180px;
-  padding:  10px;
+  padding:  10px 20px 10px 10px;
   background-color: @baseBackground;
   .clearfix;
 }
@@ -124,10 +140,18 @@ body {
   color: @grayLight;
 }
 
-
+.alert {
+  .border-radius(0px);
+  margin-bottom: 10px;
+  padding: 4px 31px 4px 10px;
+}
 
 
 // Grids
+
+.span2-25 { width: 205px; }
+.span2-5 { width: 230px; }
+.span2-75 { width: 255px; }
 
 ul.grid {
   list-style: none;
@@ -155,12 +179,9 @@ ul.menu-grid {
     &.on,
     &:hover {
       background-color: @menuBackgroundHover;
-    }
-    a { color: @linkColor; }
-    &.on,
-    &:hover {
       a { color: @linkColorHover; }
     }
+    a { color: @linkColor; }
   }
   &.grid {
     li {
@@ -189,11 +210,16 @@ ul.box-grid li,
   &.big { width: 315px; }
   &.mini { width: 185px; }
   &.large { width: 365px; }
-  &.full { width: 570px; }
-  h1, h2, h3, h4, h5, h6, p, img {
-    margin-left:5px;
-    margin-right: 5px;
-  }
+//  &.full { width: 580px; }
+//  h1, h2, h3, h4, h5, h6, p, img, {
+//    margin-left:5px;
+//    margin-right: 5px;
+//  }
+//  .row {
+//    margin-left: -15px;
+//    margin-right:5px;
+//  }
+  padding: 5px 10px;
 }
 
 .yah-btn {
@@ -254,11 +280,15 @@ input[type="tel"], input[type="color"], .uneditable-input {
   border-bottom: 1px solid @inputBorder;
 }
 
+input, textarea, .uneditable-input {
+  width: 266px;
+}
+
 form {
 
   font-variant: small-caps;
   .span3 {
-    width: 265px;
+//    width: 265px;
   }
 }
 .select2-container .select2-choice {
@@ -280,8 +310,8 @@ form {
   padding: 0;
   border: 0px none;
   position: relative;
-  top: 10px;
-  left: 10px;
+  top: 5px;
+  left: 15px;
   .btn {
     background: @boxIconBackground;
     margin-left: 10px;
@@ -367,10 +397,10 @@ span.protective { color: @protective; }
 // autocomplete light bootstrap FIX
 .autocomplete_light_widget .autocomplete { margin-bottom: 0px; }
 .autocomplete_light_widget .deck { padding-left: 0px; margin: 0; }
-.autocomplete_light_widget .deck li { background: #f9f9fb; border: 1px solid #CCCCCC; border-radius: 3px 3px 3px 3px; color: #555555; display: inline-block; font-size: 13px; height: 18px; line-height: 18px; margin-bottom: 0px; padding: 4px 3px 4px 5px; width: 210px; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; }
+.autocomplete_light_widget .deck li { background: #f9f9fb; border: 1px solid #CCCCCC; border-radius: 3px 3px 3px 3px; color: #555555; display: inline-block; font-size: 13px; height: 18px; line-height: 18px; margin-bottom: 0px; padding: 4px 3px 4px 5px; width: 272px; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; }
 .autocomplete_light_widget .deck li .remove { float: right; background-image: url("../bootstrap/img/glyphicons-halflings.png"); background-position: 14px 14px; background-repeat: no-repeat; display: inline-block; height: 14px; line-height: 14px; vertical-align: text-top; width: 14px; background-position: -312px 0; margin-right: 2px; }
 .autocomplete_light_widget .deck li .remove:hover { background-position: -312px 0; }
-.autocomplete_light_widget .yourlabs_autocomplete.inner_container { width: 221px; border-radius: 3px 3px 3px 3px; left: 0px; border: 1px solid #CCCCCC; }
+.autocomplete_light_widget .yourlabs_autocomplete.inner_container { width: 278px; border-radius: 3px 3px 3px 3px; left: 1px; border: 1px solid #CCCCCC; }
 .autocomplete_light_widget .yourlabs_autocomplete.inner_container ul { border-radius: 3px 3px 3px 3px; }
 
 
@@ -384,4 +414,14 @@ span.protective { color: @protective; }
   a {
     margin: 2px 10px;
   }
+}
+
+// img placeholders
+img[class^=img-placeholder] {
+  background-color: #999;
+  display: block;
+}
+img.img-placeholder-80x80 {
+  width:  80px;
+  height:  80px;
 }

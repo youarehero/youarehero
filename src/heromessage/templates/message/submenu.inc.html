@@ -4,13 +4,11 @@
         <a href="{% url message-create %}" class="">{% trans "compose" %}</a>
     </li>
     <li class="{% ifactive "message-list" %}on{% else %}off{% endifactive %}">
-        <a href="{% url message-list %}#in"
-                {% ifactive "message-list" %} data-toggle="tab"{% endifactive %}>
+        <a href="{% url message-list-in %}#in">
             <i class="icon-arrow-down"></i>{% trans "in" %}</a>
     </li>
     <li class="{% ifactive "message-list" %}on{% else %}off{% endifactive %}">
-        <a href="{% url message-list %}#out"
-                {% ifactive "message-list" %} data-toggle="tab"{% endifactive %}>
+        <a href="{% url message-list-out %}#out">
             <i class="icon-arrow-up"></i>{% trans "out" %}</a>
     </li>
 </ul>

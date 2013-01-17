@@ -1,0 +1,58 @@
+{% extends "herobase/layout/base.html" %}
+{% load crispy_forms_tags i18n static %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{% get_static_prefix %}js/forms.js"></script>
+    <script>
+        $(function() {
+            confirm_button("button[name=delete]", "{% trans "Really delete this Message?" %}");
+        });
+        // this is for switching tabs on pageload :-)
+        // not needed any more, only for info
+        $(function () {
+            var activeTab = $('[href=' + location.hash + ']');
+            activeTab && activeTab.tab('show');
+        });
+    </script>
+{% endblock %}
+
+{% block submenu %}
+    {% include "message/submenu.inc.html"%}
+{% endblock %}
+
+{% block page_title %}
+    <h1>{% trans "Messages" %}</h1>
+{% endblock %}
+
+{% block content %}
+    <ul class="grid box-grid">
+        {% for message in received_messages %}
+            <li class="full">
+                <form method="post" action="{% url message-update message.pk %}" class="inline">
+                    {% csrf_token %}
+                    <button class="yah-btn top-right" type="submit" value="delete" name="delete">
+                        <i class="icon-yah-delete icon-40"></i> {% trans "Delete" %}</button>
+                </form>
+                <div class="row">
+                    <div class="span6">
+                        <span class="pull-right">{{ message.sent }}</span>
+                        <strong>{{ message.sender }}</strong>
+                    </div>
+                    <div class="span1 "><img src="" alt="" class="img-placeholder-80x80"></div>
+                    <div class="span5">
+
+                        <h3>{{ message.title }}</h3>
+                        <p>{{ message.text }}</p>
+                        <a href="{% url message-detail message.pk %}">more</a>
+
+
+                    </div>
+                </div>
+                <a class="yah-btn bottom-right" href="{% url message-reply message.pk %}">
+                    <i class=" icon-yah-arrow icon-40"></i> {% trans "Reply" %}</a>
+            </li>
+        {% empty %}
+            <li>{% trans "No messages yet." %}(</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

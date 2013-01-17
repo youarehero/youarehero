@@ -33,7 +33,7 @@ def message_create(request, user_id=None, message_id=None):
         message.sender = request.user
         message.save()
         messages.success(request, _('Message successfully sent'))
-        return HttpResponseRedirect(reverse('message-list'))
+        return HttpResponseRedirect(reverse('message-list-out'))
     return render(request, 'message/create.html', {'form': form})
 
 @login_required
@@ -50,11 +50,15 @@ def message_update(request, message_id):
     return HttpResponseRedirect(reverse("message-list"))
 
 @login_required
-def message_list(request):
-    return render(request, 'message/list.html',{
+def message_list_out(request):
+    return render(request, 'message/list_out.html',{
              'sent_messages': Message.objects.filter(sender=request.user, sender_deleted=None),
-             'received_messages': Message.objects.filter(recipient=request.user, recipient_deleted=None),
-            })
+             })
+
+def message_list_in(request):
+    return render(request, 'message/list_in.html',{
+        'received_messages': Message.objects.filter(recipient=request.user, recipient_deleted=None),
+        })
 
 @login_required
 def message_detail(request, message_id):

@@ -1,0 +1,59 @@
+{% extends "herobase/layout/base.html" %}
+{% load crispy_forms_tags i18n static %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{% get_static_prefix %}js/forms.js"></script>
+    <script>
+        $(function() {
+            confirm_button("button[name=delete]", "{% trans "Really delete this Message?" %}");
+        });
+        // this is for switching tabs on pageload :-)
+        // not needed any more, only for info
+        $(function () {
+            var activeTab = $('[href=' + location.hash + ']');
+            activeTab && activeTab.tab('show');
+        });
+    </script>
+{% endblock %}
+
+{% block submenu %}
+    {% include "message/submenu.inc.html"%}
+{% endblock %}
+
+{% block page_title %}
+    <h1>{% trans "Messages" %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if sent_messages %}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>{% trans "Subject" %}</th>
+                <th>{% trans "To" %}</th>
+                <th>{% trans "Date" %}</th>
+                <th>{% trans "Actions" %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for message in sent_messages %}
+                <tr>
+                    <td>
+                        <a href="{% url message-detail message.pk %}">{{ message.title }}</a>
+                    </td>
+                    <td><a href="{% url userprofile-public message.recipient.username %}">{{ message.recipient }}</a></td>
+                    <td>{{ message.sent }}</td>
+                    <td>
+                        <form method="post" action="{% url message-update message.pk %}" class="inline">
+                            {% csrf_token %}
+                            <button class="btn btn-mini" type="submit" value="delete" name="delete">{% trans "delete" %} <i class="icon-trash icon-black"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>{% trans "You haven't sent any messages yet." %}</p>
+    {% endif %}
+{% endblock %}

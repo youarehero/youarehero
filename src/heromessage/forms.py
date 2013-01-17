@@ -16,7 +16,7 @@ class MessageForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
 #        self.helper.form_action = 'message-c'
-        self.helper.form_class = 'form'
+        self.helper.form_class = 'form box'
 
         self.helper.layout = Layout(
             Div(
