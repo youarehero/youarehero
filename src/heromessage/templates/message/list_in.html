@@ -27,29 +27,26 @@
 {% block content %}
     <ul class="grid box-grid">
         {% for message in received_messages %}
-            <li class="full">
+            <li class="span6">
                 <form method="post" action="{% url message-update message.pk %}" class="inline">
                     {% csrf_token %}
-                    <button class="yah-btn top-right" type="submit" value="delete" name="delete">
-                        <i class="icon-yah-delete icon-40"></i> {% trans "Delete" %}</button>
+                    <button class="box-btn-top" type="submit" value="delete" name="delete">
+                        <i class="icon-yah-delete icon-40"></i></button>
                 </form>
-                <div class="row">
-                    <div class="span6">
-                        <span class="pull-right">{{ message.sent }}</span>
-                        <strong>{{ message.sender }}</strong>
-                    </div>
-                    <div class="span1 "><img src="" alt="" class="img-placeholder-80x80"></div>
-                    <div class="span5">
-
-                        <h3>{{ message.title }}</h3>
-                        <p>{{ message.text }}</p>
-                        <a href="{% url message-detail message.pk %}">more</a>
-
-
-                    </div>
+                <div class="box-header">
+                    <span class="pull-right">{{ message.sent }}</span>
+                    <strong>{{ message.sender }}</strong>
                 </div>
-                <a class="yah-btn bottom-right" href="{% url message-reply message.pk %}">
-                    <i class=" icon-yah-arrow icon-40"></i> {% trans "Reply" %}</a>
+
+
+                <img src="" alt="" class="img-placeholder-80x80 pull-left">
+
+                <h3>{{ message.title }}</h3>
+                <p>{{ message.text }}</p>
+                <a href="{% url message-detail message.pk %}">more</a>
+
+                <a class="box-btn-bottom" href="{% url message-reply message.pk %}">
+                    <i class=" icon-yah-arrow icon-40"></i></a>
             </li>
         {% empty %}
             <li>{% trans "No messages yet." %}(</li>

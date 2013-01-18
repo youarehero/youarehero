@@ -1,0 +1,107 @@
+// Grids
+
+@import "../bootstrap/less/variables.less";
+@import "../bootstrap/less/mixins.less";
+
+@boxPaddingTop: 5px;
+@boxPaddingRight: 10px;
+@boxPaddingBottom: @boxPaddingTop;
+@boxPaddingLeft: @boxPaddingRight;
+
+@boxBtnTop: 6px;
+@boxBtnRight: 13px;
+@boxBtnBottom: @boxBtnTop;
+@boxBtnLeft: @boxBtnRight;
+
+.span2-25 { width: (@gridColumnWidth * 2.25) + @gridGutterWidth; }
+.span2-5  { width: (@gridColumnWidth * 2.5)  + @gridGutterWidth; }
+.span2-75 { width: (@gridColumnWidth * 2.75) + @gridGutterWidth; }
+.span3-25 { width: (@gridColumnWidth * 3.25) + (@gridGutterWidth * 2); }
+.span3-5  { width: (@gridColumnWidth * 3.5)  + (@gridGutterWidth * 2); }
+.span3-75 { width: (@gridColumnWidth * 3.75) + (@gridGutterWidth * 2); }
+.span4-25 { width: (@gridColumnWidth * 4.25) + (@gridGutterWidth * 3); }
+.span4-5  { width: (@gridColumnWidth * 4.5)  + (@gridGutterWidth * 3); }
+.span4-75 { width: (@gridColumnWidth * 4.75) + (@gridGutterWidth * 3); }
+
+
+ul.grid {
+  list-style: none;
+  margin: 0 0 0 -20px;
+  li {
+    float: left;
+    margin: 0px 0px 20px 20px;
+  }
+  .clearfix;
+}
+
+ul.small-grid {
+  list-style: none;
+  margin: 0 0 0 -10px;
+  li {
+    float: left;
+    margin: 0px 0px 10px 10px;
+  }
+  .clearfix;
+}
+
+ul.menu-grid {
+  li {
+    background-color: @menuBackground;
+    &.on,
+    &:hover {
+      background-color: @menuBackgroundHover;
+      a { color: @linkColorHover; }
+    }
+    a { color: @linkColor; }
+  }
+  &.grid {
+    li {
+      a { color: @menuTextColor; }
+      color: @menuTextColor;
+      &.on,
+      &:hover {
+        a { color: @menuTextColorHover; }
+      }
+    }
+  }
+}
+
+ul.box-grid li,
+.box {
+  background: @boxBackground;
+  color: @boxTextColor;
+  a {
+    color:  @boxLinkColor;
+    &:hover {
+      color: @boxLinkColorHover;
+    }
+  }
+  position: relative;
+  padding: @boxPaddingTop @boxPaddingRight @boxPaddingBottom @boxPaddingLeft;
+  &.mini  { width: 210px; }
+  &.small   { width: 250px; }
+  &.half   { width: 270px; }
+  &.big   { width: 290px; }
+  &.large   { width: 310px; }
+  }
+
+.box-btn-top,
+.box-btn-bottom {
+  background: @boxIconBackground;
+  display: block;
+  border: 0px none;
+  padding: 0px;
+  position: absolute;
+  right: -@boxBtnRight;
+}
+.box-btn-top {
+  top: -@boxBtnTop;
+}
+
+.box-btn-bottom {
+  bottom: -@boxBtnBottom;
+}
+
+.box-header {
+  margin-right: 30px;
+}

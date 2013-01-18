@@ -65,6 +65,8 @@ USE_I18N = True
 # calendars according to the current locale.
 USE_L10N = True
 
+FORMAT_MODULE_PATH = 'youarehero.formats'
+
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 

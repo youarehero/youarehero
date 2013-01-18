@@ -36,15 +36,16 @@
 {% block content %}
 {# {% cache 60 quests request.user.pk filter.form.level filter.form.state filter.form.hero_class request.GET.page %} #}
     <div class="quest-list">
-        <form action="" method="get">
-        <div class="btn-toolbar">
+        <form action="" method="get" class="form form-inline">
+{#        <div class="btn-toolbar">#}
             <div class="btn-group" data-toggle="buttons-radio">
                 <a class="btn active" href="#grid" data-toggle="tab"><i class="icon-th"></i></a>
                 <a class="btn" href="#table" data-toggle="tab"><i class="icon-th-list"></i></a>
             </div>
-            <input placeholder="Titel" style="margin-top: -12px;" name="title" value="{{ filter.form.data.title }}"/>
             <div class="btn-group">
+                <input placeholder="Titel" type="search" class="search" name="title" value="{{ filter.form.data.title }}"/>
 
+                <input id="" class="btn" type="submit" name="submit" value="Suchen"/>
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                     Mehr
                     <span class="caret"></span>
@@ -55,11 +56,11 @@
                     <p>{{ filter.form.hero_class.label_tag }}{{ filter.form.hero_class }}</p>
                     {{ filter.form.ordering_field }}
                 </div>
-                <input class="btn" type="submit" value="Suchen"/>
+
             </div>
             {% paginate 12 quests %}
             <span style="margin: -40px 0 0 20px;">{% show_pages %}</span>
-        </div>
+{#        </div>#}
         </form>
         <div class="tab-content" style="padding-bottom: 38px">
             <div class="tab-pane active" id="grid">

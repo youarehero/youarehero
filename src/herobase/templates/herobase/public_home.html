@@ -1,52 +1,67 @@
 {% extends "herobase/layout/base.html" %}
 {% load static i18n crispy_forms_tags %}
 
-{% block page_title %}
-    <h1>&nbsp;</h1>
-{% endblock %}
+
 
 {% block body %}
-    {% block  %}
+    <div id="background"></div>
+    <div id="background-top"></div>
     <div id="layout-container" class="container">
+
+        {% block site_header_container %}
+            {{ block.super }}
+        {% endblock %}
         <div class="row">
-            <div class="span3">
-                <ul class="">
-                    <li>
-                        <a href="/blog/" target="_blank" class="postit diplomat">
-                            <h4>News/Blog</h4>
-                            <img src="{% get_static_prefix %}img/home/blog.png" alt="Blog">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://www.youtube.com/watch?v=7gp4X-0XSQA" target="_blank" class="postit action">
-                            <h4>Video</h4>
-                            <img src="{% get_static_prefix %}img/home/video.png" alt="Blog">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url registration_register %}" target="_blank" class="postit">
-                            <h4>Register now</h4>
-                            <img src="{% get_static_prefix %}img/home/register.png" alt="Blog">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://youarehero.net/blog/about-us-you-are-hero-questdesign-im-real-life/" target="_blank" class="postit gadgeteer">
-                            <h4>What's it all about?</h4>
-                            <img src="{% get_static_prefix %}img/home/about.png" alt="Blog">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://youarehero.net/blog/contact/" target="_blank" class="postit protective">
-                            <h4>Join us</h4>
-                            <img src="{% get_static_prefix %}img/home/joinus.png" alt="Blog">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="span6">
-                {% if not request.user.is_authenticated %}
-                    {% crispy login_form %}
-                {% endif %}
+            {% block sidebar_left_container %}
+                {{ block.super }}
+            {% endblock %}
+
+            <div id="page-container" class="span6 row">
+                <div id="page-title">
+                    {% block page_title %}<h1>You are HERO</h1>{% endblock %}
+                </div>
+                <div id="submenu">
+                    {% block submenu %}&nbsp;{% endblock %}
+                </div>
+                <div id="page-content">
+                    {% if not request.user.is_authenticated %}
+                        {% crispy login_form %}
+                    {% endif %}
+
+                    <ul class="grid box-grid clearfix">
+                        <li>
+                            <a href="/blog/" target="_blank" class="postit diplomat">
+                                <h4>News/Blog</h4>
+                                <img src="{% get_static_prefix %}img/home/blog.png" alt="Blog">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.youtube.com/watch?v=7gp4X-0XSQA" target="_blank" class="postit action">
+                                <h4>Video</h4>
+                                <img src="{% get_static_prefix %}img/home/video.png" alt="Blog">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url registration_register %}" target="_blank" class="postit">
+                                <h4>Register now</h4>
+                                <img src="{% get_static_prefix %}img/home/register.png" alt="Blog">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youarehero.net/blog/about-us-you-are-hero-questdesign-im-real-life/" target="_blank" class="postit gadgeteer">
+                                <h4>What's it all about?</h4>
+                                <img src="{% get_static_prefix %}img/home/about.png" alt="Blog">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youarehero.net/blog/contact/" target="_blank" class="postit protective">
+                                <h4>Join us</h4>
+                                <img src="{% get_static_prefix %}img/home/joinus.png" alt="Blog">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>

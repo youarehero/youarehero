@@ -5,6 +5,7 @@
 
 @import "icons.less";
 @import "tabs.less";
+@import "grid.less";
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
@@ -147,107 +148,7 @@ body {
 }
 
 
-// Grids
 
-.span2-25 { width: 205px; }
-.span2-5 { width: 230px; }
-.span2-75 { width: 255px; }
-
-ul.grid {
-  list-style: none;
-  margin: 0 0 0 -20px;
-  li {
-    float: left;
-    margin: 0px 0px 20px 20px;
-  }
-  .clearfix;
-}
-
-ul.small-grid {
-  list-style: none;
-  margin: 0 0 0 -10px;
-  li {
-    float: left;
-    margin: 0px 0px 10px 10px;
-  }
-  .clearfix;
-}
-
-ul.menu-grid {
-  li {
-    background-color: @menuBackground;
-    &.on,
-    &:hover {
-      background-color: @menuBackgroundHover;
-      a { color: @linkColorHover; }
-    }
-    a { color: @linkColor; }
-  }
-  &.grid {
-    li {
-      a { color: @menuTextColor; }
-      color: @menuTextColor;
-      &.on,
-      &:hover {
-        a { color: @menuTextColorHover; }
-      }
-    }
-  }
-}
-
-ul.box-grid li,
-.box {
-  background: @boxBackground;
-  color: @boxTextColor;
-  a {
-    color:  @boxLinkColor;
-    &:hover {
-      color: @boxLinkColorHover;
-    }
-  }
-  &.half { width: 275px; }
-  &.small { width: 235px; }
-  &.big { width: 315px; }
-  &.mini { width: 185px; }
-  &.large { width: 365px; }
-//  &.full { width: 580px; }
-//  h1, h2, h3, h4, h5, h6, p, img, {
-//    margin-left:5px;
-//    margin-right: 5px;
-//  }
-//  .row {
-//    margin-left: -15px;
-//    margin-right:5px;
-//  }
-  padding: 5px 10px;
-}
-
-.yah-btn {
-  background: @boxIconBackground;
-  display: inline-block;
-  &.bottom-right,
-  &.top-right {
-    display: block;
-    float: right;
-  }
-  &.bottom-left,
-  &.top-left {
-    display: block;
-    float: left;
-  }
-  &.bottom-right {
-    margin: 0px -13px -6px 20px;
-  }
-  &.bottom-left {
-//    margin: -30px 20px 0 -10px;
-  }
-  &.top-right {
-    margin: -6px -13px 0px 20px;
-  }
-  &.top-left {
-//    margin: 0 20px -30px -10px;
-  }
-}
 
 // Badges - little number of notifications
 .badge {
@@ -256,16 +157,27 @@ ul.box-grid li,
   text-shadow: none;
   font-size: 10px;
   background-color: @action;
+  &+ span {
+    left: 0;
+  }
 }
+
 
 [class^="icon-"] .badge,
 [class*="icon-"] .badge {
   position: relative;
-  bottom: -8px;
-  left: 3px;
+  left: 0;
+//  line-height:20px;
 }
 
 // Forms
+form {
+  margin-bottom: 0px;
+  font-variant: small-caps;
+  .span3 {
+  //    width: 265px;
+  }
+}
 
 textarea, input[type="text"], input[type="password"], input[type="datetime"],
 input[type="datetime-local"], input[type="date"], input[type="month"],
@@ -283,14 +195,12 @@ input[type="tel"], input[type="color"], .uneditable-input {
 input, textarea, .uneditable-input {
   width: 266px;
 }
-
-form {
-
-  font-variant: small-caps;
-  .span3 {
-//    width: 265px;
+.btn-toolbar {
+  input {
+    margin-top: 0px !important;
   }
 }
+
 .select2-container .select2-choice {
   border-top: 1px solid darken(@inputBorder, 20%);
   border-left: 1px solid darken(@inputBorder, 15%);
@@ -367,7 +277,6 @@ span.diplomat { color: @diplomat; }
 span.gadgeteer { color: @gadgeteer; }
 span.protective { color: @protective; }
 
-
 // Bootstrap specific fixes
 // -----------------------
 
@@ -420,6 +329,10 @@ span.protective { color: @protective; }
 img[class^=img-placeholder] {
   background-color: #999;
   display: block;
+  &.pull-left {
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
 }
 img.img-placeholder-80x80 {
   width:  80px;

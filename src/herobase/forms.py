@@ -157,7 +157,7 @@ class UserAuthenticationForm(AuthenticationForm):
         self.helper = FormHelper()
         self.helper.help_text_inline = True
         self.helper.add_input(Submit('submit', _("Log in")))
-        self.helper.form_class = "well"
+        self.helper.form_class = "box"
 
         if request:
             if request.is_mobile:

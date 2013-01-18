@@ -19,7 +19,7 @@
             <a href="{% url message-list-in %}" rel="tooltip" title="{% trans 'Private Messages' %}">
                 <i class="icon-yah-messages">
                     {% if request.user.get_profile.unread_messages_count != 0 %}
-                        <span class="badge"> {{ request.user.get_profile.unread_messages_count }}</span>
+                        <span class="badge">{{ request.user.get_profile.unread_messages_count }}</span>
                     {% endif %}
                     <span>{% trans 'Messages' %}</span>
                 </i></a></li>
