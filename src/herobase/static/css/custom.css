@@ -573,8 +573,9 @@ body {
 #page-container {
   width: 630px;
   margin: 0;
-  position: relative;
+  position: absolute;
   left: 220px;
+  margin-left: -20px;
 }
 #page-title {
   padding: 0 10px;
