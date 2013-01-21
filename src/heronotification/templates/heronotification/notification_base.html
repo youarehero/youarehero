@@ -1,10 +1,8 @@
 <li>
-    <h3>{% block title %}{{ notification.get_type_display }}{% endblock %}</h3>
+    <h3>{% if not notification.is_read %}<span style="color: red">NEW</span> {% endif %}{% block title %}{{ notification.get_type_display }}{% endblock %}</h3>
     <p>{% block content %}{{ notification.get_summary }}{% endblock %}</p>
 
     {% block icons-bottom-right %}
-    <ul class="border-icons-bottom-right">
-        <li><a href="{{ notification.target.get_absolute_url }}"><i class="icon-arrow icon-small"></i></a></li>
-    </ul>
+        <a href="{{ notification.target.get_absolute_url }}" class="box-btn-bottom"><i class="icon-yah-arrow icon-40"></i></a>
     {% endblock %}
 </li>
