@@ -4,6 +4,7 @@ import logging
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 from herobase.models import Adventure
+from heronotification import notify
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +28,7 @@ def owner_hero_accept(quest, hero):
 
     # update open state
     quest.save()
+    notify.hero_accepted(adventure.user, quest)
 
     return _("You have accepted %s." % hero.username)
 
@@ -43,6 +45,7 @@ def owner_hero_reject(quest, hero):
     adventure.save()
     quest.save()
 
+    notify.hero_rejected(adventure.user, quest)
     return _("You have rejected %s." % hero.username)
 
 
@@ -57,6 +60,9 @@ def owner_quest_cancel(quest):
     quest.canceled = True
     quest.save()
 
+    for hero in quest.heroes.filter(canceled=False):
+        notify.quest_cancelled(hero, quest)
+
 def owner_quest_done(quest):
     if quest.canceled or quest.done:
         raise ValidationError("Can not cancel when already done/canceled.")
@@ -64,6 +70,10 @@ def owner_quest_done(quest):
         raise ValidationError("A quest without accepted heroes can't be marked as done.")
     quest.done = True
     quest.save()
+
+    for hero in quest.heroes.filter(canceled=False, accepted=True):
+        notify.quest_done(hero, quest)
+
 
 # hero participation
 def hero_quest_apply(quest, hero):
@@ -83,6 +93,9 @@ def hero_quest_apply(quest, hero):
         adventure.save()
     quest.save()
 
+    notify.hero_has_applied(quest.owner, adventure)
+
+
 def hero_quest_done(quest, hero):
     pass
 
@@ -100,3 +113,5 @@ def hero_quest_cancel(quest, hero):
     adventure.canceled = True
     adventure.save()
     quest.save()
+
+    notify.hero_has_cancelled(quest.owner, adventure)

@@ -154,6 +154,8 @@ class Adventure(models.Model):
     def __unicode__(self):
         return '%s - %s' % (self.quest.title, self.user.username)
 
+    def get_absolute_url(self):
+        return self.quest.get_absolute_url()
 
 class QuestQuerySet(QuerySet):
     def open(self):

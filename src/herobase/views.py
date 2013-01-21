@@ -17,6 +17,7 @@ from django.utils.safestring import mark_safe
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from herobase import quest_livecycle
+from heronotification.models import Notification
 from herorecommend import recommend_for_user, recommend, recommend_local
 from herorecommend.forms import UserSkillEditForm
 from utils import login_required
@@ -119,6 +120,7 @@ def hero_home_view(request, template='herobase/hero_home.html'):
     return render(request, template,
             {
              #'profile': user.get_profile(),
+             'notifications': Notification.objects.filter(user=user).order_by('-created'),
              'quests_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:10],
              'quests_old': user.created_quests.filter(done=True).order_by('-created')[:10],
              'quests_joined': Quest.objects.filter(canceled=False, adventures__user=user, adventures__canceled=False)[:10]

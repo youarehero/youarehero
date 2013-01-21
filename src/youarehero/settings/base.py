@@ -179,6 +179,7 @@ INSTALLED_APPS = (
     'herobase',
     'heromessage',
     'herorecommend',
+    'heronotification',
     )
 
 TEST_APPS = (
