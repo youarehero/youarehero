@@ -86,7 +86,7 @@ class hero_rejected(NotificationTypeBase):
 
 
 class Notification(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name='notifications')
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
 
@@ -126,9 +126,10 @@ class Notification(models.Model):
             self.save()
         return self.read is not None
 
-    def render(self):
+    def html(self):
         try:
-            template = get_template('heronotification/%s.html' % NOTIFICATION_TYPES[self.type].__name__.lower())
+            print self.type.__name__.lower()
+            template = get_template('heronotification/%s.html' % self.type.__name__.lower())
         except TemplateDoesNotExist:
             template = get_template('heronotification/notification_base.html')
 

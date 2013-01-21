@@ -8,6 +8,9 @@
 {% block content %}
 {#    icons-top icons-right icons-bottom#}
     <ul class="grid box-grid">
+        {% for notification in notifications %}
+            {{ notification.html }}
+        {% endfor %}
         <li class="span6">
                 <a href="#" class="box-btn-top"><i class="icon-yah-time-middle icon-40"></i></a>
                 <a href="#" class="box-btn-top"><i class="icon-yah-arrow icon-40"></i></a>
