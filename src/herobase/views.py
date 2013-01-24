@@ -120,7 +120,7 @@ def hero_home_view(request, template='herobase/hero_home.html'):
     return render(request, template,
             {
              #'profile': user.get_profile(),
-             'notifications': Notification.objects.filter(user=user).order_by('-created'),
+             'notifications': Notification.objects.filter(user=user).order_by('-read', '-created'),
 #             'quests_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:10],
 #             'quests_old': user.created_quests.filter(done=True).order_by('-created')[:10],
 #             'quests_joined': Quest.objects.filter(canceled=False, adventures__user=user, adventures__canceled=False)[:10]

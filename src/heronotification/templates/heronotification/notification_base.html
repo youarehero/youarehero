@@ -1,10 +1,10 @@
 {% block box %}
-    <div class="notification">
+    <div class="notification{% if notification.is_read %} read{% endif %}">
     {% with url=notification.target.get_absolute_url %}
         {% if url %}<a href="{{ url }}">{% endif %}
             <div class="box">
                 <img src="http://placehold.it/40x40" alt=""/>
-                <p>{% if not notification.is_read %}<span style="color: red">NEW</span> {% endif %}{% block text %}{{ notification.get_text }}{% endblock %}</p>
+                <p>{% block text %}{{ notification.get_text }}{% endblock %}</p>
             </div>
         {% if url %}</a>{% endif %}
     {% endwith %}
