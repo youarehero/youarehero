@@ -99,7 +99,8 @@ def recommend_for_user(user, fields=('title', 'description', 'state'),
         numerator_sql = '%s * root_sum_of_squares' % up_root_sum_of_squares
 
         sql = '(%s) / (%s)' % (denominator_sql, numerator_sql) # fixme DIV BY ZERO
-        sql += '+ COALESCE(pow(2.718, -(sqrt(pow(110 * (latitude - %s), 2) + pow(70 * (longitude - %s), 2)))/10), 0)' % (user.get_profile().latitude, user.get_profile().longitude)
+        if user.get_profile().has_location:
+            sql += '+ COALESCE(pow(2.718, - (sqrt(pow(110 * (latitude - %s), 2) + pow(70 * (longitude - %s), 2)))/10), 0)' % (user.get_profile().latitude, user.get_profile().longitude)
         sql += '+ (random()/5)'
 
     cursor = connection.cursor()
