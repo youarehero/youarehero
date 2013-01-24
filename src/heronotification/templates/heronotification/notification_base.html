@@ -1,8 +1,12 @@
-<li>
-    <h3>{% if not notification.is_read %}<span style="color: red">NEW</span> {% endif %}{% block title %}{{ notification.get_type_display }}{% endblock %}</h3>
-    <p>{% block content %}{{ notification.get_summary }}{% endblock %}</p>
-
-    {% block icons-bottom-right %}
-        <a href="{{ notification.target.get_absolute_url }}" class="box-btn-bottom"><i class="icon-yah-arrow icon-40"></i></a>
-    {% endblock %}
-</li>
+{% block box %}
+    <div class="notification">
+    {% with url=notification.target.get_absolute_url %}
+        {% if url %}<a href="{{ url }}">{% endif %}
+            <div class="box">
+                <img src="http://placehold.it/40x40" alt=""/>
+                <p>{% if not notification.is_read %}<span style="color: red">NEW</span> {% endif %}{% block text %}{{ notification.get_text }}{% endblock %}</p>
+            </div>
+        {% if url %}</a>{% endif %}
+    {% endwith %}
+    </div>
+{% endblock %}

@@ -128,7 +128,6 @@ class Notification(models.Model):
 
     def html(self):
         try:
-            print self.type.__name__.lower()
             template = get_template('heronotification/%s.html' % self.type.__name__.lower())
         except TemplateDoesNotExist:
             template = get_template('heronotification/notification_base.html')
