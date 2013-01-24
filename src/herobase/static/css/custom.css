@@ -679,6 +679,9 @@ body {
   margin-bottom: 10px;
   padding: 4px 31px 4px 10px;
 }
+.notification {
+  margin-bottom: 10px;
+}
 .notification.read .box {
   background-color: #a2a2a2;
 }

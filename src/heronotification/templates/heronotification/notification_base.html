@@ -1,5 +1,9 @@
 {% block box %}
-    <div class="notification{% if notification.is_read %} read{% endif %}">
+    <div class="notification{% if notification.is_read %} read{% endif %}"
+            {% if notification.is_dismissible and not notification.is_read %}
+                data-dismiss-url="{% url mark-notification-read notification.pk %}"
+            {% endif %}
+            >
     {% with url=notification.target.get_absolute_url %}
         {% if url %}<a href="{{ url }}">{% endif %}
             <div class="box">

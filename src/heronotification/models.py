@@ -34,7 +34,11 @@ class NotificationTypeBase(object):
     def __init__(self, user, target):
         Notification.create(user, target, type_id=self.id)
 
-# example usage: hero_has_applied(user, quest)
+    @classmethod
+    def get_text(cls, notification):
+        return ''
+
+
 class hero_has_applied(NotificationTypeBase):
     id = 1
     target_model = Adventure
@@ -44,45 +48,82 @@ class hero_has_applied(NotificationTypeBase):
         return (notification.target.accepted or notification.target.rejected
                 or notification.target.canceled)
 
+    @classmethod
+    def get_text(cls, notification):
+        return mark_safe("<strong>%s</strong> is applying for "
+                         "your quest <strong>%s</strong>." %
+                         (notification.target.user.username,
+                          notification.target.quest.title))
+
 
 class hero_has_cancelled(NotificationTypeBase):
     id = 2
     target_model = Adventure
 
     @classmethod
-    def is_read(cls, notification):
-        return (notification.target.accepted or notification.target.rejected
-                or notification.target.canceled)
+    def get_text(cls, notification):
+        return mark_safe("<strong>%s</strong> has cancelled his application "
+                         "for your quest <strong>%s</strong>." %
+                         (notification.target.user.username,
+                          notification.target.quest.title))
 
 
 class quest_started(NotificationTypeBase):
     id = 10
     target_model = Quest
 
+    @classmethod
+    def get_text(cls, notification):
+        return mark_safe("The quest <strong>%s</strong> has been started." %
+                         notification.target.title)
+
 
 class quest_waiting_for_documentation(NotificationTypeBase):
     id = 11
     target_model = Quest
 
+    @classmethod
+    def get_text(cls, notification):
+        return mark_safe("The quest <strong>%s</strong> is waiting for documentation." %
+                         notification.target.title)
 
 class quest_cancelled(NotificationTypeBase):
     id = 12
     target_model = Quest
 
+    @classmethod
+    def get_text(cls, notification):
+        return mark_safe("The quest <strong>%s</strong> has been cancelled." %
+                         notification.target.title)
 
 class quest_done(NotificationTypeBase):
     id = 13
     target_model = Quest
+
+    @classmethod
+    def get_text(cls, notification):
+        return mark_safe("The quest <strong>%s</strong> has been completed." %
+                         notification.target.title)
 
 
 class hero_accepted(NotificationTypeBase):
     id = 100
     target_model = Quest
 
+    @classmethod
+    def get_text(cls, notification):
+        return mark_safe("You have been accepted for the quest<strong>%s</strong>." %
+                         notification.target.title)
+
 
 class hero_rejected(NotificationTypeBase):
     id = 101
     target_model = Quest
+
+    @classmethod
+    def get_text(cls, notification):
+        return mark_safe("Your application for the quest<strong>%s</strong> "
+                         "has been rejected." % notification.target.title)
 
 
 class Notification(models.Model):
@@ -98,10 +139,13 @@ class Notification(models.Model):
     read = models.DateTimeField(blank=True, null=True)
     dismissed = models.DateTimeField(blank=True, null=True)
 
-    def get_summary(self):
-        if not self.type in NOTIFICATION_TYPES:
+    def is_dismissible(self):
+        return True
+
+    def get_text(self):
+        if not self.type:
             return 'untyped notification'
-        return NOTIFICATION_TYPES[self.type]
+        return self.type.get_text(self)
 
     @classmethod
     def create(cls, user, target, type_id):
@@ -121,14 +165,11 @@ class Notification(models.Model):
         return NOTIFICATION_TYPES.get(self.type_id, None)
 
     def is_read(self):
-        if hasattr(self, "_read"):
-            return self._read
-
-        if self.read is None and (not hasattr(self.type, 'is_read') or self.type.is_read(self)):
+        # FIXME: this still modifies the model
+        if self.read is None and hasattr(self.type, 'is_read') and self.type.is_read(self):
             self.read = datetime.now()
             self.save()
-        setattr(self, "_read", self.read is not None)
-        return self._read
+        return self.read
 
     def html(self):
         try:

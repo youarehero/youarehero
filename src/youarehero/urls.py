@@ -9,6 +9,8 @@ autocomplete_light.autodiscover()
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^dismiss_notification/(?P<notification_id>\d+)/$', 'heronotification.views.mark_notification_read', name='mark-notification-read'),
+
     url(r'^recommend/$', 'herorecommend.views.recommend', name='recommend'),
     url(r'^recommend/rate/(?P<quest_id>\d+),(?P<rating>\d)/$', 'herorecommend.views.rate', name='rate'),
 

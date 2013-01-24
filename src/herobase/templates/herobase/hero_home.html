@@ -5,120 +5,26 @@
     <h1>Hallo {{ request.user.username }}!</h1>
 {% endblock %}
 
+{% block javascript %}{{ block.super }}
+{#<script type="text/javascript">#}
+{#    $(function () {#}
+{#        $('body').on('click', '.notification', function (e) {#}
+{#            var url = $(this).data('dismiss-url');#}
+{#            if(!url) {#}
+{#                return;#}
+{#            }#}
+{##}
+{#            $.post(url);#}
+{##}
+{#            e.stopImmediatePropagation();#}
+{#            e.preventDefault();#}
+{#        });#}
+{#    });#}
+{#</script>#}
+{% endblock %}
 {% block content %}
 {#    icons-top icons-right icons-bottom#}
     {% for notification in notifications %}
         {{ notification.html }}
     {% endfor %}
-    <br>
-    <ul class="grid box-grid">
-
-        <li class="span6">
-                <a href="#" class="box-btn-top"><i class="icon-yah-time-middle icon-40"></i></a>
-                <a href="#" class="box-btn-top"><i class="icon-yah-arrow icon-40"></i></a>
-                <h3>Headline lalala sehr wichtig und lang</h3>
-                <p>Du hast noch keine Helden-Klasse gewählt. Gehe auf Profil und dann
-                    Einstellungen um eine zu wählen oder klicke
-                    <a href="{% url userprofile-edit %}">hier</a></p>
-                <a href="#" class="box-btn-bottom"><i class="icon-yah-time-middle icon-40"></i></a>
-
-
-        </li>
-        <li class="half">
-
-            <a href="#" class="box-btn-top"><i class="icon-yah-time-middle icon-40"></i></a>
-            <a href="#" class="box-btn-top"><i class="icon-yah-arrow icon-40"></i></a>
-            <h3>Headline lalala sehr wichtig und lang</h3>
-            <p>Du hast noch keine Helden-Klasse gewählt. Gehe auf Profil und dann
-                Einstellungen um eine zu wählen oder klicke
-                <a href="{% url userprofile-edit %}">hier</a></p>
-            <a href="#" class="box-btn-bottom"><i class="icon-yah-time-middle icon-40"></i></a>
-            <a href="#" class="box-btn-bottom"><i class="icon-yah-arrow icon-40"></i></a>
-
-        </li>
-        <li class="half">
-
-            <a href="#" class="box-btn-top"><i class="icon-yah-time-middle icon-40"></i></a>
-            <a href="#" class="box-btn-top"><i class="icon-yah-arrow icon-40"></i></a>
-            <h3>Headline lalala sehr wichtig und lang</h3>
-            <p>Du hast noch keine Helden-Klasse gewählt. Gehe auf Profil und dann
-                Einstellungen um eine zu wählen oder klicke
-                <a href="{% url userprofile-edit %}">hier</a></p>
-            <a href="#" class="box-btn-bottom"><i class="icon-yah-time-middle icon-40"></i></a>
-            <a href="#" class="box-btn-bottom"><i class="icon-yah-arrow icon-30"></i></a>
-
-        </li>
-        <li class="small">
-
-            <a href="#" class="box-btn-top"><i class="icon-yah-time-middle icon-40"></i></a>
-            <a href="#" class="box-btn-top"><i class="icon-yah-arrow icon-40"></i></a>
-            <h3>Headline lalala sehr wichtig und lang</h3>
-            <p>Du hast noch keine Helden-Klasse gewählt. Gehe auf Profil und dann
-                Einstellungen um eine zu wählen oder klicke
-                <a href="{% url userprofile-edit %}">hier</a></p>
-            <a href="#" class="box-btn-bottom"><i class="icon-yah-time-middle icon-40"></i></a>
-            <a href="#" class="box-btn-bottom"><i class="icon-yah-arrow icon-40"></i></a>
-
-        </li>
-        <li class="big">
-
-            <a href="#" class="box-btn-top"><i class="icon-yah-time-middle icon-40"></i></a>
-            <a href="#" class="box-btn-top"><i class="icon-yah-arrow icon-40"></i></a>
-            <h3>Headline lalala sehr wichtig und lang</h3>
-            <p>Du hast noch keine Helden-Klasse gewählt. Gehe auf Profil und dann
-                Einstellungen um eine zu wählen oder klicke
-                <a href="{% url userprofile-edit %}">hier</a></p>
-            <a href="#" class="box-btn-bottom"><i class="icon-yah-time-middle icon-40"></i></a>
-            <a href="#" class="box-btn-bottom"><i class="icon-yah-arrow icon-40"></i></a>
-
-        </li>
-        <li class="large">
-
-            <a href="#" class="box-btn-top"><i class="icon-yah-time-middle icon-40"></i></a>
-            <a href="#" class="box-btn-top"><i class="icon-yah-arrow icon-40"></i></a>
-            <h3>Headline lalala sehr wichtig und lang</h3>
-            <p>Du hast noch keine Helden-Klasse gewählt. Gehe auf Profil und dann
-                Einstellungen um eine zu wählen oder klicke
-                <a href="{% url userprofile-edit %}">hier</a></p>
-            <a href="#" class="box-btn-bottom"><i class="icon-yah-time-middle icon-40"></i></a>
-            <a href="#" class="box-btn-bottom"><i class="icon-yah-arrow icon-40"></i></a>
-
-        </li>
-        <li class="mini">
-
-            <a href="#" class="box-btn-top"><i class="icon-yah-time-middle icon-40"></i></a>
-            <a href="#" class="box-btn-top"><i class="icon-yah-arrow icon-40"></i></a>
-            <h3>Headline lalala sehr wichtig und lang</h3>
-            <p>Du hast noch keine Helden-Klasse gewählt. Gehe auf Profil und dann
-                Einstellungen um eine zu wählen oder klicke
-                <a href="{% url userprofile-edit %}">hier</a></p>
-            <a href="#" class="box-btn-bottom"><i class="icon-yah-time-middle icon-40"></i></a>
-            <a href="#" class="box-btn-bottom"><i class="icon-yah-arrow icon-40"></i></a>
-
-        </li>
-    </ul>
-    <p>Dies ist dein <strong>Heldenbereich</strong>. Du kommst jederzeit auf diese Übersicht, wenn du links oben auf Deinen Namen oder das YAH!-Logo klickst.</p>
-
-    <p>Links siehst du ein Bild von deinem Charakter. Darunter Deinen Level und die Erfahrungspunkte, die Du schon gesammelt hast.</p>
-
-    {% if not request.user.get_profile.hero_class %}
-        <p>
-            Du hast noch keine Helden-Klasse gewählt. Gehe auf Profil und dann
-            Einstellungen um eine zu wählen oder klicke
-            <a href="{% url userprofile-edit %}">hier</a>
-        </p>
-    {% else %}
-        <p>Hinter Deinem Namen steht Deine  <a href="{% url hero_classes %}">Heldenklasse</a>.
-            Alle Quests in YAH! sind einer der fünf Heldenklassen zugeteilt.
-            Du kannst aber jede Quest annehmen, auf die Du Lust hast.</p>
-    {% endif %}
-    {% if not request.user.adventures.exists and not request.user.created_quests.exists %}
-        <p>Es sieht so aus als hättest du noch keine Quest. Such' dir doch eine aus
-            der <a href="{% url quest-list %}">Liste</a> aus oder
-            <a href="{% url quest-create %}">erstelle</a> selbst seine.</p>
-    {% endif %}
-
-    <h4>Übrigens</h4>
-    <p>Im Profil bei euren <a href="{% url userprofile-edit %}">Einstellungen</a> kannst Du die <strong>eMail-Benachrichtigung</strong> aktivieren.</p>
-
 {%  endblock %}
