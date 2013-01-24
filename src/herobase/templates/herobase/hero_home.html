@@ -7,10 +7,12 @@
 
 {% block content %}
 {#    icons-top icons-right icons-bottom#}
+    {% for notification in notifications %}
+        {{ notification.html }}
+    {% endfor %}
+    <br>
     <ul class="grid box-grid">
-        {% for notification in notifications %}
-            {{ notification.html }}
-        {% endfor %}
+
         <li class="span6">
                 <a href="#" class="box-btn-top"><i class="icon-yah-time-middle icon-40"></i></a>
                 <a href="#" class="box-btn-top"><i class="icon-yah-arrow icon-40"></i></a>
@@ -19,7 +21,8 @@
                     Einstellungen um eine zu wählen oder klicke
                     <a href="{% url userprofile-edit %}">hier</a></p>
                 <a href="#" class="box-btn-bottom"><i class="icon-yah-time-middle icon-40"></i></a>
-                <a href="#" class="box-btn-bottom"><i class="icon-yah-arrow icon-40"></i></a>
+
+
         </li>
         <li class="half">
 

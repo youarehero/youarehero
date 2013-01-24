@@ -447,6 +447,7 @@ ul.box-grid li,
   color: #222222;
   position: relative;
   padding: 5px 10px 5px 10px;
+  *zoom: 1;
 }
 ul.box-grid li a,
 .box a {
@@ -475,6 +476,30 @@ ul.box-grid li.big,
 ul.box-grid li.large,
 .box.large {
   width: 310px;
+}
+ul.box-grid li:before,
+.box:before,
+ul.box-grid li:after,
+.box:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+ul.box-grid li:after,
+.box:after {
+  clear: both;
+}
+ul.box-grid li:before,
+.box:before,
+ul.box-grid li:after,
+.box:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+ul.box-grid li:after,
+.box:after {
+  clear: both;
 }
 .box-btn-top,
 .box-btn-bottom {
@@ -653,6 +678,23 @@ body {
   border-radius: 0px;
   margin-bottom: 10px;
   padding: 4px 31px 4px 10px;
+}
+.notification a:hover {
+  text-decoration: none;
+}
+.notification .box {
+  line-height: 40px;
+}
+.notification .box p {
+  vertical-align: middle;
+  margin: 0;
+  display: inline-block;
+  line-height: 20px;
+  max-width: 400px;
+}
+.notification .box img {
+  vertical-align: middle;
+  margin-right: 10px;
 }
 .badge {
   border-radius: 0px;
