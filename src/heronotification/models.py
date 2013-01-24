@@ -121,10 +121,14 @@ class Notification(models.Model):
         return NOTIFICATION_TYPES.get(self.type_id, None)
 
     def is_read(self):
+        if hasattr(self, "_read"):
+            return self._read
+
         if self.read is None and (not hasattr(self.type, 'is_read') or self.type.is_read(self)):
             self.read = datetime.now()
             self.save()
-        return self.read is not None
+        setattr(self, "_read", self.read is not None)
+        return self._read
 
     def html(self):
         try:

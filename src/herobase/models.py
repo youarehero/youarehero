@@ -65,7 +65,7 @@ class LocationMixin(models.Model):
 
     @property
     def has_location(self):
-        return not self.location_granularity == self.LOCATION_GRANULARITY_NONE and self.latitude is not None and self.longitude is not None
+        return not self.location_granularity == self.LOCATION_GRANULARITY_NONE
 
     def save(self, force_insert=False, force_update=False, using=None):
         if (self.latitude and self.longitude
