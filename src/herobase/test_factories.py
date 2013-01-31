@@ -12,11 +12,8 @@ from herobase.models import Quest, CLASS_CHOICES, Adventure
 def factory(f):
     """factory decorator: provides a counter for use as id for example."""
     def decorated(*args, **kwargs):
-        if 'create_counter' in kwargs:
-            decorated._created = kwargs['create_counter']
-        else:
-            decorated._created += 1
-            kwargs['create_counter'] = decorated._created,
+        decorated._created += 1
+        kwargs['create_counter'] = decorated._created,
         return f(*args, **kwargs)
     decorated._created = 0
     return decorated
