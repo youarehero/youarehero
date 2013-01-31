@@ -72,24 +72,21 @@ class QuestCreateView(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-def quest_detail_view(request, quest_id, template="herobase/quest/detail.html"):
+def quest_detail_view(request, quest_id):
     """Render detail template for quest, and adventure if it exists."""
     quest = get_object_or_404(Quest, pk=quest_id)
 
     context = {
         'quest': quest,
+        'is_owner': request.user == quest.owner
     }
-
-    if request.user == quest.owner:
-        template = 'herobase/quest/owner_detail.html'
-    elif request.user.is_authenticated():
+    if request.user.is_authenticated():
         try:
-            context['adventure'] = quest.adventures.get(user=request.user, canceled=False)
-            template = 'herobase/quest/hero_detail.html'
+            context['adventure'] = quest.adventures.get(user_id=request.user.pk, canceled=False)
         except Adventure.DoesNotExist:
             pass
 
-    return render(request, template, context)
+    return render(request, "herobase/quest/detail.html", context)
 
 def home_view(request):
     """Proxy view for switching between the hero and the public home view"""

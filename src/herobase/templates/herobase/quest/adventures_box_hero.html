@@ -1,0 +1,18 @@
+{% extends "herobase/layout/box.html" %}
+{% load i18n hero_actions hero_message %}
+
+{% block content %}
+    <h1>{% trans "Participants" %}</h1>
+    {% for adventure in quest.adventures.all %}
+        {% if adventure.accepted %}
+        <div>
+            <img src="http://placehold.it/60x60" alt=""/>
+            <strong>{{ adventure.user.username }}</strong>
+
+            {% message_user adventure.user %}
+
+            {{ adventure.get_state_display }}
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

@@ -15,24 +15,24 @@ NOTIFICATION_TYPES = {}
 
 class NotificationTypeMetaClass(type):
     def __new__(cls, name, bases, attrs):
-        type = super(NotificationTypeMetaClass, cls).__new__(cls, name, bases, attrs)
+        new_type = super(NotificationTypeMetaClass, cls).__new__(cls, name, bases, attrs)
         if name == 'NotificationTypeBase':
-            return type
-        if not hasattr(type, 'id'):
-            raise ImproperlyConfigured("Notification types need an id in %s" % name)
-        if type.id in NOTIFICATION_TYPES:
+            return new_type
+        if not hasattr(new_type, 'type_id'):
+            raise ImproperlyConfigured("Notification types need a type_id in %s" % name)
+        if new_type.type_id in NOTIFICATION_TYPES:
             raise ImproperlyConfigured("Notification type ids need to be unique in %s" % name)
-        if not hasattr(type, 'target_model'):
+        if not hasattr(new_type, 'target_model'):
             raise ImproperlyConfigured("Notification types need a target_model in %s" % name)
-        NOTIFICATION_TYPES[type.id] = type
-        return type
+        NOTIFICATION_TYPES[new_type.type_id] = new_type
+        return new_type
 
 
 class NotificationTypeBase(object):
     __metaclass__ = NotificationTypeMetaClass
 
     def __init__(self, user, target):
-        Notification.create(user, target, type_id=self.id)
+        Notification.create(user, target, type_id=self.type_id)
 
     @classmethod
     def get_text(cls, notification):
@@ -40,7 +40,7 @@ class NotificationTypeBase(object):
 
 
 class hero_has_applied(NotificationTypeBase):
-    id = 1
+    type_id = 1
     target_model = Adventure
 
     @classmethod
@@ -57,7 +57,7 @@ class hero_has_applied(NotificationTypeBase):
 
 
 class hero_has_cancelled(NotificationTypeBase):
-    id = 2
+    type_id = 2
     target_model = Adventure
 
     @classmethod
@@ -69,7 +69,7 @@ class hero_has_cancelled(NotificationTypeBase):
 
 
 class quest_started(NotificationTypeBase):
-    id = 10
+    type_id = 10
     target_model = Quest
 
     @classmethod
@@ -79,7 +79,7 @@ class quest_started(NotificationTypeBase):
 
 
 class quest_waiting_for_documentation(NotificationTypeBase):
-    id = 11
+    type_id = 11
     target_model = Quest
 
     @classmethod
@@ -88,7 +88,7 @@ class quest_waiting_for_documentation(NotificationTypeBase):
                          notification.target.title)
 
 class quest_cancelled(NotificationTypeBase):
-    id = 12
+    type_id = 12
     target_model = Quest
 
     @classmethod
@@ -97,7 +97,7 @@ class quest_cancelled(NotificationTypeBase):
                          notification.target.title)
 
 class quest_done(NotificationTypeBase):
-    id = 13
+    type_id = 13
     target_model = Quest
 
     @classmethod
@@ -107,7 +107,7 @@ class quest_done(NotificationTypeBase):
 
 
 class hero_accepted(NotificationTypeBase):
-    id = 100
+    type_id = 100
     target_model = Quest
 
     @classmethod
@@ -117,7 +117,7 @@ class hero_accepted(NotificationTypeBase):
 
 
 class hero_rejected(NotificationTypeBase):
-    id = 101
+    type_id = 101
     target_model = Quest
 
     @classmethod

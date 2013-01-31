@@ -447,6 +447,7 @@ ul.box-grid li,
   color: #222222;
   position: relative;
   padding: 5px 10px 5px 10px;
+  margin-bottom: 20px;
   *zoom: 1;
 }
 ul.box-grid li a,
@@ -678,9 +679,6 @@ body {
   border-radius: 0px;
   margin-bottom: 10px;
   padding: 4px 31px 4px 10px;
-}
-.notification {
-  margin-bottom: 10px;
 }
 .notification.read .box {
   background-color: #a2a2a2;

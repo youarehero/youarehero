@@ -157,6 +157,18 @@ class Adventure(models.Model):
     def get_absolute_url(self):
         return self.quest.get_absolute_url()
 
+
+    def get_state_display(self):
+        if self.canceled:
+            return _(u"cancelled")
+        elif self.accepted:
+            return _(u"accepted")
+        elif self.rejected:
+            return _(u"rejected")
+        else:
+            return _(u"pending")
+
+
 class QuestQuerySet(QuerySet):
     def open(self):
         return self.filter(open=True)
