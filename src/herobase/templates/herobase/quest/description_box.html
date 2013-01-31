@@ -1,7 +1,10 @@
 {% extends "herobase/layout/box.html" %}
 {% block content %}
-    <img src="http://placehold.it/128x128" alt=""/>
-    <h1>{{ quest.title }}</h1>
+
+
+
+    <img src="http://placehold.it/120x120" alt=""/>
+    <h2>{{ quest.title }}</h2>
     <p>{% block text %}{{ quest.description }}{% endblock %}</p>
 
     <form method="POST" action="{% url hero-update-quest quest.pk %}">

@@ -3,27 +3,36 @@
 
 {% block content %}
     <h1>{% trans "Participants" %}</h1>
-    {% for adventure in quest.adventures.all %}
-        <div>
-            <img src="http://placehold.it/60x60" alt=""/>
-            <strong>{{ adventure.user.username }}</strong>
+    <ul class="grid">
+        {% for adventure in quest.adventures.all %}
+            <li>
+                <strong>{{ adventure.user.username }}</strong>
+                {% message_user adventure.user %}
+                <div class="inner-box">
 
-            {% message_user adventure.user %}
+                    {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
+                        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post" class="inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="reject">
+                            <button class="box-btn-top" type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Reject" %}">
+                                <i class="icon-yah-delete icon-30"></i></button>
+                        </form>
+                    {% endif %}
 
-            {{ adventure.get_state_display }}
+                    <img src="http://placehold.it/60x60" alt=""/>
 
-            {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
-                <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post" class="inline">
-                    {% csrf_token %}
-                    <input type="hidden" name="action" value="accept">
-                    <input type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept" %}"/>
-                </form>
-                <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post" class="inline">
-                    {% csrf_token %}
-                    <input type="hidden" name="action" value="reject">
-                    <input type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Reject" %}"/>
-                </form>
-            {% endif %}
-        </div>
-    {% endfor %}
+                    {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
+                        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post" class="inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="accept">
+                            <button class="box-btn-bottom" type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept" %}">
+                                <i class="icon-yah-ok icon-30"></i></button>
+                        </form>
+                    {% else %}
+                        {{ adventure.get_state_display }}
+                    {% endif %}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

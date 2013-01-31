@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Fieldset, Div
+from crispy_forms.layout import Submit, Layout, Fieldset, Div, Button, BaseInput
 from registration.forms import RegistrationFormUniqueEmail
 
 from herobase.models import Quest, UserProfile
@@ -58,7 +58,8 @@ class QuestCreateForm(forms.ModelForm):
                 ),
             ),
             FormActions(
-                Submit('save', 'Save', css_class='btn')
+                Submit('save', 'Save', css_class='btn'),
+                Button('save', 'Save',  css_class="btn btn-primary"),
             ),
         )
         super(QuestCreateForm, self).__init__(*args, **kwargs)

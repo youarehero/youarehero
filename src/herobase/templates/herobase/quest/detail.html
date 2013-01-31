@@ -33,13 +33,13 @@
     {% else %}
         {% include "herobase/quest/description_box.html" %}
     {% endif %}
-
+    <hr />
     {% if is_owner %}
         {% include "herobase/quest/adventures_box_owner.html" %}
     {% elif adventure %}
         {% include "herobase/quest/adventures_box_hero.html" %}
     {% endif %}
-
+    <hr/>
     {% include "herobase/quest/comments_box.html" %}
 
 

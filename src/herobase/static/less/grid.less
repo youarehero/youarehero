@@ -3,7 +3,7 @@
 @import "../bootstrap/less/variables.less";
 @import "../bootstrap/less/mixins.less";
 
-@boxPaddingTop: 5px;
+@boxPaddingTop: 10px;
 @boxPaddingRight: 10px;
 @boxPaddingBottom: @boxPaddingTop;
 @boxPaddingLeft: @boxPaddingRight;
@@ -78,12 +78,24 @@ ul.box-grid li,
   }
   position: relative;
   padding: @boxPaddingTop @boxPaddingRight @boxPaddingBottom @boxPaddingLeft;
-  margin-bottom: 20px;
+//  margin-bottom: 20px;
   &.mini  { width: 210px; }
   &.small   { width: 250px; }
   &.half   { width: 270px; }
   &.big   { width: 290px; }
   &.large   { width: 310px; }
+  .clearfix;
+
+  img {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+
+}
+
+.inner-box {
+  position: relative;
   .clearfix;
 }
 
@@ -106,4 +118,10 @@ ul.box-grid li,
 
 .box-header {
   margin-right: 30px;
+}
+
+// Horizontal Rule
+hr {
+  border: 0 none;
+  margin-bottom: 20px;
 }
