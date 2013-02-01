@@ -7,4 +7,4 @@ register = template.Library()
 
 @register.simple_tag
 def message_user(user):
-    return mark_safe('<a href="%s"><i class="icon-envelope"></i></a>' % reverse('message-to', args=(user.pk, )))
+    return mark_safe('<a class="box-btn-bottom" href="%s"><i class="icon-yah-mail icon-30"></i></a>' % reverse('message-to', args=(user.pk, )))

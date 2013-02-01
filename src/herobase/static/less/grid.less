@@ -13,6 +13,7 @@
 @boxBtnBottom: @boxBtnTop;
 @boxBtnLeft: @boxBtnRight;
 
+.span1-5  { width: (@gridColumnWidth * 1.5)}
 .span2-25 { width: (@gridColumnWidth * 2.25) + @gridGutterWidth; }
 .span2-5  { width: (@gridColumnWidth * 2.5)  + @gridGutterWidth; }
 .span2-75 { width: (@gridColumnWidth * 2.75) + @gridGutterWidth; }
@@ -97,6 +98,12 @@ ul.box-grid li,
 .inner-box {
   position: relative;
   .clearfix;
+  margin-top: @boxBtnTop;
+  margin-right: @boxBtnRight;
+  margin-bottom: @boxBtnBottom;
+}
+.box-80 {
+  width: 80px;
 }
 
 .box-btn-top,
@@ -114,6 +121,11 @@ ul.box-grid li,
 
 .box-btn-bottom {
   bottom: -@boxBtnBottom;
+
+}
+.box-btn-bottom + .box-btn-bottom,
+form + .box-btn-bottom{
+  right: 45px - @boxBtnRight;
 }
 
 .box-header {
@@ -123,5 +135,5 @@ ul.box-grid li,
 // Horizontal Rule
 hr {
   border: 0 none;
-  margin-bottom: 20px;
+  margin: 10px 0;
 }

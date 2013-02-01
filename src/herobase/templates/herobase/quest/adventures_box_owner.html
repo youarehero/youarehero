@@ -2,16 +2,16 @@
 {% load i18n hero_actions hero_message %}
 
 {% block content %}
-    <h1>{% trans "Participants" %}</h1>
-    <ul class="grid">
+    <h2>{% trans "Participants" %}</h2>
+    <ul class="grid ">
         {% for adventure in quest.adventures.all %}
-            <li>
-                <strong>{{ adventure.user.username }}</strong>
-                {% message_user adventure.user %}
-                <div class="inner-box">
+            <li class="span1-5">
+                <h4>{{ adventure.user.username }}</h4>
+
+                <div class="inner-box box-80">
 
                     {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
-                        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post" class="inline">
+                        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="reject">
                             <button class="box-btn-top" type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Reject" %}">
@@ -19,15 +19,16 @@
                         </form>
                     {% endif %}
 
-                    <img src="http://placehold.it/60x60" alt=""/>
+                    <img src="http://placehold.it/80x80" alt=""/>
 
                     {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
-                        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post" class="inline">
+                        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="accept">
                             <button class="box-btn-bottom" type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept" %}">
-                                <i class="icon-yah-ok icon-30"></i></button>
+                                <i class="icon-yah-ok icon-40"></i></button>
                         </form>
+                        {% message_user adventure.user %}
                     {% else %}
                         {{ adventure.get_state_display }}
                     {% endif %}
