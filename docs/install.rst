@@ -86,8 +86,8 @@ are installed on your system. To install the requirements type::
 .. _virtualenv: <http://www.virtualenv.org>
 
 
-Creating local config
-=====================
+Creating a local config file
+============================
 Create a file named local.py in ``src/youarehero/settings/local.py`` containing the line::
 
    from devel import *
