@@ -16,14 +16,14 @@
         <div class="span3">
 
             {% trans "You don't have an account yet?" %}<br><br>
-            <a type="button" href="{% url registration_register %}" class="btn-large btn-success" id="join">{% trans "Join now!" %}</a>
+            <a type="button" href="{% url registration_register %}" class="btn-large btn-warning" id="join">{% trans "Join now!" %}</a>
         </div>
         <div class="span3"><br><br>
-            <a type="button" href="{% url auth_login %}" class="btn-large btn-warning" id="login">{% trans "Login" %}</a>
+            <a type="button" href="{% url auth_login %}" class="btn-large btn-success" id="login">{% trans "Login" %}</a>
 
-
+            <br><br><br>
         </div>
-        <br><br><br>
+
     </div>
 
 {% endblock %}
