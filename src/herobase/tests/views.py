@@ -60,9 +60,9 @@ class AuthenticatedIntegrationTest(TestCase):
             'description': 'description',
             'hero_class': 1,
             'max_heroes': 1,
+            'remote': True,
             'expiration_date': '11.11.2013',
             'address': 'address',
-            'location_granularity': 0,
             })
         self.assertTrue(Quest.objects.filter(title='title', owner=self.user).exists())
 
