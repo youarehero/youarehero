@@ -248,7 +248,7 @@ msgstr ""
 #: herobase/templates/herobase/layout/sidebar_left.inc.html:29
 #: herobase/templates/registration/login.html:9
 msgid "Login"
-msgstr "Anmelden"
+msgstr "Einloggen"
 
 #: herobase/templates/herobase/layout/sidebar_left.inc.html:32
 #: herobase/templates/registration/login.html:14

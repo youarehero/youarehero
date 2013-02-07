@@ -57,6 +57,11 @@ def message_list_out(request):
              })
 
 def message_list_in(request):
+    unreaded_messages=Message.objects.filter(recipient=request.user, recipient_deleted=None)
+    for mes in unreaded_messages:
+        if not mes.read:
+            mes.read = now()
+            mes.save()
     return render(request, 'message/list_in.html',{
         'received_messages': Message.objects.filter(recipient=request.user, recipient_deleted=None),
         })
