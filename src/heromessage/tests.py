@@ -5,14 +5,16 @@ when you run "manage.py test".
 Replace this with more appropriate tests for your application.
 """
 from django.core.urlresolvers import reverse
-
 from django.test import TestCase
 from django.test.client import Client
-from herobase.test_factories import create_user
-from heromessage.models import Message
 from django.core import mail
+from django.test.utils import override_settings
+
+from herobase.tests.factories import create_user
+from heromessage.models import Message
 
 
+@override_settings(PASSWORD_HASHERS=('herobase.utils.PlainTextPasswordHasher', ))
 class MessageIntegrationTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -20,7 +22,7 @@ class MessageIntegrationTest(TestCase):
         self.logged_in = self.client.login(**self.user.credentials)
     def test_message_list(self):
         message = Message.objects.create(sender=self.user, recipient=self.user, text='text', title='themailtitle')
-        response = self.client.get(reverse('message-list'))
+        response = self.client.get(reverse('message-list-in'))
         self.assertContains(response, 'themailtitle')
     def test_message_create_view(self):
         response = self.client.get(reverse('message-create'))

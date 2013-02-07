@@ -60,8 +60,8 @@ def owner_quest_cancel(quest):
     quest.canceled = True
     quest.save()
 
-    for hero in quest.heroes.filter(canceled=False):
-        notify.quest_cancelled(hero, quest)
+    for adventure in quest.adventures.filter(canceled=False):
+        notify.quest_cancelled(adventure.user, quest)
 
 def owner_quest_done(quest):
     if quest.canceled or quest.done:
@@ -71,8 +71,8 @@ def owner_quest_done(quest):
     quest.done = True
     quest.save()
 
-    for hero in quest.heroes.filter(canceled=False, accepted=True):
-        notify.quest_done(hero, quest)
+    for adventure in quest.adventures.filter(canceled=False, accepted=True):
+        notify.quest_done(adventure.user, quest)
 
 
 # hero participation

@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import logging
+import time
+import random
+
 from django.contrib.auth.models import User
 from django.core.management import BaseCommand
-import time
+
 from herobase import quest_livecycle
-from herobase.test_factories import create_quest, create_user
-import random
+from herobase.tests.test_factories import create_quest, create_user
+
 
 logger = logging.getLogger(__name__)
 
