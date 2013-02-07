@@ -27,13 +27,15 @@
 .span4-5  { width: (@gridColumnWidth * 4.5)  + (@gridGutterWidth * 3); }
 .span4-75 { width: (@gridColumnWidth * 4.75) + (@gridGutterWidth * 3); }
 
-
 ul.grid {
   list-style: none;
   margin: 0 0 0 -20px;
   li {
     float: left;
     margin: 0px 0px 20px 20px;
+    .box {
+      margin-bottom: 0;
+    }
   }
   .clearfix;
 }
@@ -71,16 +73,18 @@ ul.menu-grid {
 }
 
 .box {
+  position: relative;
   background: @boxBackground;
   color: @boxTextColor;
+  padding: @boxPaddingTop @boxPaddingRight @boxPaddingBottom @boxPaddingLeft;
+  margin-bottom: 10px;
   a {
     color:  @boxLinkColor;
     &:hover {
       color: @boxLinkColorHover;
     }
   }
-  position: relative;
-  padding: @boxPaddingTop @boxPaddingRight @boxPaddingBottom @boxPaddingLeft;
+
 //  margin-bottom: 20px;
   &.mini  { width: 210px; }
   &.small   { width: 250px; }
