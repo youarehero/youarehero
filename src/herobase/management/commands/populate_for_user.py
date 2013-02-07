@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.core.management import BaseCommand
 
 from herobase import quest_livecycle
-from herobase.tests.test_factories import create_quest, create_user
+from herobase.tests.factories import create_quest, create_user
 
 
 logger = logging.getLogger(__name__)

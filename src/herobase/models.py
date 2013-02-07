@@ -291,18 +291,22 @@ class AvatarImageMixin(object):
                                                'quality': 90})
         return os.path.join(settings.MEDIA_URL, thumbnail.url)
 
+    @property
     def avatar_thumbnail(self):
         """Return a String, containing a path to a thumbnail-image 40x40."""
         return self._avatar_thumbnail((50, 50))
 
+    @property
     def avatar_thumbnail_40(self):
         """Return a String, containing a path to a thumbnail-image 40x40."""
         return self._avatar_thumbnail((40, 40))
 
+    @property
     def avatar_thumbnail_80(self):
         """Return a String, containing a path to a thumbnail-image 40x40."""
         return self._avatar_thumbnail((80, 80))
 
+    @property
     def avatar_thumbnail_30(self):
         """Return a String, containing a path to a thumbnail-image 40x40."""
         return self._avatar_thumbnail((30, 30))
