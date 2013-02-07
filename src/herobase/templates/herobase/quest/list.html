@@ -62,12 +62,13 @@
             <span style="margin: -40px 0 0 20px;">{% show_pages %}</span>
 {#        </div>#}
         </form>
-        <div class="tab-content" style="padding-bottom: 38px">
-            <div class="tab-pane active" id="grid">
-                <ul class="questboard">
-
+        <hr>
+                <ul class="grid">
                     {% for quest in quests %}
-                           {% include "herobase/quest/postit.inc.html" %}
+                        <li class="span{% cycle '3-5' '2-75' '3' '3-25' %}">
+                            {% include "herobase/quest/list_box.html" %}
+                        </li>
+
                     {% empty %}
                         {% if filter.is_filtered %}
                             {% trans "No quests found matching your current criteria." %}
@@ -77,31 +78,8 @@
                         {% endif %}
                     {% endfor %}
                 </ul>
-            </div>
-            <div class="tab-pane" id="table">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>Quest</th>
-                        <th>Class</th>
-                        <th>Location</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for quest in quests %}
-                        <tr>
-                            <td><a href="{% url quest-detail quest.id %}" class="btn"><i class="icon-eye-open"></i></a></td>
-                            <td>
-                                {{ quest.title }}
-                            </td>
-                            <td><img src="{% static "img/icon_" %}{{ quest.get_hero_class_display|lower }}.png" /> {{ quest.get_hero_class_display }}</td>
-                            <td>{{ quest.location }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+
+
         </div>
     </div>
     {# {% endcache %} #}
