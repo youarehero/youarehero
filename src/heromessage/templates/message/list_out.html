@@ -25,35 +25,15 @@
 {% endblock %}
 
 {% block content %}
-    {% if sent_messages %}
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>{% trans "Subject" %}</th>
-                <th>{% trans "To" %}</th>
-                <th>{% trans "Date" %}</th>
-                <th>{% trans "Actions" %}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for message in sent_messages %}
-                <tr>
-                    <td>
-                        <a href="{% url message-detail message.pk %}">{{ message.title }}</a>
-                    </td>
-                    <td><a href="{% url userprofile-public message.recipient.username %}">{{ message.recipient }}</a></td>
-                    <td>{{ message.sent }}</td>
-                    <td>
-                        <form method="post" action="{% url message-update message.pk %}" class="inline">
-                            {% csrf_token %}
-                            <button class="btn btn-mini" type="submit" value="delete" name="delete">{% trans "delete" %} <i class="icon-trash icon-black"></i></button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>{% trans "You haven't sent any messages yet." %}</p>
-    {% endif %}
+    <ul class="grid">
+        {% for message in sent_messages %}
+            <li class="span6">
+                {% with image=message.recipient.get_profile.avatar_thumbnail_80 collapsible=True collapsed=True %}
+                    {% include "message/message_box.inc.html" %}
+                {% endwith %}
+            </li>
+        {% empty %}
+            <li>{% trans "No messages yet." %}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
