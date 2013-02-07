@@ -14,6 +14,7 @@ class MessageForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
+        self.helper.form_tag=False
         self.helper.form_method = 'post'
 #        self.helper.form_action = 'message-c'
         self.helper.form_class = 'form box'
@@ -37,9 +38,7 @@ class MessageForm(forms.ModelForm):
                 ),
                 css_class="row",
             ),
-            FormActions(
-                Submit('save', 'Send', css_class='btn-primary btn-large')
-            ),
+
         )
         super(MessageForm, self).__init__(*args, **kwargs)
 
