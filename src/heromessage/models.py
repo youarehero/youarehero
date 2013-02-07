@@ -1,7 +1,9 @@
+from datetime import timedelta
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.db import models
 from django.db.models.signals import post_save
+from django.utils.timezone import now
 from django.utils.translation import ugettext as t
 from django.utils.translation import ugettext_lazy as _
 # Create your models here.
@@ -27,6 +29,10 @@ class Message(models.Model):
 
     class Meta:
         ordering = ['-sent']
+
+    @property
+    def is_relatively_new(self):
+        return not self.read or (now() - self.read) < timedelta(minutes=5)
 
     @property
     def is_read(self):
