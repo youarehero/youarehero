@@ -1,0 +1,35 @@
+{% extends "herobase/layout/box.html" %}
+{% load crispy_forms_tags i18n static %}
+
+
+{% load i18n static %}
+
+{% block buttons-top %}
+
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span3">
+
+            {% trans "You don't have an account yet?" %}<br><br>
+            <a type="button" href="{% url registration_register %}" class="btn-large btn-success" id="join">{% trans "Join now!" %}</a>
+        </div>
+        <div class="span3"><br><br>
+            <a type="button" href="{% url auth_login %}" class="btn-large btn-warning" id="login">{% trans "Login" %}</a>
+
+
+        </div>
+        <br><br><br>
+    </div>
+
+{% endblock %}
+
+{% block buttons-bottom %}
+
+{% endblock %}
+
+

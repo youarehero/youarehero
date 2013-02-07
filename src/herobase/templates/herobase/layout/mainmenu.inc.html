@@ -37,6 +37,10 @@
         <li class="{% ifactive "quest-list" %}on{% else %}off{% endifactive %}">
             <a href="{% url quest-list %}" rel="tooltip" title="{% trans 'Billboard' %}">
                 <i class="icon-yah-billboard"><span>{% trans 'Billboard' %}</span></i></a></li>
+         <li class="{% ifactive "quest-list" %}on{% else %}off{% endifactive %}">
+        <a href="/blog/" target="_blank" rel="tooltip" title="{% trans 'Blog' %}">
+            <i class="icon-yah-new"><span>{% trans 'Blog' %}</span></i></a></li>
+
 
     {% endif %}
 </ul>

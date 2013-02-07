@@ -1,0 +1,27 @@
+{% extends "herobase/layout/box.html" %}
+{% load crispy_forms_tags i18n static %}
+
+
+{% load i18n static %}
+
+{% block buttons-top %}
+
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    {% if not request.user.is_authenticated %}
+
+        <div ><iframe width="580" height="340" src="http://www.youtube.com/embed/7gp4X-0XSQA?rel=0" frameborder="0" allowfullscreen></iframe>       </div>
+
+    {% endif %}
+
+
+{% endblock %}
+
+
+
+
+

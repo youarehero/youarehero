@@ -150,8 +150,9 @@ class UserAuthenticationForm(AuthenticationForm):
     def __init__(self, request=None, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.help_text_inline = True
-        self.helper.add_input(Submit('submit', _("Log in")))
+
         self.helper.form_class = "box"
+        self.helper.form_tag=False
 
         if request:
             if request.is_mobile:
