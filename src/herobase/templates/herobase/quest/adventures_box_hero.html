@@ -6,7 +6,7 @@
     {% for adventure in quest.adventures.all %}
         {% if adventure.accepted %}
         <div>
-            <img src="http://placehold.it/60x60" alt=""/>
+            <img src="{{ adventure.user.get_profile.avatar_thumbnail_80 }}" alt=""/>
             <strong>{{ adventure.user.username }}</strong>
 
             {% message_user adventure.user %}
