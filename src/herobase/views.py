@@ -14,6 +14,7 @@ from django.core.mail import send_mail
 from django.core.signing import Signer
 from django.utils import simplejson as json
 from django.utils.safestring import mark_safe
+from django.utils.timezone import now
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from herobase import quest_livecycle
@@ -30,7 +31,7 @@ from django.utils.translation import ugettext as _
 from django.views.generic.edit import CreateView
 from filters import QuestFilter
 from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit
-from herobase.models import Quest, Adventure, CLASS_CHOICES, UserProfile
+from herobase.models import Quest, Adventure, CLASS_CHOICES, UserProfile, Like
 import logging
 from django.db.models import Count, Sum
 import herorecommend.signals as recommender_signals 

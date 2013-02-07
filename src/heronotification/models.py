@@ -39,6 +39,9 @@ class NotificationTypeBase(object):
     def get_text(cls, notification):
         return ''
 
+    @classmethod
+    def get_image(cls, notification):
+        return "http://placehold.it/40x40"
 
 class hero_has_applied(NotificationTypeBase):
     type_id = 1
@@ -56,6 +59,9 @@ class hero_has_applied(NotificationTypeBase):
                          (notification.target.user.username,
                           notification.target.quest.title))
 
+    @classmethod
+    def get_image(cls, notification):
+        return notification.target.user.get_profile().avatar_thumbnail_40
 
 class hero_has_cancelled(NotificationTypeBase):
     type_id = 2
@@ -68,6 +74,9 @@ class hero_has_cancelled(NotificationTypeBase):
                          (notification.target.user.username,
                           notification.target.quest.title))
 
+    @classmethod
+    def get_image(cls, notification):
+        return notification.target.user.get_profile().avatar_thumbnail_40
 
 class quest_started(NotificationTypeBase):
     type_id = 10
@@ -143,7 +152,14 @@ class Notification(models.Model):
     def is_dismissible(self):
         return True
 
-    def get_text(self):
+    @property
+    def image(self):
+        if not self.type:
+            return ''
+        return self.type.get_image(self)
+
+    @property
+    def text(self):
         if not self.type:
             return 'untyped notification'
         return self.type.get_text(self)
@@ -180,15 +196,3 @@ class Notification(models.Model):
 
         rendered = mark_safe(template.render(Context({'notification': self})))
         return rendered
-
-
-# we have a notification with a generic foreign key
-# we have different kinds of notifications for a single target
-# combinations of target content type and kind of notification have different is_read methods
-# we want to be able to send notifications from anywhere like so:
-# notification.send(user, quest, QUE
-
-#
-# notification.send(request.user, quest, notification.QUEST_STARTED)
-# notify.quest_started(user, quest)
-#
