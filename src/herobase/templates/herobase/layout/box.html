@@ -1,4 +1,22 @@
 <div class="box {% block extra_classes %}{% endblock %}">
-    {% block content %}
-    {% endblock %}
+    <div class="box-buttons-top">
+        {% block buttons-top %}
+        {% endblock %}
+    </div>
+
+    <div class="box-header">
+        {% block header %}
+        {% endblock %}
+    </div>
+
+    <div class="box-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="box-buttons-bottom">
+        {% block buttons-bottom %}
+        {% endblock %}
+    </div>
+
 </div>

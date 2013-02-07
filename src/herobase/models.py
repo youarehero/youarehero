@@ -291,15 +291,30 @@ class AvatarImageMixin(object):
                                                'quality': 90})
         return os.path.join(settings.MEDIA_URL, thumbnail.url)
 
-    @property
-    def avatar_thumb(self):
+    def avatar_thumbnail(self):
+        """Return a String, containing a path to a thumbnail-image 40x40."""
+        return self._avatar_thumbnail((50, 50))
+
+    def avatar_thumbnail_40(self):
+        """Return a String, containing a path to a thumbnail-image 40x40."""
+        return self._avatar_thumbnail((40, 40))
+
+    def avatar_thumbnail_80(self):
+        """Return a String, containing a path to a thumbnail-image 40x40."""
+        return self._avatar_thumbnail((80, 80))
+
+    def avatar_thumbnail_30(self):
+        """Return a String, containing a path to a thumbnail-image 40x40."""
+        return self._avatar_thumbnail((30, 30))
+
+    def _avatar_thumbnail(self, size):
         """Return a String, containing a path to a thumbnail-image 40x40."""
         file_name = "default.png"
         if self.hero_class  is not None:
             file_name = self.CLASS_AVATARS[self.hero_class]
         image = os.path.join('avatar/', file_name)
         thumbnailer = get_thumbnailer(self.avatar_storage, image)
-        thumbnail = thumbnailer.get_thumbnail({'size': (50, 50), 'quality': 90})
+        thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality': 90})
         return os.path.join(settings.MEDIA_URL, thumbnail.url)
 
 
