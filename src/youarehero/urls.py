@@ -14,8 +14,6 @@ urlpatterns = patterns('',
     url(r'^recommend/$', 'herorecommend.views.recommend', name='recommend'),
     url(r'^recommend/rate/(?P<quest_id>\d+),(?P<rating>\d)/$', 'herorecommend.views.rate', name='rate'),
 
-    url(r'^keep_email/(.+)/', 'herobase.views.confirm_keep_email', name='keep-email'),
-
     url(r'^quest/list/$', 'herobase.views.quest_list_view', name='quest-list'),
     url(r'^m/quest/list/$', 'herobase.views.quest_list_view', name='m-quest-list',
         kwargs={'template': 'herobase/quest/m/list.html'}),

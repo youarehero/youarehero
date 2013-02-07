@@ -17,6 +17,7 @@ from django.utils.safestring import mark_safe
 from django.utils.timezone import now
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+import registration
 from herobase import quest_livecycle
 from heronotification.models import Notification
 from herorecommend import recommend_for_user, recommend, recommend_local
@@ -37,6 +38,7 @@ from django.db.models import Count, Sum
 import herorecommend.signals as recommender_signals 
 from herorecommend.models import MIN_SELECTED_SKILLS
 logger = logging.getLogger('youarehero.herobase')
+
 
 @login_required
 def quest_list_view(request, template='herobase/quest/list.html'):
@@ -325,64 +327,6 @@ def signups(request):
         return HttpResponse('Logged in \n%s\nJoined\n%s' % (logged_in, signed_up), mimetype='text/plain')
     else:
         raise Http404()
-
-
-
-
-
-def send_keep_account_mails():
-    return # TODO : test this, correct text, send mails
-    users = User.objects.filter(username='raphael')
-    mail_template = """\
-Liebe Heldinnen, liebe Helden
-
-Erstmal vielen Dank für das Erstellen eures Accounts und die Teilnahme
-an dem Playtest bei der GPN.
-Wir haben sehr viel Feedback bekommen und viele gute Anregungen für
-die Weiterentwicklung der Plattform.
-
-
-Wenn ihr weiter über YAH auf dem Laufenden gehalten werden wollt,
- dann klickt bitte auf den Bestätigungslink.
-
-{url}
-
-Alle Accounts die nicht innerhalb der nächsten Woche bestätigen
-werden wir wie angekündigt löschen.
-
-
-VIELEN DANK FÜRS MITMACHEN und viel Spass bei all euren zukünftigen
-Heldentaten - ob nun mit Plattform oder ohne :)
-
-YAH!!!
-"""
-
-    signer = Signer(salt='keep-email')
-    for user in users:
-        email = signer.sign(user.email)
-        relative_url = reverse('keep-email', args=(email,))
-        url = 'https://youarehero.net%s' % relative_url
-
-        mail_text = mail_template.format(url=url)
-        send_mail("You Are Hero", mail_text, from_email='noreply@youarehero.net', recipient_list=[user.email])
-
-
-def confirm_keep_email(request, action):
-    signer = Signer(salt='keep-email')
-    try:
-        email = signer.unsign(action)
-    except signing.BadSignature:
-        return HttpResponse("I'm afraid i can't do that dave.", mimetype='text/plain')
-
-    user = User.objects.get(email=email)
-    profile = user.get_profile()
-
-    if profile.keep_email_after_gpn:
-        return HttpResponse("Already keeping email for %s" % email, mimetype='text/plain')
-    else:
-        profile.keep_email_after_gpn = now()
-        profile.save()
-        return HttpResponse("Keeping email for %s" % email, mimetype='text/plain')
 
 @require_POST
 @login_required
