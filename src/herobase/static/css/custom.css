@@ -686,6 +686,10 @@ hr {
   border-top: 8px solid #222222;
   border-bottom: 0;
 }
+.box.collapsed .box-buttons-top,
+.box.collapsed .box-buttons-bottom {
+  display: none;
+}
 h1,
 h2,
 h3,
@@ -813,7 +817,7 @@ body {
 #page-content {
   position: relative;
   top: 180px;
-  padding: 10px 20px 10px 10px;
+  padding: 10px 20px 20px 10px;
   background-color: rgba(0, 0, 0, 0.45);
   *zoom: 1;
 }

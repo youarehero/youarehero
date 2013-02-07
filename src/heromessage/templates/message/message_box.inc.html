@@ -11,12 +11,12 @@
 
 {% block title %}
         <span class="pull-right">{{ message.sent }}</span>
-        <strong>{{ message.sender }}</strong>
+        <strong>{{ message.sender }}:</strong>
+        {{ message.title }}
 {% endblock %}
 
 {% block content %}
     <img src="{{ image }}" alt="">
-    <h3>{{ message.title }}</h3>
     <p>{{ message.text }}</p>
 {% endblock %}
 
