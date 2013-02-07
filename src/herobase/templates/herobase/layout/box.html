@@ -1,10 +1,14 @@
+{% block box %}
 <div class="box {% block extra_classes %}{% endblock %}">
     <div class="box-buttons-top">
         {% block buttons-top %}
         {% endblock %}
     </div>
 
-    <div class="box-header">
+    <div class="box-header{% if collapsible %} collapsible{% endif %}{% if collapsed %} collapsed{% endif %}">
+        {% if collapsible %}
+            <span class="caret"></span>
+        {% endif %}
         {% block header %}
         {% endblock %}
     </div>
@@ -20,3 +24,4 @@
     </div>
 
 </div>
+{% endblock %}

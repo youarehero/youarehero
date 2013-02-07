@@ -379,7 +379,7 @@ def confirm_keep_email(request, action):
     if profile.keep_email_after_gpn:
         return HttpResponse("Already keeping email for %s" % email, mimetype='text/plain')
     else:
-        profile.keep_email_after_gpn = datetime.now()
+        profile.keep_email_after_gpn = now()
         profile.save()
         return HttpResponse("Keeping email for %s" % email, mimetype='text/plain')
 
