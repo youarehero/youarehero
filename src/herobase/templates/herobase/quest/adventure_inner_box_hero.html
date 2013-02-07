@@ -8,29 +8,12 @@
 {% endblock %}
 
 {% block buttons-top %}
-    {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
-        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="action" value="reject">
-            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Reject" %}">
-                <i class="icon-yah-delete icon-30"></i></button>
-        </form>
-    {% endif %}
 {% endblock %}
+
 {% block content %}
     <img src="{{ adventure.user.get_profile.avatar_thumbnail_80 }}" alt=""/>
 {% endblock %}
 
 {% block buttons-bottom %}
-    {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
-        {% message_user adventure.user %}
-        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="action" value="accept">
-            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept" %}">
-                <i class="icon-yah-ok icon-40"></i></button>
-        </form>
-    {% else %}
-        {{ adventure.get_state_display }}
-    {% endif %}
+    {{ adventure.get_state_display }}
 {% endblock %}
