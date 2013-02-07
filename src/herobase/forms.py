@@ -111,6 +111,7 @@ class UserProfilePrivacyEdit(forms.ModelForm):
     """Special userprofile edit form for the fields containing privacy settings."""
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
+        self.helper.form_tag=False
         self.helper.form_method = 'post'
         #self.helper.form_action = 'userprofile-privacy-settings'
         self.helper.form_class = 'form-horizontal'
@@ -123,9 +124,7 @@ class UserProfilePrivacyEdit(forms.ModelForm):
                     'public_location',
                 )
             ),
-            FormActions(
-                Submit('save', 'Save', css_class='btn')
-            ),
+
         )
         super(UserProfilePrivacyEdit, self).__init__(*args, **kwargs)
 
