@@ -187,8 +187,9 @@ class Quest(LocationMixin, models.Model):
 
     max_heroes = models.PositiveIntegerField(default=1,
                                              validators=[MinValueValidator(1)],
+                                             verbose_name=_(u"Number of heroes"),
                                              help_text=_(u"How many heroes "
-                                                         u"are needed for "
+                                                         u"can participate in "
                                                          u"this Quest?"))
 
     # still needs heroes
