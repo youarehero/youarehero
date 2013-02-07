@@ -1,0 +1,32 @@
+{% extends "herobase/layout/box.html" %}
+{% load i18n static %}
+
+{% block buttons-top %}
+    <form method="post" action="{% url message-update message.pk %}" class="inline">
+        {% csrf_token %}
+        <button type="submit" value="delete" name="delete">
+            <i class="icon-yah-delete icon-40"></i></button>
+    </form>
+{% endblock %}
+
+{% block header %}
+        <span class="pull-right">{{ message.sent }}</span>
+        <strong>{{ message.sender }}</strong>
+{% endblock %}
+
+{% block content %}
+    <img src="{{ image }}" alt="">
+    <h3>{{ message.title }}</h3>
+    <p>{{ message.text }}</p>
+{% endblock %}
+
+{% block buttons-bottom %}
+    <a href="{% url message-reply message.pk %}">
+        <i class=" icon-yah-arrow icon-40"></i></a>
+{% endblock %}
+
+
+
+
+
+

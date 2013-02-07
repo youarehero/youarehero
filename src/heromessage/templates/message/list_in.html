@@ -25,28 +25,12 @@
 {% endblock %}
 
 {% block content %}
-    <ul class="grid box-grid">
+    <ul class="grid">
         {% for message in received_messages %}
             <li class="span6">
-                <form method="post" action="{% url message-update message.pk %}" class="inline">
-                    {% csrf_token %}
-                    <button class="box-btn-top" type="submit" value="delete" name="delete">
-                        <i class="icon-yah-delete icon-40"></i></button>
-                </form>
-                <div class="box-header">
-                    <span class="pull-right">{{ message.sent }}</span>
-                    <strong>{{ message.sender }}</strong>
-                </div>
-
-
-                <img src="" alt="" class="img-placeholder-80x80 pull-left">
-
-                <h3>{{ message.title }}</h3>
-                <p>{{ message.text }}</p>
-                <a href="{% url message-detail message.pk %}">more</a>
-
-                <a class="box-btn-bottom" href="{% url message-reply message.pk %}">
-                    <i class=" icon-yah-arrow icon-40"></i></a>
+            {% with image=message.sender.get_profile.avatar_thumbnail_80 collapsible=True collapsed=True %}
+                {% include "message/message_box.inc.html" %}
+            {% endwith %}
             </li>
         {% empty %}
             <li>{% trans "No messages yet." %}(</li>

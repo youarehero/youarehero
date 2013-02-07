@@ -106,27 +106,29 @@ ul.box-grid li,
   width: 80px;
 }
 
-.box-btn-top,
-.box-btn-bottom {
-  background: @boxIconBackground;
-  display: block;
-  border: 0px none;
-  padding: 0px;
-  position: absolute;
-  right: -@boxBtnRight;
-}
-.box-btn-top {
-  top: -@boxBtnTop;
-}
 
-.box-btn-bottom {
-  bottom: -@boxBtnBottom;
 
-}
-.box-btn-bottom + .box-btn-bottom,
-form + .box-btn-bottom{
-  right: 45px - @boxBtnRight;
-}
+//.box-btn-top,
+//.box-btn-bottom {
+//  background: @boxIconBackground;
+//  display: block;
+//  border: 0px none;
+//  padding: 0px;
+//  position: absolute;
+//  right: -@boxBtnRight;
+//}
+//.box-btn-top {
+//  top: -@boxBtnTop;
+//}
+//
+//.box-btn-bottom {
+//  bottom: -@boxBtnBottom;
+//
+//}
+//.box-btn-bottom + .box-btn-bottom,
+//form + .box-btn-bottom{
+//  right: 45px - @boxBtnRight;
+//}
 
 .box-header {
   margin-right: 30px;
@@ -136,4 +138,37 @@ form + .box-btn-bottom{
 hr {
   border: 0 none;
   margin: 10px 0;
+}
+
+.box {
+  .box-buttons-top {
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-top: -(@boxBtnTop + @boxPaddingTop);
+    margin-right: -(@boxBtnRight + @boxPaddingRight);
+    margin-left: 10px;
+    margin-bottom: 5px;
+  }
+  .box-buttons-bottom {
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-bottom: -(@boxBtnBottom + @boxPaddingBottom + 6px);
+    margin-right: -(@boxBtnRight + @boxPaddingRight);
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+  .box-buttons-top,
+  .box-buttons-bottom {
+    a, button, input {
+      display: inline-block;
+      background: @boxIconBackground;
+      border: 0px none;
+      padding: 0px;
+    }
+  }
+  .box-content {
+      .clearfix;
+  }
 }
