@@ -1,6 +1,7 @@
 # Create your views here.
 from datetime import datetime
 from django.contrib import messages
+from django.utils.timezone import now
 from herobase.utils import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
@@ -42,9 +43,9 @@ def message_update(request, message_id):
     message = get_object_or_404(Message, Q(recipient=request.user) | Q(sender=request.user), pk=message_id)
     if 'delete' in request.POST:
         if message.recipient == request.user:
-            message.recipient_deleted = datetime.now()
+            message.recipient_deleted = now()
         elif message.sender == request.user:
-            message.sender_deleted = datetime.now()
+            message.sender_deleted = now()
         message.save()
         messages.success(request, _("Message successfully deleted"))
     return HttpResponseRedirect(reverse("message-list"))
@@ -64,7 +65,7 @@ def message_list_in(request):
 def message_detail(request, message_id):
     message = get_object_or_404(Message, pk=message_id)
     if not message.read:
-        message.read = datetime.now()
+        message.read = now()
         message.save()
     return render(request, 'message/detail.html', {
         'message': message

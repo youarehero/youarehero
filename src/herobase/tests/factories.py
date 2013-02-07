@@ -7,6 +7,7 @@ import datetime
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from django.utils.timezone import now
 from herobase.models import Quest, CLASS_CHOICES, Adventure
 
 def factory(f):
@@ -47,7 +48,7 @@ def create_quest(**kwargs):
     create_counter = kwargs.pop('create_counter')
     quest_data = {'title': 'quest_%d' % create_counter,
                   'description': 'description',
-                  'expiration_date': datetime.date.today() + datetime.timedelta(days=1)
+                  'expiration_date': now() + datetime.timedelta(days=1)
     }
     quest_data.update(kwargs)
     if not 'owner' in quest_data:

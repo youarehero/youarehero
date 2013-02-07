@@ -9,6 +9,7 @@ from django.db import models
 from django.template import Context, TemplateDoesNotExist
 from django.template.loader import get_template
 from django.utils.safestring import mark_safe
+from django.utils.timezone import now
 from herobase.models import Quest, Adventure
 
 NOTIFICATION_TYPES = {}
@@ -167,7 +168,7 @@ class Notification(models.Model):
     def is_read(self):
         # FIXME: this still modifies the model
         if self.read is None and hasattr(self.type, 'is_read') and self.type.is_read(self):
-            self.read = datetime.now()
+            self.read = now()
             self.save()
         return self.read
 
