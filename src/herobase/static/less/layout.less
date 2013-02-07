@@ -13,6 +13,9 @@
 @boxBtnBottom: @boxBtnTop;
 @boxBtnLeft: @boxBtnRight;
 
+@caretSize: 8px;
+@caretColor: @grayDarker;
+
 .span1-5  { width: (@gridColumnWidth * 1.5)}
 .span2-25 { width: (@gridColumnWidth * 2.25) + @gridGutterWidth; }
 .span2-5  { width: (@gridColumnWidth * 2.5)  + @gridGutterWidth; }
@@ -168,7 +171,26 @@ hr {
       padding: 0px;
     }
   }
+  .caret {
+    margin-left: 10px;
+    margin-top: 4px;
+    border-left-width:  @caretSize;
+    border-right-width: @caretSize;
+    border-top-width:   @caretSize;
+    border-bottom: @caretSize solid @caretColor;
+    border-top: 0;
+
+  }
   .box-content {
-      .clearfix;
+    .clearfix;
+  }
+  &.collapsed {
+    .box-content {
+      display: none;
+    }
+    .caret {
+      border-top: @caretSize solid @caretColor;
+      border-bottom: 0;
+    }
   }
 }
