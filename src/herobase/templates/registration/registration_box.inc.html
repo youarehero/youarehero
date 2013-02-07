@@ -1,0 +1,34 @@
+{% extends "herobase/layout/box.html" %}
+{% load crispy_forms_tags i18n static %}
+{% block box %}
+    <form method="POST" action="{% url auth_login %}">  {{ block.super }}</form>
+{% endblock %}
+
+{% load i18n static %}
+
+{% block buttons-top %}
+
+{% endblock %}
+
+{% block title %}
+    <h2>{% trans "Login" %}</h2>
+{% endblock %}
+
+{% block content %}
+
+
+    {% crispy form %}
+
+    <p>
+        <a href="{% url auth_password_reset %}">{% trans "Forgotten password?" %}</a>
+    </p>
+    <p>
+        {% trans "You don't have an account yet?" %}
+        <a type="button" href="{% url registration_register %}" class="btn" id="join">{% trans "Join now!" %}</a>
+    </p>
+{% endblock %}
+
+{% block buttons-bottom %}
+    <button type="submit" value="{% trans "Login" %}" name="login">
+        <i class="icon-yah-arrow icon-40"></i></button>
+{% endblock %}
