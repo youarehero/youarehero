@@ -1,7 +1,7 @@
 {% extends "herobase/layout/box.html" %}
 {% load i18n static %}
 
-{% block extra_classes %}collapsible collapsed{% endblock %}
+{% block extra_classes %}collapsible{% if not message.is_relatively_new %} collapsed{% endif %}{% endblock %}
 
 {% block buttons-top %}
     <form method="post" action="{% url message-update message.pk %}" class="inline">
