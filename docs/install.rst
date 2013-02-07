@@ -85,6 +85,17 @@ are installed on your system. To install the requirements type::
 
 .. _virtualenv: <http://www.virtualenv.org>
 
+
+Creating local config
+=====================
+Create a file named local.py in ``src/youarehero/settings/local.py`` containing the line::
+
+   from devel import *
+
+On linux/mac you can do that by running::
+    
+   echo "from devel import *" >> src/youarehero/settings/local.py
+
 Initialize Database
 ===================
 
