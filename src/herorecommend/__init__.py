@@ -19,19 +19,13 @@ def filter_by_location(queryset, latitude, longitude, radius_km=50):
 def recommend_top(user, n, fields=('title', 'description', 'state', 'location',
         'remote', 'latitude', 'longitude'), queryset=None, order_by=None):
     quests = recommend(user, fields=fields, queryset=queryset)[:3*n]
-    suggestions = []
-    for quest in quests:
-        print quest, ':',
-        for skill in quest.profile.get_skills():
-            print skill, getattr(user.combined_profile, skill), user.combined_profile.average,
-        print
-        
-    return suggestions
+    return None
 
 def recommend(user, fields=('title', 'description', 'state', 'location', 'remote', 'latitude', 'longitude'),
         queryset=None, order_by=None):
     if queryset is None:
         queryset = Quest.objects.filter(open=True)
+    return queryset
 
     remote = queryset.filter(remote=True)
     if user.get_profile().has_location:
@@ -53,6 +47,7 @@ def recommend_remote(user, fields=('title', 'description', 'state'),
         queryset = Quest.objects.filter(open=True)
 
     queryset = queryset.filter(remote=True)
+    return queryset
     return recommend_for_user(user, fields=fields, queryset=queryset,
             order_by=order_by, local=False)
 
@@ -62,6 +57,7 @@ def recommend_local(user, fields=('title', 'description', 'state'),
         queryset = Quest.objects.filter(open=True)
 
     queryset = queryset.filter(remote=False)
+    return queryset
     return recommend_for_user(user, fields=fields, queryset=queryset,
             order_by=order_by, local=True)
 
@@ -70,7 +66,7 @@ def recommend_for_user(user, fields=('title', 'description', 'state'),
         local=False, queryset=None, order_by=None):
     if queryset is None:
         queryset = Quest.objects.filter(open=True)
-
+    return queryset
     order_fields = ['-weight']
     if order_by:
         order_fields.extend(order_by)
