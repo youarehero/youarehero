@@ -1,7 +1,9 @@
 {% extends "herobase/layout/box.html" %}
 
+{% block extra_classes %}collapsible collapsed{% endblock %}
+
 {% block title %}
- <h3>{{ quest.title }}</h3>
+    <h3>{{ quest.title }}</h3>
 {% endblock %}
 
 {% block content %}
@@ -9,7 +11,5 @@
 {% endblock %}
 
 {% block buttons-top %}
-    {% if request.user.is_authenticated %}
-        <a href="#"><i class="icon-yah-like icon-40"></i></a>
-    {% endif %}
+
 {% endblock %}

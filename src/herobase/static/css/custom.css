@@ -450,6 +450,9 @@ ul.grid li {
   float: left;
   margin: 0px 0px 20px 20px;
 }
+ul.grid li .box {
+  margin-bottom: 0;
+}
 ul.grid:before,
 ul.grid:after {
   display: table;
@@ -520,10 +523,11 @@ ul.menu-grid.grid li:hover a {
   color: #ffffff;
 }
 .box {
+  position: relative;
   background: #eeeeee;
   color: #222222;
-  position: relative;
   padding: 10px 10px 10px 10px;
+  margin-bottom: 10px;
   *zoom: 1;
 }
 .box a {
@@ -752,6 +756,9 @@ body {
 #page-container {
   width: 630px;
   margin-left: 0;
+}
+#page-container .span100 {
+  width: 610px;
 }
 #page-title {
   padding: 0 10px;
