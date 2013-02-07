@@ -12,6 +12,7 @@ from django.template.loader import get_template
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
 from herobase.models import Quest, Adventure
+from heromessage.models import Message
 
 NOTIFICATION_TYPES = {}
 
@@ -135,6 +136,25 @@ class hero_rejected(NotificationTypeBase):
     def get_text(cls, notification):
         return mark_safe("Your application for the quest<strong>%s</strong> "
                          "has been rejected." % notification.target.title)
+
+class message_received(NotificationTypeBase):
+    type_id = 110
+    target_model = Message
+
+
+    @classmethod
+    def get_text(cls, notification):
+        return mark_safe("You have received a message from <strong>%s</strong>." %
+                         (notification.target.sender.username, ))
+
+    @classmethod
+    def get_image(cls, notification):
+        return notification.target.sender.get_profile().avatar_thumbnail_40
+
+
+    @classmethod
+    def is_read(cls, notification):
+        return notification.target.read
 
 
 class Notification(models.Model):

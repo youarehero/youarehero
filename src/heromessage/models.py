@@ -1,6 +1,7 @@
 from datetime import timedelta
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save
 from django.utils.timezone import now
@@ -49,6 +50,9 @@ class Message(models.Model):
             title=title,
             text=text
         )
+
+    def get_absolute_url(self):
+        return reverse('message-list-in')
 
 def send_email_for_message(message):
     send_mail(t('You are Hero - new Message - %s') % message.title,

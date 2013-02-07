@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext as _
+from heronotification import notify
 
 from models import Message
 from forms import MessageForm
@@ -34,7 +35,9 @@ def message_create(request, user_id=None, message_id=None):
         message.sender = request.user
         message.save()
         messages.success(request, _('Message successfully sent'))
+        notify.message_received(message.recipient, message)
         return HttpResponseRedirect(reverse('message-list-out'))
+
     return render(request, 'message/create.html', {'form': form})
 
 @login_required
