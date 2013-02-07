@@ -7,7 +7,7 @@ from django.db import models
 class Migration(DataMigration):
 
     def forwards(self, orm):
-        for user in orm['auth.User']:
+        for user in orm['auth.User'].objects.all():
             orm['herorecommend.UserCombinedProfile'].objects.get_or_create(user=user)
             orm['herorecommend.UserSelectionProfile'].objects.get_or_create(user=user)
             orm['herorecommend.UserRatingProfile'].objects.get_or_create(user=user)
