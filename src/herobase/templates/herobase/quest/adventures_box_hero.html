@@ -1,8 +1,11 @@
 {% extends "herobase/layout/box.html" %}
 {% load i18n hero_actions hero_message %}
 
+{% block title %}
+    <h2>{% trans "Participants" %}</h2>
+{% endblock %}
+
 {% block content %}
-    <h1>{% trans "Participants" %}</h1>
     {% for adventure in quest.adventures.all %}
         {% if adventure.accepted %}
         <div>

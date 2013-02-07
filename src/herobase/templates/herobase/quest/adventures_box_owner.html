@@ -3,33 +3,19 @@
 
 {% block title %}<h2>{% trans "Participants" %}</h2>{% endblock %}
 
+{% block extra_classes %}collapsible{% endblock %}
+
+{% block buttons-top %}
+{% endblock %}
+
+{% block buttons-bottom %}
+{% endblock %}
+
 {% block content %}
     <ul class="grid ">
         {% for adventure in quest.adventures.all %}
             <li class="span1-5">
-                <h4>{{ adventure.user.username }}</h4>
-                <div class="inner-box box-80">
-                    {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
-                        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="action" value="reject">
-                            <button class="box-btn-top" type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Reject" %}">
-                                <i class="icon-yah-delete icon-30"></i></button>
-                        </form>
-                    {% endif %}
-                    <img src="{{ adventure.user.get_profile.avatar_thumbnail_80 }}" alt=""/>
-                    {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
-                        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="action" value="accept">
-                            <button class="box-btn-bottom" type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept" %}">
-                                <i class="icon-yah-ok icon-40"></i></button>
-                        </form>
-                        {% message_user adventure.user %}
-                    {% else %}
-                        {{ adventure.get_state_display }}
-                    {% endif %}
-                </div>
+                {% include "herobase/quest/adventure_inner_box_hero.html" %}
             </li>
         {% endfor %}
     </ul>

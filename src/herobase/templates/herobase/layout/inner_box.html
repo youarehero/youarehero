@@ -1,0 +1,27 @@
+{% block inner_box %}
+    <div class="inner-box {% block extra_classes %}{% endblock %}">
+        <div class="box-title">
+            {% block title %}
+            {% endblock %}
+        </div>
+
+        <div class="content-wrapper {% block wrapper_classes %}{% endblock %}">
+            <div class="box-buttons-top">
+                {% block buttons-top %}
+                {% endblock %}
+            </div>
+
+            <div class="box-content">
+                {% block content %}
+                {% endblock %}
+            </div>
+
+            <div class="box-buttons-bottom">
+                {% block buttons-bottom %}
+                {% endblock %}
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}
