@@ -43,7 +43,7 @@ def quest_list_view(request, template='herobase/quest/list.html'):
     if request.user.is_authenticated():
         f = QuestFilter(request.GET, queryset=recommend(request.user, order_by=['-created']))
     else:
-        f = QuestFilter(request.GET, queryset=Quest.objects.filter(open=True).order_by('-created'))
+        f = QuestFilter(request.GET, queryset=Quest.objects.open().order_by('-created'))
     return render(request, template, {
         'filter': f,
         'quests': f.qs,
@@ -93,7 +93,7 @@ def home_view(request):
     if request.user.is_authenticated():
         return hero_home_view(request)
     return render(request, "herobase/public_home.html", {
-        'open_quests': Quest.objects.filter(open=True)})
+        'open_quests': Quest.objects.open()})
 
 
 def m_home_view(request):

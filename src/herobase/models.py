@@ -172,7 +172,7 @@ class Adventure(models.Model):
 
 class QuestQuerySet(QuerySet):
     def open(self):
-        return self.filter(open=True).filter(expiration_date__lt=now())
+        return self.filter(open=True).filter(expiration_date__gt=now())
 
 
 class QuestManager(models.Manager):

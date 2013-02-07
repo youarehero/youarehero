@@ -24,7 +24,7 @@ def recommend_top(user, n, fields=('title', 'description', 'state', 'location',
 def recommend(user, fields=('title', 'description', 'state', 'location', 'remote', 'latitude', 'longitude'),
         queryset=None, order_by=None):
     if queryset is None:
-        queryset = Quest.objects.filter(open=True)
+        queryset = Quest.objects.open()
     return queryset
 
     remote = queryset.filter(remote=True)
@@ -44,7 +44,7 @@ def recommend(user, fields=('title', 'description', 'state', 'location', 'remote
 def recommend_remote(user, fields=('title', 'description', 'state'),
         queryset=None, order_by=None):
     if queryset is None:
-        queryset = Quest.objects.filter(open=True)
+        queryset = Quest.objects.open()
 
     queryset = queryset.filter(remote=True)
     return queryset
@@ -54,7 +54,7 @@ def recommend_remote(user, fields=('title', 'description', 'state'),
 def recommend_local(user, fields=('title', 'description', 'state'),
         queryset=None, order_by=None):
     if queryset is None:
-        queryset = Quest.objects.filter(open=True)
+        queryset = Quest.objects.open()
 
     queryset = queryset.filter(remote=False)
     return queryset
@@ -65,7 +65,7 @@ def recommend_local(user, fields=('title', 'description', 'state'),
 def recommend_for_user(user, fields=('title', 'description', 'state'),
         local=False, queryset=None, order_by=None):
     if queryset is None:
-        queryset = Quest.objects.filter(open=True)
+        queryset = Quest.objects.open()
     return queryset
     order_fields = ['-weight']
     if order_by:
