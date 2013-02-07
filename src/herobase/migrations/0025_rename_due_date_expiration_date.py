@@ -7,11 +7,10 @@ from django.db import models
 
 class Migration(SchemaMigration):
     def forwards(self, orm):
-        db.rename_column('herobase_quest', 'expiration_date',
-                'expiration_date')
+        db.rename_column('herobase_quest', 'due_date', 'expiration_date')
 
     def backwards(self, orm):
-        db.rename_column('herobase_quest', 'expiration_date', 'expiration_date')
+        db.rename_column('herobase_quest', 'expiration_date', 'due_date')
 
     models = {
         'auth.group': {
