@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
@@ -41,7 +42,7 @@ class NotificationTypeBase(object):
 
     @classmethod
     def get_image(cls, notification):
-        return "http://placehold.it/40x40"
+        return settings.STATIC_URL + 'heronotification/notification.png'
 
 class hero_has_applied(NotificationTypeBase):
     type_id = 1
