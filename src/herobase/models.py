@@ -5,7 +5,7 @@ The most important are Quest, Userprofile (represents a hero) and Adventure.
 This module also contains the ActionMixin, which provides basic logic for model actions.
 The model actions connect state logic to the models.
 """
-from datetime import datetime
+from datetime import datetime, timedelta
 from random import randint
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
@@ -43,7 +43,7 @@ class Like(models.Model):
     quest = models.ForeignKey('Quest')
 
 
-class LocationMixin(models.Model):
+class   LocationMixin(models.Model):
     latitude = models.FloatField(null=True, db_index=True, blank=True)
     longitude = models.FloatField(null=True, db_index=True, blank=True)
     address = models.CharField(max_length=255, blank=True, default='')
@@ -167,19 +167,29 @@ class Quest(LocationMixin, models.Model):
     objects = QuestManager()
 
     owner = models.ForeignKey(User, related_name='created_quests')
-    title = models.CharField(max_length=255)
-    description = models.TextField()
+    title = models.CharField(max_length=255, verbose_name=_(u"Title"))
+    description = models.TextField(verbose_name=_(u"Description"),
+                                   help_text=_(u"A short description of what "
+                                               u"this quest is about."))
 
-    expiration_date = models.DateTimeField() # expiration_date
+    expiration_date = models.DateTimeField(default=lambda: now() + timedelta(days=30),
+                                           verbose_name=_(u"Expiration date"),
+                                           help_text=_(u"Until which date will "
+                                                       u"this quest be visible?"))
 
     heroes = models.ManyToManyField(User, through=Adventure, related_name='quests')
 
-    remote = models.BooleanField(default=True, verbose_name=_(u"Can be done remotely"))
+    remote = models.BooleanField(default=True, verbose_name=_(u"Can be done remotely"),
+                                 help_text=_(u"Can this quest be done remotely or only locally?"))
 
     created = models.DateTimeField(auto_now_add=True, db_index=True)
     modified = models.DateTimeField(auto_now=True, db_index=True)
 
-    max_heroes = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
+    max_heroes = models.PositiveIntegerField(default=1,
+                                             validators=[MinValueValidator(1)],
+                                             help_text=_(u"How many heroes "
+                                                         u"are needed for "
+                                                         u"this Quest?"))
 
     # still needs heroes
     open = models.BooleanField(default=True)

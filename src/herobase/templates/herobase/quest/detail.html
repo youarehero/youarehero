@@ -36,7 +36,7 @@
     <hr/>
     {% if is_owner %}
         {% include "herobase/quest/adventures_box_owner.html" %}
-    {% elif adventure %}
+    {% else %}
         {% include "herobase/quest/adventures_box_hero.html" %}
     {% endif %}
     <hr/>

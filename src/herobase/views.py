@@ -83,7 +83,7 @@ def quest_detail_view(request, quest_id):
     }
     if request.user.is_authenticated():
         try:
-            context['adventure'] = quest.adventures.get(user_id=request.user.pk, canceled=False)
+            context['request_user_adventure'] = quest.adventures.get(user_id=request.user.pk, canceled=False)
         except Adventure.DoesNotExist:
             pass
 
