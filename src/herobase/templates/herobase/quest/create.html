@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{% get_static_prefix %}bootstrap/css/datepicker.css"/>
 {% endblock %}
 
+{% block submenu %}
+    {% include "herobase/quest/submenu.inc.html" %}
+{% endblock %}
 {% block page_title %}
     <h1>{% trans "Create a Quest" %}</h1>
 {% endblock %}
