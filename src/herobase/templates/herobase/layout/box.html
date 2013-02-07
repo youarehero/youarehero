@@ -4,7 +4,10 @@
         {% endblock %}
     </div>
 
-    <div class="box-header">
+    <div class="box-header{% if collapsible %} collapsible{% endif %}{% if collapsed %} collapsed{% endif %}">
+        {% if collapsible %}
+            <span class="caret"></span>
+        {% endif %}
         {% block header %}
         {% endblock %}
     </div>
