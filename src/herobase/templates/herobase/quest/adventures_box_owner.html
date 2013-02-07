@@ -1,15 +1,14 @@
 {% extends "herobase/layout/box.html" %}
 {% load i18n hero_actions hero_message %}
 
+{% block title %}<h2>{% trans "Participants" %}</h2>{% endblock %}
+
 {% block content %}
-    <h2>{% trans "Participants" %}</h2>
     <ul class="grid ">
         {% for adventure in quest.adventures.all %}
             <li class="span1-5">
                 <h4>{{ adventure.user.username }}</h4>
-
                 <div class="inner-box box-80">
-
                     {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
                         <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post">
                             {% csrf_token %}
@@ -18,9 +17,7 @@
                                 <i class="icon-yah-delete icon-30"></i></button>
                         </form>
                     {% endif %}
-
-                    <img src="http://placehold.it/80x80" alt=""/>
-
+                    <img src="{{ adventure.user.get_profile.avatar_thumbnail_80 }}" alt=""/>
                     {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
                         <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post">
                             {% csrf_token %}
