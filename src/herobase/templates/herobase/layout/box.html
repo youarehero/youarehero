@@ -1,14 +1,12 @@
 {% block box %}
-<div class="box {% block extra_classes %}{% endblock %}{% if collapsible %} collapsible{% endif %}{% if collapsed %} collapsed{% endif %}">
+<div class="box {% block extra_classes %}{% endblock %}">
     <div class="box-buttons-top">
         {% block buttons-top %}
         {% endblock %}
     </div>
 
     <div class="box-title">
-        {% if collapsible %}
-            <span class="caret pull-right"></span>
-        {% endif %}
+        <span class="caret pull-right"></span>
         {% block title %}
         {% endblock %}
     </div>

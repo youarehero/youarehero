@@ -70,7 +70,6 @@ ul.menu-grid {
   }
 }
 
-ul.box-grid li,
 .box {
   background: @boxBackground;
   color: @boxTextColor;
@@ -110,29 +109,6 @@ ul.box-grid li,
 }
 
 
-
-//.box-btn-top,
-//.box-btn-bottom {
-//  background: @boxIconBackground;
-//  display: block;
-//  border: 0px none;
-//  padding: 0px;
-//  position: absolute;
-//  right: -@boxBtnRight;
-//}
-//.box-btn-top {
-//  top: -@boxBtnTop;
-//}
-//
-//.box-btn-bottom {
-//  bottom: -@boxBtnBottom;
-//
-//}
-//.box-btn-bottom + .box-btn-bottom,
-//form + .box-btn-bottom{
-//  right: 45px - @boxBtnRight;
-//}
-
 .box-header {
   margin-right: 30px;
 }
@@ -171,30 +147,37 @@ hr {
       padding: 0px;
     }
   }
-  .caret {
-    margin-left: 10px;
-    margin-top: 4px;
-    border-left-width:  @caretSize;
-    border-right-width: @caretSize;
-    border-top-width:   @caretSize;
-    border-bottom: @caretSize solid @caretColor;
-    border-top: 0;
-
-  }
   .box-content {
     .clearfix;
   }
-  &.collapsed {
-    .box-content {
-      display: none;
-    }
+  .caret {
+    display: none;
+  }
+  &.collapsible {
     .caret {
-      border-top: @caretSize solid @caretColor;
-      border-bottom: 0;
+      display: inline-block;
+      margin-left: 10px;
+      margin-top: 4px;
+      border-left-width:  @caretSize;
+      border-right-width: @caretSize;
+      border-top-width:   @caretSize;
+      border-bottom: @caretSize solid @caretColor;
+      border-top: 0;
+
     }
-    .box-buttons-top,
-    .box-buttons-bottom {
-      display: none
+    &.collapsed {
+      .box-content {
+        display: none;
+      }
+      .caret {
+        border-top: @caretSize solid @caretColor;
+        border-bottom: 0;
+      }
+      .box-buttons-top,
+      .box-buttons-bottom {
+        display: none;
+      }
     }
   }
+
 }

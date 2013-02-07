@@ -519,7 +519,6 @@ ul.menu-grid.grid li.on a,
 ul.menu-grid.grid li:hover a {
   color: #ffffff;
 }
-ul.box-grid li,
 .box {
   background: #eeeeee;
   color: #222222;
@@ -527,59 +526,45 @@ ul.box-grid li,
   padding: 10px 10px 10px 10px;
   *zoom: 1;
 }
-ul.box-grid li a,
 .box a {
   color: #777777;
 }
-ul.box-grid li a:hover,
 .box a:hover {
   color: #373737;
 }
-ul.box-grid li.mini,
 .box.mini {
   width: 210px;
 }
-ul.box-grid li.small,
 .box.small {
   width: 250px;
 }
-ul.box-grid li.half,
 .box.half {
   width: 270px;
 }
-ul.box-grid li.big,
 .box.big {
   width: 290px;
 }
-ul.box-grid li.large,
 .box.large {
   width: 310px;
 }
-ul.box-grid li:before,
 .box:before,
-ul.box-grid li:after,
 .box:after {
   display: table;
   content: "";
   line-height: 0;
 }
-ul.box-grid li:after,
 .box:after {
   clear: both;
 }
-ul.box-grid li:before,
 .box:before,
-ul.box-grid li:after,
 .box:after {
   display: table;
   content: "";
   line-height: 0;
 }
-ul.box-grid li:after,
 .box:after {
   clear: both;
 }
-ul.box-grid li img,
 .box img {
   float: left;
   margin-right: 10px;
@@ -649,15 +634,6 @@ hr {
   border: 0px none;
   padding: 0px;
 }
-.box .caret {
-  margin-left: 10px;
-  margin-top: 4px;
-  border-left-width: 8px;
-  border-right-width: 8px;
-  border-top-width: 8px;
-  border-bottom: 8px solid #222222;
-  border-top: 0;
-}
 .box .box-content {
   *zoom: 1;
 }
@@ -679,15 +655,28 @@ hr {
 .box .box-content:after {
   clear: both;
 }
-.box.collapsed .box-content {
+.box .caret {
   display: none;
 }
-.box.collapsed .caret {
+.box.collapsible .caret {
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 4px;
+  border-left-width: 8px;
+  border-right-width: 8px;
+  border-top-width: 8px;
+  border-bottom: 8px solid #222222;
+  border-top: 0;
+}
+.box.collapsible.collapsed .box-content {
+  display: none;
+}
+.box.collapsible.collapsed .caret {
   border-top: 8px solid #222222;
   border-bottom: 0;
 }
-.box.collapsed .box-buttons-top,
-.box.collapsed .box-buttons-bottom {
+.box.collapsible.collapsed .box-buttons-top,
+.box.collapsible.collapsed .box-buttons-bottom {
   display: none;
 }
 h1,

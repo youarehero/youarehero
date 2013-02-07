@@ -24,11 +24,13 @@
     <h1>{% trans "Messages" %}</h1>
 {% endblock %}
 
+
+
 {% block content %}
     <ul class="grid">
         {% for message in received_messages %}
             <li class="span6">
-            {% with image=message.sender.get_profile.avatar_thumbnail_80 collapsible=1 collapsed=1 %}
+            {% with image=message.sender.get_profile.avatar_thumbnail_80 %}
                 {% include "message/message_box.inc.html" %}
             {% endwith %}
             </li>

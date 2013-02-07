@@ -28,7 +28,7 @@
     <ul class="grid">
         {% for message in sent_messages %}
             <li class="span6">
-                {% with image=message.recipient.get_profile.avatar_thumbnail_80 collapsible=True collapsed=True %}
+                {% with image=message.recipient.get_profile.avatar_thumbnail_80 collapsible=True collapsed=1 %}
                     {% include "message/message_box.inc.html" %}
                 {% endwith %}
             </li>
