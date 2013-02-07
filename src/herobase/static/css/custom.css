@@ -649,6 +649,15 @@ hr {
   border: 0px none;
   padding: 0px;
 }
+.box .caret {
+  margin-left: 10px;
+  margin-top: 4px;
+  border-left-width: 8px;
+  border-right-width: 8px;
+  border-top-width: 8px;
+  border-bottom: 8px solid #222222;
+  border-top: 0;
+}
 .box .box-content {
   *zoom: 1;
 }
@@ -669,6 +678,13 @@ hr {
 }
 .box .box-content:after {
   clear: both;
+}
+.box.collapsed .box-content {
+  display: none;
+}
+.box.collapsed .caret {
+  border-top: 8px solid #222222;
+  border-bottom: 0;
 }
 h1,
 h2,
