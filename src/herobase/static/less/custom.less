@@ -48,8 +48,7 @@ body {
 //  padding-top: 20px;
   font-family: 'Open Sans', sans-serif;
 }
-#background,
-#background-top {
+#background {
   width:  100%;
   height: 100%;
   position: fixed;
@@ -57,10 +56,6 @@ body {
   left: 0;
   z-index: -100;
   background: url("../img/city.jpg") no-repeat scroll 50% 0 #333;
-}
-#background-top {
-  height: 180px;
-  z-index: 100;
 }
 
 .sidebar-left {
@@ -83,29 +78,19 @@ body {
 
 // site-header
 #site-header-container {
-  margin: 20px 0px 20px -20px;
-  z-index: 200;
-  position: fixed;
+  margin: 20px 0 20px -20px;
 }
 
 #sidebar-left-container {
-  z-index: 200;
-  position: fixed;
-  top: 100px;
+
 }
 #sidebar-right-container {
   z-index: 1045;
-  position: fixed;
-  top: 100px;
-  margin-left: (8 * @gridColumnWidth) + (@gridGutterWidth * 7) + @gridSpaceWidth;
 }
 
 #page-container {
   width: @gridContentWidth;
-  margin: 0;
-  position: absolute;
-  left: 220px;
-  margin-left: -20px;
+  margin-left: 0;
 }
 
 
@@ -114,17 +99,11 @@ body {
   font-variant: small-caps;
   background-color: @baseBackgroundHeader;
   .clearfix;
-  position: fixed;
-  top: 100px;
   height: 40px;
-  z-index: 200;
   width: (@gridContentWidth - 20px); // padding
   overflow: hidden;
 }
 #submenu {
-  position: fixed;
-  z-index: 200;
-  top: 140px;
   height:  40px;
   width: (@gridContentWidth - 20px); // padding
   overflow: hidden;
@@ -134,10 +113,10 @@ body {
 }
 #page-content {
   position: relative;
-  top: 180px;
   padding:  10px 20px 20px 10px;
   background-color: @baseBackground;
   .clearfix;
+  margin-bottom: 40px;
 }
 
 .help-block, .help-inline {
