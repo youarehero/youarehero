@@ -21,6 +21,7 @@ from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from easy_thumbnails.files import get_thumbnailer
@@ -141,13 +142,13 @@ class Adventure(models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None):
         if self.accepted and not self.accepted_time:
-            self.accepted_time = datetime.now()
+            self.accepted_time = now()
         if self.rejected and not self.rejected_time:
-            self.rejected_time = datetime.now()
+            self.rejected_time = now()
         if self.done and not self.done_time:
-            self.done_time = datetime.now()
+            self.done_time = now()
         if self.canceled and not self.canceled_time:
-            self.canceled_time = datetime.now()
+            self.canceled_time = now()
         return super(Adventure, self).save(force_insert, force_update, using)
 
 
@@ -171,7 +172,7 @@ class Adventure(models.Model):
 
 class QuestQuerySet(QuerySet):
     def open(self):
-        return self.filter(open=True)
+        return self.filter(open=True).filter(expiration_date__lt=now())
 
 
 class QuestManager(models.Manager):
@@ -190,9 +191,8 @@ class Quest(LocationMixin, models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
 
-    due_date = models.DateTimeField()
+    expiration_date = models.DateTimeField() # expiration_date
 
-    hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True, null=True)
     heroes = models.ManyToManyField(User, through=Adventure, related_name='quests')
 
     remote = models.BooleanField(default=True, verbose_name=_(u"Can be done remotely"))
@@ -201,11 +201,6 @@ class Quest(LocationMixin, models.Model):
     modified = models.DateTimeField(auto_now=True, db_index=True)
 
     max_heroes = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
-    auto_accept = models.BooleanField(default=False, verbose_name=_("accept automatically"),
-        help_text=_("If set heroes will be accepted automatically. "
-                    "This means that you won't be able to refuse an offer."))
-
-    experience = models.PositiveIntegerField()
 
     # still needs heroes
     open = models.BooleanField(default=True)
@@ -221,6 +216,13 @@ class Quest(LocationMixin, models.Model):
     # owner has started the quest
     started = models.BooleanField(default=False)
     started_time = models.DateTimeField(null=True, blank=True, editable=False)
+
+    time_effort = models.IntegerField(null=True, choices=(
+        (1, _(u"Low")),
+        (2, _(u"Medium")),
+        (3, _(u"Hight")),
+    ))
+
 
     # States for the Quest. OPEN + FULL = ACTIVE, DONE + CANCELED = INACTIVE
     STATE_NOT_SET = 0
@@ -240,18 +242,16 @@ class Quest(LocationMixin, models.Model):
 
     state = models.IntegerField(default=STATE_NO_STATE, choices=QUEST_STATES)
 
-    level = models.IntegerField(editable=False, default=1)
-
     def save(self, force_insert=False, force_update=False, using=None):
         self.open = not self.pk or (not self.done and not self.canceled and
                      self.adventures.filter(accepted=True, canceled=False).count() < self.max_heroes)
 
         if self.canceled and not self.canceled_time:
-            self.canceled_time = datetime.now()
+            self.canceled_time = now()
         if self.started and not self.started_time:
-            self.started_time = datetime.now()
+            self.started_time = now()
         if self.done and not self.done_time:
-            self.done_time = datetime.now()
+            self.done_time = now()
 
         return super(Quest, self).save(force_insert, force_update, using)
 

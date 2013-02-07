@@ -60,10 +60,7 @@ class AuthenticatedIntegrationTest(TestCase):
             'description': 'description',
             'hero_class': 1,
             'max_heroes': 1,
-            'level': 1,
-            'experience': 1,
-
-            'due_date': '11.11.2013',
+            'expiration_date': '11.11.2013',
             'address': 'address',
             'location_granularity': 0,
             })
@@ -121,7 +118,7 @@ class AuthenticatedIntegrationTest(TestCase):
 
     def test_stats(self):
         """A user should be able to see the statistics."""
-        quest = create_quest(title='0', hero_class=3)
+        quest = create_quest(title='0')
         response = self.client.get(reverse('stats'))
         self.assertContains(response, 'Stat')
         self.assertContains(response, 'uest')

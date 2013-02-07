@@ -15,6 +15,6 @@ class QuestFilter(django_filters.FilterSet):
         return any(self.data.values())
 
     model = Quest
-    fields = ['level', 'state', 'hero_class', 'due_date', 'title', 'description']
+    fields = ['level', 'state', 'expiration_date', 'title', 'description']
     class Meta:
-        order_by = ['title', 'experience', 'due_date', 'hero_class', 'state']
+        order_by = ['title', 'expiration_date', 'state']

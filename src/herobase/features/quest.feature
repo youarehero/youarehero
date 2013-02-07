@@ -7,7 +7,7 @@ Feature: Manage quests
         And I enter "0" into the field "hero_class"
         And I enter "1" into the field "max_heroes"
         And I enter "Heidelberg" into the field "location"
-        And I enter "12/12/12" into the field "due_date"
+        And I enter "12/12/12" into the field "expiration_date"
         And I enter "1" into the field "level"
         And I submit the form
         Then I see the text "Eine Quest"

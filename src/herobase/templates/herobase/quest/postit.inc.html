@@ -1,6 +1,5 @@
 <li>
     <a href="{% url quest-detail quest.id %}" class="postit {{ quest.get_hero_class_display|lower }}">
-        {# <span class="pull-right">{{ quest.experience }} EP</span> #}
         <h4>{{ quest.title|truncatechars:12 }} {{ quest.weight|floatformat:"3" }}</h4>
             <h5>
         <span>

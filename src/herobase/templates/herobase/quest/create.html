@@ -7,7 +7,7 @@
     <script type="text/javascript" src="{% get_static_prefix %}select2-2.0/select2.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
-        $('#id_due_date').datepicker({autoclose: true, format: 'dd.mm.yyyy'});
+        $('#id_expiration_date').datepicker({autoclose: true, format: 'dd.mm.yyyy'});
 
         var avatar_thumbnails_tiny = {
         {% for id, image in request.user.get_profile.avatar_thumbnails_tiny %}

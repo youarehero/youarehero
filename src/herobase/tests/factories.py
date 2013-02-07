@@ -47,10 +47,7 @@ def create_quest(**kwargs):
     create_counter = kwargs.pop('create_counter')
     quest_data = {'title': 'quest_%d' % create_counter,
                   'description': 'description',
-
-                  'experience': 1,
-                  'hero_class': CLASS_CHOICES[0][0],
-                  'due_date': datetime.date.today() + datetime.timedelta(days=1)
+                  'expiration_date': datetime.date.today() + datetime.timedelta(days=1)
     }
     quest_data.update(kwargs)
     if not 'owner' in quest_data:

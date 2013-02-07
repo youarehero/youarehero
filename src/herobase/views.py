@@ -211,19 +211,11 @@ def userprofile(request, username=None, template='herobase/userprofile/detail.ht
                    2: '#fff9b4',
                    3: '#ffa19b',
                    4: '#bdcaff'}
-    colors = []
-    for choice, count in user.adventures\
-            .filter(done=True)\
-            .values_list('quest__hero_class')\
-            .annotate(Count('quest__hero_class')):
-        colors.append(color_dict[choice])
-        hero_completed_quests.append((class_choices[choice], count))
 
 
     return render(request, template, {
         'user': user,
         'rank': rank,
-        'colors': mark_safe(json.dumps(colors)),
         'completed_quest_count': user.adventures.filter(done=True).count(),
         'hero_completed_quests': mark_safe(json.dumps(hero_completed_quests)),
     })
@@ -303,24 +295,10 @@ def random_stats(request):
 
 
     hero_completed_quests = []
-    for choice, count in user.adventures\
-        .filter(quest__done=True)\
-        .filter(done=True)\
-        .values_list('quest__hero_class')\
-        .annotate(Count('quest__hero_class')):
-        hero_completed_quests.append((class_choices.get(choice), count))
-
     colors0 = []
     open_quest_types = []
-    for choice, count in  Quest.objects.filter(open=True).values_list('hero_class').annotate(Count('hero_class')):
-        open_quest_types.append((class_choices.get(choice), count))
-        colors0.append(color_dict[choice])
-
     colors1 = []
     completed_quest_types = []
-    for choice, count in  Quest.objects.filter(open=True).values_list('hero_class').annotate(Count('hero_class')):
-        completed_quest_types.append((class_choices.get(choice) , count))
-        colors1.append(color_dict[choice])
 
     context = {
         'hero_completed_quests': hero_completed_quests,

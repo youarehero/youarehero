@@ -23,9 +23,9 @@
         </div>
         <div class="well">{{ quest.description }}</div>
 <table>
-<tr><th>{% trans "Auftraggeber" %}</th><th>{% trans "location" %}</th><th>{% trans "Level" %}</th><th>{% trans "experience" %}</th></tr><tr>
+<tr><th>{% trans "Auftraggeber" %}</th><th>{% trans "location" %}</th></tr><tr>
 <td><a href="{% url userprofile-public quest.owner.username %}">{{ quest.owner }}</a>{% message_user quest.owner %}</td>
-<td>{{ quest.location }}</td><td>{{ quest.level }}</td><td>{{ quest.experience }}</td></tr>
+<td>{{ quest.location }}</td></tr>
 </table>
       
 

@@ -21,8 +21,7 @@ from herobase.widgets import LocationWidget
 
 class QuestCreateForm(forms.ModelForm):
     """The Basic Quest create form. Uses django-crispy-forms (FormHelper) for 2 column bootstrap output. """
-    experience = forms.IntegerField(initial=100)
-    due_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'autocomplete': 'off'}))
+    expiration_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'autocomplete': 'off'}))
 
     latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
@@ -42,16 +41,13 @@ class QuestCreateForm(forms.ModelForm):
                 Div(
                     Div(
                         'title',
-                        'hero_class',
                         'description',
                         css_class="span3",
                     ),
                     Div(
-                        'experience',
                         'max_heroes',
-                        'auto_accept',
                         'address',
-                        'due_date',
+                        'expiration_date',
                         css_class="span3",
                     ),
                     css_class="row",
@@ -68,8 +64,7 @@ class QuestCreateForm(forms.ModelForm):
 
     class Meta:
         model = Quest
-        fields = ('title', 'description', 'max_heroes', 'address', 'due_date',
-                  'hero_class' ,'experience', 'auto_accept',
+        fields = ('title', 'description', 'max_heroes', 'address', 'expiration_date',
                   'latitude', 'longitude', 'location_granularity')
 
 

@@ -86,7 +86,6 @@
                         <th>Quest</th>
                         <th>Class</th>
                         <th>Location</th>
-                        <th>Experience</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -98,9 +97,6 @@
                             </td>
                             <td><img src="{% static "img/icon_" %}{{ quest.get_hero_class_display|lower }}.png" /> {{ quest.get_hero_class_display }}</td>
                             <td>{{ quest.location }}</td>
-                            <td>
-                                {{ quest.experience }}
-                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
