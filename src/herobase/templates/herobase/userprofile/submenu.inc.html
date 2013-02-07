@@ -1,10 +1,10 @@
 {% if request.user.is_authenticated %}
     {% if request.user == user %}
-        <ul class="nav">
+        <ul class="page-tabs">
             <li><a href="{% url userprofile-private %}"><span class="stripe">Mein Profil</span></a></li>
             <li><a href="{% url userprofile-edit %}"><span class="stripe">Einstellungen</span></a></li>
             <li><a href="{% url userprofile-privacy-settings %}"><span class="stripe">Privatsphäre</span></a></li>
-            <li><a href="{% url userprofile-skill-settings %}"><span class="stripe">Skills</span></a></li>
+<!--            <li><a href="{% url userprofile-skill-settings %}"><span class="stripe">Skills</span></a></li>-->
         </ul>
     {% endif %}
 {% endif %}

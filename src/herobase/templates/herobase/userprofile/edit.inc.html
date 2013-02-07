@@ -1,0 +1,23 @@
+{% extends "herobase/layout/box.html" %}
+{% load crispy_forms_tags i18n static %}
+{% block box %}
+    <form method="POST" action="">  {{ block.super }}</form>
+{% endblock %}
+
+{% load i18n static %}
+
+{% block buttons-top %}
+
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    {% crispy form %}
+{% endblock %}
+
+{% block buttons-bottom %}
+    <button type="submit" value="Save" name="save">
+        <i class="icon-yah-ok icon-40"></i></button>
+{% endblock %}

@@ -14,32 +14,17 @@
     <link href='https://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>
     <link href="{% get_static_prefix %}css/style.css" rel="stylesheet">
     <script src="{% get_static_prefix %}js/jquery-1.7.2.min.js"></script>
-<script src="{% get_static_prefix %}js/touchscroll.js"></script>
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <link rel="stylesheet" href="themes/heromobile.min.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
     {% block head_javascript %}
 
     {% endblock %}
 	<style type="text/css">
-.menu{ position:absolute; bottom:0px; left:0px;right:0px; height:44px;
-      z-index:2; background-color:#FFDD76; text-align:center;
-}
-.head_menu{ position:absolute; top:0px; left:0px;right:0px; height:40px;
-      z-index:2; background-color:#F5B17D; }
-.content{
-position:absolute;
-bottom:44px; left:5px;right:5px;top:40px;
-overflow:hidden;
-}
-.icon{
-padding:2px;
-width:18%;
-display:inline;
-}
-.icon_small{
-padding:2px;
-height:36px;
-display:inline;
-}
+
 
 </style>
 
@@ -70,14 +55,7 @@ display:inline;
 <div class="content" id='touchscroll_div'>
     {% block content %}{% endblock %}
 </div>
-<div class="menu" >
-<div class="icon"><a href="{% url m-home %}"><img style="padding:2px" src="{% get_static_prefix %}img/icons/home.png" 
-></a></div><div class="icon"><a href="{% url m-quest-my %}"><img style="  padding:2px" src="{% get_static_prefix %}img/icons/quest.png"></a>
-</div><div class="icon"><a href="{% url m-userprofile-private %}"><img style=" padding:2px" src="{% get_static_prefix %}img/icons/profile.png"
-></a></div><div class="icon"><img style="; padding:2px" src="{% get_static_prefix %}img/icons/mail_d.png" 
-></div><div class="icon"><img style=" padding:2px" src="{% get_static_prefix %}img/icons/stats_d.png">
-</div>
-</div>
+
 {% endblock %}
 </div><!--/container-->
 
@@ -87,9 +65,7 @@ display:inline;
 {% block javascript %}
 
 {% endblock %}
-<script type="text/javascript">
- touchScroll('touchscroll_div');
-</script>
+
 
 
 </body>

@@ -73,12 +73,13 @@ class UserProfileEdit(forms.ModelForm):
     """Basic userprofile edit form. uses crispy-forms."""
     latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
-    address = forms.CharField(widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
+    address = forms.CharField(required=False, widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.form_class = 'form-horizontal'
+        self.helper.form_tag = False;
 
         self.helper.layout = Layout(
             Fieldset(
@@ -94,9 +95,7 @@ class UserProfileEdit(forms.ModelForm):
                     'location_granularity',
                 )
             ),
-            FormActions(
-                Submit('save', 'Save', css_class='btn')
-            ),
+
         )
         super(UserProfileEdit, self).__init__(*args, **kwargs)
         self.fields['location_granularity'].widget = forms.HiddenInput()

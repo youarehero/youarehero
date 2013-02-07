@@ -1,0 +1,52 @@
+{% extends "herobase/layout/box.html" %}
+{% load crispy_forms_tags i18n static %}
+{% block box %}
+    <form method="POST" action="">  {{ block.super }}</form>
+{% endblock %}
+
+{% load i18n static %}
+
+{% block buttons-top %}
+
+{% endblock %}
+
+{% block title %}
+    {% if user != request.user %}
+        <h2><span class="stripe">{{ user.username }}</span>
+            <small>{{ user.get_profile.get_hero_class_display }}</small>
+        </h2>
+
+    {% else %}
+        <h2><span class="stripe">{% trans "Thats you" %}</span></h2>
+        <p>{% trans "This is what your profile looks like to other heroes." %}</p>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="span3">
+        {% include "herobase/userprofile/public_avatar.inc.html" %}</div>
+    <div class="row">
+
+        <div class="span6">
+        {% if user.get_profile.about %}
+            <h2>{% trans "About" %}</h2>
+            <p>{{ user.get_profile.about }}</p>
+        {%  endif %}
+            <h3>{%blocktrans with user.username as username %}{{ username }} is ranked {{ rank }} in the ladder.{%endblocktrans%}</h3>
+            <dl class="dl-horizontal">
+                <dt>{% trans "Member since" %} </dt><dd>{{ user.get_profile.created|timesince }}</dd>
+                {% if user.get_profile.public_location %}
+                    <dt>{% trans "Region" %}</dt><dd>{{ user.get_profile.location }}</dd>
+                {% endif %}
+                {% if completed_quest_count %}
+                    <dt>{% trans "Quests done" %}</dt><dd>{{ completed_quest_count }}</dd>
+                {% endif %}
+            </dl>
+            <div id="stats"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block buttons-bottom %}
+
+{% endblock %}

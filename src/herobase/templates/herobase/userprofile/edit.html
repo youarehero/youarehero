@@ -56,12 +56,7 @@
 {% endblock %}
 
 {% block content %}
-    {% crispy form %}
-
-    <h2><span class="stripe">Was sind Heldenklassen?</span></h2>
-    <div id="hero_classes">
-        {% include "herobase/hero_classes.inc.html" %}
-    </div>
+   {% include "herobase/userprofile/edit.inc.html" %}
 {% endblock %}
 
 
