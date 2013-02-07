@@ -572,38 +572,9 @@ ul.menu-grid.grid li:hover a {
 }
 .inner-box {
   position: relative;
-  *zoom: 1;
   margin-top: 6px;
   margin-right: 13px;
   margin-bottom: 6px;
-}
-.inner-box:before,
-.inner-box:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.inner-box:after {
-  clear: both;
-}
-.inner-box:before,
-.inner-box:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.inner-box:after {
-  clear: both;
-}
-.box-80 {
-  width: 80px;
-}
-.box-header {
-  margin-right: 30px;
-}
-hr {
-  border: 0 none;
-  margin: 10px 0;
 }
 .box .box-buttons-top {
   position: relative;
@@ -623,8 +594,16 @@ hr {
   margin-left: 10px;
   margin-top: 5px;
 }
+.box .box-buttons-bottom a,
+.box .box-buttons-bottom form,
+.box .box-buttons-bottom button,
+.box .box-buttons-bottom input {
+  vertical-align: bottom;
+}
 .box .box-buttons-top a,
 .box .box-buttons-bottom a,
+.box .box-buttons-top form,
+.box .box-buttons-bottom form,
 .box .box-buttons-top button,
 .box .box-buttons-bottom button,
 .box .box-buttons-top input,
@@ -633,6 +612,7 @@ hr {
   background: #bbbbbb;
   border: 0px none;
   padding: 0px;
+  margin: 0px;
 }
 .box .box-content {
   *zoom: 1;
@@ -654,6 +634,28 @@ hr {
 }
 .box .box-content:after {
   clear: both;
+}
+.inner-box .content-wrapper {
+  position: relative;
+  margin-top: 5px;
+  margin-left: 0px;
+}
+.inner-box .box-buttons-top,
+.inner-box .box-buttons-bottom {
+  display: block;
+  position: absolute;
+  margin: 0;
+}
+.inner-box .box-buttons-top {
+  top: -5px;
+  right: -10px;
+}
+.inner-box .box-buttons-bottom {
+  bottom: -5px;
+  right: -10px;
+}
+.inner-box img {
+  margin: 0;
 }
 .box .caret {
   display: none;
@@ -681,6 +683,10 @@ hr {
 .box.collapsible.collapsed .box-buttons-top,
 .box.collapsible.collapsed .box-buttons-bottom {
   display: none;
+}
+hr {
+  border: 0 none;
+  margin: 10px 0;
 }
 h1,
 h2,

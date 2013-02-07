@@ -1,11 +1,14 @@
 {% extends "herobase/layout/box.html" %}
-{% block content %}
+
+{% block buttons-top %}
     <form method="post" action="{% url owner-update-quest quest.pk %}" class="inline">
         {% csrf_token %}
         <button class="box-btn-top" type="submit" value="delete" name="delete">
             <i class="icon-yah-delete icon-40"></i></button>
     </form>
+{% endblock %}
 
+{% block content %}
     <img src="http://placehold.it/120x120" alt=""/>
     <h2>{{ quest.title }}</h2>
     <p>{% block text %}{{ quest.description }}{% endblock %}</p>

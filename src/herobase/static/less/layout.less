@@ -97,26 +97,13 @@ ul.menu-grid {
 
 }
 
+
 .inner-box {
   position: relative;
-  .clearfix;
+//  .clearfix;
   margin-top: @boxBtnTop;
   margin-right: @boxBtnRight;
   margin-bottom: @boxBtnBottom;
-}
-.box-80 {
-  width: 80px;
-}
-
-
-.box-header {
-  margin-right: 30px;
-}
-
-// Horizontal Rule
-hr {
-  border: 0 none;
-  margin: 10px 0;
 }
 
 .box {
@@ -137,19 +124,57 @@ hr {
     margin-right: -(@boxBtnRight + @boxPaddingRight);
     margin-left: 10px;
     margin-top: 5px;
+    a, form, button, input {
+      vertical-align: bottom;
+    }
   }
   .box-buttons-top,
   .box-buttons-bottom {
-    a, button, input {
+    a, form, button, input {
       display: inline-block;
       background: @boxIconBackground;
       border: 0px none;
       padding: 0px;
+      margin: 0px;
+
     }
   }
   .box-content {
     .clearfix;
   }
+}
+
+.inner-box {
+
+  .content-wrapper {
+    position: relative;
+    margin-top: 5px;
+    margin-left: 0px;
+  }
+
+  .box-buttons-top,
+  .box-buttons-bottom {
+    display: block;
+    position: absolute;
+    margin: 0;
+  }
+
+  .box-buttons-top {
+    top: -5px;
+    right: -10px;
+
+  }
+  .box-buttons-bottom {
+    bottom: -5px;
+    right: -10px;;
+  }
+  img {
+    margin: 0;
+  }
+}
+
+// Caret
+.box {
   .caret {
     display: none;
   }
@@ -183,4 +208,12 @@ hr {
     }
   }
 
+}
+
+
+
+// Horizontal Rule
+hr {
+  border: 0 none;
+  margin: 10px 0;
 }

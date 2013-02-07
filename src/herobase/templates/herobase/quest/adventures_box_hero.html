@@ -1,12 +1,15 @@
 {% extends "herobase/layout/box.html" %}
 {% load i18n hero_actions hero_message %}
 
+{% block title %}
+    <h2>{% trans "Participants" %}</h2>
+{% endblock %}
+
 {% block content %}
-    <h1>{% trans "Participants" %}</h1>
     {% for adventure in quest.adventures.all %}
         {% if adventure.accepted %}
         <div>
-            <img src="http://placehold.it/60x60" alt=""/>
+            <img src="{{ adventure.user.get_profile.avatar_thumbnail_80 }}" alt=""/>
             <strong>{{ adventure.user.username }}</strong>
 
             {% message_user adventure.user %}
