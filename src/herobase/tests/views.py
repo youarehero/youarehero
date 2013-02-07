@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-import unittest
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import Client
 from django.test.utils import override_settings
+from django.utils import unittest
 from herobase.models import Quest
 from factories import create_adventure, create_quest, create_user
 
