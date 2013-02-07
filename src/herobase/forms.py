@@ -2,12 +2,13 @@
 """
 This module provides the form-classes (definition) for the basic models, especially Quest, Adventure and Userprofile.
 """
+import datetime
+from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
 from django import forms
 from django.core.urlresolvers import reverse
-from django.forms.util import ErrorList
-from django.utils.safestring import mark_safe
+
 from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.bootstrap import FormActions
@@ -19,19 +20,23 @@ from herobase.models import Quest, UserProfile
 from herobase.widgets import LocationWidget
 
 
+
+
 class QuestCreateForm(forms.ModelForm):
     """The Basic Quest create form. Uses django-crispy-forms (FormHelper) for 2 column bootstrap output. """
-    expiration_date = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'autocomplete': 'off'}))
-
-    latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
-    longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
-    address = forms.CharField(widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
+    remote = forms.ChoiceField(choices=(
+        ("", _("-----------")),
+        (True, _(u"Can be done remotely")),
+        (False, _(u"Has to be done locally"))
+    ), help_text=_(u"Can this quest be done remotely or only locally?"),
+    )
+    # latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    # longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    # address = forms.CharField(widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
-        self.helper.form_method = 'post'
-       # self.helper.form_action = 'quest-create'
-        self.helper.form_class = 'box'
+        self.helper.form_tag = False
         self.request = kwargs.pop('request')
 
 
@@ -46,6 +51,7 @@ class QuestCreateForm(forms.ModelForm):
                     ),
                     Div(
                         'max_heroes',
+                        'remote',
                         'address',
                         'expiration_date',
                         css_class="span3",
@@ -53,19 +59,22 @@ class QuestCreateForm(forms.ModelForm):
                     css_class="row",
                 ),
             ),
-            FormActions(
-                Submit('save', 'Save', css_class='btn'),
-                Button('save', 'Save',  css_class="btn btn-primary"),
-            ),
         )
         super(QuestCreateForm, self).__init__(*args, **kwargs)
-        self.fields['location_granularity'].widget = forms.HiddenInput()
+        # self.fields['location_granularity'].widget = forms.HiddenInput()
+        self.fields['address'].required = False
+        self.fields['address'].label = _(u"Place")
+        self.fields['address'].help_text = _(u"Where does this quest take place?")
+        self.fields['expiration_date'].widget = forms.DateInput(attrs={'autocomplete': 'off'})
 
 
     class Meta:
         model = Quest
-        fields = ('title', 'description', 'max_heroes', 'address', 'expiration_date',
-                  'latitude', 'longitude', 'location_granularity')
+        fields = ('title', 'description', 'max_heroes', 'address',
+                  'expiration_date', 'remote',
+
+                  #'latitude', 'longitude', 'location_granularity'
+        )
 
 
 
