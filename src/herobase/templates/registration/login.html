@@ -6,16 +6,6 @@
 {% endblock %}
 
 {% block content %}
-    <h2>{% trans "Login" %}</h2>
-
-    {% crispy form %}
-
-    <p>
-        <a href="{% url auth_password_reset %}">{% trans "Forgotten password?" %}</a>
-    </p>
-    <p>
-        {% trans "You don't have an account yet?" %}
-        <a type="button" href="{% url registration_register %}" class="btn" id="join">{% trans "Join now!" %}</a>
-    </p>
+{%  include "registration/login_box.inc.html" %}
 
 {% endblock %}

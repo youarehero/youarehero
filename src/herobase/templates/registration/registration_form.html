@@ -6,13 +6,6 @@
 {% endblock %}
 
 {% block content %}
-    <h2>{% trans "Be a Hero!" %}</h2>
-    <p>{% trans "Being a hero is exciting. Try it yourself!" %}</p>
-
-    <form method="post" action="." class="well">{% csrf_token %}
-        {{ form|crispy }}
-        <input type="submit" class="btn btn-primary" value="{% trans 'register' %}" />
-    </form>
-
+{% include "registration/registration_box.inc.html" %}
 {%  endblock %}
 
