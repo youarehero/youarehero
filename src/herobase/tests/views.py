@@ -53,7 +53,7 @@ class AuthenticatedIntegrationTest(TestCase):
     def test_quest_create(self):
         """A user should be able to create a quest."""
         response = self.client.get(reverse('quest-create'))
-        self.assertContains(response, 'Level')
+        self.assertContains(response, 'quest')
 
         response = self.client.post(reverse('quest-create'), data={
             'title': 'title',
