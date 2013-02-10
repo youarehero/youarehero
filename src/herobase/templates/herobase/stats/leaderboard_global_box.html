@@ -1,0 +1,35 @@
+{% extends "herobase/layout/box.html" %}
+{% load crispy_forms_tags i18n hero_actions static %}
+
+
+{% load i18n static %}
+
+{% block buttons-top %}
+
+{% endblock %}
+
+{% block title %}
+    <h2>Top 10</h2>
+{% endblock %}
+
+{% block content %}
+   <table class="table">
+        {% for currentuser in global %}
+
+                <tr {% if currentuser.user.username == myname %} class="self" {% endif %}><td>
+
+                    <img src="{{ currentuser.userprofile.avatar_thumbnail }}"></a>
+                    <div class="user"><a href="{% url userprofile-public currentuser.username %}">{{ currentuser.username }}</a></div>
+                    <div class="meta">{{ currentuser.userprofile.experience }} XP</div>
+                </td></tr>
+
+        {% endfor %}
+    </table>
+
+
+{% endblock %}
+
+
+
+
+

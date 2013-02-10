@@ -15,6 +15,9 @@
         <li class="{% ifstartswith "quest-my" %}on{% else %}off{% endifstartswith %}">
             <a href="{% url quest-my %}" rel="tooltip" title="{% trans 'My Quests' %}">
                 <i class="icon-yah-my-quests"><span>{% trans 'My Quests' %}</span></i></a></li>
+        <li class="{% ifstartswith "quest-my" %}on{% else %}off{% endifstartswith %}">
+        <a href="{% url leader-board %}" rel="tooltip" title="{% trans 'Leaderboard' %}">
+            <i class="icon-yah-category"><span>{% trans 'Leaderboard' %}</span></i></a></li>
         <li class="{% ifactive "message-list-in" %}on{% else %}off{% endifactive %}">
             <a href="{% url message-list-in %}" rel="tooltip" title="{% trans 'Private Messages' %}">
                 <i class="icon-yah-messages">
@@ -39,7 +42,7 @@
                 <i class="icon-yah-billboard"><span>{% trans 'Billboard' %}</span></i></a></li>
          <li class="{% ifactive "quest-list" %}on{% else %}off{% endifactive %}">
         <a href="/blog/" target="_blank" rel="tooltip" title="{% trans 'Blog' %}">
-            <i class="icon-yah-new"><span>{% trans 'Blog' %}</span></i></a></li>
+            <i class="icon-yah-social"><span>{% trans 'Blog' %}</span></i></a></li>
 
 
     {% endif %}

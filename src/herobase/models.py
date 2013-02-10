@@ -386,7 +386,7 @@ class UserProfile(LocationMixin, models.Model, AvatarImageMixin):
 
     @property
     def rank(self):
-        return list(User.objects.select_related().order_by( '-userprofile__experience', 'username' )).index(self.user) + 1
+        return list(User.objects.select_related().order_by( 'experience', 'username' )).index(self.user) + 1
 
     def __unicode__(self):
         return self.user.username
@@ -469,3 +469,10 @@ def get_dummy_user():
     return UserProfile(user=User(username="dummy"))
 
 
+def getTopUser():
+    all=list(User.objects.select_related().order_by( 'experience', 'username' ))
+    top={}
+    for place in range(0,10) :
+        top.append(all[place])
+
+    return top
