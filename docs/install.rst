@@ -129,6 +129,7 @@ If you want to send emails from your local machine, edit ``youarehero/settings/l
    EMAIL_PORT = 25
    EMAIL_HOST_PASSWORD =
    DEFAULT_FROM_EMAIL =
+   EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 and insert an smtp-server, user and password, such as for an email-client.
 
