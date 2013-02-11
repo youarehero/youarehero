@@ -18,8 +18,8 @@ class UnauthenticatedIntegrationTest(TestCase):
     def test_quest_create(self):
         """If a anonymous user want to create a quest, he is redirected to the login form."""
         client = Client()
-        response = client.get(reverse('quest-create'))
-        self.assertTrue(response, '%s?next=%s' % (reverse('django.contrib.auth.views.login'), reverse('quest-create')))
+        response = client.get(reverse('quest_create'))
+        self.assertTrue(response, '%s?next=%s' % (reverse('django.contrib.auth.views.login'), reverse('quest_create')))
 
 
         #todo be fixxed
@@ -52,10 +52,10 @@ class AuthenticatedIntegrationTest(TestCase):
 
     def test_quest_create(self):
         """A user should be able to create a quest."""
-        response = self.client.get(reverse('quest-create'))
+        response = self.client.get(reverse('quest_create'))
         self.assertContains(response, 'quest')
 
-        response = self.client.post(reverse('quest-create'), data={
+        response = self.client.post(reverse('quest_create'), data={
             'title': 'title',
             'description': 'description',
             'hero_class': 1,
@@ -69,43 +69,43 @@ class AuthenticatedIntegrationTest(TestCase):
     def test_quest_list(self):
         """A user should be able to visit the quest-list-view."""
         quest = create_quest(title='aquest')
-        response = self.client.get(reverse('quest-list'))
+        response = self.client.get(reverse('quest_list'))
         self.assertContains(response, 'aquest')
 
     def test_quest_detail(self):
         """A owner should be able to see his quest detail-view and a hero applying for that quest."""
         quest = create_quest(title='questwithadventure', owner=self.user)
         adventure = create_adventure(quest)
-        response = self.client.get(reverse("quest-detail", args=(quest.pk, )))
+        response = self.client.get(reverse("quest_detail", args=(quest.pk, )))
         self.assertContains(response, quest.title)
         self.assertContains(response, adventure.user.username)
 
     def test_user_edit(self):
         """A user should be able to see his userprofile-edit-form."""
-        response = self.client.get(reverse('userprofile-edit'))
+        response = self.client.get(reverse('userprofile_edit'))
         self.assertContains(response, self.user.username)
 
     def test_user_security_edit(self):
         """A user should be able to see his userprofile-privacy-settings-form."""
-        response = self.client.get(reverse('userprofile-privacy-settings'))
+        response = self.client.get(reverse('userprofile_privacy_settings'))
         self.assertContains(response, self.user.username)
 
     def test_user_profile(self):
         """A user should be able to see another users public profile."""
         user = create_user()
-        response = self.client.get(reverse('userprofile-public', args=(user.username,)))
+        response = self.client.get(reverse('userprofile_public', args=(user.username,)))
         self.assertContains(response, user.username)
 
     def test_quest_details_as_hero(self):
         """A hero can see quest-details."""
         quest = create_quest()
-        response = self.client.get(reverse('quest-detail', args=(quest.pk,)))
+        response = self.client.get(reverse('quest_detail', args=(quest.pk,)))
         self.assertContains(response, quest.title)
 
     def test_quest_details_as_owner(self):
         """An owner can see quest-details."""
         quest = create_quest(owner=self.user)
-        response = self.client.get(reverse('quest-detail', args=(quest.pk,)))
+        response = self.client.get(reverse('quest_detail', args=(quest.pk,)))
         self.assertContains(response, quest.title)
 
     @unittest.skip("Not implemented right now")

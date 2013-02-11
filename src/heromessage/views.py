@@ -36,7 +36,7 @@ def message_create(request, user_id=None, message_id=None):
         message.save()
         messages.success(request, _('Message successfully sent'))
         notify.message_received(message.recipient, message)
-        return HttpResponseRedirect(reverse('message-list-out'))
+        return HttpResponseRedirect(reverse('message_list_out'))
 
     return render(request, 'message/create.html', {'form': form})
 
@@ -51,7 +51,7 @@ def message_update(request, message_id):
             message.sender_deleted = now()
         message.save()
         messages.success(request, _("Message successfully deleted"))
-    return HttpResponseRedirect(reverse("message-list"))
+    return HttpResponseRedirect(reverse("message_list"))
 
 @login_required
 def message_list_out(request):

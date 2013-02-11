@@ -1,5 +1,6 @@
 {% extends "herobase/layout/inner_box.html" %}
 {% load i18n hero_actions hero_message %}
+{% load url from future %}
 
 {% block wrapper_classes %}span1{% endblock %}
 
@@ -9,7 +10,7 @@
 
 {% block buttons-top %}
     {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
-        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post">
+        <form action="{% url "owner_update_hero" quest.pk adventure.user.pk %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="action" value="reject">
             <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Reject" %}">
@@ -24,7 +25,7 @@
 {% block buttons-bottom %}
     {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
         {% message_user adventure.user %}
-        <form action="{% url owner-update-hero quest.pk adventure.user.pk %}" method="post">
+        <form action="{% url "owner_update_hero" quest.pk adventure.user.pk %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="action" value="accept">
             <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept" %}">

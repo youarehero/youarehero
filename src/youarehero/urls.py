@@ -23,7 +23,7 @@ urlpatterns = patterns(
         name="stats"),
     url(regex=r'^leader/$',
         view='herobase.views.leader_board',
-        name="leader-board"),
+        name="leader_board"),
 
     url(r'^profile/', include('herobase.urls.profile')),
     url(r'^quest/', include('herobase.urls.quest')),
@@ -32,7 +32,7 @@ urlpatterns = patterns(
 
     url(regex=r'^dismiss_notification/(?P<notification_id>\d+)/$',
         view='heronotification.views.mark_notification_read',
-        name='mark-notification-read'),
+        name='mark_notification_read'),
 
     # third party apps
 

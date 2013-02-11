@@ -1,7 +1,8 @@
+{% load url from future %}
 {% if request.user.is_authenticated %}
     <ul class="page-tabs">
-        <li><a href="{% url quest-my %}">Meine Quests</a></li>
-        <li><a href="{% url quest-create %}">Quest erstellen</a></li>
-        <li><a href="{% url quest-list %}?state=1">Quests finden</a></li>
+        <li><a href="{% url "quest_my" %}">Meine Quests</a></li>
+        <li><a href="{% url "quest_create" %}">Quest erstellen</a></li>
+        <li><a href="{% url "quest_list" %}?state=1">Quests finden</a></li>
     </ul>
 {% endif %}

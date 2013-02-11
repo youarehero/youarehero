@@ -22,10 +22,10 @@ class MessageIntegrationTest(TestCase):
         self.logged_in = self.client.login(**self.user.credentials)
     def test_message_list(self):
         message = Message.objects.create(sender=self.user, recipient=self.user, text='text', title='themailtitle')
-        response = self.client.get(reverse('message-list-in'))
+        response = self.client.get(reverse('message_list_in'))
         self.assertContains(response, 'themailtitle')
     def test_message_create_view(self):
-        response = self.client.get(reverse('message-create'))
+        response = self.client.get(reverse('message_create'))
         self.assertContains(response, 'text')
     def test_message_mail_notifiaction_enabled(self):
         profile = self.user.get_profile()

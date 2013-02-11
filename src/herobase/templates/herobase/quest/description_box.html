@@ -1,13 +1,12 @@
 {% extends "herobase/layout/box.html" %}
+{% load url from future %}
+
 {% block content %}
-
-
-
     <img src="http://placehold.it/120x120" alt=""/>
     <h2>{{ quest.title }}</h2>
     <p>{% block text %}{{ quest.description }}{% endblock %}</p>
 
-    <form method="POST" action="{% url hero-update-quest quest.pk %}">
+    <form method="POST" action="{% url "hero_update_quest" quest.pk %}">
         {% csrf_token %}
         <input type="submit" name="action" value="apply"/>
         <input type="submit" name="action" value="cancel"/>

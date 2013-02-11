@@ -1,6 +1,6 @@
 {% extends "herobase/layout/box.html" %}
 {% load crispy_forms_tags i18n static %}
-
+{% load url from future %}
 
 {% load i18n static %}
 
@@ -16,10 +16,10 @@
         <div class="span3">
 
             {% trans "You don't have an account yet?" %}<br><br>
-            <a type="button" href="{% url registration_register %}" class="btn-large btn-warning" id="join">{% trans "Join now!" %}</a>
+            <a type="button" href="{% url "registration_register" %}" class="btn-large btn-warning" id="join">{% trans "Join now!" %}</a>
         </div>
         <div class="span3"><br><br>
-            <a type="button" href="{% url auth_login %}" class="btn-large btn-success" id="login">{% trans "Login" %}</a>
+            <a type="button" href="{% url "auth_login" %}" class="btn-large btn-success" id="login">{% trans "Login" %}</a>
 
             <br><br><br>
         </div>

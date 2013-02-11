@@ -158,7 +158,7 @@ def owner_update_quest(request, quest_id):
         quest_livecycle.owner_quest_done(quest)
     else:
         raise ValidationError('No known action specified')
-    return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
+    return HttpResponseRedirect(reverse('quest_detail', args=(quest.pk, )))
 
 @require_POST
 @login_required
@@ -177,7 +177,7 @@ def owner_update_hero(request, quest_id, hero_id):
     else:
         raise ValidationError('No known action specified')
 
-    return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
+    return HttpResponseRedirect(reverse('quest_detail', args=(quest.pk, )))
 
 @require_POST
 @login_required
@@ -195,7 +195,7 @@ def hero_update_quest(request, quest_id):
         quest_livecycle.hero_quest_cancel(quest, request.user)
     else:
         raise ValidationError('No known action specified')
-    return HttpResponseRedirect(reverse('quest-detail', args=(quest.pk, )))
+    return HttpResponseRedirect(reverse('quest_detail', args=(quest.pk, )))
 
 @login_required
 def userprofile(request, username=None, template='herobase/userprofile/detail.html'):
@@ -231,7 +231,7 @@ def userprofile_edit(request):
     if form.is_valid():
         form.save()
         messages.success(request, 'Profile successfully changed')
-        return HttpResponseRedirect(reverse("userprofile-edit"))
+        return HttpResponseRedirect(reverse("userprofile_edit"))
     return render(request, 'herobase/userprofile/edit.html', {
         'form': form
     })

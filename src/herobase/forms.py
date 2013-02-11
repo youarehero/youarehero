@@ -122,7 +122,7 @@ class UserProfilePrivacyEdit(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_tag=False
         self.helper.form_method = 'post'
-        #self.helper.form_action = 'userprofile-privacy-settings'
+        #self.helper.form_action = 'userprofile_privacy_settings'
         self.helper.form_class = 'form-horizontal'
 
         #self.helper.add_input(Submit('submit', 'Submit'))
@@ -164,10 +164,7 @@ class UserAuthenticationForm(AuthenticationForm):
         self.helper.form_tag=False
 
         if request:
-            if request.is_mobile:
-                self.helper.form_action = reverse('auth_login-m')
-            else:
-                self.helper.form_action = reverse('auth_login')
+            self.helper.form_action = reverse('auth_login')
 
         # make sure to use the next parameter iff exists
         if request and 'next' in request.GET:

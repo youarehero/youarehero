@@ -252,10 +252,7 @@ class Quest(LocationMixin, models.Model):
 
     def get_absolute_url(self):
         """Get the url for this quests detail page."""
-        return reverse("quest-detail", args=(self.pk,))
-    def get_absolute_m_url(self):
-        """Get the url for this quests detail page."""
-        return reverse("m-quest-detail", args=(self.pk,))
+        return reverse("quest_detail", args=(self.pk,))
 
     def __unicode__(self):
         """String representation"""

@@ -1,5 +1,6 @@
 {% extends "herobase/m/mobile.html" %}
 {% load crispy_forms_tags i18n static %}
+{% load url from future %}
 {% block content %}
 
     <form method="post" action="." class="well">{% csrf_token %}
@@ -8,6 +9,6 @@
         <input type="submit" class="btn btn-primary" value="{% trans 'Log in' %}" />
         <input type="hidden" name="next" value="/m" />
     </form>
-    <p>Don't have an account yet? <a href="{% url registration_register %}">{% trans "Sign up now!" %}</a></p>
-    <p>Forgot your password? Click <a href="{% url auth_password_reset %}">{% trans "here" %}</a> to reset your password.</p>
+    <p>Don't have an account yet? <a href="{% url "registration_register" %}">{% trans "Sign up now!" %}</a></p>
+    <p>Forgot your password? Click <a href="{% url "auth_password_reset" %}">{% trans "here" %}</a> to reset your password.</p>
 {% endblock %}

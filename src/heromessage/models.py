@@ -52,7 +52,7 @@ class Message(models.Model):
         )
 
     def get_absolute_url(self):
-        return reverse('message-list-in')
+        return reverse('message_list_in')
 
 def send_email_for_message(message):
     send_mail(t('You are Hero - new Message - %s') % message.title,

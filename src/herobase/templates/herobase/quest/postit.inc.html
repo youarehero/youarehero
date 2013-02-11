@@ -1,5 +1,6 @@
+{% load url from future %}
 <li>
-    <a href="{% url quest-detail quest.id %}" class="postit {{ quest.get_hero_class_display|lower }}">
+    <a href="{% url "quest_detail" quest.id %}" class="postit {{ quest.get_hero_class_display|lower }}">
         <h4>{{ quest.title|truncatechars:12 }} {{ quest.weight|floatformat:"3" }}</h4>
             <h5>
         <span>

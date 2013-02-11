@@ -9,17 +9,17 @@ urlpatterns = patterns(
     'herobase.views',
     url(regex=r'^edit/$',
         view='userprofile_edit',
-        name='userprofile-edit'),
+        name='userprofile_edit'),
     url(regex=r'^edit/skills/$',
         view='userprofile_skill_settings',
-        name='userprofile-skill-settings'),
+        name='userprofile_skill_settings'),
     url(regex=r'^private/$',
         view='userprofile',
-        name='userprofile-private'),
+        name='userprofile_private'),
     url(regex=r'^edit/privacy/$',
         view='userprofile_privacy_settings',
-        name='userprofile-privacy-settings'),
+        name='userprofile_privacy_settings'),
     url(regex=r'^public/(?P<username>.+)/$',
         view='userprofile',
-        name='userprofile-public')
+        name='userprofile_public')
 )

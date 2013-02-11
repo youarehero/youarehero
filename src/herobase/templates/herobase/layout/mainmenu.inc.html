@@ -1,49 +1,58 @@
 {% load i18n static crispy_forms_tags activelink %}
-
+{% load url from future %}
 
 <ul class="grid menu-grid clearfix">
     {% if request.user.is_authenticated %}
-        <li class="{% ifactive "home" %}on{% else %}off{% endifactive %}">
-            <a href="{% url home %}" rel="tooltip" title="{% trans 'Home' %}">
-                <i class="icon-yah-home"><span>{% trans 'Home' %}</span></i></a></li>
-        <li class="{% ifactive "quest-list" %}on{% else %}off{% endifactive %}">
-            <a href="{% url quest-list %}" rel="tooltip" title="{% trans 'Billboard' %}">
-                <i class="icon-yah-billboard"><span>{% trans 'Billboard' %}</span></i></a></li>
-        <li class="{% ifactive "quest-create" %}on{% else %}off{% endifactive %}">
-            <a href="{% url quest-create %}" rel="tooltip" title="{% trans 'Create new Quest' %}">
-                <i class="icon-yah-new"><span>{% trans 'New' %}</span></i></a></li>
-        <li class="{% ifstartswith "quest-my" %}on{% else %}off{% endifstartswith %}">
-            <a href="{% url quest-my %}" rel="tooltip" title="{% trans 'My Quests' %}">
-                <i class="icon-yah-my-quests"><span>{% trans 'My Quests' %}</span></i></a></li>
-        <li class="{% ifstartswith "quest-my" %}on{% else %}off{% endifstartswith %}">
-        <a href="{% url leader-board %}" rel="tooltip" title="{% trans 'Leaderboard' %}">
-            <i class="icon-yah-category"><span>{% trans 'Leaderboard' %}</span></i></a></li>
-        <li class="{% ifactive "message-list-in" %}on{% else %}off{% endifactive %}">
-            <a href="{% url message-list-in %}" rel="tooltip" title="{% trans 'Private Messages' %}">
+        <li class="{% ifactive "home" %}on{% endifactive %}">
+            <a href="{% url "home" %}" rel="tooltip" title="{% trans 'Home' %}">
+                <i class="icon-yah-home"><span>{% trans 'Home' %}</span></i>
+            </a>
+        </li>
+        <li class="{% ifactive "quest_list" %}on{% endifactive %}">
+            <a href="{% url "quest_list" %}" rel="tooltip" title="{% trans 'Billboard' %}">
+                <i class="icon-yah-billboard"><span>{% trans 'Billboard' %}</span></i>
+            </a>
+        </li>
+        <li class="{% ifactive "quest_create" %}on{% endifactive %}">
+            <a href="{% url "quest_create" %}" rel="tooltip" title="{% trans 'Create new Quest' %}">
+                <i class="icon-yah-new"><span>{% trans 'New' %}</span></i>
+            </a>
+        </li>
+        <li class="{% ifstartswith "quest_my" %}on{% endifstartswith %}">
+            <a href="{% url "quest_my" %}" rel="tooltip" title="{% trans 'My Quests' %}">
+                <i class="icon-yah-my-quests"><span>{% trans 'My Quests' %}</span></i>
+            </a>
+        </li>
+        <li class="{% ifstartswith "quest_my" %}on{% endifstartswith %}">
+            <a href="{% url "leader_board" %}" rel="tooltip" title="{% trans 'Leaderboard' %}">
+                <i class="icon-yah-category"><span>{% trans 'Leaderboard' %}</span></i>
+            </a>
+        </li>
+        <li class="{% ifactive "message_list_in" %}on{% endifactive %}">
+            <a href="{% url "message_list_in" %}" rel="tooltip" title="{% trans 'Private Messages' %}">
                 <i class="icon-yah-messages">
                     {% if request.user.get_profile.unread_messages_count != 0 %}
                         <span class="badge">{{ request.user.get_profile.unread_messages_count }}</span>
                     {% endif %}
                     <span>{% trans 'Messages' %}</span>
-                </i></a></li>
-        {#        <li><a href="{% url userprofile-private %}" rel="tooltip" title="{% trans 'Profile' %}">#}
-        {#            <i class="menu-icon-profile"><span>{% trans 'Profile' %}</span></i></a></li>#}
-        {#        <li><a href="{% url stats %}" rel="tooltip" title="{% trans 'Statistics' %}">#}
-        {#            <i class="menu-icon-stats"><span>{% trans 'Statistics' %}</span></i></a></li>#}
-        {#        <li><a href="{% url leader-board %}" rel="tooltip" title="{% trans 'Leader board' %}">#}
-        {#            <i class="menu-icon-leader">{% trans 'Leader board' %}</i></a></li>#}
-
+                </i>
+            </a>
+        </li>
     {% else %}
-        <li class="{% ifactive "home" %}on{% else %}off{% endifactive %}">
-            <a href="{% url home %}" rel="tooltip" title="{% trans 'Home' %}">
-                <i class="icon-yah-home"><span>{% trans 'Home' %}</span></i></a></li>
-        <li class="{% ifactive "quest-list" %}on{% else %}off{% endifactive %}">
-            <a href="{% url quest-list %}" rel="tooltip" title="{% trans 'Billboard' %}">
-                <i class="icon-yah-billboard"><span>{% trans 'Billboard' %}</span></i></a></li>
-         <li class="{% ifactive "quest-list" %}on{% else %}off{% endifactive %}">
-        <a href="/blog/" target="_blank" rel="tooltip" title="{% trans 'Blog' %}">
-            <i class="icon-yah-social"><span>{% trans 'Blog' %}</span></i></a></li>
-
-
+        <li class="{% ifactive "home" %}on{% endifactive %}">
+            <a href="{% url "home" %}" rel="tooltip" title="{% trans 'Home' %}">
+                <i class="icon-yah-home"><span>{% trans 'Home' %}</span></i>
+            </a>
+        </li>
+        <li class="{% ifactive "quest_list" %}on{% endifactive %}">
+            <a href="{% url "quest_list" %}" rel="tooltip" title="{% trans 'Billboard' %}">
+                <i class="icon-yah-billboard"><span>{% trans 'Billboard' %}</span></i>
+            </a>
+        </li>
+        <li class="{% ifactive "quest_list" %}on{% endifactive %}">
+            <a href="/blog/" target="_blank" rel="tooltip" title="{% trans 'Blog' %}">
+                <i class="icon-yah-social"><span>{% trans 'Blog' %}</span></i>
+            </a>
+        </li>
     {% endif %}
 </ul>
