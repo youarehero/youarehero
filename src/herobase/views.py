@@ -266,19 +266,18 @@ def userprofile_skill_settings(request):
 @login_required
 def leader_board(request):
     """Render a view of the top heroes by rank."""
-    top_creators = User.objects.filter(created_quests__state=Quest.STATE_OWNER_DONE).annotate(quest_count=Count('created_quests')).filter(quest_count__gt=0).order_by('-quest_count')
 
-    if request.user.is_authenticated():
-        global_board = request.user.get_profile().get_local_relative_leaderboard()
-        local_board = request.user.get_profile().get_local_relative_leaderboard()
-    else:
-        global_board = User.objects.select_related().filter(userprofile__experience__gt=0).order_by('-userprofile__experience')
-        local_board = None
+
+    global_all = User.objects.select_related().filter(userprofile__experience__gt=0).order_by('-userprofile__experience')
+    global_board = []
+    for  user in global_all[:10]:
+        global_board.append(user)
+    relativ_board = []
 
     return render(request, "herobase/leader_board.html", {
         'global_board': global_board,
-        'local_board': local_board,
-        'top_creators': top_creators,
+        'relativ_board': relativ_board,
+
     })
 
 
