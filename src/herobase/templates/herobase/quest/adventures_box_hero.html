@@ -13,6 +13,8 @@
                     {% include "herobase/quest/adventure_inner_box_hero.html" %}
                 </li>
             {% endif %}
+        {% empty %}
+            <li>{% trans "No participants yet" %}</li>
         {% endfor %}
     </ul>
 

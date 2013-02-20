@@ -12,8 +12,9 @@
 
 {% block content %}
     <img src="{{ adventure.user.get_profile.avatar_thumbnail_80 }}" alt=""/>
+    <em>{{ adventure.get_state_display }}</em>
 {% endblock %}
 
 {% block buttons-bottom %}
-    {{ adventure.get_state_display }}
+
 {% endblock %}

@@ -124,7 +124,7 @@ class hero_accepted(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("You have been accepted for the quest<strong>%s</strong>." %
+        return mark_safe("You have been accepted for the quest <strong>%s</strong>." %
                          notification.target.title)
 
 
@@ -134,7 +134,7 @@ class hero_rejected(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("Your application for the quest<strong>%s</strong> "
+        return mark_safe("Your application for the quest <strong>%s</strong> "
                          "has been rejected." % notification.target.title)
 
 class message_received(NotificationTypeBase):

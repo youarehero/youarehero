@@ -149,15 +149,18 @@ def owner_update_quest(request, quest_id):
     # start / cancel / done / document
 
     action = request.POST.get('action')
-    if action == 'start':
-        message_for_heroes = request.POST.get('message_for_heroes')
-        quest_livecycle.owner_quest_start(quest, message_for_heroes)
-    elif action == 'cancel':
-        quest_livecycle.owner_quest_cancel(quest)
-    elif action == 'done':
-        quest_livecycle.owner_quest_done(quest)
-    else:
-        raise ValidationError('No known action specified')
+    try:
+        if action == 'start':
+            message_for_heroes = request.POST.get('message_for_heroes')
+            quest_livecycle.owner_quest_start(quest, message_for_heroes)
+        elif action == 'cancel':
+            quest_livecycle.owner_quest_cancel(quest)
+        elif action == 'done':
+            quest_livecycle.owner_quest_done(quest)
+        else:
+            raise ValidationError('No known action specified')
+    except ValidationError as e:
+        messages.error(request, e.messages[0])
     return HttpResponseRedirect(reverse('quest_detail', args=(quest.pk, )))
 
 @require_POST
@@ -170,13 +173,15 @@ def owner_update_hero(request, quest_id, hero_id):
         return HttpResponseForbidden("You are not the owner of this quest.")
 
     action = request.POST.get('action')
-    if action == 'accept':
-        quest_livecycle.owner_hero_accept(quest, hero)
-    elif action == 'reject':
-        quest_livecycle.owner_hero_reject(quest, hero)
-    else:
-        raise ValidationError('No known action specified')
-
+    try:
+        if action == 'accept':
+            quest_livecycle.owner_hero_accept(quest, hero)
+        elif action == 'reject':
+            quest_livecycle.owner_hero_reject(quest, hero)
+        else:
+            raise ValidationError('No known action specified')
+    except ValidationError as e:
+        messages.error(request, e.messages[0])
     return HttpResponseRedirect(reverse('quest_detail', args=(quest.pk, )))
 
 @require_POST
@@ -189,12 +194,15 @@ def hero_update_quest(request, quest_id):
         raise ValidationError("Im afraid I can't let you do that.")
 
     action = request.POST.get('action')
-    if action == 'apply':
-        quest_livecycle.hero_quest_apply(quest, request.user)
-    elif action == 'cancel':
-        quest_livecycle.hero_quest_cancel(quest, request.user)
-    else:
-        raise ValidationError('No known action specified')
+    try:
+        if action == 'apply':
+            quest_livecycle.hero_quest_apply(quest, request.user)
+        elif action == 'cancel':
+            quest_livecycle.hero_quest_cancel(quest, request.user)
+        else:
+            raise ValidationError('No known action specified')
+    except ValidationError as e:
+        messages.error(request, e.messages[0])
     return HttpResponseRedirect(reverse('quest_detail', args=(quest.pk, )))
 
 @login_required

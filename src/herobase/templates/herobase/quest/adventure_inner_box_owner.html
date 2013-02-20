@@ -20,6 +20,7 @@
 {% endblock %}
 {% block content %}
     <img src="{{ adventure.user.get_profile.avatar_thumbnail_80 }}" alt=""/>
+    <em>{{ adventure.get_state_display }}</em>
 {% endblock %}
 
 {% block buttons-bottom %}
@@ -31,7 +32,6 @@
             <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept" %}">
                 <i class="icon-yah-ok icon-40"></i></button>
         </form>
-    {% else %}
-        {{ adventure.get_state_display }}
+
     {% endif %}
 {% endblock %}

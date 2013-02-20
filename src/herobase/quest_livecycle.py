@@ -100,7 +100,7 @@ def hero_quest_done(quest, hero):
     pass
 
 def hero_quest_cancel(quest, hero):
-    if not quest.open or quest.canceled or quest.done:
+    if quest.started or quest.canceled or quest.done:
         raise ValidationError("You can't cancel participation at this time.")
 
     if quest.adventures.filter(user=hero, canceled=True).exists():
