@@ -10,7 +10,7 @@ import logging
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
-from django.db.models import Max
+from django.db.models import Max, Q
 from django.utils import simplejson as json
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
