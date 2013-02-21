@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 """
 The Views module provide view functions, which were called by the
@@ -149,10 +148,12 @@ def quest_my(request):
     """Views the quests the hero is envolved with."""
     template='herobase/quest/my.html'
     user = request.user
-    return render(request, template, {
-        'quests_created_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:10],
-        'quests_joined_active': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user)[:10],
-        }
+
+    created_q = Q(owner=user)
+    joined_q = Q(adventures__user=user)
+    quests = Quest.objects.filter(canceled=False, done=False).filter(created_q | joined_q).order_by('-created')[:10]
+
+    return render(request, template, {'quests': quests}
     )
 def quest_my_created(request):
     """Views the quests the hero is envolved with."""

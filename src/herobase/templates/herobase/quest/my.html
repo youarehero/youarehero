@@ -11,32 +11,18 @@
 {% endblock %}
 
 {% block content %}
-    <h2>{% trans "Current Quests" %}</h2>
-    <h3>Quests you have created</h3>
-    {% if quests_active %}
-        {% for quest in quests_active %}
-            {% include "herobase/quest/my_box_owner.html" %}
+{#    <h2>{% trans "Current Quests" %}</h2>#}
+    {% if quests %}
+        {% for quest in quests %}
+            {% if quest.owner == request.user %}
+                {% include "herobase/quest/my_box_owner.html" %}
+            {% else %}
+                {% include "herobase/quest/my_box_hero.html" %}
+            {% endif %}
         {% endfor %}
     {% else %}
-        You don't have any currently active quests.
+{#        {% trans "There are no quests." %}#}
     {% endif %}
 
-    <h3>Quests you are participating in</h3>
-    {% if quests_joined %}
-            {% for quest in quests_joined %}
-                    {% include "herobase/quest/my_box_hero.html" %}
-            {% endfor %}
-    {% else %}
-        You have not joined any quests yet.
-    {% endif %}
-
-    <h2>Old quests</h2>
-    {% if quests_old %}
-            {% for quest in quests_old %}
-                    {% include "herobase/quest/my_box_hero.html" %}
-            {% endfor %}
-    {% else %}
-        You don't have any old quests yet.
-    {% endif %}
 
 {% endblock %}
