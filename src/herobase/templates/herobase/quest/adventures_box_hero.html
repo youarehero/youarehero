@@ -10,11 +10,9 @@
 {% block content %}
     <ul class="grid">
         {% for adventure in quest.adventures.all %}
-            {% if adventure.accepted %}
-                <li class="span1-5">
-                    {% include "herobase/quest/adventure_inner_box_hero.html" %}
-                </li>
-            {% endif %}
+            <li class="span1-5">
+                {% include "herobase/quest/adventure_inner_box_hero.html" %}
+            </li>
         {% empty %}
             <li>{% trans "There are no participants yet." %}</li>
         {% endfor %}
