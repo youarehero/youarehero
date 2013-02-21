@@ -5,6 +5,8 @@
     <h2>{% trans "Participants" %}</h2>
 {% endblock %}
 
+{% block extra_classes %}collapsible{% endblock %}
+
 {% block content %}
     <ul class="grid">
         {% for adventure in quest.adventures.all %}

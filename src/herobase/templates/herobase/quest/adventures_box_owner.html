@@ -17,6 +17,8 @@
             <li class="span1-5">
                 {% include "herobase/quest/adventure_inner_box_owner.html" %}
             </li>
+        {% empty %}
+            <li>{% trans "No participants yet" %}</li>
         {% endfor %}
     </ul>
 {% endblock %}
