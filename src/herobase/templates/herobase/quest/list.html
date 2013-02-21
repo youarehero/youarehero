@@ -26,44 +26,38 @@
 {#{% endblock %}#}
 
 {% block page_title %}
-    <h1>{% trans "Quests" %}</h1>
+    <h1>{% trans "Billboard" %}</h1>
 {% endblock %}
 
 {% block submenu %}
+    <form action="" method="get" class="form form-inline">
+        <div class="btn-group">
+            <input placeholder="z.B. Übersetzen" type="search" class="search" name="title" value="{{ filter.form.data.title }}"/>
+            <input id="" class="btn" type="submit" name="submit" value="Suchen"/>
+        </div>
+    </form>
 {% endblock %}
 
 {% block content %}
-{# {% cache 60 quests request.user.pk filter.form.level filter.form.state filter.form.hero_class request.GET.page %} #}
+    {% paginate 12 quests %}
+    <div style="text-align: right">{% show_pages %}</div>
     <div class="quest-list">
-        <form action="" method="get" class="form form-inline">
-{#        <div class="btn-toolbar">#}
-            <div class="btn-group">
-                <input placeholder="Titel" type="search" class="search" name="title" value="{{ filter.form.data.title }}"/>
-                <input id="" class="btn" type="submit" name="submit" value="Suchen"/>
-            </div>
-            {% paginate 12 quests %}
-            <span style="margin: -40px 0 0 20px;">{% show_pages %}</span>
-{#        </div>#}
-        </form>
         <hr>
-                <ul class="grid">
-                    {% for quest in quests %}
-                        <li class="span{% cycle '3-5' '2-75' '3' '3-25' %}">
-                            {% include "herobase/quest/list_box.html" %}
-                        </li>
+        <ul class="grid">
+            {% for quest in quests %}
+                <li class="span{% cycle '3-5' '2-75' '3' '3-25' %}">
+                    {% include "herobase/quest/list_box.html" %}
+                </li>
 
-                    {% empty %}
-                        {% if filter.is_filtered %}
-                            {% trans "No quests found matching your current criteria." %}
-                            <a href="./?state=1">{% trans "Show all." %}</a>
-                        {% else %}
-                            {% trans "There don't seem to be any quests." %}
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-
-
-        </div>
+            {% empty %}
+                {% if filter.is_filtered %}
+                    {% trans "No quests found matching your current criteria." %}
+                    <a href="./?state=1">{% trans "Show all." %}</a>
+                {% else %}
+                    {% trans "There don't seem to be any quests." %}
+                {% endif %}
+            {% endfor %}
+        </ul>
     </div>
-    {# {% endcache %} #}
+    <div style="text-align: right">{% show_pages %}</div>
 {% endblock %}
