@@ -56,7 +56,7 @@ class QuestTest(TestCase):
         quest = create_quest()
         adventure = create_adventure(quest)
         quest_livecycle.owner_hero_accept(quest, adventure.user)
-        self.assertIn(adventure.user, quest.accepted_heroes())
+        self.assertIn(adventure.user, quest.heroes.accepted())
 
     def test_owner_done_no_heroes(self):
         """If there was no hero accepted for my quest, I can't mark the quest as "done"."""
@@ -86,8 +86,8 @@ class QuestTest(TestCase):
         quest = create_quest()
         adventure = create_adventure(quest)
         quest_livecycle.owner_hero_reject(quest, adventure.user)
-        self.assertNotIn(adventure.user, quest.applying_heroes())
-        self.assertNotIn(adventure.user, quest.accepted_heroes())
+        self.assertNotIn(adventure.user, quest.heroes.applying())
+        self.assertNotIn(adventure.user, quest.heroes.accepted())
 
 
     def test_adventure_done(self):

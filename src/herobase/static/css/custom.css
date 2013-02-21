@@ -959,12 +959,6 @@ textarea,
   width: 110px;
   margin-right: 0px;
 }
-.avatar-small img {
-  margin-right: 10px;
-  width: 70px;
-  height: 70px;
-  float: left;
-}
 .avatar-small .progress {
   margin-bottom: 0;
   border: 2px solid black;
