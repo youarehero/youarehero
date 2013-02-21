@@ -674,6 +674,7 @@ ul.menu-grid.grid li:hover a {
   border-left-width: 8px;
   border-right-width: 8px;
   border-top-width: 8px;
+  border-bottom-width: 8px;
   border-bottom: 8px solid #222222;
   border-top: 0;
 }

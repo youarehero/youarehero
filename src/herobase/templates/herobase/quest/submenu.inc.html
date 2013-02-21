@@ -2,7 +2,7 @@
 {% load activelink %}
 {% if request.user.is_authenticated %}
     <ul class="page-tabs">
-        <li class="{% ifactive "home" %}on{% endifactive %}">
+        <li class="{% ifactive "quest_my" %}on{% endifactive %}">
             <a href="{% url "quest_my" %}">Alle</a></li>
         <li class="{% ifactive "home" %}on{% endifactive %}">
             <a href="{% url "quest_create" %}">Angenommen</a></li>
