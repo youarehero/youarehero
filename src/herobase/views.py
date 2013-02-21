@@ -127,16 +127,41 @@ def hero_home_view(request, template='herobase/hero_home.html'):
 
 
 @login_required
-def quest_my(request, template='herobase/quest/my.html'):
+def quest_my(request):
     """Views the quests the hero is envolved with."""
+    template='herobase/quest/my.html'
     user = request.user
-    return render(request, template,
-            {
-            #'profile': user.get_profile(),
-            'quests_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:10],
-            'quests_old': user.created_quests.exclude(canceled=False, done=False).order_by('-created')[:10],
-            'quests_joined': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user)[:10]
-        })
+    return render(request, template, {
+        'quests_created_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:10],
+        'quests_joined_active': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user)[:10],
+        }
+    )
+def quest_my_created(request):
+    """Views the quests the hero is envolved with."""
+    template='herobase/quest/my.html'
+    user = request.user
+    return render(request, template, {
+        'quests_created_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:100],
+        }
+    )
+def quest_my_joined(request):
+    """Views the quests the hero is envolved with."""
+    template='herobase/quest/my.html'
+    user = request.user
+    return render(request, template, {
+        'quests_joined_active': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user)[:100],
+        }
+    )
+def quest_my_done(request):
+    """Views the quests the hero is envolved with."""
+    template='herobase/quest/my.html'
+    user = request.user
+    return render(request, template, {
+        'quests_created_done': user.created_quests.exclude(canceled=False, done=False).order_by('-created')[:100],
+        'quests_joined_done': Quest.objects.exclude(canceled=False, done=False).filter(adventures__user=user)[:100],
+        }
+    )
+
 
 @require_POST
 @login_required

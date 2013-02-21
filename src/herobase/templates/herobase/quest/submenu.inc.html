@@ -1,8 +1,14 @@
 {% load url from future %}
+{% load activelink %}
 {% if request.user.is_authenticated %}
     <ul class="page-tabs">
-        <li><a href="{% url "quest_my" %}">Meine Quests</a></li>
-        <li><a href="{% url "quest_create" %}">Quest erstellen</a></li>
-        <li><a href="{% url "quest_list" %}?state=1">Quests finden</a></li>
+        <li class="{% ifactive "home" %}on{% endifactive %}">
+            <a href="{% url "quest_my" %}">Alle</a></li>
+        <li class="{% ifactive "home" %}on{% endifactive %}">
+            <a href="{% url "quest_create" %}">Angenommen</a></li>
+        <li class="{% ifactive "home" %}on{% endifactive %}">
+            <a href="{% url "quest_list" %}?state=1">Erstellt</a></li>
+        <li class="{% ifactive "home" %}on{% endifactive %}">
+            <a href="{% url "quest_list" %}?state=1">Abgeschlossen</a></li>
     </ul>
 {% endif %}
