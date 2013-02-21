@@ -274,44 +274,11 @@ class Comment(models.Model):
 
 
 class AvatarImageMixin(object):
-    # FIXME: this should be done by templatetags
-    CLASS_AVATARS = {
-        5: "scientist.jpg",
-        1: 'gadgeteer.jpg',
-        2: 'diplomat.jpg',
-        3: 'action.jpg',
-        4: 'protective.jpg'}
-
     avatar_storage = FileSystemStorage(location=os.path.join(settings.PROJECT_ROOT, 'assets/'))
-
-    def avatar_thumbnails(self):
-        """Return a list of avatar thumbnails 50x50"""
-        return self._avatar_thumbnails((50, 50))
-
-    def avatar_thumbnails_tiny(self):
-        """Return a list of avatar thumbnails 15x15"""
-        return self._avatar_thumbnails((15, 15))
-
-    def _avatar_thumbnails(self, size):
-        """Return a list of tuples (id,img_url) of avatar thumbnails."""
-        thumbs = []
-        for id, image_name in self.CLASS_AVATARS.items():
-            image = os.path.join('avatar/', image_name)
-            thumbnailer = get_thumbnailer(self.avatar_storage, image)
-            thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality': 90})
-            thumbs.append((id, os.path.join(settings.MEDIA_URL, thumbnail.url)))
-        return thumbs
 
     def avatar(self):
         """Return a String, containing a path to a thumbnail-image 270x270."""
-        file_name = "default.png"
-        # if self.hero_class is not None:
-        #     file_name = self.CLASS_AVATARS[self.hero_class]
-        image = os.path.join('avatar/', file_name)
-        thumbnailer = get_thumbnailer(self.avatar_storage, image)
-        thumbnail = thumbnailer.get_thumbnail({'size': (270, 270),
-                                               'quality': 90})
-        return os.path.join(settings.MEDIA_URL, thumbnail.url)
+        return self._avatar_thumbnail((270, 270))
 
     @property
     def avatar_thumbnail(self):
@@ -336,8 +303,6 @@ class AvatarImageMixin(object):
     def _avatar_thumbnail(self, size):
         """Return a String, containing a path to a thumbnail-image 40x40."""
         file_name = "default.png"
-        if self.hero_class  is not None:
-            file_name = self.CLASS_AVATARS[self.hero_class]
         image = os.path.join('avatar/', file_name)
         thumbnailer = get_thumbnailer(self.avatar_storage, image)
         thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality': 90})

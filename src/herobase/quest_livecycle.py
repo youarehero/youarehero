@@ -82,8 +82,6 @@ def owner_quest_cancel(quest):
 def owner_quest_done(quest):
     if not quest.started or quest.canceled or quest.done:
         raise ValidationError("Can not cancel when already done/canceled.")
-    if not quest.accepted_heroes():
-        raise ValidationError("A quest without accepted heroes can't be marked as done.")
     quest.done = True
     quest.save()
 

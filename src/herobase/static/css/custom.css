@@ -386,6 +386,10 @@ ul.page-tabs li:hover:nth-child(5n),
 ul.page-tabs li.on:nth-child(5n) {
   background-position: -1200px -40px;
 }
+ul.page-tabs li:hover a,
+ul.page-tabs li.on a {
+  color: #ffc40d;
+}
 ul.page-tabs a {
   color: #eeeeee;
 }
@@ -525,7 +529,7 @@ ul.menu-grid.grid li a {
 }
 ul.menu-grid.grid li.on a,
 ul.menu-grid.grid li:hover a {
-  color: #ffffff;
+  color: #ffc40d;
 }
 .box {
   position: relative;
@@ -669,7 +673,7 @@ ul.menu-grid.grid li:hover a {
 .box .caret {
   display: none;
 }
-.box.collapsible .box-title {
+.box.collapsible > .box-title {
   cursor: pointer;
 }
 .box.collapsible .caret {
