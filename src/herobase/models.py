@@ -14,6 +14,7 @@ import os
 import textwrap
 
 from django.core.files.storage import FileSystemStorage
+from django.db.models import Q
 from django.db.models.query import QuerySet
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -213,9 +214,17 @@ class Quest(LocationMixin, models.Model):
         (3, _(u"Hight")),
     ))
 
+    @property
+    def can_accept_all(self):
+        return self.open and self.adventures.filter(accepted=False, rejected=False, canceled=False).exists()
+
+    @property
+    def can_start(self):
+        return (self.open and not self.adventures.filter(accepted=False, rejected=False, canceled=False).exists()
+                and self.adventures.filter(accepted=True, canceled=False).exists())
+
     def save(self, force_insert=False, force_update=False, using=None):
-        self.open = not self.pk or (not self.done and not self.canceled and
-                     self.adventures.filter(accepted=True, canceled=False).count() < self.max_heroes)
+        self.open = not self.pk or (not self.done and not self.canceled and not self.started)
 
         if self.canceled and not self.canceled_time:
             self.canceled_time = now()
@@ -253,6 +262,19 @@ class Quest(LocationMixin, models.Model):
     def get_absolute_url(self):
         """Get the url for this quests detail page."""
         return reverse("quest_detail", args=(self.pk,))
+
+
+    def get_state_display(self):
+        if self.canceled:
+            return "abgebrochen"
+        elif self.done:
+            return "erledigt"
+        elif self.started:
+            return "hat begonnen"
+        elif self.expiration_date < now():
+            return "abgelaufen"
+        else:
+            return "offen"
 
     def __unicode__(self):
         """String representation"""
@@ -336,7 +358,7 @@ class UserProfile(LocationMixin, models.Model, AvatarImageMixin):
 
     objects = models.Manager()
 
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, related_name='profile')
     experience = models.PositiveIntegerField(default=0)
     location = models.CharField(max_length=255) # TODO : placeholder
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True,

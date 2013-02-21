@@ -6,6 +6,7 @@
 
 {% block title %}
     <h4>{{ adventure.user.username }}</h4>
+    <em>{{ adventure.get_state_display }}</em>
 {% endblock %}
 
 {% block buttons_top %}
@@ -14,13 +15,15 @@
             {% csrf_token %}
             <input type="hidden" name="action" value="reject">
             <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Reject" %}">
-                <i class="icon-yah-delete icon-30"></i></button>
+                <i class="icon-yah-delete icon-30"></i>
+                <span class="button-description">Held nicht akzeptieren</span>
+            </button>
         </form>
     {% endif %}
 {% endblock %}
 {% block content %}
     <img src="{{ adventure.user.get_profile.avatar_thumbnail_80 }}" alt=""/>
-    <em>{{ adventure.get_state_display }}</em>
+
 {% endblock %}
 
 {% block buttons_bottom %}
@@ -30,7 +33,9 @@
             {% csrf_token %}
             <input type="hidden" name="action" value="accept">
             <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept" %}">
-                <i class="icon-yah-ok icon-40"></i></button>
+                <i class="icon-yah-ok icon-40"></i>
+                <span class="button-description">Held akzeptieren</span>
+            </button>
         </form>
 
     {% endif %}

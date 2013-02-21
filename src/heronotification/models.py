@@ -173,6 +173,21 @@ class Notification(models.Model):
     def is_dismissible(self):
         return True
 
+    @classmethod
+    def for_user(cls, user):
+        items = cls.objects.filter(user=user).order_by('-read', '-created').select_related('content_type')
+        model_map = {}
+        item_map = {}
+        for item in items:
+            model_map.setdefault(item.content_type, {}) \
+                [item.object_id] = item.id
+            item_map[item.id] = item
+        for ct, items_ in model_map.items():
+            for o in ct.model_class().objects.select_related() \
+                .filter(id__in=items_.keys()).all():
+                item_map[items_[o.id]].target = o
+        return items
+
     @property
     def image(self):
         if not self.type:
@@ -204,7 +219,9 @@ class Notification(models.Model):
 
     def is_read(self):
         # FIXME: this still modifies the model
-        if self.read is None and hasattr(self.type, 'is_read') and self.type.is_read(self):
+        if self.read is None and (not hasattr(self.type, 'is_read')
+                                  or hasattr(self.type, 'is_read')
+                                  and self.type.is_read(self)):
             self.read = now()
             self.save()
         return self.read

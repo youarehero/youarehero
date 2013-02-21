@@ -78,9 +78,11 @@ def quest_detail_view(request, quest_id):
     """Render detail template for quest, and adventure if it exists."""
     quest = get_object_or_404(Quest, pk=quest_id)
 
+    is_owner = request.user == quest.owner
     context = {
         'quest': quest,
-        'is_owner': request.user == quest.owner
+        'is_owner': is_owner,
+
     }
     if request.user.is_authenticated():
         try:
@@ -119,7 +121,7 @@ def hero_home_view(request, template='herobase/hero_home.html'):
     return render(request, template,
             {
              #'profile': user.get_profile(),
-             'notifications': Notification.objects.filter(user=user).order_by('-read', '-created'),
+             'notifications': Notification.for_user(user),
 #             'quests_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:10],
 #             'quests_old': user.created_quests.filter(done=True).order_by('-created')[:10],
 #             'quests_joined': Quest.objects.filter(canceled=False, adventures__user=user, adventures__canceled=False)[:10]
@@ -176,12 +178,13 @@ def owner_update_quest(request, quest_id):
     action = request.POST.get('action')
     try:
         if action == 'start':
-            message_for_heroes = request.POST.get('message_for_heroes')
-            quest_livecycle.owner_quest_start(quest, message_for_heroes)
+            quest_livecycle.owner_quest_start(quest)
         elif action == 'cancel':
             quest_livecycle.owner_quest_cancel(quest)
         elif action == 'done':
             quest_livecycle.owner_quest_done(quest)
+        elif action == 'accept_all':
+            quest_livecycle.owner_accept_all(quest)
         else:
             raise ValidationError('No known action specified')
     except ValidationError as e:

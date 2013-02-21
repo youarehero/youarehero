@@ -5,6 +5,7 @@
 {% block content %}
     <img src="http://placehold.it/120x120" alt=""/>
     <h2>{{ quest.title }}</h2>
+    <h3>Diese Quest ist {{ quest.get_state_display }}</h3>
     <p>{% block text %}{{ quest.description }}{% endblock %}</p>
     {% if not request_user_adventure %}
         {% trans "Apply now by clicking the ✓ Button on the right." %}

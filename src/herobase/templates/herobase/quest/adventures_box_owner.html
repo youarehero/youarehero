@@ -1,6 +1,6 @@
 {% extends "herobase/layout/box.html" %}
 {% load i18n hero_actions hero_message %}
-
+{% load url from future %}
 {% block title %}<h2>{% trans "Participants" %}</h2>{% endblock %}
 
 {% block extra_classes %}collapsible{% endblock %}
@@ -9,6 +9,16 @@
 {% endblock %}
 
 {% block buttons_bottom %}
+    {% if quest.can_accept_all %}
+    <form action="{% url "owner_update_quest" quest.pk  %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="accept_all">
+        <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept All" %}">
+            <i class="icon-yah-ok-all icon-40"></i>
+            <span class="button-description">Alle Akzeptieren</span>
+        </button>
+    </form>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -18,7 +28,7 @@
                 {% include "herobase/quest/adventure_inner_box_owner.html" %}
             </li>
         {% empty %}
-            <li>{% trans "No participants yet" %}</li>
+            <li>{% trans "There are no participants yet." %}</li>
         {% endfor %}
     </ul>
 {% endblock %}
