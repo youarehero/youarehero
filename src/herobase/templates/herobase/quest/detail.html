@@ -1,22 +1,5 @@
 {% extends "herobase/layout/base.html" %}
 {% load i18n hero_actions hero_message static %}
-{% block javascript %}
-    <script type="text/javascript" src="{% get_static_prefix %}js/forms.js"></script>
-    <script>
-        $(function() {
-            confirm_button("input[name=action_btn]");
-        });
-    </script>
-    <script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
-{% endblock %}
-
-{% block meta %}
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="You Are Hero - {{ quest.title }}" />
-    <meta property="og:site_name" content="You Are Hero" />
-    <meta property="og:image" content="{% get_static_prefix %}img/logo.png" />
-    <meta property="og:description" content="{{ quest.description }}" />
-{% endblock %}
 
 {% block page_title %}
     <h1>{% trans "Quest details" %}</h1>
@@ -36,6 +19,4 @@
     {% endif %}
     <hr/>
     {% include "herobase/quest/comments_box.html" %}
-
-
 {% endblock %}

@@ -99,7 +99,7 @@ def hero_quest_apply(quest, hero):
     if quest.adventures.filter(user=hero, canceled=False).exists():
         raise ValidationError("Can only apply once.")
 
-    if quest.adventures.filter(user=hero, accepted=True).exists():
+    if quest.adventures.filter(user=hero, accepted=True, canceled=False).exists():
         raise ValidationError("Can not apply after being accepted.")
 
     adventure, created = quest.adventures.get_or_create(user=hero)

@@ -261,6 +261,18 @@ class Quest(LocationMixin, models.Model):
         return self.title
 
 
+class Comment(models.Model):
+    author = models.ForeignKey(User, related_name='comments')
+    quest = models.ForeignKey(Quest, related_name='comments')
+
+    created = models.DateTimeField(auto_now_add=True)
+
+    text = models.TextField()
+
+    class Meta:
+        ordering = ('-created', )
+
+
 class AvatarImageMixin(object):
     # FIXME: this should be done by templatetags
     CLASS_AVATARS = {
@@ -293,8 +305,8 @@ class AvatarImageMixin(object):
     def avatar(self):
         """Return a String, containing a path to a thumbnail-image 270x270."""
         file_name = "default.png"
-        if self.hero_class is not None:
-            file_name = self.CLASS_AVATARS[self.hero_class]
+        # if self.hero_class is not None:
+        #     file_name = self.CLASS_AVATARS[self.hero_class]
         image = os.path.join('avatar/', file_name)
         thumbnailer = get_thumbnailer(self.avatar_storage, image)
         thumbnail = thumbnailer.get_thumbnail({'size': (270, 270),

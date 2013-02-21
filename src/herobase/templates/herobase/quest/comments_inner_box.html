@@ -1,0 +1,14 @@
+{% extends "herobase/layout/inner_box.html" %}
+{% load i18n hero_actions hero_message %}
+
+{% block wrapper_classes %}span6{% endblock %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <div>
+    <img src="{{ comment.author.get_profile.avatar_thumbnail_40 }}" alt=""/>
+    {{ comment.created }} von {{ comment.author.username }}
+    </div>
+    <p>{{ comment.text }}</p>
+{% endblock %}

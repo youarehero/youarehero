@@ -1,43 +1,58 @@
+
 # -*- coding: utf-8 -*-
 """
 The Views module provide view functions, which were called by the
 `url dispatcher <https://docs.djangoproject.com/en/1.4/topics/http/urls/>`_,
 and aggregate some data for use in templates.
 """
-from datetime import datetime
-from itertools import chain
+from datetime import timedelta
+import logging
+
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.core import signing
-from django.core.exceptions import PermissionDenied, ValidationError
-from django.core.mail import send_mail
-from django.core.signing import Signer
+from django.core.exceptions import ValidationError
+from django.db.models import Max
 from django.utils import simplejson as json
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
 from django.views.decorators.http import require_POST
 from django.contrib import messages
-import registration
-from herobase import quest_livecycle
-from heronotification.models import Notification
-from herorecommend import recommend_for_user, recommend, recommend_local
-from herorecommend.forms import UserSkillEditForm
-from utils import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse, HttpResponseForbidden
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
-from django.utils.translation import ugettext as _
-
 from django.views.generic.edit import CreateView
+
+from herobase import quest_livecycle
+from heronotification.models import Notification
+from herorecommend import recommend
+from herorecommend.forms import UserSkillEditForm
 from filters import QuestFilter
-from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit
-from herobase.models import Quest, Adventure, CLASS_CHOICES, UserProfile, Like
-import logging
-from django.db.models import Count, Sum
-import herorecommend.signals as recommender_signals 
+from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit, CommentForm
+from herobase.models import Quest, Adventure, CLASS_CHOICES, UserProfile, Like, Comment
+import herorecommend.signals as recommender_signals
 from herorecommend.models import MIN_SELECTED_SKILLS
+
 logger = logging.getLogger('youarehero.herobase')
+
+
+
+@login_required
+@require_POST
+def quest_comment(request, quest_id):
+    quest = get_object_or_404(Quest, pk=quest_id)
+    last_creation_time = Comment.objects.filter(author=request.user).aggregate(last_comment_time=Max('created'))['last_comment_time']
+    if last_creation_time and now() - last_creation_time < timedelta(seconds=30):
+        messages.warning(request, "Du must ein wenig warten bevor du wieder posten kannst.")
+        return HttpResponseRedirect(reverse('quest_detail', args=(quest.pk, )))
+
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.author = request.user
+        comment.quest = quest
+        comment.save()
+    return HttpResponseRedirect(reverse('quest_detail', args=(quest.pk, )))
 
 
 def quest_list_view(request, template='herobase/quest/list.html'):
@@ -82,6 +97,7 @@ def quest_detail_view(request, quest_id):
     context = {
         'quest': quest,
         'is_owner': is_owner,
+        'comment_form': CommentForm()
 
     }
     if request.user.is_authenticated():

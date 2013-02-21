@@ -9,6 +9,9 @@ logger = logging.getLogger(__name__)
 
 urlpatterns = patterns(
     'herobase.views',
+    url(regex=r'^(?P<quest_id>\d+)/comment/$',
+        view='quest_comment',
+        name='quest_comment'),
     url(regex=r'^list/$',
         view='quest_list_view',
         name='quest_list'),
@@ -30,6 +33,7 @@ urlpatterns = patterns(
     url(regex=r'^(?P<quest_id>\d+)/$',
         view='quest_detail_view',
         name='quest_detail'),
+
     url(regex=r'^(?P<quest_id>\d+)/owner_update_quest/$',
         view='owner_update_quest',
         name='owner_update_quest'),

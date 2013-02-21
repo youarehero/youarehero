@@ -25,6 +25,8 @@ class Message(models.Model):
     sender_archived = models.DateTimeField(blank=True, null=True)
     sender_deleted = models.DateTimeField(blank=True, null=True)
 
+    in_reply_to = models.ForeignKey('self', null=True, blank=True, related_name='+')
+
     recipient = models.ForeignKey(User, related_name='sent_messages', verbose_name=_("recipient"))
     sender = models.ForeignKey(User, related_name='received_messages', verbose_name=_("sender"))
 

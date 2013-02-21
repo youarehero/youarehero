@@ -211,7 +211,13 @@ class Notification(models.Model):
             raise ValueError("Not a valid target instance for that notification type")
 
         content_type = ContentType.objects.get_for_model(target)
-        return Notification.objects.get_or_create(content_type=content_type, object_id=target.pk, type_id=type_id, user=user)
+        notification, created = Notification.objects.get_or_create(content_type=content_type, object_id=target.pk, type_id=type_id, user=user)
+        if not created:
+            notification.read = None
+            notification.dismissed = None
+            notification.created = now()
+            notification.save()
+        return notification
 
     @property
     def type(self):
