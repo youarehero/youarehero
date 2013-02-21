@@ -1,16 +1,36 @@
 {% extends "herobase/layout/box.html" %}
+{% load i18n %}
+{% load url from future %}
+
 {% block content %}
+    {% include "herobase/quest/description_box_content.html" %}
 
+    <div class="pull-right">
+        {% if not request_user_adventure %}
+            {% trans "Apply now by clicking the ✓ Button on the right." %}
+        {% elif request_user_adventure.accepted %}
+            {% trans "Your application has been accepted. Press X to cancel." %}
+        {% elif request_user_adventure.rejected %}
+            {% trans "Your application has been rejected." %}
+        {% elif not request_user_adventure.accepted and not request.user.rejected %}
+            {% trans "You are currently applying for this quest. Press X to cancel." %}
+        {% endif %}
+    </div>
+{% endblock %}
 
-
-    <img src="http://placehold.it/120x120" alt=""/>
-    <h2>{{ quest.title }}</h2>
-    <p>{% block text %}{{ quest.description }}{% endblock %}</p>
-
-    <form method="POST" action="{% url hero-update-quest quest.pk %}">
+{% block buttons_bottom %}
+    <form method="POST" action="{% url "hero_update_quest" quest.pk %}">
         {% csrf_token %}
-        <input type="submit" name="action" value="apply"/>
-        <input type="submit" name="action" value="cancel"/>
+        {% if not request_user_adventure %}
+            <input type="hidden" name="action" value="apply">
+            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Apply" %}">
+                <i class="icon-yah-ok icon-40"></i>
+            </button>
+        {% elif not quest.canceled and not request_user_adventure.rejected %}
+            <input type="hidden" name="action" value="cancel">
+            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Cancel" %}">
+                <i class="icon-yah-delete icon-40"></i>
+            </button>
+        {% endif %}
     </form>
-
 {% endblock %}

@@ -21,6 +21,7 @@ logger = logging.getLogger('youarehero.heromessage')
 
 @login_required
 def message_create(request, user_id=None, message_id=None):
+    original_message = None
     if message_id:
         original_message = get_object_or_404(Message, pk=message_id, recipient=request.user)
         initial = {'recipient': original_message.sender, 'title': "Re: %s" % original_message.title}
@@ -33,10 +34,11 @@ def message_create(request, user_id=None, message_id=None):
     if form.is_valid():
         message = form.save(commit=False)
         message.sender = request.user
+        message.in_reply_to = original_message
         message.save()
         messages.success(request, _('Message successfully sent'))
         notify.message_received(message.recipient, message)
-        return HttpResponseRedirect(reverse('message-list-out'))
+        return HttpResponseRedirect(reverse('message_list_out'))
 
     return render(request, 'message/create.html', {'form': form})
 
@@ -51,7 +53,7 @@ def message_update(request, message_id):
             message.sender_deleted = now()
         message.save()
         messages.success(request, _("Message successfully deleted"))
-    return HttpResponseRedirect(reverse("message-list"))
+    return HttpResponseRedirect(reverse("message_list"))
 
 @login_required
 def message_list_out(request):

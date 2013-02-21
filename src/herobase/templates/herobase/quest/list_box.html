@@ -4,12 +4,13 @@
  <h3>{{ quest.title }}</h3>
 {% endblock %}
 
+{% block extra_classes %}{% endblock %}
+
+{% block extra_attrs %}style="cursor:pointer;" onclick="window.location.href='{{ quest.get_absolute_url }}';"{% endblock %}
+
 {% block content %}
     {{ quest.description }}
 {% endblock %}
 
-{% block buttons-top %}
-    {% if request.user.is_authenticated %}
-        <a href="#"><i class="icon-yah-like icon-40"></i></a>
-    {% endif %}
+{% block buttons_bottom %}
 {% endblock %}

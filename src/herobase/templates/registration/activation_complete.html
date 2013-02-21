@@ -1,16 +1,17 @@
 {% extends "herobase/layout/base.html" %}
 {% load crispy_forms_tags i18n static %}
+{% load url from future %}
 
 {% block page_title %}
     <h1>{% trans "Account activation complete" %}</h1>
 {% endblock %}
 
 {% block content %}
-    {% url quest-list as quest-list-url %}
-    {% url quest-create as quest-create-url %}
+    {% url "quest_list" as quest_list_url %}
+    {% url "quest_creat" as quest_create_url %}
     <p>{%blocktrans with user.username as username %}Welcome Hero {{ user.username }}, <br>
         your account is now active.
-        Start <a href="{{ quest-list-url }}">browsing open quests</a>
-        or <a href="{{ quest-create-url }}">create your own quest</a>.
+        Start <a href="{{ quest_list_url }}">browsing open quests</a>
+        or <a href="{{ quest_create_url }}">create your own quest</a>.
     {%endblocktrans%}</p>
 {% endblock %}

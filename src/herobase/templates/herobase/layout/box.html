@@ -1,12 +1,12 @@
 {% block box %}
-<div class="box {% block extra_classes %}{% endblock %}">
+<div class="box {% block extra_classes %}{% endblock %}" {% block extra_attrs %}{% endblock %}>
     <div class="box-buttons-top">
-        {% block buttons-top %}
+        {% block buttons_top %}
         {% endblock %}
     </div>
 
     <div class="box-title">
-        <span class="caret pull-right"></span>
+        <span class="caret pull-left"></span>
         {% block title %}
         {% endblock %}
     </div>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="box-buttons-bottom">
-        {% block buttons-bottom %}
+        {% block buttons_bottom %}
         {% endblock %}
     </div>
 

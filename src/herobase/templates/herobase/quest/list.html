@@ -26,61 +26,39 @@
 {#{% endblock %}#}
 
 {% block page_title %}
-    <h1>{% trans "Quests" %}</h1>
+    <h1>{% trans "Billboard" %}</h1>
 {% endblock %}
 
 {% block submenu %}
-    {% include "herobase/quest/submenu.inc.html"%}
+    <form action="" method="get" class="form form-inline">
+        <div class="btn-group">
+            <input placeholder="z.B. Übersetzen" type="search" class="search" name="title" value="{{ filter.form.data.title }}"/>
+            <input id="" class="btn" type="submit" name="submit" value="Suchen"/>
+        </div>
+    </form>
 {% endblock %}
 
 {% block content %}
-{# {% cache 60 quests request.user.pk filter.form.level filter.form.state filter.form.hero_class request.GET.page %} #}
+    {% paginate 12 quests %}
+    <div style="text-align: right">{% show_pages %}</div>
     <div class="quest-list">
-        <form action="" method="get" class="form form-inline">
-{#        <div class="btn-toolbar">#}
-            <div class="btn-group" data-toggle="buttons-radio">
-                <a class="btn active" href="#grid" data-toggle="tab"><i class="icon-th"></i></a>
-                <a class="btn" href="#table" data-toggle="tab"><i class="icon-th-list"></i></a>
-            </div>
-            <div class="btn-group">
-                <input placeholder="Titel" type="search" class="search" name="title" value="{{ filter.form.data.title }}"/>
-
-                <input id="" class="btn" type="submit" name="submit" value="Suchen"/>
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    Mehr
-                    <span class="caret"></span>
-                </a>
-                <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-                    <p>{{ filter.form.level.label_tag }}{{ filter.form.level }}</p>
-                    <p>{{ filter.form.state.label_tag }}{{ filter.form.state }}</p>
-                    <p>{{ filter.form.hero_class.label_tag }}{{ filter.form.hero_class }}</p>
-                    {{ filter.form.ordering_field }}
-                </div>
-
-            </div>
-            {% paginate 12 quests %}
-            <span style="margin: -40px 0 0 20px;">{% show_pages %}</span>
-{#        </div>#}
-        </form>
         <hr>
-                <ul class="grid">
-                    {% for quest in quests %}
-                        <li onclick="document.location.href='{% url quest-detail quest.id %}'" class="span{% cycle '3-5' '2-75' '3' '3-25' %}">
-                            {% include "herobase/quest/list_box.html" %}
-                        </li>
 
-                    {% empty %}
-                        {% if filter.is_filtered %}
-                            {% trans "No quests found matching your current criteria." %}
-                            <a href="./?state=1">{% trans "Show all." %}</a>
-                        {% else %}
-                            {% trans "There don't seem to be any quests." %}
-                        {% endif %}
-                    {% endfor %}
-                </ul>
+        <ul class="grid">
+            {% for quest in quests %}
+                <li class="span{% cycle '3-5' '2-75' '3' '3-25' %}">
+                    {% include "herobase/quest/list_box.html" %}
+                </li>
 
-
-        </div>
+            {% empty %}
+                {% if filter.is_filtered %}
+                    {% trans "No quests found matching your current criteria." %}
+                    <a href="./?state=1">{% trans "Show all." %}</a>
+                {% else %}
+                    {% trans "There don't seem to be any quests." %}
+                {% endif %}
+            {% endfor %}
+        </ul>
     </div>
-    {# {% endcache %} #}
+    <div style="text-align: right">{% show_pages %}</div>
 {% endblock %}

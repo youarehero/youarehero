@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(document).on('click', '.box.collapsible .box-title', function(e) {
+    $(document).on('click', '.box.collapsible > .box-title', function(e) {
         var $headline = $(this);
         var $box = $headline.closest('.box');
         var $content = $box.find('.box-content');

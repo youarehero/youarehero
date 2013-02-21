@@ -1,11 +1,12 @@
 {% load i18n static %}
+{% load url from future %}
 
 {# Username and Avatar #}
 
 <div class="avatar-small">
-    <a href="{% url userprofile-private %}"><img src="{{ request.user.get_profile.avatar }}" alt="{{ request.user.username }}">
+    <a href="{% url "userprofile_private" %}"><img src="{{ request.user.get_profile.avatar }}" alt="{{ request.user.username }}">
     </a>
-    <h4><a href="{% url userprofile-private %}">{{ request.user.username }}</a></h4>
+    <h4><a href="{% url "userprofile_private" %}">{{ request.user.username }}</a></h4>
     {#  <span class="{{ request.user.get_profile.get_hero_class_display|lower }}">{{ request.user.get_profile.get_hero_class_display }}</span><br>#}
     <span class="">{% trans "Level" %}: {{ request.user.get_profile.level }}</span>
 

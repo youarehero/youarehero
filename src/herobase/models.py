@@ -14,6 +14,7 @@ import os
 import textwrap
 
 from django.core.files.storage import FileSystemStorage
+from django.db.models import Q
 from django.db.models.query import QuerySet
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -43,7 +44,7 @@ class Like(models.Model):
     quest = models.ForeignKey('Quest')
 
 
-class   LocationMixin(models.Model):
+class LocationMixin(models.Model):
     latitude = models.FloatField(null=True, db_index=True, blank=True)
     longitude = models.FloatField(null=True, db_index=True, blank=True)
     address = models.CharField(max_length=255, blank=True, default='')
@@ -213,9 +214,21 @@ class Quest(LocationMixin, models.Model):
         (3, _(u"Hight")),
     ))
 
+    @property
+    def has_expired(self):
+        return self.expiration_date < now()
+
+    @property
+    def can_accept_all(self):
+        return self.open and self.adventures.filter(accepted=False, rejected=False, canceled=False).exists()
+
+    @property
+    def can_start(self):
+        return (self.open and not self.adventures.filter(accepted=False, rejected=False, canceled=False).exists()
+                and self.adventures.filter(accepted=True, canceled=False).exists())
+
     def save(self, force_insert=False, force_update=False, using=None):
-        self.open = not self.pk or (not self.done and not self.canceled and
-                     self.adventures.filter(accepted=True, canceled=False).count() < self.max_heroes)
+        self.open = not self.pk or (not self.done and not self.canceled and not self.started)
 
         if self.canceled and not self.canceled_time:
             self.canceled_time = now()
@@ -226,81 +239,46 @@ class Quest(LocationMixin, models.Model):
 
         return super(Quest, self).save(force_insert, force_update, using)
 
-    def active_heroes(self):
-        """Return all heroes active on a quest. These are accepted heroes
-         and heroes who claim to be done."""
-        return self.heroes.filter(adventures__quest=self.pk,
-            adventure__accepted=True)
-
-    def accepted_heroes(self):
-        """Return all accepted heroes and following states (heros who
-        are done or claim so)"""
-        return self.heroes.filter(adventures__quest=self.pk,
-            adventures__accepted=True,
-            adventures__canceled=False)
-
-    def applying_heroes(self):
-        """Return all heroes, applying for the quest."""
-        return self.heroes.filter(adventures__quest=self.pk,
-            adventures__canceled=False,
-            adventures__rejected=False)
-
-    def remaining_slots(self):
-        """Number of heroes who may participate in the quest until maximum
-         number of heroes is achieved"""
-        return self.max_heroes - self.accepted_heroes().count()
-
     def get_absolute_url(self):
         """Get the url for this quests detail page."""
-        return reverse("quest-detail", args=(self.pk,))
-    def get_absolute_m_url(self):
-        """Get the url for this quests detail page."""
-        return reverse("m-quest-detail", args=(self.pk,))
+        return reverse("quest_detail", args=(self.pk,))
+
+
+    def get_state_display(self):
+        if self.canceled:
+            return "abgebrochen"
+        elif self.done:
+            return "erledigt"
+        elif self.started:
+            return "hat begonnen"
+        elif self.expiration_date < now():
+            return "abgelaufen"
+        else:
+            return "offen"
 
     def __unicode__(self):
         """String representation"""
         return self.title
 
 
+class Comment(models.Model):
+    author = models.ForeignKey(User, related_name='comments')
+    quest = models.ForeignKey(Quest, related_name='comments')
+
+    created = models.DateTimeField(auto_now_add=True)
+
+    text = models.TextField()
+
+    class Meta:
+        ordering = ('-created', )
+
+
 class AvatarImageMixin(object):
-    # FIXME: this should be done by templatetags
-    CLASS_AVATARS = {
-        5: "scientist.jpg",
-        1: 'gadgeteer.jpg',
-        2: 'diplomat.jpg',
-        3: 'action.jpg',
-        4: 'protective.jpg'}
-
     avatar_storage = FileSystemStorage(location=os.path.join(settings.PROJECT_ROOT, 'assets/'))
-
-    def avatar_thumbnails(self):
-        """Return a list of avatar thumbnails 50x50"""
-        return self._avatar_thumbnails((50, 50))
-
-    def avatar_thumbnails_tiny(self):
-        """Return a list of avatar thumbnails 15x15"""
-        return self._avatar_thumbnails((15, 15))
-
-    def _avatar_thumbnails(self, size):
-        """Return a list of tuples (id,img_url) of avatar thumbnails."""
-        thumbs = []
-        for id, image_name in self.CLASS_AVATARS.items():
-            image = os.path.join('avatar/', image_name)
-            thumbnailer = get_thumbnailer(self.avatar_storage, image)
-            thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality': 90})
-            thumbs.append((id, os.path.join(settings.MEDIA_URL, thumbnail.url)))
-        return thumbs
 
     def avatar(self):
         """Return a String, containing a path to a thumbnail-image 270x270."""
-        file_name = "default.png"
-        if self.hero_class is not None:
-            file_name = self.CLASS_AVATARS[self.hero_class]
-        image = os.path.join('avatar/', file_name)
-        thumbnailer = get_thumbnailer(self.avatar_storage, image)
-        thumbnail = thumbnailer.get_thumbnail({'size': (270, 270),
-                                               'quality': 90})
-        return os.path.join(settings.MEDIA_URL, thumbnail.url)
+        return self._avatar_thumbnail((270, 270))
 
     @property
     def avatar_thumbnail(self):
@@ -325,8 +303,6 @@ class AvatarImageMixin(object):
     def _avatar_thumbnail(self, size):
         """Return a String, containing a path to a thumbnail-image 40x40."""
         file_name = "default.png"
-        if self.hero_class  is not None:
-            file_name = self.CLASS_AVATARS[self.hero_class]
         image = os.path.join('avatar/', file_name)
         thumbnailer = get_thumbnailer(self.avatar_storage, image)
         thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality': 90})
@@ -339,7 +315,7 @@ class UserProfile(LocationMixin, models.Model, AvatarImageMixin):
 
     objects = models.Manager()
 
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, related_name='profile')
     experience = models.PositiveIntegerField(default=0)
     location = models.CharField(max_length=255) # TODO : placeholder
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True,
@@ -368,6 +344,12 @@ class UserProfile(LocationMixin, models.Model, AvatarImageMixin):
         verbose_name=_("E-Mail on private message"),
         help_text=_("Enable this if you want to receive an email notification "
                     "when someone sends you a private message."))
+
+    def quests_done(self):
+        return self.user.adventures.filter(quest__done=True, accepted=True, canceled=False).count()
+
+    def quests_created(self):
+        return self.user.created_quests.count()
 
     @property
     def level(self):

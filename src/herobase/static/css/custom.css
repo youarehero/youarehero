@@ -366,20 +366,29 @@ ul.page-tabs li:nth-child(4n) {
 ul.page-tabs li:nth-child(5n) {
   background-position: -1200px 0px;
 }
-ul.page-tabs li:hover {
+ul.page-tabs li:hover,
+ul.page-tabs li.on {
   background-position: 0px -40px;
 }
-ul.page-tabs li:hover:nth-child(even) {
+ul.page-tabs li:hover:nth-child(even),
+ul.page-tabs li.on:nth-child(even) {
   background-position: -300px -40px;
 }
-ul.page-tabs li:hover:nth-child(3n) {
+ul.page-tabs li:hover:nth-child(3n),
+ul.page-tabs li.on:nth-child(3n) {
   background-position: -600px -40px;
 }
-ul.page-tabs li:hover:nth-child(4n) {
+ul.page-tabs li:hover:nth-child(4n),
+ul.page-tabs li.on:nth-child(4n) {
   background-position: -900px -40px;
 }
-ul.page-tabs li:hover:nth-child(5n) {
+ul.page-tabs li:hover:nth-child(5n),
+ul.page-tabs li.on:nth-child(5n) {
   background-position: -1200px -40px;
+}
+ul.page-tabs li:hover a,
+ul.page-tabs li.on a {
+  color: #ffc40d;
 }
 ul.page-tabs a {
   color: #eeeeee;
@@ -520,7 +529,7 @@ ul.menu-grid.grid li a {
 }
 ul.menu-grid.grid li.on a,
 ul.menu-grid.grid li:hover a {
-  color: #ffffff;
+  color: #ffc40d;
 }
 .box {
   position: relative;
@@ -664,25 +673,26 @@ ul.menu-grid.grid li:hover a {
 .box .caret {
   display: none;
 }
-.box.collapsible .box-title {
+.box.collapsible > .box-title {
   cursor: pointer;
 }
 .box.collapsible .caret {
   display: inline-block;
-  margin-left: 10px;
-  margin-top: 4px;
-  border-left-width: 8px;
-  border-right-width: 8px;
-  border-top-width: 8px;
-  border-bottom: 8px solid #222222;
-  border-top: 0;
+  margin-right: 10px;
+  margin-top: 6px;
+  border-top: 10px solid #222222;
+  border-bottom: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
 }
 .box.collapsible.collapsed .box-content {
   display: none;
 }
 .box.collapsible.collapsed .caret {
-  border-top: 8px solid #222222;
-  border-bottom: 0;
+  border-left: 10px solid #222222;
+  border-right: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
 }
 .box.collapsible.collapsed .box-buttons-top,
 .box.collapsible.collapsed .box-buttons-bottom {

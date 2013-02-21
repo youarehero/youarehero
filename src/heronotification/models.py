@@ -124,7 +124,7 @@ class hero_accepted(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("You have been accepted for the quest<strong>%s</strong>." %
+        return mark_safe("You have been accepted for the quest <strong>%s</strong>." %
                          notification.target.title)
 
 
@@ -134,7 +134,7 @@ class hero_rejected(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("Your application for the quest<strong>%s</strong> "
+        return mark_safe("Your application for the quest <strong>%s</strong> "
                          "has been rejected." % notification.target.title)
 
 class message_received(NotificationTypeBase):
@@ -173,6 +173,21 @@ class Notification(models.Model):
     def is_dismissible(self):
         return True
 
+    @classmethod
+    def for_user(cls, user):
+        items = cls.objects.filter(user=user).order_by('-read', '-created').select_related('content_type')
+        model_map = {}
+        item_map = {}
+        for item in items:
+            model_map.setdefault(item.content_type, {}) \
+                [item.object_id] = item.id
+            item_map[item.id] = item
+        for ct, items_ in model_map.items():
+            for o in ct.model_class().objects.select_related() \
+                .filter(id__in=items_.keys()).all():
+                item_map[items_[o.id]].target = o
+        return items
+
     @property
     def image(self):
         if not self.type:
@@ -196,7 +211,13 @@ class Notification(models.Model):
             raise ValueError("Not a valid target instance for that notification type")
 
         content_type = ContentType.objects.get_for_model(target)
-        return Notification.objects.get_or_create(content_type=content_type, object_id=target.pk, type_id=type_id, user=user)
+        notification, created = Notification.objects.get_or_create(content_type=content_type, object_id=target.pk, type_id=type_id, user=user)
+        if not created:
+            notification.read = None
+            notification.dismissed = None
+            notification.created = now()
+            notification.save()
+        return notification
 
     @property
     def type(self):
@@ -204,7 +225,9 @@ class Notification(models.Model):
 
     def is_read(self):
         # FIXME: this still modifies the model
-        if self.read is None and hasattr(self.type, 'is_read') and self.type.is_read(self):
+        if self.read is None and (not hasattr(self.type, 'is_read')
+                                  or hasattr(self.type, 'is_read')
+                                  and self.type.is_read(self)):
             self.read = now()
             self.save()
         return self.read

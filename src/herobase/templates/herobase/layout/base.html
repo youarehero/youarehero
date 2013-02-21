@@ -1,4 +1,5 @@
 {% load static i18n hero_base crispy_forms_tags activelink %}
+{% load url from future %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,14 +50,14 @@
         {% block site_header_container %}
             <div id="site-header-container" class="row">
                 <div class="span100">
-                    <a href="{% url home %}" class="logo pull-left">
+                    <a href="{% url "home" %}" class="logo pull-left">
                         <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">
                     </a>
                     <ul class="small-grid menu-grid pull-right">
                         {% if request.user.is_authenticated %}
-                            <li><a href="{% url auth_logout %}"><i class="icon-yah-logout icon-40"><span>{% trans "Logout" %}</span></i></a></li>
+                            <li><a href="{% url "auth_logout" %}"><i class="icon-yah-logout icon-40"><span>{% trans "Logout" %}</span></i></a></li>
                         {% else %}
-                            <li><a href="{% url auth_login %}"><i class="icon-yah-arrow icon-40"><span>{% trans "Login" %}</span></i></a></li>
+                            <li><a href="{% url "auth_login" %}"><i class="icon-yah-arrow icon-40"><span>{% trans "Login" %}</span></i></a></li>
                         {% endif %}
                     </ul>
                     {% block site_header %}

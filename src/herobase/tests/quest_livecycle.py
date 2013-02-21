@@ -20,7 +20,7 @@ class QuestTest(TestCase):
         hero = create_user()
         quest_livecycle.hero_quest_apply(quest, hero)
 
-    def test_hero_apply_full_not_valid(self):
+    def test_hero_apply_started_not_valid(self):
         """If the quest is full, I should not be able to apply for the quest."""
         quest = create_quest(max_heroes=1)
         hero0 = create_user()
@@ -30,6 +30,7 @@ class QuestTest(TestCase):
         quest_livecycle.hero_quest_apply(quest, hero1)
 
         quest_livecycle.owner_hero_accept(quest, hero0)
+        quest_livecycle.owner_quest_start(quest)
 
         with self.assertRaises(ValidationError):
             quest_livecycle.owner_hero_accept(quest, hero1)
@@ -68,6 +69,7 @@ class QuestTest(TestCase):
         """If there is at least one accepted hero for my quest, I should be able to mark the quest as "done"."""
         quest = create_quest()
         adventure = create_adventure(quest, accepted=True)
+        quest_livecycle.owner_quest_start(quest)
         quest_livecycle.owner_quest_done(quest)
         self.assertTrue(quest.done)
 

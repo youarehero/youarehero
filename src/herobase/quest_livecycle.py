@@ -19,7 +19,7 @@ def owner_hero_accept(quest, hero):
         raise ValidationError("Can't accept heroes into a quest that isn't open.")
 
     try:
-        adventure = quest.adventures.get(user=hero, rejected=False, accepted=False)
+        adventure = quest.adventures.get(user=hero, rejected=False, accepted=False, canceled=False)
     except Adventure.DoesNotExist:
         raise ValidationError("Can't accept a hero who is not applying.")
 
@@ -32,12 +32,19 @@ def owner_hero_accept(quest, hero):
 
     return _("You have accepted %s." % hero.username)
 
+def owner_accept_all(quest):
+    if not quest.open:
+        raise ValidationError("Can't accept heroes into a quest that isn't open.")
+
+    for adventure in quest.adventures.filter(rejected=False, accepted=False, canceled=False):
+        owner_hero_accept(quest, adventure.user)
+
 def owner_hero_reject(quest, hero):
     if not quest.open:
         raise ValidationError("Can't reject heroes when a quest isn't open.")
 
     try:
-        adventure = quest.adventures.get(user=hero, accepted=False, rejected=False)
+        adventure = quest.adventures.get(user=hero, accepted=False, rejected=False, canceled=False)
     except Adventure.DoesNotExist:
         raise ValidationError("Can't reject a hero who is not applying.")
 
@@ -48,26 +55,33 @@ def owner_hero_reject(quest, hero):
     notify.hero_rejected(adventure.user, quest)
     return _("You have rejected %s." % hero.username)
 
-
 # owner quest management
-def owner_quest_start(quest, message_for_heroes):
-    pass
+def owner_quest_start(quest):
+    if quest.canceled or quest.done:
+        raise ValidationError("Can not start when already done/canceled.")
+
+    if not quest.adventures.filter(accepted=True, canceled=False).exists():
+        raise ValidationError("Can not start without any accepted heroes")
+
+    quest.started = True
+    quest.save()
+
+    for adventure in quest.adventures.filter(accepted=True, canceled=False):
+        notify.quest_started(adventure.user, quest)
 
 def owner_quest_cancel(quest):
-    if quest.canceled or quest.done:
-        raise ValidationError("Can not cancel when already done/canceled.")
+    if quest.started or quest.canceled or quest.done:
+        raise ValidationError("Can not cancel when already started/done/canceled.")
 
     quest.canceled = True
     quest.save()
 
-    for adventure in quest.adventures.filter(canceled=False):
+    for adventure in quest.adventures.filter(canceled=False, rejected=False):
         notify.quest_cancelled(adventure.user, quest)
 
 def owner_quest_done(quest):
-    if quest.canceled or quest.done:
+    if not quest.started or quest.canceled or quest.done:
         raise ValidationError("Can not cancel when already done/canceled.")
-    if not quest.accepted_heroes():
-        raise ValidationError("A quest without accepted heroes can't be marked as done.")
     quest.done = True
     quest.save()
 
@@ -83,7 +97,7 @@ def hero_quest_apply(quest, hero):
     if quest.adventures.filter(user=hero, canceled=False).exists():
         raise ValidationError("Can only apply once.")
 
-    if quest.adventures.filter(user=hero, accepted=True).exists():
+    if quest.adventures.filter(user=hero, accepted=True, canceled=False).exists():
         raise ValidationError("Can not apply after being accepted.")
 
     adventure, created = quest.adventures.get_or_create(user=hero)
@@ -100,7 +114,7 @@ def hero_quest_done(quest, hero):
     pass
 
 def hero_quest_cancel(quest, hero):
-    if not quest.open or quest.canceled or quest.done:
+    if quest.started or quest.canceled or quest.done:
         raise ValidationError("You can't cancel participation at this time.")
 
     if quest.adventures.filter(user=hero, canceled=True).exists():

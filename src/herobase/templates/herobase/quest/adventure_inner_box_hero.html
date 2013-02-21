@@ -5,15 +5,16 @@
 
 {% block title %}
     <h4>{{ adventure.user.username }}</h4>
+    <em>{{ adventure.get_state_display }}</em>
 {% endblock %}
 
-{% block buttons-top %}
+{% block buttons_top %}
 {% endblock %}
 
 {% block content %}
     <img src="{{ adventure.user.get_profile.avatar_thumbnail_80 }}" alt=""/>
 {% endblock %}
 
-{% block buttons-bottom %}
-    {{ adventure.get_state_display }}
+{% block buttons_bottom %}
+
 {% endblock %}

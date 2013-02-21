@@ -17,12 +17,15 @@ ul.page-tabs {
     &:nth-child(3n) { background-position: -600px 0px; }
     &:nth-child(4n) { background-position: -900px 0px; }
     &:nth-child(5n) { background-position: -1200px 0px; }
-    &:hover {
+    &:hover, &.on {
       background-position: 0px -40px;
       &:nth-child(even) { background-position: -300px -40px; }
       &:nth-child(3n) { background-position: -600px -40px; }
       &:nth-child(4n) { background-position: -900px -40px; }
       &:nth-child(5n) { background-position: -1200px -40px; }
+      a {
+        color: @yellow;
+      }
     }
   }
   a {

@@ -16,10 +16,27 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset, Div, Button, BaseInput
 from registration.forms import RegistrationFormUniqueEmail
 
-from herobase.models import Quest, UserProfile
+from herobase.models import Quest, UserProfile, Comment
 from herobase.widgets import LocationWidget
 
 
+
+class CommentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CommentForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.layout = Layout(
+            Fieldset(
+                _('Kommentieren'),
+                Div(
+                    'text',
+                    )
+            ))
+    class Meta:
+        model = Comment
+        fields = ('text', )
 
 
 class QuestCreateForm(forms.ModelForm):
@@ -80,9 +97,9 @@ class QuestCreateForm(forms.ModelForm):
 
 class UserProfileEdit(forms.ModelForm):
     """Basic userprofile edit form. uses crispy-forms."""
-    latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
-    longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
-    address = forms.CharField(required=False, widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
+    # latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    # longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    # address = forms.CharField(required=False, widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -94,26 +111,26 @@ class UserProfileEdit(forms.ModelForm):
             Fieldset(
                 _('Edit your Profile'),
                 Div(
-                    'hero_class',
                     'about',
-                    'address',
+                    # 'address',
                     'receive_system_email',
                     'receive_private_email',
-                    'latitude',
-                    'longitude',
-                    'location_granularity',
+                    # 'latitude',
+                    # 'longitude',
+                    # 'location_granularity',
                 )
             ),
 
         )
         super(UserProfileEdit, self).__init__(*args, **kwargs)
-        self.fields['location_granularity'].widget = forms.HiddenInput()
+        # self.fields['location_granularity'].widget = forms.HiddenInput()
 
     class Meta:
         model = UserProfile
-        fields = ('about', 'hero_class',
+        fields = ('about',
                   'receive_system_email', 'receive_private_email',
-                  'address', 'latitude', 'longitude', 'location_granularity')
+                  # 'address', 'latitude', 'longitude', 'location_granularity'
+        )
 
 
 class UserProfilePrivacyEdit(forms.ModelForm):
@@ -122,10 +139,10 @@ class UserProfilePrivacyEdit(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_tag=False
         self.helper.form_method = 'post'
-        #self.helper.form_action = 'userprofile-privacy-settings'
+        #self.helper.form_action = 'userprofile_privacy_settings'
         self.helper.form_class = 'form-horizontal'
 
-        #self.helper.add_input(Submit('submit', 'Submit'))
+        # self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.layout = Layout(
             Fieldset(
                 _('Privacy Settings'),
@@ -164,10 +181,7 @@ class UserAuthenticationForm(AuthenticationForm):
         self.helper.form_tag=False
 
         if request:
-            if request.is_mobile:
-                self.helper.form_action = reverse('auth_login-m')
-            else:
-                self.helper.form_action = reverse('auth_login')
+            self.helper.form_action = reverse('auth_login')
 
         # make sure to use the next parameter iff exists
         if request and 'next' in request.GET:

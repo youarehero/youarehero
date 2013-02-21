@@ -13,7 +13,8 @@
 @boxBtnBottom: @boxBtnTop;
 @boxBtnLeft: @boxBtnRight;
 
-@caretSize: 8px;
+@caretSize: 10px;
+@caretWidth: 6px;
 @caretColor: @grayDarker;
 
 .span1-5  { width: (@gridColumnWidth * 1.5)}
@@ -183,18 +184,17 @@ ul.menu-grid {
     display: none;
   }
   &.collapsible {
-    .box-title {
+    &>.box-title {
       cursor: pointer;
     }
     .caret {
       display: inline-block;
-      margin-left: 10px;
-      margin-top: 4px;
-      border-left-width:  @caretSize;
-      border-right-width: @caretSize;
-      border-top-width:   @caretSize;
-      border-bottom: @caretSize solid @caretColor;
-      border-top: 0;
+      margin-right: 10px;
+      margin-top: 6px;
+      border-top: @caretSize solid @caretColor;
+      border-bottom: 0;
+      border-left: @caretWidth solid transparent;
+      border-right: @caretWidth solid transparent;
 
     }
     &.collapsed {
@@ -202,8 +202,10 @@ ul.menu-grid {
         display: none;
       }
       .caret {
-        border-top: @caretSize solid @caretColor;
-        border-bottom: 0;
+        border-left: @caretSize solid @caretColor;
+        border-right:  0;
+        border-top: @caretWidth solid transparent;
+        border-bottom: @caretWidth solid transparent;
       }
       .box-buttons-top,
       .box-buttons-bottom {

@@ -1,9 +1,9 @@
 {% extends "herobase/layout/box.html" %}
-
+{% load url from future %}
 {% block box %}
     <div class="notification{% if notification.is_read %} read{% endif %}"
             {% if notification.is_dismissible and not notification.is_read %}
-                data-dismiss-url="{% url mark-notification-read notification.pk %}"
+                data-dismiss-url="{% url "mark_notification_read" notification.pk %}"
             {% endif %}
         >
         {% with url=notification.target.get_absolute_url %}

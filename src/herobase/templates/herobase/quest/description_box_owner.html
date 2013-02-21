@@ -1,15 +1,40 @@
 {% extends "herobase/layout/box.html" %}
-
-{% block buttons-top %}
-    <form method="post" action="{% url owner-update-quest quest.pk %}" class="inline">
+{% load url from future %}
+{% block buttons_top %}
+    {% if quest.open %}
+    <form method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
         {% csrf_token %}
-        <button class="box-btn-top" type="submit" value="delete" name="delete">
-            <i class="icon-yah-delete icon-40"></i></button>
+        <input type="hidden" name="action" value="cancel">
+        <button class="box-btn-top" type="submit" value="cancel" name="cancel">
+            <i class="icon-yah-delete icon-40"></i>
+            <span class="button-description">Quest abbrechen</span>
+        </button>
     </form>
+    {% endif %}
+
+{% endblock %}
+{% block buttons_bottom %}
+    {% if quest.can_start %}
+        <form method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="start">
+            <button class="box-btn-top" type="submit" value="start" name="start">
+                <i class="icon-yah-ok icon-40"></i>
+                <span class="button-description">Quest starten</span>
+            </button>
+        </form>
+    {% elif quest.started and not quest.done %}
+        <form method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="done">
+            <button class="box-btn-top" type="submit" value="start" name="start">
+                <i class="icon-yah-ok icon-40"></i>
+                <span class="button-description">Quest als erledigt markieren</span>
+            </button>
+        </form>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
-    <img src="http://placehold.it/120x120" alt=""/>
-    <h2>{{ quest.title }}</h2>
-    <p>{% block text %}{{ quest.description }}{% endblock %}</p>
+    {% include "herobase/quest/description_box_content.html" %}
 {% endblock %}

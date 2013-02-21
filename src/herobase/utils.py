@@ -43,10 +43,7 @@ def login_required(function):
     def decorated(request, *args, **kwargs):
 
         if not request.user.is_authenticated():
-            if request.is_mobile:
-                login_url = reverse('auth_login-m')
-            else:
-                login_url = reverse('auth_login')
+            login_url = reverse('auth_login')
             url = request.build_absolute_uri() # this should be request.path
             return HttpResponseRedirect("%s?next=%s" % (login_url, url))
         else:

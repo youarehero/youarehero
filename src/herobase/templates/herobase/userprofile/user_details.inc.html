@@ -6,19 +6,16 @@
 
 {% load i18n static %}
 
-{% block buttons-top %}
+{% block buttons_top %}
 
 {% endblock %}
 
 {% block title %}
     {% if user != request.user %}
         <h2><span class="stripe">{{ user.username }}</span>
-            <small>{{ user.get_profile.get_hero_class_display }}</small>
         </h2>
-
     {% else %}
         <h2><span class="stripe">{% trans "Thats you" %}</span></h2>
-        <p>{% trans "This is what your profile looks like to other heroes." %}</p>
     {% endif %}
 {% endblock %}
 
@@ -47,6 +44,6 @@
     </div>
 {% endblock %}
 
-{% block buttons-bottom %}
+{% block buttons_bottom %}
 
 {% endblock %}
