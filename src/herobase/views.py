@@ -153,33 +153,36 @@ def quest_my(request):
     joined_q = Q(adventures__user=user)
     quests = Quest.objects.filter(canceled=False, done=False).filter(created_q | joined_q).order_by('-created')[:10]
 
-    return render(request, template, {'quests': quests}
-    )
+    return render(request, template, {'quests': quests})
+
 def quest_my_created(request):
     """Views the quests the hero is envolved with."""
     template='herobase/quest/my.html'
     user = request.user
+
     return render(request, template, {
-        'quests_created_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:100],
+        'quests': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:100],
         }
     )
 def quest_my_joined(request):
     """Views the quests the hero is envolved with."""
     template='herobase/quest/my.html'
     user = request.user
+
     return render(request, template, {
-        'quests_joined_active': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user)[:100],
+        'quests': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user)[:100],
         }
     )
 def quest_my_done(request):
     """Views the quests the hero is envolved with."""
     template='herobase/quest/my.html'
     user = request.user
-    return render(request, template, {
-        'quests_created_done': user.created_quests.exclude(canceled=False, done=False).order_by('-created')[:100],
-        'quests_joined_done': Quest.objects.exclude(canceled=False, done=False).filter(adventures__user=user)[:100],
-        }
-    )
+
+    created_q = Q(owner=user)
+    joined_q = Q(adventures__user=user)
+    quests = Quest.objects.exclude(canceled=False, done=False).filter(created_q | joined_q).order_by('-created')[:10]
+
+    return render(request, template, { 'quests': quests })
 
 
 @require_POST
