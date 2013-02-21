@@ -8,10 +8,12 @@
     {{ quest.description }}
 {% endblock %}
 
-{% block extra_attrs %}data-href="{{ quest.get_absolute_url }}"{% endblock %}
+{#{% block buttons_top %}#}
+{#    {% if request.user.is_authenticated %}#}
+{#        <a href="#"><i class="icon-yah-like icon-40"></i></a>#}
+{#    {% endif %}#}
+{#{% endblock %}#}
 
-{% block buttons_top %}
-    {% if request.user.is_authenticated %}
-        <a href="#"><i class="icon-yah-like icon-40"></i></a>
-    {% endif %}
+{% block buttons_bottom %}
+    <a href="{{ quest.get_absolute_url }}"><i class="icon-yah-arrow icon-40"></i></a>
 {% endblock %}
