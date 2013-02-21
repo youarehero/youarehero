@@ -44,7 +44,7 @@ class Like(models.Model):
     quest = models.ForeignKey('Quest')
 
 
-class   LocationMixin(models.Model):
+class LocationMixin(models.Model):
     latitude = models.FloatField(null=True, db_index=True, blank=True)
     longitude = models.FloatField(null=True, db_index=True, blank=True)
     address = models.CharField(max_length=255, blank=True, default='')
@@ -215,6 +215,10 @@ class Quest(LocationMixin, models.Model):
     ))
 
     @property
+    def has_expired(self):
+        return self.expiration_date < now()
+
+    @property
     def can_accept_all(self):
         return self.open and self.adventures.filter(accepted=False, rejected=False, canceled=False).exists()
 
@@ -234,30 +238,6 @@ class Quest(LocationMixin, models.Model):
             self.done_time = now()
 
         return super(Quest, self).save(force_insert, force_update, using)
-
-    def active_heroes(self):
-        """Return all heroes active on a quest. These are accepted heroes
-         and heroes who claim to be done."""
-        return self.heroes.filter(adventures__quest=self.pk,
-            adventure__accepted=True)
-
-    def accepted_heroes(self):
-        """Return all accepted heroes and following states (heros who
-        are done or claim so)"""
-        return self.heroes.filter(adventures__quest=self.pk,
-            adventures__accepted=True,
-            adventures__canceled=False)
-
-    def applying_heroes(self):
-        """Return all heroes, applying for the quest."""
-        return self.heroes.filter(adventures__quest=self.pk,
-            adventures__canceled=False,
-            adventures__rejected=False)
-
-    def remaining_slots(self):
-        """Number of heroes who may participate in the quest until maximum
-         number of heroes is achieved"""
-        return self.max_heroes - self.accepted_heroes().count()
 
     def get_absolute_url(self):
         """Get the url for this quests detail page."""

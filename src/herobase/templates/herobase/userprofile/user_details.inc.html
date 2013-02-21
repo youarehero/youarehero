@@ -13,9 +13,7 @@
 {% block title %}
     {% if user != request.user %}
         <h2><span class="stripe">{{ user.username }}</span>
-            <small>{{ user.get_profile.get_hero_class_display }}</small>
         </h2>
-
     {% else %}
         <h2><span class="stripe">{% trans "Thats you" %}</span></h2>
     {% endif %}

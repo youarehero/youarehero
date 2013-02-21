@@ -1,4 +1,5 @@
 {% load url from future %}
+{% load humanize %}
 <img src="http://placehold.it/120x120" alt=""/>
 <h2>{{ quest.title }}</h2>
 <p>{% block text %}{{ quest.description }}{% endblock %}</p>
@@ -7,8 +8,9 @@
         {% if quest.location %}
         <strong>Ort:</strong> {{ quest.location }}
         {% endif %}
-        <strong>Status:</strong> {{ quest.get_state_display }}
-        <strong>Gesuchte Helden:</strong> {{ quest.max_heroes }}
-        <strong>Quest-Ersteller:</strong> <a href="{% url "userprofile_public" quest.owner.username %}">{{ quest.owner }}</a>
+        <strong>Status:</strong> {{ quest.get_state_display }} <br/>
+        <strong>Gesuchte Helden:</strong> {{ quest.max_heroes }} <br/>
+        <strong>Quest-Ersteller:</strong> <a href="{% url "userprofile_public" quest.owner.username %}">{{ quest.owner }}</a> <br/>
+        <strong>Läuft noch bis:</strong> {{ quest.expiration_date|naturalday}}
     </div>`
 </div>
