@@ -49,13 +49,12 @@
                 <li class="span{% cycle '3-5' '2-75' '3' '3-25' %}">
                     {% include "herobase/quest/list_box.html" %}
                 </li>
-
             {% empty %}
                 {% if filter.is_filtered %}
                     {% trans "No quests found matching your current criteria." %}
                     <a href="./?state=1">{% trans "Show all." %}</a>
                 {% else %}
-                    {% trans "There don't seem to be any quests." %}
+                    <li>{% trans "There don't seem to be any quests." %}</li>
                 {% endif %}
             {% endfor %}
         </ul>

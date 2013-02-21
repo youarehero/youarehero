@@ -4,11 +4,11 @@
     <ul class="page-tabs">
         <li class="{% ifactive "quest_my" %}on{% endifactive %}">
             <a href="{% url "quest_my" %}">Alle</a></li>
-        <li class="{% ifactive "home" %}on{% endifactive %}">
-            <a href="{% url "quest_create" %}">Angenommen</a></li>
-        <li class="{% ifactive "home" %}on{% endifactive %}">
-            <a href="{% url "quest_list" %}?state=1">Erstellt</a></li>
-        <li class="{% ifactive "home" %}on{% endifactive %}">
-            <a href="{% url "quest_list" %}?state=1">Abgeschlossen</a></li>
+        <li class="{% ifactive "quest_my_joined" %}on{% endifactive %}">
+            <a href="{% url "quest_my_joined" %}">Angenommen</a></li>
+        <li class="{% ifactive "quest_my_created" %}on{% endifactive %}">
+            <a href="{% url "quest_my_created" %}">Erstellt</a></li>
+        <li class="{% ifactive "quest_my_done" %}on{% endifactive %}">
+            <a href="{% url "quest_my_done" %}">Abgeschlossen</a></li>
     </ul>
 {% endif %}
