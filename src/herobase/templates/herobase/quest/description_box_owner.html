@@ -1,6 +1,6 @@
 {% extends "herobase/layout/box.html" %}
 {% load url from future %}
-{% block buttons-top %}
+{% block buttons_top %}
     <form method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
         {% csrf_token %}
         <button class="box-btn-top" type="submit" value="delete" name="delete">

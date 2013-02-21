@@ -6,7 +6,7 @@
     <form method="POST" action="{% url "auth_login" %}">  {{ block.super }}</form>
 {% endblock %}
 
-{% block buttons-top %}{% endblock %}
+{% block buttons_top %}{% endblock %}
 
 {% block title %}
     <h2>{% trans "Login" %}</h2>
@@ -24,7 +24,7 @@
     </p>
 {% endblock %}
 
-{% block buttons-bottom %}
+{% block buttons_bottom %}
     <button type="submit" value="{% trans "Login" %}" name="login">
         <i class="icon-yah-arrow icon-40"></i></button>
 {% endblock %}

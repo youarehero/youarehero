@@ -17,7 +17,7 @@
 
 {% endblock %}
 
-{% block buttons-bottom %}
+{% block buttons_bottom %}
     <form method="POST" action="{% url "hero_update_quest" quest.pk %}">
         {% csrf_token %}
         {% if not request_user_adventure %}
