@@ -151,7 +151,7 @@ def quest_my(request):
 
     created_q = Q(owner=user)
     joined_q = Q(adventures__user=user)
-    quests = Quest.objects.filter(canceled=False, done=False).filter(created_q | joined_q).order_by('-created')[:10]
+    quests = Quest.objects.filter(canceled=False, done=False).filter(created_q | joined_q).order_by('-created')
 
     return render(request, template, {'quests': quests})
 
@@ -161,7 +161,7 @@ def quest_my_created(request):
     user = request.user
 
     return render(request, template, {
-        'quests': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:100],
+        'quests': user.created_quests.filter(canceled=False, done=False).order_by('-created'),
         }
     )
 def quest_my_joined(request):
@@ -170,7 +170,7 @@ def quest_my_joined(request):
     user = request.user
 
     return render(request, template, {
-        'quests': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user)[:100],
+        'quests': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user),
         }
     )
 def quest_my_done(request):
@@ -180,7 +180,7 @@ def quest_my_done(request):
 
     created_q = Q(owner=user)
     joined_q = Q(adventures__user=user)
-    quests = Quest.objects.exclude(canceled=False, done=False).filter(created_q | joined_q).order_by('-created')[:10]
+    quests = Quest.objects.exclude(canceled=False, done=False).filter(created_q | joined_q).order_by('-created')
 
     return render(request, template, { 'quests': quests })
 

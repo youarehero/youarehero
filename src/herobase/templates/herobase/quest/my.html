@@ -1,6 +1,7 @@
 {% extends "herobase/layout/base.html" %}
 {% load staticfiles %}
 {% load i18n hero_message %}
+{% load endless %}
 
 {% block page_title %}
     <h1>{% trans "My Quests" %}</h1>
@@ -12,6 +13,8 @@
 
 {% block content %}
 {#    <h2>{% trans "Current Quests" %}</h2>#}
+    {% paginate 6 quests %}
+    <div style="text-align: right">{% show_pages %}</div>
     {% if quests %}
         {% for quest in quests %}
             {% if quest.owner == request.user %}
@@ -23,6 +26,6 @@
     {% else %}
 {#        {% trans "There are no quests." %}#}
     {% endif %}
-
+    <div style="text-align: right">{% show_pages %}</div>
 
 {% endblock %}
