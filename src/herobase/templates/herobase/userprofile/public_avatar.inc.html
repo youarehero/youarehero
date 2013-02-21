@@ -4,9 +4,10 @@
     <img src="{{ user.get_profile.avatar }}" alt="{{ user.username }}">
 </div>
 <div class="experience">
-    <h4 class="pull-right">{{ user.get_profile.experience }} XP</h4>
-    <h4>Level: {{ user.get_profile.level }}</h4>
-    <div class="progress">
-        <div class="bar" style="width: {{ user.get_profile.relative_level_experience }}%;"></div>
+    <h4 class="pull-right">{{ user.get_profile.quests_done }} Quests erledigt</h4>
+    <h4>{{ user.get_profile.quests_created }} Quests erstellt</h4>
+{#    <h4>Level: {{ user.get_profile.level }}</h4>#}
+{#    <div class="progress">#}
+{#        <div class="bar" style="width: {{ user.get_profile.relative_level_experience }}%;"></div>#}
     </div>
 </div>

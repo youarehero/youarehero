@@ -388,6 +388,12 @@ class UserProfile(LocationMixin, models.Model, AvatarImageMixin):
         help_text=_("Enable this if you want to receive an email notification "
                     "when someone sends you a private message."))
 
+    def quests_done(self):
+        return self.user.adventures.filter(quest__done=True, accepted=True, canceled=False).count()
+
+    def quests_created(self):
+        return self.user.created_quests.count()
+
     @property
     def level(self):
         """Calculate the user's level based on her experience"""

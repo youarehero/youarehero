@@ -3,19 +3,18 @@
 {% load url from future %}
 
 {% block content %}
-    <img src="http://placehold.it/120x120" alt=""/>
-    <h2>{{ quest.title }}</h2>
-    <h3>Diese Quest ist {{ quest.get_state_display }}</h3>
-    <p>{% block text %}{{ quest.description }}{% endblock %}</p>
-    {% if not request_user_adventure %}
-        {% trans "Apply now by clicking the ✓ Button on the right." %}
-    {% elif request_user_adventure.accepted %}
-        {% trans "Your application has been accepted." %}
-        {% trans "If you want to cancel click the X mark on the right." %}
-    {% elif request_user_adventure.rejected %}
-        {% trans "Your application has been rejected." %}
-    {% endif %}
+    {% include "herobase/quest/description_box_content.html" %}
 
+    <div>
+        {% if not request_user_adventure %}
+            {% trans "Apply now by clicking the ✓ Button on the right." %}
+        {% elif request_user_adventure.accepted %}
+            {% trans "Your application has been accepted." %}
+            {% trans "If you want to cancel click the X mark on the right." %}
+        {% elif request_user_adventure.rejected %}
+            {% trans "Your application has been rejected." %}
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block buttons_bottom %}

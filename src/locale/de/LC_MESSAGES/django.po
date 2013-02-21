@@ -353,7 +353,7 @@ msgstr "%(username)s ist auf Platz %(rank)s in der Bestenliste."
 #: herobase/templates/herobase/userprofile/detail.html:64
 #: herobase/templates/herobase/userprofile/m/detail.html:63
 msgid "Member since"
-msgstr "Mitglied seit"
+msgstr "Dauer der Mitgliedschaft"
 
 #: herobase/templates/herobase/userprofile/detail.html:66
 #: herobase/templates/herobase/userprofile/m/detail.html:65
