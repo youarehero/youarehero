@@ -65,7 +65,7 @@
         <hr>
                 <ul class="grid">
                     {% for quest in quests %}
-                        <li class="span{% cycle '3-5' '2-75' '3' '3-25' %}">
+                        <li onclick="document.location.href='{% url quest-detail quest.id %}'" class="span{% cycle '3-5' '2-75' '3' '3-25' %}">
                             {% include "herobase/quest/list_box.html" %}
                         </li>
 
