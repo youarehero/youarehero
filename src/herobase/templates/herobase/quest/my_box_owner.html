@@ -1,15 +1,15 @@
-{% extends "herobase/layout/box.html" %}
-
-{% block extra_classes %}collapsible collapsed{% endblock %}
+{% extends "herobase/quest/my_box_hero.html" %}
 
 {% block title %}
-    <h3>{{ quest.title }}</h3>
+    {{ block.super }}
 {% endblock %}
 
 {% block content %}
-    {{ quest.description }}
+    {{ block.super }}
 {% endblock %}
 
-{% block buttons_top %}
-
+{% block buttons_top_left %}
+    <span>
+        <i class="icon-star"></i>
+    </span>
 {% endblock %}

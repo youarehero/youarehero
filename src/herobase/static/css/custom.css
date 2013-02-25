@@ -598,6 +598,15 @@ ul.menu-grid.grid li:hover a {
   margin-left: 10px;
   margin-bottom: 5px;
 }
+.box .box-buttons-top-left {
+  position: relative;
+  display: inline-block;
+  float: left;
+  margin-top: -16px;
+  margin-left: -23px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
 .box .box-buttons-bottom {
   position: relative;
   display: inline-block;
@@ -614,13 +623,20 @@ ul.menu-grid.grid li:hover a {
   vertical-align: bottom;
 }
 .box .box-buttons-top a,
+.box .box-buttons-top-left a,
 .box .box-buttons-bottom a,
 .box .box-buttons-top form,
+.box .box-buttons-top-left form,
 .box .box-buttons-bottom form,
 .box .box-buttons-top button,
+.box .box-buttons-top-left button,
 .box .box-buttons-bottom button,
 .box .box-buttons-top input,
-.box .box-buttons-bottom input {
+.box .box-buttons-top-left input,
+.box .box-buttons-bottom input,
+.box .box-buttons-top span,
+.box .box-buttons-top-left span,
+.box .box-buttons-bottom span {
   display: inline-block;
   background: #bbbbbb;
   border: 0px none;

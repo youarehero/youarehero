@@ -19,7 +19,7 @@ def owner_hero_accept(quest, hero):
         raise ValidationError("Can't accept heroes into a quest that isn't open.")
 
     try:
-        adventure = quest.adventures.get(user=hero, rejected=False, accepted=False, canceled=False)
+        adventure = quest.adventures.pending().get(user=hero)
     except Adventure.DoesNotExist:
         raise ValidationError("Can't accept a hero who is not applying.")
 
@@ -36,7 +36,7 @@ def owner_accept_all(quest):
     if not quest.open:
         raise ValidationError("Can't accept heroes into a quest that isn't open.")
 
-    for adventure in quest.adventures.filter(rejected=False, accepted=False, canceled=False):
+    for adventure in quest.adventures.pending():
         owner_hero_accept(quest, adventure.user)
 
 def owner_hero_reject(quest, hero):
@@ -44,7 +44,7 @@ def owner_hero_reject(quest, hero):
         raise ValidationError("Can't reject heroes when a quest isn't open.")
 
     try:
-        adventure = quest.adventures.get(user=hero, accepted=False, rejected=False, canceled=False)
+        adventure = quest.adventures.pending().get()
     except Adventure.DoesNotExist:
         raise ValidationError("Can't reject a hero who is not applying.")
 
@@ -60,13 +60,13 @@ def owner_quest_start(quest):
     if quest.canceled or quest.done:
         raise ValidationError("Can not start when already done/canceled.")
 
-    if not quest.adventures.filter(accepted=True, canceled=False).exists():
+    if not quest.adventures.accepted().exists():
         raise ValidationError("Can not start without any accepted heroes")
 
     quest.started = True
     quest.save()
 
-    for adventure in quest.adventures.filter(accepted=True, canceled=False):
+    for adventure in quest.adventures.accepted():
         notify.quest_started(adventure.user, quest)
 
 def owner_quest_cancel(quest):
@@ -76,7 +76,7 @@ def owner_quest_cancel(quest):
     quest.canceled = True
     quest.save()
 
-    for adventure in quest.adventures.filter(canceled=False, rejected=False):
+    for adventure in quest.adventures.accepted():
         notify.quest_cancelled(adventure.user, quest)
 
 def owner_quest_done(quest):
@@ -85,7 +85,7 @@ def owner_quest_done(quest):
     quest.done = True
     quest.save()
 
-    for adventure in quest.adventures.filter(canceled=False, accepted=True):
+    for adventure in quest.adventures.accepted():
         notify.quest_done(adventure.user, quest)
 
 

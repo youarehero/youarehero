@@ -121,6 +121,15 @@ ul.menu-grid {
     margin-left: 10px;
     margin-bottom: 5px;
   }
+  .box-buttons-top-left {
+    position: relative;
+    display: inline-block;
+    float: left;
+    margin-top: -(@boxBtnTop + @boxPaddingTop);
+    margin-left: -(@boxBtnLeft + @boxPaddingLeft);
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
   .box-buttons-bottom {
     position: relative;
     display: inline-block;
@@ -134,8 +143,9 @@ ul.menu-grid {
     }
   }
   .box-buttons-top,
+  .box-buttons-top-left,
   .box-buttons-bottom {
-    a, form, button, input {
+    a, form, button, input, span {
       display: inline-block;
       background: @boxIconBackground;
       border: 0px none;

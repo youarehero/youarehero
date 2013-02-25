@@ -85,6 +85,12 @@ class AdventureQuerySet(QuerySet):
     def applying(self):
         """Show only adventures that have not been canceled."""
         return self.filter(canceled=False, accepted=False, rejected=False)
+    def accepted(self):
+        return self.filter(canceled=False, accepted=True, rejected=False)
+    def rejected(self):
+        return self.filter(canceled=False, accepted=False, rejected=True)
+    def pending(self):
+        return self.filter(canceled=False, accepted=False, rejected=False)
 
 
 class AdventureManager(models.Manager):
@@ -94,7 +100,12 @@ class AdventureManager(models.Manager):
     def applying(self):
         """Show only adventures that have not been canceled."""
         return self.get_query_set().applying()
-
+    def accepted(self):
+        return self.get_query_set().accepted()
+    def rejected(self):
+        return self.get_query_set().rejected()
+    def pending(self):
+        return self.get_query_set().pending()
 
 class Adventure(models.Model):
     objects = AdventureManager()
