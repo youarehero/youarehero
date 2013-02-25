@@ -961,6 +961,9 @@ textarea,
 .uneditable-input {
   width: 266px;
 }
+textarea {
+  height: 80px;
+}
 .btn-toolbar input {
   margin-top: 0px !important;
 }
