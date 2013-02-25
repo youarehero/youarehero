@@ -324,7 +324,7 @@ def leader_board(request):
     """Render a view of the top heroes by rank."""
 
 
-    global_all = User.objects.select_related().filter(userprofile__experience__gt=0).order_by('-userprofile__experience')
+    global_all = User.objects.select_related().filter(profile__experience__gt=0).order_by('-profile__experience')
     global_board = []
     for  user in global_all[:10]:
         global_board.append(user)

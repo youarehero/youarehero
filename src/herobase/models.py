@@ -369,10 +369,18 @@ class UserProfile(LocationMixin, models.Model, AvatarImageMixin):
     @property
     def level(self):
         """Calculate the user's level based on her experience"""
-        return int(self.experience / 1000) + 1 # TODO: correct formula
+        levels = [1000, 2000, 4000, 7000]
+        for index, experience in levels:
+            if experience > self.experience:
+                return index + 1
 
     def relative_level_experience(self):
         """Calculates percentage of XP for current level."""
+        levels = [1000, 2000, 4000, 7000]
+        next = levels[0]
+        for index, experience in levels:
+            if experience > self.experience:
+                return index + 1
         return (self.experience % 1000) / 10 # TODO: correct formula
 
     @property

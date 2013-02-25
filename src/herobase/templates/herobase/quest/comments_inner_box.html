@@ -7,8 +7,7 @@
 
 {% block content %}
     <div>
-    <img src="{{ comment.author.get_profile.avatar_thumbnail_40 }}" alt=""/>
-    {{ comment.created }} von {{ comment.author.username }}
+    {{ comment.author.username }} um {{ comment.created }}
     </div>
     <p>{{ comment.text }}</p>
 {% endblock %}
