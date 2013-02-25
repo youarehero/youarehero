@@ -33,7 +33,7 @@ class MessageForm(forms.ModelForm):
             ),
             Div(
                 Div(
-                    'text',
+                    Field('text', css_class="span6"),
                     css_class="span6",
                 ),
                 css_class="row",

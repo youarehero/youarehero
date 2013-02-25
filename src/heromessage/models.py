@@ -13,8 +13,8 @@ import logging
 logger = logging.getLogger('youarehero.heromessage')
 
 class Message(models.Model):
-    title = models.CharField(max_length=255, verbose_name=_("title"))
-    text = models.TextField(verbose_name=_("text"))
+    title = models.CharField(max_length=255, verbose_name=_("Subject"))
+    text = models.TextField(verbose_name=_("Message"))
 
     sent = models.DateTimeField(auto_now_add=True)
     read = models.DateTimeField(blank=True, null=True)

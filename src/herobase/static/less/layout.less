@@ -151,7 +151,14 @@ ul.menu-grid {
       border: 0px none;
       padding: 0px;
       margin: 0px;
-
+      line-height: 40px;
+      &.text {
+        padding-right: 5px;
+      }
+      &:hover {
+        background: darken(@boxIconBackground, 10%);
+        color: @black;
+      }
     }
   }
   .box-content {
