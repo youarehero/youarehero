@@ -7,7 +7,7 @@
 {% block buttons_top %}
     <form method="post" action="{% url "message_update" message.pk %}" class="inline">
         {% csrf_token %}
-        <button type="submit" value="delete" name="delete">
+        <button type="submit" value="delete" name="delete"  data-toggle="tooltip" data-title="Löschen">
             <i class="icon-yah-delete icon-40"></i></button>
     </form>
 {% endblock %}
@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block buttons_bottom %}
-    <a href="{% url "message_reply" message.pk %}">
+    <a href="{% url "message_reply" message.pk %}"  data-toggle="tooltip" data-title="Antworten">
         <i class=" icon-yah-arrow icon-40"></i></a>
 {% endblock %}
 

@@ -5,9 +5,9 @@
     <form method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
         {% csrf_token %}
         <input type="hidden" name="action" value="cancel">
-        <button class="box-btn-top" type="submit" value="cancel" name="cancel">
+        <button class="box-btn-top" type="submit" value="cancel" name="cancel"  data-toggle="tooltip" data-title="Abbrechen">
             <i class="icon-yah-delete icon-40"></i>
-            <span class="button-description">Quest abbrechen</span>
+
         </button>
     </form>
     {% endif %}
@@ -18,7 +18,7 @@
         <form method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
             {% csrf_token %}
             <input type="hidden" name="action" value="start">
-            <button class="box-btn-top" type="submit" value="start" name="start">
+            <button class="box-btn-top" type="submit" value="start" name="start" data-toggle="tooltip" data-title="Start">
                 <i class="icon-yah-ok icon-40"></i>
                 <span class="button-description">Quest starten</span>
             </button>
@@ -27,7 +27,7 @@
         <form method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
             {% csrf_token %}
             <input type="hidden" name="action" value="done">
-            <button class="box-btn-top" type="submit" value="start" name="start">
+            <button class="box-btn-top" type="submit" value="start" name="start" data-toggle="tooltip" data-title="Start">
                 <i class="icon-yah-ok icon-40"></i>
                 <span class="button-description">Quest als erledigt markieren</span>
             </button>

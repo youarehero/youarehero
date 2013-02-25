@@ -11,12 +11,12 @@
         {% csrf_token %}
         {% if not request_user_adventure and not quest.has_expired %}
             <input type="hidden" name="action" value="apply">
-            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Apply" %}">
+            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Apply" %}" data-toggle="tooltip" data-title="Bewerben">
                 <i class="icon-yah-ok icon-40"></i>
             </button>
         {% elif not quest.canceled and not request_user_adventure.rejected %}
             <input type="hidden" name="action" value="cancel">
-            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Cancel" %}">
+            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Cancel" %}" data-toggle="tooltip" data-title="Abbrechen">
                 <i class="icon-yah-delete icon-40"></i>
             </button>
         {% endif %}
