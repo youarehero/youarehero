@@ -27,7 +27,7 @@ from heronotification.models import Notification
 from herorecommend import recommend
 from herorecommend.forms import UserSkillEditForm
 from filters import QuestFilter
-from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit, CommentForm
+from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit, CommentForm, UserAuthenticationForm
 from herobase.models import Quest, Adventure, CLASS_CHOICES, UserProfile, Like, Comment
 import herorecommend.signals as recommender_signals
 from herorecommend.models import MIN_SELECTED_SKILLS
@@ -112,7 +112,8 @@ def home_view(request):
     if request.user.is_authenticated():
         return hero_home_view(request)
     return render(request, "herobase/public_home.html", {
-        'open_quests': Quest.objects.open()})
+        'open_quests': Quest.objects.open(),
+        'form': UserAuthenticationForm()})
 
 
 def m_home_view(request):

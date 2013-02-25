@@ -17,17 +17,15 @@
 
 {% block content %}
 
-    {% crispy form %}
 
-    <p>
-        <a href="{% url "auth_password_reset" %}">{% trans "Forgotten password?" %}</a>
+    <p style="text-align: center;">
+        <a class="btn btn-warning btn-large" href="{% url "registration_register" %}"  id="join">{% trans "Join now!" %}</a>
     </p>
 
 
 {% endblock %}
 {% block buttons_bottom %}
-    <button type="submit" value="{% trans "Login" %}" name="login">
-        <i class="icon-yah-arrow icon-40"></i></button>
+
 {% endblock %}
 
 

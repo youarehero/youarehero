@@ -1,5 +1,5 @@
 {% load static i18n hero_base crispy_forms_tags activelink %}
-{% load url from future %}
+{% load url from future  %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,8 +56,7 @@
                     <ul class="small-grid menu-grid pull-right">
                         {% if request.user.is_authenticated %}
                             <li><a href="{% url "auth_logout" %}"><i class="icon-yah-logout icon-40"><span>{% trans "Logout" %}</span></i></a></li>
-                        {% else %}
-                            <li><a href="{% url "auth_login" %}"><i class="icon-yah-arrow icon-40"><span>{% trans "Login" %}</span></i></a></li>
+
                         {% endif %}
                     </ul>
                     {% block site_header %}
