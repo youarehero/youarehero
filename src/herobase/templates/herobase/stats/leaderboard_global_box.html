@@ -15,9 +15,9 @@
         {% for currentuser in global %}
             <tr {% if currentuser.user.username == myname %} class="self" {% endif %}>
                 <td>
-                    <img src="{{ currentuser.userprofile.avatar_thumbnail }}">
+                    <img src="{{ currentuser.profile.avatar_thumbnail }}">
                     <div class="user"><a href="{% url "userprofile_public" currentuser.username %}">{{ currentuser.username }}</a></div>
-                    <div class="meta">{{ currentuser.userprofile.experience }} XP</div>
+                    <div class="meta">{{ currentuser.profile.experience }} XP</div>
                 </td>
             </tr>
         {% endfor %}
