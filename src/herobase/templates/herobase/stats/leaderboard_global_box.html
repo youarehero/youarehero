@@ -16,8 +16,16 @@
             <tr>
                 <td>
                     <a href="{% url "userprofile_public" user.username %}"><img src="{{ user.profile.avatar_thumbnail }}"></a>
-                    <div class="user"><a href="{% url "userprofile_public" user.username %}">{{ user.username }}</a></div>
-                    <div class="meta">{{ user.profile.experience }} XP</div>
+                    <br/>
+                    <a href="{% url "userprofile_public" user.username %}">{{ user.username }}</a>
+
+                </td>
+                <td>
+                    {{ user.get_profile.experience }} Erfahrungspunkte
+                    <br/>
+                    {{ user.get_profile.quests_done }} Quests erledigt und {{ user.get_profile.quests_created }} Quests erstellt
+                    <br/>
+                    Mitglied seit {{ user.date_joined.date }}
                 </td>
             </tr>
         {% endfor %}

@@ -419,7 +419,7 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
 
     @property
     def rank(self):
-        return list(User.objects.select_related().order_by( 'experience', 'username' )).index(self.user) + 1
+        return UserProfile.objects.filter(experience__gt=self.experience).count() + 1
 
     def __unicode__(self):
         return self.user.username

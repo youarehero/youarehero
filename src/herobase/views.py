@@ -301,7 +301,6 @@ def userprofile(request, username=None, template='herobase/userprofile/detail.ht
     else:
         user = request.user
 
-    rank = UserProfile.objects.filter(experience__gt=user.get_profile().experience).count() + 1
     hero_completed_quests = []
     class_choices = dict(CLASS_CHOICES)
     color_dict = { 5: '#e8e8e8',
@@ -313,9 +312,8 @@ def userprofile(request, username=None, template='herobase/userprofile/detail.ht
 
     return render(request, template, {
         'user': user,
-        'rank': rank,
+        'rank': user.get_profile().rank,
         'completed_quest_count': user.adventures.filter(done=True).count(),
-        'hero_completed_quests': mark_safe(json.dumps(hero_completed_quests)),
         # 'colors': json.dumps(color_dict),
     })
 
