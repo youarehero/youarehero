@@ -112,6 +112,8 @@ class UserProfileEdit(forms.ModelForm):
                 _('Edit your Profile'),
                 Div(
                     'about',
+                    'sex',
+                    'hero_image',
                     # 'address',
                     'receive_system_email',
                     'receive_private_email',
@@ -122,12 +124,16 @@ class UserProfileEdit(forms.ModelForm):
             ),
 
         )
+
         super(UserProfileEdit, self).__init__(*args, **kwargs)
         # self.fields['location_granularity'].widget = forms.HiddenInput()
+        self.fields['sex'].label = _(u"Geschlecht")
+        self.fields['hero_image'].widget = forms.HiddenInput()
+
 
     class Meta:
         model = UserProfile
-        fields = ('about',
+        fields = ('about','sex','hero_image',
                   'receive_system_email', 'receive_private_email',
                   # 'address', 'latitude', 'longitude', 'location_granularity'
         )

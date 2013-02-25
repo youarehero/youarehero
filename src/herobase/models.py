@@ -42,7 +42,6 @@ CLASS_CHOICES =  (
     (3, 'Action'),
     (4, 'Protective'))
 SEX_CHOICES =  (
-    (0, "Unbekannt"),
     (1, 'Männlich'),
     (2, 'Weiblich'))
 
