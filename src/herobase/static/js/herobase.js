@@ -11,4 +11,6 @@ $(document).ready(function() {
             $content.slideUp();
         }
     });
+
+    $('[data-toggle=tooltip]').tooltip();
 });

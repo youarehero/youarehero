@@ -13,9 +13,9 @@
     <form action="{% url "owner_update_quest" quest.pk  %}" method="post">
         {% csrf_token %}
         <input type="hidden" name="action" value="accept_all">
-        <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept All" %}">
+        <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept All" %}"
+                data-toggle="tooltip" data-title="Alle Akzeptieren">
             <i class="icon-yah-ok-all icon-40"></i>
-            <span class="button-description">Alle Akzeptieren</span>
         </button>
     </form>
     {% endif %}

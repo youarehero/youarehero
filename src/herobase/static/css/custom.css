@@ -1163,8 +1163,10 @@ ul.menu-grid.grid li:hover a {
   background: #bbbbbb;
   border: 0px none;
   padding: 0px;
+  -webkit-box-shadow: 0 0 0 transparent;
+  -moz-box-shadow: 0 0 0 transparent;
+  box-shadow: 0 0 0 transparent;
   margin: 0px;
-  line-height: 40px;
 }
 .box .box-buttons-top a.text,
 .box .box-buttons-top-left a.text,
@@ -1451,6 +1453,11 @@ body {
   position: relative;
   left: 0;
 }
+.tooltip {
+  font-variant: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
 form {
   margin-bottom: 0px;
   font-variant: small-caps;
@@ -1506,12 +1513,10 @@ textarea {
   border-radius: 0;
 }
 .form-actions {
-  margin: 0 -10px -10px 0;
+  margin: 0 0px 0px 0;
   padding: 0;
   border: 0px none;
   position: relative;
-  top: 5px;
-  left: 15px;
 }
 .form-actions .btn {
   background: #bbbbbb;
