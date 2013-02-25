@@ -6,6 +6,7 @@ This module also contains the ActionMixin, which provides basic logic for model 
 The model actions connect state logic to the models.
 """
 from datetime import datetime, timedelta
+import glob
 from random import randint
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
@@ -45,6 +46,7 @@ SEX_CHOICES =  (
     (1, 'Männlich'),
     (2, 'Weiblich'))
 
+AVATAR_IMAGES = glob.glob(os.path.join(settings.PROJECT_ROOT, 'assets', '*.png'))
 
 class Like(models.Model):
     user = models.ForeignKey(User)
@@ -481,12 +483,3 @@ def get_system_user():
 
 def get_dummy_user():
     return UserProfile(user=User(username="dummy"))
-
-
-def getTopUser():
-    all=list(User.objects.select_related().order_by( 'experience', 'username' ))
-    top={}
-    for place in range(0,10) :
-        top.append(all[place])
-
-    return top
