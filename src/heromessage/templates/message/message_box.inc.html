@@ -14,18 +14,25 @@
 
 {% block title %}
         <span class="pull-right">{{ message.sent }}</span>
+    {% if message.sender == request.user %}
+        <strong>{{ message.recipient }}:</strong>
+    {% else %}
         <strong>{{ message.sender }}:</strong>
+    {% endif %}
         {{ message.title }}
 {% endblock %}
 
 {% block content %}
-    <img src="{{ image }}" alt="">
+    <div class="span1-5"><img  src="{{ image }}" alt=""></div>
     <p>{{ message.text }}</p>
 {% endblock %}
 
 {% block buttons_bottom %}
+    {% if message.sender != request.user %}
     <a href="{% url "message_reply" message.pk %}"  data-toggle="tooltip" data-title="Antworten">
-        <i class=" icon-yah-arrow icon-40"></i></a>
+        <i class=" icon-yah-arrow icon-40"></i>
+    </a>
+    {% endif %}
 {% endblock %}
 
 

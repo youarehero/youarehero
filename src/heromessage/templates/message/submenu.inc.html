@@ -1,16 +1,19 @@
 {% load i18n activelink %}
 {% load url from future %}
 <ul class="page-tabs">
-    <li class="{% ifactive "home" %}on{% endifactive %}">
+    <li
+            class="{% ifstartswith '/messages/create' %}on{% endifstartswith%}
+                   {% ifstartswith '/messages/reply' %}on{% endifstartswith%}
+                   {% ifstartswith '/message/to' %}on{% endifstartswith%}">
         <a href="{% url "message_create" %}" class="">{% trans "compose" %}
         </a>
     </li>
-    <li class="{% ifactive "message-list" %}on{% endifactive %}">
+    <li class="{% ifactive "message_list_in" %}on{% endifactive %}">
         <a href="{% url "message_list_in" %}#in">
             <i class="icon-arrow-down"></i>{% trans "in" %}
         </a>
     </li>
-    <li class="{% ifactive "message-list" %}on{% endifactive %}">
+    <li class="{% ifactive "message_list_out" %}on{% endifactive %}">
         <a href="{% url "message_list_out" %}#out">
             <i class="icon-arrow-up"></i>{% trans "out" %}
         </a>
