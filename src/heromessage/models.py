@@ -74,4 +74,4 @@ def send_mail_on_message_save(sender, **kwargs):
         elif message.sender != get_system_user() and recipient.get_profile().receive_private_email:
             send_email_for_message(message)
 
-post_save.connect(send_mail_on_message_save, Message, dispatch_uid="heromessage.models")
+# post_save.connect(send_mail_on_message_save, Message, dispatch_uid="heromessage.models")

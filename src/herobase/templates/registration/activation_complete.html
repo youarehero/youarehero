@@ -8,10 +8,11 @@
 
 {% block content %}
     {% url "quest_list" as quest_list_url %}
-    {% url "quest_creat" as quest_create_url %}
+    {% url "quest_create" as quest_create_url %}
     <p>{%blocktrans with user.username as username %}Welcome Hero {{ user.username }}, <br>
         your account is now active.
         Start <a href="{{ quest_list_url }}">browsing open quests</a>
         or <a href="{{ quest_create_url }}">create your own quest</a>.
     {%endblocktrans%}</p>
+
 {% endblock %}

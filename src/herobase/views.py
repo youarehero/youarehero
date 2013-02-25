@@ -57,12 +57,18 @@ def quest_comment(request, quest_id):
 def quest_list_view(request, template='herobase/quest/list.html'):
     """Basic quest list, with django-filter app"""
     if request.user.is_authenticated():
-        f = QuestFilter(request.GET, queryset=recommend(request.user, order_by=['-created']))
+        quests = recommend(request.user, order_by=['-created'])
     else:
-        f = QuestFilter(request.GET, queryset=Quest.objects.open().order_by('-created'))
+        quests = Quest.objects.open().order_by('-created')
+
+    search = request.GET.get('search', '')
+    if search:
+        quests = quests.filter(Q(title__icontains=search)|
+                               Q(description__icontains=search))
+
     return render(request, template, {
-        'filter': f,
-        'quests': f.qs,
+        'quests': quests,
+        'search': search,
     })
 
 class QuestCreateView(CreateView):
@@ -324,12 +330,16 @@ def userprofile_edit(request):
     """Render the userprofile form and handle possible changes."""
     user = request.user
     form = UserProfileEdit(request.POST or None, instance=user.get_profile())
+    first_login = bool(request.GET.get('first_login'))
     if form.is_valid():
         form.save()
         messages.success(request, 'Profile successfully changed')
+        if first_login:
+            return HttpResponseRedirect(reverse("home"))
         return HttpResponseRedirect(reverse("userprofile_edit"))
     return render(request, 'herobase/userprofile/edit.html', {
-        'form': form
+        'form': form,
+        'first_login': first_login,
     })
 
 @login_required

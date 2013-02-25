@@ -46,8 +46,8 @@ SEX_CHOICES =  (
     (1, 'Männlich'),
     (2, 'Weiblich'))
 
-AVATAR_IMAGES = map(lambda x: os.path.join('avatar', os.path.basename(x)),
-                    glob.glob(os.path.join(settings.ASSET_ROOT, 'avatar', '*.png')))
+AVATAR_IMAGES = sorted(map(lambda x: os.path.join('avatar', os.path.basename(x)),
+                    glob.glob(os.path.join(settings.ASSET_ROOT, 'avatar', '*.png'))))
 AVATAR_CHOICES = zip(AVATAR_IMAGES, AVATAR_IMAGES)
 
 class Like(models.Model):
@@ -165,7 +165,7 @@ class Adventure(models.Model):
         if self.canceled:
             return _(u"cancelled")
         elif self.accepted:
-            return _(u"accepted")
+            return _(u"participating")
         elif self.rejected:
             return _(u"rejected")
         else:
@@ -303,7 +303,7 @@ class AvatarImageMixin(models.Model):
     def avatar_choices(cls):
         def t(avatar):
             thumbnailer = get_thumbnailer(cls.avatar_storage, avatar)
-            thumbnail = thumbnailer.get_thumbnail({'size': (90, 160), 'quality': 90})
+            thumbnail = thumbnailer.get_thumbnail({'size': (50, 89), 'quality': 90})
             return os.path.join(settings.MEDIA_URL, thumbnail.url)
         return [(name, t(name)) for name in AVATAR_IMAGES]
 

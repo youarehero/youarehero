@@ -32,7 +32,8 @@
 {% endblock %}
 
 {% block content %}
-   {% include "herobase/layout/crispy_box.html" %}
+    {% if first_login %}{% trans "Welcome to you are hero." %}{% endif %}
+   {% include "herobase/userprofile/form_box.html" %}
 {% endblock %}
 
 

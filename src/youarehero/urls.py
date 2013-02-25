@@ -54,6 +54,13 @@ urlpatterns = patterns(
             'form_class' : UserRegistrationForm,
             },
         name='registration_register'),
+    url(regex=r'^activate/(?P<activation_key>\w+)/$',
+        view='registration.views.activate',
+        kwargs={
+            'backend': 'registration.backends.default.DefaultBackend',
+            'success_url': '/profile/edit/?first_login=True',
+        },
+        name='registration_activate'),
     (r'^accounts/', include('registration.backends.default.urls')),
 
     # admin
