@@ -3,7 +3,7 @@ from datetime import datetime
 import logging
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
-from herobase.models import Adventure
+from herobase.models import Adventure, QUEST_EXPERIENCE, APPLY_EXPERIENCE
 from heronotification import notify
 
 logger = logging.getLogger(__name__)
@@ -85,8 +85,13 @@ def owner_quest_done(quest):
     quest.done = True
     quest.save()
 
+    quest.owner.get_profile().experience += QUEST_EXPERIENCE
+    quest.owner.get_profile().save()
+
     for adventure in quest.adventures.accepted():
         notify.quest_done(adventure.user, quest)
+        quest.owner.get_profile().experience += QUEST_EXPERIENCE
+        quest.owner.get_profile().save()
 
 
 # hero participation
@@ -101,6 +106,9 @@ def hero_quest_apply(quest, hero):
         raise ValidationError("Can not apply after being accepted.")
 
     adventure, created = quest.adventures.get_or_create(user=hero)
+    if created:
+        hero.get_profile().experience += APPLY_EXPERIENCE
+        hero.get_profile().save()
     if adventure.canceled:
         adventure.canceled = False
         adventure.canceled_time = None

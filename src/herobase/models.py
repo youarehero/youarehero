@@ -30,6 +30,9 @@ from south.modelsinspector import add_introspection_rules
 
 from heromessage.models import Message
 
+QUEST_EXPERIENCE = 1000
+APPLY_EXPERIENCE = 10
+
 # The classes a User can choose from. (Hero classes)
 CLASS_CHOICES =  (
     (5, "Scientist"),
@@ -366,24 +369,20 @@ class UserProfile(LocationMixin, models.Model, AvatarImageMixin):
     def quests_created(self):
         return self.user.created_quests.count()
 
+
+    levels = [0, 1000, 2000, 4000, 7000]
     @property
     def level(self):
         """Calculate the user's level based on her experience"""
-        levels = [1000, 2000, 4000, 7000]
-        for index, experience in levels:
+        for index, experience in enumerate(self.levels):
             if experience > self.experience:
-                return index + 1
+                return index
 
     def relative_level_experience(self):
         """Calculates percentage of XP for current level."""
-        levels = [1000, 2000, 4000, 7000]
-        next_level = levels[0]
-        for index, experience in levels:
-            if experience > self.experience:
-                next_level = experience
-                break
-
-        return (next_level - self.experience) / 10 # TODO: correct formula
+        current_level = self.levels[self.level - 1]
+        next_level = self.levels[self.level]
+        return int(100.0 * (self.experience - current_level)/(next_level-current_level))
 
     @property
     def unread_messages_count(self):
