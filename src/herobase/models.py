@@ -303,13 +303,13 @@ class AvatarImageMixin(models.Model):
     def avatar_choices(cls):
         def t(avatar):
             thumbnailer = get_thumbnailer(cls.avatar_storage, avatar)
-            thumbnail = thumbnailer.get_thumbnail({'size': (50, 89), 'quality': 90})
+            thumbnail = thumbnailer.get_thumbnail({'size': (50, 83), 'quality': 90})
             return os.path.join(settings.MEDIA_URL, thumbnail.url)
         return [(name, t(name)) for name in AVATAR_IMAGES]
 
     def avatar(self):
         """Return a String, containing a path to a thumbnail-image 270x270."""
-        return self._avatar_thumbnail((180, 320))
+        return self._avatar_thumbnail((150, 250))
 
     @property
     def avatar_thumbnail(self):
