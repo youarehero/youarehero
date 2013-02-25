@@ -165,7 +165,7 @@ class Adventure(models.Model):
         if self.canceled:
             return _(u"cancelled")
         elif self.accepted:
-            return _(u"accepted")
+            return _(u"participating")
         elif self.rejected:
             return _(u"rejected")
         else:

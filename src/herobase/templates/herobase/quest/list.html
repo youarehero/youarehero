@@ -32,7 +32,7 @@
 {% block submenu %}
     <form action="" method="get" class="form form-inline">
         <div class="btn-group">
-            <input placeholder="z.B. Übersetzen" type="search" class="search" name="title" value="{{ filter.form.data.title }}"/>
+            <input placeholder="z.B. Übersetzen" type="search" class="search" name="search" value="{{ search }}"/>
             <input id="" class="btn" type="submit" name="submit" value="Suchen"/>
         </div>
     </form>
@@ -50,9 +50,10 @@
                     {% include "herobase/quest/list_box.html" %}
                 </li>
             {% empty %}
-                {% if filter.is_filtered %}
-                    {% trans "No quests found matching your current criteria." %}
-                    <a href="./?state=1">{% trans "Show all." %}</a>
+                {% if search %}
+                    <li>{% trans "No quests found matching your current criteria." %}
+                        <a href="?search=">{% trans "Show all." %}</a>
+                    </li>
                 {% else %}
                     <li>{% trans "There don't seem to be any quests." %}</li>
                 {% endif %}
