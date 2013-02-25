@@ -212,7 +212,7 @@ body {
   background-color: #0b1923;
 }
 a {
-  color: #eeeeee;
+  color: #d9a400;
   text-decoration: none;
 }
 a:hover {
@@ -2355,28 +2355,28 @@ table th[class*="span"],
 .dropdown-submenu:hover > a {
   text-decoration: none;
   color: #ffffff;
-  background-color: #e9e9e9;
-  background-image: -moz-linear-gradient(top, #eeeeee, #e1e1e1);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#eeeeee), to(#e1e1e1));
-  background-image: -webkit-linear-gradient(top, #eeeeee, #e1e1e1);
-  background-image: -o-linear-gradient(top, #eeeeee, #e1e1e1);
-  background-image: linear-gradient(to bottom, #eeeeee, #e1e1e1);
+  background-color: #cf9c00;
+  background-image: -moz-linear-gradient(top, #d9a400, #c09100);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d9a400), to(#c09100));
+  background-image: -webkit-linear-gradient(top, #d9a400, #c09100);
+  background-image: -o-linear-gradient(top, #d9a400, #c09100);
+  background-image: linear-gradient(to bottom, #d9a400, #c09100);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeeeee', endColorstr='#ffe1e1e1', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9a400', endColorstr='#ffc09100', GradientType=0);
 }
 .dropdown-menu .active > a,
 .dropdown-menu .active > a:hover {
   color: #ffffff;
   text-decoration: none;
   outline: 0;
-  background-color: #e9e9e9;
-  background-image: -moz-linear-gradient(top, #eeeeee, #e1e1e1);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#eeeeee), to(#e1e1e1));
-  background-image: -webkit-linear-gradient(top, #eeeeee, #e1e1e1);
-  background-image: -o-linear-gradient(top, #eeeeee, #e1e1e1);
-  background-image: linear-gradient(to bottom, #eeeeee, #e1e1e1);
+  background-color: #cf9c00;
+  background-image: -moz-linear-gradient(top, #d9a400, #c09100);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d9a400), to(#c09100));
+  background-image: -webkit-linear-gradient(top, #d9a400, #c09100);
+  background-image: -o-linear-gradient(top, #d9a400, #c09100);
+  background-image: linear-gradient(to bottom, #d9a400, #c09100);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeeeee', endColorstr='#ffe1e1e1', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9a400', endColorstr='#ffc09100', GradientType=0);
 }
 .dropdown-menu .disabled > a,
 .dropdown-menu .disabled > a:hover {
@@ -2700,17 +2700,17 @@ input[type="button"].btn-block {
 .btn-primary {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #eeeeee;
-  background-image: -moz-linear-gradient(top, #eeeeee, #eeeeee);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#eeeeee), to(#eeeeee));
-  background-image: -webkit-linear-gradient(top, #eeeeee, #eeeeee);
-  background-image: -o-linear-gradient(top, #eeeeee, #eeeeee);
-  background-image: linear-gradient(to bottom, #eeeeee, #eeeeee);
+  background-color: #d1b900;
+  background-image: -moz-linear-gradient(top, #d9a400, #c6d900);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d9a400), to(#c6d900));
+  background-image: -webkit-linear-gradient(top, #d9a400, #c6d900);
+  background-image: -o-linear-gradient(top, #d9a400, #c6d900);
+  background-image: linear-gradient(to bottom, #d9a400, #c6d900);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeeeee', endColorstr='#ffeeeeee', GradientType=0);
-  border-color: #eeeeee #eeeeee #c8c8c8;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9a400', endColorstr='#ffc6d900', GradientType=0);
+  border-color: #c6d900 #c6d900 #808d00;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #eeeeee;
+  *background-color: #c6d900;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
@@ -2721,12 +2721,12 @@ input[type="button"].btn-block {
 .btn-primary.disabled,
 .btn-primary[disabled] {
   color: #ffffff;
-  background-color: #eeeeee;
-  *background-color: #e1e1e1;
+  background-color: #c6d900;
+  *background-color: #aec000;
 }
 .btn-primary:active,
 .btn-primary.active {
-  background-color: #d5d5d5 \9;
+  background-color: #97a600 \9;
 }
 .btn-warning {
   color: #ffffff;
@@ -2920,7 +2920,7 @@ input[type="submit"].btn.btn-mini {
 .btn-link {
   border-color: transparent;
   cursor: pointer;
-  color: #eeeeee;
+  color: #d9a400;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -3066,7 +3066,7 @@ input[type="submit"].btn.btn-mini {
   background-color: #e6e6e6;
 }
 .btn-group.open .btn-primary.dropdown-toggle {
-  background-color: #eeeeee;
+  background-color: #c6d900;
 }
 .btn-group.open .btn-warning.dropdown-toggle {
   background-color: #f89406;
@@ -3257,7 +3257,7 @@ input[type="submit"].btn.btn-mini {
 .nav-list > .active > a:hover {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-  background-color: #eeeeee;
+  background-color: #d9a400;
 }
 .nav-list [class^="icon-"],
 .nav-list [class*=" icon-"] {
@@ -3337,7 +3337,7 @@ input[type="submit"].btn.btn-mini {
 .nav-pills > .active > a,
 .nav-pills > .active > a:hover {
   color: #ffffff;
-  background-color: #eeeeee;
+  background-color: #d9a400;
 }
 .nav-stacked > li {
   float: none;
@@ -3391,8 +3391,8 @@ input[type="submit"].btn.btn-mini {
   border-radius: 6px;
 }
 .nav .dropdown-toggle .caret {
-  border-top-color: #eeeeee;
-  border-bottom-color: #eeeeee;
+  border-top-color: #d9a400;
+  border-bottom-color: #d9a400;
   margin-top: 6px;
 }
 .nav .dropdown-toggle:hover .caret {
@@ -4568,7 +4568,7 @@ input[type="submit"].btn.btn-mini {
   transition: all 0.2s ease-in-out;
 }
 a.thumbnail:hover {
-  border-color: #eeeeee;
+  border-color: #d9a400;
   -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
   -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
   box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);

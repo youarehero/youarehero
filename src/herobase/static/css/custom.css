@@ -1041,7 +1041,7 @@ ul.menu-grid li:hover a {
   color: #ffc40d;
 }
 ul.menu-grid li a {
-  color: #eeeeee;
+  color: #d9a400;
 }
 ul.menu-grid.grid li {
   color: #eeeeee;
@@ -1062,10 +1062,10 @@ ul.menu-grid.grid li:hover a {
   *zoom: 1;
 }
 .box a {
-  color: #777777;
+  color: #1e9899;
 }
 .box a:hover {
-  color: #373737;
+  color: #115859;
 }
 .box.mini {
   width: 210px;
@@ -1298,6 +1298,21 @@ h4 {
   line-height: 20px;
   font-size: 13px;
 }
+.logo img {
+  height: 56px;
+}
+#be-a-hero {
+  height: 0;
+  padding-top: 100px;
+  overflow: hidden;
+  margin-left: 180px;
+  background: url("../img/SeiHelddeinerStadt.png") no-repeat scroll 0 0 transparent;
+}
+#footer {
+  width: 100%;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.4);
+}
 #butler {
   margin-top: 20px;
 }
@@ -1312,6 +1327,7 @@ body {
   left: 0;
   z-index: -100;
   background: url("../img/city.jpg") no-repeat scroll 50% 0 #333333;
+  background-size: 100%;
 }
 .sidebar-left {
   margin-right: 20px;
