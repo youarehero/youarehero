@@ -399,6 +399,11 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
             if experience > self.experience:
                 return index
 
+    @property
+    def next_level_experience(self):
+        return self.levels[self.level]
+
+    @property
     def relative_level_experience(self):
         """Calculates percentage of XP for current level."""
         current_level = self.levels[self.level - 1]
