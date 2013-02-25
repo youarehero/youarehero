@@ -29,11 +29,12 @@
 @pink:                  #c3325f;
 @purple:                #7a43b6;
 
+@cyan: #1e9899;
 
 // Custom Colors
 // -------------------------
-@primary: @orange;
-@secondary: (@orange + @yellow) / 2;
+@primary: @yellow; //@orange;
+@secondary: @cyan; //(@orange + @yellow) / 2;
 
 @action: #D3412C;//#ffa19b;
 @scientist: #7E7F7E;//#e8e8e8;
@@ -66,11 +67,11 @@
 
 // Links
 // -------------------------
-@linkColor:             @grayLighter;
+@linkColor:             darken(@yellow, 10%);
 @linkColorHover:        @yellow; //@white; // darken(@linkColor, 25%);
 
-@boxLinkColor: #777;
-@boxLinkColorHover: darken(@boxLinkColor, 25%);
+@boxLinkColor: @cyan; //@yellow; //#777;
+@boxLinkColorHover: darken(@boxLinkColor, 15%);
 
 // Typography
 // -------------------------

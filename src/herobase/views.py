@@ -165,6 +165,11 @@ def abstract(request):
     """static you are hero abstract view."""
     return render(request, "herobase/abstract.html")
 
+
+def imprint(request):
+    """static you are hero imprint view."""
+    return render(request, "herobase/imprint.html")
+
 def hero_classes(request):
     """static view for explaining hero classes."""
     return render(request, "herobase/hero_classes.html")

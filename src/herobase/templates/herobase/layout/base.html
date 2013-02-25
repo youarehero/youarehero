@@ -54,7 +54,9 @@
                         <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">
                     </a>
                     {% if not request.user.is_authenticated %}
-                        <img src="{% get_static_prefix %}img/SeiHelddeinerStadt.png" style="height: 106px" alt="You Are Hero">
+                        <div id="be-a-hero">
+                        <h2>Sei Held deiner Stadt!</h2>
+                        </div>
                     {% endif %}
                     <ul class="small-grid menu-grid pull-right">
                         {% if request.user.is_authenticated %}
@@ -121,6 +123,6 @@
 {#<script src="{% get_static_prefix %}bootstrap/js/bootstrap-modal.js"></script>#}
 {% block javascript %}
 {% endblock %}
-
+<div id="footer"><a href="{% url "imprint" %}" title="Impressum">Impressum</a></div>
 </body>
 </html>

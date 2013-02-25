@@ -49,13 +49,13 @@
                 <i class="icon-yah-billboard icon-80"><span>{% trans 'Billboard' %}</span></i>
             </a>
         </li>
-        <li class="{% ifactive "quest_list" %}on{% endifactive %}">
+        <li>
             <a href="/blog/" target="_blank" rel="tooltip" title="{% trans 'Blog' %}">
                 <i class="icon-yah-social icon-80"><span>{% trans 'Blog' %}</span></i>
             </a>
         </li>
-        <li class="{% ifactive "quest_list" %}on{% endifactive %}">
-            <a href="https://youarehero.net/blog/about-us-you-are-hero-questdesign-im-real-life/" target="_blank" rel="tooltip" title="{% trans 'Blog' %}">
+        <li class="{% ifactive "abstract" %}on{% endifactive %}">
+            <a href="{% url "abstract" %}" rel="tooltip" title="{% trans 'Blog' %}">
                 <i class="icon-yah-info icon-80"><span>{% trans 'Informationen' %}</span></i>
             </a>
         </li>
