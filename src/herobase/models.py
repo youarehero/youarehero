@@ -37,6 +37,10 @@ CLASS_CHOICES =  (
     (2, 'Diplomat'),
     (3, 'Action'),
     (4, 'Protective'))
+SEX_CHOICES =  (
+    (0, "Unbekannt"),
+    (1, 'Männlich'),
+    (2, 'Weiblich'))
 
 
 class Like(models.Model):
@@ -335,6 +339,10 @@ class UserProfile(LocationMixin, models.Model, AvatarImageMixin):
     location = models.CharField(max_length=255) # TODO : placeholder
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True,
         null=True)
+    sex = models.IntegerField(choices=SEX_CHOICES, blank=True,
+                                     null=True)
+    hero_image = models.IntegerField( blank=True,
+                              null=True)
 
     keep_email_after_gpn = models.DateTimeField(blank=True, null=True,
         editable=False)
