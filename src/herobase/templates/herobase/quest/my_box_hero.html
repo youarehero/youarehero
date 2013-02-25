@@ -1,12 +1,22 @@
 {% extends "herobase/layout/box.html" %}
 
-{% block extra_classes %}collapsible collapsed{% endblock %}
+{% block extra_classes %}{% endblock %}
 
 {% block title %}
-    <h3>{{ quest.title }}</h3>
+
 {% endblock %}
 
 {% block content %}
+    <div class="pull-right">
+        {% if quest.remote %}
+            <i class="icon-yah-distance icon-40"></i>
+        {% endif %}
+        {{ quest.time_effort }}
+    </div>
+    <a href="{{ quest.get_absolute_url }}">
+        <img src="http://placehold.it/40x40" alt="" width="40" height="40"/>
+        <h3>{{ quest.title }}</h3>
+    </a>
     {{ quest.description }}
 {% endblock %}
 
