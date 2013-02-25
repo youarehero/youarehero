@@ -33,6 +33,7 @@ from heromessage.models import Message
 
 QUEST_EXPERIENCE = 1000
 APPLY_EXPERIENCE = 10
+CREATE_EXPERIENCE = 10
 
 # The classes a User can choose from. (Hero classes)
 CLASS_CHOICES =  (
@@ -336,7 +337,7 @@ class AvatarImageMixin(models.Model):
 
     def _avatar_thumbnail(self, size, crop='0,0'):
         """Return a String, containing a path to a thumbnail-image."""
-        file_name = self.image or 'avatar/default/default.png'
+        file_name = self.image or 'avatar/default.png'
         thumbnailer = get_thumbnailer(self.avatar_storage, file_name)
         thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality': 90, 'crop':crop})
         return os.path.join(settings.MEDIA_URL, thumbnail.url)

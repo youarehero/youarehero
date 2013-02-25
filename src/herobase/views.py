@@ -28,7 +28,7 @@ from herorecommend import recommend
 from herorecommend.forms import UserSkillEditForm
 from filters import QuestFilter
 from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit, CommentForm, UserAuthenticationForm
-from herobase.models import Quest, Adventure, CLASS_CHOICES, UserProfile, Like, Comment
+from herobase.models import Quest, Adventure, CLASS_CHOICES, UserProfile, Like, Comment, CREATE_EXPERIENCE
 import herorecommend.signals as recommender_signals
 from herorecommend.models import MIN_SELECTED_SKILLS
 
@@ -85,6 +85,8 @@ class QuestCreateView(CreateView):
         self.object = form.save(commit=False)
         self.object.owner = self.request.user
         self.object.save()
+        self.object.owner.get_profile().experience += CREATE_EXPERIENCE
+        self.object.owner.get_profile().save()
         return HttpResponseRedirect(self.get_success_url())
 
 
