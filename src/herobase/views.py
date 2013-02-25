@@ -93,17 +93,48 @@ def quest_detail_view(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
 
     is_owner = request.user == quest.owner
-    context = {
-        'quest': quest,
-        'is_owner': is_owner,
-        'comment_form': CommentForm()
-
-    }
     if request.user.is_authenticated():
         try:
-            context['request_user_adventure'] = quest.adventures.get(user_id=request.user.pk, canceled=False)
+            adventure = quest.adventures.get(user_id=request.user.pk, canceled=False)
         except Adventure.DoesNotExist:
-            pass
+            adventure = None
+    else:
+        adventure = None
+
+    if is_owner:
+        butler_text = u'Dies ist ihre Quest.'
+    elif not adventure:
+        butler_text = u"This quest needs heroes. Apply now by clicking the ✓ Button on the right."
+    elif adventure.accepted:
+        butler_text = u"Your application has been accepted. Press X to withdraw your participation."
+    elif adventure.rejected:
+        butler_text = u"You have applied for this quest but the owner didn't want you to participate in it."
+    elif not adventure.accepted and not adventure.rejected:
+        butler_text = (u"You are currently applying for this quest. Press X to cancel."
+                      u" You will be notified once the creator has decided about our participation" )
+    else:
+        butler_text = u"Hello"
+
+    context = {
+        'quest': quest,
+        'butler_text': butler_text,
+        'is_owner': is_owner,
+        'comment_form': CommentForm(),
+        'request_user_adventure': adventure,
+
+    }
+
+    # {% if not request_user_adventure %}
+    # {% trans "" %}
+    # {% elif request_user_adventure.accepted %}
+    # {% trans " %}
+    # {% elif request_user_adventure.rejected %}
+    # {% trans "Your application has been rejected." %}
+    # {% elif not request_user_adventure.accepted and not request.user.rejected %}
+    # {% trans "You are currently applying for this quest. Press X to cancel." %}
+    # {% endif %}
+
+
 
     return render(request, "herobase/quest/detail.html", context)
 

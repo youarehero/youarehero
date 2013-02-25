@@ -11,7 +11,10 @@
         {% endif %}
         <strong>Status:</strong> {{ quest.get_state_display }} <br/>
         <strong>Gesuchte Helden:</strong> {{ quest.max_heroes }} <br/>
-
-        <strong>Läuft noch bis:</strong> {{ quest.expiration_date.date}}
-    </div>`
+        {%if not quest.has_expired %}
+            <strong>Läuft noch bis:</strong> {{ quest.expiration_date.date}}
+        {% else %}
+            <strong>Abgelaufen am:</strong> {{ quest.expiration_date.date}}
+        {% endif %}
+    </div>
 </div>

@@ -26,7 +26,7 @@ class CommentForm(forms.ModelForm):
         super(CommentForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.helper.add_input(Submit('submit', 'Submit', css_class='icon-yah-arrow'))
+        self.helper.add_input(Submit('submit', 'Kommentar abschicken'))
         self.helper.layout = Layout(
             Fieldset(
                 _('Kommentieren'),

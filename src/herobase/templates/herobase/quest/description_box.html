@@ -4,24 +4,12 @@
 
 {% block content %}
     {% include "herobase/quest/description_box_content.html" %}
-
-    <div class="pull-right">
-        {% if not request_user_adventure %}
-            {% trans "Apply now by clicking the ✓ Button on the right." %}
-        {% elif request_user_adventure.accepted %}
-            {% trans "Your application has been accepted. Press X to cancel." %}
-        {% elif request_user_adventure.rejected %}
-            {% trans "Your application has been rejected." %}
-        {% elif not request_user_adventure.accepted and not request.user.rejected %}
-            {% trans "You are currently applying for this quest. Press X to cancel." %}
-        {% endif %}
-    </div>
 {% endblock %}
 
 {% block buttons_bottom %}
     <form method="POST" action="{% url "hero_update_quest" quest.pk %}">
         {% csrf_token %}
-        {% if not request_user_adventure %}
+        {% if not request_user_adventure and not quest.has_expired %}
             <input type="hidden" name="action" value="apply">
             <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Apply" %}">
                 <i class="icon-yah-ok icon-40"></i>
