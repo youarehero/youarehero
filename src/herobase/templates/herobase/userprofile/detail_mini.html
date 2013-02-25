@@ -3,7 +3,7 @@
 
 {# Username and Avatar #}
 
-<div class="avatar-small">
+<div class="userprofile-small">
     <h4><a href="{% url "userprofile_private" %}">{{ request.user.username }}</a></h4>
     <a href="{% url "userprofile_private" %}"><img src="{{ request.user.get_profile.avatar_thumbnail_110 }}" alt="{{ request.user.username }}">
     </a>
