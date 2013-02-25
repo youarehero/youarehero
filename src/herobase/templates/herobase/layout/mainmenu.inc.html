@@ -5,32 +5,32 @@
     {% if request.user.is_authenticated %}
         <li class="{% ifactive "home" %}on{% endifactive %}">
             <a href="{% url "home" %}" rel="tooltip" title="{% trans 'Home' %}">
-                <i class="icon-yah-home"><span>{% trans 'Home' %}</span></i>
+                <i class="icon-yah-home icon-80"><span>{% trans 'Home' %}</span></i>
             </a>
         </li>
         <li class="{% ifactive "quest_list" %}on{% endifactive %}">
             <a href="{% url "quest_list" %}" rel="tooltip" title="{% trans 'Billboard' %}">
-                <i class="icon-yah-billboard"><span>{% trans 'Billboard' %}</span></i>
+                <i class="icon-yah-billboard icon-80"><span>{% trans 'Billboard' %}</span></i>
             </a>
         </li>
         <li class="{% ifactive "quest_create" %}on{% endifactive %}">
             <a href="{% url "quest_create" %}" rel="tooltip" title="{% trans 'Create new Quest' %}">
-                <i class="icon-yah-new"><span>{% trans 'New' %}</span></i>
+                <i class="icon-yah-new icon-80"><span>{% trans 'New' %}</span></i>
             </a>
         </li>
         <li class="{% ifstartswith "quest_my" %}on{% endifstartswith %}">
             <a href="{% url "quest_my" %}" rel="tooltip" title="{% trans 'My Quests' %}">
-                <i class="icon-yah-my-quests"><span>{% trans 'My Quests' %}</span></i>
+                <i class="icon-yah-my-quests icon-80"><span>{% trans 'My Quests' %}</span></i>
             </a>
         </li>
         <li class="{% ifstartswith "leader_board" %}on{% endifstartswith %}">
             <a href="{% url "leader_board" %}" rel="tooltip" title="{% trans 'Leaderboard' %}">
-                <i class="icon-yah-category"><span>{% trans 'Leaderboard' %}</span></i>
+                <i class="icon-yah-category icon-80"><span>{% trans 'Leaderboard' %}</span></i>
             </a>
         </li>
         <li class="{% ifactive "message_list_in" %}on{% endifactive %}">
             <a href="{% url "message_list_in" %}" rel="tooltip" title="{% trans 'Private Messages' %}">
-                <i class="icon-yah-messages">
+                <i class="icon-yah-messages icon-80">
                     {% if request.user.get_profile.unread_messages_count != 0 %}
                         <span class="badge">{{ request.user.get_profile.unread_messages_count }}</span>
                     {% endif %}
@@ -41,17 +41,17 @@
     {% else %}
         <li class="{% ifactive "home" %}on{% endifactive %}">
             <a href="{% url "home" %}" rel="tooltip" title="{% trans 'Home' %}">
-                <i class="icon-yah-home"><span>{% trans 'Home' %}</span></i>
+                <i class="icon-yah-home icon-80"><span>{% trans 'Home' %}</span></i>
             </a>
         </li>
         <li class="{% ifactive "quest_list" %}on{% endifactive %}">
             <a href="{% url "quest_list" %}" rel="tooltip" title="{% trans 'Billboard' %}">
-                <i class="icon-yah-billboard"><span>{% trans 'Billboard' %}</span></i>
+                <i class="icon-yah-billboard icon-80"><span>{% trans 'Billboard' %}</span></i>
             </a>
         </li>
         <li class="{% ifactive "quest_list" %}on{% endifactive %}">
             <a href="/blog/" target="_blank" rel="tooltip" title="{% trans 'Blog' %}">
-                <i class="icon-yah-social"><span>{% trans 'Blog' %}</span></i>
+                <i class="icon-yah-social icon-80"><span>{% trans 'Blog' %}</span></i>
             </a>
         </li>
     {% endif %}

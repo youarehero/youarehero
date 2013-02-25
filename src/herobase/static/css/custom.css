@@ -27,318 +27,838 @@
 }
 [class^="icon-yah"],
 [class*=" icon-yah"] {
-  margin: 0px 0px 0px 0px;
-  width: 80px;
-  height: 80px;
+  margin: 0;
   vertical-align: middle;
   font-style: normal;
   font-family: 'Open Sans Condensed', sans-serif;
   font-variant: small-caps;
   white-space: nowrap;
   *margin-right: .3em;
-  background-image: url("../img/icons_80.png");
   background-position: 0px 0px;
   background-repeat: no-repeat;
-}
-[class^="icon-yah"] span,
-[class*=" icon-yah"] span {
-  left: 5px;
   position: relative;
-  top: 62px;
-  line-height: 17px;
 }
 .icon-yah-home {
-  background-position: 0        0;
-}
-.icon-yah-billboard {
-  background-position: -80px 0;
-}
-.icon-yah-messages {
-  background-position: -160px 0;
-}
-.icon-yah-calendar {
-  background-position: -240px 0;
-}
-.icon-yah-new {
-  background-position: -320px 0;
-}
-.icon-yah-my-quests {
-  background-position: -400px 0;
-}
-.icon-yah-delete {
-  background-position: -480px 0;
-}
-.icon-yah-edit {
-  background-position: -560px 0;
-}
-.icon-yah-arrow {
-  background-position: -640px 0;
-}
-.icon-yah-mail-all {
-  background-position: -720px 0;
-}
-.icon-yah-time-short {
-  background-position: -800px 0;
-}
-.icon-yah-time-middle {
-  background-position: -880px 0;
-}
-.icon-yah-time-long {
-  background-position: -960px 0;
-}
-.icon-yah-logout {
-  background-position: -1040px 0;
-}
-.icon-yah-category {
-  background-position: -1120px 0;
-}
-.icon-yah-distance {
-  background-position: -1200px 0;
-}
-.icon-yah-social {
-  background-position: -1280px 0;
-}
-.icon-yah-like {
-  background-position: -1360px 0;
-}
-.icon-yah-upload {
-  background-position: -1440px 0;
-}
-.icon-yah-ok {
-  background-position: -1520px 0;
-}
-.icon-yah-ok-all {
-  background-position: -1600px 0;
-}
-.icon-yah-mail {
-  background-position: -1680px 0;
-}
-.icon-40 {
+  background-image: url("../img/icons_40.png");
+  background-position: 0px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background-image: url("../img/icons_40.png");
 }
-.icon-40 span {
-  left: 0px;
-  top: 40px;
-  vertical-align: top;
+.icon-yah-home.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: 0px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
 }
-.icon-40.icon-yah-home {
-  background-position: 0        0;
-}
-.icon-40.icon-yah-billboard {
-  background-position: -40px 0;
-}
-.icon-40.icon-yah-messages {
-  background-position: -80px 0;
-}
-.icon-40.icon-yah-calendar {
-  background-position: -120px 0;
-}
-.icon-40.icon-yah-new {
-  background-position: -160px 0;
-}
-.icon-40.icon-yah-my-quests {
-  background-position: -200px 0;
-}
-.icon-40.icon-yah-delete {
-  background-position: -240px 0;
-}
-.icon-40.icon-yah-edit {
-  background-position: -280px 0;
-}
-.icon-40.icon-yah-arrow {
-  background-position: -320px 0;
-}
-.icon-40.icon-yah-mail-all {
-  background-position: -360px 0;
-}
-.icon-40.icon-yah-time-short {
-  background-position: -400px 0;
-}
-.icon-40.icon-yah-time-middle {
-  background-position: -440px 0;
-}
-.icon-40.icon-yah-time-long {
-  background-position: -480px 0;
-}
-.icon-40.icon-yah-logout {
-  background-position: -520px 0;
-}
-.icon-40.icon-yah-category {
-  background-position: -560px 0;
-}
-.icon-40.icon-yah-distance {
-  background-position: -600px 0;
-}
-.icon-40.icon-yah-social {
-  background-position: -640px 0;
-}
-.icon-40.icon-yah-like {
-  background-position: -680px 0;
-}
-.icon-40.icon-yah-upload {
-  background-position: -720px 0;
-}
-.icon-40.icon-yah-ok {
-  background-position: -760px 0;
-}
-.icon-40.icon-yah-ok-all {
-  background-position: -800px 0;
-}
-.icon-40.icon-yah-mail {
-  background-position: -840px 0;
-}
-.icon-30 {
+.icon-yah-home.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: 0px 0;
   width: 30px;
   height: 30px;
-  background-image: url("../img/icons_30.png");
+  line-height: 30px;
 }
-.icon-30 span {
-  left: 0px;
-  top: 30px;
-}
-.icon-30.icon-yah-home {
-  background-position: 0        0;
-}
-.icon-30.icon-yah-billboard {
-  background-position: -30px 0;
-}
-.icon-30.icon-yah-messages {
-  background-position: -60px 0;
-}
-.icon-30.icon-yah-calendar {
-  background-position: -90px 0;
-}
-.icon-30.icon-yah-new {
-  background-position: -120px 0;
-}
-.icon-30.icon-yah-my-quests {
-  background-position: -150px 0;
-}
-.icon-30.icon-yah-delete {
-  background-position: -180px 0;
-}
-.icon-30.icon-yah-edit {
-  background-position: -210px 0;
-}
-.icon-30.icon-yah-arrow {
-  background-position: -240px 0;
-}
-.icon-30.icon-yah-mail-all {
-  background-position: -270px 0;
-}
-.icon-30.icon-yah-time-short {
-  background-position: -300px 0;
-}
-.icon-30.icon-yah-time-middle {
-  background-position: -330px 0;
-}
-.icon-30.icon-yah-time-long {
-  background-position: -360px 0;
-}
-.icon-30.icon-yah-logout {
-  background-position: -390px 0;
-}
-.icon-30.icon-yah-category {
-  background-position: -420px 0;
-}
-.icon-30.icon-yah-distance {
-  background-position: -450px 0;
-}
-.icon-30.icon-yah-social {
-  background-position: -480px 0;
-}
-.icon-30.icon-yah-like {
-  background-position: -510px 0;
-}
-.icon-30.icon-yah-upload {
-  background-position: -540px 0;
-}
-.icon-30.icon-yah-ok {
-  background-position: -570px 0;
-}
-.icon-30.icon-yah-ok-all {
-  background-position: -600px 0;
-}
-.icon-30.icon-yah-mail {
-  background-position: -630px 0;
-}
-.icon-20 {
+.icon-yah-home.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: 0px 0;
   width: 20px;
   height: 20px;
+  line-height: 20px;
+}
+.icon-yah-billboard {
+  background-image: url("../img/icons_40.png");
+  background-position: -40px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-billboard.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -80px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-billboard.icon-30 {
   background-image: url("../img/icons_30.png");
-}
-.icon-20 span {
-  left: 0px;
-  top: 20px;
-}
-.icon-20.icon-yah-home {
-  background-position: 0        0;
-}
-.icon-20.icon-yah-billboard {
   background-position: -30px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
 }
-.icon-20.icon-yah-messages {
+.icon-yah-billboard.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -20px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-messages {
+  background-image: url("../img/icons_40.png");
+  background-position: -80px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-messages.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -160px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-messages.icon-30 {
+  background-image: url("../img/icons_30.png");
   background-position: -60px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
 }
-.icon-20.icon-yah-calendar {
-  background-position: -90px 0;
+.icon-yah-messages.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -40px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
 }
-.icon-20.icon-yah-new {
+.icon-yah-calendar {
+  background-image: url("../img/icons_40.png");
   background-position: -120px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
 }
-.icon-20.icon-yah-my-quests {
-  background-position: -150px 0;
-}
-.icon-20.icon-yah-delete {
-  background-position: -180px 0;
-}
-.icon-20.icon-yah-edit {
-  background-position: -210px 0;
-}
-.icon-20.icon-yah-arrow {
+.icon-yah-calendar.icon-80 {
+  background-image: url("../img/icons_80.png");
   background-position: -240px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
 }
-.icon-20.icon-yah-mail-all {
-  background-position: -270px 0;
+.icon-yah-calendar.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -90px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
 }
-.icon-20.icon-yah-time-short {
-  background-position: -300px 0;
+.icon-yah-calendar.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -60px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
 }
-.icon-20.icon-yah-time-middle {
-  background-position: -330px 0;
+.icon-yah-new {
+  background-image: url("../img/icons_40.png");
+  background-position: -160px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
 }
-.icon-20.icon-yah-time-long {
-  background-position: -360px 0;
+.icon-yah-new.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -320px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
 }
-.icon-20.icon-yah-logout {
-  background-position: -390px 0;
+.icon-yah-new.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -120px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
 }
-.icon-20.icon-yah-category {
-  background-position: -420px 0;
+.icon-yah-new.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -80px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
 }
-.icon-20.icon-yah-distance {
-  background-position: -450px 0;
+.icon-yah-my-quests {
+  background-image: url("../img/icons_40.png");
+  background-position: -200px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
 }
-.icon-20.icon-yah-social {
+.icon-yah-my-quests.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -400px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-my-quests.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -150px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-my-quests.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -100px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-delete {
+  background-image: url("../img/icons_40.png");
+  background-position: -240px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-delete.icon-80 {
+  background-image: url("../img/icons_80.png");
   background-position: -480px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
 }
-.icon-20.icon-yah-like {
-  background-position: -510px 0;
+.icon-yah-delete.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -180px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
 }
-.icon-20.icon-yah-upload {
-  background-position: -540px 0;
+.icon-yah-delete.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -120px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
 }
-.icon-20.icon-yah-ok {
-  background-position: -570px 0;
+.icon-yah-edit {
+  background-image: url("../img/icons_40.png");
+  background-position: -280px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
 }
-.icon-20.icon-yah-ok-all {
+.icon-yah-edit.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -560px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-edit.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -210px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-edit.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -140px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-arrow {
+  background-image: url("../img/icons_40.png");
+  background-position: -320px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-arrow.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -640px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-arrow.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -240px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-arrow.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -160px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-mail-all {
+  background-image: url("../img/icons_40.png");
+  background-position: -360px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-mail-all.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -720px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-mail-all.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -270px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-mail-all.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -180px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-time-short {
+  background-image: url("../img/icons_40.png");
+  background-position: -400px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-time-short.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -800px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-time-short.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -300px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-time-short.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -200px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-time-middle {
+  background-image: url("../img/icons_40.png");
+  background-position: -440px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-time-middle.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -880px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-time-middle.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -330px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-time-middle.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -220px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-time-long {
+  background-image: url("../img/icons_40.png");
+  background-position: -480px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-time-long.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -960px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-time-long.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -360px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-time-long.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -240px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-logout {
+  background-image: url("../img/icons_40.png");
+  background-position: -520px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-logout.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -1040px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-logout.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -390px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-logout.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -260px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-category {
+  background-image: url("../img/icons_40.png");
+  background-position: -560px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-category.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -1120px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-category.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -420px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-category.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -280px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-distance {
+  background-image: url("../img/icons_40.png");
   background-position: -600px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
 }
-.icon-20.icon-yah-mail {
+.icon-yah-distance.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -1200px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-distance.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -450px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-distance.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -300px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-social {
+  background-image: url("../img/icons_40.png");
+  background-position: -640px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-social.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -1280px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-social.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -480px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-social.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -320px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-like {
+  background-image: url("../img/icons_40.png");
+  background-position: -680px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-like.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -1360px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-like.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -510px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-like.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -340px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-upload {
+  background-image: url("../img/icons_40.png");
+  background-position: -720px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-upload.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -1440px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-upload.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -540px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-upload.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -360px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-ok {
+  background-image: url("../img/icons_40.png");
+  background-position: -760px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-ok.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -1520px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-ok.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -570px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-ok.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -380px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-ok-all {
+  background-image: url("../img/icons_40.png");
+  background-position: -800px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-ok-all.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -1600px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-ok-all.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -600px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-ok-all.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -400px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-mail {
+  background-image: url("../img/icons_40.png");
+  background-position: -840px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-mail.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -1680px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-mail.icon-30 {
+  background-image: url("../img/icons_30.png");
   background-position: -630px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-mail.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -420px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-postit {
+  background-image: url("../img/icons_40.png");
+  background-position: -880px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-postit.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -1760px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-postit.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -660px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-postit.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -440px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-back {
+  background-image: url("../img/icons_40.png");
+  background-position: -920px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-back.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -1840px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-back.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -690px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-back.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -460px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-disk {
+  background-image: url("../img/icons_40.png");
+  background-position: -960px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-disk.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -1920px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-disk.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -720px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-disk.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -480px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-star {
+  background-image: url("../img/icons_40.png");
+  background-position: -1000px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-star.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2000px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-star.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -750px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-star.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -500px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-info {
+  background-image: url("../img/icons_40.png");
+  background-position: -1040px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-info.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2080px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-info.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -780px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-info.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -520px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-trash {
+  background-image: url("../img/icons_40.png");
+  background-position: -1080px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-trash.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2160px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-trash.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -810px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-trash.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -540px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-settings {
+  background-image: url("../img/icons_40.png");
+  background-position: -1120px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-settings.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2240px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-settings.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -840px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-settings.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -560px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-40 span {
+  top: 40px;
+  line-height: 20px;
+  position: absolute;
+}
+.icon-80 span {
+  padding-left: 5px;
+  line-height: 20px;
+  vertical-align: bottom;
 }
 ul.page-tabs {
   margin-left: -10px;
@@ -518,7 +1038,7 @@ ul.menu-grid li:hover {
 }
 ul.menu-grid li.on a,
 ul.menu-grid li:hover a {
-  color: #ffffff;
+  color: #ffc40d;
 }
 ul.menu-grid li a {
   color: #eeeeee;

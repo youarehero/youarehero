@@ -216,7 +216,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #ffffff;
+  color: #ffc40d;
   text-decoration: underline;
 }
 .img-rounded {
@@ -2926,7 +2926,7 @@ input[type="submit"].btn.btn-mini {
   border-radius: 0;
 }
 .btn-link:hover {
-  color: #ffffff;
+  color: #ffc40d;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -3396,8 +3396,8 @@ input[type="submit"].btn.btn-mini {
   margin-top: 6px;
 }
 .nav .dropdown-toggle:hover .caret {
-  border-top-color: #ffffff;
-  border-bottom-color: #ffffff;
+  border-top-color: #ffc40d;
+  border-bottom-color: #ffc40d;
 }
 /* move down carets for tabs */
 .nav-tabs .dropdown-toggle .caret {

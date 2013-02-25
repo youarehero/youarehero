@@ -3,146 +3,85 @@
 
 [class^="icon-yah"],
 [class*=" icon-yah"] {
-  margin: 0px 0px 0px 0px;
-//  display: inline-block;
-  width: 80px;
-  height: 80px;
+  margin: 0;
   vertical-align: middle;
   font-style: normal;
   font-family: 'Open Sans Condensed', sans-serif;
   font-variant: small-caps;
   white-space: nowrap;
   .ie7-restore-right-whitespace();
-  background-image: url("../img/icons_80.png");
   background-position: 0px 0px;
   background-repeat: no-repeat;
-  span {
-    left: 5px;
-    position: relative;
-    top: 62px;
-    line-height:17px
-  }
+  position: relative;
 }
 
-.icon-yah-home          { background-position: 0        0; }
-.icon-yah-billboard     { background-position: -80px    0; }
-.icon-yah-messages      { background-position: -160px   0; }
-.icon-yah-calendar      { background-position: -240px   0; }
-.icon-yah-new           { background-position: -320px   0; }
-.icon-yah-my-quests     { background-position: -400px   0; }
-.icon-yah-delete        { background-position: -480px   0; }
-.icon-yah-edit          { background-position: -560px   0; }
-.icon-yah-arrow         { background-position: -640px   0; }
-.icon-yah-mail-all      { background-position: -720px   0; }
-.icon-yah-time-short    { background-position: -800px   0; }
-.icon-yah-time-middle   { background-position: -880px   0; }
-.icon-yah-time-long     { background-position: -960px   0; }
-.icon-yah-logout        { background-position: -1040px  0; }
-.icon-yah-category      { background-position: -1120px  0; }
-.icon-yah-distance      { background-position: -1200px  0; }
-.icon-yah-social        { background-position: -1280px  0; }
-.icon-yah-like          { background-position: -1360px  0; }
-.icon-yah-upload        { background-position: -1440px  0; }
-.icon-yah-ok            { background-position: -1520px  0; }
-.icon-yah-ok-all        { background-position: -1600px  0; }
-.icon-yah-mail          { background-position: -1680px  0; }
+.icon-yah-size(@position: 0, @size: 40px) {
+  background-position: -(@position * @size) 0;
+  width: @size;
+  height: @size;
+  line-height: @size;
+}
+
+.icon-yah(@position: 0) {
+  background-image: url("../img/icons_40.png");
+  .icon-yah-size(@position, 40px);
+
+  &.icon-80 {
+    background-image: url("../img/icons_80.png");
+    .icon-yah-size(@position, 80px);
+  }
+  &.icon-30 {
+    background-image: url("../img/icons_30.png");
+    .icon-yah-size(@position, 30px);
+  }
+  &.icon-20 {
+    background-image: url("../img/icons_20.png");
+    .icon-yah-size(@position, 20px);
+  }
+}
+.icon-yah-home          { .icon-yah(0) }
+.icon-yah-billboard     { .icon-yah(1) }
+.icon-yah-messages      { .icon-yah(2) }
+.icon-yah-calendar      { .icon-yah(3) }
+.icon-yah-new           { .icon-yah(4) }
+.icon-yah-my-quests     { .icon-yah(5) }
+.icon-yah-delete        { .icon-yah(6) }
+.icon-yah-edit          { .icon-yah(7) }
+.icon-yah-arrow         { .icon-yah(8) }
+.icon-yah-mail-all      { .icon-yah(9) }
+.icon-yah-time-short    { .icon-yah(10) }
+.icon-yah-time-middle   { .icon-yah(11) }
+.icon-yah-time-long     { .icon-yah(12) }
+.icon-yah-logout        { .icon-yah(13) }
+.icon-yah-category      { .icon-yah(14) }
+.icon-yah-distance      { .icon-yah(15) }
+.icon-yah-social        { .icon-yah(16) }
+.icon-yah-like          { .icon-yah(17) }
+.icon-yah-upload        { .icon-yah(18) }
+.icon-yah-ok            { .icon-yah(19) }
+.icon-yah-ok-all        { .icon-yah(20) }
+.icon-yah-mail          { .icon-yah(21) }
+.icon-yah-postit        { .icon-yah(22) }
+.icon-yah-back          { .icon-yah(23) }
+.icon-yah-disk          { .icon-yah(24) }
+.icon-yah-star          { .icon-yah(25) }
+.icon-yah-info          { .icon-yah(26) }
+.icon-yah-trash         { .icon-yah(27) }
+.icon-yah-settings      { .icon-yah(28) }
 
 .icon-40 {
-   width: 40px;
-   height: 40px;
-
-   line-height: 40px;
-   background-image: url("../img/icons_40.png");
    span {
-     left: 0px;
      top: 40px;
-
-     vertical-align: top;
+     line-height: 20px;
+     position: absolute;
    }
-   &.icon-yah-home          { background-position: 0        0; }
-   &.icon-yah-billboard     { background-position: -40px    0; }
-   &.icon-yah-messages      { background-position: -80px    0; }
-   &.icon-yah-calendar      { background-position: -120px   0; }
-   &.icon-yah-new           { background-position: -160px   0; }
-   &.icon-yah-my-quests     { background-position: -200px   0; }
-   &.icon-yah-delete        { background-position: -240px   0; }
-   &.icon-yah-edit          { background-position: -280px   0; }
-   &.icon-yah-arrow         { background-position: -320px   0; }
-   &.icon-yah-mail-all      { background-position: -360px   0; }
-   &.icon-yah-time-short    { background-position: -400px   0; }
-   &.icon-yah-time-middle   { background-position: -440px   0; }
-   &.icon-yah-time-long     { background-position: -480px   0; }
-   &.icon-yah-logout        { background-position: -520px   0; }
-   &.icon-yah-category      { background-position: -560px   0; }
-   &.icon-yah-distance      { background-position: -600px   0; }
-   &.icon-yah-social        { background-position: -640px   0; }
-   &.icon-yah-like          { background-position: -680px   0; }
-   &.icon-yah-upload        { background-position: -720px   0; }
-   &.icon-yah-ok            { background-position: -760px   0; }
-   &.icon-yah-ok-all        { background-position: -800px   0; }
-   &.icon-yah-mail          { background-position: -840px   0; }
  }
 
-.icon-30 {
-  width: 30px;
-  height: 30px;
-  background-image: url("../img/icons_30.png");
+.icon-80 {
   span {
-    left: 0px;
-    top: 30px;
+    padding-left: 5px;
+    line-height: 20px;
+    vertical-align: bottom;
   }
-  &.icon-yah-home          { background-position: 0        0; }
-  &.icon-yah-billboard     { background-position: -30px    0; }
-  &.icon-yah-messages      { background-position: -60px    0; }
-  &.icon-yah-calendar      { background-position: -90px    0; }
-  &.icon-yah-new           { background-position: -120px   0; }
-  &.icon-yah-my-quests     { background-position: -150px   0; }
-  &.icon-yah-delete        { background-position: -180px   0; }
-  &.icon-yah-edit          { background-position: -210px   0; }
-  &.icon-yah-arrow         { background-position: -240px   0; }
-  &.icon-yah-mail-all      { background-position: -270px   0; }
-  &.icon-yah-time-short    { background-position: -300px   0; }
-  &.icon-yah-time-middle   { background-position: -330px   0; }
-  &.icon-yah-time-long     { background-position: -360px   0; }
-  &.icon-yah-logout        { background-position: -390px   0; }
-  &.icon-yah-category      { background-position: -420px   0; }
-  &.icon-yah-distance      { background-position: -450px   0; }
-  &.icon-yah-social        { background-position: -480px   0; }
-  &.icon-yah-like          { background-position: -510px   0; }
-  &.icon-yah-upload        { background-position: -540px   0; }
-  &.icon-yah-ok            { background-position: -570px   0; }
-  &.icon-yah-ok-all        { background-position: -600px   0; }
-  &.icon-yah-mail          { background-position: -630px   0; }
 }
 
-.icon-20 {
-  width: 20px;
-  height: 20px;
-  background-image: url("../img/icons_30.png");
-  span {
-    left: 0px;
-    top: 20px;
-  }
-  &.icon-yah-home          { background-position: 0        0; }
-  &.icon-yah-billboard     { background-position: -30px    0; }
-  &.icon-yah-messages      { background-position: -60px    0; }
-  &.icon-yah-calendar      { background-position: -90px    0; }
-  &.icon-yah-new           { background-position: -120px   0; }
-  &.icon-yah-my-quests     { background-position: -150px   0; }
-  &.icon-yah-delete        { background-position: -180px   0; }
-  &.icon-yah-edit          { background-position: -210px   0; }
-  &.icon-yah-arrow         { background-position: -240px   0; }
-  &.icon-yah-mail-all      { background-position: -270px   0; }
-  &.icon-yah-time-short    { background-position: -300px   0; }
-  &.icon-yah-time-middle   { background-position: -330px   0; }
-  &.icon-yah-time-long     { background-position: -360px   0; }
-  &.icon-yah-logout        { background-position: -390px   0; }
-  &.icon-yah-category      { background-position: -420px   0; }
-  &.icon-yah-distance      { background-position: -450px   0; }
-  &.icon-yah-social        { background-position: -480px   0; }
-  &.icon-yah-like          { background-position: -510px   0; }
-  &.icon-yah-upload        { background-position: -540px   0; }
-  &.icon-yah-ok            { background-position: -570px   0; }
-  &.icon-yah-ok-all        { background-position: -600px   0; }
-  &.icon-yah-mail          { background-position: -630px   0; }
-}
