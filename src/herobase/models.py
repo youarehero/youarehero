@@ -377,11 +377,13 @@ class UserProfile(LocationMixin, models.Model, AvatarImageMixin):
     def relative_level_experience(self):
         """Calculates percentage of XP for current level."""
         levels = [1000, 2000, 4000, 7000]
-        next = levels[0]
+        next_level = levels[0]
         for index, experience in levels:
             if experience > self.experience:
-                return index + 1
-        return (self.experience % 1000) / 10 # TODO: correct formula
+                next_level = experience
+                break
+
+        return (next_level - self.experience) / 10 # TODO: correct formula
 
     @property
     def unread_messages_count(self):
