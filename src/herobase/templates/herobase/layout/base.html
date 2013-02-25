@@ -54,7 +54,7 @@
                         <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">
                     </a>
                     {% if not request.user.is_authenticated %}
-                        <img src="{% get_static_prefix %}img/SeiHelddeinerStadt.png" alt="You Are Hero">
+                        <img src="{% get_static_prefix %}img/SeiHelddeinerStadt.png" style="height: 106px" alt="You Are Hero">
                     {% endif %}
                     <ul class="small-grid menu-grid pull-right">
                         {% if request.user.is_authenticated %}
