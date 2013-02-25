@@ -8,12 +8,6 @@ from heronotification import notify
 
 logger = logging.getLogger(__name__)
 
-# for each hero: how can the owner interact with the hero? (accept/refuse)
-
-# {% for adventure in adventures %}
-# {% endfor %}
-
-# owner hero management
 def owner_hero_accept(quest, hero):
     if not quest.open:
         raise ValidationError("Can't accept heroes into a quest that isn't open.")
@@ -90,8 +84,8 @@ def owner_quest_done(quest):
 
     for adventure in quest.adventures.accepted():
         notify.quest_done(adventure.user, quest)
-        quest.owner.get_profile().experience += QUEST_EXPERIENCE
-        quest.owner.get_profile().save()
+        adventure.user.get_profile().experience += QUEST_EXPERIENCE
+        adventure.user.get_profile().save()
 
 
 # hero participation
