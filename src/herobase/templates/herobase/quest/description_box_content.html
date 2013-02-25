@@ -1,8 +1,14 @@
 {% load url from future %}
 {% load humanize %}
-<img src="{{ quest.owner.get_profile.avatar_thumbnail_110 }}" alt=""/>
-<h2>{{ quest.title }}</h2>
-<p>{% block text %}{{ quest.description }}{% endblock %}</p>
+<div class="row">
+    <div class="span1-5">
+        <img src="{{ quest.owner.get_profile.avatar_thumbnail_110 }}" alt=""/>
+    </div>
+    <h2>{{ quest.title }}</h2>
+    <p>{% block text %}{{ quest.description }}{% endblock %}</p>
+</div>
+
+
 <div class="row">
     <div class="span6">
         <strong>Ersteller:</strong> <a href="{% url "userprofile_public" quest.owner.username %}">{{ quest.owner }}</a> <br/>
