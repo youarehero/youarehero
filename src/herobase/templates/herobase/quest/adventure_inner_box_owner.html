@@ -14,7 +14,7 @@
         <form action="{% url "owner_update_hero" quest.pk adventure.user.pk %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="action" value="reject">
-            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Reject" %}">
+            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Reject" %}" data-toggle="tooltip" data-title="Ablehnen">
                 <i class="icon-yah-delete icon-20"></i>
             </button>
         </form>
@@ -31,7 +31,7 @@
         <form action="{% url "owner_update_hero" quest.pk adventure.user.pk %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="action" value="accept">
-            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept" %}">
+            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Accept" %}" data-toggle="tooltip" data-title="Annehmen">
                 <i class="icon-yah-ok icon-30"></i>
             </button>
         </form>
