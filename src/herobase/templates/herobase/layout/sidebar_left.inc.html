@@ -12,7 +12,7 @@
             <span class="">{% trans "XP" %}: {{ request.user.get_profile.experience }}</span>
 
             <div class="progress">
-                <div class="bar {{ request.user.get_profile.get_hero_class_display|lower }}"
+                <div class="bar"
                      style="width:{{ request.user.get_profile.relative_level_experience }}%;">
                      </div>
             </div>
