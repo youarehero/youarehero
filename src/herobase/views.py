@@ -360,9 +360,7 @@ def leader_board(request):
     return render(request, "herobase/leader_board.html", {
         'global_board': global_board,
         'relativ_board': relativ_board,
-
     })
-
 
 @login_required
 def random_stats(request):

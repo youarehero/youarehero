@@ -85,6 +85,7 @@ MEDIA_URL = '/media/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = os.path.realpath(os.path.join(PROJECT_ROOT, "static"))
+ASSET_ROOT = os.path.realpath(os.path.join(PROJECT_ROOT, "assets"))
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"

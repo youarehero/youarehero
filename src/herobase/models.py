@@ -45,7 +45,9 @@ SEX_CHOICES =  (
     (1, 'Männlich'),
     (2, 'Weiblich'))
 
-AVATAR_IMAGES = glob.glob(os.path.join(settings.PROJECT_ROOT, 'assets', '*.png'))
+AVATAR_IMAGES = map(lambda x: os.path.join('avatar', os.path.basename(x)),
+                    glob.glob(os.path.join(settings.ASSET_ROOT, 'avatar', '*.png')))
+AVATAR_CHOICES = zip(AVATAR_IMAGES, AVATAR_IMAGES)
 
 class Like(models.Model):
     user = models.ForeignKey(User)
@@ -292,8 +294,17 @@ class Comment(models.Model):
         ordering = ('-created', )
 
 
-class AvatarImageMixin(object):
-    avatar_storage = FileSystemStorage(location=os.path.join(settings.PROJECT_ROOT, 'assets/'))
+class AvatarImageMixin(models.Model):
+    avatar_storage = FileSystemStorage(location=settings.ASSET_ROOT)
+    image = models.FilePathField(blank=True, null=True, choices=AVATAR_CHOICES)
+
+    @classmethod
+    def avatar_choices(cls):
+        def t(avatar):
+            thumbnailer = get_thumbnailer(cls.avatar_storage, avatar)
+            thumbnail = thumbnailer.get_thumbnail({'size': (90, 160), 'quality': 90})
+            return os.path.join(settings.MEDIA_URL, thumbnail.url)
+        return [(name, t(name)) for name in AVATAR_IMAGES]
 
     def avatar(self):
         """Return a String, containing a path to a thumbnail-image 270x270."""
@@ -301,7 +312,7 @@ class AvatarImageMixin(object):
 
     @property
     def avatar_thumbnail(self):
-        """Return a String, containing a path to a thumbnail-image 40x40."""
+        """Return a String, containing a path to a thumbnail-image 50x50."""
         return self._avatar_thumbnail((50, 50))
 
     @property
@@ -311,28 +322,30 @@ class AvatarImageMixin(object):
 
     @property
     def avatar_thumbnail_80(self):
-        """Return a String, containing a path to a thumbnail-image 40x40."""
+        """Return a String, containing a path to a thumbnail-image 80x80."""
         return self._avatar_thumbnail((80, 80))
     @property
     def avatar_thumbnail_110(self):
-        """Return a String, containing a path to a thumbnail-image 40x40."""
+        """Return a String, containing a path to a thumbnail-image 110x110."""
         return self._avatar_thumbnail((110, 110))
 
     @property
     def avatar_thumbnail_30(self):
-        """Return a String, containing a path to a thumbnail-image 40x40."""
+        """Return a String, containing a path to a thumbnail-image 30x30."""
         return self._avatar_thumbnail((30, 30))
 
-    def _avatar_thumbnail(self, size):
-        """Return a String, containing a path to a thumbnail-image 40x40."""
-        file_name = "default.png"
-        image = os.path.join('avatar/', file_name)
-        thumbnailer = get_thumbnailer(self.avatar_storage, image)
+    def _avatar_thumbnail(self, size, filename=None):
+        """Return a String, containing a path to a thumbnail-image."""
+        file_name = filename or self.image or 'avatar/default.png'
+        thumbnailer = get_thumbnailer(self.avatar_storage, file_name)
         thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality': 90})
         return os.path.join(settings.MEDIA_URL, thumbnail.url)
 
+    class Meta:
+        abstract = True
 
-class UserProfile(LocationMixin, models.Model, AvatarImageMixin):
+
+class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
     """This model extends a django user with additional hero information."""
     add_introspection_rules([], ["^herobase\.fields\.LocationField"])
 
@@ -345,8 +358,7 @@ class UserProfile(LocationMixin, models.Model, AvatarImageMixin):
         null=True)
     sex = models.IntegerField(choices=SEX_CHOICES, blank=True,
                                      null=True)
-    hero_image = models.IntegerField( blank=True,
-                              null=True)
+
 
     keep_email_after_gpn = models.DateTimeField(blank=True, null=True,
         editable=False)
@@ -440,8 +452,6 @@ def create_user_profile(sender, instance, created, **kwargs):
         except:
             pass
 post_save.connect(create_user_profile, sender=User)
-
-
 
 
 class AbuseReport(models.Model):

@@ -16,7 +16,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset, Div, Button, BaseInput
 from registration.forms import RegistrationFormUniqueEmail
 
-from herobase.models import Quest, UserProfile, Comment
+from herobase.models import Quest, UserProfile, Comment, AVATAR_IMAGES
 from herobase.widgets import LocationWidget
 
 
@@ -100,12 +100,12 @@ class UserProfileEdit(forms.ModelForm):
     # latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # address = forms.CharField(required=False, widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
-
+    image = forms.ChoiceField(choices=[('', '------')] + UserProfile.avatar_choices(), required=False)
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.form_class = 'form-horizontal'
-        self.helper.form_tag = False;
+        self.helper.form_tag = False
 
         self.helper.layout = Layout(
             Fieldset(
@@ -113,10 +113,10 @@ class UserProfileEdit(forms.ModelForm):
                 Div(
                     'about',
                     'sex',
-                    'hero_image',
                     # 'address',
                     'receive_system_email',
                     'receive_private_email',
+                    'image',
                     # 'latitude',
                     # 'longitude',
                     # 'location_granularity',
@@ -124,16 +124,12 @@ class UserProfileEdit(forms.ModelForm):
             ),
 
         )
-
         super(UserProfileEdit, self).__init__(*args, **kwargs)
         # self.fields['location_granularity'].widget = forms.HiddenInput()
-        self.fields['sex'].label = _(u"Geschlecht")
-        self.fields['hero_image'].widget = forms.HiddenInput()
-
 
     class Meta:
         model = UserProfile
-        fields = ('about','sex','hero_image',
+        fields = ('about', 'image', 'sex',
                   'receive_system_email', 'receive_private_email',
                   # 'address', 'latitude', 'longitude', 'location_granularity'
         )
