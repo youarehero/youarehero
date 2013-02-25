@@ -308,6 +308,7 @@ def userprofile(request, username=None, template='herobase/userprofile/detail.ht
         'rank': rank,
         'completed_quest_count': user.adventures.filter(done=True).count(),
         'hero_completed_quests': mark_safe(json.dumps(hero_completed_quests)),
+        # 'colors': json.dumps(color_dict),
     })
 
 

@@ -262,13 +262,16 @@ textarea {
 
   .progress {
     margin-bottom: 0;
-    border: 2px solid black;
-    .bar.action { #gradient > .vertical(lighten(@action, 15%), @action); }
-    .bar.scientist { #gradient > .vertical(lighten(@scientist, 15%), @scientist); }
-    .bar.gadgeteer { #gradient > .vertical(lighten(@gadgeteer, 15%), @gadgeteer); }
-    .bar.diplomat { #gradient > .vertical(lighten(@diplomatLight, 15%), @diplomatLight); }
-    .bar.protective { #gradient > .vertical(lighten(@protective, 15%), @protective); }
-
+//    border: 2px solid black;
+    .bar {
+      background: @yellow;
+    }
+    width: 110px;
+    height: 20px;
+    background: @grayLight;
+    .box-shadow(none);
+    position: relative;
+    display: inline-block;
   }
 }
 

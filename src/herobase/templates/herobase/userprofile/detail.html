@@ -6,31 +6,31 @@
     <script type="text/javascript" src="https://www.google.com/uds/api/visualization/1.0/02323762feeb560baea0acc98c4c4e09/format+en,default,corechart.I.js"></script>
 {% endblock %}
 {% block javascript %}
-    <script type="text/javascript">
-        // Set a callback to run when the Google Visualization API is loaded.
-        google.setOnLoadCallback(hero_completed_quests);
-        // Callback that creates and populates a data table,
-        // instantiates the pie chart, passes in the data and
-        // draws it.
-        function hero_completed_quests() {
-            // Create the data table.
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Class');
-            data.addColumn('number', 'Quests');
-            data.addRows({{ hero_completed_quests }});
-
-            // Set chart options
-            var options = {
-                'title':'Klassen der Quests die {{ user.username }} abgeschlossen hat.',
-                height: 320,
-                pieSliceTextStyle: { color: "black" },
-                colors: {{ colors }}
-            };
-            // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('stats'));
-            chart.draw(data, options);
-        }
-    </script>
+{#    <script type="text/javascript">#}
+{#        // Set a callback to run when the Google Visualization API is loaded.#}
+{#        google.setOnLoadCallback(hero_completed_quests);#}
+{#        // Callback that creates and populates a data table,#}
+{#        // instantiates the pie chart, passes in the data and#}
+{#        // draws it.#}
+{#        function hero_completed_quests() {#}
+{#            // Create the data table.#}
+{#            var data = new google.visualization.DataTable();#}
+{#            data.addColumn('string', 'Class');#}
+{#            data.addColumn('number', 'Quests');#}
+{#            data.addRows({{ hero_completed_quests }});#}
+{##}
+{#            // Set chart options#}
+{#            var options = {#}
+{#                'title':'Klassen der Quests die {{ user.username }} abgeschlossen hat.',#}
+{#                height: 320,#}
+{#                pieSliceTextStyle: { color: "black" },#}
+{#                colors: {{ colors }}#}
+{#            };#}
+{#            // Instantiate and draw our chart, passing in some options.#}
+{#            var chart = new google.visualization.PieChart(document.getElementById('stats'));#}
+{#            chart.draw(data, options);#}
+{#        }#}
+{#    </script>#}
 {% endblock %}
 
 {% block page_title %}
