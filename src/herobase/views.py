@@ -319,12 +319,16 @@ def userprofile_edit(request):
     """Render the userprofile form and handle possible changes."""
     user = request.user
     form = UserProfileEdit(request.POST or None, instance=user.get_profile())
+    first_login = bool(request.GET.get('first_login'))
     if form.is_valid():
         form.save()
         messages.success(request, 'Profile successfully changed')
+        if first_login:
+            return HttpResponseRedirect(reverse("home"))
         return HttpResponseRedirect(reverse("userprofile_edit"))
     return render(request, 'herobase/userprofile/edit.html', {
-        'form': form
+        'form': form,
+        'first_login': first_login,
     })
 
 @login_required

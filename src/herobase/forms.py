@@ -111,12 +111,14 @@ class UserProfileEdit(forms.ModelForm):
             Fieldset(
                 _('Edit your Profile'),
                 Div(
-                    'about',
-                    'sex',
-                    # 'address',
-                    'receive_system_email',
-                    'receive_private_email',
                     'image',
+                    'sex',
+                    'about',
+
+                    # 'address',
+                    # 'receive_system_email',
+                    # 'receive_private_email',
+
                     # 'latitude',
                     # 'longitude',
                     # 'location_granularity',
@@ -130,7 +132,7 @@ class UserProfileEdit(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('about', 'image', 'sex',
-                  'receive_system_email', 'receive_private_email',
+                  # 'receive_system_email', 'receive_private_email',
                   # 'address', 'latitude', 'longitude', 'location_granularity'
         )
 
