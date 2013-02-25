@@ -8,29 +8,36 @@
     <div id="background-top"></div>
     <div id="layout-container" class="container">
 
-        {% block site_header_container %}
+    {% block site_header_container %}
+        {{ block.super }}
+    {% endblock %}
+    <div class="row">
+        {% block sidebar_left_container %}
             {{ block.super }}
         {% endblock %}
-        <div class="row">
-            {% block sidebar_left_container %}
-                {{ block.super }}
-            {% endblock %}
 
-            <div id="page-container" class="span3">
-                <div id="page-title">
-                    {% block page_title %}<h1>You are HERO</h1>{% endblock %}
-                </div>
-                <div id="submenu">
-                    {% block submenu %}Sei der Held deiner Stadt!{% endblock %}
-                </div>
-                <div id="page-content">
-                {%  include "herobase/home_login_box.inc.html" %}
-                    <br>
-                {%  include "herobase/home_video_box.inc.html" %}
-                </div>
+        <div id="page-container" class="span3">
+            <div id="page-title">
+                {% block page_title %}<h1>You are HERO</h1>{% endblock %}
+            </div>
+            <div id="submenu">
+                {% block submenu %}Sei der Held deiner Stadt!{% endblock %}
+            </div>
+            <div id="page-content">
+                <ul class="grid">
 
+
+                    <li  class="span3"> {% include "herobase/home_registration_box.inc.html" %}</li>
+                    <li  class="span3"> {% include "herobase/home_login_box.inc.html" %}</li>
+                </ul>
+
+
+                <br>
+                {% include "herobase/home_video_box.inc.html" %}
             </div>
 
-    </div>
+        </div>
 
-{%  endblock %}
+    </div>
+</div>
+{% endblock %}
