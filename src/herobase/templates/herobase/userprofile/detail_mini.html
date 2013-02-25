@@ -4,18 +4,16 @@
 {# Username and Avatar #}
 
 <div class="userprofile-small">
-    <a href="{% url "userprofile_private" %}">
-        <h4>{{ request.user.username }}</h4>
-        <img src="{{ request.user.get_profile.avatar_thumbnail_110 }}" alt="{{ request.user.username }}">
+    <h4><a href="{% url "userprofile_private" %}">{{ request.user.username }}</a></h4>
+    <a href="{% url "userprofile_private" %}"><img src="{{ request.user.get_profile.avatar_thumbnail_110 }}" alt="{{ request.user.username }}">
     </a>
     {#  <span class="{{ request.user.get_profile.get_hero_class_display|lower }}">{{ request.user.get_profile.get_hero_class_display }}</span><br>#}
-    <div>{% trans "Level" %}: {{ request.user.get_profile.level }}
-    </div>
 
-    <div class="progress" data-toggle="tooltip" data-title="{{ request.user.get_profile.experience }} {% trans "Experience Points" %}">
+    <div>{% trans "Level" %}: {{ request.user.get_profile.level }}</div>
+
+    <div class="progress" data-toggle="tooltip" title="{% trans "XP" %}: {{ request.user.get_profile.experience }}/{{ request.user.get_profile.next_level_experience }}">
         <div class="bar {{ request.user.get_profile.get_hero_class_display|lower }}" style="width: {{ request.user.get_profile.relative_level_experience }}%;"></div>
     </div>
-
 </div>
 
 
