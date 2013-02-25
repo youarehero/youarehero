@@ -28,9 +28,9 @@
 [class^="icon-yah"],
 [class*=" icon-yah"] {
   margin: 0px 0px 0px 0px;
-  display: block;
   width: 80px;
   height: 80px;
+  vertical-align: middle;
   font-style: normal;
   font-family: 'Open Sans Condensed', sans-serif;
   font-variant: small-caps;
@@ -116,11 +116,13 @@
 .icon-40 {
   width: 40px;
   height: 40px;
+  line-height: 40px;
   background-image: url("../img/icons_40.png");
 }
 .icon-40 span {
   left: 0px;
   top: 40px;
+  vertical-align: top;
 }
 .icon-40.icon-yah-home {
   background-position: 0        0;
@@ -642,6 +644,42 @@ ul.menu-grid.grid li:hover a {
   border: 0px none;
   padding: 0px;
   margin: 0px;
+  line-height: 40px;
+}
+.box .box-buttons-top a.text,
+.box .box-buttons-top-left a.text,
+.box .box-buttons-bottom a.text,
+.box .box-buttons-top form.text,
+.box .box-buttons-top-left form.text,
+.box .box-buttons-bottom form.text,
+.box .box-buttons-top button.text,
+.box .box-buttons-top-left button.text,
+.box .box-buttons-bottom button.text,
+.box .box-buttons-top input.text,
+.box .box-buttons-top-left input.text,
+.box .box-buttons-bottom input.text,
+.box .box-buttons-top span.text,
+.box .box-buttons-top-left span.text,
+.box .box-buttons-bottom span.text {
+  padding-right: 5px;
+}
+.box .box-buttons-top a:hover,
+.box .box-buttons-top-left a:hover,
+.box .box-buttons-bottom a:hover,
+.box .box-buttons-top form:hover,
+.box .box-buttons-top-left form:hover,
+.box .box-buttons-bottom form:hover,
+.box .box-buttons-top button:hover,
+.box .box-buttons-top-left button:hover,
+.box .box-buttons-bottom button:hover,
+.box .box-buttons-top input:hover,
+.box .box-buttons-top-left input:hover,
+.box .box-buttons-bottom input:hover,
+.box .box-buttons-top span:hover,
+.box .box-buttons-top-left span:hover,
+.box .box-buttons-bottom span:hover {
+  background: #a2a2a2;
+  color: #000000;
 }
 .box .box-content {
   *zoom: 1;
@@ -961,13 +999,6 @@ textarea,
   float: right;
   border: 0px none;
   min-width: 40px;
-}
-.form-actions .btn[type=submit] {
-  padding: 0;
-  width: 40px;
-  height: 0px;
-  padding-top: 40px;
-  background: url("../img/icons_40.png") -760px 0 no-repeat #bbbbbb;
 }
 .avatar-small {
   background: rgba(0, 0, 0, 0.45);
