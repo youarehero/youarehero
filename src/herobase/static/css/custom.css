@@ -1100,11 +1100,6 @@ ul.menu-grid.grid li:hover a {
 .box:after {
   clear: both;
 }
-.box img {
-  float: left;
-  margin-right: 10px;
-  margin-bottom: 5px;
-}
 .inner-box {
   position: relative;
   margin-top: 6px;
@@ -1528,17 +1523,17 @@ textarea {
   border: 0px none;
   min-width: 40px;
 }
-.avatar-small {
+.userprofile-small {
   background: rgba(0, 0, 0, 0.45);
   padding: 5px;
   width: 110px;
   margin-right: 0px;
 }
-.avatar-small .progress {
+.userprofile-small .progress {
   margin-bottom: 0;
   border: 2px solid black;
 }
-.avatar-small .progress .bar.action {
+.userprofile-small .progress .bar.action {
   background-color: #db6352;
   background-image: -moz-linear-gradient(top, #e07a6b, #d3412c);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e07a6b), to(#d3412c));
@@ -1548,7 +1543,7 @@ textarea {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe07a6b', endColorstr='#ffd3412c', GradientType=0);
 }
-.avatar-small .progress .bar.scientist {
+.userprofile-small .progress .bar.scientist {
   background-color: #959695;
   background-image: -moz-linear-gradient(top, #a4a5a4, #7e7f7e);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#a4a5a4), to(#7e7f7e));
@@ -1558,7 +1553,7 @@ textarea {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa4a5a4', endColorstr='#ff7e7f7e', GradientType=0);
 }
-.avatar-small .progress .bar.gadgeteer {
+.userprofile-small .progress .bar.gadgeteer {
   background-color: #75ad9f;
   background-image: -moz-linear-gradient(top, #88baad, #5a9b8a);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#88baad), to(#5a9b8a));
@@ -1568,7 +1563,7 @@ textarea {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff88baad', endColorstr='#ff5a9b8a', GradientType=0);
 }
-.avatar-small .progress .bar.diplomat {
+.userprofile-small .progress .bar.diplomat {
   background-color: #e9e977;
   background-image: -moz-linear-gradient(top, #edee91, #e3e34f);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#edee91), to(#e3e34f));
@@ -1578,7 +1573,7 @@ textarea {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffedee91', endColorstr='#ffe3e34f', GradientType=0);
 }
-.avatar-small .progress .bar.protective {
+.userprofile-small .progress .bar.protective {
   background-color: #4e83a3;
   background-image: -moz-linear-gradient(top, #5a93b6, #3c6b87);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5a93b6), to(#3c6b87));
