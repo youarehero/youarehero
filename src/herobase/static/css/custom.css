@@ -1057,10 +1057,10 @@ ul.menu li:hover a {
   *zoom: 1;
 }
 .box a {
-  color: #1e9899;
+  color: #1e7783;
 }
 .box a:hover {
-  color: #115859;
+  color: #14515a;
 }
 .box.mini {
   width: 210px;
@@ -1318,10 +1318,10 @@ h4 {
   font-family: 'Open Sans', sans-serif;
   display: inline-block;
   font-size: 23px;
-  color: #1e9899;
+  color: #1e7783;
 }
 #register-now a:hover {
-  color: #115859;
+  color: #14515a;
 }
 #butler {
   margin-top: 20px;
@@ -1604,7 +1604,7 @@ span.protective {
   color: #3c6b87;
 }
 ul.thumbnails.image_picker_selector li .thumbnail.selected {
-  background: none repeat scroll 0 0 #1e9899;
+  background: none repeat scroll 0 0 #1e7783;
 }
 .span2 .box select,
 .span2 .box textarea,
