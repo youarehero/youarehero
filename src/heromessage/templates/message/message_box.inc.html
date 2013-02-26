@@ -4,20 +4,12 @@
 
 {% block extra_classes %}collapsible{% if not message.is_relatively_new %} collapsed{% endif %}{% endblock %}
 
-{% block buttons_top %}
-    <form method="post" action="{% url "message_update" message.pk %}" class="inline">
-        {% csrf_token %}
-        <button type="submit" value="delete" name="delete"  data-toggle="tooltip" data-title="Löschen">
-            <i class="icon-yah-delete icon-40"></i></button>
-    </form>
-{% endblock %}
-
 {% block title %}
         <span class="pull-right">{{ message.sent }}</span>
     {% if message.sender == request.user %}
-        <strong>{{ message.recipient }}:</strong>
+        an <strong>{{ message.recipient }}:</strong>
     {% else %}
-        <strong>{{ message.sender }}:</strong>
+        von <strong>{{ message.sender }}:</strong>
     {% endif %}
         {{ message.title }}
 {% endblock %}

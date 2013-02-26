@@ -58,17 +58,13 @@ def message_update(request, message_id):
 @login_required
 def message_list_out(request):
     return render(request, 'message/list_out.html',{
-             'sent_messages': Message.objects.filter(sender=request.user, sender_deleted=None),
+             'sent_messages': Message.objects.filter(sender=request.user, sender_deleted=None).select_related('recipient', 'sender', 'recipient__profile'),
              })
 
 def message_list_in(request):
-    unreaded_messages=Message.objects.filter(recipient=request.user, recipient_deleted=None)
-    for mes in unreaded_messages:
-        if not mes.read:
-            mes.read = now()
-            mes.save()
+    Message.objects.filter(recipient=request.user, read__isnull=True).update(read=now())
     return render(request, 'message/list_in.html',{
-        'received_messages': Message.objects.filter(recipient=request.user, recipient_deleted=None),
+        'received_messages': Message.objects.filter(recipient=request.user, recipient_deleted=None).select_related('recipient', 'sender', 'sender__profile'),
         })
 
 @login_required
