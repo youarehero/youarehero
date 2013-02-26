@@ -2,7 +2,7 @@
 {% load humanize i18n %}
 <div>
         <img src="{{ quest.owner.get_profile.avatar_thumbnail_110 }}" alt="" class="pull-left"/>
-    </div>
+
     <h2>{{ quest.title }}</h2>
     <p>{% block text %}{{ quest.description }}{% endblock %}</p>
 </div>
@@ -22,21 +22,21 @@
             <strong>Abgelaufen am:</strong> {{ quest.expiration_date.date}}
         {% endif %}
     </div>
-<div class="span3">
-    {% if quest.remote %}
-        <i class="icon-yah-distance icon-40" data-toggle="tooltip" data-title="{% trans "Can be done remotely" %}"></i>
-    {% else %}
-        <i class="icon-yah-distance icon-40" data-toggle="tooltip" data-title="{% trans "Has to be done locally" %}"></i>
-    {% endif %}
-    <br>
-    {% if quest.time_effort %}
-        {% if quest.time_effort == quest.TIME_EFFORT_LOW %}
-            <i class="icon-yah-time-short" data-toggle="tooltip" data-title="{% trans "low time effort" %}"></i>
-        {% elif quest.time_effort == quest.TIME_EFFORT_MEDIUM %}
-            <i class="icon-yah-time-middle" data-toggle="tooltip" data-title="{% trans "medium time effort" %}"></i>
-        {% elif quest.time_effort == quest.TIME_EFFORT_HIGH %}
-            <i class="icon-yah-time-long" data-toggle="tooltip" data-title="{% trans "high time effort" %}"></i>
+    <div class="span3">
+        {% if quest.remote %}
+            <i class="icon-yah-distance icon-40" data-toggle="tooltip" data-title="{% trans "Can be done remotely" %}"></i>
+        {% else %}
+            <i class="icon-yah-distance icon-40" data-toggle="tooltip" data-title="{% trans "Has to be done locally" %}"></i>
         {% endif %}
-    {% endif %}
-</div>
+        <br>
+        {% if quest.time_effort %}
+            {% if quest.time_effort == quest.TIME_EFFORT_LOW %}
+                <i class="icon-yah-time-short" data-toggle="tooltip" data-title="{% trans "low time effort" %}"></i>
+            {% elif quest.time_effort == quest.TIME_EFFORT_MEDIUM %}
+                <i class="icon-yah-time-middle" data-toggle="tooltip" data-title="{% trans "medium time effort" %}"></i>
+            {% elif quest.time_effort == quest.TIME_EFFORT_HIGH %}
+                <i class="icon-yah-time-long" data-toggle="tooltip" data-title="{% trans "high time effort" %}"></i>
+            {% endif %}
+        {% endif %}
+    </div>
 </div>
