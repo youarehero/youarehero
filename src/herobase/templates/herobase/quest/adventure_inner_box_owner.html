@@ -26,8 +26,9 @@
 {% endblock %}
 
 {% block buttons_bottom %}
+    {% message_user adventure.user %}
     {% if not adventure.canceled and not adventure.accepted and not adventure.rejected %}
-        {% message_user adventure.user %}
+
         <form action="{% url "owner_update_hero" quest.pk adventure.user.pk %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="action" value="accept">
