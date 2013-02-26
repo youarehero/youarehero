@@ -851,7 +851,8 @@
   line-height: 20px;
 }
 .icon-40 span {
-  top: 40px;
+  top: 35px;
+  left: 1px;
   line-height: 20px;
   position: absolute;
 }
@@ -1029,28 +1030,22 @@ ul.small-grid:after {
 ul.small-grid:after {
   clear: both;
 }
-ul.menu-grid li {
+.user-menu li {
+  width: 40px;
+  height: 55px;
+}
+ul.menu li {
   background-color: rgba(0, 0, 0, 0.25);
 }
-ul.menu-grid li.on,
-ul.menu-grid li:hover {
+ul.menu li a {
+  color: #eeeeee;
+}
+ul.menu li.on,
+ul.menu li:hover {
   background-color: rgba(0, 0, 0, 0.45);
 }
-ul.menu-grid li.on a,
-ul.menu-grid li:hover a {
-  color: #ffc40d;
-}
-ul.menu-grid li a {
-  color: #d9a400;
-}
-ul.menu-grid.grid li {
-  color: #eeeeee;
-}
-ul.menu-grid.grid li a {
-  color: #eeeeee;
-}
-ul.menu-grid.grid li.on a,
-ul.menu-grid.grid li:hover a {
+ul.menu li.on a,
+ul.menu li:hover a {
   color: #ffc40d;
 }
 .box {
@@ -1121,7 +1116,7 @@ ul.menu-grid.grid li:hover a {
   float: left;
   margin-top: -16px;
   margin-left: -23px;
-  margin-right: 5px;
+  margin-right: -20px;
   margin-bottom: 5px;
 }
 .box .box-buttons-bottom {
@@ -1279,7 +1274,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
+  margin: 0 0 10px 0;
 }
 h1 {
   font-weight: normal;
@@ -1303,15 +1298,30 @@ h4 {
 }
 #be-a-hero {
   height: 0;
-  padding-top: 100px;
+  padding-top: 107px;
   overflow: hidden;
-  margin-left: 180px;
+  margin-left: -20px;
+  margin-top: -60px;
   background: url("../img/SeiHelddeinerStadt.png") no-repeat scroll 0 0 transparent;
+  background-size: 100%;
 }
-#footer {
-  width: 100%;
-  padding: 5px;
-  background: rgba(0, 0, 0, 0.4);
+#register-now a {
+  margin-top: -20px;
+  overflow: hidden;
+  background: url("../img/register_now.png") no-repeat scroll 0 0 transparent;
+  background-size: 100%;
+  width: 232px;
+  height: 105px;
+  padding-top: 150px;
+  padding-left: 48px;
+  font-variant: small-caps;
+  font-family: 'Open Sans', sans-serif;
+  display: inline-block;
+  font-size: 23px;
+  color: #1e9899;
+}
+#register-now a:hover {
+  color: #115859;
 }
 #butler {
   margin-top: 20px;
@@ -1346,6 +1356,10 @@ body {
 }
 #site-header-container {
   margin: 20px 0 20px -20px;
+}
+#sidebar-left-container p {
+  padding: 0 5px;
+  background: rgba(0, 0, 0, 0.25);
 }
 #sidebar-right-container {
   z-index: 1045;
@@ -1417,6 +1431,16 @@ body {
 #page-content:after {
   clear: both;
 }
+#page-footer {
+  padding: 5px 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+#page-footer a {
+  color: #eeeeee;
+}
+#page-footer a:hover {
+  color: #999999;
+}
 .help-block,
 .help-inline {
   color: #999999;
@@ -1468,6 +1492,7 @@ body {
   font-variant: normal;
   font-size: 14px;
   line-height: 20px;
+  min-width: 80px;
 }
 form {
   margin-bottom: 0px;
@@ -1544,6 +1569,10 @@ textarea {
   padding: 5px;
   width: 110px;
   margin-right: 0px;
+  font-variant: small-caps;
+}
+.userprofile-small h4 {
+  margin-bottom: 0;
 }
 .userprofile-small .progress {
   margin-bottom: 0;
@@ -1573,6 +1602,9 @@ span.gadgeteer {
 }
 span.protective {
   color: #3c6b87;
+}
+ul.thumbnails.image_picker_selector li .thumbnail.selected {
+  background: none repeat scroll 0 0 #1e9899;
 }
 .span2 .box select,
 .span2 .box textarea,

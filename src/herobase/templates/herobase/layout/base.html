@@ -54,15 +54,14 @@
                         <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">
                     </a>
                     {% if not request.user.is_authenticated %}
-                        <div id="be-a-hero">
-                        <h2>Sei Held deiner Stadt!</h2>
-                        </div>
-                    {% endif %}
-                    <ul class="small-grid menu-grid pull-right">
-                        {% if request.user.is_authenticated %}
-                            <li><a href="{% url "userprofile_edit" %}"><i class="icon-yah-settings icon-40"><span>{% trans "Settings" %}</span></i></a></li>
-                            <li><a href="{% url "auth_logout" %}"><i class="icon-yah-logout icon-40"><span>{% trans "Logout" %}</span></i></a></li>
 
+                    {% endif %}
+                    <ul class="small-grid menu user-menu pull-right">
+                        {% if request.user.is_authenticated %}
+                            <li class="{% ifactive "userprofile_edit" %}on{% endifactive %}">
+                                <a href="{% url "userprofile_edit" %}"><i class="icon-yah-settings icon-40"><span>{% trans "Settings" %}</span></i></a>
+                            </li>
+                            <li><a href="{% url "auth_logout" %}"><i class="icon-yah-logout icon-40"><span>{% trans "Logout" %}</span></i></a></li>
                         {% endif %}
                     </ul>
                     {% block site_header %}
@@ -104,7 +103,7 @@
         {% block site_footer_container %}
             <div id="page-footer" class="row">
                 <div class="span100">
-
+                    <a href="{% url "imprint" %}" title="Impressum">Impressum</a>
                 </div>
             </div>
         {% endblock %}
@@ -123,6 +122,6 @@
 {#<script src="{% get_static_prefix %}bootstrap/js/bootstrap-modal.js"></script>#}
 {% block javascript %}
 {% endblock %}
-<div id="footer"><a href="{% url "imprint" %}" title="Impressum">Impressum</a></div>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
 {% extends "herobase/layout/base.html" %}
 {% load static i18n crispy_forms_tags %}
-
+{% load url from future %}
 
 
 {% block body %}
@@ -13,26 +13,45 @@
     {% endblock %}
     <div class="row">
         {% block sidebar_left_container %}
-            {{ block.super }}
+            <div id="sidebar-left-container" class="span2 sidebar-left">
+                {% include "herobase/layout/mainmenu.inc.html" %}
+                <p>
+                    "Die Idee Spiel und Realität zu verschmelzen finde ich genial!"
+                </p>
+                <p>
+                    "Vielen Dank für eure Plattform, ich habe tatsächlich schon Leute gefunden,
+                    die bei meinem Projekt geholfen haben!"
+                </p>
+            </div> <!-- end sidebar-left -->
+
         {% endblock %}
 
-        <div id="page-container" class="span3">
-
+        <div id="page-container" class="span6">
+            <div id="be-a-hero">
+                <h2>Sei Held deiner Stadt!</h2>
+            </div>
             <div style="background: none" id="page-content">
                 <ul class="grid">
 
+                    <li  class="span3">
 
-                    <li  class="span3"> {% include "herobase/home_registration_box.inc.html" %}</li>
+                        <div id="register-now">
+                            <a href="{% url "registration_register" %}">
+                            {% trans "Join now!" %}
+                            </a>
+                        </div>
+
+                    </li>
                     <li  class="span3-25"> {% include "herobase/home_login_box.inc.html" %}</li>
                 </ul>
-
-
-                <br>
                 {% include "herobase/home_video_box.inc.html" %}
             </div>
 
         </div>
 
     </div>
+        {% block site_footer_container %}
+            {{ block.super }}
+        {% endblock %}
 </div>
 {% endblock %}

@@ -4,7 +4,7 @@
     <img src="{{ user.get_profile.avatar }}" alt="{{ user.username }}">
 </div>
 
-<div class="experience">
-    <h4 class="pull-right">{{ user.get_profile.quests_done }} Quests erledigt</h4>
-    <h4>{{ user.get_profile.quests_created }} Quests erstellt</h4>
+<div class="row">
+    <div class="span1-5">{{ user.get_profile.quests_done }} Quests erledigt</div>
+    <div class="span1-5">{{ user.get_profile.quests_created }} Quests erstellt</div>
 </div>

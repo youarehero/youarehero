@@ -9,7 +9,7 @@
 
 
 h1, h2, h3, h4, h5, h6 {
-  margin: 0;
+  margin: 0 0 10px 0;
 }
 
 h1 {
@@ -39,17 +39,32 @@ h4 {
 }
 #be-a-hero {
   height:  0;
-  padding-top: 100px;
+  padding-top: 107px;
   overflow: hidden;
-  margin-left:  180px;
+  margin-left:  -20px;
+  margin-top: -60px;
   background:  url("../img/SeiHelddeinerStadt.png") no-repeat scroll 0 0 transparent;
+  background-size: 100%;
+
 }
+#register-now a {
+  margin-top: -20px;
+  overflow: hidden;
+  background: url("../img/register_now.png") no-repeat scroll 0 0 transparent;
+  background-size: 100%;
+  width: 232px;
+  height: 105px;
+  padding-top: 150px;
+  padding-left: 48px;
 
-
-#footer {
-  width:  100%;
-  padding:  5px;
-  background: rgba(0,0,0,0.4);
+  font-variant: small-caps;
+  font-family: 'Open Sans', sans-serif;
+  display:inline-block;
+  font-size: 23px;
+  color:  @boxLinkColor;
+  &:hover {
+    color:  @boxLinkColorHover;
+  }
 }
 
 // Butler
@@ -98,7 +113,10 @@ body {
 }
 
 #sidebar-left-container {
-
+  p {
+    padding: 0 5px;;
+    background: rgba(0,0,0,0.25);
+  }
 }
 #sidebar-right-container {
   z-index: 1045;
@@ -135,6 +153,17 @@ body {
   background-color: @baseBackground;
   .clearfix;
   margin-bottom: 40px;
+}
+
+#page-footer {
+  padding: 5px 0;
+  background: rgba(0,0,0,0.4);
+  a {
+    color: @grayLighter;
+    &:hover {
+      color:  @grayLight;
+    }
+  }
 }
 
 .help-block, .help-inline {
@@ -199,6 +228,7 @@ body {
   font-variant: normal;
   font-size:  @baseFontSize;
   line-height: @baseLineHeight;
+  min-width: 80px;
 }
 
 // Forms
@@ -274,6 +304,10 @@ textarea {
   width: 110px;
   margin-right: 0px;
 
+  font-variant: small-caps;
+  h4 {
+    margin-bottom: 0;
+  }
   .progress {
     margin-bottom: 0;
 //    border: 2px solid black;
@@ -296,6 +330,12 @@ span.scientist { color: @scientist; }
 span.diplomat { color: @diplomat; }
 span.gadgeteer { color: @gadgeteer; }
 span.protective { color: @protective; }
+
+ul.thumbnails.image_picker_selector li .thumbnail.selected {
+  background: none repeat scroll 0 0 @cyan;
+}
+
+
 
 // Bootstrap specific fixes
 // -----------------------

@@ -13,11 +13,17 @@
         {% endif %}
         {{ quest.time_effort }}
     </div>
-    <a href="{{ quest.get_absolute_url }}">
-        <img src="http://placehold.it/40x40" alt="" width="40" height="40"/>
-        <h3>{{ quest.title }}</h3>
-    </a>
-    {{ quest.description }}
+    <div class="row">
+        <a href="{{ quest.get_absolute_url }}">
+            <div class="span1">
+                <img src="{{ quest.owner.get_profile.avatar_thumbnail_70 }}" alt="" width="60" height="60"/>
+            </div>
+            <h3>{{ quest.title }}</h3>
+        </a>
+        {{ quest.description }}
+    </div>
+
+
 {% endblock %}
 
 {% block buttons_top %}

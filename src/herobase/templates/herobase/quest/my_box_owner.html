@@ -1,4 +1,5 @@
 {% extends "herobase/quest/my_box_hero.html" %}
+{% load i18n %}
 
 {% block title %}
     {{ block.super }}
@@ -9,7 +10,7 @@
 {% endblock %}
 
 {% block buttons_top_left %}
-    <span>
-        <i class="icon-star"></i>
+    <span data-toggle="tooltip" data-title="{% trans "This is your Quest" %}">
+        <i class="icon-yah-star icon-30"></i>
     </span>
 {% endblock %}

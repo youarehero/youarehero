@@ -1,7 +1,7 @@
 {% load i18n static crispy_forms_tags activelink %}
 {% load url from future %}
 
-<ul class="grid menu-grid clearfix">
+<ul class="grid menu clearfix">
     {% if request.user.is_authenticated %}
         <li class="{% ifactive "home" %}on{% endifactive %}">
             <a href="{% url "home" %}" rel="tooltip" title="{% trans 'Home' %}">

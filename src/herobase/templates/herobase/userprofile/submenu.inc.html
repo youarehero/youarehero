@@ -1,9 +1,14 @@
 {% load url from future %}
+{% load i18n activelink %}
 {% if request.user.is_authenticated %}
     {% if request.user == user %}
         <ul class="page-tabs">
-            <li><a href="{% url "userprofile_private" %}"><span class="stripe">Mein Profil</span></a></li>
-            <li><a href="{% url "userprofile_edit" %}"><span class="stripe">Einstellungen</span></a></li>
+            <li class="{% ifactive "userprofile_private" %}on{% endifactive %}">
+                <a href="{% url "userprofile_private" %}"><span class="stripe">{% trans "My Profile" %}</span></a>
+            </li>
+            <li class="{% ifactive "userprofile_edit" %}on{% endifactive %}">
+                <a href="{% url "userprofile_edit" %}"><span class="stripe">{% trans "Settings" %}</span></a>
+            </li>
 {#            <li><a href="{% url "userprofile_privacy_settings" %}"><span class="stripe">Privatsphäre</span></a></li>#}
         </ul>
     {% endif %}

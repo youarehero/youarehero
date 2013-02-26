@@ -51,24 +51,25 @@ ul.small-grid {
   .clearfix;
 }
 
-ul.menu-grid {
+.user-menu {
+  li {
+    width: 40px;
+    height: 55px;
+  }
+}
+
+ul.menu {
   li {
     background-color: @menuBackground;
+    a { color: @menuTextColor; }
+
     &.on,
     &:hover {
       background-color: @menuBackgroundHover;
-      a { color: @linkColorHover; }
+      a { color: @menuTextColorHover; }
     }
-    a { color: @linkColor; }
-  }
-  &.grid {
-    li {
-      a { color: @menuTextColor; }
-      color: @menuTextColor;
-      &.on,
-      &:hover {
-        a { color: @menuTextColorHover; }
-      }
+    .icon- {
+
     }
   }
 }
@@ -127,7 +128,7 @@ ul.menu-grid {
     float: left;
     margin-top: -(@boxBtnTop + @boxPaddingTop);
     margin-left: -(@boxBtnLeft + @boxPaddingLeft);
-    margin-right: 5px;
+    margin-right: -20px;
     margin-bottom: 5px;
   }
   .box-buttons-bottom {
