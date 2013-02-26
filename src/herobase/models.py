@@ -374,8 +374,7 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
     location = models.CharField(max_length=255) # TODO : placeholder
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True,
         null=True)
-    sex = models.IntegerField(choices=SEX_CHOICES, blank=True,
-                                     null=True)
+    sex = models.IntegerField(choices=SEX_CHOICES, blank=True, null=True, verbose_name=_(u"sex"))
 
 
     keep_email_after_gpn = models.DateTimeField(blank=True, null=True,
@@ -389,7 +388,7 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
         help_text=_("Enable this if you want to share "
                     "your location with other Heroes."))
 
-    about = models.TextField(blank=True, default='',
+    about = models.TextField(blank=True, default='', verbose_name=_(u"about me"),
         help_text=_('Tell other heroes who you are.'))
 
     receive_system_email = models.BooleanField(default=False,

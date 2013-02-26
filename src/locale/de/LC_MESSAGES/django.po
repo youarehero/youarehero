@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-26 18:43+0100\n"
+"POT-Creation-Date: 2013-02-26 19:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -144,7 +144,6 @@ msgstr "Bis wann ist diese Quest sichtbar?"
 
 #: herobase/models.py:205
 #: herobase/templates/herobase/quest/description_box_content.html:29
-#: herobase/templates/herobase/quest/list_box.html:16
 #: herobase/templates/herobase/quest/my_box_hero.html:12
 msgid "Can be done remotely"
 msgstr "Kann aus der Ferne erledigt werden"
@@ -173,23 +172,31 @@ msgstr "Mittel"
 msgid "High"
 msgstr "Hoch"
 
-#: herobase/models.py:388
+#: herobase/models.py:377
+msgid "sex"
+msgstr "Geschlecht"
+
+#: herobase/models.py:387
 msgid "Location is public"
 msgstr "Standort ist öffentlich"
 
-#: herobase/models.py:389
+#: herobase/models.py:388
 msgid "Enable this if you want to share your location with other Heroes."
 msgstr "Wenn aktiv können andere Helden deinen Standort sehen."
 
-#: herobase/models.py:393
+#: herobase/models.py:391
+msgid "about me"
+msgstr "Über mich"
+
+#: herobase/models.py:392
 msgid "Tell other heroes who you are."
 msgstr "Erzähle anderen Helden wer Du bist"
 
-#: herobase/models.py:396
+#: herobase/models.py:395
 msgid "E-Mail on quest changes"
 msgstr "E-Mail bei Quest-Änderungen"
 
-#: herobase/models.py:397
+#: herobase/models.py:396
 msgid ""
 "Enable this if you want to receive an email notification when one of your "
 "quests needs attention."
@@ -197,11 +204,11 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail benachrichtigung sobald ein Quest an dem "
 "Du beteiligt bist deine Aufmerksamkeit benötigt."
 
-#: herobase/models.py:401
+#: herobase/models.py:400
 msgid "E-Mail on private message"
 msgstr "E-Mail bei privaten Nachrichten"
 
-#: herobase/models.py:402
+#: herobase/models.py:401
 msgid ""
 "Enable this if you want to receive an email notification when someone sends "
 "you a private message."
@@ -209,23 +216,23 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail wenn andere Nutzer dir eine Nachricht "
 "schreiben."
 
-#: herobase/models.py:485
+#: herobase/models.py:484
 msgid "text"
 msgstr "text"
 
-#: herobase/models.py:487
+#: herobase/models.py:486
 msgid "type not set"
 msgstr "Typ nicht gesetzt"
 
-#: herobase/models.py:488
+#: herobase/models.py:487
 msgid "spam"
 msgstr ""
 
-#: herobase/models.py:489
+#: herobase/models.py:488
 msgid "illegal content"
 msgstr ""
 
-#: herobase/models.py:490
+#: herobase/models.py:489
 msgid "hate speech"
 msgstr ""
 
