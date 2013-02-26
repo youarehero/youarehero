@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 class DjangoModelBackend(ModelBackend):
     def get_user(self, user_id):
         try:
-            print "GETTING"
             return User.objects.select_related('profile').get(pk=user_id)
         except User.DoesNotExist:
             return None
