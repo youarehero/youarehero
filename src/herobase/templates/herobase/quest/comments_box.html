@@ -9,7 +9,7 @@
 
 {% block content %}
     <ul class="grid">
-        {% for comment in quest.comments.all %}
+        {% for comment in comments %}
                 <li class="span5">
                     {% include "herobase/quest/comments_inner_box.html" %}
                 </li>

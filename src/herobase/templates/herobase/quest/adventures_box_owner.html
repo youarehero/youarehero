@@ -23,7 +23,7 @@
 
 {% block content %}
     <ul class="grid ">
-        {% for adventure in quest.adventures.all %}
+        {% for adventure in adventures %}
             <li class="span1-5">
                 {% include "herobase/quest/adventure_inner_box_owner.html" %}
             </li>

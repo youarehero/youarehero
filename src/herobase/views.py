@@ -123,10 +123,10 @@ class QuestCreateView(CreateView):
 
 def quest_detail_view(request, quest_id):
     """Render detail template for quest, and adventure if it exists."""
-    quest = get_object_or_404(Quest, pk=quest_id)
+    quest = get_object_or_404(Quest.objects.select_related('owner', 'owner__profile'), pk=quest_id)
 
     is_owner = request.user == quest.owner
-    if request.user.is_authenticated():
+    if request.user.is_authenticated() and not is_owner:
         try:
             adventure = quest.adventures.get(user_id=request.user.pk, canceled=False)
         except Adventure.DoesNotExist:
@@ -148,13 +148,19 @@ def quest_detail_view(request, quest_id):
     else:
         butler_text = u"Hello"
 
+    if is_owner:
+        adventures = quest.adventures.all().select_related('user', 'user__profile')
+    else:
+        adventures = quest.adventures.accepted().select_related('user', 'user__profile')
+
     context = {
         'quest': quest,
+        'adventures': adventures,
         'butler_text': butler_text,
         'is_owner': is_owner,
+        'comments': quest.comments.select_related('author'),
         'comment_form': CommentForm(),
         'request_user_adventure': adventure,
-
     }
     return render(request, "herobase/quest/detail.html", context)
 
