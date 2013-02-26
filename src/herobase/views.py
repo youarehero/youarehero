@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.db.models import Max, Q
+from django.utils.translation import ugettext as _
 from django.utils import simplejson as json
 from django.utils.timezone import now
 from django.views.decorators.http import require_POST
@@ -19,7 +20,7 @@ from django.http import HttpResponseRedirect, Http404, HttpResponse, HttpRespons
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from herobase import quest_livecycle
 from heronotification.models import Notification
@@ -71,6 +72,35 @@ def quest_list_view(request, archive=False, template='herobase/quest/list.html')
         'search': search,
     })
 
+class QuestUpdateView(UpdateView):
+    """Basic Quest create view. This generic view-class should be refactored to a normal view function"""
+    context_object_name = "quest"
+    form_class = QuestCreateForm
+    model = Quest
+    template_name = "herobase/quest/update.html"
+    success_url = '../'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(QuestUpdateView, self).dispatch(*args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if not self.object.owner == request.user:
+            return HttpResponseForbidden(_("Only the owner can edit the quest."))
+        if self.object.edit_window_expired:
+            return HttpResponseForbidden(_("You can only edit quests for %s minutes.") % Quest.EDIT_WINDOW_MINUTES)
+        return super(QuestUpdateView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if not self.object.owner == request.user:
+            return HttpResponseForbidden(_("Only the owner can edit the quest."))
+        if self.object.edit_window_expired:
+            return HttpResponseForbidden(_("You can only edit quests for %s minutes.") % Quest.EDIT_WINDOW_MINUTES)
+        return super(QuestUpdateView, self).post(request, *args, **kwargs)
+
+
 class QuestCreateView(CreateView):
     """Basic Quest create view. This generic view-class should be refactored to a normal view function"""
     context_object_name = "quest"
@@ -81,11 +111,6 @@ class QuestCreateView(CreateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(QuestCreateView, self).dispatch(*args, **kwargs)
-
-    def get_form_kwargs(self):
-        kwargs = super(QuestCreateView, self).get_form_kwargs()
-        kwargs['request'] = self.request
-        return kwargs
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -110,15 +135,15 @@ def quest_detail_view(request, quest_id):
         adventure = None
 
     if is_owner:
-        butler_text = u'Dies ist ihre Quest.'
+        butler_text = _(u'Dies ist ihre Quest.')
     elif not adventure:
-        butler_text = u"This quest needs heroes. Apply now by clicking the ✓ Button on the right."
+        butler_text = _(u"This quest needs heroes. Apply now by clicking the ✓ Button on the right.")
     elif adventure.accepted:
-        butler_text = u"Your application has been accepted. Press X to withdraw your participation."
+        butler_text = _(u"Your application has been accepted. Press X to withdraw your participation.")
     elif adventure.rejected:
-        butler_text = u"You have applied for this quest but the owner didn't want you to participate in it."
+        butler_text = _(u"You have applied for this quest but the owner didn't want you to participate in it.")
     elif not adventure.accepted and not adventure.rejected:
-        butler_text = (u"You are currently applying for this quest. Press X to cancel."
+        butler_text = _(u"You are currently applying for this quest. Press X to cancel."
                       u" You will be notified once the creator has decided about our participation" )
     else:
         butler_text = u"Hello"
@@ -168,7 +193,7 @@ def quest_my(request):
 
     created_q = Q(owner=user)
     joined_q = Q(adventures__user=user)
-    quests = Quest.objects.filter(canceled=False, done=False).filter(created_q | joined_q).order_by('-created')
+    quests = Quest.objects.filter(canceled=False, done=False).filter(created_q | joined_q).order_by('-created').select_related('owner', 'owner__profile')
 
     return render(request, template, {'quests': quests})
 
@@ -178,7 +203,7 @@ def quest_my_created(request):
     user = request.user
 
     return render(request, template, {
-        'quests': user.created_quests.filter(canceled=False, done=False).order_by('-created'),
+        'quests': user.created_quests.filter(canceled=False, done=False).order_by('-created').select_related('owner', 'owner__profile'),
         }
     )
 def quest_my_joined(request):
@@ -187,7 +212,7 @@ def quest_my_joined(request):
     user = request.user
 
     return render(request, template, {
-        'quests': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user),
+        'quests': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user).select_related('owner', 'owner__profile'),
         }
     )
 def quest_my_done(request):
@@ -197,7 +222,7 @@ def quest_my_done(request):
 
     created_q = Q(owner=user)
     joined_q = Q(adventures__user=user)
-    quests = Quest.objects.exclude(canceled=False, done=False).filter(created_q | joined_q).order_by('-created')
+    quests = Quest.objects.exclude(canceled=False, done=False).filter(created_q | joined_q).order_by('-created').select_related('owner', 'owner__profile')
 
     return render(request, template, { 'quests': quests })
 

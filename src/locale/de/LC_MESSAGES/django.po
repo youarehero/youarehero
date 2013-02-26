@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-26 13:51+0100\n"
+"POT-Creation-Date: 2013-02-26 18:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,42 +33,44 @@ msgstr "Kommentieren"
 msgid "-----------"
 msgstr "-----------"
 
-#: herobase/forms.py:46 herobase/models.py:205
-#: herobase/templates/herobase/quest/description_box_content.html:27
-msgid "Can be done remotely"
-msgstr "Kann aus der Ferne erledigt werden"
+#: herobase/forms.py:46
+msgid "remotely"
+msgstr "von überall"
 
 #: herobase/forms.py:47
-#: herobase/templates/herobase/quest/description_box_content.html:29
-msgid "Has to be done locally"
-msgstr "Muss vor Ort erledigt werden"
+msgid "locally"
+msgstr "vor Ort"
 
 #: herobase/forms.py:48 herobase/models.py:206
 msgid "Can this quest be done remotely or only locally?"
 msgstr ""
 "Kann man diese Quest nur an einem bestimmten Ort oder von überall erledigen?"
 
-#: herobase/forms.py:84
+#: herobase/forms.py:49
+msgid "Remote or local"
+msgstr "Vor Ort oder von überall"
+
+#: herobase/forms.py:81
 msgid "Place"
 msgstr "Ort"
 
-#: herobase/forms.py:85
+#: herobase/forms.py:82
 msgid "Where does this quest take place?"
 msgstr "Wo findet die Quest statt?"
 
-#: herobase/forms.py:113
+#: herobase/forms.py:110
 msgid "Edit your Profile"
 msgstr "Profil editieren"
 
-#: herobase/forms.py:153
+#: herobase/forms.py:150
 msgid "Privacy Settings"
 msgstr "Privatsphäre"
 
-#: herobase/forms.py:171
+#: herobase/forms.py:168
 msgid "Username"
 msgstr "Benutzername"
 
-#: herobase/forms.py:177
+#: herobase/forms.py:174
 msgid ""
 "Please enter a correct e-mail address and password. Note that both fields "
 "are case-sensitive."
@@ -76,7 +78,7 @@ msgstr ""
 "Bitte stelle sicher das E-Mail Adresse und Passwort korrekt sind. Achte auch "
 "auf Groß- und Kleinschreibung."
 
-#: herobase/forms.py:179
+#: herobase/forms.py:176
 msgid "E-mail"
 msgstr "E-Mail"
 
@@ -140,6 +142,13 @@ msgstr "Ablaufdatum"
 msgid "Until which date will this quest be visible?"
 msgstr "Bis wann ist diese Quest sichtbar?"
 
+#: herobase/models.py:205
+#: herobase/templates/herobase/quest/description_box_content.html:29
+#: herobase/templates/herobase/quest/list_box.html:16
+#: herobase/templates/herobase/quest/my_box_hero.html:12
+msgid "Can be done remotely"
+msgstr "Kann aus der Ferne erledigt werden"
+
 #: herobase/models.py:213
 msgid "Number of heroes"
 msgstr "Anzahl Helden"
@@ -164,23 +173,23 @@ msgstr "Mittel"
 msgid "High"
 msgstr "Hoch"
 
-#: herobase/models.py:384
+#: herobase/models.py:388
 msgid "Location is public"
 msgstr "Standort ist öffentlich"
 
-#: herobase/models.py:385
+#: herobase/models.py:389
 msgid "Enable this if you want to share your location with other Heroes."
 msgstr "Wenn aktiv können andere Helden deinen Standort sehen."
 
-#: herobase/models.py:389
+#: herobase/models.py:393
 msgid "Tell other heroes who you are."
 msgstr "Erzähle anderen Helden wer Du bist"
 
-#: herobase/models.py:392
+#: herobase/models.py:396
 msgid "E-Mail on quest changes"
 msgstr "E-Mail bei Quest-Änderungen"
 
-#: herobase/models.py:393
+#: herobase/models.py:397
 msgid ""
 "Enable this if you want to receive an email notification when one of your "
 "quests needs attention."
@@ -188,11 +197,11 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail benachrichtigung sobald ein Quest an dem "
 "Du beteiligt bist deine Aufmerksamkeit benötigt."
 
-#: herobase/models.py:397
+#: herobase/models.py:401
 msgid "E-Mail on private message"
 msgstr "E-Mail bei privaten Nachrichten"
 
-#: herobase/models.py:398
+#: herobase/models.py:402
 msgid ""
 "Enable this if you want to receive an email notification when someone sends "
 "you a private message."
@@ -200,23 +209,23 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail wenn andere Nutzer dir eine Nachricht "
 "schreiben."
 
-#: herobase/models.py:481
+#: herobase/models.py:485
 msgid "text"
 msgstr "text"
 
-#: herobase/models.py:483
+#: herobase/models.py:487
 msgid "type not set"
 msgstr "Typ nicht gesetzt"
 
-#: herobase/models.py:484
+#: herobase/models.py:488
 msgid "spam"
 msgstr ""
 
-#: herobase/models.py:485
+#: herobase/models.py:489
 msgid "illegal content"
 msgstr ""
 
-#: herobase/models.py:486
+#: herobase/models.py:490
 msgid "hate speech"
 msgstr ""
 
@@ -237,6 +246,41 @@ msgstr "Algorithmus"
 #: herobase/utils.py:33
 msgid "hash"
 msgstr "Hash"
+
+#: herobase/views.py:90 herobase/views.py:98
+msgid "Only the owner can edit the quest."
+msgstr ""
+
+#: herobase/views.py:92 herobase/views.py:100
+#, python-format
+msgid "You can only edit quests for %s minutes."
+msgstr ""
+
+#: herobase/views.py:138
+msgid "Dies ist ihre Quest."
+msgstr "Dies ist Deine Quest."
+
+#: herobase/views.py:140
+msgid ""
+"This quest needs heroes. Apply now by clicking the ✓ Button on the right."
+msgstr ""
+
+#: herobase/views.py:142
+msgid ""
+"Your application has been accepted. Press X to withdraw your participation."
+msgstr ""
+
+#: herobase/views.py:144
+msgid ""
+"You have applied for this quest but the owner didn't want you to participate "
+"in it."
+msgstr ""
+
+#: herobase/views.py:146
+msgid ""
+"You are currently applying for this quest. Press X to cancel. You will be "
+"notified once the creator has decided about our participation"
+msgstr ""
 
 #: herobase/templates/herobase/home_login_box.inc.html:19
 #: herobase/templates/herobase/home_login_box.inc.html:29
@@ -381,26 +425,38 @@ msgid "There are no comments yet."
 msgstr "Es gibt noch keine Kommentare."
 
 #: herobase/templates/herobase/quest/create.html:21
-msgid "Create a Quest"
-msgstr "Eine Quest erstellen"
+msgid "Update your Quest"
+msgstr "Quest bearbeiten"
 
 #: herobase/templates/herobase/quest/description_box.html:14
-msgid "Apply"
-msgstr "bewerben"
-
-#: herobase/templates/herobase/quest/description_box.html:19
 msgid "Cancel"
 msgstr "abbrechen"
 
-#: herobase/templates/herobase/quest/description_box_content.html:33
+#: herobase/templates/herobase/quest/description_box.html:26
+msgid "Apply"
+msgstr "bewerben"
+
+#: herobase/templates/herobase/quest/description_box_content.html:31
+#: herobase/templates/herobase/quest/list_box.html:18
+#: herobase/templates/herobase/quest/my_box_hero.html:14
+msgid "Has to be done locally"
+msgstr "Muss vor Ort erledigt werden"
+
+#: herobase/templates/herobase/quest/description_box_content.html:36
+#: herobase/templates/herobase/quest/list_box.html:23
+#: herobase/templates/herobase/quest/my_box_hero.html:19
 msgid "low time effort"
 msgstr "geringer Zeitaufwand"
 
-#: herobase/templates/herobase/quest/description_box_content.html:35
+#: herobase/templates/herobase/quest/description_box_content.html:38
+#: herobase/templates/herobase/quest/list_box.html:25
+#: herobase/templates/herobase/quest/my_box_hero.html:21
 msgid "medium time effort"
 msgstr "mittlerer Zeitaufwand"
 
-#: herobase/templates/herobase/quest/description_box_content.html:37
+#: herobase/templates/herobase/quest/description_box_content.html:40
+#: herobase/templates/herobase/quest/list_box.html:27
+#: herobase/templates/herobase/quest/my_box_hero.html:23
 msgid "high time effort"
 msgstr "hoher Zeitaufwand"
 
@@ -423,6 +479,10 @@ msgstr "Es gibt keine Quests."
 #: herobase/templates/herobase/quest/my_box_owner.html:13
 msgid "This is your Quest"
 msgstr "Dies ist Deine Quest."
+
+#: herobase/templates/herobase/quest/update.html:21
+msgid "Create a Quest"
+msgstr "Eine Quest erstellen"
 
 #: herobase/templates/herobase/userprofile/detail.html:5
 #: herobase/templates/herobase/userprofile/edit.html:27
