@@ -6,11 +6,13 @@
                 data-dismiss-url="{% url "mark_notification_read" notification.pk %}"
             {% endif %}
         >
-        {% if url %}
-            <a href="{{ url }}">{{ block.super }}</a>
-        {% else%}
-            {{ block.super }}
-        {% endif %}
+        {% with url=notification.target.get_absolute_url %}
+            {% if url %}
+                <a href="{{ url }}">{{ block.super }}</a>
+            {% else%}
+                {{ block.super }}
+            {% endif %}
+        {% endwith %}
     </div>
 {% endblock %}
 
