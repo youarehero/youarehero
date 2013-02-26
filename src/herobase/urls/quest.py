@@ -2,6 +2,7 @@
 import logging
 
 from django.conf.urls import patterns, include, url
+from herobase.views import QuestUpdateView
 from ..views import QuestCreateView
 
 logger = logging.getLogger(__name__)
@@ -37,7 +38,9 @@ urlpatterns = patterns(
     url(regex=r'^(?P<quest_id>\d+)/$',
         view='quest_detail_view',
         name='quest_detail'),
-
+    url(regex=r'^(?P<pk>\d+)/update/$',
+        view=QuestUpdateView.as_view(),
+        name='quest_update'),
     url(regex=r'^(?P<quest_id>\d+)/owner_update_quest/$',
         view='owner_update_quest',
         name='owner_update_quest'),

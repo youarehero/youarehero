@@ -268,6 +268,10 @@ class Quest(LocationMixin, models.Model):
         """Get the url for this quests detail page."""
         return reverse("quest_detail", args=(self.pk,))
 
+    EDIT_WINDOW_MINUTES = 10
+    @property
+    def edit_window_expired(self):
+        return (now() - self.modified) > timedelta(minutes=self.EDIT_WINDOW_MINUTES)
 
     def get_state_display(self):
         if self.canceled:

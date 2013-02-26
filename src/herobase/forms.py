@@ -43,10 +43,10 @@ class QuestCreateForm(forms.ModelForm):
     """The Basic Quest create form. Uses django-crispy-forms (FormHelper) for 2 column bootstrap output. """
     remote = forms.ChoiceField(choices=(
         ("", _("-----------")),
-        (True, _(u"Can be done remotely")),
-        (False, _(u"Has to be done locally"))
+        (True, _(u"remotely")),
+        (False, _(u"locally"))
     ), help_text=_(u"Can this quest be done remotely or only locally?"),
-    )
+    label=_(u"Remote or local"))
     # latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # address = forms.CharField(widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
@@ -54,9 +54,6 @@ class QuestCreateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.request = kwargs.pop('request')
-
-
         #self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.layout = Layout(
             Div(
