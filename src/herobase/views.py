@@ -12,7 +12,6 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.db.models import Max, Q
 from django.utils import simplejson as json
-from django.utils.safestring import mark_safe
 from django.utils.timezone import now
 from django.views.decorators.http import require_POST
 from django.contrib import messages
@@ -26,9 +25,8 @@ from herobase import quest_livecycle
 from heronotification.models import Notification
 from herorecommend import recommend
 from herorecommend.forms import UserSkillEditForm
-from filters import QuestFilter
 from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit, CommentForm, UserAuthenticationForm
-from herobase.models import Quest, Adventure, CLASS_CHOICES, UserProfile, Like, Comment, CREATE_EXPERIENCE
+from herobase.models import Quest, Adventure, Like, Comment, CREATE_EXPERIENCE
 import herorecommend.signals as recommender_signals
 from herorecommend.models import MIN_SELECTED_SKILLS
 
@@ -133,19 +131,6 @@ def quest_detail_view(request, quest_id):
         'request_user_adventure': adventure,
 
     }
-
-    # {% if not request_user_adventure %}
-    # {% trans "" %}
-    # {% elif request_user_adventure.accepted %}
-    # {% trans " %}
-    # {% elif request_user_adventure.rejected %}
-    # {% trans "Your application has been rejected." %}
-    # {% elif not request_user_adventure.accepted and not request.user.rejected %}
-    # {% trans "You are currently applying for this quest. Press X to cancel." %}
-    # {% endif %}
-
-
-
     return render(request, "herobase/quest/detail.html", context)
 
 def home_view(request):
@@ -156,13 +141,6 @@ def home_view(request):
         'open_quests': Quest.objects.open(),
         'form': UserAuthenticationForm()})
 
-
-def m_home_view(request):
-    """Proxy view for switching between the hero and the public home view"""
-    return hero_home_view(request, template='herobase/m/home.html')
-#    return render(request, "herobase/m/public_home.html", {'open_quests':
-#        Quest.objects.filter(state=Quest.STATE_OPEN)})
-
 def abstract(request):
     """static you are hero abstract view."""
     return render(request, "herobase/abstract.html")
@@ -172,21 +150,13 @@ def imprint(request):
     """static you are hero imprint view."""
     return render(request, "herobase/imprint.html")
 
-def hero_classes(request):
-    """static view for explaining hero classes."""
-    return render(request, "herobase/hero_classes.html")
-
 @login_required
 def hero_home_view(request, template='herobase/hero_home.html'):
     """the hero home is only visible for authenticated heros."""
     user = request.user
     return render(request, template,
             {
-             #'profile': user.get_profile(),
              'notifications': Notification.for_user(user),
-#             'quests_active': user.created_quests.filter(canceled=False, done=False).order_by('-created')[:10],
-#             'quests_old': user.created_quests.filter(done=True).order_by('-created')[:10],
-#             'quests_joined': Quest.objects.filter(canceled=False, adventures__user=user, adventures__canceled=False)[:10]
              })
 
 
@@ -308,20 +278,10 @@ def userprofile(request, username=None, template='herobase/userprofile/detail.ht
     else:
         user = request.user
 
-    hero_completed_quests = []
-    class_choices = dict(CLASS_CHOICES)
-    color_dict = { 5: '#e8e8e8',
-                   1: '#ccffa7',
-                   2: '#fff9b4',
-                   3: '#ffa19b',
-                   4: '#bdcaff'}
-
-
     return render(request, template, {
         'user': user,
         'rank': user.get_profile().rank,
         'completed_quest_count': user.adventures.filter(done=True).count(),
-        # 'colors': json.dumps(color_dict),
     })
 
 
@@ -379,42 +339,6 @@ def leader_board(request):
         'global_board': global_board,
         'relativ_board': relativ_board,
     })
-
-@login_required
-def random_stats(request):
-    """Some general stats"""
-    user = request.user
-    class_choices = dict(CLASS_CHOICES)
-    color_dict = { None: "#ff0000",
-                    5: '#e8e8e8',
-                   1: '#ccffa7',
-                   2: '#fff9b4',
-                   3: '#ffa19b',
-                   4: '#bdcaff'}
-
-
-
-    hero_completed_quests = []
-    colors0 = []
-    open_quest_types = []
-    colors1 = []
-    completed_quest_types = []
-
-    context = {
-        'hero_completed_quests': hero_completed_quests,
-        'open_quest_types': open_quest_types,
-        'completed_quest_types': completed_quest_types,
-        'colors0': colors0,
-        'colors1': colors1,
-        }
-    for key in context:
-        context[key] = mark_safe(json.dumps(list(context[key])))
-
-    context.update({
-        'quests_completed': user.adventures.filter(quest__done=True).count()
-    })
-
-    return render(request, 'herobase/stats.html', context)
 
 def signups(request):
     """Special view for nosy developers."""

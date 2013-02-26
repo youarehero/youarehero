@@ -117,10 +117,4 @@ class AuthenticatedIntegrationTest(TestCase):
         response = self.client.get(reverse('home'))
         self.assertContains(response, quest.title)
 
-    def test_stats(self):
-        """A user should be able to see the statistics."""
-        quest = create_quest(title='0')
-        response = self.client.get(reverse('stats'))
-        self.assertContains(response, 'Stat')
-        self.assertContains(response, 'uest')
 
