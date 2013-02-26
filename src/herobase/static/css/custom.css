@@ -1107,6 +1107,9 @@ ul.menu li:hover a {
   margin-right: 13px;
   margin-bottom: 6px;
 }
+.box {
+  word-wrap: break-word;
+}
 .box .box-buttons-top {
   position: relative;
   display: inline-block;
