@@ -274,7 +274,7 @@ msgstr "Es gibt keine abgeschlossenen Quests."
 #: herobase/templates/herobase/layout/base.html:62
 #: herobase/templates/herobase/userprofile/submenu.inc.html:10
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "Optionen"
 
 #: herobase/templates/herobase/layout/base.html:64
 msgid "Logout"
