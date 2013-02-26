@@ -15,10 +15,10 @@
         {% for user in global %}
             <tr>
                 <td>
-                    <a href="{% url "userprofile_public" user.username %}"><img src="{{ user.profile.avatar_thumbnail }}"></a>
-                    <br/>
-                    <a href="{% url "userprofile_public" user.username %}">{{ user.username }}</a>
-
+                    <a href="{% url "userprofile_public" user.username %}">
+                        <img src="{{ user.profile.avatar_thumbnail }}">
+                        {{ user.username }}
+                    </a>
                 </td>
                 <td>
                     {{ user.get_profile.experience }} Erfahrungspunkte
