@@ -13,16 +13,13 @@
         {% endif %}
         {{ quest.time_effort }}
     </div>
-    <div class="row">
+    <div>
         <a href="{{ quest.get_absolute_url }}">
-            <div class="span1">
-                <img src="{{ quest.owner.get_profile.avatar_thumbnail_70 }}" alt="" width="60" height="60"/>
-            </div>
+            <img src="{{ quest.owner.get_profile.avatar_thumbnail_70 }}" alt="" class="pull-left"/>
             <h3>{{ quest.title }}</h3>
         </a>
         {{ quest.description }}
     </div>
-
 
 {% endblock %}
 
