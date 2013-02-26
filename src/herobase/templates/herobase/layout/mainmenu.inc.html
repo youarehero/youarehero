@@ -31,10 +31,12 @@
         <li class="{% ifactive "message_list_in" %}on{% endifactive %}">
             <a href="{% url "message_list_in" %}" rel="tooltip" title="{% trans 'Private Messages' %}">
                 <i class="icon-yah-messages icon-80">
-                    {% if request.user.get_profile.unread_messages_count != 0 %}
-                        <span class="badge">{{ request.user.get_profile.unread_messages_count }}</span>
+                {% with unread_message_count=request.user.profile.unread_messages_count %}
+                    {% if unread_message_count != 0 %}
+                        <span class="badge">{{ unread_messages_count }}</span>
                     {% endif %}
                     <span>{% trans 'Messages' %}</span>
+                {% endwith %}
                 </i>
             </a>
         </li>

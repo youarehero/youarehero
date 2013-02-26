@@ -1,10 +1,11 @@
+from collections import defaultdict
 from datetime import datetime
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured
-from django.db import models
+from django.db import models, connection
 
 # Create your models here.
 from django.template import Context, TemplateDoesNotExist
@@ -63,7 +64,7 @@ class hero_has_applied(NotificationTypeBase):
 
     @classmethod
     def get_image(cls, notification):
-        return notification.target.user.get_profile().avatar_thumbnail_40
+        return notification.target.user.profile.avatar_thumbnail_40
 
 class hero_has_cancelled(NotificationTypeBase):
     type_id = 2
@@ -78,7 +79,7 @@ class hero_has_cancelled(NotificationTypeBase):
 
     @classmethod
     def get_image(cls, notification):
-        return notification.target.user.get_profile().avatar_thumbnail_40
+        return notification.target.user.profile.avatar_thumbnail_40
 
 class quest_started(NotificationTypeBase):
     type_id = 10
@@ -149,7 +150,7 @@ class message_received(NotificationTypeBase):
 
     @classmethod
     def get_image(cls, notification):
-        return notification.target.sender.get_profile().avatar_thumbnail_40
+        return notification.target.sender.profile.avatar_thumbnail_40
 
 
     @classmethod
@@ -176,16 +177,26 @@ class Notification(models.Model):
     @classmethod
     def for_user(cls, user):
         items = cls.objects.filter(user=user).order_by('-read', '-created').select_related('content_type')
-        model_map = {}
-        item_map = {}
+        # collect all targets
+        # maintain a mapping ct -> id -> item
+        ct_target_item_map = defaultdict(lambda: defaultdict(list))
         for item in items:
-            model_map.setdefault(item.content_type, {}) \
-                [item.object_id] = item.id
-            item_map[item.id] = item
-        for ct, items_ in model_map.items():
-            for o in ct.model_class().objects.select_related() \
-                .filter(id__in=items_.keys()).all():
-                item_map[items_[o.id]].target = o
+            ct_target_item_map[item.content_type][item.object_id].append(item)
+
+        for content_type, target_item_map in ct_target_item_map.items():
+            target_ids = target_item_map.keys()
+            Model = content_type.model_class()
+            if issubclass(Model, Quest):
+                select_related = 'owner', 'owner__profile'
+            elif issubclass(Model, Adventure):
+                select_related = 'user', 'user__profile', 'quest'
+            elif issubclass(Model, Message):
+                select_related = 'sender', 'sender__profile'
+            else:
+                select_related = ()
+            for target in Model.objects.filter(pk__in=target_ids).select_related(*select_related):
+                for item in target_item_map[target.pk]:
+                    item.target = target
         return items
 
     @property

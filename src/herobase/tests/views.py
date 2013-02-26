@@ -61,6 +61,7 @@ class AuthenticatedIntegrationTest(TestCase):
             'hero_class': 1,
             'max_heroes': 1,
             'remote': True,
+            'time_effort': 1,
             'expiration_date': '11.11.2013',
             'address': 'address',
             })

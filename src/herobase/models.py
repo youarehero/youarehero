@@ -233,7 +233,7 @@ class Quest(LocationMixin, models.Model):
     time_effort = models.IntegerField(null=True, choices=(
         (1, _(u"Low")),
         (2, _(u"Medium")),
-        (3, _(u"Hight")),
+        (3, _(u"High")),
     ))
 
     @property
@@ -314,6 +314,11 @@ class AvatarImageMixin(models.Model):
     @property
     def avatar_thumbnail(self):
         """Return a String, containing a path to a thumbnail-image 50x50."""
+        return self._avatar_thumbnail((50, 50))
+
+    @property
+    def avatar_quest_list(self):
+        """Return a String, containing a path to a thumbnail-image 40x40."""
         return self._avatar_thumbnail((50, 50))
 
     @property
