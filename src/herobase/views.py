@@ -198,7 +198,7 @@ def quest_my(request):
     user = request.user
 
     created_q = Q(owner=user)
-    joined_q = Q(adventures__user=user)
+    joined_q = Q(adventures__user=user, adventures__canceled=False)
     quests = Quest.objects.filter(canceled=False, done=False).filter(created_q | joined_q).order_by('-created').select_related('owner', 'owner__profile')
 
     return render(request, template, {'quests': quests})
@@ -218,7 +218,7 @@ def quest_my_joined(request):
     user = request.user
 
     return render(request, template, {
-        'quests': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user).select_related('owner', 'owner__profile'),
+        'quests': Quest.objects.filter(canceled=False, done=False).filter(adventures__user=user, adventures__canceled=False).select_related('owner', 'owner__profile'),
         }
     )
 def quest_my_done(request):
