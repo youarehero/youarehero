@@ -52,19 +52,19 @@ def quest_comment(request, quest_id):
     return HttpResponseRedirect(reverse('quest_detail', args=(quest.pk, )))
 
 
-def quest_list_view(request, template='herobase/quest/list.html'):
+def quest_list_view(request, archive=False, template='herobase/quest/list.html'):
     """Basic quest list, with django-filter app"""
-    if request.user.is_authenticated():
-        quests = recommend(request.user, order_by=['-created', 'pk'])
+    if archive:
+        quests = Quest.objects.all().order_by('-created', 'pk')
     else:
         quests = Quest.objects.open().order_by('-created', 'pk')
     quests = quests.select_related('owner', 'owner__profile')
+
     search = request.GET.get('search', '')
     if search:
         quests = quests.filter(Q(title__icontains=search)|
                                Q(description__icontains=search))
 
-    quests = quests.order_by('-created', 'pk')
 
     return render(request, template, {
         'quests': quests,
