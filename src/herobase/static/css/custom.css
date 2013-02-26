@@ -1363,12 +1363,16 @@ body {
 #site-header-container {
   margin: 20px 0 20px -20px;
 }
+#sidebar-left-container {
+  margin-bottom: 40px;
+}
 #sidebar-left-container p {
   padding: 0 5px;
   background: rgba(0, 0, 0, 0.25);
 }
 #sidebar-right-container {
   z-index: 1045;
+  margin-bottom: 40px;
 }
 #page-container {
   width: 630px;
@@ -1439,6 +1443,7 @@ body {
 }
 #page-footer {
   padding: 5px 0;
+  margin-left: 0;
   background: rgba(0, 0, 0, 0.4);
 }
 #page-footer a {
