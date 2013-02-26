@@ -1,10 +1,12 @@
 {% autoescape off %}
-Welcome {{ user.username }}!
+Willkommen bei You are Hero {{ user.username }}!
 
-Your activation key is: {{ activation_key }}
-
-Please follow this link to complete your account-activation:
+Bitte klicke auf den Link um deine Registrierung fertigzustellen.
 {% block activate_link %}
 https://{{ site.domain }}{% url registration.views.activate activation_key=activation_key %}
 {% endblock %}
+
+Viel Freude mit You are Hero,
+
+das YAH Team
 {% endautoescape %}
