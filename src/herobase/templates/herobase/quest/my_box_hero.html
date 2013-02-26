@@ -1,5 +1,5 @@
 {% extends "herobase/layout/box.html" %}
-
+{% load i18n %}
 {% block extra_classes %}{% endblock %}
 
 {% block title %}
@@ -9,16 +9,28 @@
 {% block content %}
     <div class="pull-right">
         {% if quest.remote %}
-            <i class="icon-yah-distance icon-40"></i>
+            <i class="icon-yah-distance icon-40" data-toggle="tooltip" data-title="{% trans "Can be done remotely" %}"></i>
+        {% else %}
+            <i class="icon-yah-distance icon-40" data-toggle="tooltip" data-title="{% trans "Has to be done locally" %}"></i>
         {% endif %}
-        {{ quest.time_effort }}
+        <br>
+        {% if quest.time_effort %}
+            {% if quest.time_effort == quest.TIME_EFFORT_LOW %}
+                <i class="icon-yah-time-short" data-toggle="tooltip" data-title="{% trans "low time effort" %}"></i>
+            {% elif quest.time_effort == quest.TIME_EFFORT_MEDIUM %}
+                <i class="icon-yah-time-middle" data-toggle="tooltip" data-title="{% trans "medium time effort" %}"></i>
+            {% elif quest.time_effort == quest.TIME_EFFORT_HIGH %}
+                <i class="icon-yah-time-long" data-toggle="tooltip" data-title="{% trans "high time effort" %}"></i>
+            {% endif %}
+        {% endif %}
+
     </div>
     <div>
         <a href="{{ quest.get_absolute_url }}">
             <img src="{{ quest.owner.get_profile.avatar_thumbnail_70 }}" alt="" class="pull-left"/>
             <h3>{{ quest.title }}</h3>
         </a>
-        {{ quest.description }}
+        {{ quest.description|truncatewords:30 }}
     </div>
 
 {% endblock %}

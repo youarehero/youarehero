@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-26 13:34+0100\n"
+"POT-Creation-Date: 2013-02-26 13:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,10 +34,12 @@ msgid "-----------"
 msgstr "-----------"
 
 #: herobase/forms.py:46 herobase/models.py:205
+#: herobase/templates/herobase/quest/description_box_content.html:27
 msgid "Can be done remotely"
-msgstr "Kann "
+msgstr "Kann aus der Ferne erledigt werden"
 
 #: herobase/forms.py:47
+#: herobase/templates/herobase/quest/description_box_content.html:29
 msgid "Has to be done locally"
 msgstr "Muss vor Ort erledigt werden"
 
@@ -390,6 +392,18 @@ msgstr "bewerben"
 msgid "Cancel"
 msgstr "abbrechen"
 
+#: herobase/templates/herobase/quest/description_box_content.html:33
+msgid "low time effort"
+msgstr "geringer Zeitaufwand"
+
+#: herobase/templates/herobase/quest/description_box_content.html:35
+msgid "medium time effort"
+msgstr "mittlerer Zeitaufwand"
+
+#: herobase/templates/herobase/quest/description_box_content.html:37
+msgid "high time effort"
+msgstr "hoher Zeitaufwand"
+
 #: herobase/templates/herobase/quest/detail.html:5
 msgid "Quest details"
 msgstr "Quest-Details"
@@ -410,7 +424,7 @@ msgstr "Es gibt keine Quests."
 msgid "This is your Quest"
 msgstr "Dies ist Deine Quest."
 
-#: herobase/templates/herobase/userprofile/detail.html:37
+#: herobase/templates/herobase/userprofile/detail.html:5
 #: herobase/templates/herobase/userprofile/edit.html:27
 #: herobase/templates/herobase/userprofile/privacy_settings.html:5
 #: herobase/templates/herobase/userprofile/m/detail.html:58
