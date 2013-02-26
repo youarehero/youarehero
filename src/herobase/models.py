@@ -230,10 +230,13 @@ class Quest(LocationMixin, models.Model):
     started = models.BooleanField(default=False)
     started_time = models.DateTimeField(null=True, blank=True, editable=False)
 
-    time_effort = models.IntegerField(null=True, choices=(
-        (1, _(u"Low")),
-        (2, _(u"Medium")),
-        (3, _(u"High")),
+    TIME_EFFORT_LOW = 1
+    TIME_EFFORT_MEDIUM = 2
+    TIME_EFFORT_HIGH = 3
+    time_effort = models.IntegerField(null=True, verbose_name=_(u"time effort"), choices=(
+        (TIME_EFFORT_LOW, _(u"Low")),
+        (TIME_EFFORT_MEDIUM, _(u"Medium")),
+        (TIME_EFFORT_HIGH, _(u"High")),
     ))
 
     @property

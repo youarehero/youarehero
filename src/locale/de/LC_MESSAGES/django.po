@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-26 13:19+0100\n"
+"POT-Creation-Date: 2013-02-26 13:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,35 +146,39 @@ msgstr "Anzahl Helden"
 msgid "How many heroes can participate in this Quest?"
 msgstr "Wie viele Helden können an dieser Quest teilnehmen?"
 
-#: herobase/models.py:234
+#: herobase/models.py:236
+msgid "time effort"
+msgstr "Zeitaufwand"
+
+#: herobase/models.py:237
 msgid "Low"
 msgstr "Niedrig"
 
-#: herobase/models.py:235
+#: herobase/models.py:238
 msgid "Medium"
 msgstr "Mittel"
 
-#: herobase/models.py:236
+#: herobase/models.py:239
 msgid "High"
 msgstr "Hoch"
 
-#: herobase/models.py:381
+#: herobase/models.py:384
 msgid "Location is public"
 msgstr "Standort ist öffentlich"
 
-#: herobase/models.py:382
+#: herobase/models.py:385
 msgid "Enable this if you want to share your location with other Heroes."
 msgstr "Wenn aktiv können andere Helden deinen Standort sehen."
 
-#: herobase/models.py:386
+#: herobase/models.py:389
 msgid "Tell other heroes who you are."
 msgstr "Erzähle anderen Helden wer Du bist"
 
-#: herobase/models.py:389
+#: herobase/models.py:392
 msgid "E-Mail on quest changes"
 msgstr "E-Mail bei Quest-Änderungen"
 
-#: herobase/models.py:390
+#: herobase/models.py:393
 msgid ""
 "Enable this if you want to receive an email notification when one of your "
 "quests needs attention."
@@ -182,11 +186,11 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail benachrichtigung sobald ein Quest an dem "
 "Du beteiligt bist deine Aufmerksamkeit benötigt."
 
-#: herobase/models.py:394
+#: herobase/models.py:397
 msgid "E-Mail on private message"
 msgstr "E-Mail bei privaten Nachrichten"
 
-#: herobase/models.py:395
+#: herobase/models.py:398
 msgid ""
 "Enable this if you want to receive an email notification when someone sends "
 "you a private message."
@@ -194,23 +198,23 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail wenn andere Nutzer dir eine Nachricht "
 "schreiben."
 
-#: herobase/models.py:478
+#: herobase/models.py:481
 msgid "text"
 msgstr "text"
 
-#: herobase/models.py:480
+#: herobase/models.py:483
 msgid "type not set"
 msgstr "Typ nicht gesetzt"
 
-#: herobase/models.py:481
+#: herobase/models.py:484
 msgid "spam"
 msgstr ""
 
-#: herobase/models.py:482
+#: herobase/models.py:485
 msgid "illegal content"
 msgstr ""
 
-#: herobase/models.py:483
+#: herobase/models.py:486
 msgid "hate speech"
 msgstr ""
 
@@ -657,42 +661,42 @@ msgstr "Ausgang"
 msgid "%(user)s is applying for your quest %(title)s."
 msgstr "%(user)s bewirbt sich für deine Quest %(title)s."
 
-#: heronotification/models.py:76
+#: heronotification/models.py:77
 #, python-format
 msgid "%(user)s has cancelled his application for your quest %(title)s."
 msgstr "%(user)s hat seine Bewerbung für deine Quest %(title)s zurückgezogen."
 
-#: heronotification/models.py:92
+#: heronotification/models.py:93
 #, python-format
 msgid "The quest %s has been started."
 msgstr "Die Quest %s hat begonnen."
 
-#: heronotification/models.py:102
+#: heronotification/models.py:103
 #, python-format
 msgid "The quest %s is waiting for documentation."
 msgstr "Die Quest %s erwartet Dokumentation."
 
-#: heronotification/models.py:111
+#: heronotification/models.py:112
 #, python-format
 msgid "The quest %s has been cancelled."
 msgstr "Die Quest %s wurde abgebrochen."
 
-#: heronotification/models.py:120
+#: heronotification/models.py:121
 #, python-format
 msgid "The quest %s has been completed."
 msgstr "Die Quest %s ist abgeschlossen."
 
-#: heronotification/models.py:130
+#: heronotification/models.py:131
 #, python-format
 msgid "You have been accepted for the quest %s."
 msgstr "Du wurdest für die Quest %s akzeptiert."
 
-#: heronotification/models.py:140
+#: heronotification/models.py:141
 #, python-format
 msgid "Your application for the quest %s has been rejected."
 msgstr "Deine Bewerbung für die Quest %s wurde nicht angenommen."
 
-#: heronotification/models.py:150
+#: heronotification/models.py:151
 #, python-format
 msgid "You have received a message from %s."
 msgstr "Du hast eine Nachricht von %s erhalten."
