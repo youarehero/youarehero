@@ -655,27 +655,27 @@ msgstr "Ausgang"
 #: heronotification/models.py:61
 #, python-format
 msgid "%(user)s is applying for your quest %(title)s."
-msgstr ""
+msgstr "%(user)s bewirbt sich für deine Quest %(title)s."
 
 #: heronotification/models.py:76
 #, python-format
 msgid "%(user)s has cancelled his application for your quest %(title)s."
-msgstr ""
+msgstr "%(user)s hat seine Bewerbung für deine Quest %(title)s zurückgezogen."
 
 #: heronotification/models.py:92
 #, python-format
 msgid "The quest %s has been started."
-msgstr ""
+msgstr "Die Quest %s hat begonnen."
 
 #: heronotification/models.py:102
 #, python-format
 msgid "The quest %s is waiting for documentation."
-msgstr ""
+msgstr "Die Quest %s erwartet Dokumentation."
 
 #: heronotification/models.py:111
 #, python-format
 msgid "The quest %s has been cancelled."
-msgstr ""
+msgstr "Die Quest %s wurde abgebrochen."
 
 #: heronotification/models.py:120
 #, python-format
