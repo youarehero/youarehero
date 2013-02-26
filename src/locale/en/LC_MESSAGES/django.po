@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-26 00:22+0100\n"
+"POT-Creation-Date: 2013-02-26 12:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,33 +45,33 @@ msgstr ""
 msgid "Can this quest be done remotely or only locally?"
 msgstr ""
 
-#: herobase/forms.py:83
+#: herobase/forms.py:84
 msgid "Place"
 msgstr ""
 
-#: herobase/forms.py:84
+#: herobase/forms.py:85
 msgid "Where does this quest take place?"
 msgstr ""
 
-#: herobase/forms.py:112
+#: herobase/forms.py:113
 msgid "Edit your Profile"
 msgstr ""
 
-#: herobase/forms.py:152
+#: herobase/forms.py:153
 msgid "Privacy Settings"
 msgstr ""
 
-#: herobase/forms.py:170
+#: herobase/forms.py:171
 msgid "Username"
 msgstr ""
 
-#: herobase/forms.py:176
+#: herobase/forms.py:177
 msgid ""
 "Please enter a correct e-mail address and password. Note that both fields "
 "are case-sensitive."
 msgstr ""
 
-#: herobase/forms.py:178
+#: herobase/forms.py:179
 msgid "E-mail"
 msgstr ""
 
@@ -152,58 +152,58 @@ msgid "Medium"
 msgstr ""
 
 #: herobase/models.py:236
-msgid "Hight"
+msgid "High"
 msgstr ""
 
-#: herobase/models.py:371
+#: herobase/models.py:381
 msgid "Location is public"
 msgstr ""
 
-#: herobase/models.py:372
+#: herobase/models.py:382
 msgid "Enable this if you want to share your location with other Heroes."
 msgstr ""
 
-#: herobase/models.py:376
+#: herobase/models.py:386
 msgid "Tell other heroes who you are."
 msgstr ""
 
-#: herobase/models.py:379
+#: herobase/models.py:389
 msgid "E-Mail on quest changes"
 msgstr ""
 
-#: herobase/models.py:380
+#: herobase/models.py:390
 msgid ""
 "Enable this if you want to receive an email notification when one of your "
 "quests needs attention."
 msgstr ""
 
-#: herobase/models.py:384
+#: herobase/models.py:394
 msgid "E-Mail on private message"
 msgstr ""
 
-#: herobase/models.py:385
+#: herobase/models.py:395
 msgid ""
 "Enable this if you want to receive an email notification when someone sends "
 "you a private message."
 msgstr ""
 
-#: herobase/models.py:468
+#: herobase/models.py:478
 msgid "text"
 msgstr ""
 
-#: herobase/models.py:470
+#: herobase/models.py:480
 msgid "type not set"
 msgstr ""
 
-#: herobase/models.py:471
+#: herobase/models.py:481
 msgid "spam"
 msgstr ""
 
-#: herobase/models.py:472
+#: herobase/models.py:482
 msgid "illegal content"
 msgstr ""
 
-#: herobase/models.py:473
+#: herobase/models.py:483
 msgid "hate speech"
 msgstr ""
 
@@ -241,7 +241,7 @@ msgid "Forgotten password?"
 msgstr ""
 
 #: herobase/templates/herobase/home_registration_box.inc.html:23
-#: herobase/templates/herobase/public_home.html:30
+#: herobase/templates/herobase/public_home.html:40
 #: herobase/templates/registration/login_box.inc.html:23
 msgid "Join now!"
 msgstr ""
@@ -264,25 +264,26 @@ msgstr ""
 msgid "There are no completed quests."
 msgstr ""
 
-#: herobase/templates/herobase/layout/base.html:61
+#: herobase/templates/herobase/layout/base.html:62
+#: herobase/templates/herobase/userprofile/submenu.inc.html:10
 msgid "Settings"
 msgstr ""
 
-#: herobase/templates/herobase/layout/base.html:62
+#: herobase/templates/herobase/layout/base.html:64
 msgid "Logout"
 msgstr ""
 
 #: herobase/templates/herobase/layout/mainmenu.inc.html:7
 #: herobase/templates/herobase/layout/mainmenu.inc.html:8
-#: herobase/templates/herobase/layout/mainmenu.inc.html:43
-#: herobase/templates/herobase/layout/mainmenu.inc.html:44
+#: herobase/templates/herobase/layout/mainmenu.inc.html:45
+#: herobase/templates/herobase/layout/mainmenu.inc.html:46
 msgid "Home"
 msgstr ""
 
 #: herobase/templates/herobase/layout/mainmenu.inc.html:12
 #: herobase/templates/herobase/layout/mainmenu.inc.html:13
-#: herobase/templates/herobase/layout/mainmenu.inc.html:48
-#: herobase/templates/herobase/layout/mainmenu.inc.html:49
+#: herobase/templates/herobase/layout/mainmenu.inc.html:50
+#: herobase/templates/herobase/layout/mainmenu.inc.html:51
 #: herobase/templates/herobase/quest/list.html:29
 msgid "Billboard"
 msgstr ""
@@ -305,20 +306,20 @@ msgstr ""
 msgid "Private Messages"
 msgstr ""
 
-#: herobase/templates/herobase/layout/mainmenu.inc.html:37
+#: herobase/templates/herobase/layout/mainmenu.inc.html:38
 #: heromessage/templates/message/create.html:13
 #: heromessage/templates/message/list_in.html:24
 #: heromessage/templates/message/list_out.html:24
 msgid "Messages"
 msgstr ""
 
-#: herobase/templates/herobase/layout/mainmenu.inc.html:53
-#: herobase/templates/herobase/layout/mainmenu.inc.html:54
-#: herobase/templates/herobase/layout/mainmenu.inc.html:58
+#: herobase/templates/herobase/layout/mainmenu.inc.html:55
+#: herobase/templates/herobase/layout/mainmenu.inc.html:56
+#: herobase/templates/herobase/layout/mainmenu.inc.html:60
 msgid "Blog"
 msgstr ""
 
-#: herobase/templates/herobase/layout/mainmenu.inc.html:59
+#: herobase/templates/herobase/layout/mainmenu.inc.html:61
 msgid "Informationen"
 msgstr ""
 
@@ -340,7 +341,7 @@ msgstr ""
 msgid "Reject"
 msgstr ""
 
-#: herobase/templates/herobase/quest/adventure_inner_box_owner.html:34
+#: herobase/templates/herobase/quest/adventure_inner_box_owner.html:35
 msgid "Accept"
 msgstr ""
 
@@ -394,6 +395,10 @@ msgstr ""
 msgid "There don't seem to be any quests."
 msgstr ""
 
+#: herobase/templates/herobase/quest/my_box_owner.html:13
+msgid "This is your Quest"
+msgstr ""
+
 #: herobase/templates/herobase/userprofile/detail.html:37
 #: herobase/templates/herobase/userprofile/edit.html:27
 #: herobase/templates/herobase/userprofile/privacy_settings.html:5
@@ -416,7 +421,11 @@ msgid ""
 "    at least %(minimum)s to get personalized results."
 msgstr ""
 
-#: herobase/templates/herobase/userprofile/user_details.inc.html:18
+#: herobase/templates/herobase/userprofile/submenu.inc.html:7
+msgid "My Profile"
+msgstr ""
+
+#: herobase/templates/herobase/userprofile/user_details.inc.html:19
 msgid "Thats you"
 msgstr ""
 
@@ -608,15 +617,15 @@ msgstr ""
 msgid "No messages yet."
 msgstr ""
 
-#: heromessage/templates/message/submenu.inc.html:5
+#: heromessage/templates/message/submenu.inc.html:8
 msgid "compose"
 msgstr ""
 
-#: heromessage/templates/message/submenu.inc.html:10
+#: heromessage/templates/message/submenu.inc.html:13
 msgid "in"
 msgstr ""
 
-#: heromessage/templates/message/submenu.inc.html:15
+#: heromessage/templates/message/submenu.inc.html:18
 msgid "out"
 msgstr ""
 
