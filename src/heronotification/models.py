@@ -1,6 +1,7 @@
 from collections import defaultdict
 from datetime import datetime
 from django.conf import settings
+from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
@@ -57,10 +58,11 @@ class hero_has_applied(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("<strong>%s</strong> is applying for "
-                         "your quest <strong>%s</strong>." %
-                         (notification.target.user.username,
-                          notification.target.quest.title))
+        a =  (_("%(user)s is applying for your quest %(title)s.") % {
+            'user':notification.target.user.username,
+            'title': notification.target.quest.title,
+            })
+        return a
 
     @classmethod
     def get_image(cls, notification):
@@ -72,10 +74,11 @@ class hero_has_cancelled(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("<strong>%s</strong> has cancelled his application "
-                         "for your quest <strong>%s</strong>." %
-                         (notification.target.user.username,
-                          notification.target.quest.title))
+        return (_("%(user)s has cancelled his application "
+                 "for your quest %(title)s.") % {
+                     'user':notification.target.user.username,
+                     'title': notification.target.quest.title,
+                     })
 
     @classmethod
     def get_image(cls, notification):
@@ -87,7 +90,7 @@ class quest_started(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("The quest <strong>%s</strong> has been started." %
+        return _("The quest %s has been started." %
                          notification.target.title)
 
 
@@ -97,7 +100,7 @@ class quest_waiting_for_documentation(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("The quest <strong>%s</strong> is waiting for documentation." %
+        return _("The quest %s is waiting for documentation." %
                          notification.target.title)
 
 class quest_cancelled(NotificationTypeBase):
@@ -106,7 +109,7 @@ class quest_cancelled(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("The quest <strong>%s</strong> has been cancelled." %
+        return _("The quest %s has been cancelled." %
                          notification.target.title)
 
 class quest_done(NotificationTypeBase):
@@ -115,7 +118,7 @@ class quest_done(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("The quest <strong>%s</strong> has been completed." %
+        return _("The quest %s has been completed." %
                          notification.target.title)
 
 
@@ -125,7 +128,7 @@ class hero_accepted(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("You have been accepted for the quest <strong>%s</strong>." %
+        return _("You have been accepted for the quest %s." %
                          notification.target.title)
 
 
@@ -135,7 +138,7 @@ class hero_rejected(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("Your application for the quest <strong>%s</strong> "
+        return _("Your application for the quest %s "
                          "has been rejected." % notification.target.title)
 
 class message_received(NotificationTypeBase):
@@ -145,7 +148,7 @@ class message_received(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe("You have received a message from <strong>%s</strong>." %
+        return _("You have received a message from %s." %
                          (notification.target.sender.username, ))
 
     @classmethod

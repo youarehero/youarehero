@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-26 12:50+0100\n"
+"POT-Creation-Date: 2013-02-26 13:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,8 @@ msgstr "Muss vor Ort erledigt werden"
 
 #: herobase/forms.py:48 herobase/models.py:206
 msgid "Can this quest be done remotely or only locally?"
-msgstr "Kann man diese Quest nur an einem bestimmten Ort oder von überall erledigen?"
+msgstr ""
+"Kann man diese Quest nur an einem bestimmten Ort oder von überall erledigen?"
 
 #: herobase/forms.py:84
 msgid "Place"
@@ -474,6 +475,7 @@ msgid "Account activation complete"
 msgstr "Account-Aktivierung abgeschlossen."
 
 #: herobase/templates/registration/activation_complete.html:12
+#, python-format
 msgid ""
 "Welcome Hero %(user.username)s, <br>\n"
 "        your account is now active.\n"
@@ -483,8 +485,8 @@ msgid ""
 msgstr ""
 "Willkommen Held %(user.username)s, <br>\n"
 "dein Account ist jetzt aktiviert.        Schau in die <a href="
-"\"%(quest-list-url)s\">Quest-Liste</a>\n"
-"        oder <a href=\"%(quest-create-url)s\"> stelle selbst einen Quest ein."
+"\"%(quest_list_url)s\">Quest-Liste</a>\n"
+"        oder <a href=\"%(quest_create_url)s\"> stelle selbst einen Quest ein."
 "</a>.\n"
 " "
 
@@ -529,7 +531,9 @@ msgstr "Password zurücksetzen bestätigen"
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
-msgstr "Bitte gib Dein Passwort zwei mal ein, damit wir sicher sein können das kein Vertipper darin ist."
+msgstr ""
+"Bitte gib Dein Passwort zwei mal ein, damit wir sicher sein können das kein "
+"Vertipper darin ist."
 
 #: herobase/templates/registration/password_reset_confirm.html:16
 msgid "Change my password"
@@ -586,7 +590,9 @@ msgstr "Registrierung abgeschlossen"
 msgid ""
 "An email containing account-activation information has been sent to the "
 "email-address you specified in the registration form."
-msgstr "Du solltest bald eine E-Mail von uns erhalten. Klick bitte den Link darin an um deine Anmeldung abzuschließen."
+msgstr ""
+"Du solltest bald eine E-Mail von uns erhalten. Klick bitte den Link darin an "
+"um deine Anmeldung abzuschließen."
 
 #: herobase/templates/registration/registration_form.html:5
 msgid "Registration"
@@ -645,6 +651,51 @@ msgstr "Eingang"
 #: heromessage/templates/message/submenu.inc.html:18
 msgid "out"
 msgstr "Ausgang"
+
+#: heronotification/models.py:61
+#, python-format
+msgid "%(user)s is applying for your quest %(title)s."
+msgstr ""
+
+#: heronotification/models.py:76
+#, python-format
+msgid "%(user)s has cancelled his application for your quest %(title)s."
+msgstr ""
+
+#: heronotification/models.py:92
+#, python-format
+msgid "The quest %s has been started."
+msgstr ""
+
+#: heronotification/models.py:102
+#, python-format
+msgid "The quest %s is waiting for documentation."
+msgstr ""
+
+#: heronotification/models.py:111
+#, python-format
+msgid "The quest %s has been cancelled."
+msgstr ""
+
+#: heronotification/models.py:120
+#, python-format
+msgid "The quest %s has been completed."
+msgstr "Die Quest %s ist abgeschlossen."
+
+#: heronotification/models.py:130
+#, python-format
+msgid "You have been accepted for the quest %s."
+msgstr "Du wurdest für die Quest %s akzeptiert."
+
+#: heronotification/models.py:140
+#, python-format
+msgid "Your application for the quest %s has been rejected."
+msgstr "Deine Bewerbung für die Quest %s wurde nicht angenommen."
+
+#: heronotification/models.py:150
+#, python-format
+msgid "You have received a message from %s."
+msgstr "Du hast eine Nachricht von %s erhalten."
 
 #: youarehero/settings/base.py:52
 msgid "German"
