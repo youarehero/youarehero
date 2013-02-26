@@ -108,7 +108,7 @@ msgstr "abgebrochen"
 
 #: herobase/models.py:168
 msgid "participating"
-msgstr "nimmt Teil"
+msgstr "nimmt teil"
 
 #: herobase/models.py:170
 msgid "rejected"
