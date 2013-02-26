@@ -4,7 +4,7 @@
         <img src="{{ quest.owner.get_profile.avatar_thumbnail_110 }}" alt="" class="pull-left"/>
 
     <h2>{{ quest.title }}</h2>
-    <p>{% block text %}{{ quest.description|linebreaksbr }}{% endblock %}</p>
+    <p>{% block text %}{{ quest.description|linebreaksbr|urlize  }}{% endblock %}</p>
 </div>
 
 
