@@ -6,6 +6,18 @@
     {% include "herobase/quest/description_box_content.html" %}
 {% endblock %}
 
+{% block buttons_top %}
+    <form id="hero-cancel" method="POST" action="{% url "hero_update_quest" quest.pk %}">
+        {% csrf_token %}
+        {% if request_user_adventure and not quest.canceled and not request_user_adventure.rejected %}
+            <input type="hidden" name="action" value="cancel">
+            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Cancel" %}" data-toggle="tooltip" data-title="Abbrechen">
+                <i class="icon-yah-delete icon-40"></i>
+            </button>
+        {% endif %}
+    </form>
+{% endblock %}
+
 {% block buttons_bottom %}
     <form method="POST" action="{% url "hero_update_quest" quest.pk %}">
         {% csrf_token %}
@@ -13,11 +25,6 @@
             <input type="hidden" name="action" value="apply">
             <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Apply" %}" data-toggle="tooltip" data-title="Bewerben">
                 <i class="icon-yah-ok icon-40"></i>
-            </button>
-        {% elif not quest.canceled and not request_user_adventure.rejected %}
-            <input type="hidden" name="action" value="cancel">
-            <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Cancel" %}" data-toggle="tooltip" data-title="Abbrechen">
-                <i class="icon-yah-delete icon-40"></i>
             </button>
         {% endif %}
     </form>

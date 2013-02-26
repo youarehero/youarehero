@@ -2,7 +2,7 @@
 {% load url from future %}
 {% block buttons_top %}
     {% if quest.open %}
-    <form method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
+    <form id="owner-cancel" method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
         {% csrf_token %}
         <input type="hidden" name="action" value="cancel">
         <button class="box-btn-top" type="submit" value="cancel" name="cancel"  data-toggle="tooltip" data-title="Abbrechen">
