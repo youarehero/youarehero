@@ -5,7 +5,7 @@
 {% block wrapper_classes %}span1{% endblock %}
 
 {% block title %}
-    <h4>{{ adventure.user.username }}</h4>
+    <a href="{% url "userprofile_public" adventure.user.username %}"><strong>{{ adventure.user.username }}</strong></a>
     <em>{{ adventure.get_state_display }}</em>
 {% endblock %}
 
