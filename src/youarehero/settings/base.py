@@ -172,7 +172,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'autocomplete_light',
     'django_filters',
-    'easy_maps',
+    # 'easy_maps',
     'easy_thumbnails',
     'django_google_maps',
     'activelink',
