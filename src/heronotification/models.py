@@ -14,6 +14,7 @@ from django.template import Context, TemplateDoesNotExist, Template
 from django.template.loader import get_template
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
+from registration.signals import user_activated
 from herobase.models import Quest, Adventure
 from heromessage.models import Message
 
@@ -166,7 +167,6 @@ class message_received(NotificationTypeBase):
     type_id = 110
     target_model = Message
 
-
     @classmethod
     def get_text(cls, notification):
         return mark_safe(_("You have received a message from <strong>%s</strong>.") %
@@ -176,10 +176,21 @@ class message_received(NotificationTypeBase):
     def get_image(cls, notification):
         return notification.target.sender.profile.avatar_thumbnail_40
 
-
     @classmethod
     def is_read(cls, notification):
         return notification.target.read
+
+class welcome(NotificationTypeBase):
+    type_id = 200
+    target_model = User
+
+    @classmethod
+    def get_text(cls, notification):
+        return _("Welcome to you are hero.")
+
+    @classmethod
+    def get_image(cls, notification):
+        return notification.target.profile.avatar_thumbnail_40
 
 
 class Notification(models.Model):
@@ -216,6 +227,8 @@ class Notification(models.Model):
                 select_related = 'user', 'user__profile', 'quest'
             elif issubclass(Model, Message):
                 select_related = 'sender', 'sender__profile'
+            elif issubclass(Model, User):
+                select_related = ('profile',)
             else:
                 select_related = ()
             for target in Model.objects.filter(pk__in=target_ids).select_related(*select_related):
@@ -275,3 +288,9 @@ class Notification(models.Model):
 
         rendered = mark_safe(template.render(Context({'notification': self})))
         return rendered
+
+
+def welcome_new_user(sender, user, request, **kwargs):
+    welcome(user, user)
+
+user_activated.connect(welcome_new_user)
