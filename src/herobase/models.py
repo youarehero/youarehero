@@ -33,8 +33,8 @@ from south.modelsinspector import add_introspection_rules
 from heromessage.models import Message
 
 QUEST_EXPERIENCE = 1000
+CREATE_EXPERIENCE = 50
 APPLY_EXPERIENCE = 10
-CREATE_EXPERIENCE = 10
 COMMENT_EXPERIENCE = 10
 
 # The classes a User can choose from. (Hero classes)
