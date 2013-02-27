@@ -150,28 +150,28 @@
   height: 20px;
   line-height: 20px;
 }
-.icon-yah-new {
+.icon-yah-quest-new {
   background-image: url("../img/icons_40.png");
   background-position: -160px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
-.icon-yah-new.icon-80 {
+.icon-yah-quest-new.icon-80 {
   background-image: url("../img/icons_80.png");
   background-position: -320px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
-.icon-yah-new.icon-30 {
+.icon-yah-quest-new.icon-30 {
   background-image: url("../img/icons_30.png");
   background-position: -120px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
-.icon-yah-new.icon-20 {
+.icon-yah-quest-new.icon-20 {
   background-image: url("../img/icons_20.png");
   background-position: -80px 0;
   width: 20px;
@@ -430,56 +430,56 @@
   height: 20px;
   line-height: 20px;
 }
-.icon-yah-category {
+.icon-yah-leaderboard {
   background-image: url("../img/icons_40.png");
   background-position: -560px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
-.icon-yah-category.icon-80 {
+.icon-yah-leaderboard.icon-80 {
   background-image: url("../img/icons_80.png");
   background-position: -1120px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
-.icon-yah-category.icon-30 {
+.icon-yah-leaderboard.icon-30 {
   background-image: url("../img/icons_30.png");
   background-position: -420px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
-.icon-yah-category.icon-20 {
+.icon-yah-leaderboard.icon-20 {
   background-image: url("../img/icons_20.png");
   background-position: -280px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
-.icon-yah-distance {
+.icon-yah-local {
   background-image: url("../img/icons_40.png");
   background-position: -600px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
-.icon-yah-distance.icon-80 {
+.icon-yah-local.icon-80 {
   background-image: url("../img/icons_80.png");
   background-position: -1200px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
-.icon-yah-distance.icon-30 {
+.icon-yah-local.icon-30 {
   background-image: url("../img/icons_30.png");
   background-position: -450px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
-.icon-yah-distance.icon-20 {
+.icon-yah-local.icon-20 {
   background-image: url("../img/icons_20.png");
   background-position: -300px 0;
   width: 20px;
@@ -846,6 +846,286 @@
 .icon-yah-settings.icon-20 {
   background-image: url("../img/icons_20.png");
   background-position: -560px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-forward {
+  background-image: url("../img/icons_40.png");
+  background-position: -1160px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-forward.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2320px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-forward.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -870px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-forward.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -580px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-reply {
+  background-image: url("../img/icons_40.png");
+  background-position: -1200px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-reply.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2400px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-reply.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -900px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-reply.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -600px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-quest-ok {
+  background-image: url("../img/icons_40.png");
+  background-position: -1240px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-quest-ok.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2480px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-quest-ok.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -930px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-quest-ok.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -620px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-quest-x {
+  background-image: url("../img/icons_40.png");
+  background-position: -1280px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-quest-x.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2560px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-quest-x.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -960px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-quest-x.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -640px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-quest-star {
+  background-image: url("../img/icons_40.png");
+  background-position: -1320px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-quest-star.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2640px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-quest-star.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -990px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-quest-star.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -660px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-quest-arrow {
+  background-image: url("../img/icons_40.png");
+  background-position: -1360px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-quest-arrow.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2720px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-quest-arrow.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -1020px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-quest-arrow.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -680px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-mail-new {
+  background-image: url("../img/icons_40.png");
+  background-position: -1400px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-mail-new.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2800px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-mail-new.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -1050px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-mail-new.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -700px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-stop {
+  background-image: url("../img/icons_40.png");
+  background-position: -1440px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-stop.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2880px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-stop.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -1080px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-stop.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -720px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-forbidden {
+  background-image: url("../img/icons_40.png");
+  background-position: -1480px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-forbidden.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -2960px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-forbidden.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -1110px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-forbidden.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -740px 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+.icon-yah-home-arrow {
+  background-image: url("../img/icons_40.png");
+  background-position: -1520px 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.icon-yah-home-arrow.icon-80 {
+  background-image: url("../img/icons_80.png");
+  background-position: -3040px 0;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+}
+.icon-yah-home-arrow.icon-30 {
+  background-image: url("../img/icons_30.png");
+  background-position: -1140px 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.icon-yah-home-arrow.icon-20 {
+  background-image: url("../img/icons_20.png");
+  background-position: -760px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
@@ -1316,9 +1596,11 @@ h4 {
   margin-top: -60px;
   background: url("../img/SeiHelddeinerStadt.png") no-repeat scroll 0 0 transparent;
   background-size: 100%;
+  margin-bottom: 15px;
 }
 #register-now a {
-  margin-top: -20px;
+  margin-left: -8px;
+  margin-top: -35px;
   overflow: hidden;
   background: url("../img/register_now.png") no-repeat scroll 0 0 transparent;
   background-size: 100%;
@@ -1448,15 +1730,19 @@ body {
   clear: both;
 }
 #page-footer {
-  padding: 5px 0;
-  margin-left: 0;
-  background: rgba(0, 0, 0, 0.4);
+  width: 970px;
+  position: fixed;
+  bottom: 0;
 }
 #page-footer a {
   color: #eeeeee;
 }
 #page-footer a:hover {
   color: #999999;
+}
+#page-footer div {
+  padding: 3px 10px;
+  background: rgba(0, 0, 0, 0.4);
 }
 .help-block,
 .help-inline {
@@ -1692,7 +1978,7 @@ ul.thumbnails.image_picker_selector li .thumbnail.selected {
 #team_hints {
   position: fixed;
   bottom: 0;
-  right: 0;
+  left: 0;
   background: #333333;
 }
 #team_hints a {

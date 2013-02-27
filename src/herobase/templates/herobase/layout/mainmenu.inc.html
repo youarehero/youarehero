@@ -15,7 +15,7 @@
         </li>
         <li class="{% ifactive "quest_create" %}on{% endifactive %}">
             <a href="{% url "quest_create" %}" rel="tooltip" title="{% trans 'Create new Quest' %}">
-                <i class="icon-yah-new icon-80"><span>{% trans 'New' %}</span></i>
+                <i class="icon-yah-quest-new icon-80"><span>{% trans 'New' %}</span></i>
             </a>
         </li>
         <li class="{% ifstartswith "quest_my" %}on{% endifstartswith %}">
@@ -25,7 +25,7 @@
         </li>
         <li class="{% ifstartswith "leader_board" %}on{% endifstartswith %}">
             <a href="{% url "leader_board" %}" rel="tooltip" title="{% trans 'Leaderboard' %}">
-                <i class="icon-yah-category icon-80"><span>{% trans 'Leaderboard' %}</span></i>
+                <i class="icon-yah-leaderboard icon-80"><span>{% trans 'Leaderboard' %}</span></i>
             </a>
         </li>
         <li class="{% ifactive "message_list_in" %}on{% endifactive %}">
