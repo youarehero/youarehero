@@ -1,6 +1,7 @@
 from collections import defaultdict
 from datetime import datetime
 from django.conf import settings
+from django.utils.html import escape
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
@@ -9,7 +10,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.db import models, connection
 
 # Create your models here.
-from django.template import Context, TemplateDoesNotExist
+from django.template import Context, TemplateDoesNotExist, Template
 from django.template.loader import get_template
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
@@ -58,11 +59,10 @@ class hero_has_applied(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        a =  (_("%(user)s is applying for your quest %(title)s.") % {
-            'user':notification.target.user.username,
-            'title': notification.target.quest.title,
-            })
-        return a
+        return mark_safe(_(u'<strong>%(user)s</strong> is applying for your quest <strong>%(title)s</strong>.') % {
+            'user': escape(notification.target.user.username),
+            'title': escape(notification.target.quest.title),
+        })
 
     @classmethod
     def get_image(cls, notification):
@@ -72,13 +72,13 @@ class hero_has_cancelled(NotificationTypeBase):
     type_id = 2
     target_model = Adventure
 
+
     @classmethod
     def get_text(cls, notification):
-        return (_("%(user)s has cancelled his application "
-                 "for your quest %(title)s.") % {
-                     'user':notification.target.user.username,
-                     'title': notification.target.quest.title,
-                     })
+        return mark_safe(_(u'<strong>%(user)s</strong> has withdrawn his application for your quest <strong>%(title)s</strong>.') % {
+            'user': escape(notification.target.user.username),
+            'title': escape(notification.target.quest.title),
+            })
 
     @classmethod
     def get_image(cls, notification):
@@ -89,37 +89,50 @@ class quest_started(NotificationTypeBase):
     target_model = Quest
 
     @classmethod
+    def get_image(cls, notification):
+        return notification.target.owner.profile.avatar_thumbnail_40
+
+    @classmethod
     def get_text(cls, notification):
-        return (_("The quest %s has been started.") %
-                         notification.target.title)
+        return mark_safe(_("The quest <strong>%s</strong> has been started.") %
+                         escape(notification.target.title))
 
 
 class quest_waiting_for_documentation(NotificationTypeBase):
     type_id = 11
     target_model = Quest
 
+
     @classmethod
     def get_text(cls, notification):
-        return (_("The quest %s is waiting for documentation.") %
-                         notification.target.title)
+        return mark_safe(_("The quest <strong>%s</strong> is waiting for documentation.") %
+                         escape(notification.target.title))
 
 class quest_cancelled(NotificationTypeBase):
     type_id = 12
     target_model = Quest
 
     @classmethod
+    def get_image(cls, notification):
+        return notification.target.owner.profile.avatar_thumbnail_40
+
+    @classmethod
     def get_text(cls, notification):
-        return (_("The quest %s has been cancelled.") %
-                         notification.target.title)
+        return mark_safe(_("The quest <strong>%s<strong> has been cancelled.") %
+                         escape(notification.target.title))
 
 class quest_done(NotificationTypeBase):
     type_id = 13
     target_model = Quest
 
     @classmethod
+    def get_image(cls, notification):
+        return notification.target.owner.profile.avatar_thumbnail_40
+
+    @classmethod
     def get_text(cls, notification):
-        return (_("The quest %s has been completed.") %
-                         notification.target.title)
+        return mark_safe(_("The quest <strong>%s</strong> has been completed.") %
+                         escape(notification.target.title))
 
 
 class hero_accepted(NotificationTypeBase):
@@ -127,9 +140,13 @@ class hero_accepted(NotificationTypeBase):
     target_model = Quest
 
     @classmethod
+    def get_image(cls, notification):
+        return notification.target.owner.profile.avatar_thumbnail_40
+
+    @classmethod
     def get_text(cls, notification):
-        return (_("You have been accepted for the quest %s.") %
-                         notification.target.title)
+        return mark_safe(_("You have been accepted for the quest <strong>%s.</strong>") %
+                         escape(notification.target.title))
 
 
 class hero_rejected(NotificationTypeBase):
@@ -137,9 +154,13 @@ class hero_rejected(NotificationTypeBase):
     target_model = Quest
 
     @classmethod
+    def get_image(cls, notification):
+        return notification.target.owner.profile.avatar_thumbnail_40
+
+    @classmethod
     def get_text(cls, notification):
-        return (_("Your application for the quest %s "
-                         "has been rejected.") % notification.target.title)
+        return mark_safe(_("Your application for the quest <strong>%s</strong> has been rejected.") %
+                           escape(notification.target.title))
 
 class message_received(NotificationTypeBase):
     type_id = 110
@@ -148,8 +169,8 @@ class message_received(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return (_("You have received a message from %s.") %
-                         (notification.target.sender.username, ))
+        return mark_safe(_("You have received a message from <strong>%s</strong>.") %
+                         escape(notification.target.sender.username))
 
     @classmethod
     def get_image(cls, notification):

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-27 12:26+0100\n"
+"POT-Creation-Date: 2013-02-27 12:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -733,50 +733,55 @@ msgstr "Eingang"
 msgid "out"
 msgstr "Ausgang"
 
-#: heronotification/models.py:61
+#: heronotification/models.py:62
 #, python-format
-msgid "%(user)s is applying for your quest %(title)s."
-msgstr "%(user)s bewirbt sich für deine Quest %(title)s."
+msgid ""
+"<strong>%(user)s</strong> is applying for your quest <strong>%(title)s</"
+"strong>."
+msgstr "<strong>%(user)s</strong> bewirbt sich für deine Quest <strong>%(title)s.</strong>"
 
-#: heronotification/models.py:77
+#: heronotification/models.py:78
 #, python-format
-msgid "%(user)s has cancelled his application for your quest %(title)s."
-msgstr "%(user)s hat seine Bewerbung für deine Quest %(title)s zurückgezogen."
+msgid ""
+"<strong>%(user)s</strong> has withdrawn his application for your quest "
+"<strong>%(title)s</strong>."
+msgstr "<strong>%(user)s</strong> hat seine Bewerbung für deine Quest <strong>%(title)s</strong> zurückgezogen."
 
-#: heronotification/models.py:93
+#: heronotification/models.py:97
 #, python-format
-msgid "The quest %s has been started."
-msgstr "Die Quest %s hat begonnen."
+msgid "The quest <strong>%s</strong> has been started."
+msgstr "Die Quest <strong>%s</strong> hat begonnen."
 
-#: heronotification/models.py:103
+#: heronotification/models.py:108
 #, python-format
-msgid "The quest %s is waiting for documentation."
-msgstr "Die Quest %s erwartet Dokumentation."
-
-#: heronotification/models.py:112
-#, python-format
-msgid "The quest %s has been cancelled."
-msgstr "Die Quest %s wurde abgebrochen."
+msgid "The quest <strong>%s</strong> is waiting for documentation."
+msgstr "Die Quest <strong>%s</strong> erwartet Dokumentation."
 
 #: heronotification/models.py:121
 #, python-format
-msgid "The quest %s has been completed."
-msgstr "Die Quest %s ist abgeschlossen."
+msgid "The quest <strong>%s<strong> has been cancelled."
+msgstr "Die Quest <strong>%s</strong> wurde abgebrochen."
 
-#: heronotification/models.py:131
+#: heronotification/models.py:134
 #, python-format
-msgid "You have been accepted for the quest %s."
-msgstr "Du wurdest für die Quest %s akzeptiert."
+msgid "The quest <strong>%s</strong> has been completed."
+msgstr "Die Quest <strong>%s</strong> ist abgeschlossen."
 
-#: heronotification/models.py:141
+#: heronotification/models.py:148
 #, python-format
-msgid "Your application for the quest %s has been rejected."
-msgstr "Deine Bewerbung für die Quest %s wurde nicht angenommen."
+msgid "You have been accepted for the quest <strong>%s.</strong>"
+msgstr "Du wurdest für die Quest <strong>%s</strong> akzeptiert."
 
-#: heronotification/models.py:151
+#: heronotification/models.py:162
 #, python-format
-msgid "You have received a message from %s."
-msgstr "Du hast eine Nachricht von %s erhalten."
+msgid "Your application for the quest <strong>%s</strong> has been rejected."
+msgstr ""
+"Deine Bewerbung für die Quest <strong>%s</strong> wurde nicht angenommen."
+
+#: heronotification/models.py:172
+#, python-format
+msgid "You have received a message from <strong>%s</strong>."
+msgstr "Du hast eine Nachricht von <strong>%s</strong> erhalten."
 
 #: youarehero/settings/base.py:52
 msgid "German"
