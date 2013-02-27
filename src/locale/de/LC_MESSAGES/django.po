@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-28 00:27+0100\n"
+"POT-Creation-Date: 2013-02-28 00:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -519,30 +519,31 @@ msgstr "Das bist Du."
 msgid "About"
 msgstr "Über"
 
-#: herobase/templates/herobase/userprofile/detail_box.html:27
+#: herobase/templates/herobase/userprofile/detail_box.html:26
 #: herobase/templates/herobase/userprofile/m/detail.html:63
 msgid "Member since"
 msgstr "Mitglied seit"
 
-#: herobase/templates/herobase/userprofile/detail_box.html:29
-#: herobase/templates/herobase/userprofile/m/detail.html:65
-msgid "Region"
-msgstr "Region"
-
 #: herobase/templates/herobase/userprofile/detail_box.html:31
+msgid "Progress"
+msgstr "Fortschritt"
+
+#: herobase/templates/herobase/userprofile/detail_box.html:33
 #: herobase/templates/herobase/userprofile/m/detail.html:68
 msgid "Quests done"
 msgstr "Erledigte Quests"
 
-#: herobase/templates/herobase/userprofile/detail_box.html:32
+#: herobase/templates/herobase/userprofile/detail_box.html:34
 msgid "Quests created"
 msgstr "Erstellte Quests"
 
-#: herobase/templates/herobase/userprofile/detail_box.html:35
-#: herobase/templates/herobase/userprofile/m/detail.html:61
-#, python-format
-msgid "%(username)s is ranked %(rank)s in the ladder."
-msgstr "%(username)s ist auf Platz %(rank)s in der Bestenliste."
+#: herobase/templates/herobase/userprofile/detail_box.html:36
+msgid ""
+"<strong>%(username)s</strong> is <strong>ranked %(rank)s</strong> in the "
+"ladder."
+msgstr ""
+"<strong>%(username)s</strong> ist auf <strong>Platz %(rank)s</strong> in der "
+"Bestenliste."
 
 #: herobase/templates/herobase/userprofile/edit.html:35
 #: heronotification/models.py:189
@@ -563,6 +564,15 @@ msgstr ""
 #: herobase/templates/herobase/userprofile/submenu.inc.html:7
 msgid "My Profile"
 msgstr "Profil"
+
+#: herobase/templates/herobase/userprofile/m/detail.html:61
+#, python-format
+msgid "%(username)s is ranked %(rank)s in the ladder."
+msgstr "%(username)s ist auf Platz %(rank)s in der Bestenliste."
+
+#: herobase/templates/herobase/userprofile/m/detail.html:65
+msgid "Region"
+msgstr "Region"
 
 #: herobase/templates/registration/activate.html:5
 msgid "Account-activation failed"
