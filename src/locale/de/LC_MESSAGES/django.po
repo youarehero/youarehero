@@ -536,7 +536,7 @@ msgstr "Erledigte Quests"
 
 #: herobase/templates/herobase/userprofile/detail_box.html:32
 msgid "Quests created"
-msgstr "Erledigte Quests"
+msgstr "Erstellte Quests"
 
 #: herobase/templates/herobase/userprofile/detail_box.html:35
 #: herobase/templates/herobase/userprofile/m/detail.html:61
