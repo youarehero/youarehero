@@ -8,6 +8,7 @@ The model actions connect state logic to the models.
 from datetime import datetime, timedelta
 import glob
 from random import randint
+from django.contrib.comments.signals import comment_was_posted
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 
@@ -32,8 +33,9 @@ from south.modelsinspector import add_introspection_rules
 from heromessage.models import Message
 
 QUEST_EXPERIENCE = 1000
+CREATE_EXPERIENCE = 50
 APPLY_EXPERIENCE = 10
-CREATE_EXPERIENCE = 10
+COMMENT_EXPERIENCE = 10
 
 # The classes a User can choose from. (Hero classes)
 CLASS_CHOICES =  (
@@ -396,7 +398,7 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
         return self.user.created_quests.count()
 
 
-    levels = [0, 1000, 2000, 4000, 7000]
+    levels = [0, 1000, 2000, 4000, 7000, 10000000]
     @property
     def level(self):
         """Calculate the user's level based on her experience"""
@@ -502,3 +504,14 @@ def get_system_user():
 
 def get_dummy_user():
     return UserProfile(user=User(username="dummy"))
+
+
+
+
+def experience_for_comment(sender, comment, request, **kwargs):
+    if comment.user_id:
+        profile = comment.user.profile
+        profile.experience += COMMENT_EXPERIENCE
+        profile.save()
+
+comment_was_posted.connect(experience_for_comment)
