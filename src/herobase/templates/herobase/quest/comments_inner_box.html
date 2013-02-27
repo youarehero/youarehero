@@ -7,7 +7,7 @@
 
 {% block content %}
     <div>
-    {{ comment.author.username }} um {{ comment.created }}
+        {{ comment.submit_date }} - {{ comment.user.username }}
     </div>
-    <p>{{ comment.text }}</p>
+    <p>{{ comment.comment }}</p>
 {% endblock %}

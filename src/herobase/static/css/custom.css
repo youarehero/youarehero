@@ -1285,6 +1285,9 @@ h5,
 h6 {
   margin: 0 0 10px 0;
 }
+#id_honeypot {
+  display: none;
+}
 h1 {
   font-weight: normal;
   line-height: 40px;

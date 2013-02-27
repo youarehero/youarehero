@@ -27,4 +27,10 @@ $(document).ready(function() {
             e.preventDefault();
         }
     });
+
+    $("#comment-form").submit(function (e) {
+        if($.trim($(this).find("#id_comment").val()).length == 0) {
+            e.preventDefault();
+        }
+    });
 });

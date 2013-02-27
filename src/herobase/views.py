@@ -9,6 +9,8 @@ import logging
 
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.comments import Comment
+from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
 from django.db.models import Max, Q
 from django.utils.translation import ugettext as _
@@ -27,7 +29,7 @@ from heronotification.models import Notification
 from herorecommend import recommend
 from herorecommend.forms import UserSkillEditForm
 from herobase.forms import QuestCreateForm, UserProfileEdit, UserProfilePrivacyEdit, CommentForm, UserAuthenticationForm
-from herobase.models import Quest, Adventure, Like, Comment, CREATE_EXPERIENCE
+from herobase.models import Quest, Adventure, Like, CREATE_EXPERIENCE
 import herorecommend.signals as recommender_signals
 from herorecommend.models import MIN_SELECTED_SKILLS
 
@@ -153,12 +155,15 @@ def quest_detail_view(request, quest_id):
     else:
         adventures = quest.adventures.accepted().select_related('user', 'user__profile')
 
+    quest_content_type = ContentType.objects.get_for_model(Quest)
+    comments = Comment.objects.filter(content_type=quest_content_type, object_pk=quest.pk).select_related('user__profile')
+
     context = {
         'quest': quest,
         'adventures': adventures,
         'butler_text': butler_text,
         'is_owner': is_owner,
-        'comments': quest.comments.select_related('author'),
+        'comments': comments,
         'comment_form': CommentForm(),
         'request_user_adventure': adventure,
     }

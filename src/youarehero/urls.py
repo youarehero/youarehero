@@ -32,7 +32,7 @@ urlpatterns = patterns(
         name='mark_notification_read'),
 
     # third party apps
-
+    url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'autocomplete/', include('autocomplete_light.urls')),
 
     url(regex=r'^accounts/login/$',
