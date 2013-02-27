@@ -101,16 +101,15 @@
             {% endblock %}
         </div>
         {% block site_footer_container %}
-            <div id="page-footer" class="row">
-                <div class="span100">
+            <div id="page-footer">
+                <div class="pull-right">
                     <a href="{% url "imprint" %}" title="Impressum">Impressum</a>
-{#                    <span>#}
-{#                        Powered by #}
-{#                    </span>#}
                 </div>
             </div>
+
         {% endblock %}
     </div>
+
 {% endblock %}
 
 {% if request.user.is_staff %}
