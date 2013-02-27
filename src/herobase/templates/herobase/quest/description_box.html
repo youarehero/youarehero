@@ -12,7 +12,7 @@
         {% if request_user_adventure and not quest.canceled and not request_user_adventure.rejected %}
             <input type="hidden" name="action" value="cancel">
             <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Cancel" %}" data-toggle="tooltip" data-title="Abbrechen">
-                <i class="icon-yah-delete icon-40"></i>
+                <i class="icon-yah-x icon-40"></i>
             </button>
         {% endif %}
     </form>

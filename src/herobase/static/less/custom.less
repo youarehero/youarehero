@@ -72,10 +72,43 @@ h4 {
   }
 }
 
+// Modal
+.modal {
+  .border-radius(0);
+}
+
 // Butler
 #butler {
   margin-top: 20px;
+  position: relative;
+  z-index: 1050;
+  &:focus {
+    border: 0 none;
+  }
 }
+
+// Butler Bubble
+#butler-bubble {
+  .border-radius(75px);
+  padding: 25px;
+  background: @boxBackground;
+  color: @boxTextColor;
+  a {
+    color: @boxLinkColor;
+    &:hover {
+      color: @boxLinkColorHover;
+    }
+  }
+  .iconbg {
+    margin-top: -20px;
+    margin-right:-20px;
+  }
+}
+#butler-bubble.modal, #butler-bubble.modal.fade.in {
+  width: 200px;
+  margin-left: 0;
+}
+
 // Layout
 //------------------------
 

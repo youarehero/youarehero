@@ -5,8 +5,10 @@
 
 <div class="userprofile-small">
     <a href="{% url "userprofile_private" %}">
-        <h4>{{ request.user.username }}</h4>
+        <h4>Profil</h4>
+
         <img src="{{ request.user.get_profile.avatar_thumbnail_110 }}" alt="{{ request.user.username }}">
+        <h4>{{ request.user.username }}</h4>
     </a>
     {#  <span class="{{ request.user.get_profile.get_hero_class_display|lower }}">{{ request.user.get_profile.get_hero_class_display }}</span><br>#}
 
