@@ -306,7 +306,7 @@ def userprofile_edit(request):
     first_login = bool(request.GET.get('first_login'))
     if form.is_valid():
         form.save()
-        messages.success(request, 'Profile successfully changed')
+        messages.success(request, _(u'Profile successfully changed'))
         if first_login:
             return HttpResponseRedirect(reverse("home"))
         return HttpResponseRedirect(reverse("userprofile_edit"))
@@ -322,7 +322,7 @@ def userprofile_privacy_settings(request):
     form = UserProfilePrivacyEdit(request.POST or None, instance=user.get_profile())
     if form.is_valid():
         form.save()
-        messages.success(request, 'Privacy settings successfully changed')
+        messages.success(request, _(u'Privacy settings successfully changed'))
         return HttpResponseRedirect('.')
     return render(request, 'herobase/userprofile/privacy_settings.html', {
         'form': form

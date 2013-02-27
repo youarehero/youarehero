@@ -1,0 +1,40 @@
+{% extends "herobase/layout/box.html" %}
+{% load crispy_forms_tags i18n static %}
+
+{% load i18n static %}
+
+{% block title %}
+    {% if user != request.user %}
+        <h2>{{ user.username }}</h2>
+    {% else %}
+        <h2>{% trans "Thats you" %}</h2>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span2">
+            <img src="{{ user.get_profile.avatar }}" alt="{{ user.username }}">
+
+        </div>
+        <div class="span4">
+            <h3>{% trans "About" %}</h3>
+            {% if user.get_profile.about %}
+                <p>{{ user.get_profile.about }}</p>
+            {%  endif %}
+
+            <dl class="dl-horizontal">
+                <dt>{% trans "Member since" %} </dt><dd>{{ user.get_profile.created|timesince }}</dd>
+                {% if user.get_profile.public_location %}
+                    <dt>{% trans "Region" %}</dt><dd>{{ user.get_profile.location }}</dd>
+                {% endif %}
+                <dt>{% trans "Quests done" %}</dt><dd>{{ user.get_profile.quests_done }}</dd>
+                <dt>{% trans "Quests created" %}</dt><dd>{{ user.get_profile.quests_created }}</dd>
+
+            </dl>
+            <strong>{%blocktrans with user.username as username %}{{ username }} is ranked {{ rank }} in the ladder.{%endblocktrans%}</strong>
+
+        </div>
+    </div>
+{% endblock %}
+
