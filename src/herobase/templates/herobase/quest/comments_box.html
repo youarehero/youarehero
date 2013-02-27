@@ -12,7 +12,7 @@
         {% for comment in comments %}
             <li class="span5">
                 <div>
-                    <strong>{{ comment.user.username }}
+                    <strong><a href="{% url "userprofile_public" comment.user.username %}">{{ comment.user.username }}</a>
                         am {{ comment.submit_date }}</strong>
                 </div>
                 <div>{{ comment.comment }}</div>
