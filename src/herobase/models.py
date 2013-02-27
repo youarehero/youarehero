@@ -290,18 +290,6 @@ class Quest(LocationMixin, models.Model):
         return self.title
 
 
-class Comment(models.Model):
-    author = models.ForeignKey(User, related_name='comments')
-    quest = models.ForeignKey(Quest, related_name='comments')
-
-    created = models.DateTimeField(auto_now_add=True)
-
-    text = models.TextField()
-
-    class Meta:
-        ordering = ('-created', )
-
-
 class AvatarImageMixin(models.Model):
     avatar_storage = FileSystemStorage(location=settings.ASSET_ROOT)
     image = models.FilePathField(blank=True, null=True, choices=AVATAR_CHOICES)

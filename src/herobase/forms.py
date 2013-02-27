@@ -16,27 +16,10 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset, Div, Button, BaseInput
 from registration.forms import RegistrationFormUniqueEmail
 
-from herobase.models import Quest, UserProfile, Comment, AVATAR_IMAGES
+from herobase.models import Quest, UserProfile, AVATAR_IMAGES
 from herobase.widgets import LocationWidget
 
 
-
-class CommentForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(CommentForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_tag = False
-        self.helper.add_input(Submit('submit', 'Kommentar abschicken'))
-        self.helper.layout = Layout(
-            Fieldset(
-                _('Kommentieren'),
-                Div(
-                    'text',
-                    )
-            ))
-    class Meta:
-        model = Comment
-        fields = ('text', )
 
 
 class QuestCreateForm(forms.ModelForm):
