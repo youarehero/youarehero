@@ -206,28 +206,28 @@
   height: 20px;
   line-height: 20px;
 }
-.icon-yah-delete {
+.icon-yah-x {
   background-image: url("../img/icons_40.png");
   background-position: -240px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
-.icon-yah-delete.icon-80 {
+.icon-yah-x.icon-80 {
   background-image: url("../img/icons_80.png");
   background-position: -480px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
-.icon-yah-delete.icon-30 {
+.icon-yah-x.icon-30 {
   background-image: url("../img/icons_30.png");
   background-position: -180px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
-.icon-yah-delete.icon-20 {
+.icon-yah-x.icon-20 {
   background-image: url("../img/icons_20.png");
   background-position: -120px 0;
   width: 20px;
@@ -1141,6 +1141,9 @@
   line-height: 20px;
   vertical-align: bottom;
 }
+.iconbg {
+  background: #585858;
+}
 ul.page-tabs {
   margin-left: -10px;
   margin-bottom: 0px;
@@ -1439,7 +1442,7 @@ ul.menu li:hover a {
 .box .box-buttons-top-left span,
 .box .box-buttons-bottom span {
   display: inline-block;
-  background: #bbbbbb;
+  background: #585858;
   border: 0px none;
   padding: 0px;
   -webkit-box-shadow: none;
@@ -1479,7 +1482,7 @@ ul.menu li:hover a {
 .box .box-buttons-top span:hover,
 .box .box-buttons-top-left span:hover,
 .box .box-buttons-bottom span:hover {
-  background: #a2a2a2;
+  background: #3f3f3f;
   color: #000000;
 }
 .box .box-content {
@@ -1617,8 +1620,41 @@ h4 {
 #register-now a:hover {
   color: #14515a;
 }
+.modal {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
 #butler {
   margin-top: 20px;
+  position: relative;
+  z-index: 1050;
+}
+#butler:focus {
+  border: 0 none;
+}
+#butler-bubble {
+  -webkit-border-radius: 75px;
+  -moz-border-radius: 75px;
+  border-radius: 75px;
+  padding: 25px;
+  background: #eeeeee;
+  color: #222222;
+}
+#butler-bubble a {
+  color: #1e7783;
+}
+#butler-bubble a:hover {
+  color: #14515a;
+}
+#butler-bubble .iconbg {
+  margin-top: -20px;
+  margin-right: -20px;
+}
+#butler-bubble.modal,
+#butler-bubble.modal.fade.in {
+  width: 200px;
+  margin-left: 0;
 }
 body {
   font-family: 'Open Sans', sans-serif;
@@ -1858,7 +1894,7 @@ textarea {
   position: relative;
 }
 .form-actions .btn {
-  background: #bbbbbb;
+  background: #585858;
   margin-left: 10px;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;

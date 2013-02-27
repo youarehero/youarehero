@@ -15,7 +15,7 @@
             {% csrf_token %}
             <input type="hidden" name="action" value="reject">
             <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Reject" %}" data-toggle="tooltip" data-title="Ablehnen">
-                <i class="icon-yah-delete icon-20"></i>
+                <i class="icon-yah-x icon-20"></i>
             </button>
         </form>
     {% endif %}
