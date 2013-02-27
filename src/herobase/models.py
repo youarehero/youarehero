@@ -398,7 +398,7 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
         return self.user.created_quests.count()
 
 
-    levels = [0, 1000, 2000, 4000, 7000]
+    levels = [0, 1000, 2000, 4000, 7000, 10000000]
     @property
     def level(self):
         """Calculate the user's level based on her experience"""
