@@ -1815,6 +1815,7 @@ body {
   margin: 0;
   display: inline-block;
   line-height: 20px;
+  max-width: 530px;
 }
 .notification .box img {
   vertical-align: middle;
