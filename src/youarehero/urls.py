@@ -48,7 +48,7 @@ urlpatterns = patterns(
             'form_class' : UserRegistrationForm,
             },
         name='registration_register'),
-    url(regex=r'^activate/(?P<activation_key>\w+)/$',
+    url(regex=r'^accounts/activate/(?P<activation_key>\w+)/$',
         view='registration.views.activate',
         kwargs={
             'backend': 'registration.backends.default.DefaultBackend',
