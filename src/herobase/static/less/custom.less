@@ -93,6 +93,7 @@ h4 {
   padding: 25px;
   background: @boxBackground;
   color: @boxTextColor;
+  min-height: 165px;
   a {
     color: @boxLinkColor;
     &:hover {
@@ -103,7 +104,16 @@ h4 {
     margin-top: -20px;
     margin-right:-20px;
   }
+  .bubble-line {
+    position: absolute;
+    right: -41px;
+    top: 62px;
+    width:  41px;
+    height: 91px;
+    background: url("../img/bubble_line.png") no-repeat 0 0 transparent;
+  }
 }
+// Bubble Position
 #butler-bubble.modal, #butler-bubble.modal.fade.in {
   width: 200px;
   margin-left: 0;

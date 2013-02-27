@@ -1640,6 +1640,7 @@ h4 {
   padding: 25px;
   background: #eeeeee;
   color: #222222;
+  min-height: 165px;
 }
 #butler-bubble a {
   color: #1e7783;
@@ -1650,6 +1651,14 @@ h4 {
 #butler-bubble .iconbg {
   margin-top: -20px;
   margin-right: -20px;
+}
+#butler-bubble .bubble-line {
+  position: absolute;
+  right: -41px;
+  top: 62px;
+  width: 41px;
+  height: 91px;
+  background: url("../img/bubble_line.png") no-repeat 0 0 transparent;
 }
 #butler-bubble.modal,
 #butler-bubble.modal.fade.in {
