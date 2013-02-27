@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-26 19:58+0100\n"
+"POT-Creation-Date: 2013-02-27 12:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,52 +25,48 @@ msgstr "mehr"
 msgid "Any"
 msgstr "Egal"
 
-#: herobase/forms.py:32
-msgid "Kommentieren"
-msgstr "Kommentieren"
-
-#: herobase/forms.py:45
+#: herobase/forms.py:28
 msgid "-----------"
 msgstr "-----------"
 
-#: herobase/forms.py:46
+#: herobase/forms.py:29
 msgid "remotely"
 msgstr "von überall"
 
-#: herobase/forms.py:47
+#: herobase/forms.py:30
 msgid "locally"
 msgstr "vor Ort"
 
-#: herobase/forms.py:48 herobase/models.py:206
+#: herobase/forms.py:31 herobase/models.py:206
 msgid "Can this quest be done remotely or only locally?"
 msgstr ""
 "Kann man diese Quest nur an einem bestimmten Ort oder von überall erledigen?"
 
-#: herobase/forms.py:49
+#: herobase/forms.py:32
 msgid "Remote or local"
 msgstr "Vor Ort oder von überall"
 
-#: herobase/forms.py:81
+#: herobase/forms.py:64
 msgid "Place"
 msgstr "Ort"
 
-#: herobase/forms.py:82
+#: herobase/forms.py:65
 msgid "Where does this quest take place?"
 msgstr "Wo findet die Quest statt?"
 
-#: herobase/forms.py:110
+#: herobase/forms.py:93
 msgid "Edit your Profile"
 msgstr "Profil editieren"
 
-#: herobase/forms.py:150
+#: herobase/forms.py:133
 msgid "Privacy Settings"
 msgstr "Privatsphäre"
 
-#: herobase/forms.py:168
+#: herobase/forms.py:151
 msgid "Username"
 msgstr "Benutzername"
 
-#: herobase/forms.py:174
+#: herobase/forms.py:157
 msgid ""
 "Please enter a correct e-mail address and password. Note that both fields "
 "are case-sensitive."
@@ -78,7 +74,7 @@ msgstr ""
 "Bitte stelle sicher das E-Mail Adresse und Passwort korrekt sind. Achte auch "
 "auf Groß- und Kleinschreibung."
 
-#: herobase/forms.py:176
+#: herobase/forms.py:159
 msgid "E-mail"
 msgstr "E-Mail"
 
@@ -172,31 +168,31 @@ msgstr "Mittel"
 msgid "High"
 msgstr "Hoch"
 
-#: herobase/models.py:377
+#: herobase/models.py:365
 msgid "sex"
 msgstr "Geschlecht"
 
-#: herobase/models.py:387
+#: herobase/models.py:375
 msgid "Location is public"
 msgstr "Standort ist öffentlich"
 
-#: herobase/models.py:388
+#: herobase/models.py:376
 msgid "Enable this if you want to share your location with other Heroes."
 msgstr "Wenn aktiv können andere Helden deinen Standort sehen."
 
-#: herobase/models.py:391
+#: herobase/models.py:379
 msgid "about me"
 msgstr "Über mich"
 
-#: herobase/models.py:392
+#: herobase/models.py:380
 msgid "Tell other heroes who you are."
 msgstr "Erzähle anderen Helden wer Du bist"
 
-#: herobase/models.py:395
+#: herobase/models.py:383
 msgid "E-Mail on quest changes"
 msgstr "E-Mail bei Quest-Änderungen"
 
-#: herobase/models.py:396
+#: herobase/models.py:384
 msgid ""
 "Enable this if you want to receive an email notification when one of your "
 "quests needs attention."
@@ -204,11 +200,11 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail benachrichtigung sobald ein Quest an dem "
 "Du beteiligt bist deine Aufmerksamkeit benötigt."
 
-#: herobase/models.py:400
+#: herobase/models.py:388
 msgid "E-Mail on private message"
 msgstr "E-Mail bei privaten Nachrichten"
 
-#: herobase/models.py:401
+#: herobase/models.py:389
 msgid ""
 "Enable this if you want to receive an email notification when someone sends "
 "you a private message."
@@ -216,23 +212,23 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail wenn andere Nutzer dir eine Nachricht "
 "schreiben."
 
-#: herobase/models.py:484
+#: herobase/models.py:472
 msgid "text"
 msgstr "text"
 
-#: herobase/models.py:486
+#: herobase/models.py:474
 msgid "type not set"
 msgstr "Typ nicht gesetzt"
 
-#: herobase/models.py:487
+#: herobase/models.py:475
 msgid "spam"
 msgstr ""
 
-#: herobase/models.py:488
+#: herobase/models.py:476
 msgid "illegal content"
 msgstr ""
 
-#: herobase/models.py:489
+#: herobase/models.py:477
 msgid "hate speech"
 msgstr ""
 
@@ -254,36 +250,36 @@ msgstr "Algorithmus"
 msgid "hash"
 msgstr "Hash"
 
-#: herobase/views.py:90 herobase/views.py:98
+#: herobase/views.py:70 herobase/views.py:78
 msgid "Only the owner can edit the quest."
 msgstr ""
 
-#: herobase/views.py:92 herobase/views.py:100
+#: herobase/views.py:72 herobase/views.py:80
 #, python-format
 msgid "You can only edit quests for %s minutes."
 msgstr ""
 
-#: herobase/views.py:138
+#: herobase/views.py:118
 msgid "Dies ist ihre Quest."
 msgstr "Dies ist Deine Quest."
 
-#: herobase/views.py:140
+#: herobase/views.py:120
 msgid ""
 "This quest needs heroes. Apply now by clicking the ✓ Button on the right."
 msgstr ""
 
-#: herobase/views.py:142
+#: herobase/views.py:122
 msgid ""
 "Your application has been accepted. Press X to withdraw your participation."
 msgstr ""
 
-#: herobase/views.py:144
+#: herobase/views.py:124
 msgid ""
 "You have applied for this quest but the owner didn't want you to participate "
 "in it."
 msgstr ""
 
-#: herobase/views.py:146
+#: herobase/views.py:126
 msgid ""
 "You are currently applying for this quest. Press X to cancel. You will be "
 "notified once the creator has decided about our participation"
@@ -427,7 +423,7 @@ msgstr "alle annehmen"
 msgid "Comments"
 msgstr "Kommentare"
 
-#: herobase/templates/herobase/quest/comments_box.html:17
+#: herobase/templates/herobase/quest/comments_box.html:21
 msgid "There are no comments yet."
 msgstr "Es gibt noch keine Kommentare."
 
@@ -645,7 +641,7 @@ msgid ""
 "address you submitted. You should be receiving it shortly."
 msgstr ""
 "Wir haben dir eine E-Mail mit den Schritten die du zur Passwort-Änderung "
-"benötigst gemailt.Du solltest sie in kürze Erhalten."
+"benötigst gemailt. Du solltest sie in kürze Erhalten."
 
 #: herobase/templates/registration/password_reset_form.html:9
 msgid ""
@@ -789,6 +785,9 @@ msgstr ""
 #: youarehero/settings/base.py:53
 msgid "English"
 msgstr ""
+
+#~ msgid "Kommentieren"
+#~ msgstr "Kommentieren"
 
 #~ msgid "Your level is not high enough for this quest level!"
 #~ msgstr "Dein Level ist nicht hoch genug für dieses Quest-Level!"

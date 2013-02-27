@@ -90,7 +90,7 @@ class quest_started(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return _("The quest %s has been started." %
+        return (_("The quest %s has been started.") %
                          notification.target.title)
 
 
@@ -100,7 +100,7 @@ class quest_waiting_for_documentation(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return _("The quest %s is waiting for documentation." %
+        return (_("The quest %s is waiting for documentation.") %
                          notification.target.title)
 
 class quest_cancelled(NotificationTypeBase):
@@ -109,7 +109,7 @@ class quest_cancelled(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return _("The quest %s has been cancelled." %
+        return (_("The quest %s has been cancelled.") %
                          notification.target.title)
 
 class quest_done(NotificationTypeBase):
@@ -118,7 +118,7 @@ class quest_done(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return _("The quest %s has been completed." %
+        return (_("The quest %s has been completed.") %
                          notification.target.title)
 
 
@@ -128,7 +128,7 @@ class hero_accepted(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return _("You have been accepted for the quest %s." %
+        return (_("You have been accepted for the quest %s.") %
                          notification.target.title)
 
 
@@ -138,8 +138,8 @@ class hero_rejected(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return _("Your application for the quest %s "
-                         "has been rejected." % notification.target.title)
+        return (_("Your application for the quest %s "
+                         "has been rejected.") % notification.target.title)
 
 class message_received(NotificationTypeBase):
     type_id = 110
@@ -148,7 +148,7 @@ class message_received(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return _("You have received a message from %s." %
+        return (_("You have received a message from %s.") %
                          (notification.target.sender.username, ))
 
     @classmethod
