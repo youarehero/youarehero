@@ -277,5 +277,5 @@ AUTHENTICATION_BACKENDS = ('herobase.backends.DjangoModelBackend',
 
 
 ABSOLUTE_URL_OVERRIDES = {
-    'auth.user': lambda u: "/profile/%s/" % u.username,
+    'auth.user': lambda u: "/profile/public/%s/" % u.username,
     }
