@@ -15,7 +15,7 @@ from django.template.loader import get_template
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
 from registration.signals import user_activated
-from herobase.models import Quest, Adventure
+from herobase.models import Quest, Adventure, get_system_user
 from heromessage.models import Message
 
 NOTIFICATION_TYPES = {}
@@ -291,6 +291,7 @@ class Notification(models.Model):
 
 
 def welcome_new_user(sender, user, request, **kwargs):
-    welcome(user, user)
+    welcome(user, get_system_user())
+
 
 user_activated.connect(welcome_new_user)

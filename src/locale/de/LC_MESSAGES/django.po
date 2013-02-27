@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-27 12:46+0100\n"
+"POT-Creation-Date: 2013-02-27 23:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "von überall"
 msgid "locally"
 msgstr "vor Ort"
 
-#: herobase/forms.py:31 herobase/models.py:206
+#: herobase/forms.py:31 herobase/models.py:208
 msgid "Can this quest be done remotely or only locally?"
 msgstr ""
 "Kann man diese Quest nur an einem bestimmten Ort oder von überall erledigen?"
@@ -78,121 +78,121 @@ msgstr ""
 msgid "E-mail"
 msgstr "E-Mail"
 
-#: herobase/models.py:71
+#: herobase/models.py:73
 msgid "no location"
 msgstr "kein Ort"
 
-#: herobase/models.py:72
+#: herobase/models.py:74
 msgid "GPS"
 msgstr "GPS"
 
-#: herobase/models.py:73
+#: herobase/models.py:75
 msgid "address"
 msgstr "Adresse"
 
-#: herobase/models.py:74
+#: herobase/models.py:76
 msgid "district"
 msgstr ""
 
-#: herobase/models.py:75
+#: herobase/models.py:77
 msgid "city"
 msgstr ""
 
-#: herobase/models.py:76
+#: herobase/models.py:78
 msgid "unknown"
 msgstr "Unbekannt"
 
-#: herobase/models.py:166
+#: herobase/models.py:168
 msgid "cancelled"
 msgstr "abgebrochen"
 
-#: herobase/models.py:168
+#: herobase/models.py:170
 msgid "participating"
 msgstr "nimmt teil"
 
-#: herobase/models.py:170
+#: herobase/models.py:172
 msgid "rejected"
 msgstr "abgelehnt"
 
-#: herobase/models.py:172
+#: herobase/models.py:174
 msgid "pending"
 msgstr "beworben"
 
-#: herobase/models.py:193
+#: herobase/models.py:195
 msgid "Title"
 msgstr "Titel"
 
-#: herobase/models.py:194
+#: herobase/models.py:196
 msgid "Description"
 msgstr "Beschreibung"
 
-#: herobase/models.py:195
+#: herobase/models.py:197
 msgid "A short description of what this quest is about."
 msgstr "Eine kurze Beschreibung um was es in dem Quest geht."
 
-#: herobase/models.py:199
+#: herobase/models.py:201
 msgid "Expiration date"
 msgstr "Ablaufdatum"
 
-#: herobase/models.py:200
+#: herobase/models.py:202
 msgid "Until which date will this quest be visible?"
 msgstr "Bis wann ist diese Quest sichtbar?"
 
-#: herobase/models.py:205
+#: herobase/models.py:207
 #: herobase/templates/herobase/quest/description_box_content.html:29
 #: herobase/templates/herobase/quest/my_box_hero.html:12
 msgid "Can be done remotely"
 msgstr "Kann aus der Ferne erledigt werden"
 
-#: herobase/models.py:213
+#: herobase/models.py:215
 msgid "Number of heroes"
 msgstr "Anzahl Helden"
 
-#: herobase/models.py:214
+#: herobase/models.py:216
 msgid "How many heroes can participate in this Quest?"
 msgstr "Wie viele Helden können an dieser Quest teilnehmen?"
 
-#: herobase/models.py:236
+#: herobase/models.py:238
 msgid "time effort"
 msgstr "Zeitaufwand"
 
-#: herobase/models.py:237
+#: herobase/models.py:239
 msgid "Low"
 msgstr "Niedrig"
 
-#: herobase/models.py:238
+#: herobase/models.py:240
 msgid "Medium"
 msgstr "Mittel"
 
-#: herobase/models.py:239
+#: herobase/models.py:241
 msgid "High"
 msgstr "Hoch"
 
-#: herobase/models.py:365
+#: herobase/models.py:367
 msgid "sex"
 msgstr "Geschlecht"
 
-#: herobase/models.py:375
+#: herobase/models.py:377
 msgid "Location is public"
 msgstr "Standort ist öffentlich"
 
-#: herobase/models.py:376
+#: herobase/models.py:378
 msgid "Enable this if you want to share your location with other Heroes."
 msgstr "Wenn aktiv können andere Helden deinen Standort sehen."
 
-#: herobase/models.py:379
+#: herobase/models.py:381
 msgid "about me"
 msgstr "Über mich"
 
-#: herobase/models.py:380
+#: herobase/models.py:382
 msgid "Tell other heroes who you are."
 msgstr "Erzähle anderen Helden wer Du bist"
 
-#: herobase/models.py:383
+#: herobase/models.py:385
 msgid "E-Mail on quest changes"
 msgstr "E-Mail bei Quest-Änderungen"
 
-#: herobase/models.py:384
+#: herobase/models.py:386
 msgid ""
 "Enable this if you want to receive an email notification when one of your "
 "quests needs attention."
@@ -200,11 +200,11 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail benachrichtigung sobald ein Quest an dem "
 "Du beteiligt bist deine Aufmerksamkeit benötigt."
 
-#: herobase/models.py:388
+#: herobase/models.py:390
 msgid "E-Mail on private message"
 msgstr "E-Mail bei privaten Nachrichten"
 
-#: herobase/models.py:389
+#: herobase/models.py:391
 msgid ""
 "Enable this if you want to receive an email notification when someone sends "
 "you a private message."
@@ -212,23 +212,23 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail wenn andere Nutzer dir eine Nachricht "
 "schreiben."
 
-#: herobase/models.py:472
+#: herobase/models.py:474
 msgid "text"
 msgstr "text"
 
-#: herobase/models.py:474
+#: herobase/models.py:476
 msgid "type not set"
 msgstr "Typ nicht gesetzt"
 
-#: herobase/models.py:475
+#: herobase/models.py:477
 msgid "spam"
 msgstr ""
 
-#: herobase/models.py:476
+#: herobase/models.py:478
 msgid "illegal content"
 msgstr ""
 
-#: herobase/models.py:477
+#: herobase/models.py:479
 msgid "hate speech"
 msgstr ""
 
@@ -266,24 +266,24 @@ msgstr "Dies ist Deine Quest."
 #: herobase/views.py:120
 msgid ""
 "This quest needs heroes. Apply now by clicking the ✓ Button on the right."
-msgstr ""
+msgstr "Dieser Quest braucht Helden. Bewerbe dich indem du den ✓ Knopf auf der rechten Seite anklickst."
 
 #: herobase/views.py:122
 msgid ""
 "Your application has been accepted. Press X to withdraw your participation."
-msgstr ""
+msgstr "Deine Bewerbung wurde angebnommen. Mit dem X Knopf kannst du deine Teilnahme zurückziehen."
 
 #: herobase/views.py:124
 msgid ""
 "You have applied for this quest but the owner didn't want you to participate "
 "in it."
-msgstr ""
+msgstr "Du hast dich für diese Quest beworben, aber der Veranstalter hat deine Bewerbung leider abgelehnt."
 
 #: herobase/views.py:126
 msgid ""
 "You are currently applying for this quest. Press X to cancel. You will be "
 "notified once the creator has decided about our participation"
-msgstr ""
+msgstr "Du hast dich für diese Quest beworben. Drücke X um die Bewerbung zurückzuziehen. Du wirst benachrichtigt sobald der Veranstalter über deine Teilnahme entschieden hat."
 
 #: herobase/templates/herobase/home_login_box.inc.html:19
 #: herobase/templates/herobase/home_login_box.inc.html:29
@@ -384,12 +384,12 @@ msgid "Informationen"
 msgstr "Informationen"
 
 #: herobase/templates/herobase/layout/sidebar_left.inc.html:10
-#: herobase/templates/herobase/userprofile/detail_mini.html:13
+#: herobase/templates/herobase/userprofile/detail_mini.html:15
 msgid "Level"
 msgstr "Level"
 
 #: herobase/templates/herobase/layout/sidebar_left.inc.html:12
-#: herobase/templates/herobase/userprofile/detail_mini.html:15
+#: herobase/templates/herobase/userprofile/detail_mini.html:17
 msgid "XP"
 msgstr "XP"
 
@@ -495,6 +495,7 @@ msgid "Profile"
 msgstr "Profil"
 
 #: herobase/templates/herobase/userprofile/edit.html:35
+#: heronotification/models.py:189
 msgid "Welcome to you are hero."
 msgstr "Willkommen bei You are Hero"
 
@@ -733,46 +734,50 @@ msgstr "Eingang"
 msgid "out"
 msgstr "Ausgang"
 
-#: heronotification/models.py:62
+#: heronotification/models.py:63
 #, python-format
 msgid ""
 "<strong>%(user)s</strong> is applying for your quest <strong>%(title)s</"
 "strong>."
-msgstr "<strong>%(user)s</strong> bewirbt sich für deine Quest <strong>%(title)s.</strong>"
+msgstr ""
+"<strong>%(user)s</strong> bewirbt sich für deine Quest <strong>%(title)s.</"
+"strong>"
 
-#: heronotification/models.py:78
+#: heronotification/models.py:79
 #, python-format
 msgid ""
 "<strong>%(user)s</strong> has withdrawn his application for your quest "
 "<strong>%(title)s</strong>."
-msgstr "<strong>%(user)s</strong> hat seine Bewerbung für deine Quest <strong>%(title)s</strong> zurückgezogen."
+msgstr ""
+"<strong>%(user)s</strong> hat seine Bewerbung für deine Quest <strong>"
+"%(title)s</strong> zurückgezogen."
 
-#: heronotification/models.py:97
+#: heronotification/models.py:98
 #, python-format
 msgid "The quest <strong>%s</strong> has been started."
 msgstr "Die Quest <strong>%s</strong> hat begonnen."
 
-#: heronotification/models.py:108
+#: heronotification/models.py:109
 #, python-format
 msgid "The quest <strong>%s</strong> is waiting for documentation."
 msgstr "Die Quest <strong>%s</strong> erwartet Dokumentation."
 
-#: heronotification/models.py:121
+#: heronotification/models.py:122
 #, python-format
 msgid "The quest <strong>%s<strong> has been cancelled."
 msgstr "Die Quest <strong>%s</strong> wurde abgebrochen."
 
-#: heronotification/models.py:134
+#: heronotification/models.py:135
 #, python-format
 msgid "The quest <strong>%s</strong> has been completed."
 msgstr "Die Quest <strong>%s</strong> ist abgeschlossen."
 
-#: heronotification/models.py:148
+#: heronotification/models.py:149
 #, python-format
 msgid "You have been accepted for the quest <strong>%s.</strong>"
 msgstr "Du wurdest für die Quest <strong>%s</strong> akzeptiert."
 
-#: heronotification/models.py:162
+#: heronotification/models.py:163
 #, python-format
 msgid "Your application for the quest <strong>%s</strong> has been rejected."
 msgstr ""
