@@ -1,5 +1,5 @@
 {% extends "herobase/layout/box.html" %}
-{% load i18n %}
+{% load i18n hero_message %}
 {% load url from future %}
 
 {% block content %}
@@ -19,6 +19,7 @@
 {% endblock %}
 
 {% block buttons_bottom %}
+    {% message_user quest.owner 30 %}
     <form method="POST" action="{% url "hero_update_quest" quest.pk %}">
         {% csrf_token %}
         {% if not request_user_adventure and not quest.has_expired %}

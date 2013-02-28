@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-27 23:25+0100\n"
+"POT-Creation-Date: 2013-02-28 00:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -266,24 +266,41 @@ msgstr "Dies ist Deine Quest."
 #: herobase/views.py:120
 msgid ""
 "This quest needs heroes. Apply now by clicking the ✓ Button on the right."
-msgstr "Dieser Quest braucht Helden. Bewerbe dich indem du den ✓ Knopf auf der rechten Seite anklickst."
+msgstr ""
+"Dieser Quest braucht Helden. Bewerbe dich indem du den ✓ Knopf auf der "
+"rechten Seite anklickst."
 
 #: herobase/views.py:122
 msgid ""
 "Your application has been accepted. Press X to withdraw your participation."
-msgstr "Deine Bewerbung wurde angebnommen. Mit dem X Knopf kannst du deine Teilnahme zurückziehen."
+msgstr ""
+"Deine Bewerbung wurde angebnommen. Mit dem X Knopf kannst du deine Teilnahme "
+"zurückziehen."
 
 #: herobase/views.py:124
 msgid ""
 "You have applied for this quest but the owner didn't want you to participate "
 "in it."
-msgstr "Du hast dich für diese Quest beworben, aber der Veranstalter hat deine Bewerbung leider abgelehnt."
+msgstr ""
+"Du hast dich für diese Quest beworben, aber der Veranstalter hat deine "
+"Bewerbung leider abgelehnt."
 
 #: herobase/views.py:126
 msgid ""
 "You are currently applying for this quest. Press X to cancel. You will be "
 "notified once the creator has decided about our participation"
-msgstr "Du hast dich für diese Quest beworben. Drücke X um die Bewerbung zurückzuziehen. Du wirst benachrichtigt sobald der Veranstalter über deine Teilnahme entschieden hat."
+msgstr ""
+"Du hast dich für diese Quest beworben. Drücke X um die Bewerbung "
+"zurückzuziehen. Du wirst benachrichtigt sobald der Veranstalter über deine "
+"Teilnahme entschieden hat."
+
+#: herobase/views.py:309
+msgid "Profile successfully changed"
+msgstr "Profil erfolgreich gespeichert."
+
+#: herobase/views.py:325
+msgid "Privacy settings successfully changed"
+msgstr ""
 
 #: herobase/templates/herobase/home_login_box.inc.html:19
 #: herobase/templates/herobase/home_login_box.inc.html:29
@@ -435,7 +452,7 @@ msgstr "Quest bearbeiten"
 msgid "Cancel"
 msgstr "abbrechen"
 
-#: herobase/templates/herobase/quest/description_box.html:26
+#: herobase/templates/herobase/quest/description_box.html:27
 msgid "Apply"
 msgstr "bewerben"
 
@@ -494,6 +511,40 @@ msgstr "Eine Quest erstellen"
 msgid "Profile"
 msgstr "Profil"
 
+#: herobase/templates/herobase/userprofile/detail_box.html:10
+msgid "Thats you"
+msgstr "Das bist Du."
+
+#: herobase/templates/herobase/userprofile/detail_box.html:21
+msgid "About"
+msgstr "Über"
+
+#: herobase/templates/herobase/userprofile/detail_box.html:26
+#: herobase/templates/herobase/userprofile/m/detail.html:63
+msgid "Member since"
+msgstr "Mitglied seit"
+
+#: herobase/templates/herobase/userprofile/detail_box.html:31
+msgid "Progress"
+msgstr "Fortschritt"
+
+#: herobase/templates/herobase/userprofile/detail_box.html:33
+#: herobase/templates/herobase/userprofile/m/detail.html:68
+msgid "Quests done"
+msgstr "Erledigte Quests"
+
+#: herobase/templates/herobase/userprofile/detail_box.html:34
+msgid "Quests created"
+msgstr "Erstellte Quests"
+
+#: herobase/templates/herobase/userprofile/detail_box.html:36
+msgid ""
+"<strong>%(username)s</strong> is <strong>ranked %(rank)s</strong> in the "
+"ladder."
+msgstr ""
+"<strong>%(username)s</strong> ist auf <strong>Platz %(rank)s</strong> in der "
+"Bestenliste."
+
 #: herobase/templates/herobase/userprofile/edit.html:35
 #: heronotification/models.py:189
 msgid "Welcome to you are hero."
@@ -514,34 +565,14 @@ msgstr ""
 msgid "My Profile"
 msgstr "Profil"
 
-#: herobase/templates/herobase/userprofile/user_details.inc.html:19
-msgid "Thats you"
-msgstr "Das bist Du."
-
-#: herobase/templates/herobase/userprofile/user_details.inc.html:29
-msgid "About"
-msgstr "Über"
-
-#: herobase/templates/herobase/userprofile/user_details.inc.html:32
 #: herobase/templates/herobase/userprofile/m/detail.html:61
 #, python-format
 msgid "%(username)s is ranked %(rank)s in the ladder."
 msgstr "%(username)s ist auf Platz %(rank)s in der Bestenliste."
 
-#: herobase/templates/herobase/userprofile/user_details.inc.html:34
-#: herobase/templates/herobase/userprofile/m/detail.html:63
-msgid "Member since"
-msgstr "Mitglied seit"
-
-#: herobase/templates/herobase/userprofile/user_details.inc.html:36
 #: herobase/templates/herobase/userprofile/m/detail.html:65
 msgid "Region"
 msgstr "Region"
-
-#: herobase/templates/herobase/userprofile/user_details.inc.html:39
-#: herobase/templates/herobase/userprofile/m/detail.html:68
-msgid "Quests done"
-msgstr "Erledigte Quests"
 
 #: herobase/templates/registration/activate.html:5
 msgid "Account-activation failed"
@@ -733,6 +764,11 @@ msgstr "Eingang"
 #: heromessage/templates/message/submenu.inc.html:18
 msgid "out"
 msgstr "Ausgang"
+
+#: heromessage/templatetags/hero_message.py:13
+#, python-format
+msgid "Send message to %(username)s"
+msgstr ""
 
 #: heronotification/models.py:63
 #, python-format

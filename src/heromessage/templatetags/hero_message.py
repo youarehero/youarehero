@@ -2,9 +2,15 @@
 from django import template
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext
 
 register = template.Library()
 
 @register.simple_tag
-def message_user(user):
-    return mark_safe('<a href="%s"><i class="icon-yah-mail icon-20"></i></a>' % reverse('message_to', args=(user.pk, )))
+def message_user(user, size=20):
+    mail_link = '<a href="%(url)s" data-toggle="tooltip" data-title="%(tooltip)s"><i class="icon-yah-mail icon-%(size)s"></i></a>' % {
+        'url': reverse('message_to', args=(user.pk, )),
+        'tooltip': ugettext(u'Send message to %(username)s') % {'username': user.username},
+        'size': size,
+    }
+    return mark_safe(mail_link)
