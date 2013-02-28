@@ -13,7 +13,7 @@ class EmailAuthBackend(DjangoModelBackend):
     """Custom Authentication Backend for user validation with email addy and password."""
     def authenticate(self, username=None, password=None):
         try:
-            user = User.objects.get(email=username)
+            user = User.objects.get(email__iexact=username)
             if user.check_password(password):
                 return user
         except User.DoesNotExist:
