@@ -53,8 +53,8 @@ AVATAR_IMAGES = sorted(map(lambda x: os.path.join('avatar', os.path.basename(x))
 AVATAR_CHOICES = zip(AVATAR_IMAGES, AVATAR_IMAGES)
 
 class Like(models.Model):
-    user = models.ForeignKey(User)
-    quest = models.ForeignKey('Quest')
+    user = models.ForeignKey(User, related_name='likes')
+    quest = models.ForeignKey('Quest', related_name='likes')
 
 
 class LocationMixin(models.Model):
@@ -253,6 +253,10 @@ class Quest(LocationMixin, models.Model):
     def can_start(self):
         return (self.open and not self.adventures.filter(accepted=False, rejected=False, canceled=False).exists()
                 and self.adventures.filter(accepted=True, canceled=False).exists())
+
+    @property
+    def likes_count(self):
+        return self.likes.all().count()
 
     def save(self, force_insert=False, force_update=False, using=None):
         self.open = not self.pk or (not self.done and not self.canceled and not self.started)

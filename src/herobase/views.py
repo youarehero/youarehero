@@ -368,7 +368,8 @@ def like_quest(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
     like, created = Like.objects.get_or_create(user=request.user, quest=quest)
 
-    if created:
-        recommender_signals.like.send(sender=request.user, quest=quest) 
+    # TODO: XP
+    # if created:
+        # recommender_signals.like.send(sender=request.user, quest=quest)
 
-    return HttpResponse(json.dumps({'success': True}), mimetype='application/json')
+    return HttpResponse(json.dumps({'success': True, 'likes_count': quest.likes_count}), mimetype='application/json')

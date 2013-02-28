@@ -33,4 +33,16 @@ $(document).ready(function() {
             e.preventDefault();
         }
     });
+
+    $('body').on('click', '.like-button', function(e) {
+        e.preventDefault();
+        var likeButton = $(this);
+        var url = $(this).attr('href');
+        $.post(url, function(data, textStatus, xhr) {
+             if (data.success) {
+                 var likesCount = data.likes_count;
+                 $(likeButton).closest('.box').find('.likes-count').html(likesCount);
+             }
+        }, 'json');
+    });
 });

@@ -47,4 +47,7 @@ urlpatterns = patterns(
     url(regex=r'^(?P<quest_id>\d+)/hero_update_quest/$',
         view='hero_update_quest',
         name='hero_update_quest'),
+    url(regex=r'^(?P<quest_id>\d+)/like_quest/$',
+        view='like_quest',
+        name='like_quest'),
 )
