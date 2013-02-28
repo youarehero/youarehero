@@ -7,8 +7,6 @@
 {% endblock %}
 
 {% block buttons_top %}
-    <a class="like-button" href="{% url "like_quest" quest.pk %}" data-toggle="tooltip" data-title="{% trans "Like the Quest" %}">
-        <i class="icon-yah-like"></i></a>
     <form id="hero-cancel" method="POST" action="{% url "hero_update_quest" quest.pk %}">
         {% csrf_token %}
         {% if request_user_adventure and not quest.canceled and not request_user_adventure.rejected %}

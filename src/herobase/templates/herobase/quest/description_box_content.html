@@ -28,19 +28,22 @@
         {% if quest.remote %}
 {#            <i class="icon-yah-local icon-40" data-toggle="tooltip" data-title="{% trans "Can be done remotely" %}"></i>#}
         {% else %}
-            <i class="icon-yah-local icon-40" data-toggle="tooltip" data-title="{% trans "Has to be done locally" %}"></i>
+            <i class="icon-yah-local icon-40" data-toggle="fooltip" title="{% trans "Has to be done locally" %}"></i>
         {% endif %}
 
         {% if quest.time_effort %}
             {% if quest.time_effort == quest.TIME_EFFORT_LOW %}
-                <i class="icon-yah-time-short" data-toggle="tooltip" data-title="{% trans "low time effort" %}"></i>
+                <i class="icon-yah-time-short" data-toggle="fooltip" title="{% trans "low time effort" %}"></i>
             {% elif quest.time_effort == quest.TIME_EFFORT_MEDIUM %}
-                <i class="icon-yah-time-middle" data-toggle="tooltip" data-title="{% trans "medium time effort" %}"></i>
+                <i class="icon-yah-time-middle" data-toggle="fooltip" title="{% trans "medium time effort" %}"></i>
             {% elif quest.time_effort == quest.TIME_EFFORT_HIGH %}
-                <i class="icon-yah-time-long" data-toggle="tooltip" data-title="{% trans "high time effort" %}"></i>
+                <i class="icon-yah-time-long" data-toggle="fooltip" title="{% trans "high time effort" %}"></i>
             {% endif %}
         {% endif %}
         <br>
-        <span class="likes-count">{{ quest.likes_count }}</span> <i class="icon-yah-like"></i>
+        <span class="likes-count">{{ quest.likes_count }}</span>
+        <a class="like-button" href="{% url "like_quest" quest.pk %}" data-toggle="fooltip" title="{% trans "Like the Quest" %}">
+            <i class="icon-yah-like"></i>
+        </a>
     </div>
 </div>
