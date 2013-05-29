@@ -30,18 +30,18 @@
         <div class="row">
             {% block sidebar_left_container %}
             {% endblock %}
-        <div class="span4">
+            <div class="span4">
 
 
-            <div id="video" class=" box">
-                <h2>{% trans "Videos" %}</h2>
-                <iframe width="280" height="166" src="http://www.youtube.com/embed/7gp4X-0XSQA?rel=0&loop=1&autohide=1&controlers=0" frameborder="0" allowfullscreen></iframe>
-                <div class="box-buttons-bottom">
-                    <a href="http://www.youtube.com/user/youareher0?feature=watch" target="_blank">
-                        <span>{% trans "More Videos" %}</span></a>
+                <div id="video" class=" box">
+                    <h2>{% trans "Videos" %}</h2>
+                    <iframe width="280" height="166" src="http://www.youtube.com/embed/7gp4X-0XSQA?rel=0&loop=1&autohide=1&controlers=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="box-buttons-bottom">
+                        <a href="http://www.youtube.com/user/youareher0?feature=watch" target="_blank">
+                            <span>{% trans "More Videos" %}</span></a>
+                    </div>
                 </div>
             </div>
-        </div>
 
             <div id="login" class="span2-5">
                 {% include "herobase/home_login_box.inc.html" %}
@@ -79,9 +79,21 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div id="awards" class="pull-right">
+
+                <a href="http://www.rotary-karlsruhe.de/cms/iwebs/default.aspx">
+                    <img src="{% get_static_prefix %}img/award_rotary.png" alt="Award: ROTARY-Club Karlsruhe" data-toggle="tooltip" data-title="Stipendium vom ROTARY-Club Karlsruhe">
+                </a>
+                <a href="http://hhg.gdh.kit.edu/">
+                    <img src="{% get_static_prefix %}img/award_hhg.png" alt="Award: HHG" data-toggle="tooltip" data-title="Gesellschaft zur Pflege wissenschaftlicher Kontakte im Hause Heinrich Hertz e.V.">
+                </a>
+
+            </div>
+        </div>
+
         {% block site_footer_container %}
             {{ block.super }}
         {% endblock %}
-</div>
+    </div>
 {% endblock %}

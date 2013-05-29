@@ -2459,6 +2459,10 @@ body.city-karlsruhe #blog .box-buttons-bottom a {
 body.city-karlsruhe #blog .box-buttons-bottom ahover {
   background: #bfbf00;
 }
+body.city-karlsruhe #awards a {
+  float: right;
+  margin-right: 20px;
+}
 body.city-karlsruhe #page-footer a:hover {
   background: #ffe700;
 }
