@@ -449,12 +449,18 @@ img {
   }
 }
 
+.einladungskarte {
+  width:  240px;
+//  margin-right: -140px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
 
 body.city-karlsruhe {
   color:  @grayDark;
   #background {
     width:  100%;
-    height: 100%;
+    height: 600px;
     position: absolute;
     top: 0;
     left: 0;
@@ -462,6 +468,21 @@ body.city-karlsruhe {
     background: url("../img/sky.png") no-repeat scroll 50% 0 #fff;
     background-size: cover;
   }
+  #background-city {
+    background: url("../img/stadt.png") repeat-x scroll 50% 0 transparent;
+    background-size: 100%;
+    width: 100%;
+    height: 410px;
+    position: absolute;
+    left:  0;
+    top: 400px;
+  }
+
+
+  #page-footer {
+    position: static;
+  }
+
   form[action='/accounts/login/'] .box {
     background: rgba(153,153,153,0.3);
   }
@@ -472,8 +493,15 @@ body.city-karlsruhe {
     margin-top: 21px;
     display: inline-block;
   }
+  .slogan {
+    font-family: 'Mouse Memoirs', sans-serif;
+    color: @pink;
+    margin-left: 220px;
+    margin-top: 26px;
+    font-size: 200%;
+  }
   #video {
-    margin-top: 80px;
+    margin-top: 30px;
     margin-left: 80px;
     padding: 20px 10px;
     background: url("../img/boxes/videos.png") no-repeat 0 0 transparent;
@@ -508,6 +536,7 @@ body.city-karlsruhe {
   }
   #register-now {
     a {
+      font-family: 'Mouse Memoirs', sans-serif;
       background: url("../img/bubble.png") no-repeat scroll 0 0 transparent;
       background-size: 100% 100%;
       padding: 50px 25px;
@@ -518,6 +547,44 @@ body.city-karlsruhe {
       text-align: center;
     }
   }
+
+  #about {
+    margin-top: 20px;
+    background: url("../img/boxes/info.png") no-repeat scroll 0 0 transparent;
+    background-size: 100% 100%;
+    &:hover, &:focus, &:active {
+      background: url("../img/boxes/info-black.png") no-repeat 0 0 transparent;
+      background-size: 100% 100%;
+    }
+    padding-left: 20px;
+    padding-right: 80px;
+
+    .box-buttons-bottom a {
+      background: #8ef23a;
+      &hover {
+        background: darken(#8ef23a, 10%);
+      }
+    }
+  }
+
+  #blog {
+    display: inline-block;
+    background: url("../img/boxes/news.png") no-repeat scroll 0 0 transparent;
+    background-size: 100% 100%;
+    &:hover, &:focus, &:active {
+      background: url("../img/boxes/news-black.png") no-repeat 0 0 transparent;
+      background-size: 100% 100%;
+    }
+    padding: 15px;
+
+    .box-buttons-bottom a {
+      background: #f2f200;
+      &hover {
+        background: darken(#f2f200, 10%);
+      }
+    }
+  }
+
   #page-footer a {
     &:hover {
       background: #ffe700;

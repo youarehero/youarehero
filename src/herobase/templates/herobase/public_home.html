@@ -6,6 +6,7 @@
 {% block body %}
     <div id="background"></div>
     <div id="background-top"></div>
+    <div id="background-city"></div>
     <div id="layout-container" class="container">
 
         {% block site_header_container %}
@@ -14,12 +15,13 @@
                     <a href="{% url "home" %}" class="logo pull-left">
                         {#                        <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">#}
                         <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">
+
                     </a>
                     {% if not request.user.is_authenticated %}
 
                     {% endif %}
                     {% block site_header %}
-                        <h2 id="plattform-for-heroes">Die Plattform für Helden!</h2>
+                        <h2 class="slogan">{% trans "Welcome to a place where you can become a hero!" %}</h2>
                     {% endblock %}
                 </div>
             </div>
@@ -27,46 +29,53 @@
 
         <div class="row">
             {% block sidebar_left_container %}
-    {#            <div id="sidebar-left-container" class="span2 sidebar-left">#}
-    {#                {% include "herobase/layout/mainmenu.inc.html" %}#}
-    {#                <p>#}
-    {#                    "Die Idee Spiel und Realität zu verschmelzen finde ich genial!"#}
-    {#                </p>#}
-    {#                <p>#}
-    {#                    "Vielen Dank für eure Plattform, ich habe tatsächlich schon Leute gefunden,#}
-    {#                    die bei meinem Projekt geholfen haben!"#}
-    {#                </p>#}
-    {#            </div> <!-- end sidebar-left -->#}
-
             {% endblock %}
+        <div class="span4">
 
-            <div class="span100">
-                <div id="video" class="span3 box">
-                    <h2>Videos</h2>
-                    <iframe width="280" height="166" src="http://www.youtube.com/embed/7gp4X-0XSQA?rel=0&loop=1&autohide=1&controlers=0" frameborder="0" allowfullscreen></iframe>
-                    <div class="box-buttons-bottom">
-                        <a href="http://www.youtube.com/user/youareher0?feature=watch">
-                            <span>{% trans "More Videos" %}</span></a>
-                    </div>
+
+            <div id="video" class=" box">
+                <h2>{% trans "Videos" %}</h2>
+                <iframe width="280" height="166" src="http://www.youtube.com/embed/7gp4X-0XSQA?rel=0&loop=1&autohide=1&controlers=0" frameborder="0" allowfullscreen></iframe>
+                <div class="box-buttons-bottom">
+                    <a href="http://www.youtube.com/user/youareher0?feature=watch" target="_blank">
+                        <span>{% trans "More Videos" %}</span></a>
                 </div>
+            </div>
+        </div>
 
-                <div id="login" class="span2-5">
-                    {% include "herobase/home_login_box.inc.html" %}
+            <div id="login" class="span2-5">
+                {% include "herobase/home_login_box.inc.html" %}
+            </div>
+
+            <div id="register-now" class="span2">
+                <a href="{% url "registration_register" %}">
+                {% trans "Join now!" %}
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div id="about" class="span5 box">
+                <h2>{% trans "What's it all about?" %}</h2>
+                <p>
+                    You are HERO ist ein virtueller <strong>Treffpunkt für Helden</strong> und Heldenanwärter. Sogleich nach
+                    der Registrierung kreierst Du Deinen Heldencharakter und sammelst Heldenpunkte indem
+                    Du Quests (Aufgaben und Aufträge) von der Pinnwand erfüllst. Die Herausforderung und
+                    zugleich heldenhafte Chance liegt darin, dass alle Quests in der Realität erfüllt werden.
+                    Natürlich könnt auch Ihr selbst Quests einstellen, schließlich braucht jeder Held hin und
+                    wieder Unterstützung. Das Ziel des Spiels ist ganz einfach: <strong>Nicht nur reden, sondern handeln</strong>
+                     – also rettet die Welt!
+                </p>
+                <div class="box-buttons-bottom">
+                    <a href="./abstract">
+                        <span>{% trans "Read more" %}</span></a>
                 </div>
-
-                <div id="register-now" class="span2">
-                    <a href="{% url "registration_register" %}">
-                    {% trans "Join now!" %}
-                    </a>
-                </div>
-
-                <div id="about" class="span3 box">
-                    <h2>{% trans "Videos" %}</h2>
-                    text
-                    <div class="box-buttons-bottom">
-                        <a href="http://www.youtube.com/user/youareher0?feature=watch">
-                            <span>{% trans "More Videos" %}</span></a>
-                    </div>
+            </div>
+            <div id="blog" class="box">
+                <h2>{% trans "News" %}</h2>
+                <img src="{% get_static_prefix %}img/fotocouch_240.jpg" alt="YAH-Team">
+                <div class="box-buttons-bottom">
+                    <a href="./blog/" target="_blank">
+                        <span>Zum Blog</span></a>
                 </div>
             </div>
         </div>

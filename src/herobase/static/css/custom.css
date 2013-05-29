@@ -1476,7 +1476,7 @@ ul.page-tabs li.on a {
   color: #ffc40d;
 }
 ul.page-tabs a {
-  color: #eeeeee;
+  color: #333333;
 }
 .clearfix {
   *zoom: 1;
@@ -1595,7 +1595,7 @@ ul.small-grid:after {
 ul.menu li {
   width: 80px;
   height: 80px;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.45);
 }
 ul.menu li i {
   margin-left: 10px;
@@ -1604,15 +1604,15 @@ ul.menu li i span {
   margin-left: -5px;
 }
 ul.menu li a {
-  color: #eeeeee;
+  color: #333333;
 }
 ul.menu li.on,
 ul.menu li:hover {
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(255, 255, 255, 0.85);
 }
 ul.menu li.on a,
 ul.menu li:hover a {
-  color: #ffc40d;
+  color: #cb6e06;
 }
 ul.user-menu li {
   width: 55px;
@@ -1633,10 +1633,10 @@ ul.user-menu li i span {
   *zoom: 1;
 }
 .box a {
-  color: #1e7783;
+  color: #24828e;
 }
 .box a:hover {
-  color: #14515a;
+  color: #1a5d65;
 }
 .box.mini {
   width: 210px;
@@ -1776,6 +1776,7 @@ ul.user-menu li i span {
 .box .box-buttons-top-left input span,
 .box .box-buttons-bottom input span {
   margin: 2px 5px;
+  font-weight: bold;
 }
 .box .box-content {
   *zoom: 1;
@@ -1907,10 +1908,10 @@ h4 {
   font-family: 'Open Sans', sans-serif;
   display: inline-block;
   font-size: 23px;
-  color: #1e7783;
+  color: #24828e;
 }
 #register-now a:hover {
-  color: #14515a;
+  color: #1a5d65;
 }
 .modal {
   -webkit-border-radius: 0;
@@ -1935,10 +1936,10 @@ h4 {
   min-height: 165px;
 }
 #butler-bubble a {
-  color: #1e7783;
+  color: #24828e;
 }
 #butler-bubble a:hover {
-  color: #14515a;
+  color: #1a5d65;
 }
 #butler-bubble .iconbg {
   margin-top: -20px;
@@ -2009,7 +2010,7 @@ body {
 #page-title {
   padding: 0 10px;
   font-variant: small-caps;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.45);
   *zoom: 1;
   height: 40px;
   width: 610px;
@@ -2039,12 +2040,12 @@ body {
   overflow: hidden;
   padding: 0px 10px;
   font-variant: small-caps;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.45);
 }
 #page-content {
   position: relative;
   padding: 10px 20px 20px 10px;
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(255, 255, 255, 0.75);
   *zoom: 1;
   margin-bottom: 40px;
 }
@@ -2203,7 +2204,7 @@ textarea {
   min-width: 40px;
 }
 .userprofile-small {
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(255, 255, 255, 0.75);
   padding: 5px;
   width: 110px;
   margin-right: 0px;
@@ -2242,7 +2243,7 @@ span.protective {
   color: #3c6b87;
 }
 ul.thumbnails.image_picker_selector li .thumbnail.selected {
-  background: none repeat scroll 0 0 #1e7783;
+  background: none repeat scroll 0 0 #24828e;
 }
 .span2 .box select,
 .span2 .box textarea,
@@ -2326,18 +2327,35 @@ img.pull-left {
   margin-right: 10px;
   margin-bottom: 5px;
 }
+.einladungskarte {
+  width: 240px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
 body.city-karlsruhe {
   color: #333333;
 }
 body.city-karlsruhe #background {
   width: 100%;
-  height: 100%;
+  height: 600px;
   position: absolute;
   top: 0;
   left: 0;
   z-index: -100;
   background: url("../img/sky.png") no-repeat scroll 50% 0 #ffffff;
   background-size: cover;
+}
+body.city-karlsruhe #background-city {
+  background: url("../img/stadt.png") repeat-x scroll 50% 0 transparent;
+  background-size: 100%;
+  width: 100%;
+  height: 410px;
+  position: absolute;
+  left: 0;
+  top: 400px;
+}
+body.city-karlsruhe #page-footer {
+  position: static;
 }
 body.city-karlsruhe form[action='/accounts/login/'] .box {
   background: rgba(153, 153, 153, 0.3);
@@ -2349,8 +2367,15 @@ body.city-karlsruhe #plattform-for-heroes {
   margin-top: 21px;
   display: inline-block;
 }
+body.city-karlsruhe .slogan {
+  font-family: 'Mouse Memoirs', sans-serif;
+  color: #c3325f;
+  margin-left: 220px;
+  margin-top: 26px;
+  font-size: 200%;
+}
 body.city-karlsruhe #video {
-  margin-top: 80px;
+  margin-top: 30px;
   margin-left: 80px;
   padding: 20px 10px;
   background: url("../img/boxes/videos.png") no-repeat 0 0 transparent;
@@ -2387,6 +2412,7 @@ body.city-karlsruhe #login input {
   width: 186px;
 }
 body.city-karlsruhe #register-now a {
+  font-family: 'Mouse Memoirs', sans-serif;
   background: url("../img/bubble.png") no-repeat scroll 0 0 transparent;
   background-size: 100% 100%;
   padding: 50px 25px;
@@ -2395,6 +2421,43 @@ body.city-karlsruhe #register-now a {
   width: 140px;
   height: auto;
   text-align: center;
+}
+body.city-karlsruhe #about {
+  margin-top: 20px;
+  background: url("../img/boxes/info.png") no-repeat scroll 0 0 transparent;
+  background-size: 100% 100%;
+  padding-left: 20px;
+  padding-right: 80px;
+}
+body.city-karlsruhe #about:hover,
+body.city-karlsruhe #about:focus,
+body.city-karlsruhe #about:active {
+  background: url("../img/boxes/info-black.png") no-repeat 0 0 transparent;
+  background-size: 100% 100%;
+}
+body.city-karlsruhe #about .box-buttons-bottom a {
+  background: #8ef23a;
+}
+body.city-karlsruhe #about .box-buttons-bottom ahover {
+  background: #73ea0f;
+}
+body.city-karlsruhe #blog {
+  display: inline-block;
+  background: url("../img/boxes/news.png") no-repeat scroll 0 0 transparent;
+  background-size: 100% 100%;
+  padding: 15px;
+}
+body.city-karlsruhe #blog:hover,
+body.city-karlsruhe #blog:focus,
+body.city-karlsruhe #blog:active {
+  background: url("../img/boxes/news-black.png") no-repeat 0 0 transparent;
+  background-size: 100% 100%;
+}
+body.city-karlsruhe #blog .box-buttons-bottom a {
+  background: #f2f200;
+}
+body.city-karlsruhe #blog .box-buttons-bottom ahover {
+  background: #bfbf00;
 }
 body.city-karlsruhe #page-footer a:hover {
   background: #ffe700;
