@@ -13,6 +13,8 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
 
+    <link href='https://fonts.googleapis.com/css?family=Mouse+Memoirs' rel='stylesheet' type='text/css'>
+
     <!-- Le styles -->
 
     <script src="{% get_static_prefix %}js/jquery-1.8.3.min.js"></script>
@@ -52,7 +54,7 @@
                 <div class="span100">
                     <a href="{% url "home" %}" class="logo pull-left">
 {#                        <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">#}
-                        <img src="{% get_static_prefix %}img/logo_light.png" alt="You Are Hero">
+                        <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">
                     </a>
                     {% if not request.user.is_authenticated %}
 

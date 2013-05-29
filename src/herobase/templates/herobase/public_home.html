@@ -8,47 +8,61 @@
     <div id="background-top"></div>
     <div id="layout-container" class="container">
 
-    {% block site_header_container %}
-        {{ block.super }}
-    {% endblock %}
-    <div class="row">
-        {% block sidebar_left_container %}
-            <div id="sidebar-left-container" class="span2 sidebar-left">
-                {% include "herobase/layout/mainmenu.inc.html" %}
-                <p>
-                    "Die Idee Spiel und Realität zu verschmelzen finde ich genial!"
-                </p>
-                <p>
-                    "Vielen Dank für eure Plattform, ich habe tatsächlich schon Leute gefunden,
-                    die bei meinem Projekt geholfen haben!"
-                </p>
-            </div> <!-- end sidebar-left -->
+        {% block site_header_container %}
+            <div id="site-header-container" class="row">
+                <div class="span100">
+                    <a href="{% url "home" %}" class="logo pull-left">
+                        {#                        <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">#}
+                        <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">
+                    </a>
+                    {% if not request.user.is_authenticated %}
 
+                    {% endif %}
+                    {% block site_header %}
+                        <h2 id="plattform-for-heroes">Die Plattform für Helden!</h2>
+                    {% endblock %}
+                </div>
+            </div>
         {% endblock %}
 
-        <div id="page-container" class="span6">
-            <div id="be-a-hero">
-                <h2>Sei Held deiner Stadt!</h2>
+        <div class="row">
+            {% block sidebar_left_container %}
+    {#            <div id="sidebar-left-container" class="span2 sidebar-left">#}
+    {#                {% include "herobase/layout/mainmenu.inc.html" %}#}
+    {#                <p>#}
+    {#                    "Die Idee Spiel und Realität zu verschmelzen finde ich genial!"#}
+    {#                </p>#}
+    {#                <p>#}
+    {#                    "Vielen Dank für eure Plattform, ich habe tatsächlich schon Leute gefunden,#}
+    {#                    die bei meinem Projekt geholfen haben!"#}
+    {#                </p>#}
+    {#            </div> <!-- end sidebar-left -->#}
+
+            {% endblock %}
+
+            <div class="span100">
+                <div id="video" class="span3 box">
+                    <h2>Videos</h2>
+                    <iframe width="280" height="166" src="http://www.youtube.com/embed/7gp4X-0XSQA?rel=0&loop=1&autohide=1&controlers=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="box-buttons-bottom">
+                        <a href="http://www.youtube.com/user/youareher0?feature=watch">
+                            <span>{% trans "More Videos" %}</span></a>
+                    </div>
+                </div>
+
+                <div id="login" class="span2-5">
+                    {% include "herobase/home_login_box.inc.html" %}
+                </div>
+
+                <div id="register-now" class="span2">
+                    <a href="{% url "registration_register" %}">
+                    {% trans "Join now!" %}
+                    </a>
+                </div>
+
+
             </div>
-            <div style="background: none" id="page-content">
-                <ul class="grid">
-
-                    <li  class="span3">
-
-                        <div id="register-now">
-                            <a href="{% url "registration_register" %}">
-                            {% trans "Join now!" %}
-                            </a>
-                        </div>
-
-                    </li>
-                    <li  class="span3-25"> {% include "herobase/home_login_box.inc.html" %}</li>
-                </ul>
-{#                {% include "herobase/home_video_box.inc.html" %}#}
-            </div>
-
         </div>
-
     </div>
         {% block site_footer_container %}
             {{ block.super }}

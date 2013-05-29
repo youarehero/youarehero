@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-28 10:54+0100\n"
+"POT-Creation-Date: 2013-05-29 11:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -320,7 +320,7 @@ msgstr "Passwort vergessen?"
 #: herobase/templates/herobase/public_home.html:40
 #: herobase/templates/registration/login_box.inc.html:23
 msgid "Join now!"
-msgstr "Registriere Dich!"
+msgstr "Jetzt Registrieren!"
 
 #: herobase/templates/herobase/leader_board.html:8
 #: herobase/templates/herobase/layout/mainmenu.inc.html:27
@@ -340,12 +340,12 @@ msgstr "Es gibt keine Quests."
 msgid "There are no completed quests."
 msgstr "Es gibt keine abgeschlossenen Quests."
 
-#: herobase/templates/herobase/layout/base.html:62
+#: herobase/templates/herobase/layout/base.html:63
 #: herobase/templates/herobase/userprofile/submenu.inc.html:10
 msgid "Settings"
 msgstr "Optionen"
 
-#: herobase/templates/herobase/layout/base.html:64
+#: herobase/templates/herobase/layout/base.html:65
 msgid "Logout"
 msgstr "Abmelden"
 
@@ -447,43 +447,42 @@ msgstr "Es gibt noch keine Kommentare."
 msgid "Update your Quest"
 msgstr "Quest bearbeiten"
 
-#: herobase/templates/herobase/quest/description_box.html:10
-#: herobase/templates/herobase/quest/description_box_owner.html:5
-#, fuzzy
-msgid "Like the Quest"
-msgstr "Die Quest gefällt mir"
-
-#: herobase/templates/herobase/quest/description_box.html:16
+#: herobase/templates/herobase/quest/description_box.html:14
 msgid "Cancel"
 msgstr "abbrechen"
 
-#: herobase/templates/herobase/quest/description_box.html:29
+#: herobase/templates/herobase/quest/description_box.html:27
 msgid "Apply"
 msgstr "bewerben"
 
 #: herobase/templates/herobase/quest/description_box_content.html:31
-#: herobase/templates/herobase/quest/list_box.html:18
+#: herobase/templates/herobase/quest/list_box.html:16
 #: herobase/templates/herobase/quest/my_box_hero.html:14
 msgid "Has to be done locally"
 msgstr "Muss vor Ort erledigt werden"
 
 #: herobase/templates/herobase/quest/description_box_content.html:36
-#: herobase/templates/herobase/quest/list_box.html:23
+#: herobase/templates/herobase/quest/list_box.html:22
 #: herobase/templates/herobase/quest/my_box_hero.html:19
 msgid "low time effort"
 msgstr "geringer Zeitaufwand"
 
 #: herobase/templates/herobase/quest/description_box_content.html:38
-#: herobase/templates/herobase/quest/list_box.html:25
+#: herobase/templates/herobase/quest/list_box.html:24
 #: herobase/templates/herobase/quest/my_box_hero.html:21
 msgid "medium time effort"
 msgstr "mittlerer Zeitaufwand"
 
 #: herobase/templates/herobase/quest/description_box_content.html:40
-#: herobase/templates/herobase/quest/list_box.html:27
+#: herobase/templates/herobase/quest/list_box.html:26
 #: herobase/templates/herobase/quest/my_box_hero.html:23
 msgid "high time effort"
 msgstr "hoher Zeitaufwand"
+
+#: herobase/templates/herobase/quest/description_box_content.html:45
+#, fuzzy
+msgid "Like the Quest"
+msgstr "Die Quest gefällt mir"
 
 #: herobase/templates/herobase/quest/detail.html:5
 msgid "Quest details"
