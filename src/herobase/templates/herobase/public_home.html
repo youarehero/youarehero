@@ -3,6 +3,24 @@
 {% load url from future %}
 
 
+{% block javascript %}
+    <script type="text/javascript">
+        $('body').on('click' , '.box', function(e) {
+            //$(this).addClass('hover');
+            console.debug($(this));
+            if ($(e.target).is('a')) {
+                return;
+            } else {
+                $('.box-buttons-bottom a', this).click();
+            }
+
+        });
+{#        $('body').on('blur', '.box', function(e) {#}
+{#            $(this).removeClass('hover');#}
+{#        });#}
+    </script>
+{% endblock %}
+
 {% block body %}
     <div id="background"></div>
     <div id="background-top"></div>

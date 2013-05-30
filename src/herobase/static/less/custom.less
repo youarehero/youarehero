@@ -470,7 +470,7 @@ body.city-karlsruhe {
   }
   #background-city {
     background: url("../img/stadt.png") repeat-x scroll 50% 0 transparent;
-    background-size: 100%;
+//    background-size: 100%;
     width: 100%;
     height: 410px;
     position: absolute;
@@ -505,9 +505,10 @@ body.city-karlsruhe {
     margin-left: 80px;
     padding: 20px 10px;
     background: url("../img/boxes/videos.png") no-repeat 0 0 transparent;
-    &:hover, &:focus {
+    &:hover, &.hover {
       background: url("../img/boxes/videos-black.png") no-repeat 0 0 transparent;
       background-size: 100% 100%;
+      cursor: pointer;
     }
     display: inline-block;
     background-size: 100% 100%;
@@ -525,9 +526,10 @@ body.city-karlsruhe {
     .box {
       background: url("../img/boxes/login.png") no-repeat 0 0 transparent;
       background-size: 100% 100%;
-      &:hover, &:focus, &:active {
+      &:hover, &.hover {
         background: url("../img/boxes/login-black.png") no-repeat 0 0 transparent;
         background-size: 100% 100%;
+        cursor: pointer;
       }
     }
     input {
@@ -540,11 +542,13 @@ body.city-karlsruhe {
       background: url("../img/bubble.png") no-repeat scroll 0 0 transparent;
       background-size: 100% 100%;
       padding: 50px 25px;
-      margin-left: -50px;
-      margin-top: -25px;
+      margin-left: -61px;
+      margin-top: -15px;
       width: 140px;
       height: auto;
       text-align: center;
+      z-index: 50;
+      position: relative;
     }
   }
 
@@ -552,9 +556,10 @@ body.city-karlsruhe {
     margin-top: 84px;
     background: url("../img/boxes/info.png") no-repeat scroll 0 0 transparent;
     background-size: 100% 100%;
-    &:hover, &:focus, &:active {
+    &:hover, &.hover {
       background: url("../img/boxes/info-black.png") no-repeat 0 0 transparent;
       background-size: 100% 100%;
+      cursor: pointer;
     }
     padding-left: 20px;
     padding-right: 80px;
@@ -571,9 +576,10 @@ body.city-karlsruhe {
     display: inline-block;
     background: url("../img/boxes/news.png") no-repeat scroll 0 0 transparent;
     background-size: 100% 100%;
-    &:hover, &:focus, &:active {
+    &:hover, &.hover {
       background: url("../img/boxes/news-black.png") no-repeat 0 0 transparent;
       background-size: 100% 100%;
+      cursor: pointer;
     }
     padding: 15px;
     margin-left: -80px;

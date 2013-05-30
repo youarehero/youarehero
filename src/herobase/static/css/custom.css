@@ -2347,7 +2347,6 @@ body.city-karlsruhe #background {
 }
 body.city-karlsruhe #background-city {
   background: url("../img/stadt.png") repeat-x scroll 50% 0 transparent;
-  background-size: 100%;
   width: 100%;
   height: 410px;
   position: absolute;
@@ -2382,9 +2381,10 @@ body.city-karlsruhe #video {
   background-size: 100% 100%;
 }
 body.city-karlsruhe #video:hover,
-body.city-karlsruhe #video:focus {
+body.city-karlsruhe #video.hover {
   background: url("../img/boxes/videos-black.png") no-repeat 0 0 transparent;
   background-size: 100% 100%;
+  cursor: pointer;
 }
 body.city-karlsruhe #video .box-buttons-bottom a {
   background: #03f2d0;
@@ -2402,10 +2402,10 @@ body.city-karlsruhe #login .box {
   background-size: 100% 100%;
 }
 body.city-karlsruhe #login .box:hover,
-body.city-karlsruhe #login .box:focus,
-body.city-karlsruhe #login .box:active {
+body.city-karlsruhe #login .box.hover {
   background: url("../img/boxes/login-black.png") no-repeat 0 0 transparent;
   background-size: 100% 100%;
+  cursor: pointer;
 }
 body.city-karlsruhe #login input {
   width: 186px;
@@ -2415,11 +2415,13 @@ body.city-karlsruhe #register-now a {
   background: url("../img/bubble.png") no-repeat scroll 0 0 transparent;
   background-size: 100% 100%;
   padding: 50px 25px;
-  margin-left: -50px;
-  margin-top: -25px;
+  margin-left: -61px;
+  margin-top: -15px;
   width: 140px;
   height: auto;
   text-align: center;
+  z-index: 50;
+  position: relative;
 }
 body.city-karlsruhe #about {
   margin-top: 84px;
@@ -2429,10 +2431,10 @@ body.city-karlsruhe #about {
   padding-right: 80px;
 }
 body.city-karlsruhe #about:hover,
-body.city-karlsruhe #about:focus,
-body.city-karlsruhe #about:active {
+body.city-karlsruhe #about.hover {
   background: url("../img/boxes/info-black.png") no-repeat 0 0 transparent;
   background-size: 100% 100%;
+  cursor: pointer;
 }
 body.city-karlsruhe #about .box-buttons-bottom a {
   background: #8ef23a;
@@ -2448,10 +2450,10 @@ body.city-karlsruhe #blog {
   margin-left: -80px;
 }
 body.city-karlsruhe #blog:hover,
-body.city-karlsruhe #blog:focus,
-body.city-karlsruhe #blog:active {
+body.city-karlsruhe #blog.hover {
   background: url("../img/boxes/news-black.png") no-repeat 0 0 transparent;
   background-size: 100% 100%;
+  cursor: pointer;
 }
 body.city-karlsruhe #blog .box-buttons-bottom a {
   background: #f2f200;
