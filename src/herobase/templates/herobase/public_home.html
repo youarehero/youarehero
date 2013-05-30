@@ -25,7 +25,7 @@
     <div id="background"></div>
     <div id="background-top"></div>
     <div id="background-city"></div>
-    <div id="layout-container" class="container">
+    <div id="layout-container" class="container front-page">
 
         {% block site_header_container %}
             <div id="site-header-container" class="row">
@@ -39,7 +39,7 @@
 
                     {% endif %}
                     {% block site_header %}
-                        <h2 class="slogan">{% trans "Welcome to a place where you can become a hero!" %}</h2>
+
                     {% endblock %}
                 </div>
             </div>
@@ -49,7 +49,7 @@
             {% block sidebar_left_container %}
             {% endblock %}
             <div class="span4">
-
+                <h2 class="slogan">{% trans "Welcome to a place where you can become a hero!" %}</h2>
 
                 <div id="video" class=" box">
                     <h2>{% trans "Videos" %}</h2>

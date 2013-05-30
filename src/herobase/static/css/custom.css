@@ -1904,7 +1904,6 @@ h4 {
   height: 105px;
   padding-top: 150px;
   padding-left: 48px;
-  font-variant: small-caps;
   font-family: 'Open Sans', sans-serif;
   display: inline-block;
   font-size: 23px;
@@ -2009,7 +2008,6 @@ body {
 }
 #page-title {
   padding: 0 10px;
-  font-variant: small-caps;
   background-color: rgba(255, 255, 255, 0.45);
   *zoom: 1;
   height: 40px;
@@ -2068,7 +2066,7 @@ body {
   clear: both;
 }
 #page-footer {
-  width: 970px;
+  width: 830px;
   position: fixed;
   bottom: 0;
 }
@@ -2135,7 +2133,6 @@ body {
 }
 form {
   margin-bottom: 0px;
-  font-variant: small-caps;
 }
 textarea,
 input[type="text"],
@@ -2353,8 +2350,12 @@ body.city-karlsruhe #background-city {
   left: 0;
   top: 900px;
 }
+body.city-karlsruhe h2 {
+  font-family: 'Mouse Memoirs', sans-serif;
+}
 body.city-karlsruhe #page-footer {
   position: static;
+  margin-top: 50px;
 }
 body.city-karlsruhe form[action='/accounts/login/'] .box {
   background: rgba(153, 153, 153, 0.3);
@@ -2368,12 +2369,20 @@ body.city-karlsruhe #plattform-for-heroes {
 }
 body.city-karlsruhe .slogan {
   font-family: 'Mouse Memoirs', sans-serif;
-  margin-left: 220px;
-  margin-top: 26px;
+  color: #c3325f;
+  margin-left: 30px;
+  margin-top: 8px;
   font-size: 200%;
+  line-height: 30px;
+}
+body.city-karlsruhe .box-buttons-bottom a,
+body.city-karlsruhe .box-buttons-bottom button {
+  -webkit-box-shadow: 0 1px 5px #222222;
+  -moz-box-shadow: 0 1px 5px #222222;
+  box-shadow: 0 1px 5px #222222;
 }
 body.city-karlsruhe #video {
-  margin-top: 30px;
+  margin-top: 20px;
   margin-left: 80px;
   padding: 20px 10px;
   background: url("../img/boxes/videos.png") no-repeat 0 0 transparent;
@@ -2424,7 +2433,7 @@ body.city-karlsruhe #register-now a {
   position: relative;
 }
 body.city-karlsruhe #about {
-  margin-top: 84px;
+  margin-top: 66px;
   background: url("../img/boxes/info.png") no-repeat scroll 0 0 transparent;
   background-size: 100% 100%;
   padding-left: 20px;
@@ -2448,6 +2457,7 @@ body.city-karlsruhe #blog {
   background-size: 100% 100%;
   padding: 15px;
   margin-left: -80px;
+  margin-top: -18px;
 }
 body.city-karlsruhe #blog:hover,
 body.city-karlsruhe #blog.hover {
@@ -2463,6 +2473,7 @@ body.city-karlsruhe #blog .box-buttons-bottom ahover {
 }
 body.city-karlsruhe #awards {
   margin-top: -70px;
+  margin-bottom: 180px;
 }
 body.city-karlsruhe #awards a {
   float: right;
@@ -2471,6 +2482,13 @@ body.city-karlsruhe #awards a {
 body.city-karlsruhe #awards a:first-child {
   margin-top: 15px;
 }
+body.city-karlsruhe #page-footer a {
+  padding: 5px 10px;
+  font-family: 'Mouse Memoirs', sans-serif;
+  background: #eeeeee;
+  color: #333333;
+}
 body.city-karlsruhe #page-footer a:hover {
-  background: #ffe700;
+  background: #999999;
+  color: #222222;
 }

@@ -62,7 +62,7 @@ h4 {
   padding-top: 150px;
   padding-left: 48px;
 
-  font-variant: small-caps;
+//  font-variant: small-caps;
   font-family: 'Open Sans', sans-serif;
   display:inline-block;
   font-size: 23px;
@@ -182,7 +182,7 @@ body {
 
 #page-title {
   padding:  0 10px;
-  font-variant: small-caps;
+//  font-variant: small-caps;
   background-color: @baseBackgroundHeader;
   .clearfix;
   height: 40px;
@@ -207,7 +207,7 @@ body {
 }
 
 #page-footer {
-  width: @gridRowWidth;
+  width: @gridRowWidth - 140px;
   position: fixed;
   bottom:  0;
   a {
@@ -288,7 +288,7 @@ body {
 // Forms
 form {
   margin-bottom: 0px;
-  font-variant: small-caps;
+//  font-variant: small-caps;
   .span3 {
   //    width: 265px;
   }
@@ -477,10 +477,13 @@ body.city-karlsruhe {
     left:  0;
     top: 900px;
   }
-
+  h2 {
+    font-family: 'Mouse Memoirs', sans-serif;
+  }
 
   #page-footer {
     position: static;
+    margin-top: 50px;
   }
 
   form[action='/accounts/login/'] .box {
@@ -495,13 +498,20 @@ body.city-karlsruhe {
   }
   .slogan {
     font-family: 'Mouse Memoirs', sans-serif;
-//    color: @pink;
-    margin-left: 220px;
-    margin-top: 26px;
+    color: @pink;
+    margin-left: 30px;
+    margin-top: 8px;
     font-size: 200%;
+    line-height: 30px;
   }
+  .box-buttons-bottom {
+    a, button {
+      .box-shadow(0 1px 5px @grayDarker);
+    }
+  }
+
   #video {
-    margin-top: 30px;
+    margin-top: 20px;
     margin-left: 80px;
     padding: 20px 10px;
     background: url("../img/boxes/videos.png") no-repeat 0 0 transparent;
@@ -553,7 +563,7 @@ body.city-karlsruhe {
   }
 
   #about {
-    margin-top: 84px;
+    margin-top: 66px; //84px;
     background: url("../img/boxes/info.png") no-repeat scroll 0 0 transparent;
     background-size: 100% 100%;
     &:hover, &.hover {
@@ -583,6 +593,7 @@ body.city-karlsruhe {
     }
     padding: 15px;
     margin-left: -80px;
+    margin-top: -18px;
     .box-buttons-bottom a {
       background: #f2f200;
       &hover {
@@ -593,6 +604,7 @@ body.city-karlsruhe {
 
   #awards {
     margin-top: -70px;
+    margin-bottom: 180px;
     a {
       float: right;
       margin-right: 37px;
@@ -604,8 +616,13 @@ body.city-karlsruhe {
   }
 
   #page-footer a {
+    padding:  5px 10px;
+    font-family: 'Mouse Memoirs', sans-serif;
+    background: @grayLighter;
+    color: @grayDark;
     &:hover {
-      background: #ffe700;
+      background: @grayLight;
+      color: @grayDarker;
     }
   }
 }
