@@ -2339,7 +2339,7 @@ body.city-karlsruhe #background {
   top: 0;
   left: 0;
   z-index: -100;
-  background: url("../img/sky.png") no-repeat scroll 50% 0 #ffffff;
+  background: url("../img/sky.png") no-repeat scroll 65% 0 #ffffff;
   background-size: cover;
 }
 body.city-karlsruhe #background-city {
@@ -2380,6 +2380,7 @@ body.city-karlsruhe .box-buttons-bottom button {
   -webkit-box-shadow: 0 1px 5px #222222;
   -moz-box-shadow: 0 1px 5px #222222;
   box-shadow: 0 1px 5px #222222;
+  color: #222222;
 }
 body.city-karlsruhe #video {
   margin-top: 20px;
