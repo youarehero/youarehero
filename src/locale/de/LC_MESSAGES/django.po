@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-29 11:19+0200\n"
+"POT-Creation-Date: 2013-06-17 17:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -303,6 +303,7 @@ msgstr ""
 
 #: herobase/templates/herobase/home_login_box.inc.html:19
 #: herobase/templates/herobase/home_login_box.inc.html:29
+#: herobase/templates/herobase/home_login_box.inc.html:30
 #: herobase/templates/herobase/layout/sidebar_left.inc.html:22
 #: herobase/templates/registration/login_box.inc.html:12
 #: herobase/templates/registration/login_box.inc.html:28
@@ -317,7 +318,7 @@ msgid "Forgotten password?"
 msgstr "Passwort vergessen?"
 
 #: herobase/templates/herobase/home_registration_box.inc.html:23
-#: herobase/templates/herobase/public_home.html:40
+#: herobase/templates/herobase/public_home.html:83
 #: herobase/templates/registration/login_box.inc.html:23
 msgid "Join now!"
 msgstr "Jetzt Registrieren!"
@@ -327,6 +328,30 @@ msgstr "Jetzt Registrieren!"
 #: herobase/templates/herobase/layout/mainmenu.inc.html:28
 msgid "Leaderboard"
 msgstr "Bestenliste"
+
+#: herobase/templates/herobase/public_home.html:65
+msgid "Welcome to a place where you can become a hero!"
+msgstr "Die Platform für Helden"
+
+#: herobase/templates/herobase/public_home.html:68
+msgid "Videos"
+msgstr "Videos"
+
+#: herobase/templates/herobase/public_home.html:72
+msgid "More Videos"
+msgstr "Mehr Videos"
+
+#: herobase/templates/herobase/public_home.html:89
+msgid "What's it all about?"
+msgstr "Worum geht's eigentlich?"
+
+#: herobase/templates/herobase/public_home.html:101
+msgid "Read more"
+msgstr "Mehr lesen"
+
+#: herobase/templates/herobase/public_home.html:105
+msgid "News"
+msgstr "News"
 
 #: herobase/templates/herobase/stats.html:77
 msgid "Statistics"
@@ -340,12 +365,12 @@ msgstr "Es gibt keine Quests."
 msgid "There are no completed quests."
 msgstr "Es gibt keine abgeschlossenen Quests."
 
-#: herobase/templates/herobase/layout/base.html:63
+#: herobase/templates/herobase/layout/base.html:66
 #: herobase/templates/herobase/userprofile/submenu.inc.html:10
 msgid "Settings"
 msgstr "Optionen"
 
-#: herobase/templates/herobase/layout/base.html:65
+#: herobase/templates/herobase/layout/base.html:68
 msgid "Logout"
 msgstr "Abmelden"
 
@@ -480,7 +505,6 @@ msgid "high time effort"
 msgstr "hoher Zeitaufwand"
 
 #: herobase/templates/herobase/quest/description_box_content.html:45
-#, fuzzy
 msgid "Like the Quest"
 msgstr "Die Quest gefällt mir"
 
