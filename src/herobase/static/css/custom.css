@@ -39,1365 +39,1365 @@
   position: relative;
 }
 .icon-yah-home {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: 0px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-home.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: 0px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-home.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: 0px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-home.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: 0px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-home.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: 0px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-billboard {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -40px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-billboard.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -80px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-billboard.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -60px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-billboard.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -30px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-billboard.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -20px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-messages {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -80px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-messages.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -160px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-messages.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -120px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-messages.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -60px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-messages.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -40px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-calendar {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -120px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-calendar.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -240px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-calendar.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -180px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-calendar.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -90px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-calendar.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -60px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-quest-new {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -160px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-quest-new.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -320px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-quest-new.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -240px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-quest-new.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -120px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-quest-new.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -80px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-my-quests {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -200px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-my-quests.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -400px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-my-quests.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -300px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-my-quests.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -150px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-my-quests.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -100px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-x {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -240px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-x.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -480px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-x.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -360px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-x.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -180px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-x.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -120px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-edit {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -280px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-edit.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -560px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-edit.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -420px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-edit.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -210px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-edit.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -140px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-arrow {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -320px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-arrow.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -640px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-arrow.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -480px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-arrow.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -240px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-arrow.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -160px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-mail-all {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -360px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-mail-all.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -720px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-mail-all.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -540px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-mail-all.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -270px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-mail-all.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -180px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-time-short {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -400px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-time-short.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -800px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-time-short.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -600px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-time-short.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -300px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-time-short.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -200px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-time-middle {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -440px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-time-middle.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -880px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-time-middle.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -660px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-time-middle.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -330px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-time-middle.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -220px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-time-long {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -480px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-time-long.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -960px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-time-long.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -720px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-time-long.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -360px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-time-long.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -240px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-logout {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -520px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-logout.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -1040px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-logout.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -780px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-logout.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -390px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-logout.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -260px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-leaderboard {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -560px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-leaderboard.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -1120px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-leaderboard.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -840px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-leaderboard.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -420px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-leaderboard.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -280px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-local {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -600px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-local.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -1200px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-local.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -900px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-local.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -450px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-local.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -300px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-social {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -640px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-social.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -1280px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-social.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -960px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-social.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -480px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-social.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -320px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-like {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -680px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-like.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -1360px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-like.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1020px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-like.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -510px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-like.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -340px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-upload {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -720px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-upload.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -1440px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-upload.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1080px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-upload.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -540px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-upload.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -360px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-ok {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -760px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-ok.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -1520px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-ok.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1140px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-ok.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -570px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-ok.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -380px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-ok-all {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -800px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-ok-all.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -1600px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-ok-all.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1200px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-ok-all.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -600px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-ok-all.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -400px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-mail {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -840px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-mail.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -1680px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-mail.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1260px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-mail.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -630px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-mail.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -420px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-postit {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -880px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-postit.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -1760px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-postit.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1320px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-postit.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -660px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-postit.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -440px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-back {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -920px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-back.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -1840px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-back.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1380px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-back.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -690px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-back.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -460px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-disk {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -960px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-disk.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -1920px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-disk.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1440px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-disk.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -720px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-disk.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -480px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-star {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1000px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-star.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2000px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-star.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1500px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-star.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -750px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-star.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -500px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-info {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1040px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-info.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2080px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-info.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1560px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-info.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -780px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-info.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -520px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-trash {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1080px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-trash.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2160px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-trash.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1620px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-trash.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -810px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-trash.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -540px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-settings {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1120px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-settings.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2240px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-settings.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1680px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-settings.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -840px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-settings.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -560px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-forward {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1160px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-forward.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2320px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-forward.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1740px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-forward.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -870px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-forward.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -580px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-reply {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1200px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-reply.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2400px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-reply.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1800px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-reply.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -900px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-reply.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -600px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-quest-ok {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1240px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-quest-ok.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2480px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-quest-ok.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1860px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-quest-ok.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -930px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-quest-ok.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -620px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-quest-x {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1280px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-quest-x.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2560px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-quest-x.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1920px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-quest-x.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -960px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-quest-x.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -640px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-quest-star {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1320px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-quest-star.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2640px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-quest-star.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -1980px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-quest-star.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -990px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-quest-star.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -660px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-quest-arrow {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1360px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-quest-arrow.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2720px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-quest-arrow.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -2040px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-quest-arrow.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -1020px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-quest-arrow.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -680px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-mail-new {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1400px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-mail-new.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2800px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-mail-new.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -2100px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-mail-new.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -1050px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-mail-new.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -700px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-stop {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1440px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-stop.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2880px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-stop.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -2160px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-stop.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -1080px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-stop.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -720px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-forbidden {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1480px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-forbidden.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -2960px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-forbidden.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -2220px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-forbidden.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -1110px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-forbidden.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -740px 0;
   width: 20px;
   height: 20px;
   line-height: 20px;
 }
 .icon-yah-home-arrow {
-  background-image: url("../img/icons_40.png");
+  background-image: url("../img/icons/icons_40.png");
   background-position: -1520px 0;
   width: 40px;
   height: 40px;
   line-height: 40px;
 }
 .icon-yah-home-arrow.icon-80 {
-  background-image: url("../img/icons_80.png");
+  background-image: url("../img/icons/icons_80.png");
   background-position: -3040px 0;
   width: 80px;
   height: 80px;
   line-height: 80px;
 }
 .icon-yah-home-arrow.icon-60 {
-  background-image: url("../img/icons_60.png");
+  background-image: url("../img/icons/icons_60.png");
   background-position: -2280px 0;
   width: 60px;
   height: 60px;
   line-height: 60px;
 }
 .icon-yah-home-arrow.icon-30 {
-  background-image: url("../img/icons_30.png");
+  background-image: url("../img/icons/icons_30.png");
   background-position: -1140px 0;
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 .icon-yah-home-arrow.icon-20 {
-  background-image: url("../img/icons_20.png");
+  background-image: url("../img/icons/icons_20.png");
   background-position: -760px 0;
   width: 20px;
   height: 20px;
@@ -1476,7 +1476,7 @@ ul.page-tabs li.on a {
   color: #ffc40d;
 }
 ul.page-tabs a {
-  color: #eeeeee;
+  color: #333333;
 }
 .clearfix {
   *zoom: 1;
@@ -1595,7 +1595,7 @@ ul.small-grid:after {
 ul.menu li {
   width: 80px;
   height: 80px;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.45);
 }
 ul.menu li i {
   margin-left: 10px;
@@ -1604,15 +1604,15 @@ ul.menu li i span {
   margin-left: -5px;
 }
 ul.menu li a {
-  color: #eeeeee;
+  color: #333333;
 }
 ul.menu li.on,
 ul.menu li:hover {
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(255, 255, 255, 0.85);
 }
 ul.menu li.on a,
 ul.menu li:hover a {
-  color: #ffc40d;
+  color: #cb6e06;
 }
 ul.user-menu li {
   width: 55px;
@@ -1633,10 +1633,10 @@ ul.user-menu li i span {
   *zoom: 1;
 }
 .box a {
-  color: #1e7783;
+  color: #24828e;
 }
 .box a:hover {
-  color: #14515a;
+  color: #1a5d65;
 }
 .box.mini {
   width: 210px;
@@ -1724,10 +1724,7 @@ ul.user-menu li i span {
 .box .box-buttons-bottom button,
 .box .box-buttons-top input,
 .box .box-buttons-top-left input,
-.box .box-buttons-bottom input,
-.box .box-buttons-top span,
-.box .box-buttons-top-left span,
-.box .box-buttons-bottom span {
+.box .box-buttons-bottom input {
   display: inline-block;
   background: #ffe700;
   border: 0px none;
@@ -1748,10 +1745,7 @@ ul.user-menu li i span {
 .box .box-buttons-bottom button.text,
 .box .box-buttons-top input.text,
 .box .box-buttons-top-left input.text,
-.box .box-buttons-bottom input.text,
-.box .box-buttons-top span.text,
-.box .box-buttons-top-left span.text,
-.box .box-buttons-bottom span.text {
+.box .box-buttons-bottom input.text {
   padding-right: 5px;
 }
 .box .box-buttons-top a:hover,
@@ -1765,12 +1759,24 @@ ul.user-menu li i span {
 .box .box-buttons-bottom button:hover,
 .box .box-buttons-top input:hover,
 .box .box-buttons-top-left input:hover,
-.box .box-buttons-bottom input:hover,
-.box .box-buttons-top span:hover,
-.box .box-buttons-top-left span:hover,
-.box .box-buttons-bottom span:hover {
+.box .box-buttons-bottom input:hover {
   background: #ccb900;
   color: #000000;
+}
+.box .box-buttons-top a span,
+.box .box-buttons-top-left a span,
+.box .box-buttons-bottom a span,
+.box .box-buttons-top form span,
+.box .box-buttons-top-left form span,
+.box .box-buttons-bottom form span,
+.box .box-buttons-top button span,
+.box .box-buttons-top-left button span,
+.box .box-buttons-bottom button span,
+.box .box-buttons-top input span,
+.box .box-buttons-top-left input span,
+.box .box-buttons-bottom input span {
+  margin: 2px 5px;
+  font-weight: bold;
 }
 .box .box-content {
   *zoom: 1;
@@ -1898,14 +1904,13 @@ h4 {
   height: 105px;
   padding-top: 150px;
   padding-left: 48px;
-  font-variant: small-caps;
   font-family: 'Open Sans', sans-serif;
   display: inline-block;
   font-size: 23px;
-  color: #1e7783;
+  color: #24828e;
 }
 #register-now a:hover {
-  color: #14515a;
+  color: #1a5d65;
 }
 .modal {
   -webkit-border-radius: 0;
@@ -1930,10 +1935,10 @@ h4 {
   min-height: 165px;
 }
 #butler-bubble a {
-  color: #1e7783;
+  color: #24828e;
 }
 #butler-bubble a:hover {
-  color: #14515a;
+  color: #1a5d65;
 }
 #butler-bubble .iconbg {
   margin-top: -20px;
@@ -2003,8 +2008,7 @@ body {
 }
 #page-title {
   padding: 0 10px;
-  font-variant: small-caps;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.45);
   *zoom: 1;
   height: 40px;
   width: 610px;
@@ -2034,12 +2038,12 @@ body {
   overflow: hidden;
   padding: 0px 10px;
   font-variant: small-caps;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.45);
 }
 #page-content {
   position: relative;
   padding: 10px 20px 20px 10px;
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(255, 255, 255, 0.75);
   *zoom: 1;
   margin-bottom: 40px;
 }
@@ -2062,7 +2066,7 @@ body {
   clear: both;
 }
 #page-footer {
-  width: 970px;
+  width: 830px;
   position: fixed;
   bottom: 0;
 }
@@ -2129,7 +2133,6 @@ body {
 }
 form {
   margin-bottom: 0px;
-  font-variant: small-caps;
 }
 textarea,
 input[type="text"],
@@ -2198,7 +2201,7 @@ textarea {
   min-width: 40px;
 }
 .userprofile-small {
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(255, 255, 255, 0.75);
   padding: 5px;
   width: 110px;
   margin-right: 0px;
@@ -2237,7 +2240,7 @@ span.protective {
   color: #3c6b87;
 }
 ul.thumbnails.image_picker_selector li .thumbnail.selected {
-  background: none repeat scroll 0 0 #1e7783;
+  background: none repeat scroll 0 0 #24828e;
 }
 .span2 .box select,
 .span2 .box textarea,
@@ -2321,31 +2324,172 @@ img.pull-left {
   margin-right: 10px;
   margin-bottom: 5px;
 }
+.einladungskarte {
+  width: 240px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+body.city-karlsruhe {
+  color: #333333;
+}
 body.city-karlsruhe #background {
   width: 100%;
-  height: 100%;
-  position: fixed;
+  height: 1044px;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: -100;
-  background: url("../img/karlsrux.png") no-repeat scroll 50% 0 #333333;
+  background: url("../img/sky2.png") no-repeat scroll 65% 0 #ffffff;
   background-size: cover;
+}
+body.city-karlsruhe #background-city {
+  background: url("../img/stadt.png") repeat-x scroll 50% 0 transparent;
+  width: 100%;
+  height: 410px;
+  position: absolute;
+  left: 0;
+  top: 900px;
+}
+body.city-karlsruhe h2 {
+  font-family: 'Mouse Memoirs', sans-serif;
+}
+body.city-karlsruhe #page-footer {
+  position: static;
+  margin-top: 50px;
 }
 body.city-karlsruhe form[action='/accounts/login/'] .box {
   background: rgba(153, 153, 153, 0.3);
 }
-body.city-karlsruhe #be-a-hero {
-  margin-left: -18px;
-  margin-top: -35px;
-  background: url("../img/KarlsruheBrauchtNeueHelden.png") no-repeat scroll 0 0 transparent;
-  background-size: 100%;
+body.city-karlsruhe #plattform-for-heroes {
+  font-family: 'Mouse Memoirs', sans-serif;
+  font-size: 42px;
+  margin-left: 60px;
+  margin-top: 21px;
+  display: inline-block;
+}
+body.city-karlsruhe .slogan {
+  font-family: 'Mouse Memoirs', sans-serif;
+  color: #c3325f;
+  margin-left: 30px;
+  margin-top: 8px;
+  font-size: 200%;
+  line-height: 30px;
+}
+body.city-karlsruhe .box-buttons-bottom a,
+body.city-karlsruhe .box-buttons-bottom button {
+  -webkit-box-shadow: 0 1px 5px #222222;
+  -moz-box-shadow: 0 1px 5px #222222;
+  box-shadow: 0 1px 5px #222222;
+  color: #222222;
+}
+body.city-karlsruhe #video {
+  margin-top: 20px;
+  margin-left: 80px;
+  padding: 20px 10px;
+  background: url("../img/boxes/videos.png") no-repeat 0 0 transparent;
+  display: inline-block;
+  background-size: 100% 100%;
+}
+body.city-karlsruhe #video:hover,
+body.city-karlsruhe #video.hover {
+  background: url("../img/boxes/videos-black.png") no-repeat 0 0 transparent;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+body.city-karlsruhe #video .box-buttons-bottom a {
+  background: #03f2d0;
+}
+body.city-karlsruhe #video .box-buttons-bottom ahover {
+  background: #02c0a5;
+}
+body.city-karlsruhe #login {
+  margin-top: 50px;
+  margin-left: 70px;
+  display: inline-block;
+}
+body.city-karlsruhe #login .box {
+  background: url("../img/boxes/login.png") no-repeat 0 0 transparent;
+  background-size: 100% 100%;
+}
+body.city-karlsruhe #login .box:hover,
+body.city-karlsruhe #login .box.hover {
+  background: url("../img/boxes/login-black.png") no-repeat 0 0 transparent;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+body.city-karlsruhe #login input {
+  width: 186px;
 }
 body.city-karlsruhe #register-now a {
-  padding-top: 160px;
-  padding-left: 75px;
-  background: url("../img/register_now_no_border.png") no-repeat scroll 0 0 transparent;
-  background-size: 100%;
+  font-family: 'Mouse Memoirs', sans-serif;
+  background: url("../img/bubble.png") no-repeat scroll 0 0 transparent;
+  background-size: 100% 100%;
+  padding: 50px 25px;
+  margin-left: -61px;
+  margin-top: -15px;
+  width: 140px;
+  height: auto;
+  text-align: center;
+  z-index: 50;
+  position: relative;
+}
+body.city-karlsruhe #about {
+  margin-top: 66px;
+  background: url("../img/boxes/info.png") no-repeat scroll 0 0 transparent;
+  background-size: 100% 100%;
+  padding-left: 20px;
+  padding-right: 80px;
+}
+body.city-karlsruhe #about:hover,
+body.city-karlsruhe #about.hover {
+  background: url("../img/boxes/info-black.png") no-repeat 0 0 transparent;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+body.city-karlsruhe #about .box-buttons-bottom a {
+  background: #8ef23a;
+}
+body.city-karlsruhe #about .box-buttons-bottom ahover {
+  background: #73ea0f;
+}
+body.city-karlsruhe #blog {
+  display: inline-block;
+  background: url("../img/boxes/news.png") no-repeat scroll 0 0 transparent;
+  background-size: 100% 100%;
+  padding: 15px;
+  margin-left: -80px;
+  margin-top: -18px;
+}
+body.city-karlsruhe #blog:hover,
+body.city-karlsruhe #blog.hover {
+  background: url("../img/boxes/news-black.png") no-repeat 0 0 transparent;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+body.city-karlsruhe #blog .box-buttons-bottom a {
+  background: #f2f200;
+}
+body.city-karlsruhe #blog .box-buttons-bottom ahover {
+  background: #bfbf00;
+}
+body.city-karlsruhe #awards {
+  margin-top: -70px;
+  margin-bottom: 180px;
+}
+body.city-karlsruhe #awards a {
+  float: right;
+  margin-right: 37px;
+}
+body.city-karlsruhe #awards a:first-child {
+  margin-top: 15px;
+}
+body.city-karlsruhe #page-footer a {
+  padding: 5px 10px;
+  font-family: 'Mouse Memoirs', sans-serif;
+  background: #eeeeee;
+  color: #333333;
 }
 body.city-karlsruhe #page-footer a:hover {
-  background: #ffe700;
+  background: #999999;
+  color: #222222;
 }

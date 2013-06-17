@@ -158,7 +158,7 @@ ul.user-menu {
   .box-buttons-top,
   .box-buttons-top-left,
   .box-buttons-bottom {
-    a, form, button, input, span {
+    a, form, button, input { //, span {
       display: inline-block;
       background: @boxIconBackground;
       border: 0px none;
@@ -172,6 +172,11 @@ ul.user-menu {
       &:hover {
         background: darken(@boxIconBackground, 10%);
         color: @black;
+      }
+//      text in inner span
+      span {
+        margin:  2px 5px;
+        font-weight: bold;
       }
     }
   }

@@ -1,50 +1,28 @@
 {% extends "herobase/layout/base.html" %}
-
+{% load static %}
 {% block page_title %}
-    <h1>You are HERO – Questdesign im Real Life</h1>
+    <h1>Welcome to a place where you can become a HERO!</h1>
 {% endblock %}
 
 {% block content %}
-    <p>You are Hero ist das Konzept und der Name einer Plattform, die den Nutzern ein System zur Verfügung
-    stellt, mit dem sie Aufgaben des Alltags formulieren und diese in Form sogenannter Quests als Auftrag
-    an die plattforminterne Pinnwand hängen. Das Konzept bedient sich spielerischer Mechanismen, die
-    unter den Begriff der Gamification fallen.</p>
-
-    <p>Der Nutzer erstellt sich ein Alter Ego, eine Heldenidentität, unter der er agiert. Er hat dabei die Möglich-
-    keit, seinen Helden mit Gegenständen und verschiedenen Outfits auszurüsten; seine Skills (Fähigkeiten)
-    einzutragen und hochzuleveln, Heldenvorbilder anzugeben und mit anderen Helden Gruppen bzw.
-    Teams zu gründen. Kernpunkt der Plattform ist allerdings die Auftragswand. Jeder Held hat innerhalb der
-    Plattform sowohl die Möglichkeit, angebotene Quests anzunehmen, als auch, selbst Quests zu formulieren.</p>
-
-    <p>Diese Quests sind Aufträge, deren Annahme und Erfüllung zum Wohl des Auftraggebers oder im besten
-    Fall der ganzen Menschheit beitragen sollen. Dem liegen verschiedene Gedanken zu Grunde; zum Einen,
-    dass jemand, der auf welche Art auch immer Hilfe braucht, selbst so nahe am Problem ist, sodass er
-    beurteilen kann, welche Art von Hilfe er braucht und vor Allem welche Hilfe er akzeptieren kann. Zum
-    Anderen ist man selbst im Allgemeinen viel geneigter, in einer akuten Problemsituation mit klarer
-    Aufgabenstellung zu helfen, vorallem, wenn man genau vor Augen hat, welche Schritte unternommen
-    werden müssen. Die Plattform soll also helfen, die große Mission der Rettung der Welt in so viele kleine
-    Aufgabenstellungen zu differenzieren, bis es zum lösbaren Problem wird.</p>
-
-    <p>Zum Beispiel kann man als Neuling der Plattform eine Quest formulieren, in der man um die Über-
-    setzung eines Briefes bittet. Der Questannehmer erfüllt die Aufgabe und beide bestätigen hinterher
-    plattformintern den positiv erfolgten Ablauf. Die Quest kann in Form von Fotos und eines kurzen Textes
-    dokumentiert werden (das wird interessanter bei größeren, komplexeren und epischeren Quests), und
-    beide Teilnehmer (Auftraggeber/ und nehmer) evaluieren sich und haben so die Möglichkeit Plattform-
-    intern aufzusteigen.</p>
-
-    <p>An Quests können bestimmte Questitems angehängt werden, die man mit erfolgreichem Absolvieren
-    freispielen kann. Allerdings können die Questitems keine höhere Stufe haben als die Stufe des Quest-
-    gebers. Wie bei der Auktionsplattform ebay erkennt man anhand der Stufe die Erfahrung, die der
-    Spieler(Auftraggeber oder/nehmer) im Benutzen der Plattform hat und kann so die Seriösität der Quest
-    abwägen.</p>
-
-    <p>Die Grundprinzipien dieser Plattform sind, dass sie zum Einen Open-Source ist und dass ihre Nutzung
-    zum Anderen nicht kosten darf. Sie muss immer frei sein und zum Allgemeinwohl beitragen. Sie wird von
-    der Communitiy mit Hilfe eines „das gehört nicht hierher-Buttons“ moderiert und so von gesetzeswidrigen
-    Ein/und Beiträgen freigehalten. Auch lebt sie von der Begeisterung ihrer Mitspieler, die die Möglichkeit
-    haben, besonders gelungene Questlösungen positiv zu kommentieren und zu bewerten. Dabei entsteht
-    sowohl für den gepriesenen Spieler der Ansporn weiterzumachen, als auch für den Lobenden der Anreiz
-    auch so etwas Tolles zu leisten, um selbst bald Empfänger von lobenden Kommentaren zu werden.
-    („Like-button“-Prinzip)</p>
-
+    <img class="pull-right einladungskarte" src="{% get_static_prefix %}img/einladungskarte.jpg" />
+    <p>
+        You are HERO ist ein Spiel in zwei Welten. In der <strong>Onlinewelt</strong> kreierst Du Dir einen
+        Heldencharakter und sammelst Heldenpunkte indem Du Aufgaben oder Aufträge
+        –sogenannte <strong>Quests</strong> – von unserer Pinnwand annimmst und erfüllst. Die große
+        Herausforderung ist dabei, dass Du diese Quests im <strong>realen Leben bewältigen</strong> musst. You
+        are HERO -Quests können alles Mögliche beinhalten, von kleineren Alltagsproblemen bis
+        zur Rettung der Menschheit. Jeder Held kann innerhalb der You are HERO-Plattform die
+        angebotenen Quests annehmen, aber auch selbst welche einstellen. Die einzige Regel
+        lautet: Die Erfüllung der Quests darf die Helden kein Geld kosten, denn You are HERO ist
+        Open-Source, <strong>frei und kostenlos</strong> für jeden, der etwas zum Allgemeinwohl beitragen möchte
+        – egal wie groß oder klein diese Allgemeinheit auch sein mag. Das Ziel des Spiels ist
+        schließlich ganz einfach: Nicht nur reden, sondern handeln – also rettet die Welt.
+    </p>
+    <p>
+        Wenn Du bereits über ausreichende Helden-Skills in Form von Programmieren,
+        Designen, Spielen, Texten oder Denken verfügst bist Du natürlich herzlich willkommen dem
+        Headquarter der Superhelden beizutreten. Melde Dich einfach bei greta@youarehero.net
+        und finde heraus, wie Du Deine Helden-Skills noch weiter ausbauen kannst!
+    </p>
 {%  endblock %}
