@@ -90,7 +90,7 @@ ul.user-menu {
   background: @boxBackground;
   color: @boxTextColor;
   padding: @boxPaddingTop @boxPaddingRight @boxPaddingBottom @boxPaddingLeft;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   a {
     color:  @boxLinkColor;
     &:hover {
@@ -154,6 +154,8 @@ ul.user-menu {
     a, form, button, input {
       vertical-align: bottom;
     }
+    > * {margin-right: 10px !important;}
+    > :last-child {margin-right: 0 !important;}
   }
   .box-buttons-top,
   .box-buttons-top-left,

@@ -1478,33 +1478,6 @@ ul.page-tabs li.on a {
 ul.page-tabs a {
   color: #333333;
 }
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.clearfix:after {
-  clear: both;
-}
-.hide-text {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
-.input-block-level {
-  display: block;
-  width: 100%;
-  min-height: 30px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 .span1-5 {
   width: 120px;
 }
@@ -1556,15 +1529,6 @@ ul.grid:after {
 ul.grid:after {
   clear: both;
 }
-ul.grid:before,
-ul.grid:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-ul.grid:after {
-  clear: both;
-}
 ul.small-grid {
   list-style: none;
   margin: 0 0 0 -10px;
@@ -1573,15 +1537,6 @@ ul.small-grid {
 ul.small-grid li {
   float: left;
   margin: 0px 0px 10px 10px;
-}
-ul.small-grid:before,
-ul.small-grid:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-ul.small-grid:after {
-  clear: both;
 }
 ul.small-grid:before,
 ul.small-grid:after {
@@ -1629,7 +1584,7 @@ ul.user-menu li i span {
   background: #eeeeee;
   color: #222222;
   padding: 10px 10px 10px 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   *zoom: 1;
 }
 .box a {
@@ -1652,15 +1607,6 @@ ul.user-menu li i span {
 }
 .box.large {
   width: 310px;
-}
-.box:before,
-.box:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.box:after {
-  clear: both;
 }
 .box:before,
 .box:after {
@@ -1712,6 +1658,12 @@ ul.user-menu li i span {
 .box .box-buttons-bottom button,
 .box .box-buttons-bottom input {
   vertical-align: bottom;
+}
+.box .box-buttons-bottom > * {
+  margin-right: 10px !important;
+}
+.box .box-buttons-bottom > :last-child {
+  margin-right: 0 !important;
 }
 .box .box-buttons-top a,
 .box .box-buttons-top-left a,
@@ -1780,15 +1732,6 @@ ul.user-menu li i span {
 }
 .box .box-content {
   *zoom: 1;
-}
-.box .box-content:before,
-.box .box-content:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.box .box-content:after {
-  clear: both;
 }
 .box .box-content:before,
 .box .box-content:after {
@@ -2023,15 +1966,6 @@ body {
 #page-title:after {
   clear: both;
 }
-#page-title:before,
-#page-title:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-#page-title:after {
-  clear: both;
-}
 #submenu {
   height: 40px;
   width: 610px;
@@ -2046,15 +1980,6 @@ body {
   background-color: rgba(255, 255, 255, 0.75);
   *zoom: 1;
   margin-bottom: 40px;
-}
-#page-content:before,
-#page-content:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-#page-content:after {
-  clear: both;
 }
 #page-content:before,
 #page-content:after {
