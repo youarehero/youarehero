@@ -1659,6 +1659,12 @@ ul.user-menu li i span {
 .box .box-buttons-bottom input {
   vertical-align: bottom;
 }
+.box .box-buttons-bottom > * {
+  margin-right: 10px !important;
+}
+.box .box-buttons-bottom > :last-child {
+  margin-right: 0 !important;
+}
 .box .box-buttons-top a,
 .box .box-buttons-top-left a,
 .box .box-buttons-bottom a,
