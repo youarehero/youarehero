@@ -150,9 +150,11 @@ def home_view(request):
     """Proxy view for switching between the hero and the public home view"""
     if request.user.is_authenticated():
         return hero_home_view(request)
-    return render(request, "herobase/public_home.html", {
+    response = render(request, "herobase/public_home.html", {
         'open_quests': Quest.objects.open(),
         'form': UserAuthenticationForm()})
+    response['Access-Control-Allow-Origin'] = "www.facebook.com"
+    return response
 
 def abstract(request):
     """static you are hero abstract view."""
