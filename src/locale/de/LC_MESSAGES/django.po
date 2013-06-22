@@ -478,7 +478,7 @@ msgstr "abbrechen"
 
 #: herobase/templates/herobase/quest/description_box.html:27
 msgid "Apply"
-msgstr "bewerben"
+msgstr "Bewerben"
 
 #: herobase/templates/herobase/quest/description_box_content.html:31
 #: herobase/templates/herobase/quest/list_box.html:16
