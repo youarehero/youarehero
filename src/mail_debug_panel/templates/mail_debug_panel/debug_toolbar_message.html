@@ -1,0 +1,26 @@
+{% load i18n %}
+<table>
+    <colgroup>
+        <col width="30%"/>
+        <col width="70%"/>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>{% trans "Details" %}</th><th>{% trans "Text" %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for message in messages %}
+        <tr class="{% cycle 'djDebugOdd' 'djDebugEven' %}">
+            <td>
+                <dl>
+                    <dt>From</dt><dd>{{ message.from_email }}</dd>
+                    <dt>To</dt><dd>{{ message.to|join:", " }}</dd>
+                    <dt>Subject</dt><dd>{{ message.subject }}</dd>
+                </dl>
+            </td>
+            <td><pre>{{ message.body }}</pre></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
