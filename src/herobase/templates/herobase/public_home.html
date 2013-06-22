@@ -1,6 +1,7 @@
 {% extends "herobase/layout/base.html" %}
 {% load static i18n crispy_forms_tags %}
 {% load url from future %}
+{% load like_button %}
 
 
 {% block javascript %}
@@ -83,6 +84,7 @@
                 {% trans "Join now!" %}
                 </a>
             </div>
+            {% like_button_tag %}
         </div>
         <div class="row">
             <div id="about" class="span5 box">

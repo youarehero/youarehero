@@ -9,3 +9,4 @@ Pillow==1.7.7
 -e git://github.com/alex/django-filter.git#egg=django-filter
 geopy
 django-activelink
+django-like-button

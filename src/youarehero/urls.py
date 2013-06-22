@@ -69,6 +69,10 @@ urlpatterns = patterns(
     url(regex=r'^favicon\.ico$',
         view='django.views.generic.simple.redirect_to',
         kwargs={'url': 'static/img/favicon.ico'}),
+
+    # like_button
+
+    url(r'', include('like_button.urls'))
     )
 
 from django.conf import settings
