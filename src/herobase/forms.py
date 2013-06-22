@@ -157,7 +157,7 @@ class UserAuthenticationForm(AuthenticationForm):
     error_messages.update({'invalid_login': _("Please enter a correct e-mail address and password. "
                                 "Note that both fields are case-sensitive.")})
     email = forms.CharField(label=_("E-mail"), max_length=75)
-    next = forms.CharField(widget=forms.HiddenInput())
+    next = forms.CharField(widget=forms.HiddenInput(), initial="/")
 
     def __init__(self, request=None, *args, **kwargs):
         self.helper = FormHelper()
@@ -175,6 +175,8 @@ class UserAuthenticationForm(AuthenticationForm):
         # request is only given when no POST data is submited
         if request and hasattr(request, 'GET'):
             next = request.GET.get('next', '/')
+            if next == "":
+                next = "/"
             self.fields['next'].initial = next # put next in POST data
 
 
