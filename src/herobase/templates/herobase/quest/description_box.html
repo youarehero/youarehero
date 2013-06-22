@@ -29,13 +29,12 @@
                 <form method="POST" action="{% url "hero_update_quest" quest.pk %}">
                     {% csrf_token %}
                     <input type="hidden" name="action" value="apply">
-                    <button type="submit" name="action_btn" class="btn btn-mini" data-toggle="tooltip" data-title="{% trans "Apply" %}">
-                        <i class="icon-yah-ok icon-40"></i> {% trans "Apply" %}
+                    <button type="submit" name="action_btn" class="btn btn-mini" >
+                        <span> {% trans "Apply" %} <i class="icon-yah-ok icon-30"></i></span>
                     </button>
                 </form>
             {% else %}
-                <a class="btn btn-mini" href="{% url 'auth_login' %}?next={{ quest_url }}"
-                   data-toggle="tooltip" data-title="{% trans "Apply" %}">
+                <a class="btn btn-mini" href="{% url 'auth_login' %}?next={{ quest_url }}">
                     <span> {% trans "Apply" %} <i class="icon-yah-ok icon-30"></i></span>
                 </a>
             {% endif %}
