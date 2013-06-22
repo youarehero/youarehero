@@ -157,6 +157,7 @@ class UserAuthenticationForm(AuthenticationForm):
     error_messages.update({'invalid_login': _("Please enter a correct e-mail address and password. "
                                 "Note that both fields are case-sensitive.")})
     email = forms.CharField(label=_("E-mail"), max_length=75)
+    next = forms.CharField(widget=forms.HiddenInput())
 
     def __init__(self, request=None, *args, **kwargs):
         self.helper = FormHelper()
@@ -168,11 +169,15 @@ class UserAuthenticationForm(AuthenticationForm):
         if request:
             self.helper.form_action = reverse('auth_login')
 
-        # make sure to use the next parameter iff exists
-        if request and 'next' in request.GET:
-            self.helper.form_action += "?next=" + request.GET.get('next')
-
         super(UserAuthenticationForm, self).__init__(request, *args, **kwargs)
+
+        # make sure to use the next parameter if exists
+        # request is only given when no POST data is submited
+        if request and hasattr(request, 'GET'):
+            next = request.GET.get('next', '/')
+            self.fields['next'].initial = next # put next in POST data
+
+
         del self.fields['username']
         self.fields.keyOrder.reverse()
 
