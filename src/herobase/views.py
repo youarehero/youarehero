@@ -143,6 +143,7 @@ def quest_detail_view(request, quest_id):
         'is_owner': is_owner,
         'comments': comments,
         'request_user_adventure': adventure,
+        'quest_url': reverse('quest_detail', args=(quest.pk,)),
     }
     return render(request, "herobase/quest/detail.html", context)
 
