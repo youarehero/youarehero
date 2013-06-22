@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-17 17:53+0200\n"
+"POT-Creation-Date: 2013-06-22 16:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -293,11 +293,11 @@ msgstr ""
 "zurückzuziehen. Du wirst benachrichtigt sobald der Veranstalter über deine "
 "Teilnahme entschieden hat."
 
-#: herobase/views.py:309
+#: herobase/views.py:311
 msgid "Profile successfully changed"
 msgstr "Profil erfolgreich gespeichert."
 
-#: herobase/views.py:325
+#: herobase/views.py:327
 msgid "Privacy settings successfully changed"
 msgstr ""
 
@@ -318,7 +318,7 @@ msgid "Forgotten password?"
 msgstr "Passwort vergessen?"
 
 #: herobase/templates/herobase/home_registration_box.inc.html:23
-#: herobase/templates/herobase/public_home.html:83
+#: herobase/templates/herobase/public_home.html:85
 #: herobase/templates/registration/login_box.inc.html:23
 msgid "Join now!"
 msgstr "Jetzt Registrieren!"
@@ -329,27 +329,27 @@ msgstr "Jetzt Registrieren!"
 msgid "Leaderboard"
 msgstr "Bestenliste"
 
-#: herobase/templates/herobase/public_home.html:65
+#: herobase/templates/herobase/public_home.html:66
 msgid "Welcome to a place where you can become a hero!"
-msgstr "Die Platform für Helden"
+msgstr "Die Plattform für Helden"
 
-#: herobase/templates/herobase/public_home.html:68
+#: herobase/templates/herobase/public_home.html:69
 msgid "Videos"
 msgstr "Videos"
 
-#: herobase/templates/herobase/public_home.html:72
+#: herobase/templates/herobase/public_home.html:73
 msgid "More Videos"
 msgstr "Mehr Videos"
 
-#: herobase/templates/herobase/public_home.html:89
+#: herobase/templates/herobase/public_home.html:91
 msgid "What's it all about?"
 msgstr "Worum geht's eigentlich?"
 
-#: herobase/templates/herobase/public_home.html:101
+#: herobase/templates/herobase/public_home.html:103
 msgid "Read more"
 msgstr "Mehr lesen"
 
-#: herobase/templates/herobase/public_home.html:105
+#: herobase/templates/herobase/public_home.html:107
 msgid "News"
 msgstr "News"
 
@@ -365,12 +365,12 @@ msgstr "Es gibt keine Quests."
 msgid "There are no completed quests."
 msgstr "Es gibt keine abgeschlossenen Quests."
 
-#: herobase/templates/herobase/layout/base.html:66
+#: herobase/templates/herobase/layout/base.html:70
 #: herobase/templates/herobase/userprofile/submenu.inc.html:10
 msgid "Settings"
 msgstr "Optionen"
 
-#: herobase/templates/herobase/layout/base.html:68
+#: herobase/templates/herobase/layout/base.html:72
 msgid "Logout"
 msgstr "Abmelden"
 
@@ -852,6 +852,15 @@ msgstr ""
 #, python-format
 msgid "You have received a message from <strong>%s</strong>."
 msgstr "Du hast eine Nachricht von <strong>%s</strong> erhalten."
+
+#: mail_debug_panel/templates/mail_debug_panel/debug_toolbar_message.html:9
+#, fuzzy
+msgid "Details"
+msgstr "Quest-Details"
+
+#: mail_debug_panel/templates/mail_debug_panel/debug_toolbar_message.html:9
+msgid "Text"
+msgstr ""
 
 #: youarehero/settings/base.py:52
 msgid "German"
