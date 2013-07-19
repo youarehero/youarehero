@@ -1,0 +1,14 @@
+language: python
+python:
+  - "2.7"
+install:
+  - pip install -r deploy/requirements.txt
+  - pip install -r deploy/test-requirements.txt
+env:
+  - DJANGO_SETTINGS_MODULE=youarehero.settings.test
+before_script:
+  - src/manage.py syncdb --noinput
+  - src/manage.py migrate --noinput
+script:
+  - src/manage.py test
+
