@@ -2259,6 +2259,7 @@ body.city-karlsruhe {
 }
 body.city-karlsruhe #background {
   width: 100%;
+  min-width: 970px;
   height: 1044px;
   position: absolute;
   top: 0;
@@ -2270,6 +2271,7 @@ body.city-karlsruhe #background {
 body.city-karlsruhe #background-city {
   background: url("../img/stadt.png") repeat-x scroll 50% 0 transparent;
   width: 100%;
+  min-width: 970px;
   height: 410px;
   position: absolute;
   left: 0;
