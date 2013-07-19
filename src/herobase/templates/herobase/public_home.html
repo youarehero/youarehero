@@ -45,8 +45,7 @@
             <div id="site-header-container" class="row" style="position: absolute;">
                 <div class="span100">
                     <a href="{% url "home" %}" class="logo pull-left">
-                        <img src="{% get_static_prefix %}img/yahlogo.svg" alt="You Are Hero" style="height: 140px;">
-                        <h2 style="color: black; position: absolute; left: 170px; top: 117px; font-size: 30px;">youarehero</h2>
+                        <img src="{% get_static_prefix %}img/yahlogo-text.svg" alt="You Are Hero" style="height: 147px;">
                     </a>
                     {% if not request.user.is_authenticated %}
 
