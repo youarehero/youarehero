@@ -2260,7 +2260,7 @@ body.city-karlsruhe {
 body.city-karlsruhe #background {
   width: 100%;
   min-width: 970px;
-  height: 1044px;
+  height: 1114px;
   position: absolute;
   top: 0;
   left: 0;
@@ -2275,7 +2275,7 @@ body.city-karlsruhe #background-city {
   height: 410px;
   position: absolute;
   left: 0;
-  top: 900px;
+  top: 970px;
 }
 body.city-karlsruhe h2 {
   font-family: 'farao_textbold', sans-serif;
