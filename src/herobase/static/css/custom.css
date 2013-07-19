@@ -2421,3 +2421,9 @@ body.city-karlsruhe #page-footer a:hover {
   background: #999999;
   color: #222222;
 }
+input,
+button,
+select,
+textarea {
+  font-family: farao_textregular, sans-serif;
+}
