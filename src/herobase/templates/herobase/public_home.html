@@ -42,12 +42,11 @@
     <div id="layout-container" class="container front-page">
 
         {% block site_header_container %}
-            <div id="site-header-container" class="row">
+            <div id="site-header-container" class="row" style="position: absolute;">
                 <div class="span100">
                     <a href="{% url "home" %}" class="logo pull-left">
-                        {#                        <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">#}
-                        <img src="{% get_static_prefix %}img/logo.png" alt="You Are Hero">
-
+                        <img src="{% get_static_prefix %}img/yahlogo.svg" alt="You Are Hero" style="height: 140px;">
+                        <h2 style="color: black; position: absolute; left: 170px; top: 117px; font-size: 30px;">youarehero</h2>
                     </a>
                     {% if not request.user.is_authenticated %}
 
@@ -59,13 +58,11 @@
             </div>
         {% endblock %}
 
-        <div class="row">
+        <div class="row" style="margin-top: 96px;">
             {% block sidebar_left_container %}
             {% endblock %}
             <div class="span4">
-                <h2 class="slogan">{% trans "Welcome to a place where you can become a hero!" %}</h2>
-
-                <div id="video" class=" box">
+                <div id="video" class=" box" style="margin-top: 98px;">
                     <h2>{% trans "Videos" %}</h2>
                     <iframe width="280" height="166" src="http://www.youtube.com/embed/7gp4X-0XSQA?rel=0&loop=1&autohide=1&controlers=0" frameborder="0" allowfullscreen></iframe>
                     <div class="box-buttons-bottom">
