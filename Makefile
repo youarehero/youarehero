@@ -1,3 +1,12 @@
+all: bootstrap server
+
+bootstrap: dirs env deps test-deps static syncdb migrate test
+
+server:
+	. env/bin/activate &&\
+		cd src &&\
+		./manage.py runserver
+
 dirs:
 	install -d -m 0755 coverage
 	install -d -m 0755 media 
@@ -20,16 +29,9 @@ static:
 test:
 	. env/bin/activate && src/manage.py test
 
-bootstrap: dirs env deps static syncdb migrate test
-
-bootstrap-dev: dirs env deps
-
-jenkins: dirs env deps test-deps 
-	. env/bin/activate && DJANGO_SETTINGS_MODULE=youarehero.settings.jenkins src/manage.py jenkins
-
 docs:
 	. env/bin/activate && cd docs && make clean html
 deploy: dirs env deps static docs syncdb migrate test 
 
-.PHONY: env deps test-deps clean syncdb migrate static test bootstrap jenkins deploy git-force-update docs bootstrap-dev
+.PHONY: env deps test-deps clean syncdb migrate static test bootstrap jenkins deploy git-force-update docs
 
