@@ -7,7 +7,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.hostname = "youarehero.vagrant"
   config.vm.network :private_network, ip: "192.168.33.10"
-  config.vm.network :forwarded_port, guest: 80, host: 8000
+
+  config.vm.network :forwarded_port, guest: 8000, host: 8000
+  config.vm.network :forwarded_port, guest: 80, host: 8080
 
   config.vm.synced_folder ".", "/vagrant", extra: "dmode=555,fmode=555"
 
