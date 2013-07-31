@@ -9,7 +9,7 @@
 
     SetEnv DJANGO_SETTINGS_MODULE {{ settings_module }}
     WSGIScriptAlias / {{ yah_src }}/youarehero/wsgi.py
-    WSGIDaemonProcess youarehero.net python-path={{ yah_src }}:{{ env }}/lib/python2.7/site-packages
+    WSGIDaemonProcess youarehero.net python-path={{ yah_src }}
     WSGIProcessGroup youarehero.net
 
 
