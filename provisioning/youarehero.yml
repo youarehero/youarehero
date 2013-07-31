@@ -61,8 +61,19 @@
       template: src="templates/apache_config.j2" dest=/etc/apache2/sites-enabled/youarehero.net
       notify: restart apache
 
+    - name: Install rubygems
+      apt:  name=rubygems
+
+    - name: Install watchr
+      gem: name=watchr state=present
+
+    - name: Install watchr service
+      template: src="templates/wsgi.j2" dest=/etc/init.d/wsgi-watchr owner=root mode=755
+
+    - name: Start the watchr service
+      service: name=wsgi-watchr state=started
+
   handlers:
 
     - name: restart apache
       service: name=apache2 state=restarted
-
