@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 8000, host: 8000
   config.vm.network :forwarded_port, guest: 80, host: 8080
 
-  config.vm.synced_folder ".", "/vagrant", extra: "dmode=555,fmode=555"
+  config.vm.synced_folder ".", "/vagrant", extra: "dmode=777,fmode=777"
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ['guestproperty', 'set', :id, '/VirtualBox/GuestAdd/VBoxService/--timesync-interval', '500']
