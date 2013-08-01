@@ -59,7 +59,7 @@ class NotificationTypeBase(object):
         dict = {'notification': self, 'user': user, 'target': target}
         template_base = 'heronotification/mail/{0}'.format(type(self).__name__)
         try:
-            subject = render_to_string(template_base + '.subject', dict)
+            subject = render_to_string(template_base + '.subject', dict).strip()
             text = render_to_string(template_base + '.txt', dict)
             user.email_user(subject, text)
         except TemplateDoesNotExist:
