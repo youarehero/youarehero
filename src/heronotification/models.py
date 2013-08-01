@@ -1,5 +1,6 @@
 from collections import defaultdict
 from datetime import datetime
+import logging
 from django.conf import settings
 from django.utils.html import escape
 from django.utils.translation import ugettext as _
@@ -8,10 +9,11 @@ from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models, connection
+from django.core.mail import send_mail
 
 # Create your models here.
 from django.template import Context, TemplateDoesNotExist, Template
-from django.template.loader import get_template
+from django.template.loader import get_template, render_to_string
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
 from registration.signals import user_activated
@@ -19,6 +21,8 @@ from herobase.models import Quest, Adventure, get_system_user
 from heromessage.models import Message
 
 NOTIFICATION_TYPES = {}
+logger = logging.getLogger(__name__)
+
 
 class NotificationTypeMetaClass(type):
     def __new__(cls, name, bases, attrs):
@@ -40,6 +44,8 @@ class NotificationTypeBase(object):
 
     def __init__(self, user, target):
         Notification.create(user, target, type_id=self.type_id)
+        if user.email:
+            self.send_notification_mail(user, target)
 
     @classmethod
     def get_text(cls, notification):
@@ -48,6 +54,17 @@ class NotificationTypeBase(object):
     @classmethod
     def get_image(cls, notification):
         return settings.STATIC_URL + 'heronotification/notification.png'
+
+    def send_notification_mail(self, user, target):
+        dict = {'notification': self, 'user': user, 'target': target}
+        template_base = 'heronotification/mail/{0}'.format(type(self).__name__)
+        try:
+            subject = render_to_string(template_base + '.subject', dict)
+            text = render_to_string(template_base + '.txt', dict)
+            user.email_user(subject, text)
+        except TemplateDoesNotExist:
+            logger.warning('template for {0} notification mail not found'.format(type(self).__name__))
+
 
 class hero_has_applied(NotificationTypeBase):
     type_id = 1
