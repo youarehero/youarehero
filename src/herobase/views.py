@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.comments import Comment
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site, RequestSite
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db.models import Q
 from django.utils.translation import ugettext as _
 from django.utils import simplejson as json
@@ -20,7 +20,7 @@ from django.contrib import messages
 from django.http import (HttpResponseRedirect, Http404,
                          HttpResponse, HttpResponseForbidden)
 from django.core.urlresolvers import reverse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView, UpdateView
 from registration.backends.default.views import RegistrationView, ActivationView
@@ -380,6 +380,12 @@ def userprofile(request, username=None,
     else:
         user = request.user
 
+    try:
+        organization = user.is_organization
+        return HttpResponseRedirect(organization.get_absolute_url())
+    except ObjectDoesNotExist:
+        pass
+
     return render(request, template, {
         'user': user,
         'rank': user.get_profile().rank,
@@ -520,10 +526,10 @@ class AgeRequiredRegistrationView(RegistrationView):
         email = cleaned_data['email']
         password = cleaned_data['password1']
         date_of_birth = cleaned_data['date_of_birth']
-        
+
         if not is_minimum_age(date_of_birth):
             return "BELOW_MINIMUM_AGE"
-        
+
         if Site._meta.installed:
             site = Site.objects.get_current()
         else:

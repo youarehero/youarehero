@@ -1,0 +1,11 @@
+{% extends "herobase/layout/base.html" %}
+{% load crispy_forms_tags i18n static %}
+
+{% block page_title %}
+    <h1>{% trans "Organization" %} {{ object.name }}</h1>
+{% endblock %}
+
+{% block content %}
+    {% include "heroorganization/description_box.html" %}
+    {% include "heroorganization/quests_box.html" %}
+{% endblock %}
