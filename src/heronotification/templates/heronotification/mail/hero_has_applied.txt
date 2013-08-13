@@ -1,0 +1,8 @@
+Hi {{ user.username }},
+
+the hero {{ target.user.username }} has applied to your Quest "{{ target.quest.title }}".
+
+Visit {{ target.quest.get_absolute_url }} to view the quest and accept him.
+
+Yours,
+youarehero
