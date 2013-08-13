@@ -5,6 +5,7 @@ from herobase.models import Quest
 from django.contrib.comments import Comment
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+import pytz
 
 
 class Command(BaseCommand):
@@ -14,9 +15,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if len(args) > 0:
-            since = datetime.utcfromtimestamp(int(args[0]))
+            since = datetime.fromtimestamp(int(args[0]), pytz.utc)
         else:
-            since = datetime.now() - timedelta(days=1)
+            since = datetime.now(pytz.utc) - timedelta(days=1)
 
         self.stdout.write(u"Sending out posts since {0}\n".format(since))
 

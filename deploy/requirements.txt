@@ -10,3 +10,4 @@ Pillow==1.7.7
 geopy
 django-activelink
 django-like-button
+pytz==2013b
