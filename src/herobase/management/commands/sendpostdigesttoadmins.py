@@ -44,5 +44,5 @@ class Command(BaseCommand):
             u"YAH Admin Digest",
             text,
             u"digest@youarehero.net",
-            settings.ADMINS
+            [addr for (_, addr) in settings.ADMINS]
         )
