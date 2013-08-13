@@ -95,6 +95,7 @@ class UserProfileEdit(forms.ModelForm):
                     'image',
                     'sex',
                     'about',
+                    'team',
 
                     # 'address',
                     # 'receive_system_email',
@@ -112,7 +113,7 @@ class UserProfileEdit(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('about', 'image', 'sex',
+        fields = ('about', 'image', 'sex', 'team',
                   # 'receive_system_email', 'receive_private_email',
                   # 'address', 'latitude', 'longitude', 'location_granularity'
         )

@@ -370,7 +370,7 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
         null=True)
     sex = models.IntegerField(choices=SEX_CHOICES, blank=True, null=True, verbose_name=_(u"sex"))
 
-    team = models.CharField(max_length=255, default="")
+    team = models.CharField(max_length=255, default="", blank=True)
 
     keep_email_after_gpn = models.DateTimeField(blank=True, null=True,
         editable=False)
