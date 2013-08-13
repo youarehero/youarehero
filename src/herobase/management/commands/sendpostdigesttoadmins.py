@@ -18,7 +18,7 @@ class Command(BaseCommand):
         else:
             since = datetime.now() - timedelta(days=1)
 
-        self.stdout.write("Sending out posts since {0}\n".format(since))
+        self.stdout.write(u"Sending out posts since {0}\n".format(since))
 
         quests = Quest.objects.filter(modified__gte=since)
 
@@ -31,18 +31,18 @@ class Command(BaseCommand):
             self.stdout.write("Nothing new to report")
             return
 
-        text = ""
+        text = u""
         for quest in quests:
-            text += "=== Modified/New Quest #{0}: {1}\n{2}\n"\
+            text += u"=== Modified/New Quest #{0}: {1}\n{2}\n"\
                     .format(quest.pk, quest.title, quest.description)
 
         for comment in comments:
-            text += "=== Modified/New comment #{0}:\n{1}\n"\
+            text += u"=== Modified/New comment #{0}:\n{1}\n"\
                     .format(comment.pk, comment.comment)
 
         send_mail(
-            "YAH Admin Digest",
+            u"YAH Admin Digest",
             text,
-            "digest@youarehero.net",
+            u"digest@youarehero.net",
             settings.ADMINS
         )
