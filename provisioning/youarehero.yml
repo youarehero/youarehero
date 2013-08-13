@@ -1,0 +1,79 @@
+---
+- name: youarehero vm setup
+  hosts: vagrant
+  user: vagrant
+  sudo: True
+  vars:
+    - settings_module: youarehero.settings.vagrant
+    - base_path: /srv
+    - yah_path: $base_path/youarehero
+    - yah_src: $yah_path/src
+  roles:
+  - base
+  - django
+  - postgresql
+  tasks:
+    - name: create $base_path
+      file: state=directory path={{ item }}
+      with_items:
+        - $base_path
+        - $base_path/public_html
+        - $base_path/log
+
+    - name: create dummy public_html directory
+      file: state=directory path=$base_path/public_html
+
+    - name: Link youarehero
+      file: src=/vagrant dest={{ yah_path }} state=link
+
+    - name: Install yah dependencies
+      pip: requirements="{{ yah_path }}/deploy/requirements.txt"
+
+    - name: Install psycopg2 for youarehero
+      pip: name=psycopg2
+
+    - name: Install psycopg2 for ansible
+      apt: name=python-psycopg2
+
+    - name: Create database user
+      sudo_user: postgres
+      postgresql_user: name=youarehero password=youarehero
+
+    - name: Create database
+      sudo_user: postgres
+      postgresql_db: name=youarehero
+
+    - name: Grant rights on the database
+      sudo_user: postgres
+      postgresql_privs: database=youarehero role=youarehero type=database priv=ALL
+
+    - name: Sync the database
+      django_manage: app_path={{ yah_src }} command=syncdb settings={{settings_module}}
+
+    - name: Run migrations
+      shell: cd $yah_src && ./manage.py migrate --noinput --settings={{settings_module}}
+
+    - name: Remove default apache2 server
+      file: state=absent path=/etc/apache2/sites-enabled/000-default
+      notify: restart apache
+
+    - name: Install apache2 config file for youarehero
+      template: src="templates/apache_config.j2" dest=/etc/apache2/sites-enabled/youarehero.net
+      notify: restart apache
+
+    - name: Install rubygems
+      apt:  name=rubygems
+
+    - name: Install watchr
+      gem: name=watchr state=present
+
+    - name: Install watchr service
+      template: src="templates/wsgi.j2" dest=/etc/init.d/wsgi-watchr owner=root mode=755
+
+    - name: Start the watchr service
+      service: name=wsgi-watchr state=started
+
+  handlers:
+
+    - name: restart apache
+      service: name=apache2 state=restarted

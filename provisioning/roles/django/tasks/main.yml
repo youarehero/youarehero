@@ -1,0 +1,10 @@
+---
+- name: install django requirements 
+  apt: pkg={{ item }} 
+  with_items:
+    - apache2
+    - libapache2-mod-wsgi
+    - python-dev
+    - libpng12-dev
+    - libjpeg62-dev 
+    - python-pip

@@ -1,0 +1,7 @@
+---
+- name: install postgres
+  apt: pkg={{item}} 
+  with_items:
+  - postgresql
+  - postgresql-client
+  - postgresql-server-dev-all

@@ -1,0 +1,17 @@
+---
+- name: install nullmailer
+  apt: pkg=nullmailer 
+
+- name: install mailx
+  apt: pkg=bsd-mailx 
+
+- name: copy nullmailer config
+  template: src=nullmailer/remotes dest=/etc/nullmailer/remotes
+  notify: restart nullmailer
+
+- template: src=nullmailer/adminaddr dest=/etc/nullmailer/adminaddr
+  notify: restart nullmailer
+
+- template: src=mailname dest=/etc/mailname
+  notify: restart nullmailer
+

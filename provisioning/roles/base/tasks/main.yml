@@ -1,0 +1,32 @@
+---
+# file: roles/base/tasks/main.yml
+- name: Update apt sources
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Install common system packages
+  apt: pkg={{ item }} 
+  with_items: [htop,dstat,git,etckeeper,fail2ban,logcheck,vim]
+
+- name: shut up logcheck
+  copy: src=logcheck/local-noise dest=/etc/logcheck/ignore.d.server/local-noise owner=root group=logcheck
+
+- name: Forbid SSH password authentication
+  lineinfile: >
+    dest=/etc/ssh/sshd_config
+    regexp="#? ?PasswordAuthentication [no|yes]"
+    line="PasswordAuthentication no"
+  notify: restart ssh
+
+- name: Disable SSH UseDNS
+  lineinfile: >
+    dest=/etc/ssh/sshd_config
+    regexp="#? ?UseDNS [no|yes]"
+    line="UseDNS no" state=present
+  notify: restart ssh
+
+- name: Disable SSH root login
+  lineinfile: >
+    dest=/etc/ssh/sshd_config
+    regexp="#? ?PermitRootLogin [no|yes]"
+    line="PermitRootLogin no" state=present
+  notify: restart ssh
