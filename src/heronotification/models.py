@@ -9,7 +9,6 @@ from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models, connection
-from django.core.mail import send_mail
 
 # Create your models here.
 from django.template import Context, TemplateDoesNotExist, Template
