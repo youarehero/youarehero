@@ -29,7 +29,7 @@ class Command(BaseCommand):
         )
 
         if len(quests) == 0 and len(comments) == 0:
-            self.stdout.write("Nothing new to report")
+            self.stdout.write("Nothing new to report\n")
             return
 
         text = u""
