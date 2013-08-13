@@ -33,11 +33,11 @@ class Command(BaseCommand):
 
         text = u""
         for quest in quests:
-            text += u"=== Modified/New Quest #{0}: {1}\n{2}\n"\
+            text += u"=== Modified/New Quest #{0}: {1}\n{2}\n\n"\
                     .format(quest.pk, quest.title, quest.description)
 
         for comment in comments:
-            text += u"=== Modified/New comment #{0}:\n{1}\n"\
+            text += u"=== Modified/New comment #{0}:\n{1}\n\n"\
                     .format(comment.pk, comment.comment)
 
         send_mail(
