@@ -1,0 +1,62 @@
+.icon-yah,
+.icon-yah-hand,
+.icon-yah-hand-right,
+.icon-yah-hand-left,
+.icon-yah-hand-up,
+.icon-yah-hand-down {
+  font-family: farao_book_heldregular;
+}
+.icon-yah:before {
+  content: "∞";
+}
+.icon-yah-hand:before,
+.icon-yah-hand-right:before {
+  content: "π";
+}
+.icon-yah-hand-left:before {
+  content: "∏";
+}
+.icon-yah-hand-up:before {
+  content: "∫";
+}
+.icon-yah-hand-down:before {
+  content: "ª";
+}
+h1,
+h3,
+h4 {
+  font-family: farao_textbold;
+}
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 48px;
+}
+h3 {
+  font-size: 36px;
+}
+h4 {
+  font-size: 24px;
+}
+h5 {
+  font-size: 18px;
+}
+#page_header {
+  color: #ffffff;
+  text-align: center;
+}
+#page_header h2 {
+  font-size: 16px;
+}
+#page_header #logo {
+  background: rgba(0, 0, 255, 0.6);
+}
+#page_header:after {
+  content: "";
+  width: 100%;
+  height: 0;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  border-top: 15px solid rgba(0, 0, 255, 0.6);
+}

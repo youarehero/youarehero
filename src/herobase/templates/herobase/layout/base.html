@@ -53,9 +53,11 @@
 
 {% block body %}
     <div id="background"></div>
-    <div id="background-city"></div>
-    <div id="layout-container" class="container">
-        {% block site_header_container %}
+    <div id="page" class="container">
+        {% block page_header %}
+            <div id="page_header" class="row">
+                <div class="col-lg-2"><i class="icon-yah icon-large"></i><h2>you are hero</h2></div>
+            </div>
             <div id="site-header-container" class="row">
                 <div class="span100">
                     <a href="{% url "home" %}" class="logo pull-left">

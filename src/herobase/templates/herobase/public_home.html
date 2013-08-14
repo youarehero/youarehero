@@ -37,11 +37,12 @@
 
 {% block body %}
     <div id="background"></div>
-    <div id="background-top"></div>
-    <div id="background-city"></div>
-    <div id="layout-container" class="container front-page">
+    <div id="page" class="container">
 
-        {% block site_header_container %}
+        {% block page_header %}
+            <div id="page_header" class="row">
+                <div id="logo" class="col-lg-2"><i class="icon-yah icon-4x"></i><h2>you are hero</h2></div>
+            </div>
             <div id="site-header-container" class="row" style="position: absolute;">
                 <div class="span100">
                     <a href="{% url "home" %}" class="logo pull-left">

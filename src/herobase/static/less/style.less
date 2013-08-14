@@ -3,3 +3,63 @@
 // Core variables and mixins
 @import "../bootstrap/less/variables.less";
 @import "../bootstrap/less/mixins.less";
+
+@white: #fff;
+@corner_cut: 15px;
+
+// YAH Icons
+.icon-yah,
+.icon-yah-hand,
+.icon-yah-hand-right,
+.icon-yah-hand-left,
+.icon-yah-hand-up,
+.icon-yah-hand-down {
+    font-family: farao_book_heldregular;
+}
+
+.icon-yah:before {
+    content: "∞";
+}
+.icon-yah-hand:before,
+.icon-yah-hand-right:before{
+    content: "π";
+}
+.icon-yah-hand-left:before {
+    content: "∏";
+}
+.icon-yah-hand-up:before {
+    content: "∫";
+}
+.icon-yah-hand-down:before {
+    content: "ª";
+}
+
+// Headlines
+h1,h3,h4 {
+  font-family: farao_textbold;
+}
+h1 { font-size: 48px; }
+h2 { font-size: 48px; }
+h3 { font-size: 36px; }
+h4 { font-size: 24px; }
+h5 { font-size: 18px; }
+
+// Header
+#page_header {
+  color: @white;
+  h2 {
+    font-size: 16px;
+  }
+  text-align: center;
+  #logo {
+    background: rgba(0,0,255,0.6);
+  }
+  &:after {
+    content: "";
+    width: 100%;
+    height: 0;
+    border-right: @corner_cut solid transparent;
+    border-left: @corner_cut solid transparent;
+    border-top: @corner_cut solid rgba(0,0,255,0.6);
+  }
+}
