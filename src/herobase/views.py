@@ -376,3 +376,6 @@ def like_quest(request, quest_id):
         # recommender_signals.like.send(sender=request.user, quest=quest)
 
     return HttpResponse(json.dumps({'success': True, 'likes_count': quest.likes_count}), mimetype='application/json')
+
+def team(request, team_name):
+    return HttpResponse("toll")
