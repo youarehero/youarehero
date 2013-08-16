@@ -43,90 +43,48 @@
             <div id="page_header" class="row">
                 <div class="nav-container">
                     <ul id="brand" class="nav nav-blue">
-                        <li>
-                            <a href="{% url "home" %}">
-                                <h2>
-                                    <i class="icon-yah icon-4x"></i>
-                                    <br>you are hero
-                                </h2>
-                            </a>
-                        </li>
+                        <li><a href="{% url "home" %}"><h2><i class="icon-yah icon-4x"></i><br>you are hero</h2></a></li>
                     </ul>
                 </div>
                 <div class="nav-container">
                     <ul class="nav nav-black">
-                        <li>
-                            <a href="#">
-                                    <i class="icon-puzzle-piece icon-3x"></i>
-                                    <br>Das Spiel
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                    <i class="icon-pushpin icon-3x"></i>
-                                    <br>Quests
-                            </a>
-                        </li>
-                        <li class="active">
-                            <a href="#"><i class="icon-comments icon-3x"></i><br>Nachrichten</a>
-                        </li>
+                        <li><a href="#"><i class="icon-puzzle-piece icon-3x"></i><br>Das Spiel</a></li>
+                        <li><a href="#"><i class="icon-pushpin icon-3x"></i><br>Quests</a></li>
+                        <li class="active"><a href="#"><i class="icon-comments icon-3x"></i><br>Nachrichten</a></li>
                     </ul>
                     <ul class="nav nav-black sub">
-                        <li class="active">
-                            <a href="#"><i class="icon-inbox icon-2x"></i><br>Eingang</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-share icon-2x"></i><br>Ausgang</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-pencil icon-2x"></i><br>Verfassen</a>
-                        </li>
+                        <li class="active"><a href="#"><i class="icon-inbox icon-2x"></i><br>Eingang</a></li>
+                        <li><a href="#"><i class="icon-share icon-2x"></i><br>Ausgang</a></li>
+                        <li><a href="#"><i class="icon-pencil icon-2x"></i><br>Verfassen</a></li>
                     </ul>
                 </div>
                 <div class="nav-container">
                     <ul class="nav nav-blue">
-                        <li>
-                            <a href="#">
-                                    <i class="icon-power-off icon-2x"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                    <i class="icon-cogs icon-2x"><b>99</b></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                    <i class="icon-question icon-2x"><b>99</b></i>
-                            </a>
-                        </li>
-                        <li class="active">
-                            <a href="#">
-                                    <i class="icon-bell-alt icon-2x"><b>99</b></i>
-
-                            </a>
-                        </li>
+                        <li><a href="#"><i class="icon-power-off icon-2x"></i></a></li>
+                        <li><a href="#"><i class="icon-cogs icon-2x"><b>99</b></i></a></li>
+                        <li><a href="#"><i class="icon-question icon-2x"><b>99</b></i></a></li>
+                        <li class="active"><a href="#"><i class="icon-bell-alt icon-2x"><b>99</b></i></a></li>
                     </ul>
                 </div>
-
-            </div>
-
-            <div id="site-header-container" class="row" style="position: absolute;">
-                <div class="span100">
-                    <a href="{% url "home" %}" class="logo pull-left">
-                        <img src="{% get_static_prefix %}img/yahlogo-text.svg" alt="You Are Hero" style="height: 147px;">
-                    </a>
-                    {% if not request.user.is_authenticated %}
-
-                    {% endif %}
-                    {% block site_header %}
-
-                    {% endblock %}
+                <div class="nav-container">
+                    <ul class="nav nav-red nav-font">
+                        <li>
+                            <ul class="nav nav-blue">
+                                <li>
+                                    <form method="POST">
+                                        {% crispy login_form %}
+                                        <button type="submit" class="">Log in</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="pull-down"><a href="#">Registrieren</a></li>
+                    </ul>
                 </div>
             </div>
         {% endblock %}
 
-        <div class="row" style="margin-top: 96px;">
+        <div class="row">
             {% block sidebar_left_container %}
             {% endblock %}
             <div class="span4">

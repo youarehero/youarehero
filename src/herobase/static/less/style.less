@@ -27,10 +27,6 @@ h5 { font-size: 18px; }
 @foreground: #fff;
 
 #page_header {
-  .dropdown-menu {
-
-  }
-
   .nav-container {
     position: relative;
     float: left;
@@ -39,8 +35,16 @@ h5 { font-size: 18px; }
 
   .nav {
     text-align: center;
-    &> li > a {
+    > li {
+//      margin-top: @corner_cut;
+      margin-bottom: -@corner_cut;
+      > a {
       padding: 5px 8px;
+      &:hover,
+      &:focus {
+        background-color: transparent;
+      }
+    }
     }
     &:after {
       content: "";
@@ -51,17 +55,15 @@ h5 { font-size: 18px; }
       left: 0;
       border-right: @corner_cut solid transparent;
       border-left: @corner_cut solid transparent;
-      border-top: @corner_cut solid #000;
+      border-top: @corner_cut solid transparent;
     }
   }
 
   .nav-black {
     background: @background;
-
     > li {
-      display: inline-block;
-    }
-    > li > a {
+      float: left;
+      > a {
       color: @text-color;
       border: 1px dashed;
       border-color: transparent transparent @foreground-red transparent;
@@ -71,6 +73,7 @@ h5 { font-size: 18px; }
         background: @background;
         border-color: @foreground-red @foreground-red transparent @foreground-red;
       }
+    }
     }
     > .active > a {
       &,
@@ -88,11 +91,15 @@ h5 { font-size: 18px; }
   .nav-blue {
     text-align: center;
     background: @background-blue;
-    > li > a {
-      color: @foreground;
-      &:hover,
-      &:focus {
-        background: darken(@background-blue, 10%);
+    margin-top: -@corner_cut;
+    > li {
+      margin-top: @corner_cut;
+      > a {
+        color: @foreground;
+        &:hover,
+        &:focus {
+          background: darken(@background-blue, 10%);
+        }
       }
     }
     > .active > a {
@@ -106,10 +113,61 @@ h5 { font-size: 18px; }
       border-top: @corner_cut solid @background-blue;
     }
   }
+  .nav-red {
+    text-align: center;
+    background: @background-red;
+    margin-top: -@corner_cut;
+    > li {
+      margin-top: @corner_cut;
+      > a {
+        color: @foreground;
+        &:hover,
+        &:focus {
+          background: darken(@background-red, 10%);
+        }
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        background: darken(@background-red, 10%);
+      }
+    }
+    &:after {
+      border-top: @corner_cut solid @background-red;
+    }
+  }
 
   .nav.sub {
     > li > a {
       border: 0px none;
+    }
+  }
+
+  .nav-font {
+    font-size: 16px;
+    > li.pull-down {
+      margin-top: 2 * @corner_cut;
+//      margin-bottom: -@corner_cut;
+    }
+    input {
+      color: @foreground;
+      margin: 0 20px;
+      background: transparent;
+      border: 0px none;
+      border-bottom: 2px solid @foreground;
+      bortder-radius: 0;
+    }
+    [type="submit"] {
+      color: @foreground;
+      width: 100%;
+      background: transparent;
+      border: 0px none;
+      padding: 5px 8px;
+      &:hover {
+        background: darken(@background-blue, 10%);
+      }
     }
   }
 

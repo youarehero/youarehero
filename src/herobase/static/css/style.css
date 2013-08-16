@@ -26,8 +26,15 @@ h5 {
 #page_header .nav {
   text-align: center;
 }
+#page_header .nav > li {
+  margin-bottom: -15px;
+}
 #page_header .nav > li > a {
   padding: 5px 8px;
+}
+#page_header .nav > li > a:hover,
+#page_header .nav > li > a:focus {
+  background-color: transparent;
 }
 #page_header .nav:after {
   content: "";
@@ -38,13 +45,13 @@ h5 {
   left: 0;
   border-right: 15px solid transparent;
   border-left: 15px solid transparent;
-  border-top: 15px solid #000000;
+  border-top: 15px solid transparent;
 }
 #page_header .nav-black {
   background: #ffffff;
 }
 #page_header .nav-black > li {
-  display: inline-block;
+  float: left;
 }
 #page_header .nav-black > li > a {
   color: #333333;
@@ -70,6 +77,10 @@ h5 {
 #page_header .nav-blue {
   text-align: center;
   background: rgba(0, 0, 255, 0.6);
+  margin-top: -15px;
+}
+#page_header .nav-blue > li {
+  margin-top: 15px;
 }
 #page_header .nav-blue > li > a {
   color: #ffffff;
@@ -86,8 +97,55 @@ h5 {
 #page_header .nav-blue:after {
   border-top: 15px solid rgba(0, 0, 255, 0.6);
 }
+#page_header .nav-red {
+  text-align: center;
+  background: rgba(255, 0, 0, 0.6);
+  margin-top: -15px;
+}
+#page_header .nav-red > li {
+  margin-top: 15px;
+}
+#page_header .nav-red > li > a {
+  color: #ffffff;
+}
+#page_header .nav-red > li > a:hover,
+#page_header .nav-red > li > a:focus {
+  background: rgba(204, 0, 0, 0.6);
+}
+#page_header .nav-red > .active > a,
+#page_header .nav-red > .active > a:hover,
+#page_header .nav-red > .active > a:focus {
+  background: rgba(204, 0, 0, 0.6);
+}
+#page_header .nav-red:after {
+  border-top: 15px solid rgba(255, 0, 0, 0.6);
+}
 #page_header .nav.sub > li > a {
   border: 0px none;
+}
+#page_header .nav-font {
+  font-size: 16px;
+}
+#page_header .nav-font > li.pull-down {
+  margin-top: 30px;
+}
+#page_header .nav-font input {
+  color: #ffffff;
+  margin: 0 20px;
+  background: transparent;
+  border: 0px none;
+  border-bottom: 2px solid #ffffff;
+  bortder-radius: 0;
+}
+#page_header .nav-font [type="submit"] {
+  color: #ffffff;
+  width: 100%;
+  background: transparent;
+  border: 0px none;
+  padding: 5px 8px;
+}
+#page_header .nav-font [type="submit"]:hover {
+  background: rgba(0, 0, 204, 0.6);
 }
 #page_header #brand {
   margin-top: -50px;

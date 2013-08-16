@@ -185,11 +185,11 @@ class UserAuthenticationForm(AuthenticationForm):
 
         email = self.fields['email']
         email.label = ""
-        email.widget = forms.TextInput(attrs={'placeholder':'user@example.com', 'autocapitalize': 'off', 'autocorrect': 'off'})
+        email.widget = forms.TextInput(attrs={'placeholder':'Identität', 'autocapitalize': 'off', 'autocorrect': 'off'})
 
         password = self.fields['password']
         password.label = ""
-        password.widget = forms.PasswordInput(attrs={'placeholder':'password'})
+        password.widget = forms.PasswordInput(attrs={'placeholder':'Kennung'})
 
     def clean_email(self):
         self.cleaned_data['username'] = self.cleaned_data['email']
