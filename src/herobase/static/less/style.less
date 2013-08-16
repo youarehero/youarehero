@@ -4,8 +4,125 @@
 @import "../bootstrap/less/variables.less";
 @import "../bootstrap/less/mixins.less";
 
-@white: #fff;
+
+
+
+// Headlines
+h1,h3,h4 {
+  font-family: farao_textbold;
+}
+h1 { font-size: 48px; }
+h2 { font-size: 48px; }
+h3 { font-size: 36px; }
+h4 { font-size: 24px; }
+h5 { font-size: 18px; }
+
+// Header
 @corner_cut: 15px;
+@background: #fff;
+@background-blue: rgba(0,0,255,0.6);
+@background-red: rgba(255,0,0,0.6);
+@foreground-blue: rgba(0,0,255,1);
+@foreground-red: rgba(255,0,0,1);
+@foreground: #fff;
+
+#page_header {
+  .dropdown-menu {
+
+  }
+
+  .nav-container {
+    position: relative;
+    float: left;
+    margin-left: 20px;
+  }
+
+  .nav {
+    text-align: center;
+    &> li > a {
+      padding: 5px 8px;
+    }
+    &:after {
+      content: "";
+      width: 100%;
+      height: 0;
+      position: relative;
+      top: @corner_cut;
+      left: 0;
+      border-right: @corner_cut solid transparent;
+      border-left: @corner_cut solid transparent;
+      border-top: @corner_cut solid #000;
+    }
+  }
+
+  .nav-black {
+    background: @background;
+
+    > li {
+      display: inline-block;
+    }
+    > li > a {
+      color: @text-color;
+      border: 1px dashed;
+      border-color: transparent transparent @foreground-red transparent;
+      &:hover,
+      &:focus {
+        color: @foreground-red;
+        background: @background;
+        border-color: @foreground-red @foreground-red transparent @foreground-red;
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @foreground-red;
+        background: @background;
+        border-color: @foreground-red @foreground-red transparent @foreground-red;
+      }
+    }
+    &:after {
+      border-top: @corner_cut solid @background;
+    }
+  }
+  .nav-blue {
+    text-align: center;
+    background: @background-blue;
+    > li > a {
+      color: @foreground;
+      &:hover,
+      &:focus {
+        background: darken(@background-blue, 10%);
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        background: darken(@background-blue, 10%);
+      }
+    }
+    &:after {
+      border-top: @corner_cut solid @background-blue;
+    }
+  }
+
+  .nav.sub {
+    > li > a {
+      border: 0px none;
+    }
+  }
+
+  #brand {
+    margin-top: -50px;
+    h2 {
+      font-size: 16px;
+    }
+    width: 150px;
+  }
+  .clearfix;
+}
+
 
 // YAH Icons
 .icon-yah,
@@ -34,32 +151,31 @@
     content: "ª";
 }
 
-// Headlines
-h1,h3,h4 {
-  font-family: farao_textbold;
-}
-h1 { font-size: 48px; }
-h2 { font-size: 48px; }
-h3 { font-size: 36px; }
-h4 { font-size: 24px; }
-h5 { font-size: 18px; }
+.icon-question {
+  font-family: farao_book_heldregular;
+  line-height: 15px;
+  &:before {
+    content: "?";
+    line-height: 15px;
+    font-size: 1.4em;
+  }
 
-// Header
-#page_header {
-  color: @white;
-  h2 {
-    font-size: 16px;
-  }
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  position: relative;
+  vertical-align: middle;
   text-align: center;
-  #logo {
-    background: rgba(0,0,255,0.6);
-  }
-  &:after {
-    content: "";
+  b {
+    color: red;
+    font-size: 0.5em;
+    left: 50%;
+    top: 50%;
+    margin-left: -50%;
+    margin-top: -50%;
+    position: absolute;
     width: 100%;
-    height: 0;
-    border-right: @corner_cut solid transparent;
-    border-left: @corner_cut solid transparent;
-    border-top: @corner_cut solid rgba(0,0,255,0.6);
-  }
+    color: @foreground-red;
+}
 }
