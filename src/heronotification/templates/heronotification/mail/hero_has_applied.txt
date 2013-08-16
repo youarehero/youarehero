@@ -1,8 +1,9 @@
-Hi {{ user.username }},
+Neue Helden und Heldinnen
 
-the hero {{ target.user.username }} has applied to your Quest "{{ target.quest.title }}".
+Verehrte Damen und Herren,
+für ihre Quest {{ target.quest.title }} ist eine neue Bewerbung eingegangen.
+Bitte melden Sie sich baldmöglichst bei den Bewerbenden zurück!
+Besuchen sie http://{{ site.domain }}{{ target.quest.get_absolute_url }} um die Quest anzuzeigen und die Bewerbung zu bearbeiten.
 
-Visit {{ target.quest.get_absolute_url }} to view the quest and accept him.
-
-Yours,
-youarehero
+Hochachtungsvoll,
+Ihr Butler von you are hero

@@ -1,0 +1,7 @@
+Glückwunsch,
+
+Verehrte Damen und Herren,
+Die Quest {{ target.title }} wurde erfolgreich abgeschlossen.
+
+Hochachtungsvoll,
+Ihr Butler von you are hero

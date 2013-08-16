@@ -1,1 +1,1 @@
-A new hero has applied to your Quest
+{{ target.user.username }} hat sich auf ihre Quest {{ target.quest.title }} beworben
