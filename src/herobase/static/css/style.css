@@ -131,11 +131,12 @@ h5 {
 }
 #page_header .nav-font input {
   color: #ffffff;
-  margin: 0 20px;
+  margin: 0 15px;
   background: transparent;
   border: 0px none;
   border-bottom: 2px solid #ffffff;
   bortder-radius: 0;
+  width: 150px;
 }
 #page_header .nav-font [type="submit"] {
   color: #ffffff;
@@ -148,7 +149,7 @@ h5 {
   background: rgba(0, 0, 204, 0.6);
 }
 #page_header #brand {
-  margin-top: -50px;
+  margin-top: -70px;
   width: 150px;
 }
 #page_header #brand h2 {
