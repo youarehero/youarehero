@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block content %}
-    TODO: Check this for injections
     <ul>
         {% for user in users %}
         <li><a href="{% url herobase.views.userprofile user.username %}">{{user.username}}</a></li>
