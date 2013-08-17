@@ -26,6 +26,7 @@ urlpatterns = patterns(
     url(r'^quest/', include('herobase.urls.quest')),
     url(r'^messages/', include('heromessage.urls')),
     url(r'^recommend/', include('herorecommend.urls')),
+    url(r'^team/', include('herobase.urls.team')),
 
     url(regex=r'^dismiss_notification/(?P<notification_id>\d+)/$',
         view='heronotification.views.mark_notification_read',

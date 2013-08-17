@@ -23,6 +23,10 @@
                 <p>{{ user.get_profile.about }}</p>
             {%  endif %}
             <dl class="dl-horizontal">
+                {% if user.get_profile.team %}
+                <dt>{% trans "Team" %}</dt>
+                <dd><a href="{% url herobase.views.team user.get_profile.team %}">{{ user.get_profile.team }}</a></dd>
+                {% endif %}
                 <dt>{% trans "Member since" %} </dt><dd>{{ user.get_profile.created|timesince }}</dd>
 {#                {% if user.get_profile.public_location %}#}
 {#                    <dt>{% trans "Region" %}</dt><dd>{{ user.get_profile.location }}</dd>#}

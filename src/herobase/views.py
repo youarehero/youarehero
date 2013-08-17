@@ -376,3 +376,14 @@ def like_quest(request, quest_id):
         # recommender_signals.like.send(sender=request.user, quest=quest)
 
     return HttpResponse(json.dumps({'success': True, 'likes_count': quest.likes_count}), mimetype='application/json')
+
+def team(request, team_name):
+    users = User.objects.select_related('profile')\
+            .filter(profile__team=team_name)
+    if not users:
+        raise Http404()
+
+    return render(request, "herobase/team.html",{
+        'team_name': team_name,
+        'users': users
+    })
