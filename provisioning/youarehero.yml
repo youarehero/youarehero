@@ -67,6 +67,9 @@
     - name: Install watchr
       gem: name=watchr state=present
 
+    - name: Install rev gem for watchr
+      gem: name=rev state=present
+
     - name: Install watchr service
       template: src="templates/wsgi.j2" dest=/etc/init.d/wsgi-watchr owner=root mode=755
 
