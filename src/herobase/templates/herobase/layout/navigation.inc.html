@@ -15,8 +15,8 @@
                 <li><a href="#"><i class="icon-puzzle-piece icon-3x"></i><br>Das Spiel</a></li>
                 <li class="{% ifactive "quest_list" %}active{% endifactive %}">
                     <a href="{% url "quest_list" %}"><i class="icon-pushpin icon-3x"></i><br>Quests</a></li>
-                <li class="{% ifstartswith "message" %}on{% endifstartswith %}"><a href="#"><i class="icon-comments icon-3x">
-                <b>34</b>
+                <li class="{% ifstartswith "message" %}active{% endifstartswith %}"><a href="#"><i class="icon-comments icon-3x">
+                    <b>34</b>
                     {% with unread_message_count=request.user.profile.unread_messages_count %}
                     {% if unread_message_count != 0 %}
                         <b>{{ unread_messages_count }}</b>
@@ -26,10 +26,10 @@
             </ul>
             {% block submenu %}&nbsp;{% endblock %}
             <ul class="nav nav-black sub">
-                <li class="{% ifactive "message_list_in" %}on{% endifactive %}">
-                    <a href="#"><i class="icon-inbox icon-2x"></i><br>Eingang</a></li>
+                <li class="{% ifactive "message_list_in" %}active{% endifactive %}">
+                    <a href="{% url "message_list_in" %}"><i class="icon-inbox icon-2x"></i><br>Eingang</a></li>
                 <li><a href="#"><i class="icon-share icon-2x"></i><br>Ausgang</a></li>
-                <li class="{% ifactive "quest_create" %}on{% endifactive %}">
+                <li class="{% ifactive "quest_create" %}active{% endifactive %}">
                     <a href="{% url "message_create" %}"><i class="icon-pencil icon-2x"></i><br>Verfassen</a></li>
             </ul>
         </div>
