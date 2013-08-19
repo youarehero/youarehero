@@ -53,74 +53,37 @@
 
 {% block body %}
     <div id="background"></div>
-    <div id="page" class="container">
+    <div id="page">
         {% block page_header %}
-            <div id="page_header" class="row">
-                <div class="col-lg-2">
-                    <i class="icon-yah icon-4x"></i>
-                    <h2>you are hero</h2>
-                </div>
-            </div>
-            <div id="site-header-container" class="row">
-                <div class="span100">
-                    <a href="{% url "home" %}" class="logo pull-left">
-                        <img src="{% get_static_prefix %}img/yahlogo.svg" alt="You Are Hero">
-                        <h2 style="color: black; position: absolute; left: 70px; top: 43px; font-size: 30px;">youarehero</h2>
-                    </a>
-                    {% if not request.user.is_authenticated %}
-
-                    {% endif %}
-                    <ul class="small-grid menu user-menu pull-right">
-                        {% if request.user.is_authenticated %}
-                            <li class="{% ifactive "userprofile_edit" %}on{% endifactive %}">
-                                <a href="{% url "userprofile_edit" %}"><i class="icon-yah-settings icon-40"><span>{% trans "Settings" %}</span></i></a>
-                            </li>
-                            <li><a href="{% url "auth_logout" %}"><i class="icon-yah-logout icon-40"><span>{% trans "Logout" %}</span></i></a></li>
-                        {% endif %}
-                    </ul>
-                    {% block site_header %}
-                    {% endblock %}
-                </div>
+            <div class="container">
+                {% include "herobase/layout/navigation.inc.html" %}
             </div>
         {% endblock %}
-        <div class="row">
-            {% block sidebar_left_container %}
-                <div id="sidebar-left-container" class="span2 sidebar-left">
-                    {% include "herobase/layout/mainmenu.inc.html" %}
-                </div> <!-- end sidebar-left -->
-            {% endblock %}
-            {% block page_container %}
-                <div id="page-container" class="span6 row">
-                    <div id="page-title">
-                        {% block page_title %}<h1>You are HERO</h1>{% endblock %}
-                    </div>
-                    <div id="submenu">
-                        {% block submenu %}&nbsp;{% endblock %}
-                    </div>
-                    <div id="page-content">
-                        {% include "herobase/layout/messages.inc.html" %}
-                        {% block content %}&nbsp;{% endblock %}
-                    </div>
-                </div> <!-- end page -->
-            {% endblock %}
-            {% block sidebar_right_container %}
-                <div id="sidebar-right-container" class="sidebar-right">
-                    {% block sidebar_right %}
-                        {% if request.user.is_authenticated %}
-                            {% include "herobase/userprofile/detail_mini.html" %}
-                            {% include "herobase/butler.inc.html" %}
-                        {% endif %}
-                    {% endblock %}
-                </div> <!-- end sidebar-right -->
-            {% endblock %}
-        </div>
-        {% block site_footer_container %}
-            <div id="page-footer">
-                <div class="pull-right">
-                    <a href="{% url "imprint" %}" title="Impressum">Impressum</a>
+        {% block page_content %}
+            <div id="content" class="container">
+                {% block page_title %}<h1>You are HERO</h1>{% endblock %}
+                {% include "herobase/layout/messages.inc.html" %}
+                {% block content %}&nbsp;{% endblock %}
+            </div>
+        {% endblock %}
+        {% block page_footer %}
+            <div  class="container">
+                <div id="page-footer">
+                    <ul class="nav nav-blue cut-corners-top">
+                        <li><a href="#">Log-In</a></li>
+                        <li><i class="icon-circle"></i></li>
+                        <li><a href="{% url "registration_register" %}">Registrieren</a></li>
+                        <li><i class="icon-circle"></i></li>
+                        <li><a href="{% url "imprint" %}" title="Impressum">Impressum</a></li>
+                        <li><i class="icon-circle"></i></li>
+                        <li><a href="{% url "abstract" %}">Presse</a></li>
+                        <li><i class="icon-circle"></i></li>
+                        <li><a href="#">Kontakt</a></li>
+                        <li><i class="icon-circle"></i></li>
+                        <li><a href="./blog/">Blog</a></li>
+                    </ul>
                 </div>
             </div>
-
         {% endblock %}
     </div>
 

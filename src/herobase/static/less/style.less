@@ -4,10 +4,50 @@
 @import "../bootstrap/less/variables.less";
 @import "../bootstrap/less/mixins.less";
 
+// Mixins
+@cut-corner-radius: 15px;
+.cut-corners-bottom(@color, @radius: @cut-corner-radius) {
+  margin-bottom: @cut-corner-radius;
+  &:after {
+      content: "";
+      display: table;
+      width: 100%;
+      height: 0;
+      position: relative;
+      top: @cut-corner-radius;
+      left: 0;
+      border-right: @cut-corner-radius solid transparent;
+      border-left: @cut-corner-radius solid transparent;
+      border-top: @cut-corner-radius solid @color;
+      border-bottom: 0 none;
+    }
+}
+.cut-corners-top(@color, @radius: @cut-corner-radius) {
+  margin-top: @cut-corner-radius;
+  &:before {
+      content: "";
+      display: table;
+      width: 100%;
+      height: 0;
+      position: relative;
+      bottom: @cut-corner-radius;
+      left: 0;
+      border-right: @cut-corner-radius solid transparent;
+      border-left: @cut-corner-radius solid transparent;
+      border-bottom: @cut-corner-radius solid @color;
+      border-top: 0 none;
+    }
+}
+
+.cut-corners(@color, @radius: @cut-corner-radius) {
+  .cut-corners-bottom(@color, @radius);
+  .cut-corners-top(@color, @radius);
+}
+
+// Typographie
+//------------------
 
 
-
-// Headlines
 h1,h3,h4 {
   font-family: farao_textbold;
 }
@@ -17,16 +57,21 @@ h3 { font-size: 36px; }
 h4 { font-size: 24px; }
 h5 { font-size: 18px; }
 
-// Header
-@corner_cut: 15px;
+
+// Layout
+//---------------
 @background: #fff;
 @background-blue: rgba(0,0,255,0.6);
 @background-red: rgba(255,0,0,0.6);
 @foreground-blue: rgba(0,0,255,1);
 @foreground-red: rgba(255,0,0,1);
 @foreground: #fff;
+@black: #333;
+@white: #fff;
 
-#page_header {
+
+// Navigation
+#navigation {
   .nav-container {
     position: relative;
     float: left;
@@ -37,7 +82,7 @@ h5 { font-size: 18px; }
     text-align: center;
     > li {
 //      margin-top: @corner_cut;
-      margin-bottom: -@corner_cut;
+      margin-bottom: -@cut-corner-radius;
       > a {
       padding: 5px 8px;
       &:hover,
@@ -45,17 +90,6 @@ h5 { font-size: 18px; }
         background-color: transparent;
       }
     }
-    }
-    &:after {
-      content: "";
-      width: 100%;
-      height: 0;
-      position: relative;
-      top: @corner_cut;
-      left: 0;
-      border-right: @corner_cut solid transparent;
-      border-left: @corner_cut solid transparent;
-      border-top: @corner_cut solid transparent;
     }
   }
 
@@ -84,18 +118,17 @@ h5 { font-size: 18px; }
         border-color: @foreground-red @foreground-red transparent @foreground-red;
       }
     }
-    &:after {
-      border-top: @corner_cut solid @background;
-    }
+    .cut-corners-bottom(@background);
+
   }
   .nav-blue {
     text-align: center;
     background: @background-blue;
-    margin-top: -@corner_cut;
+    margin-top: -@cut-corner-radius;
     > li {
-      margin-top: @corner_cut;
+      margin-top: @cut-corner-radius;
       > a {
-        color: @foreground;
+        color: @white;
         &:hover,
         &:focus {
           background: darken(@background-blue, 10%);
@@ -109,18 +142,16 @@ h5 { font-size: 18px; }
         background: darken(@background-blue, 10%);
       }
     }
-    &:after {
-      border-top: @corner_cut solid @background-blue;
-    }
+    .cut-corners-bottom(@background-blue);
   }
   .nav-red {
     text-align: center;
     background: @background-red;
-    margin-top: -@corner_cut;
+    margin-top: -@cut-corner-radius;
     > li {
-      margin-top: @corner_cut;
+      margin-top: @cut-corner-radius;
       > a {
-        color: @foreground;
+        color: @white;
         &:hover,
         &:focus {
           background: darken(@background-red, 10%);
@@ -134,12 +165,11 @@ h5 { font-size: 18px; }
         background: darken(@background-red, 10%);
       }
     }
-    &:after {
-      border-top: @corner_cut solid @background-red;
-    }
+    .cut-corners-bottom(@background-red);
   }
 
   .nav.sub {
+    margin-top: -@cut-corner-radius;
     > li > a {
       border: 0px none;
     }
@@ -148,20 +178,20 @@ h5 { font-size: 18px; }
   .nav-font {
     font-size: 16px;
     > li.pull-down {
-      margin-top: 2 * @corner_cut;
+      margin-top: 2 * @cut-corner-radius;
 //      margin-bottom: -@corner_cut;
     }
     input {
-      color: @foreground;
-      margin: 0 @corner_cut;
+      color: @white;
+      margin: 0 @cut-corner-radius;
       background: transparent;
       border: 0px none;
-      border-bottom: 2px solid @foreground;
+      border-bottom: 2px solid @white;
       bortder-radius: 0;
       width: 150px;
     }
     [type="submit"] {
-      color: @foreground;
+      color: @white;
       width: 100%;
       background: transparent;
       border: 0px none;
@@ -179,11 +209,85 @@ h5 { font-size: 18px; }
     }
     width: 150px;
   }
-  .clearfix;
 }
 
+// Footer
+#page-footer {
+  font-size: 16px;
+  .nav-container {
+    position: relative;
+    float: left;
+    margin-left: 20px;
+  }
+
+  .nav {
+    text-align: center;
+    > li {
+      padding: 5px 5px;
+      margin-top: -@cut-corner-radius;
+      margin-bottom: @cut-corner-radius;
+      > a {
+      padding: 0 5px;
+      &:hover,
+      &:focus {
+        background-color: transparent;
+      }
+    }
+    }
+  }
+
+  .nav-blue {
+    text-align: center;
+    background: @background-blue;
+    margin-top: -@cut-corner-radius;
+    color: @white;
+    > li {
+      float: left;
+      > a {
+        color: @white;
+        &:hover,
+        &:focus {
+          background: darken(@background-blue, 10%);
+        }
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        background: darken(@background-blue, 10%);
+      }
+    }
+    .cut-corners-top(@background-blue);
+  }
+
+}
+
+// Boxes
+.box {
+  background: @background;
+  .cut-corners(@background);
+}
+.box-red {
+  color: @foreground-red;
+  background: @background-red;
+  &.cut-corners {
+    .cut-corners(@background-red);
+  }
+}
+.box-blue {
+  color: @foreground-blue;
+  background: @background-blue;
+  &.cut-corners {
+    .cut-corners(@background-blue);
+  }
+}
+.box-content {
+  margin: 0 @cut-corner-radius;
+}
 
 // YAH Icons
+//-------------
 .icon-yah,
 .icon-yah-hand,
 .icon-yah-hand-right,
@@ -225,7 +329,6 @@ h5 { font-size: 18px; }
 [class*=" icon-"] {
   position: relative;
   b {
-    color: red;
     font-size: 0.5em;
     left: 50%;
     top: 50%;
@@ -234,5 +337,49 @@ h5 { font-size: 18px; }
     position: absolute;
     width: 100%;
     color: @foreground-red;
+  }
 }
+.nav-black [class^="icon-"] b,
+.nav-black [class*=" icon-"] b {
+  color: @black;
+}
+
+
+// Caret (for collapsible boxes)
+.box .caret {
+  display: none;
+}
+.box.collapsible > .box-title {
+  cursor: pointer;
+}
+.box.collapsible .caret {
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 6px;
+  border-top: 10px solid #222222;
+  border-bottom: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+.box.collapsible.collapsed .box-content {
+  display: none;
+}
+.box.collapsible.collapsed .caret {
+  border-left: 10px solid #222222;
+  border-right: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+
+// Special Staff Links
+#team_hints {
+  position: fixed;
+  bottom: 0;
+  left: 10%;
+  background: #111;
+  color: #fb0;
+  padding: 0 10px;
+  a {
+    padding: 2px 5px;
+  }
 }

@@ -39,63 +39,11 @@
     <div id="background"></div>
     <div id="page" class="container">
 
-        {% block page_header %}
-            <div id="page_header" class="row">
-                <div class="nav-container">
-                    <ul id="brand" class="nav nav-blue">
-                        <li><a href="{% url "home" %}"><h2><i class="icon-yah icon-4x"></i><br>you are hero</h2></a></li>
-                    </ul>
-                </div>
-                <div class="nav-container">
-                    <ul class="nav nav-black">
-                        <li><a href="#"><i class="icon-puzzle-piece icon-3x"></i><br>Das Spiel</a></li>
-                        <li><a href="#"><i class="icon-pushpin icon-3x"></i><br>Quests</a></li>
-                        <li class="active"><a href="#"><i class="icon-comments icon-3x"></i><br>Nachrichten</a></li>
-                    </ul>
-                    <ul class="nav nav-black sub">
-                        <li class="active"><a href="#"><i class="icon-inbox icon-2x"></i><br>Eingang</a></li>
-                        <li><a href="#"><i class="icon-share icon-2x"></i><br>Ausgang</a></li>
-                        <li><a href="#"><i class="icon-pencil icon-2x"></i><br>Verfassen</a></li>
-                    </ul>
-                </div>
-                <div class="nav-container">
-                    <ul class="nav nav-blue">
-                        <li><a href="#"><i class="icon-power-off icon-2x"></i></a></li>
-                        <li><a href="#"><i class="icon-cogs icon-2x"><b>99</b></i></a></li>
-                        <li><a href="#"><i class="icon-question icon-2x"><b>99</b></i></a></li>
-                        <li class="active"><a href="#"><i class="icon-bell-alt icon-2x"><b>99</b></i></a></li>
-                    </ul>
-                </div>
-                <div class="nav-container">
-                    <ul class="nav nav-red nav-font">
-                        <li>
-                            <ul class="nav nav-blue">
-                                <li>
-                                    <form method="POST">
-                                        {% crispy login_form %}
-                                        <button type="submit" class="">Log in</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="pull-down"><a href="#">Registrieren</a></li>
-                    </ul>
-                </div>
-                <div class="nav-container">
-                    <ul class="nav nav-red nav-font">
-                        <li><a href="#">
-                            <i class="icon-yah-hand-right"></i> Erfahre mehr <i class="icon-yah-hand-left"></i>
-                        </a></li>
-                    </ul>
-                </div>
-            </div>
-        {% endblock %}
+
 
         <div class="row">
-            {% block sidebar_left_container %}
-            {% endblock %}
-            <div class="span4">
-                <div id="video" class=" box" style="margin-top: 98px;">
+            <div class="col-md-4">
+                <div id="video" class=" box">
                     <h2>{% trans "Videos" %}</h2>
                     <iframe width="280" height="166" src="http://www.youtube.com/embed/7gp4X-0XSQA?rel=0&loop=1&autohide=1&controlers=0" frameborder="0" allowfullscreen></iframe>
                     <div class="box-buttons-bottom">
@@ -105,20 +53,22 @@
                 </div>
             </div>
 
-            <div id="login" class="span2-5">
+            <div id="login" class="col-md-4">
                 {% include "herobase/home_login_box.inc.html" %}
                 <div class="fb-like" data-href="http://youarehero.net/" data-send="true" data-width="450" data-show-faces="true" data-font="arial"></div>
             </div>
 
-            <div id="register-now" class="span2">
+            <div id="register-now" class="col-md-4">
                 <a href="{% url "registration_register" %}">
                 {% trans "Join now!" %}
                 </a>
             </div>
         </div>
         <div class="row">
-            <div id="about" class="span5 box">
-                <h2>{% trans "What's it all about?" %}</h2>
+            <div id="about" class="col-md-6">
+                <div class="box">
+                    <div class="box-container">
+                        <h2>{% trans "What's it all about?" %}</h2>
                 <p>
                     You are HERO ist ein virtueller <strong>Treffpunkt für Helden</strong> und Heldenanwärter. Sogleich nach
                     der Registrierung kreierst Du Deinen Heldencharakter und sammelst Heldenpunkte indem
@@ -132,9 +82,12 @@
                     <a href="./abstract">
                         <span>{% trans "Read more" %}</span></a>
                 </div>
+                    </div>
+                </div>
+
             </div>
             <div id="blog" class="box" style="top: -9px; left: 18px;">
-                <h2>{% trans "News" %}</h2>
+                <h2>{% trans "News#" %}</h2>
                 <img src="{% get_static_prefix %}img/fotocouch_240.jpg" alt="YAH-Team">
                 <div class="box-buttons-bottom">
                     <a href="./blog/" target="_blank">

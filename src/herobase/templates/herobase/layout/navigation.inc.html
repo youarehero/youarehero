@@ -1,0 +1,70 @@
+{% load static i18n crispy_forms_tags activelink %}
+{% load url from future %}
+<div id="navigation" class="row" role="navigation">
+    <div class="nav-container">
+        <ul id="brand" class="nav nav-blue">
+            <li><a href="{% url "home" %}"><h2><i class="icon-yah icon-4x"></i><br>you are hero</h2></a></li>
+        </ul>
+    </div>
+    {% if request.user.is_authenticated %}
+        <div class="nav-container">
+            {% include "herobase/userprofile/detail_mini.html" %}
+        </div>
+        <div class="nav-container">
+            <ul class="nav nav-black">
+                <li><a href="#"><i class="icon-puzzle-piece icon-3x"></i><br>Das Spiel</a></li>
+                <li class="{% ifactive "quest_list" %}active{% endifactive %}">
+                    <a href="{% url "quest_list" %}"><i class="icon-pushpin icon-3x"></i><br>Quests</a></li>
+                <li class="{% ifstartswith "message" %}on{% endifstartswith %}"><a href="#"><i class="icon-comments icon-3x">
+                <b>34</b>
+                    {% with unread_message_count=request.user.profile.unread_messages_count %}
+                    {% if unread_message_count != 0 %}
+                        <b>{{ unread_messages_count }}</b>
+                    {% endif %}
+                {% endwith %}
+                </i><br>Nachrichten</a></li>
+            </ul>
+            {% block submenu %}&nbsp;{% endblock %}
+            <ul class="nav nav-black sub">
+                <li class="{% ifactive "message_list_in" %}on{% endifactive %}">
+                    <a href="#"><i class="icon-inbox icon-2x"></i><br>Eingang</a></li>
+                <li><a href="#"><i class="icon-share icon-2x"></i><br>Ausgang</a></li>
+                <li class="{% ifactive "quest_create" %}on{% endifactive %}">
+                    <a href="{% url "message_create" %}"><i class="icon-pencil icon-2x"></i><br>Verfassen</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-container">
+            <ul class="nav nav-blue">
+                <li><a href="{% url "auth_logout" %}"><i class="icon-power-off icon-2x"></i></a></li>
+                <li class="{% ifactive "userprofile_edit" %}on{% endifactive %}">
+                    <a href="{% url "userprofile_edit" %}"><i class="icon-cogs icon-2x"><b>99</b></i></a></li>
+                <li><a href="#"><i class="icon-question icon-2x"><b>99</b></i></a></li>
+                <li class="active"><a href="#"><i class="icon-bell-alt icon-2x"><b>99</b></i></a></li>
+            </ul>
+        </div>
+    {% else %}
+        <div class="nav-container">
+            <ul class="nav nav-red nav-font">
+                <li><a href="#">
+                    <i class="icon-yah-hand-right"></i> Erfahre mehr <i class="icon-yah-hand-left"></i>
+                </a></li>
+            </ul>
+        </div>
+        <div class="nav-container">
+            <ul class="nav nav-red nav-font">
+                <li>
+                    <ul class="nav nav-blue">
+                        <li>
+                            <form method="POST">
+                                {% crispy login_form %}
+                                <button type="submit" class="">Log in</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                <li class="pull-down"><a href="#">Registrieren</a></li>
+            </ul>
+        </div>
+    {% endif %}
+</div>
