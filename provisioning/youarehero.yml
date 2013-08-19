@@ -79,6 +79,9 @@
     - name: install ipython
       pip: name=ipython
 
+    - name: Install Werkzeug
+      pip: name=werkzeug
+
   handlers:
 
     - name: restart apache
