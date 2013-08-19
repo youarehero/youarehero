@@ -8,9 +8,10 @@ from heromessage.models import Message
 from django.utils.translation import ugettext_lazy as _
 
 class MessageForm(forms.ModelForm):
-    recipient = forms.ModelChoiceField(User.objects.all(),
-        widget=autocomplete_light.AutocompleteWidget(
-        'UserChannel', max_items=1), )
+    recipient = forms.ModelChoiceField(
+        User.objects.all(),
+        widget=autocomplete_light.ChoiceWidget('UserAutocomplete')
+    )
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
