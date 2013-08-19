@@ -82,6 +82,13 @@
     - name: Install Werkzeug
       pip: name=werkzeug
 
+    - name: Create superuser (admin, admin@example.com)
+      shell: cd $yah_src && ./manage.py createsuperuser --username=admin --email=admin@example.com --noinput --settings={{settings_module}}
+      ignore_errors: yes
+
+    - name: Set superuser password
+      shell: cd $yah_src && echo 'from django.contrib.auth.models import User;u=User.objects.get(username="admin");u.set_password("admin");u.save()' | ./manage.py shell --settings={{settings_module}}
+
   handlers:
 
     - name: restart apache
