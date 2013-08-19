@@ -73,6 +73,9 @@
     - name: Start the watchr service
       service: name=wsgi-watchr state=started
 
+    - name: install ipython
+      pip: name=ipython
+
   handlers:
 
     - name: restart apache
