@@ -6,6 +6,7 @@ from django import forms
 from django.contrib.auth.models import User
 from heromessage.models import Message
 from django.utils.translation import ugettext_lazy as _
+from herobase.models import UserProfile
 
 class MessageForm(forms.ModelForm):
     recipient = forms.ModelChoiceField(
@@ -46,3 +47,47 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = ('recipient', 'title', 'text')
+
+
+class TeamMessageForm(forms.Form):
+    team = forms.ChoiceField(
+        label = "Recipient Team",
+        choices = [(entry['team'], entry['team']) for entry in UserProfile.objects.values('team').exclude(team="").distinct()],
+        widget=autocomplete_light.ChoiceWidget('TeamAutocomplete')
+    )
+
+    title = forms.CharField(max_length=255, label=_("Subject"))
+    text = forms.CharField(label=_("Message"), widget=forms.Textarea)
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_tag=False
+        self.helper.form_method = 'post'
+#        self.helper.form_action = 'message-c'
+        self.helper.form_class = 'form box'
+
+        self.helper.layout = Layout(
+            Div(
+                Div(
+                    'team',
+                    css_class="span3",
+                    ),
+                Div(
+                    'title',
+                    css_class="span3",
+                    ),
+                css_class="row",
+            ),
+            Div(
+                Div(
+                    Field('text', css_class="span6"),
+                    css_class="span6",
+                ),
+                css_class="row",
+            ),
+
+        )
+        super(TeamMessageForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        fields = ('team', 'title', 'text')
