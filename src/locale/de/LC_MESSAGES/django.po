@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-13 16:25+0200\n"
+"POT-Creation-Date: 2013-08-21 16:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,10 +24,6 @@ msgstr "mehr"
 #: herobase/filters.py:8
 msgid "Any"
 msgstr "Egal"
-
-#: herobase/forms.py:28
-msgid "-----------"
-msgstr "-----------"
 
 #: herobase/forms.py:29
 msgid "remotely"
@@ -92,11 +88,11 @@ msgstr "Adresse"
 
 #: herobase/models.py:76
 msgid "district"
-msgstr ""
+msgstr "Stadtteil"
 
 #: herobase/models.py:77
 msgid "city"
-msgstr ""
+msgstr "Stadt"
 
 #: herobase/models.py:78
 msgid "unknown"
@@ -221,15 +217,15 @@ msgstr "Typ nicht gesetzt"
 
 #: herobase/models.py:482
 msgid "spam"
-msgstr ""
+msgstr "Spam"
 
 #: herobase/models.py:483
 msgid "illegal content"
-msgstr ""
+msgstr "Illegaler Inhalt"
 
 #: herobase/models.py:484
 msgid "hate speech"
-msgstr ""
+msgstr "Diskriminierung"
 
 #: herobase/quest_livecycle.py:27
 #, python-format
@@ -251,12 +247,12 @@ msgstr "Hash"
 
 #: herobase/views.py:70 herobase/views.py:78
 msgid "Only the owner can edit the quest."
-msgstr ""
+msgstr "Nur der Ersteller einer Quest kann sie editieren."
 
 #: herobase/views.py:72 herobase/views.py:80
 #, python-format
 msgid "You can only edit quests for %s minutes."
-msgstr ""
+msgstr "Du kannst die Quest nur für %s minuten bearbeiten."
 
 #: herobase/views.py:118
 msgid "Dies ist ihre Quest."
@@ -299,7 +295,7 @@ msgstr "Profil erfolgreich gespeichert."
 
 #: herobase/views.py:328
 msgid "Privacy settings successfully changed"
-msgstr ""
+msgstr "Privatsphäre-Einstellungen wurden gespeichert"
 
 #: herobase/templates/herobase/home_login_box.inc.html:19
 #: herobase/templates/herobase/home_login_box.inc.html:29
@@ -360,6 +356,11 @@ msgstr "Es gibt keine Quests."
 #: herobase/templates/herobase/stats.html:85
 msgid "There are no completed quests."
 msgstr "Es gibt keine abgeschlossenen Quests."
+
+#: herobase/templates/herobase/team.html:5
+#: herobase/templates/herobase/userprofile/detail_box.html:27
+msgid "Team"
+msgstr "Team"
 
 #: herobase/templates/herobase/layout/base.html:71
 #: herobase/templates/herobase/userprofile/submenu.inc.html:10
@@ -540,29 +541,25 @@ msgstr "Das bist Du."
 msgid "About"
 msgstr "Über"
 
-#: herobase/templates/herobase/userprofile/detail_box.html:27
-msgid "Team"
-msgstr "Team"
-
-#: herobase/templates/herobase/userprofile/detail_box.html:29
+#: herobase/templates/herobase/userprofile/detail_box.html:30
 #: herobase/templates/herobase/userprofile/m/detail.html:63
 msgid "Member since"
 msgstr "Mitglied seit"
 
-#: herobase/templates/herobase/userprofile/detail_box.html:34
+#: herobase/templates/herobase/userprofile/detail_box.html:35
 msgid "Progress"
 msgstr "Fortschritt"
 
-#: herobase/templates/herobase/userprofile/detail_box.html:36
+#: herobase/templates/herobase/userprofile/detail_box.html:37
 #: herobase/templates/herobase/userprofile/m/detail.html:68
 msgid "Quests done"
 msgstr "Erledigte Quests"
 
-#: herobase/templates/herobase/userprofile/detail_box.html:37
+#: herobase/templates/herobase/userprofile/detail_box.html:38
 msgid "Quests created"
 msgstr "Erstellte Quests"
 
-#: herobase/templates/herobase/userprofile/detail_box.html:39
+#: herobase/templates/herobase/userprofile/detail_box.html:40
 #, python-format
 msgid ""
 "<strong>%(username)s</strong> is <strong>ranked %(rank)s</strong> in the "
@@ -572,7 +569,7 @@ msgstr ""
 "Bestenliste."
 
 #: herobase/templates/herobase/userprofile/edit.html:35
-#: heronotification/models.py:205
+#: heronotification/models.py:211
 msgid "Welcome to you are hero."
 msgstr "Willkommen bei You are Hero"
 
@@ -745,11 +742,11 @@ msgstr "Registriere Dich!"
 msgid "here"
 msgstr "hier"
 
-#: heromessage/models.py:16
+#: heromessage/forms.py:59 heromessage/models.py:16
 msgid "Subject"
 msgstr "Betreff"
 
-#: heromessage/models.py:17
+#: heromessage/forms.py:60 heromessage/models.py:17
 msgid "Message"
 msgstr "Nachricht an"
 
@@ -765,7 +762,7 @@ msgstr "Absender"
 msgid "Message successfully sent"
 msgstr "Nachricht erfolgreich verschickt"
 
-#: heromessage/views.py:55
+#: heromessage/views.py:73
 msgid "Message successfully deleted"
 msgstr "Nachricht erfolgreich gelöscht"
 
@@ -783,20 +780,29 @@ msgstr "Noch keine Nachrichten."
 msgid "compose"
 msgstr "verfassen"
 
-#: heromessage/templates/message/submenu.inc.html:13
+#: heromessage/templates/message/submenu.inc.html:12
+msgid "Compose message to team"
+msgstr "Team-Nachricht verfassen"
+
+#: heromessage/templates/message/submenu.inc.html:17
 msgid "in"
 msgstr "Eingang"
 
-#: heromessage/templates/message/submenu.inc.html:18
+#: heromessage/templates/message/submenu.inc.html:22
 msgid "out"
 msgstr "Ausgang"
 
 #: heromessage/templatetags/hero_message.py:13
 #, python-format
 msgid "Send message to %(username)s"
-msgstr ""
+msgstr "Sende Nachricht an %(username)s"
 
-#: heronotification/models.py:79
+#: heromessage/templatetags/hero_message.py:22
+#, python-format
+msgid "Send message to team %(team)s"
+msgstr "Sende Nachricht an team %(team)s"
+
+#: heronotification/models.py:85
 #, python-format
 msgid ""
 "<strong>%(user)s</strong> is applying for your quest <strong>%(title)s</"
@@ -805,7 +811,7 @@ msgstr ""
 "<strong>%(user)s</strong> bewirbt sich für deine Quest <strong>%(title)s.</"
 "strong>"
 
-#: heronotification/models.py:95
+#: heronotification/models.py:101
 #, python-format
 msgid ""
 "<strong>%(user)s</strong> has withdrawn his application for your quest "
@@ -814,38 +820,38 @@ msgstr ""
 "<strong>%(user)s</strong> hat seine Bewerbung für deine Quest <strong>"
 "%(title)s</strong> zurückgezogen."
 
-#: heronotification/models.py:114
+#: heronotification/models.py:120
 #, python-format
 msgid "The quest <strong>%s</strong> has been started."
 msgstr "Die Quest <strong>%s</strong> hat begonnen."
 
-#: heronotification/models.py:125
+#: heronotification/models.py:131
 #, python-format
 msgid "The quest <strong>%s</strong> is waiting for documentation."
 msgstr "Die Quest <strong>%s</strong> erwartet Dokumentation."
 
-#: heronotification/models.py:138
+#: heronotification/models.py:144
 #, python-format
 msgid "The quest <strong>%s<strong> has been cancelled."
 msgstr "Die Quest <strong>%s</strong> wurde abgebrochen."
 
-#: heronotification/models.py:151
+#: heronotification/models.py:157
 #, python-format
 msgid "The quest <strong>%s</strong> has been completed."
 msgstr "Die Quest <strong>%s</strong> ist abgeschlossen."
 
-#: heronotification/models.py:165
+#: heronotification/models.py:171
 #, python-format
 msgid "You have been accepted for the quest <strong>%s.</strong>"
 msgstr "Du wurdest für die Quest <strong>%s</strong> akzeptiert."
 
-#: heronotification/models.py:179
+#: heronotification/models.py:185
 #, python-format
 msgid "Your application for the quest <strong>%s</strong> has been rejected."
 msgstr ""
 "Deine Bewerbung für die Quest <strong>%s</strong> wurde nicht angenommen."
 
-#: heronotification/models.py:188
+#: heronotification/models.py:194
 #, python-format
 msgid "You have received a message from <strong>%s</strong>."
 msgstr "Du hast eine Nachricht von <strong>%s</strong> erhalten."
@@ -857,15 +863,15 @@ msgstr "Quest-Details"
 
 #: mail_debug_panel/templates/mail_debug_panel/debug_toolbar_message.html:9
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: youarehero/settings/base.py:52
 msgid "German"
-msgstr ""
+msgstr "Deutsch"
 
 #: youarehero/settings/base.py:53
 msgid "English"
-msgstr ""
+msgstr "Englisch"
 
 #~ msgid "Welcome to a place where you can become a hero!"
 #~ msgstr "Die Plattform für Helden"
