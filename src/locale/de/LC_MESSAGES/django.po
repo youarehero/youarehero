@@ -756,7 +756,7 @@ msgid ""
 "An email containing account-activation information has been sent to the "
 "email-address you specified in the registration form."
 msgstr ""
-"Du solltest bald eine E-Mail von uns erhalten. Klick bitte den Link darin an "
+"Du solltest bald eine E-Mail von uns erhalten. Klick bitte den Link darin an, "
 "um deine Anmeldung abzuschließen."
 
 #: herobase/templates/registration/registration_form.html:5
