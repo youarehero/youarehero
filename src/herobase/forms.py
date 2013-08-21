@@ -25,7 +25,7 @@ from herobase.widgets import LocationWidget
 class QuestCreateForm(forms.ModelForm):
     """The Basic Quest create form. Uses django-crispy-forms (FormHelper) for 2 column bootstrap output. """
     remote = forms.ChoiceField(choices=(
-        ("", _("-----------")),
+        ("", "-----------"),
         (True, _(u"remotely")),
         (False, _(u"locally"))
     ), help_text=_(u"Can this quest be done remotely or only locally?"),
