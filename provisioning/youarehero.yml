@@ -89,6 +89,9 @@
     - name: Set superuser password
       shell: cd $yah_src && echo 'from django.contrib.auth.models import User;u=User.objects.get(username="admin");u.set_password("admin");u.save()' | ./manage.py shell --settings={{settings_module}}
 
+    - name: Add django-admin alias
+      lineinfile: dest=/home/vagrant/.bashrc regexp="^alias django-admin=" line="alias django-admin=\"PYTHONPATH=\\\"${yah_src}\\\" DJANGO_SETTINGS_MODULE=${settings_module} django-admin.py\""
+
   handlers:
 
     - name: restart apache
