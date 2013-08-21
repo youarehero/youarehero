@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-21 16:32+0200\n"
+"POT-Creation-Date: 2013-08-21 18:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -697,6 +697,33 @@ msgid ""
 msgstr ""
 "Wir haben dir eine E-Mail mit den Schritten die du zur Passwort-Änderung "
 "benötigst gemailt. Du solltest sie in kürze Erhalten."
+
+#: herobase/templates/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+"Sie erhalten diese E-Mail, da Sie das Passwort für ihren %(site_name)s "
+"Account zurücksetzen lassen möchten."
+
+#: herobase/templates/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr "Bitte öffnen Sie folgende Seite, um Ihr neues Passwort einzugeben:"
+
+#: herobase/templates/registration/password_reset_email.html:9
+#, python-format
+msgid "Your username, in case you've forgotten: %(user.username)s"
+msgstr "Ihr Benutzername, falls Sie ihn vergessen haben:"
+
+#: herobase/templates/registration/password_reset_email.html:11
+msgid "Thanks for using our site!"
+msgstr "Vielen Dank, dass Sie unsere Website benutzen!"
+
+#: herobase/templates/registration/password_reset_email.html:13
+#, python-format
+msgid "The %(site_name)s team."
+msgstr "Das Team von %(site_name)s"
 
 #: herobase/templates/registration/password_reset_form.html:9
 msgid ""
