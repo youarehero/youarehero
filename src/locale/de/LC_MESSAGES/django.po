@@ -635,9 +635,9 @@ msgid "Good bye!"
 msgstr "Auf wiedersehen!"
 
 #: herobase/templates/registration/logout.html:9
-msgid "Thank you for using \"You are Hero\". We hope to see you soon."
+msgid "Thank you for using you are hero. We hope to see you soon."
 msgstr ""
-"Vielen Dank für die Benutzung von \"You are Hero\". Beehren Sie uns bald "
+"Vielen Dank für die Benutzung von you are hero. Beehren Sie uns bald "
 "wieder."
 
 #: herobase/templates/registration/password_reset_complete.html:5
@@ -657,11 +657,11 @@ msgstr "Einloggen"
 #: herobase/templates/registration/password_reset_done.html:5
 #: herobase/templates/registration/password_reset_form.html:5
 msgid "Password reset"
-msgstr "Password zurücksetzen"
+msgstr "Passwort zurücksetzen"
 
 #: herobase/templates/registration/password_reset_confirm.html:10
 msgid "Confirm password reset"
-msgstr "Password zurücksetzen bestätigen"
+msgstr "Passwort zurücksetzen bestätigen"
 
 #: herobase/templates/registration/password_reset_confirm.html:11
 msgid ""
@@ -683,12 +683,14 @@ msgstr "Passwort zurücksetzen fehlgeschlagen"
 #, python-format
 msgid ""
 "\n"
-"            The password reset link was invalid, possibly because it has "
-"already been used.\n"
-"            Please request a <a href=\"%(password_reset_url)s\">new password."
-"</a>\n"
+"            The password reset link was invalid, possibly because it has already been used.\n"
+"            Please request a <a href=\"%(password_reset_url)s\">new password.</a>\n"
 "        "
 msgstr ""
+"\n"
+"            Der Link zum Zurücksetzen Ihres Passworts ist ungültig, wahrscheinlich weil er schon einmal benutzt wurde.\n"
+"            Bitte <a href=\"%(password_reset_url)s\">setzen Sie Ihr Passwort erneut zurück.</a>\n"
+"        "
 
 #: herobase/templates/registration/password_reset_done.html:9
 msgid ""
@@ -714,7 +716,7 @@ msgstr "Bitte öffnen Sie folgende Seite, um Ihr neues Passwort einzugeben:"
 #: herobase/templates/registration/password_reset_email.html:9
 #, python-format
 msgid "Your username, in case you've forgotten: %(user.username)s"
-msgstr "Ihr Benutzername, falls Sie ihn vergessen haben:"
+msgstr "Ihr Benutzername, falls Sie ihn vergessen haben: %(user.username)s"
 
 #: herobase/templates/registration/password_reset_email.html:11
 msgid "Thanks for using our site!"
@@ -735,7 +737,7 @@ msgstr ""
 
 #: herobase/templates/registration/password_reset_form.html:15
 msgid "Reset my password"
-msgstr "Password zurücksetzen"
+msgstr "Passwort zurücksetzen"
 
 #: herobase/templates/registration/registration_box.inc.html:14
 msgid "Be a Hero!"
