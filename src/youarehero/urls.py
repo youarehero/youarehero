@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from herobase.forms import UserRegistrationForm, UserAuthenticationForm
+from herobase.forms import UserAuthenticationForm
 import autocomplete_light
 autocomplete_light.autodiscover()
 admin.autodiscover()
@@ -45,9 +45,8 @@ urlpatterns = patterns(
     url(regex=r'^accounts/register/$',
         view='registration.views.register',
         kwargs={
-            'backend': 'registration.backends.default.DefaultBackend',
-            'form_class' : UserRegistrationForm,
-            },
+            'backend': 'youarehero.custom_registration.Backend'
+        },
         name='registration_register'),
     url(regex=r'^accounts/activate/(?P<activation_key>\w+)/$',
         view='registration.views.activate',

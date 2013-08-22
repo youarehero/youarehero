@@ -144,14 +144,6 @@ class UserProfilePrivacyEdit(forms.ModelForm):
         model = UserProfile
         fields = ('public_location', )
 
-
-class UserRegistrationForm(RegistrationFormUniqueEmail):
-    """Custom Registration form with hero class and unique email."""
-    username = forms.CharField(max_length=75,
-        widget=forms.TextInput(attrs={'class': 'required'}),
-        label=_("Username"))
-
-
 class UserAuthenticationForm(AuthenticationForm):
     """Custom login form."""
     error_messages = AuthenticationForm.error_messages
