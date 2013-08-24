@@ -29,6 +29,9 @@
     - name: Install yah dependencies
       pip: requirements="{{ yah_path }}/deploy/requirements.txt"
 
+    - name: Install yah test dependencies
+      pip: requirements="{{ yah_path }}/deploy/test-requirements.txt"
+
     - name: Install psycopg2 for youarehero
       pip: name=psycopg2
 
@@ -37,7 +40,7 @@
 
     - name: Create database user
       sudo_user: postgres
-      postgresql_user: name=youarehero password=youarehero
+      postgresql_user: name=youarehero password=youarehero role_attr_flags=CREATEDB
 
     - name: Create database
       sudo_user: postgres
