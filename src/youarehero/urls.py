@@ -73,19 +73,18 @@ urlpatterns = patterns(
     # like_button
 
     url(r'', include('like_button.urls'))
-    )
+)
 
 from django.conf import settings
 if settings.DEBUG:
     #noinspection PyAugmentAssignment
-    urlpatterns = patterns('',
-                           url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-                               'document_root': settings.STATIC_ROOT,
-                               }),
-                           url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-                               'document_root': settings.MEDIA_ROOT,
-                               }),
-                           ) + urlpatterns
+    urlpatterns = patterns(
+        '',
+        url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.STATIC_ROOT}),
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT}),
+    ) + urlpatterns
 
 from django.conf import settings
 
@@ -93,4 +92,4 @@ if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += patterns(
         '',
         url(r'^rosetta/', include('rosetta.urls')),
-        )
+    )
