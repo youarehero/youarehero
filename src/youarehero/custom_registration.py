@@ -11,6 +11,8 @@ from registration import signals
 from registration.forms import RegistrationForm
 from registration.models import RegistrationProfile
 
+from herobase.models import UserProfile
+
 
 class Form(RegistrationForm):
     username = forms.CharField(
@@ -29,8 +31,20 @@ class Backend(object):
             site = Site.objects.get_current()
         else:
             site = RequestSite(request)
-        new_user = RegistrationProfile.objects.create_inactive_user(username, email,
-                                                                    password, site)
+
+        new_user = RegistrationProfile.objects.create_inactive_user(
+            kwargs['username'],
+            kwargs['email'],
+            kwargs['password1'],
+            site
+        )
+
+        profile = UserProfile(
+            user=new_user,
+            date_of_birth=kwargs['date_of_birth']
+        )
+        profile.save()
+
         signals.user_registered.send(sender=self.__class__,
                                      user=new_user,
                                      request=request)

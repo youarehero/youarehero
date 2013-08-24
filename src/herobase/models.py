@@ -369,6 +369,7 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True,
         null=True)
     sex = models.IntegerField(choices=SEX_CHOICES, blank=True, null=True, verbose_name=_(u"sex"))
+    date_of_birth = models.DateField()
 
     team = models.CharField(max_length=255, default="", blank=True)
 
