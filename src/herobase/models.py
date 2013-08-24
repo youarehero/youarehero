@@ -461,16 +461,6 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
 
 
 
-def create_user_profile(sender, instance, created, **kwargs):
-    """Create a user profile on user account creation."""
-    if created:
-        try:
-            UserProfile.objects.get_or_create(user=instance)
-        except:
-            pass
-post_save.connect(create_user_profile, sender=User)
-
-
 class AbuseReport(models.Model):
     TYPE_NOT_SET = 0
     TYPE_SPAM = 1
