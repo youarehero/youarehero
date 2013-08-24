@@ -387,3 +387,6 @@ def team(request, team_name):
         'team_name': team_name,
         'users': users
     })
+
+def below_minimum_age():
+    return u"fü"

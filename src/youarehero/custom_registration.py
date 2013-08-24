@@ -2,9 +2,9 @@ from datetime import date
 
 from django import forms
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.contrib.sites.models import RequestSite
 from django.contrib.sites.models import Site
-from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 from registration import signals
@@ -24,9 +24,29 @@ class Form(RegistrationForm):
     date_of_birth = forms.DateField()
 
 
+def yearsago(years):
+    d = date.today()
+    try:
+        return d.replace(year=d.year - years)
+    except ValueError:
+        # february 29th
+        return d.replace(year=d.year - years, day=d.day - 1)
+
+
+def below_minimum_age(date_of_birth):
+    return date_of_birth > yearsago(15)
+
+
 class Backend(object):
     def register(self, request, **kwargs):
-        username, email, password = kwargs['username'], kwargs['email'], kwargs['password1']
+        if (below_minimum_age(kwargs['date_of_birth'])):
+            # We can't redirect here because django-registration ignores it
+            # Instead, we return None and redirect in the
+            # post_registration_redirect method.
+            #
+            # This is ugly and we should upgrade django-registration soon
+            return None
+
         if Site._meta.installed:
             site = Site.objects.get_current()
         else:
@@ -96,6 +116,10 @@ class Backend(object):
         user registration.
 
         """
+        if not isinstance(user, User):
+            # We are here because register(..) returned None.
+            # This is a hack. Explanation in the register method.
+            return ('registration_below_minimum_age', (), {})
         return ('registration_complete', (), {})
 
     def post_activation_redirect(self, request, user):

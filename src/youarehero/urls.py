@@ -56,6 +56,9 @@ urlpatterns = patterns(
         },
         name='registration_activate'),
     (r'^accounts/', include('registration.backends.default.urls')),
+    url(regex=r'^below_minimum_age$',
+        view='herobase.views.below_minimum_age',
+        name='registration_below_minimum_age'),
 
     # admin
 
