@@ -165,6 +165,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     #'rosetta',
+    'avatar',
     'endless_pagination',
     'south',
     'django_extensions',

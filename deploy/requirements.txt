@@ -11,3 +11,4 @@ geopy
 django-activelink
 django-like-button
 pytz==2013b
+git+git://github.com/jezdez/django-avatar.git@6393d25166a6c2d2df0bd28e19f161fac2bb1166#egg=django_avatar-dev
