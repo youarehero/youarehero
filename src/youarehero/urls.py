@@ -45,7 +45,7 @@ urlpatterns = patterns(
     url(regex=r'^accounts/register/$',
         view='registration.views.register',
         kwargs={
-            'backend': 'youarehero.custom_registration.Backend'
+            'backend': 'herobase.custom_registration.Backend'
         },
         name='registration_register'),
     url(regex=r'^accounts/activate/(?P<activation_key>\w+)/$',
