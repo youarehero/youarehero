@@ -32,6 +32,8 @@ from south.modelsinspector import add_introspection_rules
 
 from heromessage.models import Message
 
+from herobase.utils import is_legal_adult
+
 QUEST_EXPERIENCE = 1000
 CREATE_EXPERIENCE = 50
 APPLY_EXPERIENCE = 10
@@ -459,6 +461,9 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
             return []
         # FIXME: we need to add the  ranks to the qs
         raise NotImplementedError("Need to re-implement as per docstring")
+
+    def is_legal_adult(self):
+        return is_legal_adult(self.date_of_birth)
 
 
 
