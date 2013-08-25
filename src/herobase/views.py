@@ -37,11 +37,14 @@ logger = logging.getLogger('youarehero.herobase')
 def quest_list_view(request, archive=False,
                     template='herobase/quest/list.html'):
     """Basic quest list, with django-filter app"""
-    if archive:
-        quests = Quest.objects.all().order_by('-created', 'pk')
-    else:
-        quests = Quest.objects.open().order_by('-created', 'pk')
-    quests = quests.select_related('owner', 'owner__profile')
+    quests = Quest.objects.all().select_related('owner', 'owner__profile')\
+            .order_by('-created', 'pk')
+
+    if not request.user.profile.is_legal_adult():
+        quests = quests.filter(owner__profile__trusted=True)
+
+    if not archive:
+        quests = quests.open()
 
     search = request.GET.get('search', '')
     if search:
@@ -107,6 +110,9 @@ class QuestCreateView(CreateView):
         return super(QuestCreateView, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
+        if not self.request.user.profile.is_legal_adult():
+            raise ValidationError("Minors are not allowed to create quests")
+
         self.object = form.save(commit=False)
         self.object.owner = self.request.user
         self.object.save()
@@ -120,6 +126,12 @@ def quest_detail_view(request, quest_id):
     quest = get_object_or_404(
         Quest.objects.select_related('owner', 'owner__profile'),
         pk=quest_id)
+
+    if not request.user.profile.is_legal_adult()\
+            and not quest.owner.profile.trusted:
+        return HttpResponse(
+            "Minors are not allowed to view untrusted users' quests",
+            status=403)
 
     is_owner = request.user == quest.owner
     if request.user.is_authenticated() and not is_owner:
@@ -342,6 +354,12 @@ def hero_update_quest(request, quest_id):
     if quest.owner == request.user:
         raise ValidationError("Im afraid I can't let you do that.")
 
+    if not request.user.profile.is_legal_adult()\
+            and not quest.owner.profile.trusted:
+        return HttpResponse(
+            "Minors are not allowed to apply to untrusted users' quests",
+            status=403)
+
     action = request.POST.get('action')
     try:
         if action == 'apply':
@@ -461,6 +479,12 @@ def signups(request):
 def like_quest(request, quest_id):
     quest = get_object_or_404(Quest, pk=quest_id)
     like, created = Like.objects.get_or_create(user=request.user, quest=quest)
+
+    if not request.user.profile.is_legal_adult()\
+            and not quest.owner.profile.trusted:
+        return HttpResponse(
+            "Minors are not allowed to like untrusted users' quests",
+            status=403)
 
     # TODO: XP
     # if created:

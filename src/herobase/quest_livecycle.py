@@ -93,7 +93,7 @@ def hero_quest_apply(quest, hero):
     if not quest.open:
         raise ValidationError("Can not apply for a quest that isn't open.")
 
-    if not hero.profile.is_legal_adult and not quest.owner.trusted:
+    if not hero.profile.is_legal_adult() and not quest.owner.trusted:
         raise ValidationError(
             "Minors cannot apply for untrusted users' quests")
 
