@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 
-from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.hashers import mask_hash, BasePasswordHasher
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
