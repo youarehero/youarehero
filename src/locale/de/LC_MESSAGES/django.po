@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-21 18:05+0200\n"
+"POT-Creation-Date: 2013-08-25 02:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,11 +58,7 @@ msgstr "Profil editieren"
 msgid "Privacy Settings"
 msgstr "Privatsphäre"
 
-#: herobase/forms.py:152
-msgid "Username"
-msgstr "Benutzername"
-
-#: herobase/forms.py:158
+#: herobase/forms.py:150
 msgid ""
 "Please enter a correct e-mail address and password. Note that both fields "
 "are case-sensitive."
@@ -70,7 +66,7 @@ msgstr ""
 "Bitte stelle sicher das E-Mail Adresse und Passwort korrekt sind. Achte auch "
 "auf Groß- und Kleinschreibung."
 
-#: herobase/forms.py:160
+#: herobase/forms.py:152
 msgid "E-mail"
 msgstr "E-Mail"
 
@@ -167,27 +163,27 @@ msgstr "Hoch"
 msgid "sex"
 msgstr "Geschlecht"
 
-#: herobase/models.py:382
+#: herobase/models.py:383
 msgid "Location is public"
 msgstr "Standort ist öffentlich"
 
-#: herobase/models.py:383
+#: herobase/models.py:384
 msgid "Enable this if you want to share your location with other Heroes."
 msgstr "Wenn aktiv können andere Helden deinen Standort sehen."
 
-#: herobase/models.py:386
+#: herobase/models.py:387
 msgid "about me"
 msgstr "Über mich"
 
-#: herobase/models.py:387
+#: herobase/models.py:388
 msgid "Tell other heroes who you are."
 msgstr "Erzähle anderen Helden wer Du bist"
 
-#: herobase/models.py:390
+#: herobase/models.py:391
 msgid "E-Mail on quest changes"
 msgstr "E-Mail bei Quest-Änderungen"
 
-#: herobase/models.py:391
+#: herobase/models.py:392
 msgid ""
 "Enable this if you want to receive an email notification when one of your "
 "quests needs attention."
@@ -195,11 +191,11 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail benachrichtigung sobald ein Quest an dem "
 "Du beteiligt bist deine Aufmerksamkeit benötigt."
 
-#: herobase/models.py:395
+#: herobase/models.py:396
 msgid "E-Mail on private message"
 msgstr "E-Mail bei privaten Nachrichten"
 
-#: herobase/models.py:396
+#: herobase/models.py:397
 msgid ""
 "Enable this if you want to receive an email notification when someone sends "
 "you a private message."
@@ -207,23 +203,23 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail wenn andere Nutzer dir eine Nachricht "
 "schreiben."
 
-#: herobase/models.py:479
+#: herobase/models.py:470
 msgid "text"
 msgstr "text"
 
-#: herobase/models.py:481
+#: herobase/models.py:472
 msgid "type not set"
 msgstr "Typ nicht gesetzt"
 
-#: herobase/models.py:482
+#: herobase/models.py:473
 msgid "spam"
 msgstr "Spam"
 
-#: herobase/models.py:483
+#: herobase/models.py:474
 msgid "illegal content"
 msgstr "Illegaler Inhalt"
 
-#: herobase/models.py:484
+#: herobase/models.py:475
 msgid "hate speech"
 msgstr "Diskriminierung"
 
@@ -245,34 +241,34 @@ msgstr "Algorithmus"
 msgid "hash"
 msgstr "Hash"
 
-#: herobase/views.py:70 herobase/views.py:78
+#: herobase/views.py:76 herobase/views.py:87
 msgid "Only the owner can edit the quest."
 msgstr "Nur der Ersteller einer Quest kann sie editieren."
 
-#: herobase/views.py:72 herobase/views.py:80
+#: herobase/views.py:79 herobase/views.py:90
 #, python-format
 msgid "You can only edit quests for %s minutes."
 msgstr "Du kannst die Quest nur für %s minuten bearbeiten."
 
-#: herobase/views.py:118
+#: herobase/views.py:136
 msgid "Dies ist ihre Quest."
 msgstr "Dies ist Deine Quest."
 
-#: herobase/views.py:120
+#: herobase/views.py:139
 msgid ""
 "This quest needs heroes. Apply now by clicking the ✓ Button on the right."
 msgstr ""
 "Dieser Quest braucht Helden. Bewerbe dich indem du den ✓ Knopf auf der "
 "rechten Seite anklickst."
 
-#: herobase/views.py:122
+#: herobase/views.py:143
 msgid ""
 "Your application has been accepted. Press X to withdraw your participation."
 msgstr ""
 "Deine Bewerbung wurde angebnommen. Mit dem X Knopf kannst du deine Teilnahme "
 "zurückziehen."
 
-#: herobase/views.py:124
+#: herobase/views.py:147
 msgid ""
 "You have applied for this quest but the owner didn't want you to participate "
 "in it."
@@ -280,7 +276,7 @@ msgstr ""
 "Du hast dich für diese Quest beworben, aber der Veranstalter hat deine "
 "Bewerbung leider abgelehnt."
 
-#: herobase/views.py:126
+#: herobase/views.py:151
 msgid ""
 "You are currently applying for this quest. Press X to cancel. You will be "
 "notified once the creator has decided about our participation"
@@ -289,13 +285,24 @@ msgstr ""
 "zurückzuziehen. Du wirst benachrichtigt sobald der Veranstalter über deine "
 "Teilnahme entschieden hat."
 
-#: herobase/views.py:312
+#: herobase/views.py:382
 msgid "Profile successfully changed"
 msgstr "Profil erfolgreich gespeichert."
 
-#: herobase/views.py:328
+#: herobase/views.py:404
 msgid "Privacy settings successfully changed"
 msgstr "Privatsphäre-Einstellungen wurden gespeichert"
+
+#: herobase/templates/herobase/below_minimum_age.html:5
+msgid "Sorry"
+msgstr "Entschuldigung"
+
+#: herobase/templates/herobase/below_minimum_age.html:9
+msgid ""
+"We're really sorry, but we cannot let you participate in you are hero before "
+"your fifteenth birthday."
+msgstr ""
+"Es tut uns sehr leid, aber wir können dich vor deinem fünfzehnten Geburtstag nicht an you are hero teilnehmen lassen."
 
 #: herobase/templates/herobase/home_login_box.inc.html:19
 #: herobase/templates/herobase/home_login_box.inc.html:29
@@ -362,12 +369,12 @@ msgstr "Es gibt keine abgeschlossenen Quests."
 msgid "Team"
 msgstr "Team"
 
-#: herobase/templates/herobase/layout/base.html:71
+#: herobase/templates/herobase/layout/base.html:72
 #: herobase/templates/herobase/userprofile/submenu.inc.html:10
 msgid "Settings"
 msgstr "Optionen"
 
-#: herobase/templates/herobase/layout/base.html:73
+#: herobase/templates/herobase/layout/base.html:74
 msgid "Logout"
 msgstr "Abmelden"
 
@@ -637,8 +644,7 @@ msgstr "Auf wiedersehen!"
 #: herobase/templates/registration/logout.html:9
 msgid "Thank you for using you are hero. We hope to see you soon."
 msgstr ""
-"Vielen Dank für die Benutzung von you are hero. Beehren Sie uns bald "
-"wieder."
+"Vielen Dank für die Benutzung von you are hero. Beehren Sie uns bald wieder."
 
 #: herobase/templates/registration/password_reset_complete.html:5
 msgid "Password reset complete"
@@ -683,13 +689,17 @@ msgstr "Passwort zurücksetzen fehlgeschlagen"
 #, python-format
 msgid ""
 "\n"
-"            The password reset link was invalid, possibly because it has already been used.\n"
-"            Please request a <a href=\"%(password_reset_url)s\">new password.</a>\n"
+"            The password reset link was invalid, possibly because it has "
+"already been used.\n"
+"            Please request a <a href=\"%(password_reset_url)s\">new password."
+"</a>\n"
 "        "
 msgstr ""
 "\n"
-"            Der Link zum Zurücksetzen Ihres Passworts ist ungültig, wahrscheinlich weil er schon einmal benutzt wurde.\n"
-"            Bitte <a href=\"%(password_reset_url)s\">setzen Sie Ihr Passwort erneut zurück.</a>\n"
+"            Der Link zum Zurücksetzen Ihres Passworts ist ungültig, "
+"wahrscheinlich weil er schon einmal benutzt wurde.\n"
+"            Bitte <a href=\"%(password_reset_url)s\">setzen Sie Ihr Passwort "
+"erneut zurück.</a>\n"
 "        "
 
 #: herobase/templates/registration/password_reset_done.html:9
@@ -756,8 +766,8 @@ msgid ""
 "An email containing account-activation information has been sent to the "
 "email-address you specified in the registration form."
 msgstr ""
-"Du solltest bald eine E-Mail von uns erhalten. Klick bitte den Link darin an, "
-"um deine Anmeldung abzuschließen."
+"Du solltest bald eine E-Mail von uns erhalten. Klick bitte den Link darin "
+"an, um deine Anmeldung abzuschließen."
 
 #: herobase/templates/registration/registration_form.html:5
 msgid "Registration"
@@ -893,6 +903,10 @@ msgstr "Quest-Details"
 #: mail_debug_panel/templates/mail_debug_panel/debug_toolbar_message.html:9
 msgid "Text"
 msgstr "Text"
+
+#: youarehero/custom_registration.py:21
+msgid "Username"
+msgstr "Benutzername"
 
 #: youarehero/settings/base.py:52
 msgid "German"
