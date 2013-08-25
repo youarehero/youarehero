@@ -146,7 +146,12 @@ class Adventure(models.Model):
     def applying(self):
         return not self.rejected and not self.accepted and not self.canceled
 
-    def save(self, force_insert=False, force_update=False, using=None):
+    def save(self, *args, **kwargs):
+        if not self.user.profile.is_legal_adult()\
+                and not self.quest.owner.profile.trusted:
+            raise ValidationError("Minors are not allowed to participate in "
+                                  "quests by untrusted users")
+
         if self.accepted and not self.accepted_time:
             self.accepted_time = now()
         if self.rejected and not self.rejected_time:
@@ -155,7 +160,7 @@ class Adventure(models.Model):
             self.done_time = now()
         if self.canceled and not self.canceled_time:
             self.canceled_time = now()
-        return super(Adventure, self).save(force_insert, force_update, using)
+        return super(Adventure, self).save(*args, **kwargs)
 
 
     def __unicode__(self):
@@ -242,6 +247,12 @@ class Quest(LocationMixin, models.Model):
         (TIME_EFFORT_MEDIUM, _(u"Medium")),
         (TIME_EFFORT_HIGH, _(u"High")),
     ))
+
+    def save(self, *args, **kwargs):
+        """Make sure that this is not created by a minor"""
+        if not self.owner.profile.is_legal_adult:
+            raise ValidationError("Minors are not allowed to create quests")
+        super(Quest, self).save(*args, **kwargs)
 
     @property
     def has_expired(self):
