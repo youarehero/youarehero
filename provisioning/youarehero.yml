@@ -95,6 +95,9 @@
     - name: Add django-admin alias
       lineinfile: dest=/home/vagrant/.bashrc regexp="^alias django-admin=" line="alias django-admin=\"PYTHONPATH=\\\"${yah_src}\\\" DJANGO_SETTINGS_MODULE=${settings_module} django-admin.py\""
 
+    - name: Install gettext for makemessages
+      apt: name=gettext
+
   handlers:
 
     - name: restart apache
