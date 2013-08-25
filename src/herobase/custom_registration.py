@@ -1,5 +1,3 @@
-from datetime import date
-
 from django import forms
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -12,6 +10,7 @@ from registration.forms import RegistrationForm
 from registration.models import RegistrationProfile
 
 from herobase.models import UserProfile
+from herobase.utils import is_minimum_age
 
 
 class Form(RegistrationForm):
@@ -20,26 +19,12 @@ class Form(RegistrationForm):
         widget=forms.TextInput(attrs={'class': 'required'}),
         label=_("Username")
     )
-
     date_of_birth = forms.DateField()
-
-
-def yearsago(years):
-    d = date.today()
-    try:
-        return d.replace(year=d.year - years)
-    except ValueError:
-        # february 29th
-        return d.replace(year=d.year - years, day=d.day - 1)
-
-
-def below_minimum_age(date_of_birth):
-    return date_of_birth > yearsago(15)
 
 
 class Backend(object):
     def register(self, request, **kwargs):
-        if (below_minimum_age(kwargs['date_of_birth'])):
+        if not is_minimum_age(kwargs['date_of_birth']):
             # We can't redirect here because django-registration ignores it
             # Instead, we return None and redirect in the
             # post_registration_redirect method.
