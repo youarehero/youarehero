@@ -380,6 +380,7 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    trusted = models.BooleanField(default=False)
 
     public_location = models.BooleanField(default=False,
         verbose_name=_("Location is public"),
