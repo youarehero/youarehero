@@ -1,5 +1,5 @@
 {% extends "herobase/layout/box.html" %}
-{% load i18n static %}
+{% load i18n static avatar_tags %}
 {% load url from future %}
 
 {% block extra_classes %}collapsible{% if not message.is_relatively_new %} collapsed{% endif %}{% endblock %}
@@ -15,7 +15,9 @@
 {% endblock %}
 
 {% block content %}
-    <img src="{{ image }}" alt="" class="pull-left">
+    <div class="pull-left">
+        {% avatar partner %}
+    </div>
     <p>{{ message.text }}</p>
 {% endblock %}
 

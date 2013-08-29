@@ -28,7 +28,7 @@
     <ul class="grid">
         {% for message in received_messages %}
             <li class="span6">
-            {% with image=message.sender.get_profile.avatar_thumbnail_80 %}
+            {% with partner=message.sender %}
                 {% include "message/message_box.inc.html" %}
             {% endwith %}
             </li>
