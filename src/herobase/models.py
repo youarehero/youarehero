@@ -15,6 +15,8 @@ from django.contrib.contenttypes.models import ContentType
 import os
 import textwrap
 
+from avatar.templatetags.avatar_tags import avatar_url
+from avatar.settings import AVATAR_DEFAULT_SIZE
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
 from django.db.models.query import QuerySet
@@ -309,68 +311,8 @@ class Quest(LocationMixin, models.Model):
         return self.title
 
 
-class AvatarImageMixin(models.Model):
-    avatar_storage = FileSystemStorage(location=settings.ASSET_ROOT)
-    image = models.FilePathField(blank=True, null=True, choices=AVATAR_CHOICES)
 
-    @classmethod
-    def avatar_choices(cls):
-        def t(avatar):
-            thumbnailer = get_thumbnailer(cls.avatar_storage, avatar)
-            thumbnail = thumbnailer.get_thumbnail({'size': (50, 83), 'quality': 90})
-            return os.path.join(settings.MEDIA_URL, thumbnail.url)
-        return [(name, t(name)) for name in AVATAR_IMAGES]
-
-    def avatar(self):
-        """Return a String, containing a path to a thumbnail-image 270x270."""
-        return self._avatar_thumbnail((150, 250))
-
-    @property
-    def avatar_thumbnail(self):
-        """Return a String, containing a path to a thumbnail-image 50x50."""
-        return self._avatar_thumbnail((50, 50))
-
-    @property
-    def avatar_quest_list(self):
-        """Return a String, containing a path to a thumbnail-image 40x40."""
-        return self._avatar_thumbnail((50, 50))
-
-    @property
-    def avatar_thumbnail_40(self):
-        """Return a String, containing a path to a thumbnail-image 40x40."""
-        return self._avatar_thumbnail((40, 40))
-
-    @property
-    def avatar_thumbnail_70(self):
-        """Return a String, containing a path to a thumbnail-image 80x80."""
-        return self._avatar_thumbnail((70, 70))
-
-    @property
-    def avatar_thumbnail_80(self):
-        """Return a String, containing a path to a thumbnail-image 80x80."""
-        return self._avatar_thumbnail((80, 80))
-    @property
-    def avatar_thumbnail_110(self):
-        """Return a String, containing a path to a thumbnail-image 110x110."""
-        return self._avatar_thumbnail((110, 110))
-
-    @property
-    def avatar_thumbnail_30(self):
-        """Return a String, containing a path to a thumbnail-image 30x30."""
-        return self._avatar_thumbnail((30, 30))
-
-    def _avatar_thumbnail(self, size, crop='0,0'):
-        """Return a String, containing a path to a thumbnail-image."""
-        file_name = self.image or 'avatar/default.png'
-        thumbnailer = get_thumbnailer(self.avatar_storage, file_name)
-        thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality': 90, 'crop':crop})
-        return os.path.join(settings.MEDIA_URL, thumbnail.url)
-
-    class Meta:
-        abstract = True
-
-
-class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
+class UserProfile(LocationMixin, models.Model):
     """This model extends a django user with additional hero information."""
     add_introspection_rules([], ["^herobase\.fields\.LocationField"])
 
@@ -476,6 +418,9 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
 
     def is_legal_adult(self):
         return is_legal_adult(self.date_of_birth)
+
+    def avatar(self, size=AVATAR_DEFAULT_SIZE):
+        return avatar_url(self.user, size)
 
 
 

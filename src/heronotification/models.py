@@ -89,7 +89,7 @@ class hero_has_applied(NotificationTypeBase):
 
     @classmethod
     def get_image(cls, notification):
-        return notification.target.user.profile.avatar_thumbnail_40
+        return notification.target.user.profile.avatar(40)
 
 class hero_has_cancelled(NotificationTypeBase):
     type_id = 2
@@ -105,7 +105,7 @@ class hero_has_cancelled(NotificationTypeBase):
 
     @classmethod
     def get_image(cls, notification):
-        return notification.target.user.profile.avatar_thumbnail_40
+        return notification.target.user.profile.avatar(40)
 
 class quest_started(NotificationTypeBase):
     type_id = 10
@@ -113,7 +113,7 @@ class quest_started(NotificationTypeBase):
 
     @classmethod
     def get_image(cls, notification):
-        return notification.target.owner.profile.avatar_thumbnail_40
+        return notification.target.owner.profile.avatar(40)
 
     @classmethod
     def get_text(cls, notification):
@@ -137,7 +137,7 @@ class quest_cancelled(NotificationTypeBase):
 
     @classmethod
     def get_image(cls, notification):
-        return notification.target.owner.profile.avatar_thumbnail_40
+        return notification.target.owner.profile.avatar(40)
 
     @classmethod
     def get_text(cls, notification):
@@ -150,7 +150,7 @@ class quest_done(NotificationTypeBase):
 
     @classmethod
     def get_image(cls, notification):
-        return notification.target.owner.profile.avatar_thumbnail_40
+        return notification.target.owner.profile.avatar(40)
 
     @classmethod
     def get_text(cls, notification):
@@ -164,7 +164,7 @@ class hero_accepted(NotificationTypeBase):
 
     @classmethod
     def get_image(cls, notification):
-        return notification.target.owner.profile.avatar_thumbnail_40
+        return notification.target.owner.profile.avatar(40)
 
     @classmethod
     def get_text(cls, notification):
@@ -178,7 +178,7 @@ class hero_rejected(NotificationTypeBase):
 
     @classmethod
     def get_image(cls, notification):
-        return notification.target.owner.profile.avatar_thumbnail_40
+        return notification.target.owner.profile.avatar(40)
 
     @classmethod
     def get_text(cls, notification):
@@ -196,7 +196,7 @@ class message_received(NotificationTypeBase):
 
     @classmethod
     def get_image(cls, notification):
-        return notification.target.sender.profile.avatar_thumbnail_40
+        return notification.target.sender.profile.avatar(40)
 
     @classmethod
     def is_read(cls, notification):
@@ -212,7 +212,7 @@ class welcome(NotificationTypeBase):
 
     @classmethod
     def get_image(cls, notification):
-        return notification.target.profile.avatar_thumbnail_40
+        return notification.target.profile.avatar(40)
 
 
 class Notification(models.Model):
