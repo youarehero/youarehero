@@ -81,7 +81,6 @@ class UserProfileEdit(forms.ModelForm):
     # latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # address = forms.CharField(required=False, widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
-    image = forms.ChoiceField(choices=[('', '------')] + UserProfile.avatar_choices(), required=False)
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
@@ -92,7 +91,6 @@ class UserProfileEdit(forms.ModelForm):
             Fieldset(
                 _('Edit your Profile'),
                 Div(
-                    'image',
                     'sex',
                     'about',
                     'team',
@@ -113,7 +111,7 @@ class UserProfileEdit(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('about', 'image', 'sex', 'team',
+        fields = ('about', 'sex', 'team',
                   # 'receive_system_email', 'receive_private_email',
                   # 'address', 'latitude', 'longitude', 'location_granularity'
         )
