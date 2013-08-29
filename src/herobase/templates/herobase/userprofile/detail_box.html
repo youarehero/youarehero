@@ -1,5 +1,5 @@
 {% extends "herobase/layout/box.html" %}
-{% load crispy_forms_tags i18n static %}
+{% load crispy_forms_tags i18n static avatar_tags %}
 
 {% load i18n static %}
 
@@ -14,7 +14,7 @@
 {% block content %}
     <div class="row">
         <div class="span2">
-            <img src="{{ user.get_profile.avatar }}" alt="{{ user.username }}">
+            {% avatar user 150 %}
 
         </div>
         <div class="span4">
