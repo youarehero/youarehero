@@ -1,5 +1,5 @@
 {% extends "herobase/m/mobile.html" %}
-{% load i18n static humanize %}
+{% load i18n static humanize avatar_tags %}
 {% block head_menu %}<h2  style="color:#FFFFFF">Profile</h2>{% endblock %}
 {% block head_javascript %}
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -42,7 +42,7 @@
 {% block content %}
     
             
-                <h1> <table><tr><td><img src="{{ user.get_profile.avatar }}" alt="{{ user.username }}" width="70px"></td><td><span class="stripe">{{ user.username }}</span><br>
+                <h1> <table><tr><td>{% avatar user 70 %}</td><td><span class="stripe">{{ user.username }}</span><br>
                     <small>{{ user.get_profile.get_hero_class_display|default:"" }}</small></td></tr></table>
                 </h1>
                

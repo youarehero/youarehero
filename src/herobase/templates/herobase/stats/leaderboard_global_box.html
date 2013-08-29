@@ -1,5 +1,5 @@
 {% extends "herobase/layout/box.html" %}
-{% load crispy_forms_tags i18n hero_actions static %}
+{% load crispy_forms_tags i18n hero_actions static avatar_tags %}
 {% load url from future %}
 
 {% block buttons_top %}
@@ -16,7 +16,7 @@
             <tr>
                 <td>
                     <a href="{% url "userprofile_public" user.username %}">
-                        <img src="{{ user.profile.avatar_thumbnail }}">
+                        {% avatar user 50 %}
                         {{ user.username }}
                     </a>
                 </td>

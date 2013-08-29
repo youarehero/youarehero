@@ -1,7 +1,9 @@
 {% load url from future %}
-{% load humanize i18n hero_message %}
+{% load humanize i18n hero_message avatar_tags %}
 <div>
-        <img src="{{ quest.owner.get_profile.avatar_thumbnail_110 }}" alt="" class="pull-left"/>
+    <div class="pull-left">
+        {% avatar quest.owner 110 %}
+    </div>
 
     <h2>{{ quest.title }}</h2>
     <p>{% block text %}{{ quest.description|linebreaksbr|urlize  }}{% endblock %}</p>

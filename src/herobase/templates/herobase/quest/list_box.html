@@ -1,9 +1,11 @@
 {% extends "herobase/layout/box.html" %}
-{% load i18n %}
+{% load i18n avatar_tags %}
 
 {% block title %}
     <a href="{{ quest.get_absolute_url }}">
-        <img src="{{ quest.owner.profile.avatar_quest_list }}" alt="" class="pull-left">
+        <div class="pull-left">
+            {% avatar quest.owner 50 %}
+        </div>
         <h3>{{ quest.title }}</h3>
     </a>
 {% endblock %}

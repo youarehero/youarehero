@@ -1,5 +1,5 @@
 {% extends "herobase/layout/inner_box.html" %}
-{% load i18n hero_actions hero_message %}
+{% load i18n hero_actions hero_message avatar_tags %}
 {% load url from future %}
 
 {% block wrapper_classes %}span1{% endblock %}
@@ -21,7 +21,7 @@
     {% endif %}
 {% endblock %}
 {% block content %}
-    <img src="{{ adventure.user.get_profile.avatar_thumbnail_80 }}" alt=""/>
+    {% avatar adventure.user %}
 
 {% endblock %}
 

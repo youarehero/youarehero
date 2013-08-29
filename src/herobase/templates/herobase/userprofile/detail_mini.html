@@ -1,4 +1,4 @@
-{% load i18n static %}
+{% load i18n static avatar_tags%}
 {% load url from future %}
 
 {# Username and Avatar #}
@@ -7,7 +7,7 @@
     <a href="{% url "userprofile_private" %}">
         <h4>Profil</h4>
 
-        <img src="{{ request.user.get_profile.avatar_thumbnail_110 }}" alt="{{ request.user.username }}">
+        {% avatar request.user 110 %}
         <h4>{{ request.user.username }}</h4>
     </a>
     {#  <span class="{{ request.user.get_profile.get_hero_class_display|lower }}">{{ request.user.get_profile.get_hero_class_display }}</span><br>#}

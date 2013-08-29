@@ -1,11 +1,11 @@
-{% load i18n static crispy_forms_tags %}
+{% load i18n static crispy_forms_tags avatar_tags %}
 {% load url from future %}
 {% if request.user.is_authenticated %}
     {# Username and Avatar #}
     <div class="avatar">
         <h4><a href="{% url "userprofile_private" %}">{{ request.user.username }}</a></h4>
         <div class="inner clearfix">
-            <img src="{{ request.user.get_profile.avatar }}" alt="{{ request.user.username }}">
+            {% avatar request.user 150 %}
 
             <span class="">{% trans "Level" %}: {{ request.user.get_profile.level }}</span>
             <span class="{{ request.user.get_profile.get_hero_class_display|lower }}">{{ request.user.get_profile.get_hero_class_display }}</span>

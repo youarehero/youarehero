@@ -1,7 +1,7 @@
-{% load i18n static %}
+{% load i18n static avatar_tags %}
 
 <div class="portrait clearfix">
-    <img src="{{ user.get_profile.avatar }}" alt="{{ user.username }}">
+    {% avatar user 150 %}
 </div>
 
 <div class="row">
