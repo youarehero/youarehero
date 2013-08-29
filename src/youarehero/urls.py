@@ -75,7 +75,9 @@ urlpatterns = patterns(
 
     # like_button
 
-    url(r'', include('like_button.urls'))
+    url(r'', include('like_button.urls')),
+
+    url(r'^avatar/', include('avatar.urls'))
 )
 
 from django.conf import settings
