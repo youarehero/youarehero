@@ -56,6 +56,9 @@
     - name: Run migrations
       shell: cd $yah_src && ./manage.py migrate --noinput --settings={{settings_module}}
 
+    - name: Run collectstatic
+      shell: cd $yah_src && ./manage.py collectstatic --noinput --settings={{settings_module}}
+
     - name: Remove default apache2 server
       file: state=absent path=/etc/apache2/sites-enabled/000-default
       notify: restart apache
