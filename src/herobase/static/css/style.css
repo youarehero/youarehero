@@ -51,7 +51,7 @@ h5 {
   background-color: transparent;
 }
 #navigation .nav-black {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
 }
 #navigation .nav-black > li {
@@ -65,14 +65,14 @@ h5 {
 #navigation .nav-black > li > a:hover,
 #navigation .nav-black > li > a:focus {
   color: #ff0000;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.6);
   border-color: #ff0000 #ff0000 transparent #ff0000;
 }
 #navigation .nav-black > .active > a,
 #navigation .nav-black > .active > a:hover,
 #navigation .nav-black > .active > a:focus {
   color: #ff0000;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.6);
   border-color: #ff0000 #ff0000 transparent #ff0000;
 }
 #navigation .nav-black:after {
@@ -85,7 +85,7 @@ h5 {
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
-  border-top: 12px solid #ffffff;
+  border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
 }
 #navigation .nav-blue {
@@ -253,7 +253,7 @@ h5 {
   border-top: 0 none;
 }
 .box {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
   margin-top: 12px;
 }
@@ -267,7 +267,7 @@ h5 {
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
-  border-top: 12px solid #ffffff;
+  border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
 }
 .box:before {
@@ -280,7 +280,7 @@ h5 {
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
-  border-bottom: 12px solid #ffffff;
+  border-bottom: 12px solid rgba(255, 255, 255, 0.6);
   border-top: 0 none;
 }
 .box-red {
@@ -355,7 +355,7 @@ h5 {
   margin: 0 12px;
 }
 .box-image {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
   margin-top: 12px;
   height: 376px;
@@ -371,7 +371,7 @@ h5 {
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
-  border-top: 12px solid #ffffff;
+  border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
 }
 .box-image:before {
@@ -384,7 +384,7 @@ h5 {
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
-  border-bottom: 12px solid #ffffff;
+  border-bottom: 12px solid rgba(255, 255, 255, 0.6);
   border-top: 0 none;
 }
 .box-image .header {
