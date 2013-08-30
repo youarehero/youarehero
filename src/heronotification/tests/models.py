@@ -19,12 +19,12 @@ class NotificationTest(TestCase):
         notify.hero_has_applied(self.applicant, self.adventure)
         self.assertRegexpMatches(
             mail.outbox[0].subject,
-            'applied',
+            'beworben',
             'subject invalid')
 
     def test_mail_body(self):
         notify.hero_has_applied(self.applicant, self.adventure)
         self.assertRegexpMatches(
             mail.outbox[0].body,
-            'applied',
+            'neue Bewerbung',
             'body invalid')

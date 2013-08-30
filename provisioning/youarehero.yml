@@ -29,6 +29,9 @@
     - name: Install yah dependencies
       pip: requirements="{{ yah_path }}/deploy/requirements.txt"
 
+    - name: Install yah test dependencies
+      pip: requirements="{{ yah_path }}/deploy/test-requirements.txt"
+
     - name: Install psycopg2 for youarehero
       pip: name=psycopg2
 
@@ -37,7 +40,7 @@
 
     - name: Create database user
       sudo_user: postgres
-      postgresql_user: name=youarehero password=youarehero
+      postgresql_user: name=youarehero password=youarehero role_attr_flags=CREATEDB
 
     - name: Create database
       sudo_user: postgres
@@ -67,11 +70,33 @@
     - name: Install watchr
       gem: name=watchr state=present
 
+    - name: Install rev gem for watchr
+      gem: name=rev state=present
+
     - name: Install watchr service
       template: src="templates/wsgi.j2" dest=/etc/init.d/wsgi-watchr owner=root mode=755
 
     - name: Start the watchr service
       service: name=wsgi-watchr state=started
+
+    - name: install ipython
+      pip: name=ipython
+
+    - name: Install Werkzeug
+      pip: name=werkzeug
+
+    - name: Create superuser (admin, admin@example.com)
+      shell: cd $yah_src && ./manage.py createsuperuser --username=admin --email=admin@example.com --noinput --settings={{settings_module}}
+      ignore_errors: yes
+
+    - name: Set superuser password
+      shell: cd $yah_src && echo 'from django.contrib.auth.models import User;u=User.objects.get(username="admin");u.set_password("admin");u.save()' | ./manage.py shell --settings={{settings_module}}
+
+    - name: Add django-admin alias
+      lineinfile: dest=/home/vagrant/.bashrc regexp="^alias django-admin=" line="alias django-admin=\"PYTHONPATH=\\\"${yah_src}\\\" DJANGO_SETTINGS_MODULE=${settings_module} django-admin.py\""
+
+    - name: Install gettext for makemessages
+      apt: name=gettext
 
   handlers:
 

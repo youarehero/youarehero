@@ -1,0 +1,1 @@
+{{ target.user.username }} hat die Bewerbung auf ihre Quest {{ target.quest.title }} zurückgezogen

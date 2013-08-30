@@ -25,7 +25,7 @@ from herobase.widgets import LocationWidget
 class QuestCreateForm(forms.ModelForm):
     """The Basic Quest create form. Uses django-crispy-forms (FormHelper) for 2 column bootstrap output. """
     remote = forms.ChoiceField(choices=(
-        ("", _("-----------")),
+        ("", "-----------"),
         (True, _(u"remotely")),
         (False, _(u"locally"))
     ), help_text=_(u"Can this quest be done remotely or only locally?"),
@@ -95,6 +95,7 @@ class UserProfileEdit(forms.ModelForm):
                     'image',
                     'sex',
                     'about',
+                    'team',
 
                     # 'address',
                     # 'receive_system_email',
@@ -112,7 +113,7 @@ class UserProfileEdit(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('about', 'image', 'sex',
+        fields = ('about', 'image', 'sex', 'team',
                   # 'receive_system_email', 'receive_private_email',
                   # 'address', 'latitude', 'longitude', 'location_granularity'
         )
@@ -142,14 +143,6 @@ class UserProfilePrivacyEdit(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('public_location', )
-
-
-class UserRegistrationForm(RegistrationFormUniqueEmail):
-    """Custom Registration form with hero class and unique email."""
-    username = forms.CharField(max_length=75,
-        widget=forms.TextInput(attrs={'class': 'required'}),
-        label=_("Username"))
-
 
 class UserAuthenticationForm(AuthenticationForm):
     """Custom login form."""

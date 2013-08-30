@@ -1,0 +1,12 @@
+Heldenpost
+
+Verehrte Damen und Herren,
+Sie haben eine neue Nachricht von {{ target.sender }} in ihrer Heldenpost.
+
+Die Nachricht lautet:
+{{ target.title }}
+
+{{ target.text }}
+
+Hochachtungsvoll,
+Ihr Butler von you are hero

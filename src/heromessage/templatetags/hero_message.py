@@ -14,3 +14,12 @@ def message_user(user, size=20):
         'size': size,
     }
     return mark_safe(mail_link)
+
+@register.simple_tag
+def message_team(team, size=20):
+    mail_link = '<a href="%(url)s" data-toggle="tooltip" data-title="%(tooltip)s"><i class="icon-yah-mail icon-%(size)s"></i></a>' % {
+        'url': reverse('message_team_to', args=(team, )),
+        'tooltip': ugettext(u'Send message to team %(team)s') % {'team': team},
+        'size': size,
+    }
+    return mark_safe(mail_link)

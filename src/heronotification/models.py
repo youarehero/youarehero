@@ -8,8 +8,8 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured
+from django.contrib.sites.models import Site
 from django.db import models, connection
-from django.core.mail import send_mail
 
 # Create your models here.
 from django.template import Context, TemplateDoesNotExist, Template
@@ -56,7 +56,12 @@ class NotificationTypeBase(object):
         return settings.STATIC_URL + 'heronotification/notification.png'
 
     def send_notification_mail(self, user, target):
-        dict = {'notification': self, 'user': user, 'target': target}
+        dict = {
+            'notification': self,
+            'user': user,
+            'target': target,
+            'site': Site.objects.get_current()
+        }
         template_base = 'heronotification/mail/{0}'.format(type(self).__name__)
         try:
             subject = render_to_string(template_base + '.subject', dict).strip()

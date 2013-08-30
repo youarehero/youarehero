@@ -1,12 +1,12 @@
 {% autoescape off %}
-Willkommen bei You are Hero {{ user.username }}!
+Willkommen bei you are hero {{ user.username }}!
 
-Bitte klicke auf den Link um deine Registrierung fertigzustellen.
+Bitte klicke auf den Link, um deine Registrierung fertigzustellen.
 {% block activate_link %}
 https://{{ site.domain }}{% url registration.views.activate activation_key=activation_key %}
 {% endblock %}
 
-Viel Freude mit You are Hero,
+Viel Freude mit you are hero,
 
-das YAH Team
+das you are hero Team
 {% endautoescape %}

@@ -1,0 +1,15 @@
+{% extends "herobase/layout/box.html" %}
+{% load i18n hero_message %}
+{% load url from future %}
+
+{% block content %}
+    <ul>
+        {% for user in users %}
+        <li><a href="{% url "userprofile_public" user.username %}">{{user.username}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block buttons_top %}
+    {% message_team team_name %}
+{% endblock %}

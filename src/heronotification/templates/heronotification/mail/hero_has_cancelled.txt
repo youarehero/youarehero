@@ -1,0 +1,8 @@
+Fallrückzieher
+
+Verehrte Damen und Herren,
+{{ target.user.username }} hat die Teilnahme auf ihre Quest {{ target.quest.title }} widerrufen.
+Sie können die Quest unter http://{{ site.domain }}{{ target.quest.get_absolute_url }} erreichen.
+
+Hochachtungsvoll,
+Ihr Butler von you are hero

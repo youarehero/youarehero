@@ -2,9 +2,9 @@
 {% load i18n %}
 
 {% block page_title %}
-    <h1>{% trans "Good bye!" %}</h1>
+    <h1>{% trans "Team" %} {{team_name}}</h1>
 {% endblock %}
 
 {% block content %}
-    <p>{% trans 'Thank you for using you are hero. We hope to see you soon.' %}</p>
+    {% include "herobase/team_box.html" %}
 {% endblock %}

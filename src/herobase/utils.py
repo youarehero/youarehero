@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
-"""
-Up to now here is only a plain password hasher for faster tests. Never use it elsewhere.
-"""
-from django.contrib.auth import REDIRECT_FIELD_NAME
+from datetime import date
+
 from django.contrib.auth.hashers import mask_hash, BasePasswordHasher
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext as _
-from django.conf import settings
-from django.db import models
+
 
 class PlainTextPasswordHasher(BasePasswordHasher):
     """
@@ -34,7 +31,6 @@ class PlainTextPasswordHasher(BasePasswordHasher):
         ])
 
 
-
 def login_required(function):
     """
     Decorator for views that checks that the user is logged in, redirecting
@@ -44,8 +40,25 @@ def login_required(function):
 
         if not request.user.is_authenticated():
             login_url = reverse('auth_login')
-            url = request.build_absolute_uri() # this should be request.path
+            url = request.build_absolute_uri()  # this should be request.path
             return HttpResponseRedirect("%s?next=%s" % (login_url, url))
         else:
             return function(request, *args, **kwargs)
     return decorated
+
+
+def yearsago(years):
+    d = date.today()
+    try:
+        return d.replace(year=d.year - years)
+    except ValueError:
+        # february 29th
+        return d.replace(year=d.year - years, day=d.day - 1)
+
+
+def is_minumum_age(date_of_birth):
+    return date_of_birth <= yearsago(15)
+
+
+def is_legal_adult(date_of_birth):
+    return date_of_birth <= yearsago(18)

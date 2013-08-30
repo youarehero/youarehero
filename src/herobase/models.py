@@ -32,6 +32,8 @@ from south.modelsinspector import add_introspection_rules
 
 from heromessage.models import Message
 
+from herobase.utils import is_legal_adult
+
 QUEST_EXPERIENCE = 1000
 CREATE_EXPERIENCE = 50
 APPLY_EXPERIENCE = 10
@@ -144,7 +146,12 @@ class Adventure(models.Model):
     def applying(self):
         return not self.rejected and not self.accepted and not self.canceled
 
-    def save(self, force_insert=False, force_update=False, using=None):
+    def save(self, *args, **kwargs):
+        if not self.user.profile.is_legal_adult()\
+                and not self.quest.owner.profile.trusted:
+            raise ValidationError("Minors are not allowed to participate in "
+                                  "quests by untrusted users")
+
         if self.accepted and not self.accepted_time:
             self.accepted_time = now()
         if self.rejected and not self.rejected_time:
@@ -153,7 +160,7 @@ class Adventure(models.Model):
             self.done_time = now()
         if self.canceled and not self.canceled_time:
             self.canceled_time = now()
-        return super(Adventure, self).save(force_insert, force_update, using)
+        return super(Adventure, self).save(*args, **kwargs)
 
 
     def __unicode__(self):
@@ -240,6 +247,12 @@ class Quest(LocationMixin, models.Model):
         (TIME_EFFORT_MEDIUM, _(u"Medium")),
         (TIME_EFFORT_HIGH, _(u"High")),
     ))
+
+    def save(self, *args, **kwargs):
+        """Make sure that this is not created by a minor"""
+        if not self.owner.profile.is_legal_adult:
+            raise ValidationError("Minors are not allowed to create quests")
+        super(Quest, self).save(*args, **kwargs)
 
     @property
     def has_expired(self):
@@ -369,13 +382,16 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True,
         null=True)
     sex = models.IntegerField(choices=SEX_CHOICES, blank=True, null=True, verbose_name=_(u"sex"))
+    date_of_birth = models.DateField()
 
+    team = models.CharField(max_length=255, default="", blank=True)
 
     keep_email_after_gpn = models.DateTimeField(blank=True, null=True,
         editable=False)
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    trusted = models.BooleanField(default=False)
 
     public_location = models.BooleanField(default=False,
         verbose_name=_("Location is public"),
@@ -458,16 +474,9 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
         # FIXME: we need to add the  ranks to the qs
         raise NotImplementedError("Need to re-implement as per docstring")
 
+    def is_legal_adult(self):
+        return is_legal_adult(self.date_of_birth)
 
-
-def create_user_profile(sender, instance, created, **kwargs):
-    """Create a user profile on user account creation."""
-    if created:
-        try:
-            UserProfile.objects.get_or_create(user=instance)
-        except:
-            pass
-post_save.connect(create_user_profile, sender=User)
 
 
 class AbuseReport(models.Model):

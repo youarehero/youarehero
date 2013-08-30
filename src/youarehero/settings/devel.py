@@ -2,7 +2,8 @@ from base import *
 
 DEBUG = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ADMINS = (("testadmin", "admin@example.com"),)
 
 DATABASES = {
     'default': {
