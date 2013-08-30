@@ -291,6 +291,46 @@ h5 { font-size: 18px; }
   margin: 0 @cut-corner-radius;
 }
 
+.box-image {
+  @height: 400px;
+  @width: 800px;
+  @text-width: 270px;
+  @header-height: 50px;
+
+  .box;
+
+  height: (@height - 2 * @cut-corner-radius);
+
+  .header {
+    display: block;
+    height: @header-height;
+    z-index: 2;
+    position: relative;
+    left: 15px;
+    top: -5px;
+    margin: 0;
+  }
+
+  .text {
+    // the 2*12 are to work against the boxes margin. No idea why this is neccessary.
+    height: (@height - 2 * @cut-corner-radius - @header-height - 2*12px);
+    text-align: justify;
+    padding: 12px;
+    width: @text-width;
+    margin: 0;
+  }
+
+  position: relative;
+  .image {
+    width: (@width - @text-width);
+    height: @height;
+    position: absolute;
+    top: -@cut-corner-radius;
+    left: @text-width;
+    z-index: 1;
+  }
+
+}
 // YAH Icons
 //-------------
 .icon-yah,

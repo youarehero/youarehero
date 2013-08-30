@@ -343,6 +343,63 @@ h5 {
 .box-content {
   margin: 0 15px;
 }
+.box-image {
+  background: #ffffff;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  height: 370px;
+  position: relative;
+}
+.box-image:after {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: relative;
+  top: 15px;
+  left: 0;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  border-top: 15px solid #ffffff;
+  border-bottom: 0 none;
+}
+.box-image:before {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: relative;
+  bottom: 15px;
+  left: 0;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  border-bottom: 15px solid #ffffff;
+  border-top: 0 none;
+}
+.box-image .header {
+  display: block;
+  height: 50px;
+  z-index: 2;
+  position: relative;
+  left: 15px;
+  top: -5px;
+  margin: 0;
+}
+.box-image .text {
+  height: 296px;
+  text-align: justify;
+  padding: 12px;
+  width: 270px;
+  margin: 0;
+}
+.box-image .image {
+  width: 530px;
+  height: 400px;
+  position: absolute;
+  top: -15px;
+  left: 270px;
+  z-index: 1;
+}
 .icon-yah,
 .icon-yah-hand,
 .icon-yah-hand-right,
