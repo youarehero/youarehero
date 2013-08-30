@@ -30,7 +30,7 @@ h5 {
   text-align: center;
 }
 #navigation .nav > li {
-  margin-bottom: -15px;
+  margin-bottom: -12px;
 }
 #navigation .nav > li > a {
   padding: 5px 8px;
@@ -41,7 +41,7 @@ h5 {
 }
 #navigation .nav-black {
   background: #ffffff;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 #navigation .nav-black > li {
   float: left;
@@ -70,21 +70,21 @@ h5 {
   width: 100%;
   height: 0;
   position: relative;
-  top: 15px;
+  top: 12px;
   left: 0;
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  border-top: 15px solid #ffffff;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid #ffffff;
   border-bottom: 0 none;
 }
 #navigation .nav-blue {
   text-align: center;
   background: rgba(0, 0, 255, 0.6);
-  margin-top: -15px;
-  margin-bottom: 15px;
+  margin-top: -12px;
+  margin-bottom: 12px;
 }
 #navigation .nav-blue > li {
-  margin-top: 15px;
+  margin-top: 12px;
 }
 #navigation .nav-blue > li > a {
   color: #ffffff;
@@ -104,21 +104,21 @@ h5 {
   width: 100%;
   height: 0;
   position: relative;
-  top: 15px;
+  top: 12px;
   left: 0;
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  border-top: 15px solid rgba(0, 0, 255, 0.6);
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(0, 0, 255, 0.6);
   border-bottom: 0 none;
 }
 #navigation .nav-red {
   text-align: center;
   background: rgba(255, 0, 0, 0.6);
-  margin-top: -15px;
-  margin-bottom: 15px;
+  margin-top: -12px;
+  margin-bottom: 12px;
 }
 #navigation .nav-red > li {
-  margin-top: 15px;
+  margin-top: 12px;
 }
 #navigation .nav-red > li > a {
   color: #ffffff;
@@ -138,15 +138,15 @@ h5 {
   width: 100%;
   height: 0;
   position: relative;
-  top: 15px;
+  top: 12px;
   left: 0;
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  border-top: 15px solid rgba(255, 0, 0, 0.6);
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(255, 0, 0, 0.6);
   border-bottom: 0 none;
 }
 #navigation .nav.sub {
-  margin-top: -15px;
+  margin-top: -12px;
 }
 #navigation .nav.sub > li > a {
   border: 0px none;
@@ -155,11 +155,11 @@ h5 {
   font-size: 16px;
 }
 #navigation .nav-font > li.pull-down {
-  margin-top: 30px;
+  margin-top: 24px;
 }
 #navigation .nav-font input {
   color: #ffffff;
-  margin: 0 15px;
+  margin: 0 12px;
   background: transparent;
   border: 0px none;
   border-bottom: 2px solid #ffffff;
@@ -196,8 +196,8 @@ h5 {
 }
 #page-footer .nav > li {
   padding: 5px 5px;
-  margin-top: -15px;
-  margin-bottom: 15px;
+  margin-top: -12px;
+  margin-bottom: 12px;
 }
 #page-footer .nav > li > a {
   padding: 0 5px;
@@ -209,9 +209,9 @@ h5 {
 #page-footer .nav-blue {
   text-align: center;
   background: rgba(0, 0, 255, 0.6);
-  margin-top: -15px;
+  margin-top: -12px;
   color: #ffffff;
-  margin-top: 15px;
+  margin-top: 12px;
 }
 #page-footer .nav-blue > li {
   float: left;
@@ -234,17 +234,17 @@ h5 {
   width: 100%;
   height: 0;
   position: relative;
-  bottom: 15px;
+  bottom: 12px;
   left: 0;
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  border-bottom: 15px solid rgba(0, 0, 255, 0.6);
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid rgba(0, 0, 255, 0.6);
   border-top: 0 none;
 }
 .box {
   background: #ffffff;
-  margin-bottom: 15px;
-  margin-top: 15px;
+  margin-bottom: 12px;
+  margin-top: 12px;
 }
 .box:after {
   content: "";
@@ -252,11 +252,11 @@ h5 {
   width: 100%;
   height: 0;
   position: relative;
-  top: 15px;
+  top: 12px;
   left: 0;
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  border-top: 15px solid #ffffff;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid #ffffff;
   border-bottom: 0 none;
 }
 .box:before {
@@ -265,11 +265,11 @@ h5 {
   width: 100%;
   height: 0;
   position: relative;
-  bottom: 15px;
+  bottom: 12px;
   left: 0;
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  border-bottom: 15px solid #ffffff;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid #ffffff;
   border-top: 0 none;
 }
 .box-red {
@@ -277,8 +277,8 @@ h5 {
   background: rgba(255, 0, 0, 0.6);
 }
 .box-red.cut-corners {
-  margin-bottom: 15px;
-  margin-top: 15px;
+  margin-bottom: 12px;
+  margin-top: 12px;
 }
 .box-red.cut-corners:after {
   content: "";
@@ -286,11 +286,11 @@ h5 {
   width: 100%;
   height: 0;
   position: relative;
-  top: 15px;
+  top: 12px;
   left: 0;
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  border-top: 15px solid rgba(255, 0, 0, 0.6);
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(255, 0, 0, 0.6);
   border-bottom: 0 none;
 }
 .box-red.cut-corners:before {
@@ -299,11 +299,11 @@ h5 {
   width: 100%;
   height: 0;
   position: relative;
-  bottom: 15px;
+  bottom: 12px;
   left: 0;
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  border-bottom: 15px solid rgba(255, 0, 0, 0.6);
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid rgba(255, 0, 0, 0.6);
   border-top: 0 none;
 }
 .box-blue {
@@ -311,8 +311,8 @@ h5 {
   background: rgba(0, 0, 255, 0.6);
 }
 .box-blue.cut-corners {
-  margin-bottom: 15px;
-  margin-top: 15px;
+  margin-bottom: 12px;
+  margin-top: 12px;
 }
 .box-blue.cut-corners:after {
   content: "";
@@ -320,11 +320,11 @@ h5 {
   width: 100%;
   height: 0;
   position: relative;
-  top: 15px;
+  top: 12px;
   left: 0;
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  border-top: 15px solid rgba(0, 0, 255, 0.6);
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(0, 0, 255, 0.6);
   border-bottom: 0 none;
 }
 .box-blue.cut-corners:before {
@@ -333,21 +333,21 @@ h5 {
   width: 100%;
   height: 0;
   position: relative;
-  bottom: 15px;
+  bottom: 12px;
   left: 0;
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  border-bottom: 15px solid rgba(0, 0, 255, 0.6);
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid rgba(0, 0, 255, 0.6);
   border-top: 0 none;
 }
 .box-content {
-  margin: 0 15px;
+  margin: 0 12px;
 }
 .box-image {
   background: #ffffff;
-  margin-bottom: 15px;
-  margin-top: 15px;
-  height: 370px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  height: 376px;
   position: relative;
 }
 .box-image:after {
@@ -356,11 +356,11 @@ h5 {
   width: 100%;
   height: 0;
   position: relative;
-  top: 15px;
+  top: 12px;
   left: 0;
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  border-top: 15px solid #ffffff;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid #ffffff;
   border-bottom: 0 none;
 }
 .box-image:before {
@@ -369,11 +369,11 @@ h5 {
   width: 100%;
   height: 0;
   position: relative;
-  bottom: 15px;
+  bottom: 12px;
   left: 0;
-  border-right: 15px solid transparent;
-  border-left: 15px solid transparent;
-  border-bottom: 15px solid #ffffff;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid #ffffff;
   border-top: 0 none;
 }
 .box-image .header {
@@ -386,7 +386,7 @@ h5 {
   margin: 0;
 }
 .box-image .text {
-  height: 296px;
+  height: 302px;
   text-align: justify;
   padding: 12px;
   width: 270px;
@@ -396,7 +396,7 @@ h5 {
   width: 530px;
   height: 400px;
   position: absolute;
-  top: -15px;
+  top: -12px;
   left: 270px;
   z-index: 1;
 }
