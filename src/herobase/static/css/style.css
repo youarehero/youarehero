@@ -18,6 +18,9 @@ h4 {
 h5 {
   font-size: 18px;
 }
+.vertical-offset {
+  margin-top: 23px;
+}
 #navigation .nav-container {
   position: relative;
   float: left;
