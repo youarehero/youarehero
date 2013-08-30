@@ -38,6 +38,11 @@
 {% block body %}
     <div id="background"></div>
     <div id="page" class="container">
+        {% block page_header %}
+            <div class="container">
+                {% include "herobase/layout/navigation.inc.html" %}
+            </div>
+        {% endblock %}
 
         <div class="row vertical-offset">
             <div class="col-md-4">
