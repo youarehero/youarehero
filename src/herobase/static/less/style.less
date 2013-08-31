@@ -308,6 +308,7 @@ h5 { font-size: 18px; }
   @width: 800px;
   @text-width: 270px;
   @header-height: 50px;
+  @text-margin-top: 30px;
 
   .box;
 
@@ -325,11 +326,14 @@ h5 { font-size: 18px; }
 
   .text {
     // the 2*12 are to work against the boxes margin. No idea why this is neccessary.
-    height: (@height - 2 * @cut-corner-radius - @header-height - 2*12px);
+    height: (@height - 2 * @cut-corner-radius - @header-height - 2*12px - @text-margin-top);
+    margin-top: @text-margin-top;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
     text-align: justify;
     padding: 12px;
     width: @text-width;
-    margin: 0;
   }
 
   position: relative;

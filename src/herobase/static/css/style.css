@@ -397,11 +397,14 @@ h5 {
   margin: 0;
 }
 .box-image .text {
-  height: 302px;
+  height: 272px;
+  margin-top: 30px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
   text-align: justify;
   padding: 12px;
   width: 270px;
-  margin: 0;
 }
 .box-image .image {
   width: 530px;
