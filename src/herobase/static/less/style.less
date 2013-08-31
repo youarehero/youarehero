@@ -401,6 +401,36 @@ body.city-karlsruhe {
 
 }
 
+.hero-box {
+  .box;
+  height: 500px;
+  background-size: contain;
+  position: relative;
+
+  > div {
+    height: 476px;
+    .background {
+      z-index: 1;
+      width: 247px;
+      height: 347px;
+      position: absolute;
+      top: -12px;
+      background-repeat: no-repeat;
+    }
+    .text {
+      position: relative;
+      top: 308px;
+      padding: 12px;
+    }
+  }
+
+
+  &.glitch .background {
+    background-image: url("../img/glitch.png");
+  }
+
+}
+
 // YAH Icons
 //-------------
 .icon-yah,
