@@ -18,6 +18,9 @@ h4 {
 h5 {
   font-size: 18px;
 }
+body.city-karlsruhe {
+  background-color: white;
+}
 #background {
   width: 100%;
   min-width: 970px;
