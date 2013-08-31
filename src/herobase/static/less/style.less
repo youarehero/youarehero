@@ -343,6 +343,56 @@ h5 { font-size: 18px; }
   }
 
 }
+
+.box-floating {
+  @floating-base-zindex: 100;
+  .cut-corners(@background-red);
+  .box-red;
+  color: white;
+  position: absolute;
+  top: (42px - @cut-corner-radius);
+  right: (27px - @cut-corner-radius);
+  z-index: 100;
+
+  h1 {
+    font-family: farao_book_heldregular;
+    margin-top: -30px;
+    margin-left: 12px;
+
+    &:before {
+      content: "!";
+      font-size: 320px;
+      color: black;
+      position: absolute;
+      top: -89px;
+      left: 40px;
+      z-index: -1;
+    }
+  }
+
+  > div {
+    width: 200px;
+    height: 400px;
+  }
+
+  p {
+    font-size: 16px;
+    position: absolute;
+    bottom: 40px;
+    padding: 12px;
+  }
+
+  .box-footer {
+    position: absolute;
+    bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: center
+  }
+
+}
+
 // YAH Icons
 //-------------
 .icon-yah,
