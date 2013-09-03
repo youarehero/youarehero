@@ -117,6 +117,9 @@ body.city-karlsruhe {
   border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
 }
+#navigation .nav-white > li > a + a {
+  margin-left: 8px;
+}
 #navigation .nav-white > li > a {
   padding: 0;
   color: black;
