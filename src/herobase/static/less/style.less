@@ -96,7 +96,13 @@ body.city-karlsruhe {
   .nav-container {
     position: relative;
     float: left;
-    margin-left: 20px;
+    min-height: 1px;
+    &:first-child {
+      margin-left: 15px;
+    }
+  }
+  .nav-container + .nav-container {
+    margin-left: 35px;
   }
 
   .nav {
