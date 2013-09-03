@@ -193,6 +193,15 @@ body.city-karlsruhe {
   border-top: 12px solid rgba(255, 0, 0, 0.6);
   border-bottom: 0 none;
 }
+#navigation .nav-red.learn-more {
+  margin: inherit 4px;
+}
+#navigation .nav-red.learn-more > li {
+  font-size: 18px;
+}
+#navigation .nav-red.learn-more > li > i {
+  font-size: 48px;
+}
 #navigation .nav.sub {
   margin-top: -12px;
 }
