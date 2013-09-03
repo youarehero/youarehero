@@ -53,6 +53,7 @@ body.city-karlsruhe {
   margin-bottom: -12px;
 }
 #navigation .nav > li > a {
+  display: inline-block;
   padding: 5px 8px;
 }
 #navigation .nav > li > a:hover,
@@ -96,6 +97,33 @@ body.city-karlsruhe {
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
+}
+#navigation .nav-white {
+  background: rgba(255, 255, 255, 0.6);
+  margin-bottom: 12px;
+  width: 159px;
+  padding-top: 30px;
+}
+#navigation .nav-white:after {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: relative;
+  top: 12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 0 none;
+}
+#navigation .nav-white > li > a {
+  padding: 0;
+  color: black;
+}
+#navigation .nav-white > li > a > i {
+  font-size: 48px;
+  color: black;
 }
 #navigation .nav-blue {
   text-align: center;

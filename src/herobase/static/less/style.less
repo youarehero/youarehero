@@ -111,12 +111,13 @@ body.city-karlsruhe {
 //      margin-top: @corner_cut;
       margin-bottom: -@cut-corner-radius;
       > a {
-      padding: 5px 8px;
-      &:hover,
-      &:focus {
-        background-color: transparent;
+        display: inline-block;
+        padding: 5px 8px;
+        &:hover,
+        &:focus {
+          background-color: transparent;
+        }
       }
-    }
     }
   }
 
@@ -146,7 +147,25 @@ body.city-karlsruhe {
       }
     }
     .cut-corners-bottom(@background);
+  }
 
+  .nav-white {
+    background: @background;
+    .cut-corners-bottom(@background);
+
+    width: 159px;
+    padding-top: 30px;
+
+    > li {
+      > a {
+        > i {
+          font-size: 48px;
+          color: black;
+        }
+        padding: 0;
+        color: black;
+      }
+    }
   }
   .nav-blue {
     text-align: center;
