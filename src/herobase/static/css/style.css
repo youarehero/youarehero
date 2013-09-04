@@ -21,16 +21,17 @@ h5 {
 body.city-karlsruhe {
   background-color: white;
 }
-#background {
-  width: 100%;
-  min-width: 970px;
-  height: 1114px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -100;
-  background: url("../img/sky2.png") no-repeat scroll 50% 0 #ffffff;
-  background-size: cover;
+body {
+  background-image: url("../img/sky2.png");
+  background-color: white;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center top;
+  background-size: auto 1114px;
+}
+html,
+body {
+  height: 100%;
 }
 .vertical-offset {
   margin-top: 23px;
