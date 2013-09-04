@@ -33,6 +33,11 @@ html,
 body {
   height: 100%;
 }
+#page {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 60px;
+}
 .vertical-offset {
   margin-top: 23px;
 }
@@ -242,6 +247,8 @@ body {
   font-size: 16px;
 }
 #page-footer {
+  height: 60px;
+  margin-top: -60px;
   font-size: 16px;
 }
 #page-footer .nav-container {
@@ -250,6 +257,7 @@ body {
   margin-left: 20px;
 }
 #page-footer .nav {
+  height: 48px;
   text-align: center;
 }
 #page-footer .nav > li {

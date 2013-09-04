@@ -70,6 +70,8 @@ h5 { font-size: 18px; }
 @black: #333;
 @white: #fff;
 
+@footer-height: 60px;
+
 body.city-karlsruhe {
   background-color: white;
 }
@@ -85,6 +87,12 @@ body {
 
 html, body {
   height: 100%;
+}
+
+#page {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: @footer-height;
 }
 
 .vertical-offset {
@@ -269,6 +277,8 @@ html, body {
 
 // Footer
 #page-footer {
+  height: @footer-height;
+  margin-top: -@footer-height;
   font-size: 16px;
   .nav-container {
     position: relative;
@@ -277,6 +287,7 @@ html, body {
   }
 
   .nav {
+    height: (@footer-height - @cut-corner-radius);
     text-align: center;
     > li {
       padding: 5px 5px;
