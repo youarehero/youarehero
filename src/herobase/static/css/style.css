@@ -251,11 +251,6 @@ body {
   margin-top: -60px;
   font-size: 16px;
 }
-#page-footer .nav-container {
-  position: relative;
-  float: left;
-  margin-left: 20px;
-}
 #page-footer .nav {
   height: 48px;
   text-align: center;
