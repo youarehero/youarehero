@@ -24,7 +24,6 @@
                 {% endwith %}
                 </i><br>Nachrichten</a></li>
             </ul>
-            {% block submenu %}&nbsp;{% endblock %}
             <ul class="nav nav-black sub">
                 <li class="{% ifactive "message_list_in" %}active{% endifactive %}">
                     <a href="{% url "message_list_in" %}"><i class="icon-inbox icon-2x"></i><br>Eingang</a></li>

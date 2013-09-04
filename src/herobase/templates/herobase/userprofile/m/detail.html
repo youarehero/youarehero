@@ -32,12 +32,6 @@
         }
     </script>
 {% endblock %}
-{% block submenu %}
-    {% if request.user == user %}
-        {% include "herobase/userprofile/submenu.inc.html" %}
-    {% endif %}
-{% endblock %}
-
 
 {% block content %}
     

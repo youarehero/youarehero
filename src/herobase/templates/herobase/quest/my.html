@@ -7,10 +7,6 @@
     <h1>{% trans "My Quests" %}</h1>
 {% endblock %}
 
-{% block submenu %}
-    {% include "herobase/quest/submenu.inc.html"%}
-{% endblock %}
-
 {% block content %}
 {#    <h2>{% trans "Current Quests" %}</h2>#}
     {% paginate 6 quests %}

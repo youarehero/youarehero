@@ -29,15 +29,6 @@
     <h1>{% trans "Billboard" %}</h1>
 {% endblock %}
 
-{% block submenu %}
-    <form action="" method="get" class="form form-inline">
-        <div class="btn-group">
-            <input placeholder="z.B. Übersetzen" type="search" class="search" name="search" value="{{ search }}"/>
-            <input id="" class="btn" type="submit" name="submit" value="Suchen"/>
-        </div>
-    </form>
-{% endblock %}
-
 {% block content %}
     {% paginate 12 quests %}
     <div style="text-align: right">{% show_pages %}</div>
