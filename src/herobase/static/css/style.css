@@ -49,38 +49,38 @@ body.city-karlsruhe {
 #navigation .nav {
   text-align: center;
 }
-#navigation .nav > li {
+#navigation .nav li {
   margin-bottom: -12px;
 }
-#navigation .nav > li > a {
+#navigation .nav li > a {
   display: inline-block;
   padding: 5px 8px;
 }
-#navigation .nav > li > a:hover,
-#navigation .nav > li > a:focus {
+#navigation .nav li > a:hover,
+#navigation .nav li > a:focus {
   background-color: transparent;
 }
 #navigation .nav-black {
   background: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
 }
-#navigation .nav-black > li {
+#navigation .nav-black li {
   float: left;
 }
-#navigation .nav-black > li > a {
+#navigation .nav-black li > a {
   color: #333333;
   border: 1px dashed;
   border-color: transparent transparent #ff0000 transparent;
 }
-#navigation .nav-black > li > a:hover,
-#navigation .nav-black > li > a:focus {
+#navigation .nav-black li > a:hover,
+#navigation .nav-black li > a:focus {
   color: #ff0000;
   background: rgba(255, 255, 255, 0.6);
   border-color: #ff0000 #ff0000 transparent #ff0000;
 }
-#navigation .nav-black > .active > a,
-#navigation .nav-black > .active > a:hover,
-#navigation .nav-black > .active > a:focus {
+#navigation .nav-black .active > a,
+#navigation .nav-black .active > a:hover,
+#navigation .nav-black .active > a:focus {
   color: #ff0000;
   background: rgba(255, 255, 255, 0.6);
   border-color: #ff0000 #ff0000 transparent #ff0000;
@@ -117,14 +117,14 @@ body.city-karlsruhe {
   border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
 }
-#navigation .nav-white > li > a + a {
+#navigation .nav-white li > a + a {
   margin-left: 8px;
 }
-#navigation .nav-white > li > a {
+#navigation .nav-white li > a {
   padding: 0;
   color: black;
 }
-#navigation .nav-white > li > a > i {
+#navigation .nav-white li > a > i {
   font-size: 48px;
   color: black;
 }
@@ -134,19 +134,19 @@ body.city-karlsruhe {
   margin-top: -12px;
   margin-bottom: 12px;
 }
-#navigation .nav-blue > li {
+#navigation .nav-blue li {
   margin-top: 12px;
 }
-#navigation .nav-blue > li > a {
+#navigation .nav-blue li > a {
   color: #ffffff;
 }
-#navigation .nav-blue > li > a:hover,
-#navigation .nav-blue > li > a:focus {
+#navigation .nav-blue li > a:hover,
+#navigation .nav-blue li > a:focus {
   background: rgba(0, 0, 204, 0.6);
 }
-#navigation .nav-blue > .active > a,
-#navigation .nav-blue > .active > a:hover,
-#navigation .nav-blue > .active > a:focus {
+#navigation .nav-blue .active > a,
+#navigation .nav-blue .active > a:hover,
+#navigation .nav-blue .active > a:focus {
   background: rgba(0, 0, 204, 0.6);
 }
 #navigation .nav-blue:after {
@@ -168,19 +168,19 @@ body.city-karlsruhe {
   margin-top: -12px;
   margin-bottom: 12px;
 }
-#navigation .nav-red > li {
+#navigation .nav-red li {
   margin-top: 12px;
 }
-#navigation .nav-red > li > a {
+#navigation .nav-red li > a {
   color: #ffffff;
 }
-#navigation .nav-red > li > a:hover,
-#navigation .nav-red > li > a:focus {
+#navigation .nav-red li > a:hover,
+#navigation .nav-red li > a:focus {
   background: rgba(204, 0, 0, 0.6);
 }
-#navigation .nav-red > .active > a,
-#navigation .nav-red > .active > a:hover,
-#navigation .nav-red > .active > a:focus {
+#navigation .nav-red .active > a,
+#navigation .nav-red .active > a:hover,
+#navigation .nav-red .active > a:focus {
   background: rgba(204, 0, 0, 0.6);
 }
 #navigation .nav-red:after {
@@ -199,22 +199,22 @@ body.city-karlsruhe {
 #navigation .nav-red.learn-more {
   margin: inherit 4px;
 }
-#navigation .nav-red.learn-more > li {
+#navigation .nav-red.learn-more li {
   font-size: 18px;
 }
-#navigation .nav-red.learn-more > li > i {
+#navigation .nav-red.learn-more li > i {
   font-size: 48px;
 }
 #navigation .nav.sub {
-  margin-top: -12px;
+  margin-top: 12px;
 }
-#navigation .nav.sub > li > a {
+#navigation .nav.sub li > a {
   border: 0px none;
 }
 #navigation .nav-font {
   font-size: 16px;
 }
-#navigation .nav-font > li.pull-down {
+#navigation .nav-font li.pull-down {
   margin-top: 24px;
 }
 #navigation .nav-font input {
