@@ -75,14 +75,11 @@ body.city-karlsruhe {
 #navigation .nav-black li > a:hover,
 #navigation .nav-black li > a:focus {
   color: #ff0000;
-  background: rgba(255, 255, 255, 0.6);
-  border-color: #ff0000 #ff0000 transparent #ff0000;
 }
 #navigation .nav-black .active > a,
 #navigation .nav-black .active > a:hover,
 #navigation .nav-black .active > a:focus {
   color: #ff0000;
-  background: rgba(255, 255, 255, 0.6);
   border-color: #ff0000 #ff0000 transparent #ff0000;
 }
 #navigation .nav-black:after {
