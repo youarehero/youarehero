@@ -4,20 +4,10 @@
     <form method="POST" action="">  {{ block.super }}</form>
 {% endblock %}
 
-{% load i18n static %}
-
-{% block buttons_top %}
-
-{% endblock %}
-
-{% block title %}
-{% endblock %}
-
 {% block content %}
-    {% crispy form %}
-{% endblock %}
-
-{% block buttons_bottom %}
+    <form method="POST" action="">
+        {% crispy form %}
     <button type="submit" value="Save" name="save"  data-toggle="tooltip" data-title="Übernehmen">
-        <i class="icon-yah-ok icon-40"></i></button>
+        <i class="icon-yah-ok">test</i></button>
+    </form>
 {% endblock %}
