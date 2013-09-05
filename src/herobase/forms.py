@@ -44,7 +44,7 @@ class QuestCreateForm(forms.ModelForm):
                     Div(
                         'title',
                         'description',
-                        css_class="span3",
+                        css_class="col-md-6",
                     ),
                     Div(
                         'max_heroes',
@@ -52,7 +52,7 @@ class QuestCreateForm(forms.ModelForm):
                         'time_effort',
                         'address',
                         'expiration_date',
-                        css_class="span3",
+                        css_class="col-md-6",
                     ),
                     css_class="row",
                 ),

@@ -25,18 +25,18 @@ class MessageForm(forms.ModelForm):
             Div(
                 Div(
                     'recipient',
-                    css_class="span3",
+                    css_class="col-md-6",
                     ),
                 Div(
                     'title',
-                    css_class="span3",
+                    css_class="col-md-6",
                     ),
                 css_class="row",
             ),
             Div(
                 Div(
-                    Field('text', css_class="span6"),
-                    css_class="span6",
+                    Field('text', css_class="col-md-12"),
+                    css_class="col-md-12",
                 ),
                 css_class="row",
             ),
@@ -70,18 +70,18 @@ class TeamMessageForm(forms.Form):
             Div(
                 Div(
                     'team',
-                    css_class="span3",
+                    css_class="col-md-6",
                     ),
                 Div(
                     'title',
-                    css_class="span3",
+                    css_class="col-md-6",
                     ),
                 css_class="row",
             ),
             Div(
                 Div(
-                    Field('text', css_class="span6"),
-                    css_class="span6",
+                    Field('text', css_class="col-md-12"),
+                    css_class="col-md-12",
                 ),
                 css_class="row",
             ),
