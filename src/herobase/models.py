@@ -250,7 +250,7 @@ class Quest(LocationMixin, models.Model):
 
     def save(self, *args, **kwargs):
         """Make sure that this is not created by a minor"""
-        if not self.owner.profile.is_legal_adult:
+        if not self.owner.profile.is_legal_adult():
             raise ValidationError("Minors are not allowed to create quests")
         super(Quest, self).save(*args, **kwargs)
 
