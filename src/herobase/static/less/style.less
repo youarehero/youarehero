@@ -38,6 +38,10 @@
       border-bottom: @cut-corner-radius solid @color;
       border-top: 0 none;
     }
+  > div {
+    padding: 0 @cut-corner-radius;
+    margin-top: -@cut-corner-radius;
+  }
 }
 
 .cut-corners(@color, @radius: @cut-corner-radius) {

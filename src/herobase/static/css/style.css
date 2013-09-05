@@ -302,6 +302,10 @@ body {
   border-bottom: 12px solid rgba(0, 0, 255, 0.6);
   border-top: 0 none;
 }
+#page-footer .nav-blue > div {
+  padding: 0 12px;
+  margin-top: -12px;
+}
 .box {
   background: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
@@ -332,6 +336,10 @@ body {
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(255, 255, 255, 0.6);
   border-top: 0 none;
+}
+.box > div {
+  padding: 0 12px;
+  margin-top: -12px;
 }
 .box-red {
   color: #ff0000;
@@ -367,6 +375,10 @@ body {
   border-bottom: 12px solid rgba(255, 0, 0, 0.6);
   border-top: 0 none;
 }
+.box-red.cut-corners > div {
+  padding: 0 12px;
+  margin-top: -12px;
+}
 .box-blue {
   color: #0000ff;
   background: rgba(0, 0, 255, 0.6);
@@ -400,6 +412,10 @@ body {
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(0, 0, 255, 0.6);
   border-top: 0 none;
+}
+.box-blue.cut-corners > div {
+  padding: 0 12px;
+  margin-top: -12px;
 }
 .box-content {
   margin: 0 12px;
@@ -436,6 +452,10 @@ body {
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(255, 255, 255, 0.6);
   border-top: 0 none;
+}
+.box-image > div {
+  padding: 0 12px;
+  margin-top: -12px;
 }
 .box-image .header {
   display: block;
@@ -501,6 +521,10 @@ body {
   border-bottom: 12px solid rgba(255, 0, 0, 0.6);
   border-top: 0 none;
 }
+.box-floating > div {
+  padding: 0 12px;
+  margin-top: -12px;
+}
 .box-floating.cut-corners {
   margin-bottom: 12px;
   margin-top: 12px;
@@ -530,6 +554,10 @@ body {
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(255, 0, 0, 0.6);
   border-top: 0 none;
+}
+.box-floating.cut-corners > div {
+  padding: 0 12px;
+  margin-top: -12px;
 }
 .box-floating h1 {
   font-family: farao_book_heldregular;
@@ -596,6 +624,10 @@ body {
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(255, 255, 255, 0.6);
   border-top: 0 none;
+}
+.hero-box > div {
+  padding: 0 12px;
+  margin-top: -12px;
 }
 .hero-box > div {
   height: 476px;
