@@ -1888,8 +1888,7 @@ body {
   margin: 0;
 }
 .box-image .text {
-  height: 272px;
-  margin-top: 30px;
+  height: 302px;
   margin-left: 0;
   margin-right: 0;
   margin-bottom: 0;
@@ -1901,7 +1900,7 @@ body {
   width: 530px;
   height: 400px;
   position: absolute;
-  top: -12px;
+  top: 0;
   left: 270px;
   z-index: 1;
 }
@@ -1915,6 +1914,7 @@ body {
   top: 30px;
   right: 15px;
   z-index: 100;
+  padding: 0 !important;
 }
 .box-floating:after {
   content: "";
@@ -1982,8 +1982,7 @@ body {
 }
 .box-floating h1 {
   font-family: farao_book_heldregular;
-  margin-top: -30px;
-  margin-left: 12px;
+  margin-top: 0;
 }
 .box-floating h1:before {
   content: "!";
@@ -2001,15 +2000,15 @@ body {
 .box-floating p {
   font-size: 16px;
   position: absolute;
-  bottom: 40px;
+  bottom: 46px;
   padding: 12px;
+  width: 176px;
 }
 .box-floating .box-footer {
+  height: 46px;
   position: absolute;
   bottom: 0px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+  width: 176px;
   text-align: center;
 }
 .hero-box {

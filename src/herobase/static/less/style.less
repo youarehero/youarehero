@@ -362,7 +362,6 @@ html, body {
   @width: 800px;
   @text-width: 270px;
   @header-height: 50px;
-  @text-margin-top: 30px;
 
   .box;
 
@@ -380,8 +379,7 @@ html, body {
 
   .text {
     // the 2*12 are to work against the boxes margin. No idea why this is neccessary.
-    height: (@height - 2 * @cut-corner-radius - @header-height - 2*12px - @text-margin-top);
-    margin-top: @text-margin-top;
+    height: (@height - 2 * @cut-corner-radius - @header-height - 2*12px);
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 0;
@@ -395,7 +393,7 @@ html, body {
     width: (@width - @text-width);
     height: @height;
     position: absolute;
-    top: -@cut-corner-radius;
+    top: 0;
     left: @text-width;
     z-index: 1;
   }
@@ -404,18 +402,22 @@ html, body {
 
 .box-floating {
   @floating-base-zindex: 100;
+  @width: 200px;
+  @child-width: ( @width - 2 * @cut-corner-radius );
+  @footer-height: 46px;
+
   .cut-corners(@background-red);
   .box-red;
   color: white;
   position: absolute;
   top: (42px - @cut-corner-radius);
   right: (27px - @cut-corner-radius);
-  z-index: 100;
+  z-index: @floating-base-zindex;
+  padding: 0 !important;
 
   h1 {
     font-family: farao_book_heldregular;
-    margin-top: -30px;
-    margin-left: 12px;
+    margin-top: 0;
 
     &:before {
       content: "!";
@@ -429,23 +431,23 @@ html, body {
   }
 
   > div {
-    width: 200px;
+    width: @width;
     height: 400px;
   }
 
   p {
     font-size: 16px;
     position: absolute;
-    bottom: 40px;
+    bottom: @footer-height;
     padding: 12px;
+    width: @child-width;
   }
 
   .box-footer {
+    height: @footer-height;
     position: absolute;
     bottom: 0px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+    width: @child-width;
     text-align: center
   }
 
