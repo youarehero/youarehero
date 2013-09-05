@@ -2051,6 +2051,7 @@ body {
 }
 .hero-box > div {
   height: 476px;
+  width: 247px;
 }
 .hero-box > div .background {
   z-index: 1;
@@ -2058,12 +2059,13 @@ body {
   height: 347px;
   position: absolute;
   top: -12px;
+  left: 0;
   background-repeat: no-repeat;
 }
 .hero-box > div .text {
   position: relative;
-  top: 308px;
-  padding: 12px;
+  top: 335px;
+  padding: 0 12px;
 }
 .hero-box.glitch .background {
   background-image: url("../img/glitch.png");
