@@ -2130,12 +2130,21 @@ body {
   margin-top: 12px;
 }
 .quest-detail > div.data > div > .avatar {
+  display: inline-block;
   z-index: 100;
   width: 70px;
   height: 70px;
   margin-bottom: -12px;
   position: relative;
   top: 12px;
+}
+.quest-detail > div.data > div > .icons {
+  margin-top: 12px;
+  margin-bottom: -24px;
+  display: inline-block;
+  float: right;
+  height: 70px;
+  padding-top: 9px;
 }
 .icon-yah,
 .icon-yah-hand,

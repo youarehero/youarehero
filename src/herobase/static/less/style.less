@@ -500,6 +500,7 @@ html, body {
       }
     }
     &.data {
+      @avatar-height: 70px;
       width: 200px;
       > div {
         dl {
@@ -518,12 +519,21 @@ html, body {
           }
         }
         > .avatar {
+          display: inline-block;
           z-index: 100;
-          width: 70px;
-          height: 70px;
+          width: @avatar-height;
+          height: @avatar-height;
           margin-bottom: -@cut-corner-radius;
           position: relative;
           top: @cut-corner-radius;
+        }
+        > .icons {
+          margin-top: @cut-corner-radius;
+          margin-bottom: -(2 * @cut-corner-radius);
+          display: inline-block;
+          float: right;
+          height: @avatar-height;
+          padding-top: ((@avatar-height - 40px) / 2) - (@cut-corner-radius / 2);
         }
       }
     }
