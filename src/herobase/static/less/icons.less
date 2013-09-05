@@ -1,0 +1,87 @@
+// Icons
+//------------------------
+
+
+[class^="icon-yah"],
+[class*=" icon-yah"] {
+  margin: 0;
+  vertical-align: middle;
+  font-style: normal;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-variant: small-caps;
+  white-space: nowrap;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.icon-yah-size(@position: 0, @size: 40px) {
+  background-position: -(@position * @size) 0;
+  width: @size;
+  height: @size;
+  line-height: @size;
+}
+
+.icon-yah(@position: 0) {
+  &:before {
+    content: "";
+    background-image: url("../img/icons/icons_40.png");
+    .icon-yah-size(@position, 40px);
+
+    &.icon-80 {
+      background-image: url("../img/icons/icons_80.png");
+      .icon-yah-size(@position, 80px);
+    }
+    &.icon-60 {
+      background-image: url("../img/icons/icons_60.png");
+      .icon-yah-size(@position, 60px);
+    }
+    &.icon-30 {
+      background-image: url("../img/icons/icons_30.png");
+      .icon-yah-size(@position, 30px);
+    }
+    &.icon-20 {
+      background-image: url("../img/icons/icons_20.png");
+      .icon-yah-size(@position, 20px);
+    }
+  }
+}
+.icon-yah-home          { .icon-yah(0) }
+.icon-yah-billboard     { .icon-yah(1) }
+.icon-yah-messages      { .icon-yah(2) }
+.icon-yah-calendar      { .icon-yah(3) }
+.icon-yah-quest-new     { .icon-yah(4) }
+.icon-yah-my-quests     { .icon-yah(5) }
+.icon-yah-x             { .icon-yah(6) }
+.icon-yah-edit          { .icon-yah(7) }
+.icon-yah-arrow         { .icon-yah(8) }
+.icon-yah-mail-all      { .icon-yah(9) }
+.icon-yah-time-short    { .icon-yah(10) }
+.icon-yah-time-middle   { .icon-yah(11) }
+.icon-yah-time-long     { .icon-yah(12) }
+.icon-yah-logout        { .icon-yah(13) }
+.icon-yah-leaderboard   { .icon-yah(14) }
+.icon-yah-local         { .icon-yah(15) }
+.icon-yah-social        { .icon-yah(16) }
+.icon-yah-like          { .icon-yah(17) }
+.icon-yah-upload        { .icon-yah(18) }
+.icon-yah-ok            { .icon-yah(19) }
+.icon-yah-ok-all        { .icon-yah(20) }
+.icon-yah-mail          { .icon-yah(21) }
+.icon-yah-postit        { .icon-yah(22) }
+.icon-yah-back          { .icon-yah(23) }
+.icon-yah-disk          { .icon-yah(24) }
+.icon-yah-star          { .icon-yah(25) }
+.icon-yah-info          { .icon-yah(26) }
+.icon-yah-trash         { .icon-yah(27) }
+.icon-yah-settings      { .icon-yah(28) }
+.icon-yah-forward       { .icon-yah(29) }
+.icon-yah-reply         { .icon-yah(30) }
+.icon-yah-quest-ok      { .icon-yah(31) }
+.icon-yah-quest-x       { .icon-yah(32) }
+.icon-yah-quest-star    { .icon-yah(33) }
+.icon-yah-quest-arrow   { .icon-yah(34) }
+.icon-yah-mail-new      { .icon-yah(35) }
+.icon-yah-stop          { .icon-yah(36) }
+.icon-yah-forbidden:before     { .icon-yah(37) }
+.icon-yah-home-arrow:before    { .icon-yah(38) }
