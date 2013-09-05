@@ -1445,6 +1445,11 @@ body {
   background-position: center top;
   background-size: auto 1114px;
 }
+@media (min-width: 1564px) {
+  body {
+    background-size: cover;
+  }
+}
 html,
 body {
   height: 100%;
