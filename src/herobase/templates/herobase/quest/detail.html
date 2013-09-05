@@ -16,6 +16,7 @@
           <dt>Erstellt am:</dt><dd>{{ quest.created.date }}</dd>
           <dt>Läuft noch bis:</dt><dd>{{ quest.expiration_date.date }}</dd>
         </dl>
+        <div class="avatar" style="background-image: url({{ quest.owner.profile.avatar_thumbnail_70|safe }})"></div>
     </div></div>
   </div>
 

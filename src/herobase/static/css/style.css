@@ -713,6 +713,14 @@ body {
 .quest-detail > div.data > div dl * + dt {
   margin-top: 12px;
 }
+.quest-detail > div.data > div > .avatar {
+  z-index: 100;
+  width: 70px;
+  height: 70px;
+  margin-bottom: -12px;
+  position: relative;
+  top: 12px;
+}
 .icon-yah,
 .icon-yah-hand,
 .icon-yah-hand-right,
