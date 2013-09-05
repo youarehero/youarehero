@@ -648,6 +648,71 @@ body {
 .hero-box.glitch .background {
   background-image: url("../img/glitch.png");
 }
+.quest-detail div + div {
+  margin-left: 20px;
+}
+.quest-detail > div {
+  vertical-align: top;
+  background: rgba(255, 255, 255, 0.6);
+  margin-bottom: 12px;
+  margin-top: 12px;
+  display: inline-block;
+}
+.quest-detail > div:after {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: relative;
+  top: 12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 0 none;
+}
+.quest-detail > div:before {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: relative;
+  bottom: 12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid rgba(255, 255, 255, 0.6);
+  border-top: 0 none;
+}
+.quest-detail > div > div {
+  padding: 0 12px;
+  margin-top: -12px;
+}
+.quest-detail > div.text h1 {
+  color: red;
+}
+.quest-detail > div.text p {
+  word-wrap: break-word;
+  width: 380px;
+  margin: auto 0;
+}
+.quest-detail > div.data {
+  width: 200px;
+}
+.quest-detail > div.data > div dl {
+  margin: 0;
+}
+.quest-detail > div.data > div dl dt {
+  font-size: 12px;
+  font-weight: normal;
+}
+.quest-detail > div.data > div dl dd {
+  color: blue;
+  font-size: 18px;
+}
+.quest-detail > div.data > div dl * + dt {
+  margin-top: 12px;
+}
 .icon-yah,
 .icon-yah-hand,
 .icon-yah-hand-right,

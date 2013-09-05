@@ -476,6 +476,51 @@ html, body {
 
 }
 
+// Quests
+//-------------
+.quest-detail {
+  div + div {
+    margin-left: 20px;
+  }
+
+  > div {
+    vertical-align: top;
+    .box;
+    display: inline-block;
+
+    &.text {
+      h1 {
+        color: red;
+      }
+      p {
+        word-wrap: break-word;
+        width: 380px;
+        margin: auto 0;
+      }
+    }
+    &.data {
+      width: 200px;
+      > div {
+        dl {
+          margin: 0;
+          dt {
+            font-size: 12px;
+            font-weight: normal;
+          }
+          dd {
+            color: blue;
+            font-size: 18px;
+          }
+
+          * + dt {
+            margin-top: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
 // YAH Icons
 //-------------
 .icon-yah,
