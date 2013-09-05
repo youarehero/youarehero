@@ -1831,6 +1831,68 @@
   height: 20px;
   line-height: 20px;
 }
+.icon-yah {
+  font-family: farao_book_heldregular;
+}
+.icon-yah:before {
+  content: "∞";
+}
+.icon-yah-hand,
+.icon-yah-hand-right {
+  font-family: farao_book_heldregular;
+}
+.icon-yah-hand:before,
+.icon-yah-hand-right:before {
+  content: "π";
+}
+.icon-yah-hand-left {
+  font-family: farao_book_heldregular;
+}
+.icon-yah-hand-left:before {
+  content: "∏";
+}
+.icon-yah-hand-up {
+  font-family: farao_book_heldregular;
+}
+.icon-yah-hand-up:before {
+  content: "∫";
+}
+.icon-yah-hand-down {
+  font-family: farao_book_heldregular;
+}
+.icon-yah-hand-down:before {
+  content: "ª";
+}
+.icon-question {
+  font-family: farao_book_heldregular;
+  line-height: 15px;
+}
+.icon-question:before {
+  content: "?";
+}
+.icon-question:before {
+  line-height: 15px;
+  font-size: 1.4em;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  position: relative;
+}
+[class^="icon-"] b,
+[class*=" icon-"] b {
+  font-size: 0.5em;
+  left: 50%;
+  top: 50%;
+  margin-left: -50%;
+  margin-top: -50%;
+  position: absolute;
+  width: 100%;
+  color: #ff0000;
+}
+.nav-black [class^="icon-"] b,
+.nav-black [class*=" icon-"] b {
+  color: #333333;
+}
 h1,
 h3,
 h4 {
@@ -2568,58 +2630,6 @@ body {
   float: right;
   height: 70px;
   padding-top: 9px;
-}
-.icon-yah,
-.icon-yah-hand,
-.icon-yah-hand-right,
-.icon-yah-hand-left,
-.icon-yah-hand-up,
-.icon-yah-hand-down {
-  font-family: farao_book_heldregular;
-}
-.icon-yah:before {
-  content: "∞";
-}
-.icon-yah-hand:before,
-.icon-yah-hand-right:before {
-  content: "π";
-}
-.icon-yah-hand-left:before {
-  content: "∏";
-}
-.icon-yah-hand-up:before {
-  content: "∫";
-}
-.icon-yah-hand-down:before {
-  content: "ª";
-}
-.icon-question {
-  font-family: farao_book_heldregular;
-  line-height: 15px;
-}
-.icon-question:before {
-  content: "?";
-  line-height: 15px;
-  font-size: 1.4em;
-}
-[class^="icon-"],
-[class*=" icon-"] {
-  position: relative;
-}
-[class^="icon-"] b,
-[class*=" icon-"] b {
-  font-size: 0.5em;
-  left: 50%;
-  top: 50%;
-  margin-left: -50%;
-  margin-top: -50%;
-  position: absolute;
-  width: 100%;
-  color: #ff0000;
-}
-.nav-black [class^="icon-"] b,
-.nav-black [class*=" icon-"] b {
-  color: #333333;
 }
 .box .caret {
   display: none;

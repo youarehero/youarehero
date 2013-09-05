@@ -81,3 +81,45 @@
 .icon-yah-stop          { .icon-yah-bitmap(36) }
 .icon-yah-forbidden     { .icon-yah-bitmap(37) }
 .icon-yah-home-arrow    { .icon-yah-bitmap(38) }
+
+.icon-yah-font(@glyph) {
+  font-family: farao_book_heldregular;
+  &:before {
+    content: @glyph;
+  }
+}
+
+.icon-yah            { .icon-yah-font("∞"); }
+.icon-yah-hand,
+.icon-yah-hand-right { .icon-yah-font("π"); }
+.icon-yah-hand-left  { .icon-yah-font("∏"); }
+.icon-yah-hand-up    { .icon-yah-font("∫"); }
+.icon-yah-hand-down  { .icon-yah-font("ª"); }
+
+.icon-question {
+  .icon-yah-font("?");
+  line-height: 15px;
+  &:before {
+    line-height: 15px;
+    font-size: 1.4em;
+  }
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  position: relative;
+  b {
+    font-size: 0.5em;
+    left: 50%;
+    top: 50%;
+    margin-left: -50%;
+    margin-top: -50%;
+    position: absolute;
+    width: 100%;
+    color: @foreground-red;
+  }
+}
+.nav-black [class^="icon-"] b,
+.nav-black [class*=" icon-"] b {
+  color: @black;
+}
