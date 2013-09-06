@@ -1969,6 +1969,7 @@ body {
 #navigation .nav-black {
   background: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
+  position: relative;
 }
 #navigation .nav-black li {
   float: left;
@@ -1996,17 +1997,21 @@ body {
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  top: 12px;
+  position: absolute;
+  bottom: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
 }
+#navigation .nav-black > * {
+  padding: 0 12px;
+}
 #navigation .nav-white {
   background: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
+  position: relative;
   width: 159px;
   padding-top: 30px;
 }
@@ -2015,13 +2020,16 @@ body {
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  top: 12px;
+  position: absolute;
+  bottom: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
+}
+#navigation .nav-white > * {
+  padding: 0 12px;
 }
 #navigation .nav-white li > a + a {
   margin-left: 8px;
@@ -2039,6 +2047,7 @@ body {
   background: rgba(0, 0, 255, 0.6);
   margin-top: -12px;
   margin-bottom: 12px;
+  position: relative;
 }
 #navigation .nav-blue li {
   margin-top: 12px;
@@ -2060,19 +2069,23 @@ body {
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  top: 12px;
+  position: absolute;
+  bottom: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(0, 0, 255, 0.6);
   border-bottom: 0 none;
 }
+#navigation .nav-blue > * {
+  padding: 0 12px;
+}
 #navigation .nav-red {
   text-align: center;
   background: rgba(255, 0, 0, 0.6);
   margin-top: -12px;
   margin-bottom: 12px;
+  position: relative;
 }
 #navigation .nav-red li {
   margin-top: 12px;
@@ -2094,13 +2107,16 @@ body {
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  top: 12px;
+  position: absolute;
+  bottom: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(255, 0, 0, 0.6);
   border-bottom: 0 none;
+}
+#navigation .nav-red > * {
+  padding: 0 12px;
 }
 #navigation .nav-red.learn-more {
   margin: inherit 4px;
@@ -2176,6 +2192,7 @@ body {
   margin-top: -12px;
   color: #ffffff;
   margin-top: 12px;
+  position: relative;
 }
 #page-footer .nav-blue > li {
   float: left;
@@ -2197,52 +2214,54 @@ body {
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  bottom: 12px;
+  position: absolute;
+  top: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(0, 0, 255, 0.6);
   border-top: 0 none;
 }
-#page-footer .nav-blue > div {
+#page-footer .nav-blue > * {
   padding: 0 12px;
-  margin-top: -12px;
 }
 .box {
   background: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
   margin-top: 12px;
+  position: relative;
 }
 .box:after {
   content: "";
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  top: 12px;
+  position: absolute;
+  bottom: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
 }
+.box > * {
+  padding: 0 12px;
+}
 .box:before {
   content: "";
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  bottom: 12px;
+  position: absolute;
+  top: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(255, 255, 255, 0.6);
   border-top: 0 none;
 }
-.box > div {
+.box > * {
   padding: 0 12px;
-  margin-top: -12px;
 }
 .box-red {
   color: #ff0000;
@@ -2251,36 +2270,39 @@ body {
 .box-red.cut-corners {
   margin-bottom: 12px;
   margin-top: 12px;
+  position: relative;
 }
 .box-red.cut-corners:after {
   content: "";
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  top: 12px;
+  position: absolute;
+  bottom: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(255, 0, 0, 0.6);
   border-bottom: 0 none;
 }
+.box-red.cut-corners > * {
+  padding: 0 12px;
+}
 .box-red.cut-corners:before {
   content: "";
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  bottom: 12px;
+  position: absolute;
+  top: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(255, 0, 0, 0.6);
   border-top: 0 none;
 }
-.box-red.cut-corners > div {
+.box-red.cut-corners > * {
   padding: 0 12px;
-  margin-top: -12px;
 }
 .box-blue {
   color: #0000ff;
@@ -2289,36 +2311,39 @@ body {
 .box-blue.cut-corners {
   margin-bottom: 12px;
   margin-top: 12px;
+  position: relative;
 }
 .box-blue.cut-corners:after {
   content: "";
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  top: 12px;
+  position: absolute;
+  bottom: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(0, 0, 255, 0.6);
   border-bottom: 0 none;
 }
+.box-blue.cut-corners > * {
+  padding: 0 12px;
+}
 .box-blue.cut-corners:before {
   content: "";
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  bottom: 12px;
+  position: absolute;
+  top: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(0, 0, 255, 0.6);
   border-top: 0 none;
 }
-.box-blue.cut-corners > div {
+.box-blue.cut-corners > * {
   padding: 0 12px;
-  margin-top: -12px;
 }
 .box-content {
   margin: 0 12px;
@@ -2335,30 +2360,32 @@ body {
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  top: 12px;
+  position: absolute;
+  bottom: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
 }
+.box-image > * {
+  padding: 0 12px;
+}
 .box-image:before {
   content: "";
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  bottom: 12px;
+  position: absolute;
+  top: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(255, 255, 255, 0.6);
   border-top: 0 none;
 }
-.box-image > div {
+.box-image > * {
   padding: 0 12px;
-  margin-top: -12px;
 }
 .box-image .header {
   display: block;
@@ -2389,6 +2416,7 @@ body {
 .box-floating {
   margin-bottom: 12px;
   margin-top: 12px;
+  position: relative;
   color: #ff0000;
   background: rgba(255, 0, 0, 0.6);
   color: white;
@@ -2403,64 +2431,69 @@ body {
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  top: 12px;
+  position: absolute;
+  bottom: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(255, 0, 0, 0.6);
   border-bottom: 0 none;
+}
+.box-floating > * {
+  padding: 0 12px;
 }
 .box-floating:before {
   content: "";
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  bottom: 12px;
+  position: absolute;
+  top: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(255, 0, 0, 0.6);
   border-top: 0 none;
 }
-.box-floating > div {
+.box-floating > * {
   padding: 0 12px;
-  margin-top: -12px;
 }
 .box-floating.cut-corners {
   margin-bottom: 12px;
   margin-top: 12px;
+  position: relative;
 }
 .box-floating.cut-corners:after {
   content: "";
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  top: 12px;
+  position: absolute;
+  bottom: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(255, 0, 0, 0.6);
   border-bottom: 0 none;
 }
+.box-floating.cut-corners > * {
+  padding: 0 12px;
+}
 .box-floating.cut-corners:before {
   content: "";
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  bottom: 12px;
+  position: absolute;
+  top: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(255, 0, 0, 0.6);
   border-top: 0 none;
 }
-.box-floating.cut-corners > div {
+.box-floating.cut-corners > * {
   padding: 0 12px;
-  margin-top: -12px;
 }
 .box-floating h1 {
   font-family: farao_book_heldregular;
@@ -2506,30 +2539,32 @@ body {
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  top: 12px;
+  position: absolute;
+  bottom: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
 }
+.hero-box > * {
+  padding: 0 12px;
+}
 .hero-box:before {
   content: "";
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  bottom: 12px;
+  position: absolute;
+  top: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(255, 255, 255, 0.6);
   border-top: 0 none;
 }
-.hero-box > div {
+.hero-box > * {
   padding: 0 12px;
-  margin-top: -12px;
 }
 .hero-box > div {
   height: 476px;
@@ -2567,6 +2602,7 @@ body {
   background: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
   margin-top: 12px;
+  position: relative;
   display: inline-block;
 }
 .quest-detail > div:after {
@@ -2574,30 +2610,32 @@ body {
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  top: 12px;
+  position: absolute;
+  bottom: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
 }
+.quest-detail > div > * {
+  padding: 0 12px;
+}
 .quest-detail > div:before {
   content: "";
   display: table;
   width: 100%;
   height: 0;
-  position: relative;
-  bottom: 12px;
+  position: absolute;
+  top: -12px;
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   border-bottom: 12px solid rgba(255, 255, 255, 0.6);
   border-top: 0 none;
 }
-.quest-detail > div > div {
+.quest-detail > div > * {
   padding: 0 12px;
-  margin-top: -12px;
 }
 .quest-detail > div.text h1 {
   color: red;

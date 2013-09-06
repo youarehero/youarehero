@@ -10,38 +10,42 @@
 @cut-corner-radius: 12px;
 .cut-corners-bottom(@color, @radius: @cut-corner-radius) {
   margin-bottom: @cut-corner-radius;
+  position: relative;
   &:after {
     content: "";
     display: table;
     width: 100%;
     height: 0;
-    position: relative;
-    top: @cut-corner-radius;
+    position: absolute;
+    bottom: -@cut-corner-radius;
     left: 0;
     border-right: @cut-corner-radius solid transparent;
     border-left: @cut-corner-radius solid transparent;
     border-top: @cut-corner-radius solid @color;
     border-bottom: 0 none;
   }
+  > * {
+    padding: 0 @cut-corner-radius;
+  }
 }
 .cut-corners-top(@color, @radius: @cut-corner-radius) {
   margin-top: @cut-corner-radius;
+  position: relative;
   &:before {
     content: "";
     display: table;
     width: 100%;
     height: 0;
-    position: relative;
-    bottom: @cut-corner-radius;
+    position: absolute;
+    top: -@cut-corner-radius;
     left: 0;
     border-right: @cut-corner-radius solid transparent;
     border-left: @cut-corner-radius solid transparent;
     border-bottom: @cut-corner-radius solid @color;
     border-top: 0 none;
   }
-  > div {
+  > * {
     padding: 0 @cut-corner-radius;
-    margin-top: -@cut-corner-radius;
   }
 }
 
