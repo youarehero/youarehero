@@ -2422,8 +2422,8 @@ body {
   width: 530px;
   height: 400px;
   position: absolute;
-  top: 0;
-  left: 270px;
+  top: -12px;
+  right: 0px;
   z-index: 1;
 }
 .box-floating {
