@@ -1,33 +1,25 @@
 {% extends "herobase/layout/box.html" %}
 {% load i18n %}
 
-{% block title %}
-    <a href="{{ quest.get_absolute_url }}">
-        <img src="{{ quest.owner.profile.avatar_quest_list }}" alt="" class="pull-left">
-        <h3>{{ quest.title }}</h3>
-    </a>
-{% endblock %}
+{% block extra_classes %}box-red cut-corners{% endblock %}
 
 {% block content %}
-    <div class="pull-right">
-        {% if quest.remote %}
-{#            <i class="icon-yah-distance icon-40" data-toggle="tooltip" data-title="{% trans "Can be done remotely" %}"></i>#}
-        {% else %}
-            <i class="icon-yah-local icon-40" data-toggle="tooltip" data-title="{% trans "Has to be done locally" %}"></i>
-            <br>
-        {% endif %}
-
-        {% if quest.time_effort %}
-            {% if quest.time_effort == quest.TIME_EFFORT_LOW %}
-                <i class="icon-yah-time-short" data-toggle="tooltip" data-title="{% trans "low time effort" %}"></i>
-            {% elif quest.time_effort == quest.TIME_EFFORT_MEDIUM %}
-                <i class="icon-yah-time-middle" data-toggle="tooltip" data-title="{% trans "medium time effort" %}"></i>
-            {% elif quest.time_effort == quest.TIME_EFFORT_HIGH %}
-                <i class="icon-yah-time-long" data-toggle="tooltip" data-title="{% trans "high time effort" %}"></i>
-            {% endif %}
-        {% endif %}
+    <div class="quest-short">
+        <div class="text">
+            <h1>Questtitel</h1>
+            <p>
+                Im Rahmen der Flüchtlingshilfe werden
+                flinke Finger gesucht, die helfen alte Rä-
+                der für Flüchtlinge wieder fahrtüchtig zu
+                machen. Mehr Infos auf http://bikeswit-
+                houtborders.blogspot.de/ oder bei mir.
+                Um diese Quest kannst Du Dich ab 14
+                Jahren bewerben.
+                {{ quest.description|truncatewords:24 }}
+            </p>
+            {% include "herobase/quest/quest_box_footer.html" %}
+        </div>
     </div>
-    {{ quest.description|truncatewords:24 }}
 {% endblock %}
 
 {% block buttons_bottom %}

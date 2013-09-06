@@ -33,13 +33,9 @@
     {% paginate 12 quests %}
     <div style="text-align: right">{% show_pages %}</div>
     <div class="quest-list">
-        <hr>
-
-        <ul class="grid">
+        <div class="row">
             {% for quest in quests %}
-                <li class="span{% cycle '3-5' '2-75' '3' '3-25' %}">
-                    {% include "herobase/quest/list_box.html" %}
-                </li>
+                {% include "herobase/quest/list_box.html" %}
             {% empty %}
                 {% if search %}
                     <li>{% trans "No quests found matching your current criteria." %}
@@ -49,7 +45,7 @@
                     <li>{% trans "There don't seem to be any quests." %}</li>
                 {% endif %}
             {% endfor %}
-        </ul>
+        </div>
     </div>
     <div style="text-align: right">{% show_pages %}</div>
 {% endblock %}

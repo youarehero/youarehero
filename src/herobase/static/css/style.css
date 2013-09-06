@@ -2552,6 +2552,13 @@ body {
 .hero-box.glitch .background {
   background-image: url("../img/glitch.png");
 }
+.quest-short .text {
+  color: white;
+}
+.quest-short .text h1 {
+  font-size: 18px;
+  font-family: farao_textregular;
+}
 .quest-detail div + div {
   margin-left: 20px;
 }
