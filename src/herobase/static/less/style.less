@@ -144,15 +144,17 @@ html, body {
     li {
       float: left;
       > a {
-      color: @text-color;
-      border: 1px dashed;
-      border-color: transparent transparent @foreground-red transparent;
-      &:hover,
-      &:focus {
-        color: @foreground-red;
+        color: @text-color;
+        border: 1px dashed;
+        border-color: transparent transparent @foreground-red transparent;
+        &:hover,
+        &:focus {
+          color: @foreground-red;
+        }
       }
     }
-    }
+    > ul:last-child > li > a { border: none; }
+
     .active > a {
       &,
       &:hover,

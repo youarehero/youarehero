@@ -1982,6 +1982,9 @@ body {
 #navigation .nav-black li > a:focus {
   color: #ff0000;
 }
+#navigation .nav-black > ul:last-child > li > a {
+  border: none;
+}
 #navigation .nav-black .active > a,
 #navigation .nav-black .active > a:hover,
 #navigation .nav-black .active > a:focus {
