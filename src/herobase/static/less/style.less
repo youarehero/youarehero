@@ -114,9 +114,16 @@ html, body {
 
 
 // Navigation
+.nav-cut-corners-bottom(@background) {
+  .cut-corners-bottom(@background);
+  > * {
+    padding: 0;
+  }
+}
 #navigation {
   .nav-container {
     position: relative;
+    padding: 0 !important;
     float: left;
     min-height: 1px;
     &:first-child {
@@ -130,7 +137,6 @@ html, body {
   .nav {
     text-align: center;
     li {
-//      margin-top: @corner_cut;
       margin-bottom: -@cut-corner-radius;
       > a {
         display: inline-block;
@@ -167,12 +173,12 @@ html, body {
         border-color: @foreground-red @foreground-red transparent @foreground-red;
       }
     }
-    .cut-corners-bottom(@background);
+    .nav-cut-corners-bottom(@background);
   }
 
   .nav-white {
     background: @background;
-    .cut-corners-bottom(@background);
+    .nav-cut-corners-bottom(@background);
 
     width: 159px;
     padding-top: 30px;
@@ -212,7 +218,7 @@ html, body {
         background: darken(@background-blue, 10%);
       }
     }
-    .cut-corners-bottom(@background-blue);
+    .nav-cut-corners-bottom(@background-blue);
   }
   .nav-red {
     text-align: center;
@@ -235,7 +241,7 @@ html, body {
         background: darken(@background-red, 10%);
       }
     }
-    .cut-corners-bottom(@background-red);
+    .nav-cut-corners-bottom(@background-red);
   }
   .nav-red.learn-more {
     margin: inherit 4px;

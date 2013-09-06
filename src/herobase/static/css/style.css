@@ -1943,6 +1943,7 @@ body {
 }
 #navigation .nav-container {
   position: relative;
+  padding: 0 !important;
   float: left;
   min-height: 1px;
 }
@@ -2008,6 +2009,9 @@ body {
 #navigation .nav-black > * {
   padding: 0 12px;
 }
+#navigation .nav-black > * {
+  padding: 0;
+}
 #navigation .nav-white {
   background: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
@@ -2030,6 +2034,9 @@ body {
 }
 #navigation .nav-white > * {
   padding: 0 12px;
+}
+#navigation .nav-white > * {
+  padding: 0;
 }
 #navigation .nav-white li > a + a {
   margin-left: 8px;
@@ -2080,6 +2087,9 @@ body {
 #navigation .nav-blue > * {
   padding: 0 12px;
 }
+#navigation .nav-blue > * {
+  padding: 0;
+}
 #navigation .nav-red {
   text-align: center;
   background: rgba(255, 0, 0, 0.6);
@@ -2117,6 +2127,9 @@ body {
 }
 #navigation .nav-red > * {
   padding: 0 12px;
+}
+#navigation .nav-red > * {
+  padding: 0;
 }
 #navigation .nav-red.learn-more {
   margin: inherit 4px;
