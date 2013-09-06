@@ -2617,7 +2617,7 @@ body {
 .quest-detail > div.data > div dl * + dt {
   margin-top: 12px;
 }
-.quest-detail > div.data > div > .avatar {
+.quest-detail > div.data > div .footer > .avatar {
   display: inline-block;
   z-index: 100;
   width: 70px;
@@ -2626,7 +2626,7 @@ body {
   position: relative;
   top: 12px;
 }
-.quest-detail > div.data > div > .icons {
+.quest-detail > div.data > div .footer > .icons {
   margin-top: 12px;
   margin-bottom: -24px;
   display: inline-block;

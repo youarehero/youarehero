@@ -1,0 +1,20 @@
+{% load i18n %}
+
+<div class="footer">
+  <div class="avatar" style="background-image: url({{ quest.owner.profile.avatar_thumbnail_70|safe }})"></div>
+  <div class="icons">
+    {% if not quest.remote %}
+        <i class="icon-yah-local" data-toggle="fooltip" title="{% trans "Has to be done locally" %}"></i>
+    {% endif %}
+
+    {% if quest.time_effort %}
+        {% if quest.time_effort == quest.TIME_EFFORT_LOW %}
+            <i class="icon-yah-time-short" data-toggle="fooltip" title="{% trans "low time effort" %}"></i>
+        {% elif quest.time_effort == quest.TIME_EFFORT_MEDIUM %}
+            <i class="icon-yah-time-middle" data-toggle="fooltip" title="{% trans "medium time effort" %}"></i>
+        {% elif quest.time_effort == quest.TIME_EFFORT_HIGH %}
+            <i class="icon-yah-time-long" data-toggle="fooltip" title="{% trans "high time effort" %}"></i>
+        {% endif %}
+    {% endif %}
+  </div>
+</div>

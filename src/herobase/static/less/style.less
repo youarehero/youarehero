@@ -532,22 +532,24 @@ html, body {
             margin-top: 12px;
           }
         }
-        > .avatar {
-          display: inline-block;
-          z-index: 100;
-          width: @avatar-height;
-          height: @avatar-height;
-          margin-bottom: -@cut-corner-radius;
-          position: relative;
-          top: @cut-corner-radius;
-        }
-        > .icons {
-          margin-top: @cut-corner-radius;
-          margin-bottom: -(2 * @cut-corner-radius);
-          display: inline-block;
-          float: right;
-          height: @avatar-height;
-          padding-top: ((@avatar-height - 40px) / 2) - (@cut-corner-radius / 2);
+        .footer {
+          > .avatar {
+            display: inline-block;
+            z-index: 100;
+            width: @avatar-height;
+            height: @avatar-height;
+            margin-bottom: -@cut-corner-radius;
+            position: relative;
+            top: @cut-corner-radius;
+          }
+          > .icons {
+            margin-top: @cut-corner-radius;
+            margin-bottom: -(2 * @cut-corner-radius);
+            display: inline-block;
+            float: right;
+            height: @avatar-height;
+            padding-top: ((@avatar-height - 40px) / 2) - (@cut-corner-radius / 2);
+          }
         }
       }
     }
