@@ -4,45 +4,52 @@
 <div class="nav-container">
   <div class="nav-black">
     <div class="headline">you are <span class="username">{{ request.user.username }}</span></div>
-    <ul class="nav">
-      <li><a href="#"><i class="icon-puzzle-piece icon-3x"></i><br>Das Spiel</a></li>
-      <li class="{% ifstartswith "/quest/" %}active{% endifstartswith %}">
-      <a href="{% url "quest_list" %}"><i class="icon-pushpin icon-3x"></i><br>Quests</a></li>
-      <li class="{% ifstartswith "/messages" %}active{% endifstartswith %}">
-      <a href="{% url "message_list_in" %}"><i class="icon-comments icon-3x">
-          {% with unread_message_count=request.user.profile.unread_messages_count %}
-          {% if unread_message_count != 0 %}
-          <b>{{ unread_messages_count }}</b>
-          {% endif %}
-          {% endwith %}
-      </i><br>Nachrichten</a></li>
-    </ul>
+    <div class="avatar-box">
+      <div class="avatar" style="background-image: url({{ request.user.profile.avatar_thumbnail_110|safe }});"></div>
+      <div class="experience-bar"><div style="width: {{ request.user.profile.relative_level_experience }}%;"></div></div>
+      <div class="level">{{ request.user.profile.level }}</div>
+    </div>
+    <div class="nav-icons">
+      <ul class="nav">
+        <li><a href="#"><i class="icon-puzzle-piece icon-3x"></i><br>Das Spiel</a></li>
+        <li class="{% ifstartswith "/quest/" %}active{% endifstartswith %}">
+        <a href="{% url "quest_list" %}"><i class="icon-pushpin icon-3x"></i><br>Quests</a></li>
+        <li class="{% ifstartswith "/messages" %}active{% endifstartswith %}">
+        <a href="{% url "message_list_in" %}"><i class="icon-comments icon-3x">
+            {% with unread_message_count=request.user.profile.unread_messages_count %}
+            {% if unread_message_count != 0 %}
+            <b>{{ unread_messages_count }}</b>
+            {% endif %}
+            {% endwith %}
+        </i><br>Nachrichten</a></li>
+      </ul>
 
-    {% ifstartswith "/quest" %}
-    <ul class="nav sub">
-      <li class="{% ifstartswith "/quest/list" %}active{% endifstartswith %}">
-      <a href="{% url "quest_list" %}"><i class="icon-pushpin icon-2x"></i><br/>Pinn<br/>wand</a>
-      </li>
-      <li class="{% ifactive "quest_create" %}active{% endifactive %}">
-      <a href="{% url "quest_create" %}"><i class="icon-edit-sign icon-2x"></i><br/>Neue<br/>Quest</a>
-      </li>
-      <li class="">
-      <a href="#"><i class="icon-inbox icon-2x"></i><br/>Meine<br/>Quests</a>
-      </li>
-    </ul>
-    {% endifstartswith %}
-    {% ifstartswith "/messages" %}
-    <ul class="nav sub">
-      <li class="{% ifactive "message_list_in" %}active{% endifactive %}">
-      <a href="{% url "message_list_in" %}"><i class="icon-inbox icon-2x"></i><br>Eingang</a>
-      </li>
-      <li class="{% ifactive "message_list_out" %}active{% endifactive %}">
-      <a href="{% url "message_list_out" %}"><i class="icon-share icon-2x"></i><br>Ausgang</a>
-      </li>
-      <li class="{% ifactive "message_create" %}active{% endifactive %}">
-      <a href="{% url "message_create" %}"><i class="icon-pencil icon-2x"></i><br>Verfassen</a></li>
-    </ul>
-    {% endifstartswith %}
+      {% ifstartswith "/quest" %}
+      <ul class="nav sub">
+        <li class="{% ifstartswith "/quest/list" %}active{% endifstartswith %}">
+        <a href="{% url "quest_list" %}"><i class="icon-pushpin icon-2x"></i><br/>Pinn<br/>wand</a>
+        </li>
+        <li class="{% ifactive "quest_create" %}active{% endifactive %}">
+        <a href="{% url "quest_create" %}"><i class="icon-edit-sign icon-2x"></i><br/>Neue<br/>Quest</a>
+        </li>
+        <li class="">
+        <a href="#"><i class="icon-inbox icon-2x"></i><br/>Meine<br/>Quests</a>
+        </li>
+      </ul>
+      {% endifstartswith %}
+      {% ifstartswith "/messages" %}
+      <ul class="nav sub">
+        <li class="{% ifactive "message_list_in" %}active{% endifactive %}">
+        <a href="{% url "message_list_in" %}"><i class="icon-inbox icon-2x"></i><br>Eingang</a>
+        </li>
+        <li class="{% ifactive "message_list_out" %}active{% endifactive %}">
+        <a href="{% url "message_list_out" %}"><i class="icon-share icon-2x"></i><br>Ausgang</a>
+        </li>
+        <li class="{% ifactive "message_create" %}active{% endifactive %}">
+        <a href="{% url "message_create" %}"><i class="icon-pencil icon-2x"></i><br>Verfassen</a></li>
+      </ul>
+      {% endifstartswith %}
+    </div>
   </div>
 </div>
 <div class="nav-container">

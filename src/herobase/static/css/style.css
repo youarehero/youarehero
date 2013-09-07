@@ -1989,7 +1989,7 @@ body {
 #navigation .nav-black li > a:focus {
   color: #ff0000;
 }
-#navigation .nav-black > ul:last-child > li > a {
+#navigation .nav-black .nav-icons ul:last-child > li > a {
   border: none;
 }
 #navigation .nav-black .active > a,
@@ -2021,6 +2021,39 @@ body {
 }
 #navigation .nav-black .headline .username {
   color: red;
+}
+#navigation .nav-black .avatar-box,
+#navigation .nav-black .nav-icons {
+  display: inline-block;
+}
+#navigation .nav-black .avatar-box {
+  vertical-align: top;
+  position: relative;
+  margin-bottom: -12px;
+}
+#navigation .nav-black .avatar-box .avatar {
+  width: 110px;
+  height: 110px;
+}
+#navigation .nav-black .avatar-box .experience-bar {
+  border: 2px solid red;
+  width: 100%;
+  height: 14px;
+}
+#navigation .nav-black .avatar-box .experience-bar > div {
+  height: 100%;
+  background-color: red;
+}
+#navigation .nav-black .avatar-box .level {
+  height: 42px;
+  width: 42px;
+  background-image: url("../img/levelstar.png");
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  text-align: center;
+  color: white;
+  font-size: 24px;
 }
 #navigation .nav-white {
   background: rgba(255, 255, 255, 0.6);
