@@ -11,11 +11,11 @@
     </div>
     <div class="nav-icons">
       <ul class="nav">
-        <li><a href="#"><i class="icon-puzzle-piece icon-3x"></i><br>Das Spiel</a></li>
+        <li><a href="#"><i class="icon-puzzle-piece"></i><br>Das Spiel</a></li>
         <li class="{% ifstartswith "/quest/" %}active{% endifstartswith %}">
-        <a href="{% url "quest_list" %}"><i class="icon-pushpin icon-3x"></i><br>Quests</a></li>
+        <a href="{% url "quest_list" %}"><i class="icon-pushpin"></i><br>Quests</a></li>
         <li class="{% ifstartswith "/messages" %}active{% endifstartswith %}">
-        <a href="{% url "message_list_in" %}"><i class="icon-comments icon-3x">
+        <a href="{% url "message_list_in" %}"><i class="icon-comments">
             {% with unread_message_count=request.user.profile.unread_messages_count %}
             {% if unread_message_count != 0 %}
             <b>{{ unread_messages_count }}</b>
