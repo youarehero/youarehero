@@ -1,7 +1,10 @@
 {% load i18n %}
+{% load url from future %}
 
 <div class="footer">
-  <div class="avatar" style="background-image: url({{ quest.owner.profile.avatar_thumbnail_70|safe }})"></div>
+  <a href="{% url "userprofile_public" quest.owner.username %}"
+    class="avatar"
+    style="background-image: url({{ quest.owner.profile.avatar_thumbnail_70|safe }})"></a>
   <div class="icons">
     {% if not quest.remote %}
         <i class="icon-yah-local" data-toggle="fooltip" title="{% trans "Has to be done locally" %}"></i>
