@@ -1989,6 +1989,12 @@ body {
 #navigation .nav-black li > a:focus {
   color: #ff0000;
 }
+#navigation .nav-black .nav-icons i {
+  font-size: 48px;
+}
+#navigation .nav-black .nav-icons .sub i {
+  font-size: 30px;
+}
 #navigation .nav-black .nav-icons ul:last-child > li > a {
   border: none;
 }
