@@ -3,6 +3,7 @@
 
 <div class="nav-container">
   <div class="nav-black">
+    <div class="headline">you are <span class="username">{{ request.user.username }}</span></div>
     <ul class="nav">
       <li><a href="#"><i class="icon-puzzle-piece icon-3x"></i><br>Das Spiel</a></li>
       <li class="{% ifstartswith "/quest/" %}active{% endifstartswith %}">

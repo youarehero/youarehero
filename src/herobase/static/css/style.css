@@ -2013,6 +2013,13 @@ body {
 #navigation .nav-black > * {
   padding: 0;
 }
+#navigation .nav-black .headline {
+  font-size: 16px;
+  font-family: farao_textbold;
+}
+#navigation .nav-black .headline .username {
+  color: red;
+}
 #navigation .nav-white {
   background: rgba(255, 255, 255, 0.6);
   padding: 0;
