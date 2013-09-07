@@ -461,32 +461,27 @@ html, body {
 }
 
 .hero-box {
-  @width: 247px;
-  @height: 500px;
+  width: 247px;
+  height: 500px;
   @hero-height: 347px;
 
   .box;
-  height: @height;
   background-size: contain;
   position: relative;
 
-  > div {
-    height: (@height - 2 * @cut-corner-radius);
-    width: @width;
-    .background {
-      z-index: 1;
-      width: @width;
-      height: @hero-height;
-      position: absolute;
-      top: -@cut-corner-radius;
-      left: 0;
-      background-repeat: no-repeat;
-    }
-    .text {
-      position: relative;
-      top: @hero-height - @cut-corner-radius;
-      padding: 0 12px;
-    }
+  .background {
+    z-index: 1;
+    width: 100%;
+    height: @hero-height;
+    position: absolute;
+    top: -@cut-corner-radius;
+    left: 0;
+    background-repeat: no-repeat;
+  }
+  .text {
+    position: relative;
+    top: @hero-height - @cut-corner-radius;
+    padding: 0 12px;
   }
 
 
