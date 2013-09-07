@@ -1959,9 +1959,6 @@ body {
 #navigation .nav {
   text-align: center;
 }
-#navigation .nav li {
-  margin-bottom: -12px;
-}
 #navigation .nav li > a {
   display: inline-block;
   padding: 5px 8px;
@@ -1987,9 +1984,6 @@ body {
 #navigation .nav-black li > a:hover,
 #navigation .nav-black li > a:focus {
   color: #ff0000;
-}
-#navigation .nav-black > ul:last-child {
-  padding-bottom: 12px;
 }
 #navigation .nav-black > ul:last-child > li > a {
   border: none;
@@ -2060,15 +2054,12 @@ body {
 #navigation .nav-blue {
   text-align: center;
   background: rgba(0, 0, 255, 0.6);
-  margin-top: -12px;
   padding: 0;
   margin-bottom: 12px;
   position: relative;
 }
-#navigation .nav-blue li {
-  margin-top: 12px;
-}
 #navigation .nav-blue li > a {
+  width: 100%;
   color: #ffffff;
 }
 #navigation .nav-blue li > a:hover,
@@ -2147,9 +2138,6 @@ body {
 #navigation .nav-red.learn-more li > i {
   font-size: 48px;
 }
-#navigation .nav.sub {
-  margin-top: 12px;
-}
 #navigation .nav.sub li > a {
   border: 0px none;
 }
@@ -2193,11 +2181,6 @@ body {
 #page-footer .nav {
   height: 48px;
   text-align: center;
-}
-#page-footer .nav > li {
-  padding: 5px 5px;
-  margin-top: -12px;
-  margin-bottom: 12px;
 }
 #page-footer .nav > li > a {
   padding: 0 5px;

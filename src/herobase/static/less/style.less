@@ -139,7 +139,6 @@ html, body {
   .nav {
     text-align: center;
     li {
-      margin-bottom: -@cut-corner-radius;
       > a {
         display: inline-block;
         padding: 5px 8px;
@@ -165,10 +164,8 @@ html, body {
         }
       }
     }
-    > ul:last-child {
-      padding-bottom: @cut-corner-radius;
-      > li > a { border: none; }
-    }
+    > ul:last-child > li > a { border: none; }
+
 
     .active > a {
       &,
@@ -202,29 +199,26 @@ html, body {
       }
     }
   }
+
   .nav-blue {
     text-align: center;
     background: @background-blue;
-    margin-top: -@cut-corner-radius;
-    li {
-      margin-top: @cut-corner-radius;
-      > a {
-        color: @white;
-        &:hover,
-        &:focus {
-          background: darken(@background-blue, 10%);
-        }
+    li > a {
+      width: 100%;
+      color: @white;
+      &:hover, &:focus {
+        background: darken(@background-blue, 10%);
       }
     }
+
     .active > a {
-      &,
-      &:hover,
-      &:focus {
+      &, &:hover, &:focus {
         background: darken(@background-blue, 10%);
       }
     }
     .nav-cut-corners-bottom(@background-blue);
   }
+
   .nav-red {
     text-align: center;
     background: @background-red;
@@ -258,7 +252,6 @@ html, body {
   }
 
   .nav.sub {
-    margin-top: @cut-corner-radius;
     li > a {
       border: 0px none;
     }
@@ -309,17 +302,12 @@ html, body {
   .nav {
     height: (@footer-height - @cut-corner-radius);
     text-align: center;
-    > li {
-      padding: 5px 5px;
-      margin-top: -@cut-corner-radius;
-      margin-bottom: @cut-corner-radius;
-      > a {
+    > li > a {
       padding: 0 5px;
       &:hover,
       &:focus {
         background-color: transparent;
       }
-    }
     }
   }
 
