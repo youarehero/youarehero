@@ -3,7 +3,7 @@
     <div class="header">!</div>
     <div class="text">
         <a href="{{ quest.get_absolute_url }}">
-        <h1>Questtitel</h1>
+        <h1>{{ quest.title }}</h1>
         <p>
             {{ quest.description|truncatewords:24 }}
         </p>
