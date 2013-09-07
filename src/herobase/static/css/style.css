@@ -2135,9 +2135,6 @@ body {
 #navigation .nav-red > * {
   padding: 0;
 }
-#navigation .nav-red.learn-more {
-  margin: inherit 4px;
-}
 #navigation .nav-red.learn-more li {
   font-size: 18px;
 }
