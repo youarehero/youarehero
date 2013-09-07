@@ -1913,6 +1913,9 @@ h4 {
 h5 {
   font-size: 18px;
 }
+ul {
+  list-style-type: none;
+}
 body.city-karlsruhe {
   background-color: white;
 }
