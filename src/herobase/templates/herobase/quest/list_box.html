@@ -1,26 +1,17 @@
-{% extends "herobase/layout/box.html" %}
 {% load i18n %}
-
-{% block extra_classes %}box-red cut-corners{% endblock %}
-
-{% block content %}
-    <div class="quest-short">
-        <div class="text">
-            <h1>Questtitel</h1>
-            <p>
-                Im Rahmen der Flüchtlingshilfe werden
-                flinke Finger gesucht, die helfen alte Rä-
-                der für Flüchtlinge wieder fahrtüchtig zu
-                machen. Mehr Infos auf http://bikeswit-
-                houtborders.blogspot.de/ oder bei mir.
-                Um diese Quest kannst Du Dich ab 14
-                Jahren bewerben.
-                {{ quest.description|truncatewords:24 }}
-            </p>
-            {% include "herobase/quest/quest_box_footer.html" %}
-        </div>
+<div class="quest-short">
+    <div class="text">
+        <h1>Questtitel</h1>
+        <p>
+            Im Rahmen der Flüchtlingshilfe werden
+            flinke Finger gesucht, die helfen alte Rä-
+            der für Flüchtlinge wieder fahrtüchtig zu
+            machen. Mehr Infos auf http://bikeswit-
+            houtborders.blogspot.de/ oder bei mir.
+            Um diese Quest kannst Du Dich ab 14
+            Jahren bewerben.
+            {{ quest.description|truncatewords:24 }}
+        </p>
+        {% include "herobase/quest/quest_box_footer.html" %}
     </div>
-{% endblock %}
-
-{% block buttons_bottom %}
-{% endblock %}
+</div>
