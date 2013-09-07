@@ -496,7 +496,29 @@ html, body {
 
 // Quests
 //-------------
+.quest {
+  .footer {
+    @avatar-height: 70px;
+    > .avatar {
+      display: inline-block;
+      z-index: 100;
+      width: @avatar-height;
+      height: @avatar-height;
+      position: relative;
+      top: @cut-corner-radius;
+    }
+    > .icons {
+      margin-top: @cut-corner-radius;
+      margin-bottom: -(2 * @cut-corner-radius);
+      display: inline-block;
+      float: right;
+      height: @avatar-height;
+      padding-top: ((@avatar-height - 40px) / 2) - (@cut-corner-radius / 2);
+    }
+  }
+}
 .quest-short {
+  .quest;
   .text {
     color: white;
     h1 {
@@ -506,63 +528,46 @@ html, body {
   }
 }
 .quest-detail {
-  div + div {
+  .quest;
+
+  > div + div {
     margin-left: 20px;
   }
 
   > div {
-    vertical-align: top;
     .box;
+    vertical-align: top;
+    padding: 0;
     display: inline-block;
-
-    &.text {
+  }
+  > .text {
       h1 {
         color: red;
+        font-size: 24px;
       }
       p {
         word-wrap: break-word;
         width: 380px;
         margin: auto 0;
+        font-size: 12px;
       }
-    }
-    &.data {
-      @avatar-height: 70px;
-      width: 200px;
-      > div {
-        dl {
-          margin: 0;
-          dt {
-            font-size: 12px;
-            font-weight: normal;
-          }
-          dd {
-            color: blue;
-            font-size: 18px;
-          }
+  }
 
-          * + dt {
-            margin-top: 12px;
-          }
-        }
-        .footer {
-          > .avatar {
-            display: inline-block;
-            z-index: 100;
-            width: @avatar-height;
-            height: @avatar-height;
-            margin-bottom: -@cut-corner-radius;
-            position: relative;
-            top: @cut-corner-radius;
-          }
-          > .icons {
-            margin-top: @cut-corner-radius;
-            margin-bottom: -(2 * @cut-corner-radius);
-            display: inline-block;
-            float: right;
-            height: @avatar-height;
-            padding-top: ((@avatar-height - 40px) / 2) - (@cut-corner-radius / 2);
-          }
-        }
+  > .data {
+    width: 200px;
+    dl {
+      margin: 0;
+      dt {
+        font-size: 12px;
+        font-weight: normal;
+      }
+      dd {
+        color: blue;
+        font-size: 18px;
+      }
+
+      * + dt {
+        margin-top: 12px;
       }
     }
   }

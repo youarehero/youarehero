@@ -2621,6 +2621,38 @@ body {
 .hero-box.glitch .background {
   background-image: url("../img/glitch.png");
 }
+.quest .footer > .avatar {
+  display: inline-block;
+  z-index: 100;
+  width: 70px;
+  height: 70px;
+  position: relative;
+  top: 12px;
+}
+.quest .footer > .icons {
+  margin-top: 12px;
+  margin-bottom: -24px;
+  display: inline-block;
+  float: right;
+  height: 70px;
+  padding-top: 9px;
+}
+.quest-short .footer > .avatar {
+  display: inline-block;
+  z-index: 100;
+  width: 70px;
+  height: 70px;
+  position: relative;
+  top: 12px;
+}
+.quest-short .footer > .icons {
+  margin-top: 12px;
+  margin-bottom: -24px;
+  display: inline-block;
+  float: right;
+  height: 70px;
+  padding-top: 9px;
+}
 .quest-short .text {
   color: white;
 }
@@ -2628,18 +2660,34 @@ body {
   font-size: 18px;
   font-family: farao_textregular;
 }
-.quest-detail div + div {
+.quest-detail .footer > .avatar {
+  display: inline-block;
+  z-index: 100;
+  width: 70px;
+  height: 70px;
+  position: relative;
+  top: 12px;
+}
+.quest-detail .footer > .icons {
+  margin-top: 12px;
+  margin-bottom: -24px;
+  display: inline-block;
+  float: right;
+  height: 70px;
+  padding-top: 9px;
+}
+.quest-detail > div + div {
   margin-left: 20px;
 }
 .quest-detail > div {
-  vertical-align: top;
   background: rgba(255, 255, 255, 0.6);
   padding-bottom: 12px;
   margin-bottom: 12px;
-  padding: 0;
   padding-top: 12px;
   margin-top: 12px;
   position: relative;
+  vertical-align: top;
+  padding: 0;
   display: inline-block;
 }
 .quest-detail > div:after {
@@ -2674,47 +2722,32 @@ body {
 .quest-detail > div > * {
   padding: 0 12px;
 }
-.quest-detail > div.text h1 {
+.quest-detail > .text h1 {
   color: red;
+  font-size: 24px;
 }
-.quest-detail > div.text p {
+.quest-detail > .text p {
   word-wrap: break-word;
   width: 380px;
   margin: auto 0;
+  font-size: 12px;
 }
-.quest-detail > div.data {
+.quest-detail > .data {
   width: 200px;
 }
-.quest-detail > div.data > div dl {
+.quest-detail > .data dl {
   margin: 0;
 }
-.quest-detail > div.data > div dl dt {
+.quest-detail > .data dl dt {
   font-size: 12px;
   font-weight: normal;
 }
-.quest-detail > div.data > div dl dd {
+.quest-detail > .data dl dd {
   color: blue;
   font-size: 18px;
 }
-.quest-detail > div.data > div dl * + dt {
+.quest-detail > .data dl * + dt {
   margin-top: 12px;
-}
-.quest-detail > div.data > div .footer > .avatar {
-  display: inline-block;
-  z-index: 100;
-  width: 70px;
-  height: 70px;
-  margin-bottom: -12px;
-  position: relative;
-  top: 12px;
-}
-.quest-detail > div.data > div .footer > .icons {
-  margin-top: 12px;
-  margin-bottom: -24px;
-  display: inline-block;
-  float: right;
-  height: 70px;
-  padding-top: 9px;
 }
 .box .caret {
   display: none;

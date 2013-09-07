@@ -3,21 +3,21 @@
 
 {% block content %}
   <div class="quest-detail">
-    <div class="text"><div>
-      Details zu
+    <div class="text">
+      <span>Details zu</span>
       <h1>{{ quest.title }}</h1>
       <p>{{ quest.description|linebreaksbr|urlize }}</p>
-    </div></div>
-    <div class="data"><div>
-        <dl>
-          <dt>Ersteller:</dt><dd>{{ quest.owner.username }}</dd>
-          <dt>Status:</dt><dd>offen</dd>
-          <dt>Gesuchte Helden</dt><dd>100.000</dd>
-          <dt>Erstellt am:</dt><dd>{{ quest.created.date }}</dd>
-          <dt>Läuft noch bis:</dt><dd>{{ quest.expiration_date.date }}</dd>
-        </dl>
-        {% include "herobase/quest/quest_box_footer.html" %}
-    </div></div>
+    </div>
+    <div class="data">
+      <dl>
+        <dt>Ersteller:</dt><dd>{{ quest.owner.username }}</dd>
+        <dt>Status:</dt><dd>offen</dd>
+        <dt>Gesuchte Helden</dt><dd>100.000</dd>
+        <dt>Erstellt am:</dt><dd>{{ quest.created.date }}</dd>
+        <dt>Läuft noch bis:</dt><dd>{{ quest.expiration_date.date }}</dd>
+      </dl>
+      {% include "herobase/quest/quest_box_footer.html" %}
+    </div>
   </div>
 
     {% if is_owner %}
