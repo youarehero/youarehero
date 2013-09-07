@@ -2,17 +2,12 @@
 <div class="quest-short">
     <div class="header">!</div>
     <div class="text">
+        <a href="{{ quest.get_absolute_url }}">
         <h1>Questtitel</h1>
         <p>
-            Im Rahmen der Flüchtlingshilfe werden
-            flinke Finger gesucht, die helfen alte Rä-
-            der für Flüchtlinge wieder fahrtüchtig zu
-            machen. Mehr Infos auf http://bikeswit-
-            houtborders.blogspot.de/ oder bei mir.
-            Um diese Quest kannst Du Dich ab 14
-            Jahren bewerben.
             {{ quest.description|truncatewords:24 }}
         </p>
         {% include "herobase/quest/quest_box_footer.html" %}
+        </a>
     </div>
 </div>
