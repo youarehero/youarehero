@@ -1893,6 +1893,10 @@
 .nav-black [class*=" icon-"] b {
   color: #333333;
 }
+.using-horizontal-borders > * {
+  padding-left: 0;
+  padding-right: 0;
+}
 h1,
 h3,
 h4 {
@@ -2010,9 +2014,6 @@ body {
 #navigation .nav-black > * {
   padding: 0 12px;
 }
-#navigation .nav-black > * {
-  padding: 0;
-}
 #navigation .nav-black .headline {
   font-size: 16px;
   font-family: farao_textbold;
@@ -2045,7 +2046,8 @@ body {
   padding: 0 12px;
 }
 #navigation .nav-white > * {
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 #navigation .nav-white li > a + a {
   margin-left: 8px;
@@ -2059,24 +2061,11 @@ body {
   color: black;
 }
 #navigation .nav-blue {
-  text-align: center;
-  background: rgba(0, 0, 255, 0.6);
   padding: 0;
   margin-bottom: 12px;
   position: relative;
-}
-#navigation .nav-blue li > a {
-  width: 100%;
-  color: #ffffff;
-}
-#navigation .nav-blue li > a:hover,
-#navigation .nav-blue li > a:focus {
-  background: rgba(0, 0, 204, 0.6);
-}
-#navigation .nav-blue .active > a,
-#navigation .nav-blue .active > a:hover,
-#navigation .nav-blue .active > a:focus {
-  background: rgba(0, 0, 204, 0.6);
+  text-align: center;
+  background: rgba(0, 0, 255, 0.6);
 }
 #navigation .nav-blue:after {
   content: "";
@@ -2095,7 +2084,21 @@ body {
   padding: 0 12px;
 }
 #navigation .nav-blue > * {
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+#navigation .nav-blue li > a {
+  width: 100%;
+  color: #ffffff;
+}
+#navigation .nav-blue li > a:hover,
+#navigation .nav-blue li > a:focus {
+  background: rgba(0, 0, 204, 0.6);
+}
+#navigation .nav-blue .active > a,
+#navigation .nav-blue .active > a:hover,
+#navigation .nav-blue .active > a:focus {
+  background: rgba(0, 0, 204, 0.6);
 }
 #navigation .nav-red {
   text-align: center;
@@ -2137,7 +2140,8 @@ body {
   padding: 0 12px;
 }
 #navigation .nav-red > * {
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 #navigation .nav-red.learn-more li {
   font-size: 18px;

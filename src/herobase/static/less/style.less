@@ -56,6 +56,15 @@
   .cut-corners-top(@color, @radius);
 }
 
+// meant for use together with .cut-corners-*
+.using-horizontal-borders {
+  > * {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+
 // Typographie
 //------------------
 
@@ -117,12 +126,6 @@ html, body {
 
 
 // Navigation
-.nav-cut-corners-bottom(@background) {
-  .cut-corners-bottom(@background);
-  > * {
-    padding: 0;
-  }
-}
 #navigation {
   .nav-container {
     position: relative;
@@ -176,7 +179,7 @@ html, body {
         border-color: @foreground-red @foreground-red transparent @foreground-red;
       }
     }
-    .nav-cut-corners-bottom(@background);
+    .cut-corners-bottom(@background);
 
     .headline {
       font-size: 16px;
@@ -189,7 +192,8 @@ html, body {
 
   .nav-white {
     background: @background;
-    .nav-cut-corners-bottom(@background);
+    .cut-corners-bottom(@background);
+    .using-horizontal-borders;
 
     width: 159px;
     padding-top: 30px;
@@ -210,6 +214,8 @@ html, body {
   }
 
   .nav-blue {
+    .cut-corners-bottom(@background-blue);
+    .using-horizontal-borders;
     text-align: center;
     background: @background-blue;
     li > a {
@@ -225,7 +231,6 @@ html, body {
         background: darken(@background-blue, 10%);
       }
     }
-    .nav-cut-corners-bottom(@background-blue);
   }
 
   .nav-red {
@@ -249,7 +254,8 @@ html, body {
         background: darken(@background-red, 10%);
       }
     }
-    .nav-cut-corners-bottom(@background-red);
+    .cut-corners-bottom(@background-red);
+    .using-horizontal-borders;
   }
   .nav-red.learn-more {
     li {
