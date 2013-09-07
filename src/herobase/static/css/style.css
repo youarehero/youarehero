@@ -2022,6 +2022,8 @@ body {
   padding: 0 12px;
 }
 #navigation .nav-black .headline {
+  margin-left: 25px;
+  padding-top: 15px;
   font-size: 16px;
   font-family: farao_textbold;
 }
