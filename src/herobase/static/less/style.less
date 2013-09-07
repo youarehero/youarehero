@@ -10,7 +10,6 @@
 @cut-corner-radius: 12px;
 .cut-corners-bottom(@color, @radius: @cut-corner-radius) {
   padding: 0;
-  padding-bottom: @cut-corner-radius;
   margin-bottom: @cut-corner-radius;
   position: relative;
   &:after {
@@ -32,7 +31,6 @@
 }
 .cut-corners-top(@color, @radius: @cut-corner-radius) {
   padding: 0;
-  padding-top: @cut-corner-radius;
   margin-top: @cut-corner-radius;
   position: relative;
   &:before {
@@ -167,7 +165,10 @@ html, body {
         }
       }
     }
-    > ul:last-child > li > a { border: none; }
+    > ul:last-child {
+      padding-bottom: @cut-corner-radius;
+      > li > a { border: none; }
+    }
 
     .active > a {
       &,

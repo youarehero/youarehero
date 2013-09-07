@@ -1973,7 +1973,6 @@ body {
 #navigation .nav-black {
   background: rgba(255, 255, 255, 0.6);
   padding: 0;
-  padding-bottom: 12px;
   margin-bottom: 12px;
   position: relative;
 }
@@ -1988,6 +1987,9 @@ body {
 #navigation .nav-black li > a:hover,
 #navigation .nav-black li > a:focus {
   color: #ff0000;
+}
+#navigation .nav-black > ul:last-child {
+  padding-bottom: 12px;
 }
 #navigation .nav-black > ul:last-child > li > a {
   border: none;
@@ -2020,7 +2022,6 @@ body {
 #navigation .nav-white {
   background: rgba(255, 255, 255, 0.6);
   padding: 0;
-  padding-bottom: 12px;
   margin-bottom: 12px;
   position: relative;
   width: 159px;
@@ -2061,7 +2062,6 @@ body {
   background: rgba(0, 0, 255, 0.6);
   margin-top: -12px;
   padding: 0;
-  padding-bottom: 12px;
   margin-bottom: 12px;
   position: relative;
 }
@@ -2104,7 +2104,6 @@ body {
   background: rgba(255, 0, 0, 0.6);
   margin-top: -12px;
   padding: 0;
-  padding-bottom: 12px;
   margin-bottom: 12px;
   position: relative;
 }
@@ -2213,7 +2212,6 @@ body {
   margin-top: -12px;
   color: #ffffff;
   padding: 0;
-  padding-top: 12px;
   margin-top: 12px;
   position: relative;
 }
@@ -2250,10 +2248,8 @@ body {
 }
 .box {
   background: rgba(255, 255, 255, 0.6);
-  padding-bottom: 12px;
   margin-bottom: 12px;
   padding: 0;
-  padding-top: 12px;
   margin-top: 12px;
   position: relative;
 }
@@ -2294,10 +2290,8 @@ body {
   background: rgba(255, 0, 0, 0.6);
 }
 .box-red.cut-corners {
-  padding-bottom: 12px;
   margin-bottom: 12px;
   padding: 0;
-  padding-top: 12px;
   margin-top: 12px;
   position: relative;
 }
@@ -2338,10 +2332,8 @@ body {
   background: rgba(0, 0, 255, 0.6);
 }
 .box-blue.cut-corners {
-  padding-bottom: 12px;
   margin-bottom: 12px;
   padding: 0;
-  padding-top: 12px;
   margin-top: 12px;
   position: relative;
 }
@@ -2382,10 +2374,8 @@ body {
 }
 .box-image {
   background: rgba(255, 255, 255, 0.6);
-  padding-bottom: 12px;
   margin-bottom: 12px;
   padding: 0;
-  padding-top: 12px;
   margin-top: 12px;
   height: 376px;
   position: relative;
@@ -2453,10 +2443,8 @@ body {
   height: 400px;
   color: #ff0000;
   background: rgba(255, 0, 0, 0.6);
-  padding-bottom: 12px;
   margin-bottom: 12px;
   padding: 0;
-  padding-top: 12px;
   margin-top: 12px;
   position: relative;
   color: white;
@@ -2466,10 +2454,8 @@ body {
   z-index: 100;
 }
 .box-floating.cut-corners {
-  padding-bottom: 12px;
   margin-bottom: 12px;
   padding: 0;
-  padding-top: 12px;
   margin-top: 12px;
   position: relative;
 }
@@ -2567,10 +2553,8 @@ body {
   width: 247px;
   height: 500px;
   background: rgba(255, 255, 255, 0.6);
-  padding-bottom: 12px;
   margin-bottom: 12px;
   padding: 0;
-  padding-top: 12px;
   margin-top: 12px;
   background-size: contain;
   position: relative;
@@ -2643,20 +2627,16 @@ body {
 .quest-short {
   color: #ff0000;
   background: rgba(255, 0, 0, 0.6);
-  padding-bottom: 12px;
   margin-bottom: 12px;
   padding: 0;
-  padding-top: 12px;
   margin-top: 12px;
   position: relative;
   width: 280px;
   color: white;
 }
 .quest-short.cut-corners {
-  padding-bottom: 12px;
   margin-bottom: 12px;
   padding: 0;
-  padding-top: 12px;
   margin-top: 12px;
   position: relative;
 }
@@ -2783,9 +2763,7 @@ body {
 }
 .quest-detail > div {
   background: rgba(255, 255, 255, 0.6);
-  padding-bottom: 12px;
   margin-bottom: 12px;
-  padding-top: 12px;
   margin-top: 12px;
   position: relative;
   vertical-align: top;
