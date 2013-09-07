@@ -414,18 +414,20 @@ html, body {
 
 .box-floating {
   @floating-base-zindex: 100;
-  @width: 200px;
-  @child-width: ( @width - 2 * @cut-corner-radius );
   @footer-height: 46px;
 
-  .cut-corners(@background-red);
+  width: 200px;
+  height: 400px;
+
   .box-red;
+  .cut-corners(@background-red);
+
   color: white;
+
   position: absolute;
   top: (42px - @cut-corner-radius);
   right: (27px - @cut-corner-radius);
   z-index: @floating-base-zindex;
-  padding: 0 !important;
 
   h1 {
     font-family: farao_book_heldregular;
@@ -442,27 +444,20 @@ html, body {
     }
   }
 
-  > div {
-    width: @width;
-    height: 400px;
-  }
-
   p {
     font-size: 16px;
     position: absolute;
     bottom: @footer-height;
     padding: 12px;
-    width: @child-width;
   }
 
   .box-footer {
     height: @footer-height;
     position: absolute;
     bottom: 0px;
-    width: @child-width;
+    width: 100%;
     text-align: center
   }
-
 }
 
 .hero-box {
