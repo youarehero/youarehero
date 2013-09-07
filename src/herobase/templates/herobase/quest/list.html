@@ -33,7 +33,6 @@
     {% paginate 12 quests %}
     <div style="text-align: right">{% show_pages %}</div>
     <div class="quest-list">
-        <div class="row">
             {% for quest in quests %}
                 {% include "herobase/quest/list_box.html" %}
             {% empty %}
@@ -45,7 +44,6 @@
                     <li>{% trans "There don't seem to be any quests." %}</li>
                 {% endif %}
             {% endfor %}
-        </div>
     </div>
     <div style="text-align: right">{% show_pages %}</div>
 {% endblock %}

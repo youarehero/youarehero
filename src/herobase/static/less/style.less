@@ -522,12 +522,21 @@ html, body {
   .cut-corners;
   .quest;
   width: 280px;
+  color: white;
   .text {
-    color: white;
     h1 {
       font-size: 18px;
       font-family: farao_textregular;
+      margin-top: 0px;
     }
+  }
+  .header {
+    width: 100%;
+    text-align: center;
+    font-style: normal;
+    font-size: 48px;
+    height: 48px;
+    line-height: 0px;
   }
 }
 .quest-detail {
@@ -573,6 +582,15 @@ html, body {
         margin-top: 12px;
       }
     }
+  }
+}
+.quest-list {
+  .make-row;
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+  > * {
+    display: inline-block;
+    margin: (7.5px + @cut-corner-radius) 7.5px;
   }
 }
 

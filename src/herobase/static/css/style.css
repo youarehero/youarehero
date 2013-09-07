@@ -2647,6 +2647,7 @@ body {
   margin-top: 12px;
   position: relative;
   width: 280px;
+  color: white;
 }
 .quest-short.cut-corners {
   padding-bottom: 12px;
@@ -2736,12 +2737,18 @@ body {
   height: 70px;
   padding-top: 9px;
 }
-.quest-short .text {
-  color: white;
-}
 .quest-short .text h1 {
   font-size: 18px;
   font-family: farao_textregular;
+  margin-top: 0px;
+}
+.quest-short .header {
+  width: 100%;
+  text-align: center;
+  font-style: normal;
+  font-size: 48px;
+  height: 48px;
+  line-height: 0px;
 }
 .quest-detail .footer > .avatar {
   display: inline-block;
@@ -2831,6 +2838,36 @@ body {
 }
 .quest-detail > .data dl * + dt {
   margin-top: 12px;
+}
+.quest-list {
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+}
+.quest-list:before,
+.quest-list:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.quest-list:after {
+  clear: both;
+}
+@media (min-width: 768px) {
+  .container .quest-list {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+}
+.quest-list .row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.quest-list > * {
+  display: inline-block;
+  margin: 19.5px 7.5px;
 }
 .box .caret {
   display: none;
