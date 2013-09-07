@@ -2162,7 +2162,7 @@ body {
   background: transparent;
   border: 0px none;
   border-bottom: 2px solid #ffffff;
-  bortder-radius: 0;
+  border-radius: 0;
   width: 150px;
 }
 #navigation .nav-font [type="submit"] {
