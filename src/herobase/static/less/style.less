@@ -99,14 +99,17 @@ body.city-karlsruhe {
   background-color: white;
 }
 
-body {
+#background {
+  position: fixed;
+  z-index: -1000;
+  width: 100%;
+  height: 100%;
   background-image: url("../img/sky2.png") ;
   background-color: white;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center top;
   background-size: auto 1114px;
-
   @media (min-width: 1564px) {
     background-size: cover;
   }
@@ -581,6 +584,16 @@ html, body {
   }
 
 }
+// Box Buttons
+ul.box-buttons-bottom,
+ul.box-buttons-top {
+  float:right;
+  li {
+    display: inline-block;
+  }
+  .clearfix;
+}
+
 
 // Quests
 //-------------
@@ -609,7 +622,7 @@ html, body {
   .box-red;
   .cut-corners;
   .quest;
-  width: 280px;
+//  width: 100%;
   color: white;
   .text {
     a {

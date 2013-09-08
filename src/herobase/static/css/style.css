@@ -1923,7 +1923,11 @@ ul {
 body.city-karlsruhe {
   background-color: white;
 }
-body {
+#background {
+  position: fixed;
+  z-index: -1000;
+  width: 100%;
+  height: 100%;
   background-image: url("../img/sky2.png");
   background-color: white;
   background-repeat: no-repeat;
@@ -1932,7 +1936,7 @@ body {
   background-size: auto 1114px;
 }
 @media (min-width: 1564px) {
-  body {
+  #background {
     background-size: cover;
   }
 }
@@ -2710,6 +2714,29 @@ body {
 .hero-box.glitch .background {
   background-image: url("../img/glitch.png");
 }
+ul.box-buttons-bottom,
+ul.box-buttons-top {
+  float: right;
+}
+ul.box-buttons-bottom li,
+ul.box-buttons-top li {
+  display: inline-block;
+}
+ul.box-buttons-bottom:before,
+ul.box-buttons-top:before,
+ul.box-buttons-bottom:after,
+ul.box-buttons-top:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+ul.box-buttons-bottom:after,
+ul.box-buttons-top:after {
+  clear: both;
+}
 .quest .footer > .avatar {
   display: inline-block;
   z-index: 100;
@@ -2733,7 +2760,6 @@ body {
   padding: 0;
   margin-top: 12px;
   position: relative;
-  width: 280px;
   color: white;
 }
 .quest-short.cut-corners {

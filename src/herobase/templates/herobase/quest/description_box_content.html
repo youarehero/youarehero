@@ -1,49 +1,36 @@
 {% load url from future %}
 {% load humanize i18n hero_message %}
-<div>
-        <img src="{{ quest.owner.get_profile.avatar_thumbnail_110 }}" alt="" class="pull-left"/>
-
-    <h2>{{ quest.title }}</h2>
-    <p>{% block text %}{{ quest.description|linebreaksbr|urlize  }}{% endblock %}</p>
-</div>
-
 
 <div class="row">
-    <div class="span5">
-        <strong>Ersteller:</strong> <a href="{% url "userprofile_public" quest.owner.username %}">{{ quest.owner }}</a> <br/>
-        {% if quest.location %}
-        <strong>Ort:</strong> {{ quest.location }}
-        {% endif %}
-        <strong>Status:</strong> {{ quest.get_state_display }} <br/>
-        <strong>Gesuchte Helden:</strong> {{ quest.max_heroes }} <br/>
-        <strong>Erstellt am:</strong> {{ quest.created.date }} <br/>
-        {%if not quest.has_expired %}
-            <strong>Läuft noch bis:</strong> {{ quest.expiration_date.date}}
-
-        {% else %}
-            <strong>Abgelaufen am:</strong> {{ quest.expiration_date.date}}
-        {% endif %}
+    <div class="col-sm-6">
+        <div class="box">
+            <img src="{{ quest.owner.get_profile.avatar_thumbnail_110 }}" alt="" class="pull-left"/>
+            <p>Details zu</p>
+            <h1>{{ quest.title }}</h1>
+            <p>{{ quest.description|linebreaksbr|urlize }}</p>
+        </div>
     </div>
-    <div class="span1">
-        {% if quest.remote %}
-{#            <i class="icon-yah-local icon-40" data-toggle="tooltip" data-title="{% trans "Can be done remotely" %}"></i>#}
-        {% else %}
-            <i class="icon-yah-local icon-40" data-toggle="fooltip" title="{% trans "Has to be done locally" %}"></i>
-        {% endif %}
+    <div class="col-sm-6">
+        <div class="box">
+            <dl class="dl-horizontal">
+                <dt>Ersteller</dt>
+                <dd>
+                    <a href="{% url "userprofile_public" quest.owner.username %}">
+                        {{ quest.owner.username }}
+                    </a>
+                </dd>
+                <dt>Status</dt><dd>offen</dd>
+                <dt>Gesuchte Helden</dt><dd>100.000</dd>
+                <dt>Erstellt am</dt><dd>{{ quest.created.date }}</dd>
+                <dt>Läuft noch bis</dt><dd>{{ quest.expiration_date.date }}</dd>
 
-        {% if quest.time_effort %}
-            {% if quest.time_effort == quest.TIME_EFFORT_LOW %}
-                <i class="icon-yah-time-short" data-toggle="fooltip" title="{% trans "low time effort" %}"></i>
-            {% elif quest.time_effort == quest.TIME_EFFORT_MEDIUM %}
-                <i class="icon-yah-time-middle" data-toggle="fooltip" title="{% trans "medium time effort" %}"></i>
-            {% elif quest.time_effort == quest.TIME_EFFORT_HIGH %}
-                <i class="icon-yah-time-long" data-toggle="fooltip" title="{% trans "high time effort" %}"></i>
-            {% endif %}
-        {% endif %}
-        <br>
+            </dl>
+            {% include "herobase/quest/quest_box_footer.html" %}
+        </div>
+    </div>
+</div>
+
 {#        <span class="likes-count">{{ quest.likes_count }}</span>#}
 {#        <a class="like-button" href="{% url "like_quest" quest.pk %}" data-toggle="fooltip" title="{% trans "Like the Quest" %}">#}
 {#            <i class="icon-yah-like"></i>#}
 {#        </a>#}
-    </div>
-</div>

@@ -32,18 +32,21 @@
 {% block content %}
     {% paginate 12 quests %}
     <div style="text-align: right">{% show_pages %}</div>
-    <div class="quest-list">
-            {% for quest in quests %}
-                {% include "herobase/quest/list_box.html" %}
-            {% empty %}
+    <div class="row">
+        {% for quest in quests %}
+            {% include "herobase/quest/list_box.html" %}
+        {% empty %}
+            <div class="col-xs-12">
                 {% if search %}
-                    <li>{% trans "No quests found matching your current criteria." %}
+                    <div class="box">{% trans "No quests found matching your current criteria." %}
                         <a href="?search=">{% trans "Show all." %}</a>
-                    </li>
+                    </div>
                 {% else %}
-                    <li>{% trans "There don't seem to be any quests." %}</li>
+                    <div class="box">{% trans "There don't seem to be any quests." %}</div>
                 {% endif %}
-            {% endfor %}
+            </div>
+        {% endfor %}
     </div>
+
     <div style="text-align: right">{% show_pages %}</div>
 {% endblock %}
