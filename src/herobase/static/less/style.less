@@ -129,6 +129,9 @@ html, body {
 
 // Navigation
 #navigation {
+  z-index: 1000;
+  position: relative;
+
   .nav-container {
     position: relative;
     padding: 0 !important;
@@ -195,6 +198,12 @@ html, body {
       font-family: farao_textbold;
       .username {
         color: red;
+        display: inline-block;
+        max-width: 276px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: bottom;
       }
     }
 
@@ -261,6 +270,7 @@ html, body {
   .nav-blue {
     .cut-corners-bottom(@background-blue);
     .using-horizontal-borders;
+    &:after {z-index: auto;}
     text-align: center;
     background: @background-blue;
     li > a {

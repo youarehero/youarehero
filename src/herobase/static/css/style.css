@@ -1948,6 +1948,10 @@ body {
 .vertical-offset {
   margin-top: 23px;
 }
+#navigation {
+  z-index: 1000;
+  position: relative;
+}
 #navigation .nav-container {
   position: relative;
   padding: 0 !important;
@@ -2030,6 +2034,12 @@ body {
 }
 #navigation .nav-black .headline .username {
   color: red;
+  display: inline-block;
+  max-width: 276px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
 }
 #navigation .nav-black .avatar-box,
 #navigation .nav-black .nav-icons {
@@ -2131,6 +2141,9 @@ body {
 #navigation .nav-blue > * {
   padding-left: 0;
   padding-right: 0;
+}
+#navigation .nav-blue:after {
+  z-index: auto;
 }
 #navigation .nav-blue li > a {
   width: 100%;
