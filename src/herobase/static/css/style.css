@@ -1948,6 +1948,10 @@ body {
 .vertical-offset {
   margin-top: 23px;
 }
+#navigation {
+  z-index: 1000;
+  position: relative;
+}
 #navigation .nav-container {
   position: relative;
   padding: 0 !important;
