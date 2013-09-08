@@ -1,27 +1,45 @@
 {% extends "herobase/layout/base.html" %}
+{% load url from future %}
 {% load staticfiles %}
-{% load i18n hero_message %}
+{% load i18n hero_message activelink %}
 {% load endless %}
 
-{% block page_title %}
-    <h1>{% trans "My Quests" %}</h1>
-{% endblock %}
-
 {% block content %}
-{#    <h2>{% trans "Current Quests" %}</h2>#}
-    {% paginate 6 quests %}
-    <div style="text-align: right">{% show_pages %}</div>
-    {% if quests %}
-        {% for quest in quests %}
-            {% if quest.owner == request.user %}
-                {% include "herobase/quest/my_box_owner.html" %}
-            {% else %}
-                {% include "herobase/quest/my_box_hero.html" %}
-            {% endif %}
-        {% endfor %}
-    {% else %}
-{#        {% trans "There are no quests." %}#}
-    {% endif %}
-    <div style="text-align: right">{% show_pages %}</div>
+    <div class="box">
+        <ul class="subsub">
+            <li class="{% ifactive "quest_my" %}active{% endifactive %}">
+                <a href="{% url "quest_my" %}">Alle</a>
+            </li>
+            <li><i class="icon-circle"></i></li>
+            <li class="{% ifactive "quest_my_created" %}active{% endifactive %}">
+                <a href="{% url "quest_my_created" %}">Erstellt</a>
+            </li>
+            <li><i class="icon-circle"></i></li>
+            <li class="{% ifactive "quest_my_joined" %}active{% endifactive %}">
+                <a href="{% url "quest_my_joined" %}">Angenommen</a>
+            </li>
+            <li><i class="icon-circle"></i></li>
+            <li class="{% ifactive "quest_my_done" %}active{% endifactive %}">
+                <a href="{% url "quest_my_done" %}">Erledigt</a>
+            </li>
+        </ul>
+        <h1>{% trans "My Quests" %}</h1>
+        {#    <h2>{% trans "Current Quests" %}</h2>#}
+        {% paginate 6 quests %}
+        <div style="text-align: right">{% show_pages %}</div>
+        {% if quests %}
+            {% for quest in quests %}
+                {% if quest.owner == request.user %}
+                    {% include "herobase/quest/my_box_owner.html" %}
+                {% else %}
+                    {% include "herobase/quest/my_box_hero.html" %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+        {#        {% trans "There are no quests." %}#}
+        {% endif %}
+        <div style="text-align: right">{% show_pages %}</div>
+    </div>
+
 
 {% endblock %}
