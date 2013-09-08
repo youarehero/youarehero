@@ -700,13 +700,11 @@ ul.buttons {
     margin-left: 20px;
   }
 
-  > div {
+  > .text {
     .box;
     vertical-align: top;
     padding: 0;
     display: inline-block;
-  }
-  > .text {
       h1 {
         color: red;
         font-size: 24px;
@@ -718,23 +716,34 @@ ul.buttons {
         font-size: 12px;
       }
   }
+  > .sidebar {
+    padding: 0;
+    display: inline-block;
 
-  > .data {
-    width: 200px;
-    dl {
-      margin: 0;
-      dt {
-        font-size: 12px;
-        font-weight: normal;
-      }
-      dd {
-        color: blue;
-        font-size: 18px;
-      }
+    > .data {
+      .box;
+      vertical-align: top;
+      width: 200px;
+      dl {
+        margin: 0;
+        dt {
+          font-size: 12px;
+          font-weight: normal;
+        }
+        dd {
+          color: blue;
+          font-size: 18px;
+        }
 
-      * + dt {
-        margin-top: 12px;
+        * + dt {
+          margin-top: 12px;
+        }
       }
+    }
+
+    > .buttons {
+      .box;
+      margin-top: (2 * @cut-corner-radius) + 20px;
     }
   }
 }
