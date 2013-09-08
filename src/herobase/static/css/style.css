@@ -1974,7 +1974,7 @@ body {
 #navigation .nav-black {
   background: rgba(255, 255, 255, 0.6);
   padding: 0;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   position: relative;
 }
 #navigation .nav-black li {
@@ -2066,7 +2066,7 @@ body {
 #navigation .nav-white {
   background: rgba(255, 255, 255, 0.6);
   padding: 0;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   position: relative;
   width: 159px;
   padding-top: 30px;
@@ -2105,7 +2105,7 @@ body {
 }
 #navigation .nav-blue {
   padding: 0;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   position: relative;
   text-align: center;
   background: rgba(0, 0, 255, 0.6);
@@ -2149,7 +2149,7 @@ body {
   background: rgba(255, 0, 0, 0.6);
   margin-top: -12px;
   padding: 0;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   position: relative;
 }
 #navigation .nav-red li {
@@ -2288,7 +2288,7 @@ body {
 }
 .box {
   background: rgba(255, 255, 255, 0.6);
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   position: relative;
@@ -2332,7 +2332,7 @@ body {
   background: rgba(255, 0, 0, 0.6);
 }
 .box-red.cut-corners {
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   position: relative;
@@ -2376,7 +2376,7 @@ body {
   background: rgba(0, 0, 255, 0.6);
 }
 .box-blue.cut-corners {
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   position: relative;
@@ -2420,7 +2420,7 @@ body {
 }
 .box-image {
   background: rgba(255, 255, 255, 0.6);
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   height: 376px;
@@ -2491,7 +2491,7 @@ body {
   height: 400px;
   color: #ff0000;
   background: rgba(255, 0, 0, 0.6);
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   position: relative;
@@ -2502,7 +2502,7 @@ body {
   z-index: 100;
 }
 .box-floating.cut-corners {
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   position: relative;
@@ -2605,7 +2605,7 @@ body {
   width: 247px;
   height: 500px;
   background: rgba(255, 255, 255, 0.6);
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   background-size: contain;
@@ -2681,7 +2681,7 @@ body {
 .quest-short {
   color: #ff0000;
   background: rgba(255, 0, 0, 0.6);
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   position: relative;
@@ -2689,7 +2689,7 @@ body {
   color: white;
 }
 .quest-short.cut-corners {
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   position: relative;
@@ -2821,7 +2821,7 @@ body {
 }
 .quest-detail > div {
   background: rgba(255, 255, 255, 0.6);
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   margin-top: 12px;
   position: relative;
   vertical-align: top;
