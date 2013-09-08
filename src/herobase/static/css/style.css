@@ -1964,6 +1964,7 @@ body {
   text-align: center;
 }
 #navigation .nav li > a {
+  overflow: hidden;
   display: inline-block;
   padding: 5px 8px;
 }
