@@ -67,8 +67,8 @@
     </div>
     {% block page_footer %}
         <div id="page-footer" class="container">
-            <ul class="nav nav-blue cut-corners-top">
-                <li><a href="#">Log-In</a></li>
+            <ul class="nav nav-blue">
+                <li><a href="{% url 'auth_login' %}">Log-In</a></li>
                 <li><i class="icon-circle"></i></li>
                 <li><a href="{% url "registration_register" %}">Registrieren</a></li>
                 <li><i class="icon-circle"></i></li>
@@ -80,6 +80,7 @@
                 <li><i class="icon-circle"></i></li>
                 <li><a href="./blog/">Blog</a></li>
             </ul>
+            <i class="icon-yah"></i>
         </div>
     {% endblock %}
 

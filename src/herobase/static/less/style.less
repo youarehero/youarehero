@@ -93,7 +93,7 @@ ul {list-style-type: none;}
 @black: #333;
 @white: #fff;
 
-@footer-height: 60px;
+@footer-height: 70px;
 
 body.city-karlsruhe {
   background-color: white;
@@ -119,7 +119,7 @@ html, body {
 #page {
     min-height: 100%;
     position: relative;
-    padding-bottom: @footer-height;
+    padding-bottom: @footer-height + @cut-corner-radius;
 }
 
 .vertical-offset {
@@ -392,47 +392,46 @@ html, body {
 
 // Footer
 #page-footer {
+  .box-blue;
+  .cut-corners-top(@background-blue);
+
   height: @footer-height;
   margin-top: -@footer-height;
   font-size: 16px;
+  color: white;
 
-  .nav {
-    height: (@footer-height - @cut-corner-radius);
+  > ul {
     text-align: center;
-    > li > a {
-      padding: 0 5px;
-      &:hover,
-      &:focus {
-        background-color: transparent;
-      }
-    }
-  }
-
-  .nav-blue {
-    text-align: center;
-    background: @background-blue;
-    margin-top: -@cut-corner-radius;
-    color: @white;
+    padding: 0;
     > li {
       float: left;
+      padding: 0 12px;
       > a {
         color: @white;
+        padding: 0 5px;
         &:hover,
         &:focus {
-//          background: darken(@background-blue, 10%);
+          background-color: transparent;
+          color: @black;
+        }
+      }
+      &.active > a{
+        &,
+        &:hover,
+        &:focus {
           color: @black;
         }
       }
     }
-    > .active > a {
-      &,
-      &:hover,
-      &:focus {
-//        background: darken(@background-blue, 10%);
-        color: @black;
-      }
-    }
-    .cut-corners-top(@background-blue);
+  }
+
+  .icon-yah {
+    display: inline-block;
+    width: 100%;
+    font-size: 36px;
+    line-height: 24px;
+    color: white;
+    text-align: center;
   }
 
 }
