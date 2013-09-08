@@ -32,8 +32,8 @@
         <li class="{% ifactive "quest_create" %}active{% endifactive %}">
         <a href="{% url "quest_create" %}"><i class="icon-edit-sign icon-2x"></i><br/>Neue<br/>Quest</a>
         </li>
-        <li class="">
-        <a href="#"><i class="icon-inbox icon-2x"></i><br/>Meine<br/>Quests</a>
+        <li class="{% ifstartswith "/quest/my" %}active{% endifstartswith %}">
+        <a href="{% url "quest_my" %}"><i class="icon-inbox icon-2x"></i><br/>Meine<br/>Quests</a>
         </li>
       </ul>
       {% endifstartswith %}

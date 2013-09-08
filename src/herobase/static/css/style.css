@@ -2230,6 +2230,38 @@ body {
 #navigation #brand h2 {
   font-size: 16px;
 }
+.subsub {
+  text-align: center;
+}
+.subsub > li {
+  float: left;
+}
+.subsub > li > a {
+  color: #333333;
+  padding: 0 5px;
+}
+.subsub > li > a:hover,
+.subsub > li > a:focus {
+  background-color: transparent;
+  color: #0000ff;
+}
+.subsub > .active > a,
+.subsub > .active > a:hover,
+.subsub > .active > a:focus {
+  color: #0000ff;
+}
+.subsub:before,
+.subsub:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.subsub:after {
+  clear: both;
+}
 #page-footer {
   height: 60px;
   margin-top: -60px;
@@ -2263,12 +2295,12 @@ body {
 }
 #page-footer .nav-blue > li > a:hover,
 #page-footer .nav-blue > li > a:focus {
-  background: rgba(0, 0, 204, 0.6);
+  color: #333333;
 }
 #page-footer .nav-blue > .active > a,
 #page-footer .nav-blue > .active > a:hover,
 #page-footer .nav-blue > .active > a:focus {
-  background: rgba(0, 0, 204, 0.6);
+  color: #333333;
 }
 #page-footer .nav-blue:before {
   content: "";
