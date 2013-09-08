@@ -2033,6 +2033,12 @@ body {
 }
 #navigation .nav-black .headline .username {
   color: red;
+  display: inline-block;
+  max-width: 276px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
 }
 #navigation .nav-black .avatar-box,
 #navigation .nav-black .nav-icons {
