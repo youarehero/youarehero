@@ -2135,6 +2135,9 @@ body {
   padding-left: 0;
   padding-right: 0;
 }
+#navigation .nav-blue:after {
+  z-index: auto;
+}
 #navigation .nav-blue li > a {
   width: 100%;
   color: #ffffff;
