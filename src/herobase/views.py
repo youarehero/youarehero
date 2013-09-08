@@ -38,9 +38,10 @@ def quest_list_view(request, archive=False,
                     template='herobase/quest/list.html'):
     """Basic quest list, with django-filter app"""
     quests = Quest.objects.all().select_related('owner', 'owner__profile')\
-            .order_by('-created', 'pk')
+                                .order_by('-created', 'pk')
 
-    if not request.user.profile.is_legal_adult():
+    if (request.user.is_authenticated() and
+            not request.user.profile.is_legal_adult()):
         quests = quests.filter(owner__profile__trusted=True)
 
     if not archive:
@@ -127,8 +128,9 @@ def quest_detail_view(request, quest_id):
         Quest.objects.select_related('owner', 'owner__profile'),
         pk=quest_id)
 
-    if not request.user.profile.is_legal_adult()\
-            and not quest.owner.profile.trusted:
+    if (request.user.is_authenticated() and
+            not request.user.profile.is_legal_adult() and
+            not quest.owner.profile.trusted):
         return HttpResponse(
             "Minors are not allowed to view untrusted users' quests",
             status=403)
