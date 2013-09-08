@@ -156,11 +156,7 @@ class UserAuthenticationForm(AuthenticationForm):
         self.helper = FormHelper()
         self.helper.help_text_inline = True
 
-        self.helper.form_class = "box"
-        self.helper.form_tag=False
-
-        if request:
-            self.helper.form_action = reverse('auth_login')
+        self.helper.form_action = 'auth_login'
 
         super(UserAuthenticationForm, self).__init__(request, *args, **kwargs)
 
@@ -183,6 +179,8 @@ class UserAuthenticationForm(AuthenticationForm):
         password = self.fields['password']
         password.label = ""
         password.widget = forms.PasswordInput(attrs={'placeholder':'Kennung'})
+
+        self.helper.add_input(Submit('submit', 'Log in'))
 
     def clean_email(self):
         self.cleaned_data['username'] = self.cleaned_data['email']

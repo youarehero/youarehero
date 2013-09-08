@@ -2,12 +2,6 @@
 {% load crispy_forms_tags i18n static %}
 {% load url from future %}
 
-{% block box %}
-    <form method="POST" action="{% url "auth_login" %}">  {{ block.super }}</form>
-{% endblock %}
-
-{% block buttons_top %}{% endblock %}
-
 {% block title %}
     <h2>{% trans "Login" %}</h2>
 {% endblock %}
@@ -22,9 +16,4 @@
         {% trans "You don't have an account yet?" %}
         <a href="{% url "registration_register" %}"  id="join">{% trans "Join now!" %}</a>
     </p>
-{% endblock %}
-
-{% block buttons_bottom %}
-    <button type="submit" value="{% trans "Login" %}" name="login">
-        <i class="icon-yah-arrow icon-40"></i></button>
 {% endblock %}

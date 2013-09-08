@@ -2227,10 +2227,12 @@ body {
   width: 150px;
 }
 #navigation .nav-font [type="submit"] {
+  font-size: 16px;
+  font-weight: normal;
+  width: 150px;
   color: #ffffff;
-  width: 100%;
   background: transparent;
-  border: 0px none;
+  border: none;
   padding: 5px 8px;
 }
 #navigation .nav-font [type="submit"]:hover {
