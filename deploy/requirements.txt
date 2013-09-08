@@ -11,3 +11,5 @@ geopy
 django-activelink
 django-like-button
 pytz==2013b
+docopt==0.6.1
+django-dynamic-fixture==1.6.5
