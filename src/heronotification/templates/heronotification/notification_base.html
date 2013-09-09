@@ -1,22 +1,21 @@
-{% extends "herobase/layout/box.html" %}
 {% load url from future %}
-{% block box %}
-    <div class="notification{% if notification.is_read %} read{% endif %}"
+{% block content %}
+    <div class="box notification{% if notification.is_read %} read{% endif %}"
             {% if notification.is_dismissible and not notification.is_read %}
                 data-dismiss-url="{% url "mark_notification_read" notification.pk %}"
             {% endif %}
         >
         {% with url=notification.target.get_absolute_url %}
+            <div class="box-content">
             {% if url %}
-                <a href="{{ url }}">{{ block.super }}</a>
-            {% else%}
-                {{ block.super }}
+                <a href="{{ url }}">
             {% endif %}
+                    <img src="{{ notification.image }}" alt="" class="pull-left"/>
+                    <p>{% block text %}{{ notification.text }}{% endblock %}</p>
+            {% if url %}
+                </a>
+            {% endif %}
+            </div>
         {% endwith %}
     </div>
-{% endblock %}
-
-{% block content %}
-    <img src="{{ notification.image }}" alt="" class="pull-left"/>
-    <p>{% block text %}{{ notification.text }}{% endblock %}</p>
 {% endblock %}

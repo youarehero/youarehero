@@ -461,6 +461,7 @@ html, body {
 .box {
   background: @background;
   .cut-corners(@background);
+  margin-bottom: 3 * @cut-corner-radius;
 }
 .box-red {
   color: @foreground-red;
@@ -756,6 +757,7 @@ ul.box-buttons-top {
 }
 .box.collapsible > .box-title {
   cursor: pointer;
+  margin-bottom: 10px;
 }
 .box.collapsible .caret {
   display: inline-block;
@@ -774,6 +776,19 @@ ul.box-buttons-top {
   border-right: 0;
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
+}
+.box > .box-content {
+  .clearfix;
+}
+
+.box.notification.read {
+  background: rgba(200,200,200,0.6);
+  .cut-corners(rgba(200,200,200,0.6))
+
+}
+.grid {
+  padding-left: 0px;
+
 }
 
 // Special Staff Links
