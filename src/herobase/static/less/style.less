@@ -10,46 +10,46 @@
 @cut-corner-radius: 12px;
 .cut-corners-bottom(@color, @radius: @cut-corner-radius) {
   padding: 0;
-  margin-bottom: (2 * @cut-corner-radius);
+  margin-bottom: (2 * @radius);
   position: relative;
   &:after {
     content: "";
     display: table;
     width: 100%;
     height: 0;
-    z-index: -1;
+//    z-index: -1; // why?
     position: absolute;
-    bottom: -@cut-corner-radius;
+    bottom: -@radius;
     left: 0;
-    border-right: @cut-corner-radius solid transparent;
-    border-left: @cut-corner-radius solid transparent;
-    border-top: @cut-corner-radius solid @color;
+    border-right: @radius solid transparent;
+    border-left: @radius solid transparent;
+    border-top: @radius solid @color;
     border-bottom: 0 none;
   }
   > * {
-    padding: 0 @cut-corner-radius;
+    padding: 0 @radius;
   }
 }
 .cut-corners-top(@color, @radius: @cut-corner-radius) {
   padding: 0;
-  margin-top: @cut-corner-radius;
+  margin-top: @radius;
   position: relative;
   &:before {
     content: "";
     display: table;
     width: 100%;
-    z-index: -1;
+//    z-index: -1; // why?
     height: 0;
     position: absolute;
-    top: -@cut-corner-radius;
+    top: -@radius;
     left: 0;
-    border-right: @cut-corner-radius solid transparent;
-    border-left: @cut-corner-radius solid transparent;
-    border-bottom: @cut-corner-radius solid @color;
+    border-right: @radius solid transparent;
+    border-left: @radius solid transparent;
+    border-bottom: @radius solid @color;
     border-top: 0 none;
   }
   > * {
-    padding: 0 @cut-corner-radius;
+    padding: 0 @radius;
   }
 }
 
@@ -64,6 +64,10 @@
     padding-left: 0;
     padding-right: 0;
   }
+}
+.border-radius (@radius) {
+  .border-bottom-radius(@radius);
+  .border-top-radius(@radius)
 }
 
 
@@ -462,6 +466,7 @@ html, body {
   background: @background;
   .cut-corners(@background);
   margin-bottom: 3 * @cut-corner-radius;
+  .clearfix;
 }
 .box-red {
   color: @foreground-red;
@@ -603,14 +608,37 @@ html, body {
 
 }
 // Box Buttons
-ul.box-buttons-bottom,
-ul.box-buttons-top {
-  float:right;
+ul.buttons {
+  margin: (@cut-corner-radius) 0;
+  float: right;
+  display: block;
+  padding-left: 0;
   li {
-    display: inline-block;
+    float: left;
+    margin-left: 10px;
   }
   .clearfix;
 }
+
+.yah-btn (@color, @radius: (@cut-corner-radius / 2)) {
+  .cut-corners(@color, @radius);
+    background: @color;
+    margin: @radius 0;
+    padding: 1px 10px 5px;
+}
+
+.btn {
+  border: 0px none;
+  .border-radius(0);
+  display: block;
+  &.btn-primary {
+    .yah-btn(@background-blue);
+    &:hover {
+      .yah-btn(@foreground-blue);
+    }
+  }
+}
+
 
 
 // Quests
@@ -806,4 +834,8 @@ ul.box-buttons-top {
 
 #id_honeypot {
   display: none;
+}
+
+.clearfix {
+  .clearfix;
 }
