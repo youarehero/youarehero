@@ -4,14 +4,16 @@
 {% block wrapper_classes %}span1{% endblock %}
 
 {% block title %}
-    <a href="{% url "userprofile_public" adventure.user.username %}"><strong>{{ adventure.user.username }}</strong></a>
 {% endblock %}
 
 {% block buttons_top %}
 {% endblock %}
 
 {% block content %}
-    <img src="{{ adventure.user.get_profile.avatar_thumbnail_80 }}" alt=""/>
+    <a href="{% url "userprofile_public" adventure.user.username %}">
+        <img src="{{ adventure.user.get_profile.avatar_thumbnail_80 }}" alt=""/>
+        <p>{{ adventure.user.username }}</p>
+    </a>
 {% endblock %}
 
 {% block buttons_bottom %}

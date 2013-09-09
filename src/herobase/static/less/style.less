@@ -688,6 +688,37 @@ html, body {
   }
 }
 
+.adventures .inner-box {
+  width: 130px;
+  height: 130px;
+
+  display: inline-block;
+  .box-content {margin: 0;}
+
+  a {
+    > * {
+      display: block;
+      margin-left: 25px;
+      margin-right: 25px;
+    }
+
+    p {
+      margin-left: 5px;
+      margin-right: 5px;
+      width: 120px;
+      height: 40px;
+      text-align: center;
+      margin-top: 5px;
+      word-wrap: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: black;
+    }
+  }
+
+
+}
+
 // Caret (for collapsible boxes)
 .box .caret {
   display: none;

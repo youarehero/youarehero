@@ -3008,6 +3008,31 @@ body {
   display: inline-block;
   margin: 19.5px 7.5px;
 }
+.adventures .inner-box {
+  width: 130px;
+  height: 130px;
+  display: inline-block;
+}
+.adventures .inner-box .box-content {
+  margin: 0;
+}
+.adventures .inner-box a > * {
+  display: block;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+.adventures .inner-box a p {
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  margin-top: 5px;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+}
 .box .caret {
   display: none;
 }
