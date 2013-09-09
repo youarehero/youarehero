@@ -4,11 +4,6 @@
 
 {% block content %}
     {% if is_owner %}
-        {% include "herobase/quest/description_box_owner.html" %}
-    {% else %}
-        {% include "herobase/quest/description_box.html" %}
-    {% endif %}
-    {% if is_owner %}
         {% include "herobase/quest/adventures_box_owner.html" %}
     {% else %}
         {% include "herobase/quest/adventures_box_hero.html" %}
