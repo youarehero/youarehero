@@ -1,13 +1,15 @@
 {% load i18n %}
-<div class="quest-short">
-    <div class="header">!</div>
-    <div class="text">
-        <a href="{{ quest.get_absolute_url }}">
-        <h1>{{ quest.title }}</h1>
-        <p>
-            {{ quest.description|truncatewords:24 }}
-        </p>
-        {% include "herobase/quest/quest_box_footer.html" %}
-        </a>
+<div class="col-sm-6 col-md-4">
+    <div class="quest-short">
+        <div class="header">!</div>
+        <div class="text">
+            <a href="{{ quest.get_absolute_url }}">
+            <h1>{{ quest.title }}</h1>
+            <p>
+                {{ quest.description|truncatewords:24 }}
+            </p>
+            {% include "herobase/quest/quest_box_footer.html" %}
+            </a>
+        </div>
     </div>
 </div>
