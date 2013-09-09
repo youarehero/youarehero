@@ -2031,7 +2031,8 @@ body {
   padding: 0 12px;
 }
 #navigation .nav-black .headline {
-  margin-left: 25px;
+  margin-left: 22px;
+  padding-left: 0px;
   padding-top: 15px;
   font-size: 16px;
   font-family: farao_textbold;
@@ -2052,7 +2053,8 @@ body {
 #navigation .nav-black .avatar-box {
   vertical-align: top;
   position: relative;
-  margin-bottom: -12px;
+  padding: 0;
+  margin: 0 0 15px 22px;
 }
 #navigation .nav-black .avatar-box .avatar {
   width: 110px;
@@ -2060,8 +2062,9 @@ body {
 }
 #navigation .nav-black .avatar-box .experience-bar {
   border: 2px solid red;
-  width: 100%;
+  width: 89px;
   height: 14px;
+  margin-left: 21px;
 }
 #navigation .nav-black .avatar-box .experience-bar > div {
   height: 100%;
@@ -2072,8 +2075,8 @@ body {
   width: 42px;
   background-image: url("../img/levelstar.png");
   position: absolute;
-  bottom: -12px;
-  left: 0;
+  bottom: -2px;
+  left: -6px;
   text-align: center;
   color: white;
   font-size: 24px;
@@ -2205,6 +2208,20 @@ body {
 #navigation .nav-red > * {
   padding-left: 0;
   padding-right: 0;
+}
+#navigation .pull-right {
+  margin-right: 15px;
+  margin-left: 0px;
+}
+#navigation .nav-container.nav-middle {
+  position: relative;
+  width: 538px;
+}
+#navigation .nav-container.nav-middle .nav-black {
+  position: relative;
+  width: 390px;
+  margin-left: -195px;
+  left: 50%;
 }
 #navigation .nav-red.learn-more li {
   font-size: 18px;
