@@ -1,0 +1,35 @@
+* navbox highlight komplett blau
+* Logged-In Home mit schlagzeile und benachrichtigungen (links nachrichten, rechts alles andere)
+* Footer anderer Text wenn eingeloggt.
+* Footer wiki/Forum links
+* Notification count
+* Statt hintergrund highlighten bei blauen feldern symbole rot machen.
+* Location-Symbol
+* Quest-Liste ganzen block verlinken
+* Minimalbreite für header und footer
+* Buttons a la design (und ganzer block klickbar)
+* Kommentar-Formular
+* Meine Quests Formatting
+* Fehlermeldungen als block unter felder und rot und abstand wenn sie nicht da sind)
+* Klick auf avatar zum profil
+* Team-Seiten sind broken
+* Registrierung ist broken
+* registrieren-link oben rechts
+* team bei registrierung
+* Team-Nachrichten
+* Nachrichtenlisten formatieren (Nach zettel)
+* Benachrichtigungsfriedhof mit liste wie logged in home, nur etwas breiter
+* profil bearbeite button rote box und abstand
+* box um impressum und presse
+* logout redirect auf startseite
+* Startseite mehr boxen, erstmal ohne orange und angrenzende rote.
+
+* Einklappbare Boxen
+* Nachricht senden
+
+2nd Run:
+* Profileditor aufbereiten
+* Quests in Quest-Liste verwoben. (Eventuell mit masonry?)
+* Spiel-Seite (Mit "Das spiel beginnt am 21." Overlay)
+* Ticker
+* Quest-Liste in Profilen (optik wie in quest-liste)
