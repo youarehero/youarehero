@@ -166,6 +166,7 @@ html, body {
       }
     }
   }
+
   .nav-black {
     background: @background;
     li {
@@ -198,8 +199,7 @@ html, body {
     .cut-corners-bottom(@background);
 
     .headline {
-      margin-left: 22px;
-      padding-left: 0px;
+      margin-left: 25px;
       padding-top: 15px;
       font-size: 16px;
       font-family: farao_textbold;
@@ -223,18 +223,15 @@ html, body {
       @avatar-height: 110px;
       vertical-align: top;
       position: relative;
-      padding: 0;
-      margin: 0 0 15px 22px;
-
+      margin-bottom: -12px;
       .avatar {
         width: @avatar-height;
         height: @avatar-height;
       }
       .experience-bar {
         border: 2px solid red;
-        width: 89px;
+        width: 100%;
         height: 14px;
-        margin-left: 21px;
         > div {
           height: 100%;
           background-color: red;
@@ -245,8 +242,8 @@ html, body {
         width: 42px;
         background-image: url("../img/levelstar.png");
         position: absolute;
-        bottom: -2px;
-        left: -6px;
+        bottom: -@cut-corner-radius;
+        left: 0;
         text-align: center;
         color: white;
         font-size: 24px;
@@ -322,21 +319,6 @@ html, body {
     .cut-corners-bottom(@background-red);
     .using-horizontal-borders;
   }
-  .pull-right {
-    margin-right: @grid-gutter-width / 2;
-    margin-left: 0px;
-  }
-  .nav-container.nav-middle {
-    position: relative;
-    width: 538px; //TODO: fix for responsive design
-    .nav-black {
-      position: relative;
-      width: 390px;
-      margin-left: -195px;
-      left: 50%;
-    }
-  }
-
   .nav-red.learn-more {
     li {
       font-size: 18px;
