@@ -1962,9 +1962,6 @@ body {
   float: left;
   min-height: 1px;
 }
-#navigation .nav-container:first-child {
-  margin-left: 15px;
-}
 #navigation .nav-container + .nav-container {
   margin-left: 35px;
 }
