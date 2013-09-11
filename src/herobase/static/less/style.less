@@ -840,6 +840,8 @@ ul.buttons {
 }
 
 .messages-summary {
+  float: left;
+  width: 390px;
   .box;
   > a {
     i {
@@ -854,7 +856,7 @@ ul.buttons {
 
   .message {
     h1 {
-      font-size: 16px;
+      font-size: 12px;
       margin-bottom: 0;
       &:before {
         width: 20px;
@@ -871,13 +873,50 @@ ul.buttons {
     }
 
     p {
-      font-size: 16px;
+      margin-bottom: 0;
     }
 
     .info {
       color: red;
-      font-size: 12px;
       a {color: inherit}
+    }
+  }
+}
+.notifications-summary {
+  float: right;
+  width: 390px;
+  .box;
+  > a {
+    i {
+      font-size: 36px;
+      color: black;
+    }
+    &:hover {
+      text-decoration: none;
+      i {color: red;}
+    }
+  }
+  .notification {
+    p {
+      margin-bottom: 0;
+      &:before {
+        width: 20px;
+        content: "\f0f3";
+        text-decoration: inherit;
+        display: inline-block;
+        speak: none;
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        text-decoration: inherit;
+        -webkit-font-smoothing: antialiased;
+      }
+    }
+    a {
+      color: black;
+    }
+    .info {
+      color: blue;
     }
   }
 }

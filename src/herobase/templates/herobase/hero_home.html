@@ -18,9 +18,22 @@
         </div>
       {% endfor %}
     </div>
-    <div class="col-md-6">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      Notifications
+    <div class="col-md-6 notifications-summary">
+      <a href="{% url "message_list_in" %}"><i class="icon-bell-alt"></i></a>
+      {% for notification in notifications %}
+        <div class="notification">
+          {% with url=notification.target.get_absolute_url %}
+          {% if url %}
+            <a href="{{ url }}">
+          {% endif %}
+              <p>{{ notification.text|truncatechars:120 }}</p>
+              <div class="info">{{ notification.created|naturaltime }}</div>
+          {% if url %}
+            </a>
+          {% endif %}
+          {% endwith %}
+        </div>
+      {% endfor %}
     </div>
   </div>
 {%  endblock %}
