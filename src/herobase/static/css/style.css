@@ -2870,7 +2870,6 @@ ul.buttons:after {
   position: relative;
   background: rgba(0, 0, 255, 0.6);
   margin: 6px 0;
-  padding: 1px 10px 5px;
 }
 .btn.btn-primary:after {
   content: "";
@@ -2911,7 +2910,6 @@ ul.buttons:after {
   position: relative;
   background: #0000ff;
   margin: 6px 0;
-  padding: 1px 10px 5px;
 }
 .btn.btn-primary:hover:after {
   content: "";
@@ -3139,8 +3137,8 @@ ul.buttons:after {
 .quest-detail > .text > * {
   padding: 0 12px;
 }
-.quest-detail > div:before,
-.quest-detail > div:after {
+.quest-detail > .text:before,
+.quest-detail > .text:after {
   content: " ";
   /* 1 */
 
@@ -3148,11 +3146,11 @@ ul.buttons:after {
   /* 2 */
 
 }
-.quest-detail > div:after {
+.quest-detail > .text:after {
   clear: both;
 }
-.quest-detail > div:before,
-.quest-detail > div:after {
+.quest-detail > .text:before,
+.quest-detail > .text:after {
   content: " ";
   /* 1 */
 
@@ -3160,7 +3158,7 @@ ul.buttons:after {
   /* 2 */
 
 }
-.quest-detail > div:after {
+.quest-detail > .text:after {
   clear: both;
 }
 .quest-detail > .text h1 {
@@ -3183,6 +3181,7 @@ ul.buttons:after {
   padding: 0;
   margin-top: 12px;
   position: relative;
+  margin-bottom: 36px;
   vertical-align: top;
   width: 200px;
 }
@@ -3191,7 +3190,6 @@ ul.buttons:after {
   display: table;
   width: 100%;
   height: 0;
-  z-index: -1;
   position: absolute;
   bottom: -12px;
   left: 0;
@@ -3207,7 +3205,6 @@ ul.buttons:after {
   content: "";
   display: table;
   width: 100%;
-  z-index: -1;
   height: 0;
   position: absolute;
   top: -12px;
@@ -3219,6 +3216,30 @@ ul.buttons:after {
 }
 .quest-detail > .sidebar > .data > * {
   padding: 0 12px;
+}
+.quest-detail > .sidebar > .data:before,
+.quest-detail > .sidebar > .data:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.quest-detail > .sidebar > .data:after {
+  clear: both;
+}
+.quest-detail > .sidebar > .data:before,
+.quest-detail > .sidebar > .data:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.quest-detail > .sidebar > .data:after {
+  clear: both;
 }
 .quest-detail > .sidebar > .data dl {
   margin: 0;
@@ -3240,6 +3261,7 @@ ul.buttons:after {
   padding: 0;
   margin-top: 12px;
   position: relative;
+  margin-bottom: 36px;
   margin-top: 44px;
 }
 .quest-detail > .sidebar > .buttons:after {
@@ -3247,7 +3269,6 @@ ul.buttons:after {
   display: table;
   width: 100%;
   height: 0;
-  z-index: -1;
   position: absolute;
   bottom: -12px;
   left: 0;
@@ -3263,7 +3284,6 @@ ul.buttons:after {
   content: "";
   display: table;
   width: 100%;
-  z-index: -1;
   height: 0;
   position: absolute;
   top: -12px;
@@ -3275,6 +3295,30 @@ ul.buttons:after {
 }
 .quest-detail > .sidebar > .buttons > * {
   padding: 0 12px;
+}
+.quest-detail > .sidebar > .buttons:before,
+.quest-detail > .sidebar > .buttons:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.quest-detail > .sidebar > .buttons:after {
+  clear: both;
+}
+.quest-detail > .sidebar > .buttons:before,
+.quest-detail > .sidebar > .buttons:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.quest-detail > .sidebar > .buttons:after {
+  clear: both;
 }
 .quest-list {
   margin-left: 7.5px;
