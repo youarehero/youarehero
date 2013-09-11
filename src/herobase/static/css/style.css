@@ -2155,6 +2155,9 @@ body {
 #navigation .nav-blue li > a:focus {
   background: rgba(0, 0, 204, 0.6);
 }
+#navigation .nav-blue li > a b {
+  line-height: 2em;
+}
 #navigation .nav-blue .active > a,
 #navigation .nav-blue .active > a:hover,
 #navigation .nav-blue .active > a:focus {
