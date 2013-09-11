@@ -4,9 +4,6 @@
 
 {% block content %}
   {% include "herobase/article_imagerow.html" %}
-  {% for notification in notifications %}
-      {{ notification.html }}
-  {% endfor %}
   <div class="row vertical-offset">
     <div class="col-md-6 messages-summary">
       <a href="{% url "message_list_in" %}"><i class="icon-comments"></i></a>
@@ -18,7 +15,7 @@
         </div>
       {% endfor %}
     </div>
-    <div class="col-md-6 notifications-summary">
+    <div class="notifications-summary">
       <a href="{% url "message_list_in" %}"><i class="icon-bell-alt"></i></a>
       {% for notification in notifications %}
         <div class="notification">
