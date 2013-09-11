@@ -10,7 +10,7 @@
       {% for message in messages %}
         <div class="message">
           <h1>{{ message.title }}</h1>
-          <p>{{ message.text|truncatechars:120 }}</p>
+          <p>{{ message.text }}</p>
           <div class="info">von <a href="{% url "userprofile_public" message.sender %}">{{ message.sender.username }}</a>, {{ message.sent|naturaltime }}</div>
         </div>
       {% endfor %}

@@ -3608,6 +3608,7 @@ ul.buttons:after {
 }
 .messages-summary .message p {
   margin-bottom: 0;
+  white-space: pre-wrap;
 }
 .messages-summary .message .info {
   color: red;
