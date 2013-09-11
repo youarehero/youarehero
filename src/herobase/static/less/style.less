@@ -365,10 +365,16 @@ html, body {
 
   #brand {
     margin-top: -70px;
+    width: 150px;
+    a {
+      width: 150px - (2 * @cut-corner-radius);
+      white-space: nowrap;
+      margin-left: auto;
+      margin-right: auto;
+    }
     h2 {
       font-size: 16px;
     }
-    width: 150px;
   }
 }
 // Subsub Navigation
