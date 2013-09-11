@@ -2371,7 +2371,7 @@ body {
 }
 #page-footer > ul > li {
   float: left;
-  padding: 0 5px;
+  padding: 0;
 }
 #page-footer > ul > li > a {
   color: #ffffff;
