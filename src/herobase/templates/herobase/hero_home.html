@@ -1,29 +1,7 @@
 {% extends "herobase/layout/base.html" %}
 {% load i18n hero_message %}
 
-{% block page_title %}
-    <h1>Hallo {{ request.user.username }}!</h1>
-{% endblock %}
-
-{% block javascript %}{{ block.super }}
-{#<script type="text/javascript">#}
-{#    $(function () {#}
-{#        $('body').on('click', '.notification', function (e) {#}
-{#            var url = $(this).data('dismiss-url');#}
-{#            if(!url) {#}
-{#                return;#}
-{#            }#}
-{##}
-{#            $.post(url);#}
-{##}
-{#            e.stopImmediatePropagation();#}
-{#            e.preventDefault();#}
-{#        });#}
-{#    });#}
-{#</script>#}
-{% endblock %}
 {% block content %}
-{#    icons-top icons-right icons-bottom#}
     {% for notification in notifications %}
         {{ notification.html }}
     {% endfor %}
