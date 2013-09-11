@@ -1,5 +1,6 @@
 {% extends "herobase/layout/base.html" %}
-{% load i18n hero_message %}
+{% load i18n hero_message humanize %}
+{% load url from future %}
 
 {% block content %}
   {% include "herobase/article_imagerow.html" %}
@@ -7,9 +8,15 @@
       {{ notification.html }}
   {% endfor %}
   <div class="row vertical-offset">
-    <div class="col-md-6">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      Nachrichten
+    <div class="col-md-6 messages-summary">
+      <a href="{% url "message_list_in" %}"><i class="icon-comments"></i></a>
+      {% for message in messages %}
+        <div class="message">
+          <h1>{{ message.title }}</h1>
+          <p>{{ message.truncated_text }}</p>
+          <div class="info">von <a href="{% url "userprofile_public" message.sender %}">{{ message.sender.username }}</a>, {{ message.sent|naturaltime }}</div>
+        </div>
+      {% endfor %}
     </div>
     <div class="col-md-6">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

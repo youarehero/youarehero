@@ -41,6 +41,12 @@ class Message(models.Model):
     def is_read(self):
         return self.read is not None
 
+    @property
+    def truncated_text(self, characters=120):
+        if len(self.text) <= characters:
+            return self.text
+        return self.text[:(characters - 3)] + "..."
+
     def __unicode__(self):
         return '%s' % self.title
 
@@ -52,6 +58,10 @@ class Message(models.Model):
             title=title,
             text=text
         )
+
+    @classmethod
+    def latest_for_user(cls, user, limit=5):
+        return cls.objects.filter(recipient=user).order_by('sent');
 
     def get_absolute_url(self):
         return reverse('message_list_in')

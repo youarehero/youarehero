@@ -838,3 +838,46 @@ ul.buttons {
 .clearfix {
   .clearfix;
 }
+
+.messages-summary {
+  .box;
+  > a {
+    i {
+      font-size: 36px;
+      color: black;
+    }
+    &:hover {
+      text-decoration: none;
+      i {color: red;}
+    }
+  }
+
+  .message {
+    h1 {
+      font-size: 16px;
+      margin-bottom: 0;
+      &:before {
+        width: 20px;
+        content: "\f086";
+        text-decoration: inherit;
+        display: inline-block;
+        speak: none;
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        text-decoration: inherit;
+        -webkit-font-smoothing: antialiased;
+      }
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    .info {
+      color: red;
+      font-size: 12px;
+      a {color: inherit}
+    }
+  }
+}

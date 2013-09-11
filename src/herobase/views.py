@@ -25,6 +25,7 @@ from django.views.generic.edit import CreateView, UpdateView
 
 from herobase import quest_livecycle
 from heronotification.models import Notification
+from heromessage.models import Message
 from herorecommend.forms import UserSkillEditForm
 from herobase.forms import (QuestCreateForm, UserProfileEdit,
                             UserProfilePrivacyEdit, UserAuthenticationForm)
@@ -223,7 +224,10 @@ def hero_home_view(request, template='herobase/hero_home.html'):
     return render(
         request,
         template,
-        {'notifications': Notification.for_user(user)})
+        {
+            'notifications': Notification.for_user(user),
+            'messages': Message.latest_for_user(user)
+        })
 
 
 @login_required
