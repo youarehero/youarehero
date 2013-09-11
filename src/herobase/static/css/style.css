@@ -3708,6 +3708,16 @@ ul.buttons:after {
 .notifications-summary .notification a {
   color: black;
 }
+.notifications-summary .notification a:hover {
+  text-decoration: none;
+}
+.notifications-summary .notification a:hover p {
+  text-decoration: underline;
+}
+.notifications-summary .notification a:hover p:before {
+  color: red;
+  text-decoration: none;
+}
 .notifications-summary .notification .info {
   color: blue;
 }

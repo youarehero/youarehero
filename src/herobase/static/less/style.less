@@ -913,6 +913,14 @@ ul.buttons {
       }
     }
     a {
+      &:hover {
+        text-decoration: none;
+        p {text-decoration: underline;}
+        p:before {
+          color: red;
+          text-decoration: none;
+        }
+      }
       color: black;
     }
     .info {
