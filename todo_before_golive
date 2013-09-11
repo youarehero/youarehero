@@ -1,6 +1,6 @@
 navbox highlight komplett blau
-    Dropped
-    stattdessen symbole rot (erstmal schwarz gemacht, sieht besser aus)
+Statt hintergrund highlighten bei blauen feldern symbole rot machen.
+    Erste gedroppt für zweite, zweite done
 Logged-In Home mit schlagzeile und benachrichtigungen (links nachrichten, rechts alles andere)
     Done
 Footer anderer Text wenn eingeloggt.
@@ -8,7 +8,7 @@ Footer anderer Text wenn eingeloggt.
 Footer wiki/Forum links
     done
 Notification count
-Statt hintergrund highlighten bei blauen feldern symbole rot machen.
+    done. Besuchen der homepage markiert sie als gelesen
 Location-Symbol
 Quest-Liste ganzen block verlinken
 Minimalbreite für header und footer

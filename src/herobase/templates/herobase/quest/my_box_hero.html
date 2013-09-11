@@ -1,6 +1,6 @@
 {% extends "herobase/layout/box.html" %}
 {% load i18n %}
-{% block extra_classes %}{% endblock %}
+{% block extra_classes %}quest_my_box_hero{% endblock %}
 
 {% block title %}
 
@@ -8,10 +8,8 @@
 
 {% block content %}
     <div class="pull-right">
-        {% if quest.remote %}
-            <i class="icon-yah-local icon-40" data-toggle="tooltip" data-title="{% trans "Can be done remotely" %}"></i>
-        {% else %}
-            <i class="icon-yah-local icon-40" data-toggle="tooltip" data-title="{% trans "Has to be done locally" %}"></i>
+        {% if not quest.remote %}
+            <i class="icon-map-marker" data-toggle="tooltip" data-title="{% trans "Has to be done locally" %}"></i>
         {% endif %}
         <br>
         {% if quest.time_effort %}
