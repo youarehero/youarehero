@@ -31,6 +31,7 @@ from easy_thumbnails.files import get_thumbnailer
 from south.modelsinspector import add_introspection_rules
 
 from heromessage.models import Message
+import heronotification
 
 from herobase.utils import is_legal_adult
 
@@ -442,6 +443,16 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
         """Return number of unread messages."""
         return Message.objects.filter(recipient=self.user,read__isnull=True,
             recipient_deleted__isnull=True).count()
+
+    @property
+    def unread_messages_and_notifications_count(self):
+        """Returns the number of unread messages and notifications. """
+        return (
+            self.unread_messages_count +
+            len(
+                heronotification.models.Notification.objects.filter(
+                    user=self.user,
+                    read=None)))
 
     @property
     def rank(self):
