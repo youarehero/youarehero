@@ -2299,6 +2299,7 @@ body {
   margin-top: -70px;
   font-size: 16px;
   color: white;
+  text-align: center;
 }
 #page-footer.cut-corners {
   margin-bottom: 24px;
@@ -2355,12 +2356,12 @@ body {
   padding: 0 12px;
 }
 #page-footer > ul {
-  text-align: center;
+  display: inline-block;
   padding: 0;
 }
 #page-footer > ul > li {
   float: left;
-  padding: 0 12px;
+  padding: 0 5px;
 }
 #page-footer > ul > li > a {
   color: #ffffff;
