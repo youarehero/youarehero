@@ -7,7 +7,7 @@
     style="background-image: url({{ quest.owner.profile.avatar_thumbnail_70|safe }})"></a>
   <div class="icons">
     {% if not quest.remote %}
-        <i class="icon-yah-local" data-toggle="fooltip" title="{% trans "Has to be done locally" %}"></i>
+        <i class="icon-map-marker" data-toggle="fooltip" title="{% trans "Has to be done locally" %}"></i>
     {% endif %}
 
     {% if quest.time_effort %}

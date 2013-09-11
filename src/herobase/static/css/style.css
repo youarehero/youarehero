@@ -2970,6 +2970,10 @@ ul.buttons:after {
   height: 70px;
   padding-top: 9px;
 }
+.quest .footer > .icons i.icon-map-marker {
+  font-size: 40px;
+  color: black;
+}
 .quest-short {
   color: #ff0000;
   background: rgba(255, 0, 0, 0.6);
@@ -3065,6 +3069,10 @@ ul.buttons:after {
   height: 70px;
   padding-top: 9px;
 }
+.quest-short .footer > .icons i.icon-map-marker {
+  font-size: 40px;
+  color: black;
+}
 .quest-short .text {
   color: white;
 }
@@ -3102,6 +3110,10 @@ ul.buttons:after {
   float: right;
   height: 70px;
   padding-top: 9px;
+}
+.quest-detail .footer > .icons i.icon-map-marker {
+  font-size: 40px;
+  color: black;
 }
 .quest-detail > div + div {
   margin-left: 20px;
