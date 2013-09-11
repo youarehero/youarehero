@@ -2052,6 +2052,7 @@ body {
   vertical-align: top;
   position: relative;
   margin-bottom: -12px;
+  z-index: 1;
 }
 #navigation .nav-black .avatar-box .avatar {
   width: 110px;
