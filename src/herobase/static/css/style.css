@@ -1965,6 +1965,11 @@ body {
 #navigation .nav-container + .nav-container {
   margin-left: 35px;
 }
+#navigation .nav-container.logged-in-box {
+  width: 390px;
+  margin-left: 103px;
+  margin-right: 80px;
+}
 #navigation .nav {
   text-align: center;
 }
