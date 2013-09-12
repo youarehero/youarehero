@@ -3821,3 +3821,6 @@ input:-webkit-autofill {
   display: inline-block;
   max-width: 230px;
 }
+.box-buttons-bottom {
+  margin-top: 20px;
+}
