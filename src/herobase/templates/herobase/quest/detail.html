@@ -26,68 +26,66 @@
         </dl>
         {% include "herobase/quest/quest_box_footer.html" %}
       </div>
-      <div class="buttons">
       {% if is_owner %}
-          {% if not quest.edit_window_expired %}
-              <a href="{% url "quest_update" quest.pk %}" data-toggle="tooltip" data-title="Bearbeiten"><i class="icon-yah-edit icon-40"></i></a>
-          {% endif %}
-          {% if quest.open %}
-          <form id="owner-cancel" method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
-              {% csrf_token %}
-              <input type="hidden" name="action" value="cancel">
-              <button  class="box-btn-top" type="submit" value="cancel" name="cancel"  data-toggle="tooltip" data-title="Quest Abbrechen">
-                  <i class="icon-yah-trash icon-40"></i>
-              </button>
-          </form>
-          {% endif %}
-
-          {% if quest.can_start %}
-          <form method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
-            {% csrf_token %}
-            <input type="hidden" name="action" value="start">
-            <button class="box-btn-top" type="submit" value="start" name="start" data-toggle="tooltip" data-title="Quest Start">
-              <i class="icon-yah-ok icon-40"></i>
-            </button>
-          </form>
-          {% elif quest.started and not quest.done %}
-              <form method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
-                  {% csrf_token %}
-                  <input type="hidden" name="action" value="done">
-                  <button class="box-btn-top" type="submit" value="start" name="start" data-toggle="tooltip" data-title="Quest als erledigt markieren">
-                      <i class="icon-yah-ok icon-40"></i>
-                  </button>
-              </form>
-          {% endif %}
-      {% else %}
-          {% if user.is_authenticated %}
-          <form id="hero-cancel" method="POST" action="{% url "hero_update_quest" quest.pk %}">
-              {% csrf_token %}
-              {% if request_user_adventure and not quest.canceled and not request_user_adventure.rejected %}
-                  <input type="hidden" name="action" value="cancel">
-                  <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Cancel" %}" data-toggle="tooltip" data-title="Abbrechen">
-                      <i class="icon-yah-x icon-40"></i>
-                  </button>
-              {% endif %}
-          </form>
-          {% endif %}
-          {% message_user quest.owner 30 %}
-          {% if not request_user_adventure and not quest.has_expired %}
-              {% if user.is_authenticated %}
-                  <form method="POST" action="{% url "hero_update_quest" quest.pk %}">
-                      {% csrf_token %}
-                      <input type="hidden" name="action" value="apply">
-                      <button type="submit" name="action_btn" class="btn btn-mini" >
-                          <span> {% trans "Apply" %} <i class="icon-yah-ok icon-30"></i></span>
-                      </button>
-                  </form>
-              {% else %}
-                  <a class="btn btn-mini" href="{% url 'auth_login' %}?next={{ quest_url }}">
-                      <span> {% trans "Apply" %} <i class="icon-yah-ok icon-30"></i></span>
-                  </a>
-              {% endif %}
-          {% endif %}
+        {% if not quest.edit_window_expired %}
+            <a href="{% url "quest_update" quest.pk %}" data-toggle="tooltip" data-title="Bearbeiten"><i class="icon-yah-edit icon-40"></i></a>
         {% endif %}
-        </div>
+        {% if quest.open %}
+        <form id="owner-cancel" method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="cancel">
+            <button  class="box-btn-top" type="submit" value="cancel" name="cancel"  data-toggle="tooltip" data-title="Quest Abbrechen">
+                <i class="icon-yah-trash icon-40"></i>
+            </button>
+        </form>
+        {% endif %}
+
+        {% if quest.can_start %}
+        <form method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="start">
+          <button class="box-btn-top" type="submit" value="start" name="start" data-toggle="tooltip" data-title="Quest Start">
+            <i class="icon-yah-ok icon-40"></i>
+          </button>
+        </form>
+        {% elif quest.started and not quest.done %}
+            <form method="post" action="{% url "owner_update_quest" quest.pk %}" class="inline">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="done">
+                <button class="box-btn-top" type="submit" value="start" name="start" data-toggle="tooltip" data-title="Quest als erledigt markieren">
+                    <i class="icon-yah-ok icon-40"></i>
+                </button>
+            </form>
+        {% endif %}
+      {% else %}
+        {% if user.is_authenticated %}
+        <form id="hero-cancel" method="POST" action="{% url "hero_update_quest" quest.pk %}">
+            {% csrf_token %}
+            {% if request_user_adventure and not quest.canceled and not request_user_adventure.rejected %}
+                <input type="hidden" name="action" value="cancel">
+                <button type="submit" name="action_btn" class="btn btn-mini" value="{% trans "Cancel" %}" data-toggle="tooltip" data-title="Abbrechen">
+                    <i class="icon-yah-x icon-40"></i>
+                </button>
+            {% endif %}
+        </form>
+        {% endif %}
+        {% message_user quest.owner 30 %}
+        {% if not request_user_adventure and not quest.has_expired %}
+            {% if user.is_authenticated %}
+                <form method="POST" action="{% url "hero_update_quest" quest.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="apply">
+                    <button type="submit" name="action_btn" class="btn btn-mini" >
+                        <span> {% trans "Apply" %} <i class="icon-yah-ok icon-30"></i></span>
+                    </button>
+                </form>
+            {% else %}
+                <a class="btn btn-mini" href="{% url 'auth_login' %}?next={{ quest_url }}">
+                    <span> {% trans "Apply" %} <i class="icon-yah-ok icon-30"></i></span>
+                </a>
+            {% endif %}
+        {% endif %}
+      {% endif %}
       </div>
     </div>
 
