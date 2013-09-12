@@ -667,11 +667,17 @@ ul.buttons {
   .quest;
 //  width: 100%;
   color: white;
-  .text {
-    a {
+  a {
+    color: inherit;
+    display: block;
+    &:hover {
       color: inherit;
-      &:hover { color: inherit;}
+      text-decoration: none;
+      .text {text-decoration: underline;}
     }
+  }
+  .text {
+    display: block;
     color: white;
     h1 {
       font-size: 18px;
@@ -682,6 +688,7 @@ ul.buttons {
     }
   }
   .header {
+    display: block;
     width: 100%;
     text-align: center;
     font-size: 48px;
