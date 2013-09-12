@@ -3293,7 +3293,15 @@ ul.buttons:after {
 .quest-detail > .sidebar > .data dl * + dt {
   margin-top: 12px;
 }
-.quest-detail > .sidebar .box-button {
+.quest-detail > .sidebar > form,
+.quest-detail > .sidebar > a {
+  display: inline-block;
+}
+.quest-detail > .sidebar > .hfill {
+  display: block;
+  width: 100%;
+}
+.box-button {
   color: #ff0000;
   background: rgba(255, 0, 0, 0.6);
   margin-bottom: 24px;
@@ -3306,14 +3314,15 @@ ul.buttons:after {
   text-align: center;
   height: 24px;
   width: 48px;
+  border: none;
 }
-.quest-detail > .sidebar .box-button.cut-corners {
+.box-button.cut-corners {
   margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   position: relative;
 }
-.quest-detail > .sidebar .box-button.cut-corners:after {
+.box-button.cut-corners:after {
   content: "";
   display: table;
   width: 100%;
@@ -3326,10 +3335,10 @@ ul.buttons:after {
   border-top: 12px solid rgba(255, 0, 0, 0.6);
   border-bottom: 0 none;
 }
-.quest-detail > .sidebar .box-button.cut-corners > * {
+.box-button.cut-corners > * {
   padding: 0 12px;
 }
-.quest-detail > .sidebar .box-button.cut-corners:before {
+.box-button.cut-corners:before {
   content: "";
   display: table;
   width: 100%;
@@ -3342,10 +3351,10 @@ ul.buttons:after {
   border-bottom: 12px solid rgba(255, 0, 0, 0.6);
   border-top: 0 none;
 }
-.quest-detail > .sidebar .box-button.cut-corners > * {
+.box-button.cut-corners > * {
   padding: 0 12px;
 }
-.quest-detail > .sidebar .box-button:after {
+.box-button:after {
   content: "";
   display: table;
   width: 100%;
@@ -3358,10 +3367,10 @@ ul.buttons:after {
   border-top: 12px solid rgba(255, 0, 0, 0.6);
   border-bottom: 0 none;
 }
-.quest-detail > .sidebar .box-button > * {
+.box-button > * {
   padding: 0 12px;
 }
-.quest-detail > .sidebar .box-button:before {
+.box-button:before {
   content: "";
   display: table;
   width: 100%;
@@ -3374,103 +3383,36 @@ ul.buttons:after {
   border-bottom: 12px solid rgba(255, 0, 0, 0.6);
   border-top: 0 none;
 }
-.quest-detail > .sidebar .box-button > * {
+.box-button > * {
   padding: 0 12px;
 }
-.quest-detail > .sidebar .box-button i,
-.quest-detail > .sidebar .box-button button {
+.box-button i,
+.box-button button {
   color: white;
-  border: none;
-  background: none;
   width: 100%;
   display: block;
 }
-.quest-detail > .sidebar .box-button button {
+.box-button button {
   margin-top: -12px;
   height: 48px;
   padding-top: 12px;
   padding-bottom: 12px;
 }
-.quest-detail > .sidebar .box-button:hover {
+.box-button:hover {
   text-decoration: none;
 }
-.quest-detail > .sidebar .box-button:hover i,
-.quest-detail > .sidebar .box-button:hover span {
+.box-button:hover i,
+.box-button:hover span {
   color: black;
 }
-.quest-detail > .sidebar .box-button.text {
+.box-button.text {
   width: 100%;
   font-size: 24px;
 }
-.quest-detail > .sidebar .box-button.text i,
-.quest-detail > .sidebar .box-button.text span {
+.box-button.text i,
+.box-button.text span {
   position: relative;
   top: -12px;
-}
-.quest-detail > .sidebar > .buttons {
-  background: rgba(255, 255, 255, 0.6);
-  margin-bottom: 24px;
-  padding: 0;
-  margin-top: 12px;
-  position: relative;
-  margin-bottom: 36px;
-  margin-top: 44px;
-}
-.quest-detail > .sidebar > .buttons:after {
-  content: "";
-  display: table;
-  width: 100%;
-  height: 0;
-  position: absolute;
-  bottom: -12px;
-  left: 0;
-  border-right: 12px solid transparent;
-  border-left: 12px solid transparent;
-  border-top: 12px solid rgba(255, 255, 255, 0.6);
-  border-bottom: 0 none;
-}
-.quest-detail > .sidebar > .buttons > * {
-  padding: 0 12px;
-}
-.quest-detail > .sidebar > .buttons:before {
-  content: "";
-  display: table;
-  width: 100%;
-  height: 0;
-  position: absolute;
-  top: -12px;
-  left: 0;
-  border-right: 12px solid transparent;
-  border-left: 12px solid transparent;
-  border-bottom: 12px solid rgba(255, 255, 255, 0.6);
-  border-top: 0 none;
-}
-.quest-detail > .sidebar > .buttons > * {
-  padding: 0 12px;
-}
-.quest-detail > .sidebar > .buttons:before,
-.quest-detail > .sidebar > .buttons:after {
-  content: " ";
-  /* 1 */
-
-  display: table;
-  /* 2 */
-
-}
-.quest-detail > .sidebar > .buttons:after {
-  clear: both;
-}
-.quest-detail > .sidebar > .buttons:before,
-.quest-detail > .sidebar > .buttons:after {
-  content: " ";
-  /* 1 */
-
-  display: table;
-  /* 2 */
-
-}
-.quest-detail > .sidebar > .buttons:after {
-  clear: both;
 }
 .quest-list {
   margin-left: 7.5px;

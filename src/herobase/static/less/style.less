@@ -751,49 +751,48 @@ ul.buttons {
       }
     }
 
-    .box-button {
-      .box-red;
-      .cut-corners;
-      display: inline-block;
-      font-size: 24px;
-      color: white;
-      text-align: center;
-      height: 48px - (2 * @cut-corner-radius);
-      width: 48px;
-      i, button {
-        display: block;
-        color: white;
-        border: none;
-        background: none;
-        width: 100%;
-        display: block;
-      }
-      button {
-        margin-top: -@cut-corner-radius;
-        height: 48px;
-        padding-top: @cut-corner-radius;
-        padding-bottom: @cut-corner-radius;
-      }
-      &:hover  {
-        text-decoration: none;
-        i, span {
-          color: black;
-        }
-      }
-      &.text {
-        width: 100%;
-        font-size: 24px;
-        i, span {
-          position: relative;
-          top: -12px;
-        }
-      }
+    > form, > a {display: inline-block;}
+    > .hfill {
+      display: block;
+      width: 100%;
     }
+  }
+}
 
-
-    > .buttons {
-      .box;
-      margin-top: (2 * @cut-corner-radius) + 20px;
+.box-button {
+  .box-red;
+  .cut-corners;
+  display: inline-block;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  height: 48px - (2 * @cut-corner-radius);
+  width: 48px;
+  border: none;
+  i, button {
+    display: block;
+    color: white;
+    width: 100%;
+    display: block;
+  }
+  button {
+    margin-top: -@cut-corner-radius;
+    height: 48px;
+    padding-top: @cut-corner-radius;
+    padding-bottom: @cut-corner-radius;
+  }
+  &:hover  {
+    text-decoration: none;
+    i, span {
+      color: black;
+    }
+  }
+  &.text {
+    width: 100%;
+    font-size: 24px;
+    i, span {
+      position: relative;
+      top: -12px;
     }
   }
 }
