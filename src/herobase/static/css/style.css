@@ -3816,3 +3816,8 @@ input:-webkit-autofill {
 #content > div {
   width: 830px;
 }
+.help-inline {
+  color: red;
+  display: inline-block;
+  max-width: 230px;
+}
