@@ -3108,6 +3108,9 @@ ul.buttons:after {
   position: relative;
   top: -20px;
 }
+.quest-detail {
+  padding-left: 100px;
+}
 .quest-detail .footer > .avatar {
   display: inline-block;
   z-index: 100;
