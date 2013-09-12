@@ -8,11 +8,10 @@ from django.utils.translation import ugettext
 register = template.Library()
 
 @register.simple_tag
-def message_user(user, size=20):
-    mail_link = '<a href="%(url)s" data-toggle="tooltip" data-title="%(tooltip)s"><i class="icon-yah-mail icon-%(size)s"></i></a>' % {
+def message_user(user):
+    mail_link = '<a class="box-button" href="%(url)s" data-toggle="tooltip" data-title="%(tooltip)s"><i class="icon-envelope-alt"></i></a>' % {
         'url': reverse('message_to', args=(user.pk, )),
         'tooltip': ugettext(u'Send message to %(username)s') % {'username': escape(user.username)},
-        'size': size,
     }
     return mark_safe(mail_link)
 

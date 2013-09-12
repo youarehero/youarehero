@@ -726,9 +726,12 @@ ul.buttons {
   > .sidebar {
     padding: 0;
     display: inline-block;
+    width: 200px;
+    text-align: center;
 
     > .data {
       .box;
+      text-align: initial;
       vertical-align: top;
       width: 200px;
       dl {
@@ -755,19 +758,38 @@ ul.buttons {
       font-size: 24px;
       color: white;
       text-align: center;
-      min-height: 48px;
-      min-width: 48px;
-      > i {
-        font-size: 48px;
+      height: 48px - (2 * @cut-corner-radius);
+      width: 48px;
+      i, button {
         display: block;
+        color: white;
+        border: none;
+        background: none;
+        width: 100%;
+        display: block;
+      }
+      button {
+        margin-top: -@cut-corner-radius;
+        height: 48px;
+        padding-top: @cut-corner-radius;
+        padding-bottom: @cut-corner-radius;
       }
       &:hover  {
         text-decoration: none;
-        > i {
+        i, span {
           color: black;
         }
       }
+      &.text {
+        width: 100%;
+        font-size: 24px;
+        i, span {
+          position: relative;
+          top: -12px;
+        }
+      }
     }
+
 
     > .buttons {
       .box;

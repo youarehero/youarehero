@@ -3209,6 +3209,8 @@ ul.buttons:after {
 .quest-detail > .sidebar {
   padding: 0;
   display: inline-block;
+  width: 200px;
+  text-align: center;
 }
 .quest-detail > .sidebar > .data {
   background: rgba(255, 255, 255, 0.6);
@@ -3217,6 +3219,7 @@ ul.buttons:after {
   margin-top: 12px;
   position: relative;
   margin-bottom: 36px;
+  text-align: initial;
   vertical-align: top;
   width: 200px;
 }
@@ -3301,8 +3304,8 @@ ul.buttons:after {
   font-size: 24px;
   color: white;
   text-align: center;
-  min-height: 48px;
-  min-width: 48px;
+  height: 24px;
+  width: 48px;
 }
 .quest-detail > .sidebar .box-button.cut-corners {
   margin-bottom: 24px;
@@ -3374,15 +3377,35 @@ ul.buttons:after {
 .quest-detail > .sidebar .box-button > * {
   padding: 0 12px;
 }
-.quest-detail > .sidebar .box-button > i {
-  font-size: 48px;
+.quest-detail > .sidebar .box-button i,
+.quest-detail > .sidebar .box-button button {
+  color: white;
+  border: none;
+  background: none;
+  width: 100%;
   display: block;
+}
+.quest-detail > .sidebar .box-button button {
+  margin-top: -12px;
+  height: 48px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 .quest-detail > .sidebar .box-button:hover {
   text-decoration: none;
 }
-.quest-detail > .sidebar .box-button:hover > i {
+.quest-detail > .sidebar .box-button:hover i,
+.quest-detail > .sidebar .box-button:hover span {
   color: black;
+}
+.quest-detail > .sidebar .box-button.text {
+  width: 100%;
+  font-size: 24px;
+}
+.quest-detail > .sidebar .box-button.text i,
+.quest-detail > .sidebar .box-button.text span {
+  position: relative;
+  top: -12px;
 }
 .quest-detail > .sidebar > .buttons {
   background: rgba(255, 255, 255, 0.6);
