@@ -3751,3 +3751,7 @@ ul.buttons:after {
   width: 40px;
   text-align: center;
 }
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 50px #5e24b9 inset;
+  -webkit-text-fill-color: white;
+}
