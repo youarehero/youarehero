@@ -748,6 +748,27 @@ ul.buttons {
       }
     }
 
+    .box-button {
+      .box-red;
+      .cut-corners;
+      display: inline-block;
+      font-size: 24px;
+      color: white;
+      text-align: center;
+      min-height: 48px;
+      min-width: 48px;
+      > i {
+        font-size: 48px;
+        display: block;
+      }
+      &:hover  {
+        text-decoration: none;
+        > i {
+          color: black;
+        }
+      }
+    }
+
     > .buttons {
       .box;
       margin-top: (2 * @cut-corner-radius) + 20px;
