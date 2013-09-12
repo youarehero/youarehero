@@ -3314,6 +3314,7 @@ ul.buttons:after {
   text-align: center;
   height: 24px;
   border: none;
+  min-width: 48px;
 }
 .box-button.cut-corners {
   margin-bottom: 24px;
