@@ -268,10 +268,13 @@ html, body {
       > a {
         > i {
           font-size: 48px;
-          color: black;
         }
         padding: 0;
         color: black;
+        &:hover,
+        &:focus {
+          color: @foreground-red;
+        }
       }
     }
   }

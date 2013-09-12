@@ -2117,7 +2117,10 @@ body {
 }
 #navigation .nav-white li > a > i {
   font-size: 48px;
-  color: black;
+}
+#navigation .nav-white li > a:hover,
+#navigation .nav-white li > a:focus {
+  color: #ff0000;
 }
 #navigation .nav-blue {
   padding: 0;
