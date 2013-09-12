@@ -3313,7 +3313,6 @@ ul.buttons:after {
   color: white;
   text-align: center;
   height: 24px;
-  width: 48px;
   border: none;
 }
 .box-button.cut-corners {
@@ -3386,17 +3385,10 @@ ul.buttons:after {
 .box-button > * {
   padding: 0 12px;
 }
-.box-button i,
-.box-button button {
+.box-button i {
+  display: block;
   color: white;
   width: 100%;
-  display: block;
-}
-.box-button button {
-  margin-top: -12px;
-  height: 48px;
-  padding-top: 12px;
-  padding-bottom: 12px;
 }
 .box-button:hover {
   text-decoration: none;
@@ -3404,10 +3396,6 @@ ul.buttons:after {
 .box-button:hover i,
 .box-button:hover span {
   color: black;
-}
-.box-button.text {
-  width: 100%;
-  font-size: 24px;
 }
 .box-button.text i,
 .box-button.text span {

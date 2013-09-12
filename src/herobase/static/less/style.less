@@ -767,19 +767,11 @@ ul.buttons {
   color: white;
   text-align: center;
   height: 48px - (2 * @cut-corner-radius);
-  width: 48px;
   border: none;
-  i, button {
+  i {
     display: block;
     color: white;
     width: 100%;
-    display: block;
-  }
-  button {
-    margin-top: -@cut-corner-radius;
-    height: 48px;
-    padding-top: @cut-corner-radius;
-    padding-bottom: @cut-corner-radius;
   }
   &:hover  {
     text-decoration: none;
@@ -788,8 +780,6 @@ ul.buttons {
     }
   }
   &.text {
-    width: 100%;
-    font-size: 24px;
     i, span {
       position: relative;
       top: -12px;
