@@ -212,6 +212,10 @@ def abstract(request):
     return render(request, "herobase/abstract.html")
 
 
+def dosanddonts(request):
+    """static you are hero dos and don'ts view."""
+    return render(request, "herobase/dosanddonts.html")
+
 def imprint(request):
     """static you are hero imprint view."""
     return render(request, "herobase/imprint.html")
