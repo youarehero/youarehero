@@ -4,11 +4,11 @@
 <div class="nav-container logged-in-box">
   <div class="nav-black">
     <div class="headline">you are <span class="username">{{ request.user.username }}</span></div>
-    <div class="avatar-box">
-      <div class="avatar" style="background-image: url({{ request.user.profile.avatar_thumbnail_110|safe }});"></div>
-      <div class="experience-bar"><div style="width: {{ request.user.profile.relative_level_experience }}%;"></div></div>
-      <div class="level">{{ request.user.profile.level }}</div>
-    </div>
+    <a class="avatar-box" href="{% url "userprofile_private" %}">
+      <span class="avatar" style="background-image: url({{ request.user.profile.avatar_thumbnail_110|safe }});"></span>
+      <span class="experience-bar"><span style="width: {{ request.user.profile.relative_level_experience }}%;"></span></span>
+      <span class="level">{{ request.user.profile.level }}</span>
+    </a>
     <div class="nav-icons">
       <ul class="nav">
         <li><a href="#"><i class="icon-puzzle-piece"></i><br>Das Spiel</a></li>
