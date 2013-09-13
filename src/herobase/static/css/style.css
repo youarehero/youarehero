@@ -3166,6 +3166,7 @@ ul.buttons:after {
   margin-top: 12px;
   position: relative;
   margin-bottom: 36px;
+  width: 380px;
   vertical-align: top;
   padding: 0;
   display: inline-block;
