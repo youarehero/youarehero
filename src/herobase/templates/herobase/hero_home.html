@@ -16,7 +16,7 @@
       {% endfor %}
     </div>
     <div class="notifications-summary">
-      <a href="{% url "message_list_in" %}"><i class="icon-bell-alt"></i></a>
+      <a name="notifications" href="{% url "message_list_in" %}"><i class="icon-bell-alt"></i></a>
       {% for notification in notifications %}
         <div class="notification {% if not notification.is_read %}new{% endif %}">
           {% with url=notification.target.get_absolute_url %}

@@ -3778,6 +3778,10 @@ ul.buttons:after {
 .notifications-summary > a:hover i {
   color: red;
 }
+.notifications-summary > a:focus {
+  text-decoration: none;
+  outline: none;
+}
 .notifications-summary .notification p {
   margin-bottom: 0;
 }
