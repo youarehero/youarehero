@@ -2845,7 +2845,7 @@ body {
 }
 .hero-box .text {
   position: relative;
-  top: 335px;
+  top: 347px;
   padding: 0 12px;
 }
 .hero-box .text dd {
@@ -2864,7 +2864,7 @@ body {
   background-image: url("../img/Heroes/TrashleyT_247_347_cut.png");
 }
 .hero-box.you .background {
-  background-image: url("../img/Heroes/You_247_347_cut.png");
+  background-image: url("../img/Heroes/you.png");
 }
 .hero-box.more .background {
   background-image: url("../img/Heroes/mehr.png");
