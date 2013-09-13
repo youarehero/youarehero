@@ -3107,6 +3107,7 @@ ul.buttons:after {
   color: white;
 }
 .quest-short .text h1 {
+  word-wrap: break-word;
   font-size: 18px;
   font-family: farao_textregular;
   margin-top: 0px;
