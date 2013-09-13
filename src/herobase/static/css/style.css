@@ -2384,6 +2384,8 @@ body {
 #page-footer > ul {
   display: inline-block;
   padding: 0;
+  position: relative;
+  z-index: 1;
 }
 #page-footer > ul > li {
   float: left;
