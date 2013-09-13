@@ -145,7 +145,7 @@ html, body {
     min-height: 1px;
   }
   .nav-container + .nav-container {
-    margin-left: 35px;
+    margin-left: 34px;
   }
   .nav-container.logged-in-box {
     // centered on golden ratio over the 800px
@@ -298,8 +298,11 @@ html, body {
     }
 
     .active > a {
-      &, &:hover, &:focus {
-        background: darken(@background-blue, 10%);
+      & {
+        color: darken(@background-blue, 10%);
+      }
+      &:hover, &:focus {
+        color: black;
       }
     }
   }
@@ -314,21 +317,24 @@ html, body {
         color: @white;
         &:hover,
         &:focus {
-          background: darken(@background-red, 10%);
+          color: black;
         }
       }
     }
     .active > a {
-      &,
+      & {
+        color: darken(@background-red, 10%);
+      }
       &:hover,
       &:focus {
-        background: darken(@background-red, 10%);
+        color: black;
       }
     }
     .cut-corners-bottom(@background-red);
     .using-horizontal-borders;
   }
   .nav-red.learn-more {
+    width: 214px;
     li {
       font-size: 18px;
       > i {
@@ -367,7 +373,7 @@ html, body {
       border: none;
       padding: 5px 8px;
       &:hover {
-        background: darken(@background-blue, 10%);
+        color: black;
       }
     }
   }

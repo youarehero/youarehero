@@ -1964,7 +1964,7 @@ body {
   min-height: 1px;
 }
 #navigation .nav-container + .nav-container {
-  margin-left: 35px;
+  margin-left: 34px;
 }
 #navigation .nav-container.logged-in-box {
   width: 410px;
@@ -2164,10 +2164,12 @@ body {
 #navigation .nav-blue li > a b {
   line-height: 2em;
 }
-#navigation .nav-blue .active > a,
+#navigation .nav-blue .active > a {
+  color: rgba(0, 0, 204, 0.6);
+}
 #navigation .nav-blue .active > a:hover,
 #navigation .nav-blue .active > a:focus {
-  background: rgba(0, 0, 204, 0.6);
+  color: black;
 }
 #navigation .nav-red {
   text-align: center;
@@ -2185,12 +2187,14 @@ body {
 }
 #navigation .nav-red li > a:hover,
 #navigation .nav-red li > a:focus {
-  background: rgba(204, 0, 0, 0.6);
+  color: black;
 }
-#navigation .nav-red .active > a,
+#navigation .nav-red .active > a {
+  color: rgba(204, 0, 0, 0.6);
+}
 #navigation .nav-red .active > a:hover,
 #navigation .nav-red .active > a:focus {
-  background: rgba(204, 0, 0, 0.6);
+  color: black;
 }
 #navigation .nav-red:after {
   content: "";
@@ -2211,6 +2215,9 @@ body {
 #navigation .nav-red > * {
   padding-left: 0;
   padding-right: 0;
+}
+#navigation .nav-red.learn-more {
+  width: 214px;
 }
 #navigation .nav-red.learn-more li {
   font-size: 18px;
@@ -2246,7 +2253,7 @@ body {
   padding: 5px 8px;
 }
 #navigation .nav-font [type="submit"]:hover {
-  background: rgba(0, 0, 204, 0.6);
+  color: black;
 }
 #navigation #brand {
   margin-top: -70px;
