@@ -19,8 +19,8 @@
             </a>
           </dd>
 
-          <dt>Status:</dt><dd>offen</dd>
-          <dt>Gesuchte Helden</dt><dd>100.000</dd>
+          <dt>Status:</dt><dd>{{ quest.get_state_display }}</dd>
+          <dt>Gesuchte Helden</dt><dd>{{ quest.max_heroes }}</dd>
           <dt>Erstellt am:</dt><dd>{{ quest.created.date }}</dd>
           <dt>Läuft noch bis:</dt><dd>{{ quest.expiration_date.date }}</dd>
         </dl>
