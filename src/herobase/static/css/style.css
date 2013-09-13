@@ -2866,6 +2866,9 @@ body {
 .hero-box.you .background {
   background-image: url("../img/Heroes/You_247_347_cut.png");
 }
+.hero-box.more .background {
+  background-image: url("../img/Heroes/mehr.png");
+}
 ul.buttons {
   margin: 12px 0;
   float: right;
