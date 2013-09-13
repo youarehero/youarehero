@@ -2,6 +2,7 @@
 from django import template
 from django.core.urlresolvers import reverse
 from django.utils.html import escape
+from django.utils.http import urlquote
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext
 
@@ -18,7 +19,7 @@ def message_user(user):
 @register.simple_tag
 def message_team(team, size=20):
     mail_link = '<a href="%(url)s" data-toggle="tooltip" data-title="%(tooltip)s"><i class="icon-yah-mail icon-%(size)s"></i></a>' % {
-        'url': reverse('message_team_to', args=(team, )),
+        'url': reverse('message_team_to', args=(urlquote(team), )),
         'tooltip': ugettext(u'Send message to team %(team)s') % {'team': escape(team)},
         'size': size,
     }
