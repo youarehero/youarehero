@@ -42,7 +42,6 @@ footer-logo liegt über link
 lange quest-namen (umbruch eher)
     done
 
-Startseite mehr boxen, erstmal ohne orange und angrenzende rote.
 quest-details echte werte
 Team-Seite sieht schlimm aus
 viele quests auf der pinwand?
@@ -51,7 +50,10 @@ nutzungsbedingungen unter "?"
     done
 Reg "date of birth" übersetzen
 tooltip für "das spiel"
+    done, aber komisches rendering
+heldenbilder skalieren und abschneiden
 
+>>postponed>>Startseite mehr boxen, erstmal ohne orange und angrenzende rote.
 >>postponed>>Nachrichtenlisten formatieren (Nach zettel)
 >>postponed>>team bei registrierung
 >>erstmal postponed>>Meine Quests Formatting

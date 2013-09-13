@@ -2841,14 +2841,27 @@ body {
   top: -12px;
   left: 0;
   background-repeat: no-repeat;
+  background-size: 247px 347px;
 }
 .hero-box .text {
   position: relative;
   top: 335px;
   padding: 0 12px;
 }
+.hero-box.citizeng .background {
+  background-image: url("../img/Heroes/CitizenG_247_347_cut.png");
+}
 .hero-box.glitch .background {
-  background-image: url("../img/glitch.png");
+  background-image: url("../img/Heroes/Glitch_247_347_cut.png");
+}
+.hero-box.maitre .background {
+  background-image: url("../img/Heroes/Maitre_247_347_cut.png");
+}
+.hero-box.trashley .background {
+  background-image: url("../img/Heroes/TrashleyT_247_347_cut.png");
+}
+.hero-box.you .background {
+  background-image: url("../img/Heroes/You_247_347_cut.png");
 }
 ul.buttons {
   margin: 12px 0;
