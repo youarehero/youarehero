@@ -392,6 +392,10 @@ html, body {
       font-size: 16px;
     }
   }
+
+  .tooltip {
+    position: absolute;
+  }
 }
 // Subsub Navigation
 .subsub {
@@ -494,7 +498,7 @@ html, body {
 }
 
 .box-image {
-  @height: 400px;
+  @height: 484px;
   @width: 800px;
   @text-width: 270px;
   @header-height: 50px;
@@ -503,6 +507,9 @@ html, body {
 
   height: (@height - 2 * @cut-corner-radius);
 
+  > h1 {
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  }
   .header {
     display: block;
     height: @header-height;
