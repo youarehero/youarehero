@@ -27,6 +27,8 @@ Klick auf avatar zum profil
     done
 Team-Seiten sind broken
     fixed
+logout redirect auf startseite
+    done
 Registrierung ist broken
 registrieren-link oben rechts
 team bei registrierung
@@ -34,8 +36,6 @@ Team-Nachrichten
 Nachrichtenlisten formatieren (Nach zettel)
 Benachrichtigungsfriedhof mit liste wie logged in home, nur etwas breiter
 box um impressum und presse
-logout redirect auf startseite
-    done
 Startseite mehr boxen, erstmal ohne orange und angrenzende rote.
 Team-Seite sieht schlimm aus
 >>erstmal postponed>>Meine Quests Formatting
