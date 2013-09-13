@@ -9,12 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="og:image" content="http://snapshot.youarehero.net/static/img/logo.png">
-    <link href="/static/img/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="/static/img/favicon.ico?v=2" rel="icon" type="image/x-icon">
+    <link href="/static/img/favicon.ico?v=2" rel="icon" type="image/x-icon">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
-
-    <link href='https://fonts.googleapis.com/css?family=Mouse+Memoirs' rel='stylesheet' type='text/css'>
+{#    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic' rel='stylesheet' type='text/css'>#}
+{#    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>#}
+{##}
+{#    <link href='https://fonts.googleapis.com/css?family=Mouse+Memoirs' rel='stylesheet' type='text/css'>#}
 
     <!-- Le styles -->
 
@@ -24,12 +25,12 @@
     {% endblock %}
 
     <link href="{% get_static_prefix %}bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}css/font-awesome.css" rel="stylesheet">
 
     {% block css %}
     {% endblock %}
-
-    <link href="{% get_static_prefix %}css/custom.css" rel="stylesheet">
     <link href="{% get_static_prefix %}css/farao.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}css/style.css" rel="stylesheet">
 
     {% block meta %}
     {% endblock %}
@@ -40,7 +41,7 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="{% get_static_prefix %}bootstrap/ico/favicon.ico">
+    <link rel="shortcut icon" href="{% get_static_prefix %}bootstrap/ico/favicon.ico?v=2">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% get_static_prefix %}bootstrap/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% get_static_prefix %}bootstrap/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% get_static_prefix %}bootstrap/ico/apple-touch-icon-72-precomposed.png">
@@ -49,75 +50,28 @@
 
 
 {% load like_button %}
-<body class="city-karlsruhe">
+<body>
+
+{% block background %}
+    <div id="background"></div>
+{% endblock %}
 
 {% block body %}
-    <div id="background"></div>
-    <div id="background-city"></div>
-    <div id="layout-container" class="container">
-        {% block site_header_container %}
-            <div id="site-header-container" class="row">
-                <div class="span100">
-                    <a href="{% url "home" %}" class="logo pull-left">
-                        <img src="{% get_static_prefix %}img/yahlogo.svg" alt="You Are Hero">
-                        <h2 style="color: black; position: absolute; left: 70px; top: 43px; font-size: 30px;">youarehero</h2>
-                    </a>
-                    {% if not request.user.is_authenticated %}
-
-                    {% endif %}
-                    <ul class="small-grid menu user-menu pull-right">
-                        {% if request.user.is_authenticated %}
-                            <li class="{% ifactive "userprofile_edit" %}on{% endifactive %}">
-                                <a href="{% url "userprofile_edit" %}"><i class="icon-yah-settings icon-40"><span>{% trans "Settings" %}</span></i></a>
-                            </li>
-                            <li><a href="{% url "auth_logout" %}"><i class="icon-yah-logout icon-40"><span>{% trans "Logout" %}</span></i></a></li>
-                        {% endif %}
-                    </ul>
-                    {% block site_header %}
-                    {% endblock %}
-                </div>
+    <div id="page">
+        {% block page_header %}
+            <div class="container">
+                {% include "herobase/layout/navigation.inc.html" %}
             </div>
         {% endblock %}
-        <div class="row">
-            {% block sidebar_left_container %}
-                <div id="sidebar-left-container" class="span2 sidebar-left">
-                    {% include "herobase/layout/mainmenu.inc.html" %}
-                </div> <!-- end sidebar-left -->
-            {% endblock %}
-            {% block page_container %}
-                <div id="page-container" class="span6 row">
-                    <div id="page-title">
-                        {% block page_title %}<h1>You are HERO</h1>{% endblock %}
-                    </div>
-                    <div id="submenu">
-                        {% block submenu %}&nbsp;{% endblock %}
-                    </div>
-                    <div id="page-content">
-                        {% include "herobase/layout/messages.inc.html" %}
-                        {% block content %}&nbsp;{% endblock %}
-                    </div>
-                </div> <!-- end page -->
-            {% endblock %}
-            {% block sidebar_right_container %}
-                <div id="sidebar-right-container" class="sidebar-right">
-                    {% block sidebar_right %}
-                        {% if request.user.is_authenticated %}
-                            {% include "herobase/userprofile/detail_mini.html" %}
-                            {% include "herobase/butler.inc.html" %}
-                        {% endif %}
-                    {% endblock %}
-                </div> <!-- end sidebar-right -->
-            {% endblock %}
-        </div>
-        {% block site_footer_container %}
-            <div id="page-footer">
-                <div class="pull-right">
-                    <a href="{% url "imprint" %}" title="Impressum">Impressum</a>
-                </div>
+        {% block page_content %}
+            <div id="content" class="container">
+                {% block content %}&nbsp;{% endblock %}
             </div>
-
         {% endblock %}
     </div>
+    {% block page_footer %}
+        {% include "herobase/layout/footer.inc.html" %}
+    {% endblock %}
 
 {% endblock %}
 

@@ -1,0 +1,73 @@
+navbox highlight komplett blau
+Statt hintergrund highlighten bei blauen feldern symbole rot machen.
+    Erste gedroppt für zweite, zweite done
+Logged-In Home mit schlagzeile und benachrichtigungen (links nachrichten, rechts alles andere)
+    Done
+Footer anderer Text wenn eingeloggt.
+    done
+Footer wiki/Forum links
+    done
+Notification count
+    done. Besuchen der homepage markiert sie als gelesen
+Location-Symbol
+    done.
+Header auf 800px verbreitern
+    done
+Minimalbreite für header und footer
+    Done. Zentrieren war doof, goldenen schnitt eingebaut
+Quest-Liste ganzen block verlinken
+    done
+Buttons a la design (und ganzer block klickbar)
+    done in quest detail
+Kommentar-Formular
+    done
+Fehlermeldungen als block unter felder und rot und abstand wenn sie nicht da sind)
+    Etwas reworked, platz erstmal nicht reserviert sondern als block daneben
+Klick auf avatar zum profil
+    done
+Team-Seiten sind broken
+    fixed
+logout redirect auf startseite
+    done
+Registrierung ist broken
+    fixed
+registrieren-link oben rechts
+    fixed
+Benachrichtigungsfriedhof mit liste wie logged in home, nur etwas breiter (stattdessen erstmal anchor)
+    anchor gesetzt und verlinkt
+box um impressum und presse
+    done
+footer-logo liegt über link
+    fixed
+lange quest-namen (umbruch eher)
+    done
+tooltip für "das spiel"
+    done, aber komisches rendering
+nutzungsbedingungen unter "?"
+    done
+viele quests auf der pinwand?
+    geht irgendwie, 80/20 halt
+Team-Seite sieht schlimm aus
+    link removed for now
+quest-details echte werte
+    done
+Reg "date of birth" übersetzen
+    done
+helden-portraits und quests.
+    quests: ??, portraits drin
+
+>>postponed>>Startseite mehr boxen, erstmal ohne orange und angrenzende rote.
+>>postponed>>Nachrichtenlisten formatieren (Nach zettel)
+>>postponed>>team bei registrierung
+>>erstmal postponed>>Meine Quests Formatting
+>>postponed>>Team-Nachrichten
+
+* Einklappbare Boxen
+* Nachricht senden
+
+2nd Run:
+* Profileditor aufbereiten
+* Quests in Quest-Liste verwoben. (Eventuell mit masonry?)
+* Spiel-Seite (Mit "Das spiel beginnt am 21." Overlay)
+* Ticker
+* Quest-Liste in Profilen (optik wie in quest-liste)

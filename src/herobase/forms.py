@@ -25,7 +25,7 @@ from herobase.widgets import LocationWidget
 class QuestCreateForm(forms.ModelForm):
     """The Basic Quest create form. Uses django-crispy-forms (FormHelper) for 2 column bootstrap output. """
     remote = forms.ChoiceField(choices=(
-        ("", _("-----------")),
+        ("", "-----------"),
         (True, _(u"remotely")),
         (False, _(u"locally"))
     ), help_text=_(u"Can this quest be done remotely or only locally?"),
@@ -44,7 +44,7 @@ class QuestCreateForm(forms.ModelForm):
                     Div(
                         'title',
                         'description',
-                        css_class="span3",
+                        css_class="col-md-6",
                     ),
                     Div(
                         'max_heroes',
@@ -52,7 +52,7 @@ class QuestCreateForm(forms.ModelForm):
                         'time_effort',
                         'address',
                         'expiration_date',
-                        css_class="span3",
+                        css_class="col-md-6",
                     ),
                     css_class="row",
                 ),
@@ -95,6 +95,7 @@ class UserProfileEdit(forms.ModelForm):
                     'image',
                     'sex',
                     'about',
+                    'team',
 
                     # 'address',
                     # 'receive_system_email',
@@ -112,7 +113,7 @@ class UserProfileEdit(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('about', 'image', 'sex',
+        fields = ('about', 'image', 'sex', 'team',
                   # 'receive_system_email', 'receive_private_email',
                   # 'address', 'latitude', 'longitude', 'location_granularity'
         )
@@ -143,14 +144,6 @@ class UserProfilePrivacyEdit(forms.ModelForm):
         model = UserProfile
         fields = ('public_location', )
 
-
-class UserRegistrationForm(RegistrationFormUniqueEmail):
-    """Custom Registration form with hero class and unique email."""
-    username = forms.CharField(max_length=75,
-        widget=forms.TextInput(attrs={'class': 'required'}),
-        label=_("Username"))
-
-
 class UserAuthenticationForm(AuthenticationForm):
     """Custom login form."""
     error_messages = AuthenticationForm.error_messages
@@ -163,11 +156,7 @@ class UserAuthenticationForm(AuthenticationForm):
         self.helper = FormHelper()
         self.helper.help_text_inline = True
 
-        self.helper.form_class = "box"
-        self.helper.form_tag=False
-
-        if request:
-            self.helper.form_action = reverse('auth_login')
+        self.helper.form_action = 'auth_login'
 
         super(UserAuthenticationForm, self).__init__(request, *args, **kwargs)
 
@@ -185,11 +174,13 @@ class UserAuthenticationForm(AuthenticationForm):
 
         email = self.fields['email']
         email.label = ""
-        email.widget = forms.TextInput(attrs={'placeholder':'user@example.com', 'autocapitalize': 'off', 'autocorrect': 'off'})
+        email.widget = forms.TextInput(attrs={'placeholder':'Identität', 'autocapitalize': 'off', 'autocorrect': 'off'})
 
         password = self.fields['password']
         password.label = ""
-        password.widget = forms.PasswordInput(attrs={'placeholder':'password'})
+        password.widget = forms.PasswordInput(attrs={'placeholder':'Kennung'})
+
+        self.helper.add_input(Submit('submit', 'Log in'))
 
     def clean_email(self):
         self.cleaned_data['username'] = self.cleaned_data['email']

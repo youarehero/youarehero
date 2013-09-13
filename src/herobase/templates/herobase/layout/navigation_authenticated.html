@@ -1,0 +1,72 @@
+{% load url from future %}
+{% load activelink %}
+
+<div class="nav-container logged-in-box">
+  <div class="nav-black">
+    <div class="headline">you are <span class="username">{{ request.user.username }}</span></div>
+    <a class="avatar-box" href="{% url "userprofile_private" %}">
+      <span class="avatar" style="background-image: url({{ request.user.profile.avatar_thumbnail_110|safe }});"></span>
+      <span class="experience-bar"><span style="width: {{ request.user.profile.relative_level_experience }}%;"></span></span>
+      <span class="level">{{ request.user.profile.level }}</span>
+    </a>
+    <div class="nav-icons">
+      <ul class="nav">
+        <li><a href="#" data-placement="right" data-toggle="tooltip" data-title="Das Spiel beginnt in wenigen Tagen"><i class="icon-puzzle-piece"></i><br>Das Spiel</a></li>
+        <li class="{% ifstartswith "/quest/" %}active{% endifstartswith %}">
+        <a href="{% url "quest_list" %}"><i class="icon-pushpin"></i><br>Quests</a></li>
+        <li class="{% ifstartswith "/messages" %}active{% endifstartswith %}">
+        <a href="{% url "message_list_in" %}"><i class="icon-comments">
+            {% with unread_message_count=request.user.profile.unread_messages_count %}
+            {% if unread_message_count != 0 %}
+            <b>{{ unread_messages_count }}</b>
+            {% endif %}
+            {% endwith %}
+        </i><br>Nachrichten</a></li>
+      </ul>
+
+      {% ifstartswith "/quest" %}
+      <ul class="nav sub">
+        <li class="{% ifstartswith "/quest/list" %}active{% endifstartswith %}">
+        <a href="{% url "quest_list" %}"><i class="icon-pushpin icon-2x"></i><br/>Pinn<br/>wand</a>
+        </li>
+        <li class="{% ifactive "quest_create" %}active{% endifactive %}">
+        <a href="{% url "quest_create" %}"><i class="icon-edit-sign icon-2x"></i><br/>Neue<br/>Quest</a>
+        </li>
+        <li class="{% ifstartswith "/quest/my" %}active{% endifstartswith %}">
+        <a href="{% url "quest_my" %}"><i class="icon-inbox icon-2x"></i><br/>Meine<br/>Quests</a>
+        </li>
+      </ul>
+      {% endifstartswith %}
+      {% ifstartswith "/messages" %}
+      <ul class="nav sub">
+        <li class="{% ifactive "message_list_in" %}active{% endifactive %}">
+        <a href="{% url "message_list_in" %}"><i class="icon-inbox icon-2x"></i><br>Eingang</a>
+        </li>
+        <li class="{% ifactive "message_list_out" %}active{% endifactive %}">
+        <a href="{% url "message_list_out" %}"><i class="icon-share icon-2x"></i><br>Ausgang</a>
+        </li>
+        <li class="{% ifactive "message_create" %}active{% endifactive %}">
+        <a href="{% url "message_create" %}"><i class="icon-pencil icon-2x"></i><br>Verfassen</a></li>
+      </ul>
+      {% endifstartswith %}
+    </div>
+  </div>
+</div>
+<div class="nav-container">
+  <ul class="nav nav-blue">
+    <li><a href="{% url "auth_logout" %}"><i class="icon-power-off icon-2x"></i></a></li>
+    <li class="{% ifactive "userprofile_edit" %}active{% endifactive %}">
+      <a href="{% url "userprofile_edit" %}"><i class="icon-cogs icon-2x"></i></a>
+    </li>
+    <li class="{% ifactive "dosanddonts" %}active{% endifactive %}"><a href="{% url "dosanddonts" %}"><i class="icon-question icon-2x"></i></a></li>
+    <li class="{% ifactive "/" %}active{% endifactive %}">
+      <a href="/#notifications">
+        <i class="icon-bell-alt icon-2x">
+          {% with notifications=request.user.profile.unread_messages_and_notifications_count %}
+          {% if notifications > 0 %}<b>{{ notifications }}</b>{% endif %}
+          {% endwith %}
+        </i>
+      </a>
+    </li>
+  </ul>
+</div>

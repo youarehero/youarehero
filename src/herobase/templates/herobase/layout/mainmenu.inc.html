@@ -13,11 +13,13 @@
                 <i class="icon-yah-billboard icon-60"><span>{% trans 'Billboard' %}</span></i>
             </a>
         </li>
+        {% if request.user.profile.is_legal_adult %}
         <li class="{% ifactive "quest_create" %}on{% endifactive %}">
             <a href="{% url "quest_create" %}" rel="tooltip" title="{% trans 'Create new Quest' %}">
                 <i class="icon-yah-quest-new icon-60"><span>{% trans 'New' %}</span></i>
             </a>
         </li>
+        {% endif %}
         <li class="{% ifstartswith "quest_my" %}on{% endifstartswith %}">
             <a href="{% url "quest_my" %}" rel="tooltip" title="{% trans 'My Quests' %}">
                 <i class="icon-yah-my-quests icon-60"><span>{% trans 'My Quests' %}</span></i>

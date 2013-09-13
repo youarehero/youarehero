@@ -1,25 +1,22 @@
-{% extends "herobase/layout/box.html" %}
 {% load crispy_forms_tags i18n static %}
-{% block box %}
-<form method="POST" action="">  {{ block.super }}</form>
-{% endblock %}
-
 {% load i18n static %}
 
-{% block buttons_top %}
-
-{% endblock %}
-
-{% block title %}
-<h1>Send Message</h1>
-{% endblock %}
 
 {% block content %}
+    <form method="POST" action="">
+        <div class="box clearfix">
+            <h1>Send Message</h1>
+            <div class="clearfix">
+                {% crispy form %}
+                <ul class="buttons">
+                    <li>
+                        <button type="submit" name="save" class="box-button text"  data-toggle="tooltip" data-title="Versenden">
+                            <span>Nachricht senden</span></button>
+                    </li>
+                </ul>
+            </div>
 
-    {% crispy form %}
+        </div>
+    </form>
 {% endblock %}
 
-{% block buttons_bottom %}
-    <button type="submit" value="Send" name="save" class="text"  data-toggle="tooltip" data-title="Versenden">
-        <i class="icon-yah-ok icon-40"></i></button>
-{% endblock %}

@@ -1,0 +1,1042 @@
+
+
+// Core variables and mixins
+@import "../bootstrap/less/variables.less";
+@import "bootstrap-overrides.less";
+@import "../bootstrap/less/mixins.less";
+@import "icons.less";
+
+// Mixins
+@cut-corner-radius: 12px;
+.cut-corners-bottom(@color, @radius: @cut-corner-radius) {
+  padding: 0;
+  margin-bottom: (2 * @radius);
+  position: relative;
+  &:after {
+    content: "";
+    display: table;
+    width: 100%;
+    height: 0;
+    position: absolute;
+    bottom: -@radius;
+    left: 0;
+    border-right: @radius solid transparent;
+    border-left: @radius solid transparent;
+    border-top: @radius solid @color;
+    border-bottom: 0 none;
+  }
+  > * {
+    padding: 0 @radius;
+  }
+}
+.cut-corners-top(@color, @radius: @cut-corner-radius) {
+  padding: 0;
+  margin-top: @radius;
+  position: relative;
+  &:before {
+    content: "";
+    display: table;
+    width: 100%;
+    height: 0;
+    position: absolute;
+    top: -@radius;
+    left: 0;
+    border-right: @radius solid transparent;
+    border-left: @radius solid transparent;
+    border-bottom: @radius solid @color;
+    border-top: 0 none;
+  }
+  > * {
+    padding: 0 @radius;
+  }
+}
+
+.cut-corners(@color, @radius: @cut-corner-radius) {
+  .cut-corners-bottom(@color, @radius);
+  .cut-corners-top(@color, @radius);
+}
+
+// meant for use together with .cut-corners-*
+.using-horizontal-borders {
+  > * {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+.border-radius (@radius) {
+  .border-bottom-radius(@radius);
+  .border-top-radius(@radius)
+}
+
+
+// Typographie
+//------------------
+
+
+h1,h3,h4 {
+  font-family: farao_textbold;
+}
+h1 { font-size: 48px; }
+h2 { font-size: 48px; }
+h3 { font-size: 36px; }
+h4 { font-size: 24px; }
+h5 { font-size: 18px; }
+
+ul {list-style-type: none;}
+
+// Layout
+//---------------
+@background: rgba(255, 255, 255, 0.6);
+@background-blue: rgba(0,0,255,0.6);
+@background-red: rgba(255,0,0,0.6);
+@foreground-blue: rgba(0,0,255,1);
+@foreground-red: rgba(255,0,0,1);
+@foreground: #fff;
+@black: #333;
+@white: #fff;
+
+@footer-height: 70px;
+
+body.city-karlsruhe {
+  background-color: white;
+}
+
+#background {
+  position: fixed;
+  z-index: -1000;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/sky2.png") ;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center top;
+  background-size: auto 1114px;
+  @media (min-width: 1564px) {
+    background-size: cover;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+#page {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: @footer-height + @cut-corner-radius + 25px;;
+}
+
+.vertical-offset {
+  margin-top: 23px;
+}
+
+
+// Navigation
+#navigation {
+  z-index: 1000;
+  position: relative;
+  width: 800px;
+
+  .nav-container {
+    position: relative;
+    padding: 0 !important;
+    float: left;
+    min-height: 1px;
+  }
+  .nav-container + .nav-container {
+    margin-left: 34px;
+  }
+  .nav-container.logged-in-box {
+    // centered on golden ratio over the 800px
+    width: 410px;
+    margin-left: 92px;
+    margin-right: 70px;
+  }
+
+  .nav {
+    text-align: center;
+    li {
+      > a {
+        overflow: hidden;
+        display: inline-block;
+        padding: 5px 8px;
+        &:hover,
+        &:focus {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  .nav-black {
+    background: @background;
+    li {
+      float: left;
+      > a {
+        color: @text-color;
+        border: 1px dashed;
+        border-color: transparent transparent @foreground-red transparent;
+        &:hover,
+        &:focus {
+          color: @foreground-red;
+        }
+      }
+    }
+    .nav-icons {
+      i { font-size: 48px; }
+      .sub i {font-size: 30px; }
+      ul:last-child > li > a { border: none; }
+    }
+
+
+    .active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: @foreground-red;
+        border-color: @foreground-red @foreground-red transparent @foreground-red;
+      }
+    }
+    .cut-corners-bottom(@background);
+
+    .headline {
+      margin-left: 25px;
+      padding-top: 15px;
+      font-size: 16px;
+      font-family: farao_textbold;
+      .username {
+        color: red;
+        display: inline-block;
+        max-width: 276px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: bottom;
+      }
+    }
+
+    .avatar-box,
+    .nav-icons {
+      display: inline-block;
+    }
+
+    .avatar-box {
+      @avatar-height: 110px;
+      vertical-align: top;
+      position: relative;
+      margin-bottom: -12px;
+      z-index: 1;
+      > span {display: block}
+      .avatar {
+        width: @avatar-height;
+        height: @avatar-height;
+      }
+      .experience-bar {
+        border: 2px solid red;
+        width: 100%;
+        height: 14px;
+        > div {
+          height: 100%;
+          background-color: red;
+        }
+      }
+      .level {
+        height: 42px;
+        width: 42px;
+        background-image: url("../img/levelstar.png");
+        position: absolute;
+        bottom: -@cut-corner-radius;
+        left: 0;
+        text-align: center;
+        color: white;
+        font-size: 24px;
+      }
+    }
+  }
+
+  .nav-white {
+    background: @background;
+    .cut-corners-bottom(@background);
+    .using-horizontal-borders;
+
+    width: 159px;
+    padding-top: 30px;
+
+    li {
+      > a + a {
+        margin-left: 8px;
+      }
+      > a {
+        > i {
+          font-size: 48px;
+        }
+        padding: 0;
+        color: black;
+        &:hover,
+        &:focus {
+          color: @foreground-red;
+        }
+      }
+    }
+  }
+
+  .nav-blue {
+    .cut-corners-bottom(@background-blue);
+    .using-horizontal-borders;
+    &:after {z-index: auto;}
+    text-align: center;
+    background: @background-blue;
+    li > a {
+      width: 100%;
+      color: @white;
+      &:hover, &:focus {
+        color: black;
+      }
+      b {
+        line-height: 2em;
+      }
+    }
+
+    .active > a {
+      & {
+        color: darken(@background-blue, 10%);
+      }
+      &:hover, &:focus {
+        color: black;
+      }
+    }
+  }
+
+  .nav-red {
+    text-align: center;
+    background: @background-red;
+    margin-top: -@cut-corner-radius;
+    li {
+      margin-top: @cut-corner-radius;
+      > a {
+        color: @white;
+        &:hover,
+        &:focus {
+          color: black;
+        }
+      }
+    }
+    .active > a {
+      & {
+        color: darken(@background-red, 10%);
+      }
+      &:hover,
+      &:focus {
+        color: black;
+      }
+    }
+    .cut-corners-bottom(@background-red);
+    .using-horizontal-borders;
+  }
+  .nav-red.learn-more {
+    width: 214px;
+    li {
+      font-size: 18px;
+      > i {
+        font-size: 48px;
+      }
+    }
+  }
+
+  .nav.sub {
+    li > a {
+      border: 0px none;
+    }
+  }
+
+  .nav-font {
+    font-size: 16px;
+    li.pull-down {
+      margin-top: 2 * @cut-corner-radius;
+//      margin-bottom: -@corner_cut;
+    }
+    input {
+      color: @white;
+      margin: 0 @cut-corner-radius;
+      background: transparent;
+      border: 0px none;
+      border-bottom: 2px solid @white;
+      border-radius: 0;
+      width: 150px;
+    }
+    [type="submit"] {
+      font-size: 16px;
+      font-weight: normal;
+      width: 150px;
+      color: @white;
+      background: transparent;
+      border: none;
+      padding: 5px 8px;
+      &:hover {
+        color: black;
+      }
+    }
+  }
+
+  #brand {
+    margin-top: -70px;
+    width: 150px;
+    a {
+      width: 150px - (2 * @cut-corner-radius);
+      white-space: nowrap;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h2 {
+      font-size: 16px;
+    }
+  }
+
+  .tooltip {
+    position: absolute;
+  }
+}
+// Subsub Navigation
+.subsub {
+  text-align: center;
+  > li {
+    float: left;
+    > a {
+      color: @black;
+      padding: 0 5px;
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        color: @foreground-blue;
+      }
+    }
+  }
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+//        background: darken(@background-blue, 10%);
+      color: @foreground-blue;
+    }
+  }
+  .clearfix;
+}
+
+// Footer
+#page-footer {
+  .box-blue;
+  .cut-corners-top(@background-blue);
+
+  height: @footer-height;
+  margin-top: -@footer-height;
+  font-size: 16px;
+  color: white;
+
+  text-align: center;
+  > ul {
+    display: inline-block;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    > li {
+      float: left;
+      padding: 0;
+      > a {
+        color: @white;
+        padding: 0 5px;
+        &:hover,
+        &:focus {
+          background-color: transparent;
+          color: @black;
+        }
+      }
+      &.active > a{
+        &,
+        &:hover,
+        &:focus {
+          color: @black;
+        }
+      }
+    }
+  }
+
+  .icon-yah {
+    display: inline-block;
+    width: 100%;
+    font-size: 36px;
+    line-height: 24px;
+    color: white;
+    text-align: center;
+  }
+
+}
+
+// Boxes
+.box {
+  background: @background;
+  .cut-corners(@background);
+  margin-bottom: 3 * @cut-corner-radius;
+  .clearfix;
+}
+.box-red {
+  color: @foreground-red;
+  background: @background-red;
+  &.cut-corners {
+    .cut-corners(@background-red);
+  }
+}
+.box-blue {
+  color: @foreground-blue;
+  background: @background-blue;
+  &.cut-corners {
+    .cut-corners(@background-blue);
+  }
+}
+.box-content {
+  margin: 0 @cut-corner-radius;
+}
+
+.box-image {
+  @height: 484px;
+  @width: 800px;
+  @text-width: 270px;
+  @header-height: 50px;
+
+  .box;
+
+  height: (@height - 2 * @cut-corner-radius);
+
+  > h1 {
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  }
+  .header {
+    display: block;
+    height: @header-height;
+    z-index: 2;
+    position: relative;
+    left: 15px;
+    top: -5px;
+    margin: 0;
+  }
+
+  .text {
+    // the 2*12 are to work against the boxes margin. No idea why this is neccessary.
+    height: (@height - 2 * @cut-corner-radius - @header-height - 2*12px);
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    text-align: justify;
+    padding: 12px;
+    width: @text-width;
+  }
+
+  position: relative;
+  .image {
+    width: (@width - @text-width);
+    height: @height;
+    position: absolute;
+    top: -@cut-corner-radius;
+    right: 0px;
+    z-index: 1;
+  }
+
+}
+
+.box-floating {
+  @floating-base-zindex: 100;
+  @footer-height: 46px;
+
+  width: 200px;
+  height: 400px;
+
+  .box-red;
+  .cut-corners(@background-red);
+
+  color: white;
+
+  position: absolute;
+  top: (42px - @cut-corner-radius);
+  right: (27px - @cut-corner-radius);
+  z-index: @floating-base-zindex;
+
+  h1 {
+    font-family: farao_book_heldregular;
+    margin-top: 0;
+
+    &:before {
+      content: "!";
+      font-size: 320px;
+      color: black;
+      position: absolute;
+      top: -89px;
+      left: 40px;
+      z-index: -1;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    position: absolute;
+    bottom: @footer-height;
+    padding: 12px;
+  }
+
+  .box-footer {
+    height: @footer-height;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: center
+  }
+}
+
+.hero-box {
+  width: 247px;
+  height: 650px;
+  @hero-height: 347px;
+
+  .box;
+  background-size: contain;
+  position: relative;
+
+  .background {
+    z-index: 1;
+    width: 100%;
+    height: @hero-height;
+    position: absolute;
+    top: -@cut-corner-radius;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: 247px 347px;
+  }
+  .text {
+    position: relative;
+    top: @hero-height;
+    padding: 0 12px;
+    dd {
+      font-style: italic;
+    }
+  }
+
+
+  &.citizeng .background { background-image: url("../img/Heroes/CitizenG_247_347_cut.png"); }
+  &.glitch   .background { background-image: url("../img/Heroes/Glitch_247_347_cut.png"); }
+  &.maitre   .background { background-image: url("../img/Heroes/Maitre_247_347_cut.png"); }
+  &.trashley .background { background-image: url("../img/Heroes/TrashleyT_247_347_cut.png"); }
+  &.you      .background { background-image: url("../img/Heroes/you.png"); }
+  &.more     .background { background-image: url("../img/Heroes/mehr.png"); }
+}
+// Box Buttons
+ul.buttons {
+  margin: (@cut-corner-radius) 0;
+  float: right;
+  display: block;
+  padding-left: 0;
+  li {
+    float: left;
+    margin-left: 10px;
+  }
+  .clearfix;
+}
+
+.yah-btn (@color, @radius: (@cut-corner-radius / 2)) {
+  .cut-corners(@color, @radius);
+  background: @color;
+  margin: @radius 0;
+}
+
+.btn {
+  border: 0px none;
+  .border-radius(0);
+  display: block;
+  &.btn-primary {
+    .yah-btn(@background-blue);
+    &:hover {
+      .yah-btn(@foreground-blue);
+    }
+  }
+}
+
+
+
+// Quests
+//-------------
+.quest {
+  .footer {
+    @avatar-height: 70px;
+    > .avatar {
+      display: inline-block;
+      z-index: 100;
+      width: @avatar-height;
+      height: @avatar-height;
+      position: relative;
+      top: @cut-corner-radius;
+    }
+    > .icons {
+      margin-top: @cut-corner-radius;
+      margin-bottom: -(2 * @cut-corner-radius);
+      display: inline-block;
+      float: right;
+      height: @avatar-height;
+      padding-top: ((@avatar-height - 40px) / 2) - (@cut-corner-radius / 2);
+      i.icon-map-marker {
+        font-size: 40px;
+        color: black;
+      }
+    }
+  }
+}
+.quest-short {
+  .box-red;
+  .cut-corners;
+  .quest;
+//  width: 100%;
+  color: white;
+  a {
+    color: inherit;
+    display: block;
+    &:hover {
+      color: inherit;
+      text-decoration: none;
+      .text {text-decoration: underline;}
+    }
+  }
+  .text {
+    display: block;
+    color: white;
+    h1 {
+      word-wrap: break-word;
+      font-size: 18px;
+      font-family: farao_textregular;
+      margin-top: 0px;
+    }
+    p {
+    }
+  }
+  .header {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 48px;
+    height: 48px;
+    position: relative;
+    top: -20px;
+  }
+}
+.quest-detail {
+  .quest;
+  padding-left: 100px; // center
+
+  > div + div {
+    margin-left: 20px;
+  }
+
+  > .text {
+    .box;
+    width: 380px;
+    vertical-align: top;
+    padding: 0;
+    display: inline-block;
+      h1 {
+        color: red;
+        font-size: 24px;
+      }
+      p {
+        word-wrap: break-word;
+        width: 380px;
+        margin: auto 0;
+        font-size: 12px;
+      }
+  }
+  > .sidebar {
+    padding: 0;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+
+    > .data {
+      .box;
+      text-align: initial;
+      vertical-align: top;
+      width: 200px;
+      dl {
+        margin: 0;
+        dt {
+          font-size: 12px;
+          font-weight: normal;
+        }
+        dd {
+          color: blue;
+          font-size: 18px;
+        }
+
+        * + dt {
+          margin-top: 12px;
+        }
+      }
+    }
+
+    > form, > a {display: inline-block;}
+    > .hfill {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+.box-button {
+  .box-red;
+  .cut-corners;
+  display: inline-block;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  height: 48px - (2 * @cut-corner-radius);
+  border: none;
+  min-width: 48px;
+  i {
+    display: block;
+    color: white;
+    width: 100%;
+  }
+  &:hover  {
+    text-decoration: none;
+    i, span {
+      color: black;
+    }
+  }
+  &.text {
+    i, span {
+      position: relative;
+      top: -12px;
+    }
+  }
+}
+.quest-list {
+  .make-row;
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+  > * {
+    display: inline-block;
+    margin: (7.5px + @cut-corner-radius) 7.5px;
+  }
+}
+
+.adventures .inner-box {
+  width: 130px;
+  height: 130px;
+
+  display: inline-block;
+  .box-content {margin: 0;}
+
+  a {
+    > * {
+      display: block;
+      margin-left: 25px;
+      margin-right: 25px;
+    }
+
+    p {
+      margin-left: 5px;
+      margin-right: 5px;
+      width: 120px;
+      height: 40px;
+      text-align: center;
+      margin-top: 5px;
+      word-wrap: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: black;
+    }
+  }
+
+
+}
+
+// Caret (for collapsible boxes)
+.box .caret {
+  display: none;
+}
+.box.collapsible > .box-title {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.box.collapsible .caret {
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 6px;
+  border-top: 10px solid #222222;
+  border-bottom: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+.box.collapsible.collapsed .box-content {
+  display: none;
+}
+.box.collapsible.collapsed .caret {
+  border-left: 10px solid #222222;
+  border-right: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+.box > .box-content {
+  .clearfix;
+}
+
+.box.notification.read {
+  background: rgba(200,200,200,0.6);
+  .cut-corners(rgba(200,200,200,0.6))
+
+}
+.grid {
+  padding-left: 0px;
+
+}
+
+// Special Staff Links
+#team_hints {
+  position: fixed;
+  bottom: 0;
+  left: 10%;
+  background: #111;
+  color: #fb0;
+  padding: 0 10px;
+  a {
+    padding: 2px 5px;
+  }
+}
+
+#id_honeypot {
+  display: none;
+}
+
+.clearfix {
+  .clearfix;
+}
+
+.messages-summary {
+  float: left;
+  width: 390px;
+  .box;
+  > a {
+    i {
+      font-size: 36px;
+      color: black;
+    }
+    &:hover {
+      text-decoration: none;
+      i {color: red;}
+    }
+  }
+
+  .message {
+    h1 {
+      font-size: 12px;
+      margin-bottom: 0;
+      &:before {
+        width: 20px;
+        content: "\f086";
+        text-decoration: inherit;
+        display: inline-block;
+        speak: none;
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        text-decoration: inherit;
+        -webkit-font-smoothing: antialiased;
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+      white-space: pre-wrap;
+    }
+
+    .info {
+      color: red;
+      a {color: inherit}
+    }
+  }
+}
+.notifications-summary {
+  float: right;
+  width: 390px;
+  .box;
+  > a {
+    i {
+      font-size: 36px;
+      color: black;
+    }
+    &:hover {
+      text-decoration: none;
+      i {color: red;}
+    }
+    &:focus {
+      text-decoration: none;
+      outline: none;
+    }
+  }
+  .notification {
+    p {
+      margin-bottom: 0;
+      &:before {
+        width: 20px;
+        content: "\f0f3";
+        text-decoration: inherit;
+        display: inline-block;
+        speak: none;
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        text-decoration: inherit;
+        -webkit-font-smoothing: antialiased;
+      }
+    }
+    a {
+      &:hover {
+        text-decoration: none;
+        p {text-decoration: underline;}
+        p:before {
+          color: red;
+          text-decoration: none;
+        }
+      }
+      color: black;
+    }
+    .info {
+      color: blue;
+    }
+  }
+}
+
+.quest_my_box_hero {
+  // This is a hack to align the fontawesome icon with the yah time icon.
+  // It can probably be removed when we have the yah icons in the font.
+  i.icon-map-marker {
+    font-size: 40px;
+    &:before {
+      height: 40px;
+      width: 40px;
+      text-align: center;
+    }
+  }
+}
+
+#navigation input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 50px #5e24b9 inset;
+  -webkit-text-fill-color: white;
+}
+
+#comment-form .form-actions {
+  margin-top: 20px;
+}
+
+#content > div {width: 830px;}
+.help-inline {
+  color: red;
+  display: inline-block;
+  max-width: 230px;
+}
+
+.box-buttons-bottom {margin-top: 20px;}

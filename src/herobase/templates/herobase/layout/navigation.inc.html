@@ -1,0 +1,44 @@
+{% load static i18n crispy_forms_tags activelink %}
+{% load url from future %}
+<div id="navigation" role="navigation">
+  <div class="nav-container">
+    <ul id="brand" class="nav nav-blue">
+      <li><a href="{% url "home" %}"><h2><i class="icon-yah icon-4x"></i><br>you are hero</h2></a></li>
+    </ul>
+  </div>
+  {% if request.user.is_authenticated %}
+    {% include "herobase/layout/navigation_authenticated.html" %}
+  {% else %}
+  <div class="nav-container">
+    <ul class="nav nav-white nav-font">
+      <li>
+      <a href="#" data-placement="bottom" data-toggle="tooltip" data-title="Das Spiel beginnt in wenigen Tagen">
+        <i class="icon-puzzle-piece"></i><br/>Das Spiel
+      </a>
+      <a href="{% url 'quest_list' %}">
+        <i class="icon-pushpin"></i><br/>Quests
+      </a>
+      </li>
+    </ul>
+  </div>
+  <div class="nav-container">
+    <ul class="nav nav-red nav-font learn-more">
+      <li><a href="#">
+        <i class="icon-yah-hand-right"></i> Erfahre mehr <i class="icon-yah-hand-left"></i>
+      </a></li>
+    </ul>
+  </div>
+  <div class="nav-container">
+    <ul class="nav nav-red nav-font">
+      <li>
+      <ul class="nav nav-blue">
+        <li>
+          {% crispy login_form %}
+        </li>
+      </ul>
+      </li>
+      <li class="pull-down"><a href="{% url "registration_register" %}">Registrieren</a></li>
+    </ul>
+  </div>
+  {% endif %}
+</div>

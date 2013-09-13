@@ -35,94 +35,96 @@
     </script>
 {% endblock %}
 
-{% block body %}
-    <div id="background"></div>
-    <div id="background-top"></div>
-    <div id="background-city"></div>
-    <div id="layout-container" class="container front-page">
+{% block content %}
+    {% include "herobase/article_imagerow.html" %}
 
-        {% block site_header_container %}
-            <div id="site-header-container" class="row" style="position: absolute;">
-                <div class="span100">
-                    <a href="{% url "home" %}" class="logo pull-left">
-                        <img src="{% get_static_prefix %}img/yahlogo-text.svg" alt="You Are Hero" style="height: 147px;">
-                    </a>
-                    {% if not request.user.is_authenticated %}
-
-                    {% endif %}
-                    {% block site_header %}
-
-                    {% endblock %}
-                </div>
-            </div>
-        {% endblock %}
-
-        <div class="row" style="margin-top: 96px;">
-            {% block sidebar_left_container %}
-            {% endblock %}
-            <div class="span4">
-                <div id="video" class=" box" style="margin-top: 98px;">
-                    <h2>{% trans "Videos" %}</h2>
-                    <iframe width="280" height="166" src="http://www.youtube.com/embed/7gp4X-0XSQA?rel=0&loop=1&autohide=1&controlers=0" frameborder="0" allowfullscreen></iframe>
-                    <div class="box-buttons-bottom">
-                        <a href="http://www.youtube.com/user/youareher0?feature=watch" target="_blank">
-                            <span>{% trans "More Videos" %}</span></a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="login" class="span2-5">
-                {% include "herobase/home_login_box.inc.html" %}
-                <div class="fb-like" data-href="http://youarehero.net/" data-send="true" data-width="450" data-show-faces="true" data-font="arial"></div>
-            </div>
-
-            <div id="register-now" class="span2">
-                <a href="{% url "registration_register" %}">
-                {% trans "Join now!" %}
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div id="about" class="span5 box">
-                <h2>{% trans "What's it all about?" %}</h2>
-                <p>
-                    You are HERO ist ein virtueller <strong>Treffpunkt für Helden</strong> und Heldenanwärter. Sogleich nach
-                    der Registrierung kreierst Du Deinen Heldencharakter und sammelst Heldenpunkte indem
-                    Du Quests (Aufgaben und Aufträge) von der Pinnwand erfüllst. Die Herausforderung und
-                    zugleich heldenhafte Chance liegt darin, dass alle Quests in der Realität erfüllt werden.
-                    Natürlich könnt auch Ihr selbst Quests einstellen, schließlich braucht jeder Held hin und
-                    wieder Unterstützung. Das Ziel des Spiels ist ganz einfach: <strong>Nicht nur reden, sondern handeln</strong>
-                     – also rettet die Welt!
-                </p>
-                <div class="box-buttons-bottom">
-                    <a href="./abstract">
-                        <span>{% trans "Read more" %}</span></a>
-                </div>
-            </div>
-            <div id="blog" class="box" style="top: -9px; left: 18px;">
-                <h2>{% trans "News" %}</h2>
-                <img src="{% get_static_prefix %}img/fotocouch_240.jpg" alt="YAH-Team">
-                <div class="box-buttons-bottom">
-                    <a href="./blog/" target="_blank">
-                        <span>Zum Blog</span></a>
+    <div class="row vertical-offset">
+        <div class="col-md-4">
+            <div class="hero-box trashley">
+                <div class="background"></div>
+                <div class="text">
+                  <h3>Trashley Treasure</h3>
+                  <dt>You have:</dt>
+                  <dd>
+                    Die Kraft, aus Müll ästhetische Produkte zu zaubern<br/>
+                    Das Wissen, was mit dem Müll passiert<br/>
+                    Den Mut, Müll anzufassen
+                  </dd>
+                  <dt>You save:</dt>
+                  <dd>Müll</dd>
+                  <dt>You look:</dt>
+                  <dd>Like Quality</dd>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div id="awards" class="pull-right">
+        <div class="col-md-4">
+            <div class="hero-box glitch">
+                <div class="background"></div>
+                <div class="text">
+                  <h3>The Glitch</h3>
+                  <dl>
+                    <dt> You have: </dt>
+                    <dd>
+                      Die Kraft, Technologien für das Gute zu Nutzen.<br/>
+                      Das Wissen um ihre Schattenseiten.<br/>
+                      Den Mut, beide Seiten zu zeigen.
+                    </dd>
+                    <dt> You save: </dt>
+                    <dd> Informationen </dd>
+                    <dt> You look: </dt>
+                    <dd> Wie aus dem Internet </dd>
+                  </dl>
 
-                <a href="https://youarehero.net/blog/2013/05/06/you-are-hero-gewinnt-preis-des-rotary-clubs-karlsruhe/" target="_blank">
-                    <img src="{% get_static_prefix %}img/award_rotary.png" alt="Award: ROTARY-Club Karlsruhe" data-toggle="tooltip" data-title="Stipendium vom ROTARY-Club Karlsruhe">
-                </a>
-                <a href="https://youarehero.net/blog/2012/10/17/you-are-hero-gewinnt-forderpreis-der-heinrich-hertz-gesellschaft/" target="_blank">
-                    <img src="{% get_static_prefix %}img/award_hhg.png" alt="Award: HHG" data-toggle="tooltip" data-title="Gesellschaft zur Pflege wissenschaftlicher Kontakte im Hause Heinrich Hertz e.V.">
-                </a>
-
+                </div>
             </div>
         </div>
-
-        {% block site_footer_container %}
-            {{ block.super }}
-        {% endblock %}
+        <div class="col-md-4">
+            <div class="hero-box citizeng">
+                <div class="background"></div>
+                <div class="text">
+                  <h3>Citizen G</h3>
+                  <p>
+                  <dl>
+                    <dt>you have:</dt>
+                    <dd>
+                    my wit, my guts, my sword, the conviction that conflicts can be solved through empathy and not enmity, The belief that understanding is key to every human interaction</dd>
+                    <dt>you save:</dt>
+                    <dd>the fun of being whoever you where meant to be, regardless of race, creed, class or gender</dd>
+                    <dt>you look:</dt>
+                    <dd>like a rather small,  bearded, kilt-wearing dude with a sword.</dd>
+                  </dl>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="row vertical-offset">
+        <div class="col-md-4">
+            <div class="hero-box maitre">
+                <div class="background"></div>
+                <div class="text">
+                  <h3>Ma&icirc;tre</h3>
+                  <p>
+                  <dt>you have:</dt> <dd>Hunger nach Gerechtigkeit</dd>
+                  <dt>you save:</dt> <dd>Die gute Küche</dd>
+                  <dt>you look:</dt> <dd>like a cook</dd>
+                  </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+          <a href="{% url "registration_register" %}">
+            <div class="hero-box you">
+                <div class="background"></div>
+                <div class="text"><h3>Du</h3></div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+            <div class="hero-box more">
+                <div class="background"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

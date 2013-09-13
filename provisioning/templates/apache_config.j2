@@ -1,0 +1,56 @@
+<VirtualHost *:80>
+    DocumentRoot {{ base_path }}/public_html
+    <Directory {{ base_path }}/public_html/>
+        Options Indexes MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
+
+    SetEnv DJANGO_SETTINGS_MODULE {{ settings_module }}
+    WSGIScriptAlias / {{ yah_src }}/youarehero/wsgi.py
+    WSGIDaemonProcess youarehero.net python-path={{ yah_src }}
+    WSGIProcessGroup youarehero.net
+
+
+    # Possible values include: debuginfonoticewarnerrorcrit,
+    # alertemerg.
+    LogLevel warn
+
+    CustomLog {{ base_path }}/log/access.log combined
+    ErrorLog {{ base_path}}/log/error.log
+
+    Alias /docs "{{ yah_path }}/docs/_build/html/"
+    <Directory "{{ yah_path }}/docs/_build/html/">
+        Options Indexes MultiViews
+        AllowOverride None
+        Order allow,deny
+        allow from all
+    </Directory>
+
+    Alias /coverage "{{ yah_path }}/coverage/"
+    <Directory "{{ yah_path }}/coverage/">
+        Options Indexes MultiViews
+        AllowOverride None
+        Order allow,deny
+        allow from all
+    </Directory>
+
+    Alias /media/ "{{ yah_path }}/media/"
+    <Directory "{{ yah_path }}/media/">
+        Options Indexes MultiViews
+        AllowOverride None
+        Order allow,deny
+        allow from all
+    </Directory>
+
+    Alias /static/ "{{ yah_path }}/static/"
+    <Directory "{{ yah_path }}/static/">
+        Options Indexes MultiViews
+        AllowOverride None
+        Order allow,deny
+        allow from all
+    </Directory>
+
+
+</VirtualHost>

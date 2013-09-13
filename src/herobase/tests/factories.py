@@ -8,7 +8,7 @@ from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.utils.timezone import now
-from herobase.models import Quest, CLASS_CHOICES, Adventure
+from herobase.models import Quest, CLASS_CHOICES, Adventure, UserProfile
 
 def factory(f):
     """factory decorator: provides a counter for use as id for example."""
@@ -37,9 +37,21 @@ def create_user(**kwargs):
         user_data['password'] = "plain$$%s" % plain_password
     else:
         plain_password = 'password'
-    user =  User.objects.create(**user_data)
+    user = User.objects.create(**user_data)
     user.plain_password = plain_password
-    user.credentials = {'username': user.username, 'password': user.plain_password}
+    user.credentials = {
+        'username': user.username,
+        'password': user.plain_password
+    }
+    dob = datetime.date(year=1938, month=4, day=18)
+    dob += datetime.timedelta(days=create_counter[0])
+    profile = UserProfile(
+        date_of_birth=dob,
+        user=user
+    )
+    user.profile = profile
+    profile.save()
+    user.save()
     return user
 
 @factory

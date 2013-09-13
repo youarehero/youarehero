@@ -1,0 +1,8 @@
+Verzeihung
+
+Verehrte Damen und Herren,
+leider konnte ihre Bewerbung für die Quest {{ target.title }} dieses Mal nicht berücksichtigt werde.
+Kopf hoch und auf zur nächsten Herausforderung!
+
+Hochachtungsvoll,
+Ihr Butler von you are hero

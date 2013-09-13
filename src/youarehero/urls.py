@@ -2,7 +2,8 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from herobase.forms import UserRegistrationForm, UserAuthenticationForm
+import django.contrib.auth.views as auth_views
+from herobase.forms import UserAuthenticationForm
 import autocomplete_light
 autocomplete_light.autodiscover()
 admin.autodiscover()
@@ -15,6 +16,9 @@ urlpatterns = patterns(
     url(regex=r'^abstract/$',
         view='herobase.views.abstract',
         name="abstract"),
+    url(regex=r'^dosanddonts/$',
+        view='herobase.views.dosanddonts',
+        name="dosanddonts"),
     url(regex=r'^imprint/$',
         view='herobase.views.imprint',
         name="imprint"),
@@ -26,6 +30,7 @@ urlpatterns = patterns(
     url(r'^quest/', include('herobase.urls.quest')),
     url(r'^messages/', include('heromessage.urls')),
     url(r'^recommend/', include('herorecommend.urls')),
+    url(r'^team/', include('herobase.urls.team')),
 
     url(regex=r'^dismiss_notification/(?P<notification_id>\d+)/$',
         view='heronotification.views.mark_notification_read',
@@ -36,7 +41,7 @@ urlpatterns = patterns(
     url(r'autocomplete/', include('autocomplete_light.urls')),
 
     url(regex=r'^accounts/login/$',
-        view='django.contrib.auth.views.login',
+        view=auth_views.login,
         kwargs={
             'template_name': 'registration/login.html',
             'authentication_form': UserAuthenticationForm},
@@ -44,18 +49,25 @@ urlpatterns = patterns(
     url(regex=r'^accounts/register/$',
         view='registration.views.register',
         kwargs={
-            'backend': 'registration.backends.default.DefaultBackend',
-            'form_class' : UserRegistrationForm,
-            },
+            'backend': 'herobase.custom_registration.Backend'
+        },
         name='registration_register'),
     url(regex=r'^accounts/activate/(?P<activation_key>\w+)/$',
         view='registration.views.activate',
         kwargs={
-            'backend': 'registration.backends.default.DefaultBackend',
+            'backend': 'herobase.custom_registration.Backend',
             'success_url': '/profile/edit/?first_login=True',
         },
         name='registration_activate'),
+    url(r'^accounts/logout/$',
+        auth_views.logout,
+        {'template_name': 'registration/logout.html',
+         'next_page': '/'},
+        name='auth_logout'),
     (r'^accounts/', include('registration.backends.default.urls')),
+    url(regex=r'^below_minimum_age$',
+        view='herobase.views.below_minimum_age',
+        name='registration_below_minimum_age'),
 
     # admin
 
@@ -73,19 +85,18 @@ urlpatterns = patterns(
     # like_button
 
     url(r'', include('like_button.urls'))
-    )
+)
 
 from django.conf import settings
 if settings.DEBUG:
     #noinspection PyAugmentAssignment
-    urlpatterns = patterns('',
-                           url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-                               'document_root': settings.STATIC_ROOT,
-                               }),
-                           url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-                               'document_root': settings.MEDIA_ROOT,
-                               }),
-                           ) + urlpatterns
+    urlpatterns = patterns(
+        '',
+        url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.STATIC_ROOT}),
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT}),
+    ) + urlpatterns
 
 from django.conf import settings
 
@@ -93,4 +104,4 @@ if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += patterns(
         '',
         url(r'^rosetta/', include('rosetta.urls')),
-        )
+    )

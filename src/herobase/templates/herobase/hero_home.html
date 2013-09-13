@@ -1,30 +1,36 @@
 {% extends "herobase/layout/base.html" %}
-{% load i18n hero_message %}
+{% load i18n hero_message humanize %}
+{% load url from future %}
 
-{% block page_title %}
-    <h1>Hallo {{ request.user.username }}!</h1>
-{% endblock %}
-
-{% block javascript %}{{ block.super }}
-{#<script type="text/javascript">#}
-{#    $(function () {#}
-{#        $('body').on('click', '.notification', function (e) {#}
-{#            var url = $(this).data('dismiss-url');#}
-{#            if(!url) {#}
-{#                return;#}
-{#            }#}
-{##}
-{#            $.post(url);#}
-{##}
-{#            e.stopImmediatePropagation();#}
-{#            e.preventDefault();#}
-{#        });#}
-{#    });#}
-{#</script>#}
-{% endblock %}
 {% block content %}
-{#    icons-top icons-right icons-bottom#}
-    {% for notification in notifications %}
-        {{ notification.html }}
-    {% endfor %}
+  {% include "herobase/article_imagerow.html" %}
+  <div class="vertical-offset">
+    <div class="col-md-6 messages-summary">
+      <a href="{% url "message_list_in" %}"><i class="icon-comments"></i></a>
+      {% for message in messages %}
+        <div class="message">
+          <h1>{{ message.title }}</h1>
+          <p>{{ message.text }}</p>
+          <div class="info">von <a href="{% url "userprofile_public" message.sender %}">{{ message.sender.username }}</a>, {{ message.sent|naturaltime }}</div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="notifications-summary">
+      <a name="notifications" href="{% url "message_list_in" %}"><i class="icon-bell-alt"></i></a>
+      {% for notification in notifications %}
+        <div class="notification {% if not notification.is_read %}new{% endif %}">
+          {% with url=notification.target.get_absolute_url %}
+          {% if url %}
+            <a href="{{ url }}">
+          {% endif %}
+              <p>{{ notification.text|truncatechars:120 }}</p>
+              <div class="info">{{ notification.created|naturaltime }}, gelesen {{ notification.is_read|naturaltime }}</div>
+          {% if url %}
+            </a>
+          {% endif %}
+          {% endwith %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 {%  endblock %}

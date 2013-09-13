@@ -8,6 +8,10 @@
         <a href="{% url "message_create" %}" class="">{% trans "compose" %}
         </a>
     </li>
+    <li class="{% ifstartswith '/messages/team' %}on{% endifstartswith%}">
+        <a href="{% url "message_team" %}" class="">{% trans "Compose message to team" %}
+        </a>
+    </li>
     <li class="{% ifactive "message_list_in" %}on{% endifactive %}">
         <a href="{% url "message_list_in" %}#in">
             <i class="icon-arrow-down"></i>{% trans "in" %}

@@ -22,9 +22,9 @@
 {% endblock %}
 
 {% block content %}
-    <ul class="grid ">
+    <ul class="adventures">
         {% for adventure in adventures %}
-            <li class="span1-5">
+            <li>
                 {% include "herobase/quest/adventure_inner_box_owner.html" %}
             </li>
         {% empty %}

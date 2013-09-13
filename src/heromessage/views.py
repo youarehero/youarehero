@@ -13,7 +13,7 @@ from django.utils.translation import ugettext as _
 from heronotification import notify
 
 from models import Message
-from forms import MessageForm
+from forms import MessageForm, TeamMessageForm
 import logging
 
 
@@ -38,6 +38,24 @@ def message_create(request, user_id=None, message_id=None):
         message.save()
         messages.success(request, _('Message successfully sent'))
         notify.message_received(message.recipient, message)
+        return HttpResponseRedirect(reverse('message_list_out'))
+
+    return render(request, 'message/create.html', {'form': form})
+
+@login_required
+def message_team(request, team=None):
+    form = TeamMessageForm(data=request.POST or None, initial = {'team': team})
+
+    if form.is_valid():
+        users = User.objects.select_related('profile').filter(profile__team = form.cleaned_data['team'])
+        for user in users:
+            m = Message(
+                sender = request.user,
+                recipient = user,
+                title = form.cleaned_data['title'],
+                text = form.cleaned_data['text']
+            )
+            m.save()
         return HttpResponseRedirect(reverse('message_list_out'))
 
     return render(request, 'message/create.html', {'form': form})

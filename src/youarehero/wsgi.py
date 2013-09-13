@@ -15,13 +15,22 @@ framework.
 """
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "youarehero.settings.local")
-
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
 from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
+
+_application = get_wsgi_application()
+
+def application(environ, start_response):
+    if "DJANGO_SETTINGS_MODULE" in environ:
+        os.environ["DJANGO_SETTINGS_MODULE"] = environ["DJANGO_SETTINGS_MODULE"]
+    else:
+        os.environ.setdefault(
+            "DJANGO_SETTINGS_MODULE",
+            "youarehero.settings.local"
+        )
+    return _application(environ, start_response)
 
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication

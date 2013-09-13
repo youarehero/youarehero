@@ -53,6 +53,10 @@ class Message(models.Model):
             text=text
         )
 
+    @classmethod
+    def latest_for_user(cls, user, limit=5):
+        return cls.objects.filter(recipient=user).order_by('sent');
+
     def get_absolute_url(self):
         return reverse('message_list_in')
 

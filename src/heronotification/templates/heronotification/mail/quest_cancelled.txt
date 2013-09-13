@@ -1,0 +1,9 @@
+Notbremse
+
+Verehrte Damen und Herren,
+Sie sind registriert für die Quest {{ target.title }}.
+Lieder muss ich sie darüber in Kenntnis setzen, dass diese Quest abgebrochen werden musste.
+Bei Wiederaufnahme der Quest benachrichtigen wir Sie umgehend.
+
+Hochachtungsvoll,
+Ihr Butler von you are hero

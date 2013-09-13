@@ -1,0 +1,9 @@
+Neue Helden und Heldinnen
+
+Verehrte Damen und Herren,
+für ihre Quest {{ target.quest.title }} ist eine neue Bewerbung eingegangen.
+Bitte melden Sie sich baldmöglichst bei den Bewerbenden zurück!
+Besuchen sie http://{{ site.domain }}{{ target.quest.get_absolute_url }} um die Quest anzuzeigen und die Bewerbung zu bearbeiten.
+
+Hochachtungsvoll,
+Ihr Butler von you are hero

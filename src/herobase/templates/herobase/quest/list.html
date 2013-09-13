@@ -29,36 +29,24 @@
     <h1>{% trans "Billboard" %}</h1>
 {% endblock %}
 
-{% block submenu %}
-    <form action="" method="get" class="form form-inline">
-        <div class="btn-group">
-            <input placeholder="z.B. Übersetzen" type="search" class="search" name="search" value="{{ search }}"/>
-            <input id="" class="btn" type="submit" name="submit" value="Suchen"/>
-        </div>
-    </form>
-{% endblock %}
-
 {% block content %}
     {% paginate 12 quests %}
     <div style="text-align: right">{% show_pages %}</div>
-    <div class="quest-list">
-        <hr>
-
-        <ul class="grid">
-            {% for quest in quests %}
-                <li class="span{% cycle '3-5' '2-75' '3' '3-25' %}">
-                    {% include "herobase/quest/list_box.html" %}
-                </li>
-            {% empty %}
+    <div class="row">
+        {% for quest in quests %}
+            {% include "herobase/quest/list_box.html" %}
+        {% empty %}
+            <div class="col-xs-12">
                 {% if search %}
-                    <li>{% trans "No quests found matching your current criteria." %}
+                    <div class="box">{% trans "No quests found matching your current criteria." %}
                         <a href="?search=">{% trans "Show all." %}</a>
-                    </li>
+                    </div>
                 {% else %}
-                    <li>{% trans "There don't seem to be any quests." %}</li>
+                    <div class="box">{% trans "There don't seem to be any quests." %}</div>
                 {% endif %}
-            {% endfor %}
-        </ul>
+            </div>
+        {% endfor %}
     </div>
+
     <div style="text-align: right">{% show_pages %}</div>
 {% endblock %}

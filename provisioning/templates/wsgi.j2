@@ -1,0 +1,22 @@
+#!/bin/sh
+
+. /lib/lsb/init-functions
+
+PIDFILE=/var/run/wsgi-watchr.pid
+SCRIPT="{{yah_path}}/deploy/wsgi.watchr"
+case $1 in
+  start)
+    log_daemon_mgs "Starting watchr .../wsgi.watchr" "wsgi-watchr"
+    start-stop-daemon --start --pidfile $PIDFILE --background --make-pidfile \
+                      --exec "$SCRIPT"
+    log_end_msg $?
+    ;;
+  stop)
+    log_daemon_msg "Stopping Deluged"
+    start-stop-daemon --stop --pidfile $PIDFILE
+    log_end_msg $?
+    ;;
+  status)
+    status_of_proc "$SCRIPT"
+    ;;
+esac

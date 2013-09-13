@@ -1,0 +1,10 @@
+Willkommen!
+
+Verehrte Damen und Herren,
+mein Name ist Butler und ich möchte sie herzlich auf http://{{ site.domain }} begrüßen.
+Von jetzt an bis in alle Heldenzukunft stehe ich ihnen mit Rat und Tat zur Seite.
+
+Meine Begrüßungsempfehlung für Sie ist der Besuch unserer DOs & DON'Ts.
+
+Hochachtungsvoll und auf bald,
+Ihr Butler von you are hero
