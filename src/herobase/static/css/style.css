@@ -2768,7 +2768,7 @@ body {
 }
 .hero-box {
   width: 247px;
-  height: 500px;
+  height: 600px;
   background: rgba(255, 255, 255, 0.6);
   margin-bottom: 24px;
   padding: 0;
@@ -2847,6 +2847,9 @@ body {
   position: relative;
   top: 335px;
   padding: 0 12px;
+}
+.hero-box .text dd {
+  font-style: italic;
 }
 .hero-box.citizeng .background {
   background-image: url("../img/Heroes/CitizenG_247_347_cut.png");
