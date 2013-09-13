@@ -56,7 +56,7 @@ def yearsago(years):
         return d.replace(year=d.year - years, day=d.day - 1)
 
 
-def is_minumum_age(date_of_birth):
+def is_minimum_age(date_of_birth):
     return date_of_birth <= yearsago(15)
 
 
