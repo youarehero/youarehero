@@ -41,17 +41,19 @@ footer-logo liegt über link
     fixed
 lange quest-namen (umbruch eher)
     done
-
-quest-details echte werte
-Team-Seite sieht schlimm aus
-viele quests auf der pinwand?
-helden-portraits und quests.
-nutzungsbedingungen unter "?"
-    done
-Reg "date of birth" übersetzen
 tooltip für "das spiel"
     done, aber komisches rendering
-heldenbilder skalieren und abschneiden
+nutzungsbedingungen unter "?"
+    done
+viele quests auf der pinwand?
+    geht irgendwie, 80/20 halt
+Team-Seite sieht schlimm aus
+    link removed for now
+
+quest-details echte werte
+helden-portraits und quests.
+Reg "date of birth" übersetzen
+heldenbilder skalieren und abschneiden (blocked wegen grafiken)
 
 >>postponed>>Startseite mehr boxen, erstmal ohne orange und angrenzende rote.
 >>postponed>>Nachrichtenlisten formatieren (Nach zettel)
