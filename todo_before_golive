@@ -30,15 +30,25 @@ Team-Seiten sind broken
 logout redirect auf startseite
     done
 Registrierung ist broken
+    fixed
 registrieren-link oben rechts
-team bei registrierung
-Team-Nachrichten
-Nachrichtenlisten formatieren (Nach zettel)
-Benachrichtigungsfriedhof mit liste wie logged in home, nur etwas breiter
+    fixed
+Benachrichtigungsfriedhof mit liste wie logged in home, nur etwas breiter (stattdessen erstmal anchor)
+    anchor gesetzt und verlinkt
 box um impressum und presse
 Startseite mehr boxen, erstmal ohne orange und angrenzende rote.
 Team-Seite sieht schlimm aus
+footer-logo liegt über link
+viele quests auf der pinwand?
+helden-portraits und quests.
+nutzungsbedingungen unter "?"
+Reg "date of birth" übersetzen
+tooltip für "das spiel"
+
+>>postponed>>Nachrichtenlisten formatieren (Nach zettel)
+>>postponed>>team bei registrierung
 >>erstmal postponed>>Meine Quests Formatting
+>>postponed>>Team-Nachrichten
 
 * Einklappbare Boxen
 * Nachricht senden
