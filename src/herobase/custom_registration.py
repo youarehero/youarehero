@@ -19,7 +19,7 @@ class Form(RegistrationForm):
         widget=forms.TextInput(attrs={'class': 'required'}),
         label=_("Username")
     )
-    date_of_birth = forms.DateField()
+    date_of_birth = forms.DateField(label=_("Date of birth"))
 
 
 class Backend(object):
