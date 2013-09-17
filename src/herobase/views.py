@@ -207,9 +207,9 @@ def home_view(request):
     return response
 
 
-def abstract(request):
-    """static you are hero abstract view."""
-    return render(request, "herobase/abstract.html")
+def press(request):
+    """static you are hero press view."""
+    return render(request, "herobase/press.html")
 
 
 def dosanddonts(request):
