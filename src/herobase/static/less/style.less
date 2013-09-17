@@ -94,6 +94,8 @@ ul {list-style-type: none;}
 @foreground: #fff;
 @black: #333;
 @white: #fff;
+@linkhover-red: black;
+
 
 @footer-height: 70px;
 
@@ -485,6 +487,11 @@ html, body {
   a {
     color: inherit;
     font-style: italic;
+    &:hover {
+      color: inherit;
+      text-decoration: none;
+      color: @linkhover-red;
+    }
   }
   &.cut-corners {
     .cut-corners(@background-red);
@@ -1092,7 +1099,6 @@ ul.buttons {
 }
 
 .sponsors {
-  .vertical-offset;
   .make-row;
 
   > :first-child {margin-left: 15px;}
@@ -1119,6 +1125,24 @@ ul.buttons {
       font-size: 24px;
       font-family: farao-textregular;
       margin: 0;
+    }
+  }
+}
+
+.registrationlinkbox-container {
+  margin-top: 60px;
+  text-align: center;
+  div {
+    .box-red;
+    .cut-corners(@background-red);
+    display: inline-block;
+    font-size: 48px;
+    text-align: center;
+    a {
+      margin-top: -25px;
+      padding-left: 20px;
+      padding-right: 20px;
+      display: block;
     }
   }
 }
