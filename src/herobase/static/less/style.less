@@ -94,6 +94,7 @@ ul {list-style-type: none;}
 @foreground: #fff;
 @black: #333;
 @white: #fff;
+@linkhover: red;
 @linkhover-red: black;
 
 
@@ -181,7 +182,7 @@ html, body {
         border-color: transparent transparent @foreground-red transparent;
         &:hover,
         &:focus {
-          color: @foreground-red;
+          color: @linkhover;
         }
       }
     }
@@ -196,7 +197,7 @@ html, body {
       &,
       &:hover,
       &:focus {
-        color: @foreground-red;
+        color: @linkhover;
         border-color: @foreground-red @foreground-red transparent @foreground-red;
       }
     }
@@ -277,7 +278,7 @@ html, body {
         color: black;
         &:hover,
         &:focus {
-          color: @foreground-red;
+          color: @linkhover;
         }
       }
     }

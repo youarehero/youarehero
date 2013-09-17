@@ -1999,7 +1999,7 @@ body {
 }
 #navigation .nav-black li > a:hover,
 #navigation .nav-black li > a:focus {
-  color: #ffffff;
+  color: #ff0000;
 }
 #navigation .nav-black .nav-icons i {
   font-size: 48px;
@@ -2013,7 +2013,7 @@ body {
 #navigation .nav-black .active > a,
 #navigation .nav-black .active > a:hover,
 #navigation .nav-black .active > a:focus {
-  color: #ffffff;
+  color: #ff0000;
   border-color: #ffffff #ffffff transparent #ffffff;
 }
 #navigation .nav-black:after {
@@ -2124,7 +2124,7 @@ body {
 }
 #navigation .nav-white li > a:hover,
 #navigation .nav-white li > a:focus {
-  color: #ffffff;
+  color: #ff0000;
 }
 #navigation .nav-blue {
   padding: 0;
