@@ -2663,7 +2663,7 @@ body {
 }
 .box-floating {
   width: 200px;
-  height: 400px;
+  height: 450px;
   color: #ff0000;
   background: rgba(255, 0, 0, 0.6);
   margin-bottom: 24px;
@@ -2745,6 +2745,10 @@ body {
 }
 .box-floating > * {
   padding: 0 12px;
+}
+.box-floating a {
+  color: inherit;
+  font-style: italic;
 }
 .box-floating h1 {
   font-family: farao_book_heldregular;

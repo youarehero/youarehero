@@ -548,7 +548,7 @@ html, body {
   @footer-height: 46px;
 
   width: 200px;
-  height: 400px;
+  height: 450px;
 
   .box-red;
   .cut-corners(@background-red);
@@ -559,6 +559,11 @@ html, body {
   top: (42px - @cut-corner-radius);
   right: (27px - @cut-corner-radius);
   z-index: @floating-base-zindex;
+
+  a {
+    color: inherit;
+    font-style: italic;
+  }
 
   h1 {
     font-family: farao_book_heldregular;
