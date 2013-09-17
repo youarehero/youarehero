@@ -220,6 +220,9 @@ def imprint(request):
     """static you are hero imprint view."""
     return render(request, "herobase/imprint.html")
 
+def manifesto(request):
+    """static you are hero manifesto view."""
+    return render(request, "herobase/manifesto.html")
 
 @login_required
 def hero_home_view(request, template='herobase/hero_home.html'):
