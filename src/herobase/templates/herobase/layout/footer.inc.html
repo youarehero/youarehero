@@ -1,16 +1,11 @@
 {% load url from future %}
 <div id="page-footer" class="container">
   <ul class="nav nav-blue">
-    {% if not request.user.is_authenticated %}
-      <li><a href="{% url 'auth_login' %}">Log-In</a></li>
-      <li><i class="icon-circle"></i></li>
-      <li><a href="{% url "registration_register" %}">Registrieren</a></li>
-      <li><i class="icon-circle"></i></li>
-    {% endif %}
     <li><a href="{% url "imprint" %}" title="Impressum">Impressum</a></li>
     <li><i class="icon-circle"></i></li>
     <li><a href="{% url "abstract" %}">Presse</a></li>
     <li><i class="icon-circle"></i></li>
+    <li><a href="{% url "manifesto" %}">Manifest</a></li>
     <li><i class="icon-circle"></i></li>
     <li><a href="./blog/">Blog</a></li>
     <li><i class="icon-circle"></i></li>
