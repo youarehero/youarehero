@@ -1887,7 +1887,7 @@
   margin-top: -50%;
   position: absolute;
   width: 100%;
-  color: #ff0000;
+  color: #ffffff;
 }
 .nav-black [class^="icon-"] b,
 .nav-black [class*=" icon-"] b {
@@ -1995,11 +1995,11 @@ body {
 #navigation .nav-black li > a {
   color: #333333;
   border: 1px dashed;
-  border-color: transparent transparent #ff0000 transparent;
+  border-color: transparent transparent #ffffff transparent;
 }
 #navigation .nav-black li > a:hover,
 #navigation .nav-black li > a:focus {
-  color: #ff0000;
+  color: #ffffff;
 }
 #navigation .nav-black .nav-icons i {
   font-size: 48px;
@@ -2013,8 +2013,8 @@ body {
 #navigation .nav-black .active > a,
 #navigation .nav-black .active > a:hover,
 #navigation .nav-black .active > a:focus {
-  color: #ff0000;
-  border-color: #ff0000 #ff0000 transparent #ff0000;
+  color: #ffffff;
+  border-color: #ffffff #ffffff transparent #ffffff;
 }
 #navigation .nav-black:after {
   content: "";
@@ -2124,7 +2124,7 @@ body {
 }
 #navigation .nav-white li > a:hover,
 #navigation .nav-white li > a:focus {
-  color: #ff0000;
+  color: #ffffff;
 }
 #navigation .nav-blue {
   padding: 0;
@@ -2481,8 +2481,12 @@ body {
   clear: both;
 }
 .box-red {
-  color: #ff0000;
+  color: #ffffff;
   background: rgba(255, 0, 0, 0.6);
+}
+.box-red a {
+  color: inherit;
+  font-style: italic;
 }
 .box-red.cut-corners {
   margin-bottom: 24px;
@@ -2664,7 +2668,7 @@ body {
 .box-floating {
   width: 200px;
   height: 450px;
-  color: #ff0000;
+  color: #ffffff;
   background: rgba(255, 0, 0, 0.6);
   margin-bottom: 24px;
   padding: 0;
@@ -2675,6 +2679,10 @@ body {
   top: 30px;
   right: 15px;
   z-index: 100;
+}
+.box-floating a {
+  color: inherit;
+  font-style: italic;
 }
 .box-floating.cut-corners {
   margin-bottom: 24px;
@@ -2745,10 +2753,6 @@ body {
 }
 .box-floating > * {
   padding: 0 12px;
-}
-.box-floating a {
-  color: inherit;
-  font-style: italic;
 }
 .box-floating h1 {
   font-family: farao_book_heldregular;
@@ -2878,6 +2882,114 @@ body {
 }
 .hero-box.more .background {
   background-image: url("../img/Heroes/mehr.png");
+}
+.infobox-container {
+  position: relative;
+  height: 0;
+  width: 0;
+}
+.infobox-container > div {
+  color: #ffffff;
+  background: rgba(255, 0, 0, 0.6);
+  margin-bottom: 24px;
+  padding: 0;
+  margin-top: 12px;
+  position: relative;
+  position: absolute;
+  z-index: 100;
+  width: 380px;
+}
+.infobox-container > div a {
+  color: inherit;
+  font-style: italic;
+}
+.infobox-container > div.cut-corners {
+  margin-bottom: 24px;
+  padding: 0;
+  margin-top: 12px;
+  position: relative;
+}
+.infobox-container > div.cut-corners:after {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(255, 0, 0, 0.6);
+  border-bottom: 0 none;
+}
+.infobox-container > div.cut-corners > * {
+  padding: 0 12px;
+}
+.infobox-container > div.cut-corners:before {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  top: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid rgba(255, 0, 0, 0.6);
+  border-top: 0 none;
+}
+.infobox-container > div.cut-corners > * {
+  padding: 0 12px;
+}
+.infobox-container > div:after {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(255, 0, 0, 0.6);
+  border-bottom: 0 none;
+}
+.infobox-container > div > * {
+  padding: 0 12px;
+}
+.infobox-container > div:before {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  top: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid rgba(255, 0, 0, 0.6);
+  border-top: 0 none;
+}
+.infobox-container > div > * {
+  padding: 0 12px;
+}
+.infobox-container > div :first-child {
+  margin-top: 0;
+}
+.infobox-container > div h1 {
+  font-size: 48px;
+  font-weight: normal;
+}
+.infobox-container.middle > div {
+  top: -65px;
+  left: 40px;
+}
+.infobox-container.middle + .row {
+  margin-top: 180px;
+}
+.infobox-container.bottom > div {
+  right: 55px;
+  top: -265px;
 }
 ul.buttons {
   margin: 12px 0;
@@ -3022,13 +3134,17 @@ ul.buttons:after {
   color: black;
 }
 .quest-short {
-  color: #ff0000;
+  color: #ffffff;
   background: rgba(255, 0, 0, 0.6);
   margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   position: relative;
   color: white;
+}
+.quest-short a {
+  color: inherit;
+  font-style: italic;
 }
 .quest-short.cut-corners {
   margin-bottom: 24px;
@@ -3349,7 +3465,7 @@ ul.buttons:after {
   width: 100%;
 }
 .box-button {
-  color: #ff0000;
+  color: #ffffff;
   background: rgba(255, 0, 0, 0.6);
   margin-bottom: 24px;
   padding: 0;
@@ -3362,6 +3478,10 @@ ul.buttons:after {
   height: 24px;
   border: none;
   min-width: 48px;
+}
+.box-button a {
+  color: inherit;
+  font-style: italic;
 }
 .box-button.cut-corners {
   margin-bottom: 24px;

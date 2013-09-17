@@ -90,7 +90,7 @@ ul {list-style-type: none;}
 @background-blue: rgba(0,0,255,0.6);
 @background-red: rgba(255,0,0,0.6);
 @foreground-blue: rgba(0,0,255,1);
-@foreground-red: rgba(255,0,0,1);
+@foreground-red: white;
 @foreground: #fff;
 @black: #333;
 @white: #fff;
@@ -482,6 +482,10 @@ html, body {
 .box-red {
   color: @foreground-red;
   background: @background-red;
+  a {
+    color: inherit;
+    font-style: italic;
+  }
   &.cut-corners {
     .cut-corners(@background-red);
   }
@@ -560,11 +564,6 @@ html, body {
   right: (27px - @cut-corner-radius);
   z-index: @floating-base-zindex;
 
-  a {
-    color: inherit;
-    font-style: italic;
-  }
-
   h1 {
     font-family: farao_book_heldregular;
     margin-top: 0;
@@ -632,6 +631,42 @@ html, body {
   &.you      .background { background-image: url("../img/Heroes/you.png"); }
   &.more     .background { background-image: url("../img/Heroes/mehr.png"); }
 }
+
+.infobox-container {
+  position: relative;
+  height: 0;
+  width: 0;
+  > div {
+    .box-red;
+    .cut-corners(@background-red);
+    position: absolute;
+    z-index: 100;
+    width: 380px;
+    :first-child {
+      margin-top: 0;
+    }
+    h1 {
+      font-size: 48px;
+      font-weight: normal;
+    }
+  }
+  &.middle {
+    > div {
+      top: -65px;
+      left: 40px;
+    }
+
+    & + .row {
+      margin-top: 180px;
+    }
+  }
+
+  &.bottom > div {
+    right: 55px;
+    top: -265px;
+  }
+}
+
 // Box Buttons
 ul.buttons {
   margin: (@cut-corner-radius) 0;
