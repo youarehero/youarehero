@@ -110,32 +110,32 @@
       </div>
     </div>
     <div class="row vertical-offset">
-        <div class="col-md-4">
-            <div class="hero-box maitre">
-                <div class="background"></div>
-                <div class="text">
-                  <h3>Ma&icirc;tre</h3>
-                  <p>
-                  <dt>you have:</dt> <dd>Hunger nach Gerechtigkeit</dd>
-                  <dt>you save:</dt> <dd>Die gute Küche</dd>
-                  <dt>you look:</dt> <dd>like a cook</dd>
-                  </p>
-                </div>
-            </div>
+      <div class="col-md-4">
+        <div class="hero-box maitre">
+          <div class="background"></div>
+          <div class="text">
+            <h3>Ma&icirc;tre</h3>
+            <p>
+            <dt>you have:</dt> <dd>Hunger nach Gerechtigkeit</dd>
+            <dt>you save:</dt> <dd>Die gute Küche</dd>
+            <dt>you look:</dt> <dd>like a cook</dd>
+            </p>
+          </div>
         </div>
-        <div class="col-md-4">
-          <a href="{% url "registration_register" %}">
-            <div class="hero-box you">
-                <div class="background"></div>
-                <div class="text"><h3>Du</h3></div>
-            </div>
-          </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{% url "registration_register" %}">
+          <div class="hero-box you">
+            <div class="background"></div>
+            <div class="text"><h3>Du</h3></div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <div class="hero-box more">
+          <div class="background"></div>
         </div>
-        <div class="col-md-4">
-            <div class="hero-box more">
-                <div class="background"></div>
-            </div>
-        </div>
+      </div>
     </div>
     <div class="infobox-container bottom">
       <div>
@@ -152,5 +152,24 @@ Helden-Hilfe benötigst!
         </p>
       </div>
     </div>
-</div>
+    <div class="sponsors">
+      <div class="sponsor">
+        <h1>Gef&ouml;rdert durch</h1>
+        <a href="http://www.staedte-im-wissenschaftsjahr.de/wordpress/you-are-hero/">
+          <img src="{% get_static_prefix %}/img/sponsors/karlsruhe.png"/>
+        </a>
+      </div>
+      <div class="sponsor">
+        <h1>Gef&ouml;rdert durch</h1>
+        <a href="https://youarehero.net/blog/2012/10/17/you-are-hero-gewinnt-forderpreis-der-heinrich-hertz-gesellschaft/">
+          <img src="{% get_static_prefix %}/img/sponsors/hhg.png"/>
+        </a>
+      </div>
+      <div class="sponsor">
+        <h1>Gef&ouml;rdert durch</h1>
+        <a href="https://youarehero.net/blog/2013/05/06/you-are-hero-gewinnt-preis-des-rotary-clubs-karlsruhe/">
+          <img src="{% get_static_prefix %}/img/sponsors/rotary.png"/>
+        </a>
+      </div>
+    </div>
 {% endblock %}
