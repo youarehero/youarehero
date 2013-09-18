@@ -3257,6 +3257,7 @@ ul.buttons:after {
   color: black;
 }
 .quest-short a {
+  font-style: normal;
   color: inherit;
   display: block;
 }
