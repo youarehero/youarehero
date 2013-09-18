@@ -1131,21 +1131,30 @@ ul.buttons {
   }
 }
 
-.registrationlinkbox-container {
-  margin-top: 60px;
+.linkbox {
+  .box-red;
+  .cut-corners(@background-red);
+  display: inline-block;
   text-align: center;
-  div {
-    .box-red;
-    .cut-corners(@background-red);
-    display: inline-block;
-    font-size: 48px;
+  > a {
+    font-size: 0;
+    letter-spacing: 0;
+    word-spacing: 0;
     text-align: center;
-    a {
-      margin-top: -25px;
-      padding-left: 20px;
-      padding-right: 20px;
-      display: block;
+    font-family: farao_bookregular;
+    display: block;
+    margin-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    > span, > i {
+      font-size: 48px;
+      display: inline-block;
     }
+
+    i + span, span + i {margin-left: 20px}
+
+    .small {font-size: 24px;}
   }
 }
 
@@ -1165,4 +1174,13 @@ ul.buttons {
   h1 {
     font-size: 24px;
   }
+}
+
+.background-arg {
+  .background;
+  background: @background-red;
+}
+
+.row.centering {
+  text-align: center;
 }
