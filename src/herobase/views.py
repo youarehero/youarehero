@@ -529,3 +529,6 @@ def team(request, team_name):
 
 def below_minimum_age(request):
     return render(request, "herobase/below_minimum_age.html")
+
+def arg(request):
+    return render(request, "herobase/arg.html")

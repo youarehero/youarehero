@@ -87,7 +87,11 @@ urlpatterns = patterns(
 
     # like_button
 
-    url(r'', include('like_button.urls'))
+    url(r'', include('like_button.urls')),
+
+    url(regex=r'^arg/$',
+        view='herobase.views.arg',
+        name='arg'),
 )
 
 from django.conf import settings
