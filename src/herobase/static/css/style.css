@@ -1863,36 +1863,6 @@
 .icon-yah-hand-down:before {
   content: "ª";
 }
-.icon-question {
-  font-family: farao_book_heldregular;
-  line-height: 15px;
-}
-.icon-question:before {
-  content: "?";
-}
-.icon-question:before {
-  line-height: 15px;
-  font-size: 1.4em;
-}
-[class^="icon-"],
-[class*=" icon-"] {
-  position: relative;
-}
-[class^="icon-"] b,
-[class*=" icon-"] b {
-  font-size: 0.5em;
-  left: 50%;
-  top: 50%;
-  margin-left: -50%;
-  margin-top: -50%;
-  position: absolute;
-  width: 100%;
-  color: #ffffff;
-}
-.nav-black [class^="icon-"] b,
-.nav-black [class*=" icon-"] b {
-  color: #333333;
-}
 .using-horizontal-borders > * {
   padding-left: 0;
   padding-right: 0;
