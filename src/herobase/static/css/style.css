@@ -1863,6 +1863,12 @@
 .icon-yah-hand-down:before {
   content: "ª";
 }
+.icon-yah-question-mark {
+  font-family: farao_book_heldregular;
+}
+.icon-yah-question-mark:before {
+  content: "?";
+}
 .using-horizontal-borders > * {
   padding-left: 0;
   padding-right: 0;
@@ -4401,4 +4407,149 @@ ul.buttons:after {
 }
 .hfill {
   width: 100%;
+}
+.arg-quests:before,
+.arg-quests:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.arg-quests:after {
+  clear: both;
+}
+.arg-quests:before,
+.arg-quests:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.arg-quests:after {
+  clear: both;
+}
+@media (min-width: 768px) {
+  .container .arg-quests {
+    margin-left: -6px;
+    margin-right: -6px;
+  }
+}
+.arg-quests .row {
+  margin-left: -6px;
+  margin-right: -6px;
+}
+.arg-quests > div {
+  padding: 0 6px;
+  float: left;
+}
+.arg-quests .arg-quest {
+  color: #ffffff;
+  background: rgba(255, 0, 0, 0.6);
+  margin-bottom: 24px;
+  padding: 0;
+  margin-top: 12px;
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+}
+.arg-quests .arg-quest a {
+  color: inherit;
+  font-style: italic;
+}
+.arg-quests .arg-quest a:hover {
+  color: inherit;
+  text-decoration: none;
+  color: #000000;
+}
+.arg-quests .arg-quest.cut-corners {
+  margin-bottom: 24px;
+  padding: 0;
+  margin-top: 12px;
+  position: relative;
+}
+.arg-quests .arg-quest.cut-corners:after {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(255, 0, 0, 0.6);
+  border-bottom: 0 none;
+}
+.arg-quests .arg-quest.cut-corners > * {
+  padding: 0 12px;
+}
+.arg-quests .arg-quest.cut-corners:before {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  top: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid rgba(255, 0, 0, 0.6);
+  border-top: 0 none;
+}
+.arg-quests .arg-quest.cut-corners > * {
+  padding: 0 12px;
+}
+.arg-quests .arg-quest:after {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(255, 0, 0, 0.6);
+  border-bottom: 0 none;
+}
+.arg-quests .arg-quest > * {
+  padding: 0 12px;
+}
+.arg-quests .arg-quest:before {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  top: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid rgba(255, 0, 0, 0.6);
+  border-top: 0 none;
+}
+.arg-quests .arg-quest > * {
+  padding: 0 12px;
+}
+.arg-quests .arg-quest.large {
+  width: 312px;
+  height: 336px;
+}
+.arg-quests .arg-quest.unannounced i.icon-yah-question-mark {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  color: darkred;
+  font-size: 72px;
+  line-height: 50px;
+  font-family: farao_textbold;
+}
+.arg-quests .arg-quest.unannounced.large i.icon-yah-question-mark {
+  font-size: 288px;
+  line-height: 165px;
 }

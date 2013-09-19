@@ -1186,3 +1186,30 @@ ul.buttons {
 }
 
 .hfill {width: 100%;}
+
+.arg-quests {
+  .make-row(12px);
+  > div {padding: 0 6px; float: left;}
+  .arg-quest {
+    .box-red;
+    .cut-corners(@background-red);
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    &.large {width: 312px; height: 336px;}
+
+    &.unannounced i.icon-yah-question-mark {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      color: darkred;
+      font-size: 72px;
+      line-height: 50px;
+      font-family: farao_textbold;
+    }
+    &.unannounced.large i.icon-yah-question-mark {
+      font-size: 288px;
+      line-height: 165px;
+    }
+  }
+}
