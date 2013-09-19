@@ -1181,15 +1181,13 @@ ul.buttons {
   background: @background-red;
 }
 
-.row.centering {
+.centering {
   text-align: center;
 }
 
 .hfill {width: 100%;}
 
 .arg-quests {
-  .make-row(12px);
-  > div {padding: 0 6px; float: left;}
   .arg-quest {
     .box-red;
     .cut-corners(@background-red);
@@ -1210,6 +1208,17 @@ ul.buttons {
     &.unannounced.large i.icon-yah-question-mark {
       font-size: 288px;
       line-height: 165px;
+    }
+  }
+}
+
+.arg-agenda {
+  .info {
+    .box;
+    > i.icon-yah-hand-right {
+      font-size: 34px;
+      float: left;
+      line-height: 25px;
     }
   }
 }

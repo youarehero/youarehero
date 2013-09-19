@@ -4402,49 +4402,11 @@ ul.buttons:after {
     background-size: cover;
   }
 }
-.row.centering {
+.centering {
   text-align: center;
 }
 .hfill {
   width: 100%;
-}
-.arg-quests:before,
-.arg-quests:after {
-  content: " ";
-  /* 1 */
-
-  display: table;
-  /* 2 */
-
-}
-.arg-quests:after {
-  clear: both;
-}
-.arg-quests:before,
-.arg-quests:after {
-  content: " ";
-  /* 1 */
-
-  display: table;
-  /* 2 */
-
-}
-.arg-quests:after {
-  clear: both;
-}
-@media (min-width: 768px) {
-  .container .arg-quests {
-    margin-left: -6px;
-    margin-right: -6px;
-  }
-}
-.arg-quests .row {
-  margin-left: -6px;
-  margin-right: -6px;
-}
-.arg-quests > div {
-  padding: 0 6px;
-  float: left;
 }
 .arg-quests .arg-quest {
   color: #ffffff;
@@ -4552,4 +4514,73 @@ ul.buttons:after {
 .arg-quests .arg-quest.unannounced.large i.icon-yah-question-mark {
   font-size: 288px;
   line-height: 165px;
+}
+.arg-agenda .info {
+  background: rgba(255, 255, 255, 0.6);
+  margin-bottom: 24px;
+  padding: 0;
+  margin-top: 12px;
+  position: relative;
+  margin-bottom: 36px;
+}
+.arg-agenda .info:after {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 0 none;
+}
+.arg-agenda .info > * {
+  padding: 0 12px;
+}
+.arg-agenda .info:before {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  top: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid rgba(255, 255, 255, 0.6);
+  border-top: 0 none;
+}
+.arg-agenda .info > * {
+  padding: 0 12px;
+}
+.arg-agenda .info:before,
+.arg-agenda .info:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.arg-agenda .info:after {
+  clear: both;
+}
+.arg-agenda .info:before,
+.arg-agenda .info:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.arg-agenda .info:after {
+  clear: both;
+}
+.arg-agenda .info > i.icon-yah-hand-right {
+  font-size: 34px;
+  float: left;
+  line-height: 25px;
 }
