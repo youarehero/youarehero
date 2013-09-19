@@ -1899,7 +1899,7 @@ ul {
 body.city-karlsruhe {
   background-color: white;
 }
-.background {
+.page-background {
   position: fixed;
   z-index: -1000;
   width: 100%;
@@ -1912,7 +1912,7 @@ body.city-karlsruhe {
   background-size: auto 1114px;
 }
 @media (min-width: 1564px) {
-  .background {
+  .page-background {
     background-size: cover;
   }
 }
