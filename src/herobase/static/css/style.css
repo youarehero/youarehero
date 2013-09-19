@@ -4599,6 +4599,9 @@ ul.buttons:after {
   float: left;
   line-height: 25px;
 }
+.arg-agenda .linkbox {
+  margin-top: 80px;
+}
 .arg-agenda .linkbox i,
 .arg-agenda .linkbox span {
   font-size: 24px;
