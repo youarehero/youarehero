@@ -2850,6 +2850,20 @@ body {
 .hero-box .text dd {
   font-style: italic;
 }
+.hero-box h1 {
+  font-size: 36px;
+  margin-bottom: 0;
+}
+.hero-box h2 {
+  color: white;
+  font-size: 18px;
+  margin-top: 0;
+}
+.hero-box h3 {
+  font-size: 12px;
+  font-family: farao_textbold;
+  margin-bottom: 0;
+}
 .hero-box.citizeng .background {
   background-image: url("../img/Heroes/CitizenG_247_347_cut.png");
 }
