@@ -533,5 +533,8 @@ def below_minimum_age(request):
 def arg(request):
     return render(request, "herobase/arg.html")
 
+def help(request):
+    return render(request, "herobase/help.html")
+
 def hotline(request):
     return render(request, "herobase/hotline.html")

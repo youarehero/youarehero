@@ -1,0 +1,136 @@
+{% extends "herobase/layout/base.html" %}
+{% load i18n hero_message static %}
+{% load url from future %}
+
+{% block title %}
+    you are hero - Hilfe
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <div class="helpbox box">
+      <h1>Spielanleitung Alternate Reality Games</h1>
+      <p>
+      Dieses ist kein gewöhnliches Spiel; es ist ein “Alternate Reality Game”. Das heisst, dass Anonymas Geschichte
+      “wirklich” in der Stadt Karlsruhe passiert. Und alle Spieler spieler “wirkliche” Helden. Das macht ziemlich viel
+      Spaß, ist aber eine neue Spielform, daher im Folgenden ein paar Basisregeln um es besser zu erklären:
+      </p>
+
+      <h2>1) Zusammenarbeiten.</h2>
+      <p>
+      Wenn eine Aufgabe mental oder physisch zu anstrengend wird, verlassen sich Helden auf Teamwork und die
+      Gemeinschaft.  Seid nicht schüchtern, die Zusammenarbeit mit den anderen Spielern ist das Beste am Spiel! Also
+      besucht das Forum regelmässig.
+      </p>
+
+      <h2>2) Teilen.</h2>
+      <p>
+      Wenn ihr mit einer Information konfrontiert seid oder eine neue Idee für das Lösen einer Quest habt, behaltet sie
+      nicht für euch! Vergesst nicht, dass alle Helden Verbündete sind im Kampf gegen Anonyma und die anderen Schurken!
+      Es gibt keinen einzelnen Gewinner am Schluss also teilt alle Infos und Hinweise, die ihr findet auf den Foren oder
+      im Heldenwiki.
+      </p>
+
+      <h2>3) Rausgehen.</h2>
+      <p>
+      An einem bestimmten Punkt werden die Quests die Helden raus ins reale Leben führen. Ob es auf der Suche nach
+      wichtigen Hinweisen ist oder um heldenhafte Aktionen zu vollbringen, bitte denkt an elementare Sicherheitsregeln.
+      Auch Helden können sich verletzen.
+      </p>
+
+      <h2>4)Durchhalten (und manchmal über den Tellerrand schauen)</h2>
+      <p>
+      Wenn Quests vom einem verlangen, Dinge zu tun, die man noch nie getan, oder von denen man noch nicht mal gehört
+      hat - Helden geben nicht auf. Auch wenn das Problem erstmal unlösbar scheint. Manchmal ist alles nur eine Frage
+      der Perspektive. Also seid einfallsreich, erfindungsreich und ausdauernd. Und vergesst nicht, gemeinsam mit euren
+      Freunden und Mithelden zu spielen!
+      </p>
+
+      <p>
+      Wenn wirklich nichts mehr geht, kann die Community die etablierten Helden
+      <a href="{% url "hotline" %}">um Rat bitten.</a>
+      </p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="helpbox box">
+      <h1>Wie funktioniert you are hero?</h1>
+      <div>
+        <i class="icon-caret-down"></i>
+        <h2>Profil verwalten</h2>
+        <p>
+        Wenn ihr euer Profil verwalten wollt, dann klickt auf das Symbol mit den Zahnrädern rechts oben, bearbeitet und ändert was es zu ändern gibt und klickt abschliessend auf den roten Knopf mit dem Haken unten auf der Seite.
+        Eure Änderungen werden damit gespeichert und sofort geändert angezeigt.
+        </p>
+      </div>
+      <div>
+        <i class="icon-caret-down"></i>
+        <h2>XP sammeln</h2>
+        <p>
+        XP (oder auch Erfahrungspunkte; aus dem englischen: Experience Points) sammelt ihr, indem ihr Quests annehmt und
+        diese löst.  Ihr bekommt aber auch Erfahrungspunkte als Auftraggeber.  Vergeben werden die Punkte nach Abschluss
+        der Quest.  Wenn ihr eine bestimmte Menge an Erfahrungspunkten erreicht habt, steigt ihr ein Level auf. Das
+        kennzeichnet euch gegenüber der Gemeinschaft als erfahrene Helden.
+        </p>
+      </div>
+      <div>
+        <i class="icon-caret-down"></i>
+        <h2>Quest annehmen</h2>
+        <p>
+        Wenn euch eine Quest gefällt und ihr gerne mitmachen möchtet, dann drückt einfach den großen roten Knopf, auf
+        dem “Bewerben” steht.  Sobald der Auftraggeber euch bestätigt seid ihr Teil der Quest und mit dafür
+        verantwortlich, dass sie auch gelöst wird.  Nach Abschluss der Quest, die durch den Auftraggeber als
+        abgeschlossen markiert wird, bekommt ihr dann eure Erfahrungspunkte zugewiesen.
+        </p>
+
+        <h3>Symbol Zeitaufwand</h3>
+        <p>
+        Das Symbol mit der Uhr kennzeichnet, wie viel Zeit die Erfüllung der Quest vermutlich in Anspruch nehmen wird.
+        </p>
+
+        <h3>Symbol Ort</h3>
+        <p>
+        Wenn ihr dieses Symbol seht, heisst das, dass diese Quest lokal vor Ort erledigt werden muss. Alle Quests ohne dieses Symbol können online bzw. digital erfüllt werden.
+        Den Ort seht ihr angezeigt in der Quest.
+        </p>
+      </div>
+      <div>
+        <i class="icon-caret-down"></i>
+        <h2>Quest einstellen</h2>
+        <p>
+        Unter dem Icon “neue Quest” (das mit dem Stift) findet ihr ein Formular, das es euch ermöglicht, selbst Quests
+        einzustellen. Füllt die Felder alle gewissenhaft aus, je mehr Informationen ihr eingebt, desto leichter wird es
+        sein, Helden zu finden, die teilnehmen wollen.
+        </p>
+      </div>
+      <div>
+        <i class="icon-caret-down"></i>
+        <h2>Nachrichten versenden</h2>
+        <p>
+        Unter dem Icon, das mit Nachrichten gekennzeichnet ist und wie ein Briefumschlag aussieht, findet ihr eure
+        interne Mailbox.  Dort könnt ihr selbst Nachrichten erstellen (dazu solltet ihr aber den Nutzernamen der Person
+        kennen, die ihr anschreiben wollt) und euch alle Nachrichten anschauen, die ihr gesendet und empfangen habt.
+        </p>
+      </div>
+      <div>
+        <i class="icon-caret-down"></i>
+        <h2>Benachrichtigungen</h2>
+        <p>
+        Das Glockensymbol oben repräsentiert eure Benachrichtigungen.  Ihr könnt dort sofort sehen, wenn etwas Neues auf
+        der Plattform passiert.  Wenn ihr draufklickt werdet ihr zu einer Liste geführt, die euch genau auflistet, was
+        alles schon auf der Plattform passiert ist.
+        </p>
+      </div>
+      <div>
+        <i class="icon-caret-down"></i>
+        <h2>Das Spiel</h2>
+        <p>
+        Unter dem Icon mit dem Puzzlesymbol findet ihr alle Infos, die relevant sind für das in Karlsruhe stattfindende
+        Spiel.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

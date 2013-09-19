@@ -914,6 +914,8 @@ ul.buttons {
   margin-bottom: 10px;
 }
 .box.collapsible .caret {
+  min-width: 12px;
+  min-height: 12px;
   display: inline-block;
   margin-right: 10px;
   margin-top: 6px;
@@ -1222,5 +1224,22 @@ ul.buttons {
       float: left;
       line-height: 25px;
     }
+  }
+}
+
+.helpbox {
+  h1 {font-size: 24px;}
+  h2 {font-size: 16px; font-family: farao_textbold;}
+  h3 {font-size: 12px; font-family: farao_textbold;}
+  &.collapsed .caret + .icon-yah-hand-left {display: inline-block;}
+              .caret + .icon-yah-hand-left {
+    display: none;
+    margin-top: -18px;
+    font-size: 24px;
+  }
+
+  > div {
+    [class^="icon-caret"] {font-size: 1.666666em;}
+    i, i + h2 {display: inline-block;}
   }
 }

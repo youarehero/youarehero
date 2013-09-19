@@ -3660,6 +3660,8 @@ ul.buttons:after {
   margin-bottom: 10px;
 }
 .box.collapsible .caret {
+  min-width: 12px;
+  min-height: 12px;
   display: inline-block;
   margin-right: 10px;
   margin-top: 6px;
@@ -4596,4 +4598,30 @@ ul.buttons:after {
   font-size: 34px;
   float: left;
   line-height: 25px;
+}
+.helpbox h1 {
+  font-size: 24px;
+}
+.helpbox h2 {
+  font-size: 16px;
+  font-family: farao_textbold;
+}
+.helpbox h3 {
+  font-size: 12px;
+  font-family: farao_textbold;
+}
+.helpbox.collapsed .caret + .icon-yah-hand-left {
+  display: inline-block;
+}
+.helpbox .caret + .icon-yah-hand-left {
+  display: none;
+  margin-top: -18px;
+  font-size: 24px;
+}
+.helpbox > div [class^="icon-caret"] {
+  font-size: 1.666666em;
+}
+.helpbox > div i,
+.helpbox > div i + h2 {
+  display: inline-block;
 }

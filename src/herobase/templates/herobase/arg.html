@@ -1,5 +1,6 @@
 {% extends "herobase/layout/base.html" %}
 {% load i18n hero_message static %}
+{% load url from future %}
 
 {% block background %}
     <div class="background-arg"></div>
@@ -20,7 +21,7 @@
 
 <div class="row centering">
   <div class="linkbox">
-      <a href="#">
+  <a href="{% url "help" %}">
         <i class="icon-yah-hand-right"></i>
         <span class="small">
           Spielanleitung<br/>Alternate Reality Games
