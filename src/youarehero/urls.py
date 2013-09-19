@@ -28,6 +28,9 @@ urlpatterns = patterns(
     url(regex=r'^leader/$',
         view='herobase.views.leader_board',
         name="leader_board"),
+    url(regex=r'^hotline/$',
+        view='herobase.views.hotline',
+        name='hotline'),
 
     url(r'^profile/', include('herobase.urls.profile')),
     url(r'^quest/', include('herobase.urls.quest')),
