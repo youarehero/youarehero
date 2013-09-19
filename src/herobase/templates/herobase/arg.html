@@ -81,6 +81,7 @@
         Anonyma sucht.
       </p>
     </div>
+    {% if request.user.is_authenticated %}
     <div class="hero-box trashley">
         <div class="background"></div>
         <div class="text">
@@ -109,8 +110,20 @@
           <p>16:00 <br/> Ende</p>
         </div>
     </div>
+    {% endif %}
   </div>
 
+  {% if not request.user.is_authenticated %}
+  <div class="col-md-8 centering">
+    <div class="linkbox">
+        <a href="{% url "registration_register" %}">
+            <i class="icon-yah-hand-right"></i>
+            <span>Registrieren</span>
+            <i class="icon-yah-hand-left"></i>
+        </a>
+    </div>
+  </div>
+  {% else %}
   <div class="col-md-4">
       <div class="hero-box glitch">
           <div class="background"></div>
@@ -200,6 +213,7 @@
       </div>
     </div>
   </div>
+  {% endif %}
 </div>
 
 {% endblock %}

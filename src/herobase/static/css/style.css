@@ -4599,6 +4599,10 @@ ul.buttons:after {
   float: left;
   line-height: 25px;
 }
+.arg-agenda .linkbox i,
+.arg-agenda .linkbox span {
+  font-size: 24px;
+}
 .helpbox h1 {
   font-size: 24px;
 }
