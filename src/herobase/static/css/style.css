@@ -2140,9 +2140,6 @@ body {
 #navigation .nav-blue li > a:focus {
   color: black;
 }
-#navigation .nav-blue li > a b {
-  line-height: 2em;
-}
 #navigation .nav-blue .active > a {
   color: rgba(0, 0, 204, 0.6);
 }
@@ -2249,6 +2246,17 @@ body {
 }
 #navigation .tooltip {
   position: absolute;
+}
+#navigation .notificationcount {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: blue;
+  height: 34px;
+  font-size: 12px;
+  line-height: 34px;
 }
 .subsub {
   text-align: center;

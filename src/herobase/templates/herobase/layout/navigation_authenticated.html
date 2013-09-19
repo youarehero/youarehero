@@ -63,7 +63,7 @@
       <a href="/#notifications">
         <i class="icon-bell-alt icon-2x">
           {% with notifications=request.user.profile.unread_messages_and_notifications_count %}
-          {% if notifications > 0 %}<b>{{ notifications }}</b>{% endif %}
+          {% if notifications > 0 %}<b class="notificationcount">{{ notifications }}</b>{% endif %}
           {% endwith %}
         </i>
       </a>
