@@ -605,7 +605,6 @@ html, body {
 
 .hero-box {
   width: 247px;
-  height: 585px;
   @hero-height: 347px;
 
   .box;
@@ -616,7 +615,7 @@ html, body {
     z-index: 1;
     width: 100%;
     height: @hero-height;
-    position: absolute;
+    position: relative;
     top: -@cut-corner-radius;
     left: 0;
     background-repeat: no-repeat;
@@ -624,7 +623,7 @@ html, body {
   }
   .text {
     position: relative;
-    top: @hero-height;
+    top: -@cut-corner-radius;
     padding: 0 12px;
     dd {
       font-style: italic;
