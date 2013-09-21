@@ -1231,14 +1231,50 @@ ul.buttons {
 
 .arg-quests {
   .arg-quest {
-    .box-red;
-    .cut-corners(@background-red);
+    .box-blue;
+    .cut-corners(@background-blue);
+    a {
+      display: block;
+      color: white;
+      width: 100%;
+      height: 100%;
+      &:hover {
+        i {
+          text-decoration: none;
+          color: white;
+        }
+        color: red;
+      }
+    }
+    i.icon-puzzle-piece {
+      font-size: 36px;
+    }
+
+    h1 {
+      margin-top: 2px;
+      font-size: 16px;
+    }
+
     display: inline-block;
     width: 150px;
     height: 150px;
     &.large {width: 312px; height: 336px;}
 
-    &.unannounced i.icon-yah-question-mark {
+    &.unannounced {
+      .box-red;
+      .cut-corners(@background-red);
+    }
+    i.icon-yah-exclamation-mark {
+      position: absolute;
+      bottom: 0px;
+      left: 10px;
+      color: white;
+      font-size: 72px;
+      line-height: 50px;
+      font-family: farao_textbold;
+    }
+
+    i.icon-yah-question-mark {
       position: absolute;
       bottom: 0px;
       left: 0px;
@@ -1247,10 +1283,14 @@ ul.buttons {
       line-height: 50px;
       font-family: farao_textbold;
     }
-    &.unannounced.large i.icon-yah-question-mark {
-      font-size: 288px;
-      line-height: 165px;
+    &.large {
+      i.icon-yah-question-mark,
+      i.icon-yah-exclamation-mark {
+        font-size: 288px;
+        line-height: 165px;
+      }
     }
+
   }
 }
 

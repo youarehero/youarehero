@@ -1869,6 +1869,12 @@
 .icon-yah-question-mark:before {
   content: "?";
 }
+.icon-yah-exclamation-mark {
+  font-family: farao_book_heldregular;
+}
+.icon-yah-exclamation-mark:before {
+  content: "!";
+}
 .using-horizontal-borders > * {
   padding-left: 0;
   padding-right: 0;
@@ -4542,8 +4548,8 @@ ul.buttons:after {
   width: 100%;
 }
 .arg-quests .arg-quest {
-  color: #ffffff;
-  background: rgba(255, 0, 0, 0.6);
+  color: #0000ff;
+  background: rgba(0, 0, 255, 0.6);
   margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
@@ -4551,15 +4557,6 @@ ul.buttons:after {
   display: inline-block;
   width: 150px;
   height: 150px;
-}
-.arg-quests .arg-quest a {
-  color: inherit;
-  font-style: italic;
-}
-.arg-quests .arg-quest a:hover {
-  color: inherit;
-  text-decoration: none;
-  color: #000000;
 }
 .arg-quests .arg-quest.cut-corners {
   margin-bottom: 24px;
@@ -4577,7 +4574,7 @@ ul.buttons:after {
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
-  border-top: 12px solid rgba(255, 0, 0, 0.6);
+  border-top: 12px solid rgba(0, 0, 255, 0.6);
   border-bottom: 0 none;
 }
 .arg-quests .arg-quest.cut-corners > * {
@@ -4593,7 +4590,7 @@ ul.buttons:after {
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
-  border-bottom: 12px solid rgba(255, 0, 0, 0.6);
+  border-bottom: 12px solid rgba(0, 0, 255, 0.6);
   border-top: 0 none;
 }
 .arg-quests .arg-quest.cut-corners > * {
@@ -4609,7 +4606,7 @@ ul.buttons:after {
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
-  border-top: 12px solid rgba(255, 0, 0, 0.6);
+  border-top: 12px solid rgba(0, 0, 255, 0.6);
   border-bottom: 0 none;
 }
 .arg-quests .arg-quest > * {
@@ -4625,17 +4622,133 @@ ul.buttons:after {
   left: 0;
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
-  border-bottom: 12px solid rgba(255, 0, 0, 0.6);
+  border-bottom: 12px solid rgba(0, 0, 255, 0.6);
   border-top: 0 none;
 }
 .arg-quests .arg-quest > * {
   padding: 0 12px;
 }
+.arg-quests .arg-quest a {
+  display: block;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+.arg-quests .arg-quest a:hover {
+  color: red;
+}
+.arg-quests .arg-quest a:hover i {
+  text-decoration: none;
+  color: white;
+}
+.arg-quests .arg-quest i.icon-puzzle-piece {
+  font-size: 36px;
+}
+.arg-quests .arg-quest h1 {
+  margin-top: 2px;
+  font-size: 16px;
+}
 .arg-quests .arg-quest.large {
   width: 312px;
   height: 336px;
 }
-.arg-quests .arg-quest.unannounced i.icon-yah-question-mark {
+.arg-quests .arg-quest.unannounced {
+  color: #ffffff;
+  background: rgba(255, 0, 0, 0.6);
+  margin-bottom: 24px;
+  padding: 0;
+  margin-top: 12px;
+  position: relative;
+}
+.arg-quests .arg-quest.unannounced a {
+  color: inherit;
+  font-style: italic;
+}
+.arg-quests .arg-quest.unannounced a:hover {
+  color: inherit;
+  text-decoration: none;
+  color: #000000;
+}
+.arg-quests .arg-quest.unannounced.cut-corners {
+  margin-bottom: 24px;
+  padding: 0;
+  margin-top: 12px;
+  position: relative;
+}
+.arg-quests .arg-quest.unannounced.cut-corners:after {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(255, 0, 0, 0.6);
+  border-bottom: 0 none;
+}
+.arg-quests .arg-quest.unannounced.cut-corners > * {
+  padding: 0 12px;
+}
+.arg-quests .arg-quest.unannounced.cut-corners:before {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  top: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid rgba(255, 0, 0, 0.6);
+  border-top: 0 none;
+}
+.arg-quests .arg-quest.unannounced.cut-corners > * {
+  padding: 0 12px;
+}
+.arg-quests .arg-quest.unannounced:after {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-top: 12px solid rgba(255, 0, 0, 0.6);
+  border-bottom: 0 none;
+}
+.arg-quests .arg-quest.unannounced > * {
+  padding: 0 12px;
+}
+.arg-quests .arg-quest.unannounced:before {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  top: -12px;
+  left: 0;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  border-bottom: 12px solid rgba(255, 0, 0, 0.6);
+  border-top: 0 none;
+}
+.arg-quests .arg-quest.unannounced > * {
+  padding: 0 12px;
+}
+.arg-quests .arg-quest i.icon-yah-exclamation-mark {
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+  color: white;
+  font-size: 72px;
+  line-height: 50px;
+  font-family: farao_textbold;
+}
+.arg-quests .arg-quest i.icon-yah-question-mark {
   position: absolute;
   bottom: 0px;
   left: 0px;
@@ -4644,7 +4757,8 @@ ul.buttons:after {
   line-height: 50px;
   font-family: farao_textbold;
 }
-.arg-quests .arg-quest.unannounced.large i.icon-yah-question-mark {
+.arg-quests .arg-quest.large i.icon-yah-question-mark,
+.arg-quests .arg-quest.large i.icon-yah-exclamation-mark {
   font-size: 288px;
   line-height: 165px;
 }
