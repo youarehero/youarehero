@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 13:47+0200\n"
+"POT-Creation-Date: 2013-09-21 16:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -166,31 +166,31 @@ msgstr "Mittel"
 msgid "High"
 msgstr "Hoch"
 
-#: herobase/models.py:384
+#: herobase/models.py:400
 msgid "sex"
 msgstr "Geschlecht"
 
-#: herobase/models.py:397
+#: herobase/models.py:413
 msgid "Location is public"
 msgstr "Standort ist öffentlich"
 
-#: herobase/models.py:398
+#: herobase/models.py:414
 msgid "Enable this if you want to share your location with other Heroes."
 msgstr "Wenn aktiv können andere Helden deinen Standort sehen."
 
-#: herobase/models.py:401
+#: herobase/models.py:417
 msgid "about me"
 msgstr "Über mich"
 
-#: herobase/models.py:402
+#: herobase/models.py:418
 msgid "Tell other heroes who you are."
 msgstr "Erzähle anderen Helden wer Du bist"
 
-#: herobase/models.py:405
+#: herobase/models.py:421
 msgid "E-Mail on quest changes"
 msgstr "E-Mail bei Quest-Änderungen"
 
-#: herobase/models.py:406
+#: herobase/models.py:422
 msgid ""
 "Enable this if you want to receive an email notification when one of your "
 "quests needs attention."
@@ -198,11 +198,11 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail benachrichtigung sobald ein Quest an dem "
 "Du beteiligt bist deine Aufmerksamkeit benötigt."
 
-#: herobase/models.py:410
+#: herobase/models.py:426
 msgid "E-Mail on private message"
 msgstr "E-Mail bei privaten Nachrichten"
 
-#: herobase/models.py:411
+#: herobase/models.py:427
 msgid ""
 "Enable this if you want to receive an email notification when someone sends "
 "you a private message."
@@ -210,23 +210,23 @@ msgstr ""
 "Wenn aktiv erhältst Du eine E-Mail wenn andere Nutzer dir eine Nachricht "
 "schreiben."
 
-#: herobase/models.py:494
+#: herobase/models.py:510
 msgid "text"
 msgstr "text"
 
-#: herobase/models.py:496
+#: herobase/models.py:512
 msgid "type not set"
 msgstr "Typ nicht gesetzt"
 
-#: herobase/models.py:497
+#: herobase/models.py:513
 msgid "spam"
 msgstr "Spam"
 
-#: herobase/models.py:498
+#: herobase/models.py:514
 msgid "illegal content"
 msgstr "Illegaler Inhalt"
 
-#: herobase/models.py:499
+#: herobase/models.py:515
 msgid "hate speech"
 msgstr "Diskriminierung"
 
@@ -292,11 +292,11 @@ msgstr ""
 "zurückzuziehen. Du wirst benachrichtigt sobald der Veranstalter über deine "
 "Teilnahme entschieden hat."
 
-#: herobase/views.py:410
+#: herobase/views.py:413
 msgid "Profile successfully changed"
 msgstr "Profil erfolgreich gespeichert."
 
-#: herobase/views.py:432
+#: herobase/views.py:435
 msgid "Privacy settings successfully changed"
 msgstr "Privatsphäre-Einstellungen wurden gespeichert"
 
@@ -407,27 +407,9 @@ msgstr "Informationen"
 msgid "Suggested quests"
 msgstr "Vorgeschlagene Quests"
 
-#: herobase/templates/herobase/quest/adventure_inner_box_owner.html:17
-msgid "Reject"
-msgstr "ablehnen"
-
-#: herobase/templates/herobase/quest/adventure_inner_box_owner.html:35
-msgid "Accept"
-msgstr "annehmen"
-
-#: herobase/templates/herobase/quest/adventures_box_hero.html:5
-#: herobase/templates/herobase/quest/adventures_box_owner.html:4
+#: herobase/templates/herobase/quest/accepted_adventures.html:4
 msgid "Participants"
 msgstr "Teilnehmer"
-
-#: herobase/templates/herobase/quest/adventures_box_hero.html:17
-#: herobase/templates/herobase/quest/adventures_box_owner.html:31
-msgid "There are no participants yet."
-msgstr "Es gibt noch keine Teilnehmer."
-
-#: herobase/templates/herobase/quest/adventures_box_owner.html:16
-msgid "Accept All"
-msgstr "alle annehmen"
 
 #: herobase/templates/herobase/quest/comments_box.html:5
 msgid "Comments"
@@ -485,6 +467,22 @@ msgstr "hoher Zeitaufwand"
 #: herobase/templates/herobase/quest/my_box_owner.html:13
 msgid "This is your Quest"
 msgstr "Dies ist Deine Quest."
+
+#: herobase/templates/herobase/quest/unaccepted_adventures.html:4
+msgid "Applications"
+msgstr "Bewerbungen"
+
+#: herobase/templates/herobase/quest/unaccepted_adventures.html:16
+msgid "Accept"
+msgstr "Annehmen"
+
+#: herobase/templates/herobase/quest/unaccepted_adventures.html:24
+msgid "Reject"
+msgstr "Ablehnen"
+
+#: herobase/templates/herobase/quest/unaccepted_adventures.html:29
+msgid "Send a message to %(name)s"
+msgstr "Sende Nachricht an %(username)s"
 
 #: herobase/templates/herobase/quest/update.html:18
 msgid "Create a Quest"
@@ -679,7 +677,7 @@ msgstr ""
 "Wir haben dir eine E-Mail mit den Schritten die du zur Passwort-Änderung "
 "benötigst gemailt. Du solltest sie in kürze Erhalten."
 
-#: herobase/templates/registration/password_reset_email.html:2
+#: herobase/templates/registration/password_reset_email.html:3
 #, python-format
 msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
@@ -688,20 +686,20 @@ msgstr ""
 "Sie erhalten diese E-Mail, da Sie das Passwort für ihren %(site_name)s "
 "Account zurücksetzen lassen möchten."
 
-#: herobase/templates/registration/password_reset_email.html:4
+#: herobase/templates/registration/password_reset_email.html:5
 msgid "Please go to the following page and choose a new password:"
 msgstr "Bitte öffnen Sie folgende Seite, um Ihr neues Passwort einzugeben:"
 
-#: herobase/templates/registration/password_reset_email.html:9
+#: herobase/templates/registration/password_reset_email.html:10
 #, python-format
 msgid "Your username, in case you've forgotten: %(user.username)s"
 msgstr "Ihr Benutzername, falls Sie ihn vergessen haben: %(user.username)s"
 
-#: herobase/templates/registration/password_reset_email.html:11
+#: herobase/templates/registration/password_reset_email.html:12
 msgid "Thanks for using our site!"
 msgstr "Vielen Dank, dass Sie unsere Website benutzen!"
 
-#: herobase/templates/registration/password_reset_email.html:13
+#: herobase/templates/registration/password_reset_email.html:14
 #, python-format
 msgid "The %(site_name)s team."
 msgstr "Das Team von %(site_name)s"
@@ -881,6 +879,12 @@ msgstr "Deutsch"
 msgid "English"
 msgstr "Englisch"
 
+#~ msgid "There are no participants yet."
+#~ msgstr "Es gibt noch keine Teilnehmer."
+
+#~ msgid "Accept All"
+#~ msgstr "alle annehmen"
+
 #~ msgid "Videos"
 #~ msgstr "Videos"
 
@@ -983,9 +987,6 @@ msgstr "Englisch"
 
 #~ msgid "Status"
 #~ msgstr "Status"
-
-#~ msgid "Actions"
-#~ msgstr "Aktionen"
 
 #~ msgid "Nobody is helping you yet."
 #~ msgstr "Noch hilft Dir niemand."
