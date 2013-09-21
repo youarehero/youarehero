@@ -79,10 +79,6 @@ class QuestUpdateView(UpdateView):
         if not self.object.owner == request.user:
             return HttpResponseForbidden(
                 _("Only the owner can edit the quest."))
-        if self.object.edit_window_expired:
-            return HttpResponseForbidden(
-                _("You can only edit quests for %s minutes.")
-                % Quest.EDIT_WINDOW_MINUTES)
         return super(QuestUpdateView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -90,10 +86,6 @@ class QuestUpdateView(UpdateView):
         if not self.object.owner == request.user:
             return HttpResponseForbidden(
                 _("Only the owner can edit the quest."))
-        if self.object.edit_window_expired:
-            return HttpResponseForbidden(
-                _("You can only edit quests for %s minutes.")
-                % Quest.EDIT_WINDOW_MINUTES)
         return super(QuestUpdateView, self).post(request, *args, **kwargs)
 
 

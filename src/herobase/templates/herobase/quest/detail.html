@@ -27,11 +27,9 @@
         {% include "herobase/quest/quest_box_footer.html" %}
       </div>
       {% if is_owner %}
-        {% if not quest.edit_window_expired %}
-            <a class="box-button" href="{% url "quest_update" quest.pk %}" data-toggle="tooltip" data-title="Bearbeiten"><i class="icon-pencil"></i></a>
-        {% endif %}
-        {% if quest.open %}
+        <a class="box-button" href="{% url "quest_update" quest.pk %}" data-toggle="tooltip" data-title="Bearbeiten"><i class="icon-pencil"></i></a>
 
+        {% if quest.open %}
         <form method="post" action="{% url "owner_update_quest" quest.pk %}">
             {% csrf_token %}
             <input type="hidden" name="action" value="cancel">
