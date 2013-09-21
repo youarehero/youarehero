@@ -1,0 +1,13 @@
+{% load i18n %}
+{% load url from future %}
+<div class="participants">
+  <h1>{% trans "Participants" %}</h1>
+  {% for a in adventures %}
+  <span class="participant">
+    <a href="{% url "userprofile_public" a.user.username %}">
+      <img class="avatar" src="{{ a.user.profile.avatar }}"/>
+      <p>{{ a.user.username }}</p>
+    </a>
+  </span>
+  {% endfor %}
+</div>

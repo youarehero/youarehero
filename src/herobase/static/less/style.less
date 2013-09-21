@@ -844,6 +844,35 @@ ul.buttons {
     }
   }
 }
+.participants, .applications {
+  .box; 
+  h1 {font-size: 24px;}
+  .participant, .application {
+    text-align: center;
+    max-width: 125px;
+    max-height: 250px;
+    overflow: hidden;
+    display: inline-block;
+    word-wrap: break-word;
+    img {
+      width: 75px;
+      height: 125px;
+    }
+    p {
+      color: black;
+    }
+  }
+}
+
+.applications {
+  form {
+    display: inline-block;
+  }
+  i {
+    color: red;
+    font-size: 24px;
+  }
+}
 
 .box-button {
   .box-red;
@@ -1255,4 +1284,9 @@ ul.buttons {
     [class^="icon-caret"] {font-size: 1.666666em;}
     i, i + h2 {display: inline-block;}
   }
+}
+
+button {
+  border: none;
+  background: transparent;
 }

@@ -308,6 +308,22 @@ class Quest(LocationMixin, models.Model):
         """String representation"""
         return self.title
 
+    @property
+    def accepted_adventures(self):
+        return self.adventures.filter(
+            accepted=True,
+            canceled=False,
+            rejected=False
+        )
+
+    @property
+    def unaccepted_adventures(self):
+        return self.adventures.filter(
+            accepted=False,
+            canceled=False,
+            rejected=False
+        )
+
 
 class AvatarImageMixin(models.Model):
     avatar_storage = FileSystemStorage(location=settings.ASSET_ROOT)

@@ -90,10 +90,9 @@
       </div>
     </div>
 
+    {% include "herobase/quest/accepted_adventures.html" with adventures=quest.accepted_adventures %}
     {% if is_owner %}
-        {% include "herobase/quest/adventures_box_owner.html" %}
-    {% else %}
-        {% include "herobase/quest/adventures_box_hero.html" %}
+        {% include "herobase/quest/unaccepted_adventures.html" with adventures=quest.unaccepted_adventures %}
     {% endif %}
     {% include "herobase/quest/comments_box.html" %}
 {% endblock %}
