@@ -27,7 +27,9 @@
         {% include "herobase/quest/quest_box_footer.html" %}
       </div>
       {% if is_owner %}
+        {% if not quest.canceled and not quest.done %}
         <a class="box-button" href="{% url "quest_update" quest.pk %}" data-toggle="tooltip" data-title="Bearbeiten"><i class="icon-pencil"></i></a>
+        {% endif %}
 
         {% if quest.open %}
         <form method="post" action="{% url "owner_update_quest" quest.pk %}">
