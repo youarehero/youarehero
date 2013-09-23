@@ -4746,7 +4746,17 @@ ul.buttons:after {
   color: white;
   font-size: 72px;
   line-height: 50px;
+}
+.arg-quests .arg-quest i[class^="icon-yah"] {
   font-family: farao_textbold;
+}
+.arg-quests .arg-quest i.icon-ok {
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+  color: red;
+  font-size: 72px;
+  line-height: 50px;
 }
 .arg-quests .arg-quest i.icon-yah-question-mark {
   position: absolute;
