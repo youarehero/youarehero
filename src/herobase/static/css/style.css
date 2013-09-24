@@ -2572,7 +2572,7 @@ body {
   padding: 0;
   margin-top: 12px;
   margin-bottom: 36px;
-  height: 460px;
+  height: 445px;
   position: relative;
 }
 .box-image:after {
@@ -2635,16 +2635,20 @@ body {
   text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
 }
 .box-image .header {
+  height: 90px;
+}
+.box-image .header,
+.box-image .subheader {
   display: block;
-  height: 50px;
   z-index: 2;
   position: relative;
   left: 15px;
-  top: -5px;
-  margin: 0;
+}
+.box-image .subheader {
+  margin-bottom: 0;
 }
 .box-image .text {
-  height: 386px;
+  height: 331px;
   margin-left: 0;
   margin-right: 0;
   margin-bottom: 0;
@@ -2654,7 +2658,7 @@ body {
 }
 .box-image .image {
   width: 530px;
-  height: 484px;
+  height: 469px;
   position: absolute;
   top: -12px;
   right: 0px;

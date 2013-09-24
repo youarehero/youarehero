@@ -519,10 +519,10 @@ html, body {
 }
 
 .box-image {
-  @height: 484px;
+  @height: 469px;
   @width: 800px;
   @text-width: 270px;
-  @header-height: 50px;
+  @header-height: 90px;
 
   .box;
 
@@ -532,13 +532,16 @@ html, body {
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
   }
   .header {
-    display: block;
     height: @header-height;
+  }
+  .header, .subheader {
+    display: block;
     z-index: 2;
     position: relative;
     left: 15px;
-    top: -5px;
-    margin: 0;
+  }
+  .subheader {
+    margin-bottom: 0;
   }
 
   .text {
