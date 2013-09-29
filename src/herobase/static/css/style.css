@@ -4645,6 +4645,9 @@ ul.buttons:after {
   text-decoration: none;
   color: white;
 }
+.arg-quests .arg-quest a:hover i.icon-ok {
+  color: #ff0000;
+}
 .arg-quests .arg-quest i.icon-puzzle-piece {
   font-size: 36px;
 }
