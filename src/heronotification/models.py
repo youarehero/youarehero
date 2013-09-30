@@ -107,6 +107,21 @@ class hero_has_cancelled(NotificationTypeBase):
     def get_image(cls, notification):
         return notification.target.user.profile.avatar_thumbnail_40
 
+class hero_has_joined(NotificationTypeBase):
+    type_id = 3
+    target_model = Adventure
+
+    @classmethod
+    def get_text(cls, notification):
+        return mark_safe(_(u'<strong>%(user)s</strong> has joined your quest <strong>%(title)s</strong>.') % {
+            'user': escape(notification.target.user.username),
+            'title': escape(notification.target.quest.title),
+        })
+
+    @classmethod
+    def get_image(cls, notification):
+        return notification.target.user.profile.avatar_thumbnail_40
+
 class quest_started(NotificationTypeBase):
     type_id = 10
     target_model = Quest
@@ -281,7 +296,10 @@ class Notification(models.Model):
             raise ValueError("Not a valid target instance for that notification type")
 
         content_type = ContentType.objects.get_for_model(target)
-        notification, created = Notification.objects.get_or_create(content_type=content_type, object_id=target.pk, type_id=type_id, user=user)
+        notification, created = Notification.objects.get_or_create(content_type=content_type,
+                                                                   object_id=target.pk,
+                                                                   type_id=type_id,
+                                                                   user=user)
         if not created:
             notification.read = None
             notification.dismissed = None

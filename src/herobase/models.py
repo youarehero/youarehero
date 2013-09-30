@@ -5,7 +5,7 @@ The most important are Quest, Userprofile (represents a hero) and Adventure.
 This module also contains the ActionMixin, which provides basic logic for model actions.
 The model actions connect state logic to the models.
 """
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 import glob
 from random import randint
 from django.contrib.comments.signals import comment_was_posted
@@ -30,8 +30,8 @@ from django.db.models.signals import post_save
 from easy_thumbnails.files import get_thumbnailer
 from south.modelsinspector import add_introspection_rules
 
+from .quest_livecycle import QuestState, AdventureState
 from heromessage.models import Message
-
 from herobase.utils import is_legal_adult
 
 QUEST_EXPERIENCE = 1000
@@ -123,6 +123,12 @@ class AdventureManager(models.Manager):
         return self.get_query_set().pending()
 
 class Adventure(models.Model):
+    @property
+    def state(self):
+        return AdventureState(self.quest if self.quest_id else None,
+                              self.user if self.user_id else None,
+                              self)
+
     objects = AdventureManager()
 
     user = models.ForeignKey(User, related_name='adventures')
@@ -190,8 +196,21 @@ class QuestManager(models.Manager):
     """Custom Quest Object Manager, for active and inactive `Quest` objects"""
     def get_query_set(self):
         return QuestQuerySet(model=self.model, using=self._db)
+
     def open(self):
         return self.get_query_set().open()
+
+    def expired_but_not_done(self):
+        return self.get_query_set().filter(
+            completes_upon_expiration=True,
+            expiration_date__lt=date.today(),
+            canceled=False,
+            done=False,
+        )
+
+    def update_expired_but_not_done(self):
+        for quest in self.expired_but_not_done():
+            quest.state.done()
 
 
 class Quest(LocationMixin, models.Model):
@@ -204,6 +223,32 @@ class Quest(LocationMixin, models.Model):
                                    help_text=_(u"A short description of what "
                                                u"this quest is about."))
 
+    completes_upon_expiration = models.BooleanField(
+        default=False,
+        verbose_name="automatisch Abschließen",
+        help_text="Die Quest automatisch als abgeschlossen markieren wenn das Ablaufdatum um ist."
+    )
+
+    START_MANUAL = 0
+    START_TIMER = 1
+    START_ENOUGH_HEROES = 2
+    START_CHOICES = (
+        (START_MANUAL, "Manuell"),
+        (START_TIMER, "Mit Timer"),
+        (START_ENOUGH_HEROES, "Genug Helden"),
+    )
+
+    END_MANUAL = 0
+    END_TIMER = 1
+    END_CHOICES = (
+        (END_MANUAL, "Manuell"),
+        (END_TIMER, "Mit Timer"),
+    )
+
+    start_trigger = models.IntegerField(choices=START_CHOICES, default=START_MANUAL)
+    end_trigger = models.IntegerField(choices=END_CHOICES, default=END_MANUAL)
+
+    start_date = models.DateTimeField(default=now)
     expiration_date = models.DateTimeField(default=lambda: now() + timedelta(days=30),
                                            verbose_name=_(u"Expiration date"),
                                            help_text=_(u"Until which date will "
@@ -217,12 +262,18 @@ class Quest(LocationMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True, db_index=True)
     modified = models.DateTimeField(auto_now=True, db_index=True)
 
+    min_heroes = models.PositiveIntegerField(default=0, verbose_name="Minimale Helden-Anzahl")
     max_heroes = models.PositiveIntegerField(default=1,
                                              validators=[MinValueValidator(1)],
                                              verbose_name=_(u"Number of heroes"),
                                              help_text=_(u"How many heroes "
                                                          u"can participate in "
                                                          u"this Quest?"))
+    auto_accept = models.BooleanField(
+        default=False,
+        verbose_name="Automatisch annehmen",
+        help_text="Helden die sich bewerben werden automatisch angenommen."
+    )
 
     # still needs heroes
     open = models.BooleanField(default=True)
@@ -248,30 +299,25 @@ class Quest(LocationMixin, models.Model):
         (TIME_EFFORT_HIGH, _(u"High")),
     ))
 
-    def save(self, *args, **kwargs):
-        """Make sure that this is not created by a minor"""
-        if not self.owner.profile.is_legal_adult():
-            raise ValidationError("Minors are not allowed to create quests")
-        super(Quest, self).save(*args, **kwargs)
-
     @property
     def has_expired(self):
         return self.expiration_date < now()
 
     @property
-    def can_accept_all(self):
-        return self.open and self.adventures.filter(accepted=False, rejected=False, canceled=False).exists()
+    def state(self):
+        return QuestState(self)
 
-    @property
-    def can_start(self):
-        return (self.open and not self.adventures.filter(accepted=False, rejected=False, canceled=False).exists()
-                and self.adventures.filter(accepted=True, canceled=False).exists())
+    def adventure_state(self, hero):
+        return AdventureState(self, hero)
 
     @property
     def likes_count(self):
         return self.likes.all().count()
 
     def save(self, force_insert=False, force_update=False, using=None):
+        if not self.owner.profile.is_legal_adult():
+            raise ValidationError("Minors are not allowed to create quests")
+
         self.open = not self.pk or (not self.done and not self.canceled and not self.started)
 
         if self.canceled and not self.canceled_time:
@@ -286,6 +332,12 @@ class Quest(LocationMixin, models.Model):
     def get_absolute_url(self):
         """Get the url for this quests detail page."""
         return reverse("quest_detail", args=(self.pk,))
+
+    EDIT_WINDOW_MINUTES = 10
+
+    @property
+    def edit_window_expired(self):
+        return (now() - self.modified) > timedelta(minutes=self.EDIT_WINDOW_MINUTES)
 
     def get_state_display(self):
         if self.canceled:
