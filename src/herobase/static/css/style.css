@@ -2574,7 +2574,7 @@ body {
   padding: 0;
   margin-top: 12px;
   margin-bottom: 36px;
-  height: 445px;
+  height: 506px;
   position: relative;
 }
 .box-image:after {
@@ -2650,7 +2650,7 @@ body {
   margin-bottom: 0;
 }
 .box-image .text {
-  height: 331px;
+  height: 392px;
   margin-left: 0;
   margin-right: 0;
   margin-bottom: 0;
@@ -2660,11 +2660,12 @@ body {
 }
 .box-image .image {
   width: 530px;
-  height: 469px;
+  height: 530px;
   position: absolute;
   top: -12px;
   right: 0px;
   z-index: 1;
+  background-size: auto 100%;
 }
 .box-floating {
   width: 200px;
