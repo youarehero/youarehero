@@ -50,9 +50,14 @@ SEX_CHOICES =  (
     (1, 'Männlich'),
     (2, 'Weiblich'))
 
-AVATAR_IMAGES = sorted(map(lambda x: os.path.join('avatar', os.path.basename(x)),
-                    glob.glob(os.path.join(settings.ASSET_ROOT, 'avatar', '*.png'))))
-AVATAR_CHOICES = zip(AVATAR_IMAGES, AVATAR_IMAGES)
+AVATAR_IMAGES_TRUSTED = sorted(map(
+    lambda x: os.path.join('avatar', os.path.basename(x)),
+    glob.glob(os.path.join(settings.ASSET_ROOT, 'avatar', '*'))
+))
+AVATAR_IMAGES = filter(
+    lambda fname: fname.endswith(".png"),
+    AVATAR_IMAGES_TRUSTED
+)
 
 class Like(models.Model):
     user = models.ForeignKey(User, related_name='likes')
@@ -319,10 +324,14 @@ class Quest(LocationMixin, models.Model):
             rejected=False
         )
 
-
 class AvatarImageMixin(models.Model):
     avatar_storage = FileSystemStorage(location=settings.ASSET_ROOT)
-    image = models.FilePathField(blank=True, null=True, choices=AVATAR_CHOICES)
+    image = models.FilePathField(blank=True, null=True)
+
+    def clean(self):
+        images = AVATAR_IMAGES_TRUSTED if self.trusted else AVATAR_IMAGES
+        if self.image not in images:
+            raise ValidationError(_("Invalid avatar image given"))
 
     @classmethod
     def avatar_choices(cls):
