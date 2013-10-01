@@ -8,6 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
 from django import forms
 from django.core.urlresolvers import reverse
+from django.forms.models import model_to_dict
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -110,6 +111,15 @@ class UserProfileEdit(forms.ModelForm):
         )
         super(UserProfileEdit, self).__init__(*args, **kwargs)
         # self.fields['location_granularity'].widget = forms.HiddenInput()
+
+    # This method prevents us from overwriting the image field if it's empty.
+    def clean(self):
+        cleaned_data = super(UserProfileEdit, self).clean()
+        if cleaned_data['image'] == "":
+            del cleaned_data['image']
+        model_data = model_to_dict(self.instance)
+        model_data.update(cleaned_data)
+        return model_data
 
     class Meta:
         model = UserProfile
