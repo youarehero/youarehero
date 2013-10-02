@@ -43,15 +43,12 @@ def create_user(**kwargs):
         'username': user.username,
         'password': user.plain_password
     }
+    user.save()
+    profile = user.get_profile()
     dob = datetime.date(year=1938, month=4, day=18)
     dob += datetime.timedelta(days=create_counter[0])
-    profile = UserProfile(
-        date_of_birth=dob,
-        user=user
-    )
-    user.profile = profile
+    profile.date_of_birth = dob
     profile.save()
-    user.save()
     return user
 
 @factory
