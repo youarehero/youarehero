@@ -224,8 +224,8 @@ def hero_home_view(request, template='herobase/hero_home.html'):
         request,
         template,
         {
-            'notifications': Notification.for_user(user),
-            'messages': Message.latest_for_user(user)
+            'notifications': [n for n in Notification.for_user(user)[:10] if not n.read],
+            'messages': Message.latest_for_user(user)[:10]
         })
 
 

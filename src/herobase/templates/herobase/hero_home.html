@@ -13,6 +13,8 @@
           <p>{{ message.text }}</p>
           <div class="info">von <a href="{% url "userprofile_public" message.sender %}">{{ message.sender.username }}</a>, {{ message.sent|naturaltime }}</div>
         </div>
+      {% empty %}
+          <p>Du hast keine Nachrichten</p>
       {% endfor %}
     </div>
     <div class="notifications-summary">
@@ -30,6 +32,8 @@
           {% endif %}
           {% endwith %}
         </div>
+      {% empty %}
+          <p>Du hast keine neue Benachrichtigung</p>
       {% endfor %}
     </div>
   </div>

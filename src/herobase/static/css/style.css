@@ -4083,6 +4083,9 @@ ul.buttons:after {
   text-decoration: none;
   outline: none;
 }
+.notifications-summary .notification {
+  margin-top: 10px;
+}
 .notifications-summary .notification p {
   margin-bottom: 0;
 }
