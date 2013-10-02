@@ -138,10 +138,11 @@ def quest_detail_view(request, quest_id):
                 user_id=request.user.pk,
                 canceled=False)
         except Adventure.DoesNotExist:
-            adventure = None
+            adventure = Adventure()
+            adventure.user = request.user
+            adventure.quest = quest
     else:
         adventure = None
-
     if is_owner:
         butler_text = _(u'Dies ist ihre Quest.')
     elif not adventure:
