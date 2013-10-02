@@ -3282,7 +3282,7 @@ ul.buttons:after {
   display: block;
   color: white;
 }
-.quest-short .text h1 {
+.quest-short .text h2 {
   word-wrap: break-word;
   font-size: 18px;
   font-family: farao_textregular;
@@ -4082,6 +4082,9 @@ ul.buttons:after {
 .notifications-summary > a:focus {
   text-decoration: none;
   outline: none;
+}
+.notifications-summary .notification {
+  margin-top: 10px;
 }
 .notifications-summary .notification p {
   margin-bottom: 0;
@@ -4887,4 +4890,37 @@ ul.buttons:after {
 button {
   border: none;
   background: transparent;
+}
+.box-footer {
+  text-align: center;
+}
+.details {
+  font-size: 14px;
+  color: #333333;
+  font-weight: bold;
+}
+.disabled {
+  color: rgba(255, 255, 255, 0.6);
+}
+#article-left-arrow,
+#article-right-arrow {
+  font-size: 100px;
+  position: absolute;
+  top: 0px;
+}
+#article-left-arrow:hover,
+#article-right-arrow:hover {
+  color: red;
+  cursor: pointer;
+}
+#article-left-arrow:hover.disabled,
+#article-right-arrow:hover.disabled {
+  color: rgba(255, 255, 255, 0.6);
+  cursor: not-allowed;
+}
+#article-left-arrow {
+  left: -60px;
+}
+#article-right-arrow {
+  right: -60px;
 }

@@ -771,7 +771,7 @@ ul.buttons {
   .text {
     display: block;
     color: white;
-    h1 {
+    h2 {
       word-wrap: break-word;
       font-size: 18px;
       font-family: farao_textregular;
@@ -1075,6 +1075,7 @@ ul.buttons {
     }
   }
   .notification {
+    margin-top: 10px;
     p {
       margin-bottom: 0;
       &:before {
@@ -1347,4 +1348,39 @@ ul.buttons {
 button {
   border: none;
   background: transparent;
+}
+
+.box-footer {
+  text-align: center;
+}
+
+.details {
+  font-size: 14px;
+  color: @black;
+  font-weight: bold;
+}
+.disabled {
+  color: rgba(255,255,255,0.6);
+}
+
+// Article Arrows
+#article-left-arrow,
+#article-right-arrow{
+  font-size: 100px;
+  position: absolute;
+  top: 0px;
+  &:hover {
+    color: red;
+    cursor: pointer;
+    &.disabled {
+      color: rgba(255, 255, 255, 0.6);
+      cursor: not-allowed;
+    }
+  }
+}
+#article-left-arrow {
+  left: -60px;
+}
+#article-right-arrow {
+  right: -60px;
 }

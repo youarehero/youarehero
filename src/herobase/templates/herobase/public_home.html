@@ -4,39 +4,8 @@
 {% load like_button %}
 
 
-{% block javascript %}
-    <script type="text/javascript">
-        $('body').on('click' , '#video, #blog, #about', function(e) {
-            //$(this).addClass('hover');
-{#            console.debug($(this));#}
-{#            if ($(e.target).is('a')) {#}
-{#                return;#}
-{#            } else {#}
-{#                $('.box-buttons-bottom a', this).click();#}
-{#            }#}
-            if ($(e.target).is('a') || $(e.target).parent().is('a')) {
-                return
-            }
-            e.preventDefault();
-            var $box = $(e.target).closest('.box');
-            var $link = $box.find('.box-buttons-bottom a');
-            var url = $link.attr('href');
-            if (url !== undefined) {
-                if ($link.attr('target') == '_blank') {
-                    window.open(url);
-                } else {
-                    window.location.href = url;
-                }
-            }
-        });
-{#        $('body').on('blur', '.box', function(e) {#}
-{#            $(this).removeClass('hover');#}
-{#        });#}
-    </script>
-{% endblock %}
-
 {% block content %}
-    {% include "herobase/article_imagerow.html" %}
+    {% include "herobase/articles/articles.inc.html" %}
 
     <div class="row vertical-offset">
         <div class="col-md-4">
@@ -71,7 +40,7 @@
         </div>
     </div>
     <div class="infobox-container middle">
-      <div>
+      <div id="yah-ist-ein-spiel">
         <h1>you are hero ist ein Spiel</h1>
         <p>
         Löse Quests online oder in der Stadt, allein oder mit deinen Freunden, und hilf den Helden die Schurkin Anonyma zu
@@ -80,6 +49,9 @@
         <br/>
         <a href="{% url "registration_register" %}">Registriere</a> dich und nimme Entropius’ Quests an um loszulegen.
         </p>
+        <div class="box-footer">
+            <a href="#yah-ist-kein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>
+        </div>
       </div>
     </div>
     <div class="row vertical-offset">
@@ -108,8 +80,9 @@
         </div>
       </div>
     </div>
+
     <div class="infobox-container bottom">
-      <div>
+      <div id="yah-ist-kein-spiel" >
         <h1>you are hero ist kein Spiel</h1>
         <p>
         Dies ist eine ernste Angelegenheit!
@@ -135,19 +108,19 @@ Helden-Hilfe benötigst!
     <div class="sponsors">
       <div class="sponsor">
         <h1>Gef&ouml;rdert durch</h1>
-        <a href="http://www.staedte-im-wissenschaftsjahr.de/wordpress/you-are-hero/">
+        <a href="http://www.staedte-im-wissenschaftsjahr.de/wordpress/you-are-hero/" target="_blank">
           <img src="{% get_static_prefix %}/img/sponsors/karlsruhe.png"/>
         </a>
       </div>
       <div class="sponsor">
         <h1>Gef&ouml;rdert durch</h1>
-        <a href="https://youarehero.net/blog/2012/10/17/you-are-hero-gewinnt-forderpreis-der-heinrich-hertz-gesellschaft/">
+        <a href="https://youarehero.net/blog/2012/10/17/you-are-hero-gewinnt-forderpreis-der-heinrich-hertz-gesellschaft/" target="_blank">
           <img src="{% get_static_prefix %}/img/sponsors/hhg.png"/>
         </a>
       </div>
       <div class="sponsor">
         <h1>Gef&ouml;rdert durch</h1>
-        <a href="https://youarehero.net/blog/2013/05/06/you-are-hero-gewinnt-preis-des-rotary-clubs-karlsruhe/">
+        <a href="https://youarehero.net/blog/2013/05/06/you-are-hero-gewinnt-preis-des-rotary-clubs-karlsruhe/" target="_blank">
           <img src="{% get_static_prefix %}/img/sponsors/rotary.png"/>
         </a>
       </div>

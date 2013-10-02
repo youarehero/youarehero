@@ -1,0 +1,57 @@
+{% load static %}
+{% load url from future %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var $container = $('#article-container');
+            var $articles = $container.children('.box-image');
+            var length = $articles.length;
+            var $active_article = $container.children().filter(':visible');
+            var position = $active_article.data('position');
+
+            $articles.hide().removeClass('hidden');
+            $active_article.show();
+
+            var updateArticles = function(pos) {
+                if (pos != position) {
+                    position = pos;
+                    $active_article = $container.children().filter('[data-position=' + position + ']');
+                    console.debug($active_article);
+                    $articles.hide();
+                    $active_article.show();
+                    $('#article-left-arrow, #article-right-arrow').removeClass('disabled');
+                    if (position == 1) {
+                        $('#article-left-arrow').addClass('disabled');
+                    }
+                    if (position == length) {
+                        $('#article-right-arrow').addClass('disabled');
+                    }
+                }
+            };
+
+            $('#content').on('click', '#article-left-arrow', function(e) {
+                if (position > 1) {
+                    var pos = position - 1;
+                    updateArticles(pos);
+                }
+            });
+            $('#content').on('click', '#article-right-arrow', function(e) {
+                if (position < length) {
+                    var pos = position + 1;
+                    updateArticles(pos);
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+<div class="row vertical-offset" style="position: relative;">
+    <div id="article-left-arrow"><i class="icon-chevron-left"></i></div>
+    <div id="article-right-arrow" class="disabled"><i class="icon-chevron-right"></i></div>
+    <div id="article-container" class="col-xs-12">
+        {% include "herobase/articles/1.inc.html" %}
+        {% include "herobase/articles/2.inc.html" %}
+        {% include "herobase/articles/3.inc.html" %}
+    </div>
+</div>

@@ -228,8 +228,8 @@ def hero_home_view(request, template='herobase/hero_home.html'):
         request,
         template,
         {
-            'notifications': Notification.for_user(user),
-            'messages': Message.latest_for_user(user)
+            'notifications': [n for n in Notification.for_user(user)[:10] if not n.read],
+            'messages': Message.latest_for_user(user)[:10]
         })
 
 
@@ -246,7 +246,7 @@ def quest_my(request):
         done=False
     ).filter(
         created_q | joined_q
-    ).order_by('-created').select_related('owner', 'owner__profile')
+    ).order_by('-created').distinct().select_related('owner', 'owner__profile')
 
     return render(request, template, {'quests': quests})
 
