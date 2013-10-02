@@ -4888,6 +4888,9 @@ button {
   border: none;
   background: transparent;
 }
+.box-footer {
+  text-align: center;
+}
 .details {
   font-size: 14px;
   color: #333333;

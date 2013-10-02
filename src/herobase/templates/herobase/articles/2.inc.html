@@ -1,7 +1,7 @@
 {% load static %}
 {% load url from future %}
 <div class="box-image hidden" data-position="2">
-    <div class="image" style="background-image: url({% get_static_prefix %}img/Picture-Newspaper.png);"></div>
+    <div class="image" style="background-image: url({% get_static_prefix %}img/articles/article2.png);"></div>
     <h1 class="header">Großer FREEZE am Ludwigsplatz!</h1>
     <h5 class="subheader">Anonyma hat<br/>zugeschlagen.</h5>
     <p class="text">
@@ -15,7 +15,9 @@
         <div class="box-floating">
             <h1>Helden<br/>bedarf</h1>
             <p>Erfahre mehr, <a href="{% url "registration_register" %}">registriere</a> dich jetzt und beginne noch heute mit dem Spiel!</p>
-            <div class="box-footer icon-yah-hand-down icon-2x"></div>
+            <div class="box-footer">
+                <a href="#yah-ist-ein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>
+            </div>
         </div>
     {% endif %}
 </div>
