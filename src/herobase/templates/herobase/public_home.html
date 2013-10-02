@@ -4,39 +4,8 @@
 {% load like_button %}
 
 
-{% block javascript %}
-    <script type="text/javascript">
-        $('body').on('click' , '#video, #blog, #about', function(e) {
-            //$(this).addClass('hover');
-{#            console.debug($(this));#}
-{#            if ($(e.target).is('a')) {#}
-{#                return;#}
-{#            } else {#}
-{#                $('.box-buttons-bottom a', this).click();#}
-{#            }#}
-            if ($(e.target).is('a') || $(e.target).parent().is('a')) {
-                return
-            }
-            e.preventDefault();
-            var $box = $(e.target).closest('.box');
-            var $link = $box.find('.box-buttons-bottom a');
-            var url = $link.attr('href');
-            if (url !== undefined) {
-                if ($link.attr('target') == '_blank') {
-                    window.open(url);
-                } else {
-                    window.location.href = url;
-                }
-            }
-        });
-{#        $('body').on('blur', '.box', function(e) {#}
-{#            $(this).removeClass('hover');#}
-{#        });#}
-    </script>
-{% endblock %}
-
 {% block content %}
-    {% include "herobase/article_imagerow.html" %}
+    {% include "herobase/articles/articles.inc.html" %}
 
     <div class="row vertical-offset">
         <div class="col-md-4">

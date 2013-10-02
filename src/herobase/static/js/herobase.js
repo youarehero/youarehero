@@ -45,4 +45,7 @@ $(document).ready(function() {
              }
         }, 'json');
     });
+
+    // Article Arrows on Mainpage
+
 });

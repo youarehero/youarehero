@@ -1357,3 +1357,25 @@ button {
 .disabled {
   color: rgba(255,255,255,0.6);
 }
+
+// Article Arrows
+#article-left-arrow,
+#article-right-arrow{
+  font-size: 100px;
+  position: absolute;
+  top: 0px;
+  &:hover {
+    color: red;
+    cursor: pointer;
+    &.disabled {
+      color: rgba(255, 255, 255, 0.6);
+      cursor: not-allowed;
+    }
+  }
+}
+#article-left-arrow {
+  left: -60px;
+}
+#article-right-arrow {
+  right: -60px;
+}

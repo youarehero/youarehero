@@ -1,0 +1,29 @@
+{% load static %}
+{% load url from future %}
+<div class="box-image" data-position="3">
+    <div class="image" style="background-image: url({% get_static_prefix %}img/Picture-Newspaper.png);"></div>
+    <h1 class="header">Großer Schock im Hauptquartier!</h1>
+    <h5 class="subheader">Anonyma schlägt zu!</h5>
+    <p class="text">
+        Am 28.09. betrat Wasteprincess, eine Karlsruher Heldin, das Helden-hauptquartier und erlitt einen kleinen Schock,
+        als sie Zeugin eines zuvor erfolgten Einbruchs durch Anonyma wurde.
+        <br/>
+
+        Vor einigen Wochen hatte Prof. Dr. Dr. Entropius in seine inzwischen gestohlene Zeitstoppmaschine einen Tracker
+        eingebaut, der ihm Standortdaten &uuml;bermitteln kann.
+        Diese Daten waren im Helden-hauptquartier ausgewertet und auf Kartenmaterial übertragen worden.
+        <br/>
+
+        Es stellt sich heraus, dass Anonyma von der Datenübertragung Wind bekam und bei ihrem Einbruch nicht nur den
+        Computer besch&auml;digte, sondern auch die Karte zerriss.
+        Die Reste werden gerade von den Helden zusammengetragen und müssen nun so gut es geht
+        <a href="/quest/165/">interpretiert werden</a>.
+    </p>
+    {% if not request.user.is_authenticated %}
+        <div class="box-floating">
+            <h1>Helden<br/>bedarf</h1>
+            <p>Erfahre mehr, <a href="{% url "registration_register" %}">registriere</a> dich jetzt und beginne noch heute mit dem Spiel!</p>
+            <div class="box-footer icon-yah-hand-down icon-2x"></div>
+        </div>
+    {% endif %}
+</div>
