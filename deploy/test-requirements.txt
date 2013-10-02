@@ -8,3 +8,4 @@ pygments==1.6
 webtest
 django-webtest
 django_dynamic_fixture
+mock
