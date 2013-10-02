@@ -13,7 +13,7 @@
                         <span class="details"><i class="icon-map-marker"></i> {{ quest.address }}</span>
                     {% endif %}
                     <br>
-                    {% with date=quest.expiration_date %}
+                    {% with date=quest.start_date %}
                         {% if date %}
                             <span class="details"><i class="icon-calendar"></i> {{ date }}</span>
                         {% else %}
