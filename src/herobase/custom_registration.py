@@ -44,10 +44,10 @@ class Backend(object):
             site
         )
 
-        profile = UserProfile(
+        profile, created = UserProfile.objects.get_or_create(
             user=new_user,
-            date_of_birth=kwargs['date_of_birth']
         )
+        profile.date_of_birth = kwargs['date_of_birth']
         profile.save()
 
         signals.user_registered.send(sender=self.__class__,

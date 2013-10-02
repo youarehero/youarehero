@@ -9,7 +9,7 @@
       <p>{{ a.user.username }}</p>
     </a>
     <div class="buttons">
-        <form action="{% url "owner_update_hero" quest.pk a.user.pk %}" method="post">
+        <form id="owner_accept_{{ a.user.pk }}" action="{% url "owner_update_hero" quest.pk a.user.pk %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="action" value="accept">
             <button type="submit" name="action_btn"
@@ -17,7 +17,7 @@
                 <i class="icon-ok"></i>
             </button>
         </form>
-        <form action="{% url "owner_update_hero" quest.pk a.user.pk %}" method="post">
+        <form id="owner_reject_{{ a.user.pk }}" action="{% url "owner_update_hero" quest.pk a.user.pk %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="action" value="reject">
             <button type="submit" name="action_btn"

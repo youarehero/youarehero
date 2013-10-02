@@ -56,7 +56,7 @@ class NotificationTypeBase(object):
         return settings.STATIC_URL + 'heronotification/notification.png'
 
     def send_notification_mail(self, user, target):
-        dict = {
+        context = {
             'notification': self,
             'user': user,
             'target': target,
@@ -64,11 +64,12 @@ class NotificationTypeBase(object):
         }
         template_base = 'heronotification/mail/{0}'.format(type(self).__name__)
         try:
-            subject = render_to_string(template_base + '.subject', dict).strip()
-            text = render_to_string(template_base + '.txt', dict)
+            subject = render_to_string(template_base + '.subject', context).strip()
+            text = render_to_string(template_base + '.txt', context)
             user.email_user(subject, text)
         except TemplateDoesNotExist:
-            logger.warning('template for {0} notification mail not found'.format(type(self).__name__))
+            logger.warning('template for %s notification mail not found: %s',
+                           type(self).__name__, template_base)
 
 
 class hero_has_applied(NotificationTypeBase):
@@ -102,6 +103,21 @@ class hero_has_cancelled(NotificationTypeBase):
             'user': escape(notification.target.user.username),
             'title': escape(notification.target.quest.title),
             })
+
+    @classmethod
+    def get_image(cls, notification):
+        return notification.target.user.profile.avatar_thumbnail_40
+
+class hero_has_joined(NotificationTypeBase):
+    type_id = 3
+    target_model = Adventure
+
+    @classmethod
+    def get_text(cls, notification):
+        return mark_safe(_(u'<strong>%(user)s</strong> has joined your quest <strong>%(title)s</strong>.') % {
+            'user': escape(notification.target.user.username),
+            'title': escape(notification.target.quest.title),
+        })
 
     @classmethod
     def get_image(cls, notification):
@@ -281,7 +297,10 @@ class Notification(models.Model):
             raise ValueError("Not a valid target instance for that notification type")
 
         content_type = ContentType.objects.get_for_model(target)
-        notification, created = Notification.objects.get_or_create(content_type=content_type, object_id=target.pk, type_id=type_id, user=user)
+        notification, created = Notification.objects.get_or_create(content_type=content_type,
+                                                                   object_id=target.pk,
+                                                                   type_id=type_id,
+                                                                   user=user)
         if not created:
             notification.read = None
             notification.dismissed = None

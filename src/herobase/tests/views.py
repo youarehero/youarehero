@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+import datetime
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import Client
 from django.test.utils import override_settings
 from django.utils import unittest
-from herobase.models import Quest
+from django_dynamic_fixture import G
+from django_webtest import WebTest
+from herobase.models import Quest, UserProfile
 from factories import create_adventure, create_quest, create_user
 
 class UnauthenticatedIntegrationTest(TestCase):
@@ -31,6 +35,58 @@ class UnauthenticatedIntegrationTest(TestCase):
         #  testman.get_profile().save()
         # response = client.get(reverse('leader-board'))
         # self.assertEqual(response., testman.username)
+
+class QuestIntegrationTests(WebTest):
+    def test_quest_create(self):
+        owner = G(User)
+        create_page = self.app.get(reverse("quest_create"), user=owner)
+
+        form = create_page.forms[0]
+        form['title'] = 'A quest'
+        form['description'] = 'do things'
+        form['max_heroes'] = '3'
+        form['remote'] = 'False'
+        form['time_effort'] = '3'
+        form['address'] = 'Karlsruhe'
+
+        response = form.submit()
+        quest = Quest.objects.get(title='A quest')
+        self.assertRedirects(response, reverse("quest_detail", args=(quest.pk, )))
+
+    def test_quest_list(self):
+        quest = G(Quest, title="ALALA")
+        list_page = self.app.get(reverse("quest_list"))
+        self.assertContains(list_page, "ALALA")
+
+    def test_quest_apply(self):
+        quest = G(Quest, title="Awesome Task")
+        hero = G(User)
+        assert quest.adventure_state(hero).can_apply
+
+        quest_url = reverse("quest_detail", args=(quest.pk, ))
+        detail_page = self.app.get(quest_url, user=hero)
+        detail_page.mustcontain("Awesome Task", "Bewerben")
+
+        response = detail_page.forms['hero-apply'].submit()
+        self.assertRedirects(response, quest_url)
+
+        quest = Quest.objects.get(pk=quest.pk)
+        assert quest.adventure_state(hero).can_accept
+
+    def test_quest_accept_application(self):
+        quest = G(Quest, title="Awesome Task")
+        hero = G(User, username='einheld')
+
+        quest.adventure_state(hero).apply()
+
+        quest_url = reverse("quest_detail", args=(quest.pk, ))
+        detail_page = self.app.get(quest_url, user=quest.owner)
+        detail_page.mustcontain("Awesome Task", hero.username)
+
+        response = detail_page.forms['owner_accept_%s' % hero.pk].submit()
+        self.assertRedirects(response, quest_url)
+        self.assertIn(hero, [a.user for a in quest.accepted_adventures])
+
 
 @override_settings(PASSWORD_HASHERS=('herobase.utils.PlainTextPasswordHasher', ))
 class AuthenticatedIntegrationTest(TestCase):

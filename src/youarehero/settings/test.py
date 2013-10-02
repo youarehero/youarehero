@@ -6,3 +6,5 @@ DATABASES = {
         'NAME': os.path.join(PROJECT_ROOT, 'test.sqlite')
     }
 }
+
+SOUTH_TESTS_MIGRATE = False

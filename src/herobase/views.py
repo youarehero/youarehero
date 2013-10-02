@@ -23,7 +23,6 @@ from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView, UpdateView
 
-from herobase import quest_livecycle
 from heronotification.models import Notification
 from heromessage.models import Message
 from herorecommend.forms import UserSkillEditForm
@@ -77,15 +76,19 @@ class QuestUpdateView(UpdateView):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         if not self.object.owner == request.user:
-            return HttpResponseForbidden(
-                _("Only the owner can edit the quest."))
+            return HttpResponseForbidden(_("Only the owner can edit the quest."))
+        if self.object.edit_window_expired:
+            return HttpResponseForbidden(_("You can only edit quests for %s minutes.") %
+                                         Quest.EDIT_WINDOW_MINUTES)
         return super(QuestUpdateView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         if not self.object.owner == request.user:
-            return HttpResponseForbidden(
-                _("Only the owner can edit the quest."))
+            return HttpResponseForbidden(_("Only the owner can edit the quest."))
+        if self.object.edit_window_expired:
+            return HttpResponseForbidden(_("You can only edit quests for %s minutes.") %
+                                         Quest.EDIT_WINDOW_MINUTES)
         return super(QuestUpdateView, self).post(request, *args, **kwargs)
 
 
@@ -135,10 +138,11 @@ def quest_detail_view(request, quest_id):
                 user_id=request.user.pk,
                 canceled=False)
         except Adventure.DoesNotExist:
-            adventure = None
+            adventure = Adventure()
+            adventure.user = request.user
+            adventure.quest = quest
     else:
         adventure = None
-
     if is_owner:
         butler_text = _(u'Dies ist ihre Quest.')
     elif not adventure:
@@ -182,7 +186,7 @@ def quest_detail_view(request, quest_id):
         'butler_text': butler_text,
         'is_owner': is_owner,
         'comments': comments,
-        'request_user_adventure': adventure,
+        'adventure': adventure,
         'quest_url': reverse('quest_detail', args=(quest.pk,)),
     }
     return render(request, "herobase/quest/detail.html", context)
@@ -312,13 +316,13 @@ def owner_update_quest(request, quest_id):
     action = request.POST.get('action')
     try:
         if action == 'start':
-            quest_livecycle.owner_quest_start(quest)
+            quest.state.start()
         elif action == 'cancel':
-            quest_livecycle.owner_quest_cancel(quest)
+            quest.state.cancel()
         elif action == 'done':
-            quest_livecycle.owner_quest_done(quest)
+            quest.state.done()
         elif action == 'accept_all':
-            quest_livecycle.owner_accept_all(quest)
+            quest.state.accept_all()
         else:
             raise ValidationError('No known action specified')
     except ValidationError as e:
@@ -338,9 +342,9 @@ def owner_update_hero(request, quest_id, hero_id):
     action = request.POST.get('action')
     try:
         if action == 'accept':
-            quest_livecycle.owner_hero_accept(quest, hero)
+            quest.adventure_state(hero).accept()
         elif action == 'reject':
-            quest_livecycle.owner_hero_reject(quest, hero)
+            quest.adventure_state(hero).reject()
         else:
             raise ValidationError('No known action specified')
     except ValidationError as e:
@@ -368,9 +372,9 @@ def hero_update_quest(request, quest_id):
     action = request.POST.get('action')
     try:
         if action == 'apply':
-            quest_livecycle.hero_quest_apply(quest, request.user)
+            quest.adventure_state(request.user).apply()
         elif action == 'cancel':
-            quest_livecycle.hero_quest_cancel(quest, request.user)
+            quest.adventure_state(request.user).cancel()
         else:
             raise ValidationError('No known action specified')
     except ValidationError as e:
