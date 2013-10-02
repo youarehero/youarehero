@@ -69,7 +69,24 @@ class QuestIntegrationTests(WebTest):
 
         response = detail_page.forms['hero-apply'].submit()
         self.assertRedirects(response, quest_url)
-        self.assertIn('hero-cancel', response.follow().forms)
+
+        quest = Quest.objects.get(pk=quest.pk)
+        assert quest.adventure_state(hero).can_accept
+
+    def test_quest_accept_application(self):
+        quest = G(Quest, title="Awesome Task")
+        hero = G(User, username='einheld')
+
+        quest.adventure_state(hero).apply()
+
+        quest_url = reverse("quest_detail", args=(quest.pk, ))
+        detail_page = self.app.get(quest_url, user=quest.owner)
+        detail_page.mustcontain("Awesome Task", hero.username)
+
+        response = detail_page.forms['owner_accept_%s' % hero.pk].submit()
+        self.assertRedirects(response, quest_url)
+        self.assertIn(hero, [a.user for a in quest.accepted_adventures])
+
 
 @override_settings(PASSWORD_HASHERS=('herobase.utils.PlainTextPasswordHasher', ))
 class AuthenticatedIntegrationTest(TestCase):
