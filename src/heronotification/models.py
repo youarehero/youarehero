@@ -56,7 +56,7 @@ class NotificationTypeBase(object):
         return settings.STATIC_URL + 'heronotification/notification.png'
 
     def send_notification_mail(self, user, target):
-        dict = {
+        context = {
             'notification': self,
             'user': user,
             'target': target,
@@ -64,11 +64,12 @@ class NotificationTypeBase(object):
         }
         template_base = 'heronotification/mail/{0}'.format(type(self).__name__)
         try:
-            subject = render_to_string(template_base + '.subject', dict).strip()
-            text = render_to_string(template_base + '.txt', dict)
+            subject = render_to_string(template_base + '.subject', context).strip()
+            text = render_to_string(template_base + '.txt', context)
             user.email_user(subject, text)
         except TemplateDoesNotExist:
-            logger.warning('template for {0} notification mail not found'.format(type(self).__name__))
+            logger.warning('template for %s notification mail not found: %s',
+                           type(self).__name__, template_base)
 
 
 class hero_has_applied(NotificationTypeBase):

@@ -223,7 +223,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'simple': {
-            'format': '%(levelname)s %(message)s'
+            'format': '%(levelname)s - %(funcName)s: %(message)s'
         },
         'precise': {
             'format': '[%(levelname)s %(asctime)s %(process)d %(thread)d] [%(name)s %(funcName)s] %(message)s'
@@ -258,6 +258,12 @@ LOGGING = {
         },
     },
 }
+
+for app in TEST_APPS:
+    LOGGING['loggers'][app] = {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+    }
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'd61xtu1&-efpp(ym-oy6h+3rk^m_l0(5qqw=(3h7u^a(p+ofp9'

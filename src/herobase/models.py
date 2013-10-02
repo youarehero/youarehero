@@ -445,7 +445,8 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True,
         null=True)
     sex = models.IntegerField(choices=SEX_CHOICES, blank=True, null=True, verbose_name=_(u"sex"))
-    date_of_birth = models.DateField()
+
+    date_of_birth = models.DateField(default=date.fromtimestamp(0))
 
     team = models.CharField(max_length=255, default="", blank=True)
 
@@ -548,7 +549,6 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
         return is_legal_adult(self.date_of_birth)
 
 
-
 class AbuseReport(models.Model):
     TYPE_NOT_SET = 0
     TYPE_SPAM = 1
@@ -580,15 +580,15 @@ user_activated.connect(login_on_activation)
 
 SYSTEM_USER_NAME = "YouAreHero"
 
+
 def get_system_user():
     """Return an unique system-user. Creates one if not existing."""
     user, created = User.objects.get_or_create(username=SYSTEM_USER_NAME)
     return user
 
+
 def get_dummy_user():
     return UserProfile(user=User(username="dummy"))
-
-
 
 
 def experience_for_comment(sender, comment, request, **kwargs):
@@ -598,3 +598,10 @@ def experience_for_comment(sender, comment, request, **kwargs):
         profile.save()
 
 comment_was_posted.connect(experience_for_comment)
+
+
+def create_user_profile(instance, raw, created, using, **kwargs):
+    if created:
+        profile, created = UserProfile.objects.using(using).get_or_create(user=instance)
+
+post_save.connect(create_user_profile, sender=User)

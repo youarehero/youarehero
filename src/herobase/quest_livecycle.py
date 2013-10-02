@@ -148,7 +148,7 @@ class AdventureState(State):
             return "Can only apply once."
         if self.quest.adventures.filter(user=self.hero, accepted=True, canceled=False).exists():
             return "Can not apply after being accepted."
-        if not self.quest.owner.trusted and not self.hero.profile.is_legal_adult():
+        if not self.quest.owner.get_profile().trusted and not self.hero.profile.is_legal_adult():
             return "Minors cannot apply for untrusted users' quests"
     can_apply = there_are_no(apply_errors)
 
