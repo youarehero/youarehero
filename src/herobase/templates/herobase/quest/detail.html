@@ -27,11 +27,12 @@
         {% include "herobase/quest/quest_box_footer.html" %}
       </div>
       {% if is_owner %}
-        {% if not quest.canceled and not quest.done %}
-        <a class="box-button" href="{% url "quest_update" quest.pk %}" data-toggle="tooltip" data-title="Bearbeiten"><i class="icon-pencil"></i></a>
+        {% if not quest.edit_window_expired %}
+            <a class="box-button" href="{% url "quest_update" quest.pk %}" data-toggle="tooltip"
+               data-title="Bearbeiten"><i class="icon-pencil"></i></a>
         {% endif %}
 
-        {% if quest.open %}
+        {% if quest.state.can_cancel %}
         <form method="post" action="{% url "owner_update_quest" quest.pk %}">
             {% csrf_token %}
             <input type="hidden" name="action" value="cancel">
@@ -41,7 +42,7 @@
         </form>
         {% endif %}
 
-        {% if quest.can_start %}
+        {% if quest.state.can_start %}
         <form method="post" action="{% url "owner_update_quest" quest.pk %}">
           {% csrf_token %}
           <input type="hidden" name="action" value="start">
@@ -49,7 +50,8 @@
             <i class="icon-ok"></i>
           </button>
         </form>
-        {% elif quest.started and not quest.done %}
+        {% endif %}
+        {% if quest.state.can_done %}
             <form method="post" action="{% url "owner_update_quest" quest.pk %}">
                 {% csrf_token %}
                 <input type="hidden" name="action" value="done">
@@ -58,20 +60,20 @@
                 </button>
             </form>
         {% endif %}
-      {% else %}
-        {% if user.is_authenticated %}
+
+        {% if adventure.state.can_cancel %}
         <form id="hero-cancel" method="POST" action="{% url "hero_update_quest" quest.pk %}">
             {% csrf_token %}
-            {% if request_user_adventure and not quest.canceled and not request_user_adventure.rejected %}
               <input type="hidden" name="action" value="cancel">
               <button class="box-button" type="submit" name="action_btn" value="{% trans "Cancel" %}" data-toggle="tooltip" data-title="Abbrechen">
                   <i class="icon-remove"></i>
               </button>
-            {% endif %}
         </form>
         {% endif %}
         {% message_user quest.owner %}
-        {% if not request_user_adventure and not quest.has_expired %}
+
+        {% if adventure.state.can_apply %}
+            {# TODO : adventure state might not work with not authenticated user #}
             {% if user.is_authenticated %}
                 <form class="hfill" method="POST" action="{% url "hero_update_quest" quest.pk %}">
                     {% csrf_token %}
