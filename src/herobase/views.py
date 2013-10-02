@@ -242,7 +242,7 @@ def quest_my(request):
         done=False
     ).filter(
         created_q | joined_q
-    ).order_by('-created').select_related('owner', 'owner__profile')
+    ).order_by('-created').distinct().select_related('owner', 'owner__profile')
 
     return render(request, template, {'quests': quests})
 
