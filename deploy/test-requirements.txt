@@ -6,4 +6,4 @@ django-coverage==1.2.2
 pylint==0.25.1
 pygments==1.6
 django-webtest
-django_dynamic_fixtures
+django_dynamic_fixture
