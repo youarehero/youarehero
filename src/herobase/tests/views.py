@@ -10,6 +10,7 @@ from django.utils import unittest
 from django_dynamic_fixture import G
 from django_webtest import WebTest
 import re
+import registration
 from registration.models import RegistrationProfile
 import mock
 
@@ -56,6 +57,7 @@ class RegistrationTest(WebTest):
         with mock.patch("django.contrib.auth.models.User.email_user") as send_mail:
             response = registration_form.submit()
 
+        self.assertRedirects(response, reverse("registration_below_minimum_age"))
         self.assertFalse(RegistrationProfile.objects.filter(user__username=username).exists())
 
     def test_adult_can_register(self, ):

@@ -1,9 +1,9 @@
-Django==1.4.4
-South==0.7.6
+Django==1.5.4
+South
 -e git://github.com/voidus/django-autocomplete-light.git@master#egg=django-autocomplete-light
 django-crispy-forms==1.1.3
-django-extensions==0.8
-django-registration==0.8
+django-extensions
+django-registration
 easy-thumbnails==1.0.3
 Pillow==1.7.7
 -e git://github.com/alex/django-filter.git#egg=django-filter
@@ -12,4 +12,3 @@ django-activelink
 django-like-button
 pytz==2013b
 docopt==0.6.1
-django-dynamic-fixture==1.6.5
