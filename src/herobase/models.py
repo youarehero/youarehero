@@ -173,13 +173,11 @@ class Adventure(models.Model):
             self.canceled_time = now()
         return super(Adventure, self).save(*args, **kwargs)
 
-
     def __unicode__(self):
         return '%s - %s' % (self.quest.title, self.user.username)
 
     def get_absolute_url(self):
         return self.quest.get_absolute_url()
-
 
     def get_state_display(self):
         if self.canceled:
@@ -205,9 +203,22 @@ class QuestManager(models.Manager):
     def open(self):
         return self.get_query_set().open()
 
+    def start_timer_set_but_not_started(self):
+        return self.get_query_set().filter(
+            start_trigger=Quest.START_TIMER,
+            start_date__lte=date.today(),
+            canceled=False,
+            done=False,
+            started=False,
+        )
+
+    def update_start_timer_set_but_not_started(self):
+        for quest in self.start_timer_set_but_not_started():
+            quest.state.force_start()
+
     def expired_but_not_done(self):
         return self.get_query_set().filter(
-            completes_upon_expiration=True,
+            end_trigger=Quest.END_TIMER,
             expiration_date__lt=date.today(),
             canceled=False,
             done=False,
@@ -215,7 +226,8 @@ class QuestManager(models.Manager):
 
     def update_expired_but_not_done(self):
         for quest in self.expired_but_not_done():
-            quest.state.done()
+            quest.state.force_done()
+
 
 
 class Quest(LocationMixin, models.Model):
@@ -227,12 +239,6 @@ class Quest(LocationMixin, models.Model):
     description = models.TextField(verbose_name=_(u"Description"),
                                    help_text=_(u"A short description of what "
                                                u"this quest is about."))
-
-    completes_upon_expiration = models.BooleanField(
-        default=False,
-        verbose_name="automatisch Abschließen",
-        help_text="Die Quest automatisch als abgeschlossen markieren wenn das Ablaufdatum um ist."
-    )
 
     START_MANUAL = 0
     START_TIMER = 1
@@ -360,21 +366,6 @@ class Quest(LocationMixin, models.Model):
         """String representation"""
         return self.title
 
-    @property
-    def accepted_adventures(self):
-        return self.adventures.filter(
-            accepted=True,
-            canceled=False,
-            rejected=False
-        )
-
-    @property
-    def unaccepted_adventures(self):
-        return self.adventures.filter(
-            accepted=False,
-            canceled=False,
-            rejected=False
-        )
 
 class AvatarImageMixin(models.Model):
     avatar_storage = FileSystemStorage(location=settings.ASSET_ROOT)

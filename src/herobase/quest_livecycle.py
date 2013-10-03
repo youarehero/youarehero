@@ -50,16 +50,28 @@ class QuestState(State):
             adventure.state.accept()
 
     def start_errors(self):
-        if self.quest.adventures.accepted().count() < self.quest.min_heroes:
-            return "Can't start quest if there aren't enough heroes."
+        if self.quest.started:
+            return "Can't start a started quest."
         if self.quest.canceled:
             return "Can't start a canceled quest."
         if self.quest.done:
             return "Can't start a done quest."
+        if self.quest.adventures.accepted().count() < self.quest.min_heroes:
+            return "Can't start quest if there aren't enough heroes."
     can_start = there_are_no(start_errors)
 
-    def start(self):  # <-  quest
+    def start(self):
         self.assert_no(self.start_errors())
+
+        self.quest.started = True
+        self.quest.save()
+
+        for adventure in self.quest.adventures.accepted():
+            notify.quest_started(adventure.user, self.quest)
+
+    def force_start(self):
+        if self.can_start():
+            return self.start()
 
         self.quest.started = True
         self.quest.save()
@@ -109,6 +121,17 @@ class QuestState(State):
             adventure.user.get_profile().experience += QUEST_EXPERIENCE
             adventure.user.get_profile().save()
 
+    def force_done(self):
+        """Used for automatic time based ending of quests."""
+
+        if self.can_done():
+            return self.done()
+        else:
+            # we can not set that quest to done regularly, so we force it
+            # nobody gets any experience and we might need a special notification for this
+            self.quest.done = True
+            self.quest.save()
+
 
 class AdventureState(State):
     def __init__(self, quest, hero, adventure=None):
@@ -137,7 +160,13 @@ class AdventureState(State):
 
         # update open state
         self.quest.save()
+
         notify.hero_accepted(self.adventure.user, self.quest)
+
+        # trigger auto-start after join
+        if (self.quest.start_trigger == self.quest.START_ENOUGH_HEROES
+                and self.quest.state.can_start()):
+            self.quest.state.start()
 
         return _("You have accepted %s." % self.hero.username)
 
@@ -168,10 +197,7 @@ class AdventureState(State):
             self.adventure.save()
 
         if self.quest.auto_accept:
-            self.adventure.accepted = True
-            self.adventure.accepted_time = datetime.now()
-            self.adventure.save()
-            notify.hero_accepted(self.hero, self.quest)
+            self.accept()
         else:
             notify.hero_has_joined(self.quest.owner, self.adventure)
 
@@ -179,7 +205,7 @@ class AdventureState(State):
         if not self.quest.open:
             return "Can't reject heroes when a quest isn't open."
         if not self.quest.adventures.filter(user=self.hero, accepted=False, rejected=False,
-                                         canceled=False).exists():
+                                            canceled=False).exists():
             return "Can't reject a hero who is not applying."
     can_reject = there_are_no(reject_errors)
 
