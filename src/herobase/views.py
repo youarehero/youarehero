@@ -209,23 +209,6 @@ def home_view(request):
     return response
 
 
-def press(request):
-    """static you are hero press view."""
-    return render(request, "herobase/press.html")
-
-
-def dosanddonts(request):
-    """static you are hero dos and don'ts view."""
-    return render(request, "herobase/dosanddonts.html")
-
-def imprint(request):
-    """static you are hero imprint view."""
-    return render(request, "herobase/imprint.html")
-
-def manifesto(request):
-    """static you are hero manifesto view."""
-    return render(request, "herobase/manifesto.html")
-
 @login_required
 def hero_home_view(request, template='herobase/hero_home.html'):
     """the hero home is only visible for authenticated heros."""
@@ -527,19 +510,6 @@ def team(request, team_name):
             'team_name': team_name,
             'users': users
         })
-
-
-def below_minimum_age(request):
-    return render(request, "herobase/below_minimum_age.html")
-
-def arg(request):
-    return render(request, "herobase/arg.html")
-
-def help(request):
-    return render(request, "herobase/help.html")
-
-def hotline(request):
-    return render(request, "herobase/hotline.html")
 
 
 class AgeRequiredRegistrationView(RegistrationView):
