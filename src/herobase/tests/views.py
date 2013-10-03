@@ -146,7 +146,7 @@ class QuestTest(WebTest):
 
         response = detail_page.forms['owner_accept_%s' % hero.pk].submit()
         self.assertRedirects(response, quest_url)
-        self.assertIn(hero, [a.user for a in quest.accepted_adventures])
+        self.assertIn(hero, [a.user for a in quest.adventures.accepted()])
 
 
 @override_settings(PASSWORD_HASHERS=('herobase.utils.PlainTextPasswordHasher', ))
