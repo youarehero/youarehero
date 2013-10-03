@@ -259,7 +259,7 @@ class Quest(LocationMixin, models.Model):
     start_trigger = models.IntegerField(choices=START_CHOICES, default=START_MANUAL)
     end_trigger = models.IntegerField(choices=END_CHOICES, default=END_MANUAL)
 
-    start_date = models.DateTimeField(default=now)
+    start_date = models.DateTimeField(blank=True, null=True)
     expiration_date = models.DateTimeField(default=lambda: now() + timedelta(days=30),
                                            verbose_name=_(u"Expiration date"),
                                            help_text=_(u"Until which date will "
