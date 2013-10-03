@@ -176,12 +176,17 @@ class AuthenticatedIntegrationTest(TestCase):
             'title': 'title',
             'description': 'description',
             'hero_class': 1,
+            'min_heroes': 1,
+            'start_trigger': Quest.START_MANUAL,
+            'end_trigger': Quest.END_MANUAL,
             'max_heroes': 1,
             'remote': True,
             'time_effort': 1,
-            'expiration_date': '11.11.2013',
+            'start_date': '11.11.2013',
+            'expiration_date': '11.11.2014',
             'address': 'address',
-            })
+        })
+        print response
         self.assertTrue(Quest.objects.filter(title='title', owner=self.user).exists())
 
     def test_quest_list(self):

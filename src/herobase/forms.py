@@ -48,11 +48,15 @@ class QuestCreateForm(forms.ModelForm):
                         css_class="col-md-6",
                     ),
                     Div(
+                        'min_heroes',
                         'max_heroes',
                         'remote',
                         'time_effort',
                         'address',
+                        'start_date',
                         'expiration_date',
+                        'start_trigger',
+                        'end_trigger',
                         css_class="col-md-6",
                     ),
                     css_class="row",
@@ -69,9 +73,9 @@ class QuestCreateForm(forms.ModelForm):
 
     class Meta:
         model = Quest
-        fields = ('title', 'description', 'max_heroes', 'address',
-                  'expiration_date', 'remote', 'time_effort',
-
+        fields = ('title', 'description', 'min_heroes', 'max_heroes', 'address',
+                  'start_date', 'expiration_date', 'remote', 'time_effort',
+                  'start_trigger', 'end_trigger'
                   #'latitude', 'longitude', 'location_granularity'
         )
 

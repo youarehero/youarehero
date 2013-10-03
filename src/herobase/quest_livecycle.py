@@ -50,6 +50,8 @@ class QuestState(State):
             adventure.state.accept()
 
     def start_errors(self):
+        if self.quest.started:
+            return "Can't start a started quest."
         if self.quest.canceled:
             return "Can't start a canceled quest."
         if self.quest.done:
