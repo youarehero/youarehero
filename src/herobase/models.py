@@ -59,6 +59,7 @@ AVATAR_IMAGES = filter(
     AVATAR_IMAGES_TRUSTED
 )
 
+
 class Like(models.Model):
     user = models.ForeignKey(User, related_name='likes')
     quest = models.ForeignKey('Quest', related_name='likes')
@@ -76,7 +77,8 @@ class LocationMixin(models.Model):
     LOCATION_GRANULARITY_CITY = 4
     LOCATION_GRANULARITY_UNKNOWN = 5
 
-    location_granularity = models.IntegerField(default=LOCATION_GRANULARITY_NONE,
+    location_granularity = models.IntegerField(
+        default=LOCATION_GRANULARITY_NONE,
         choices=((LOCATION_GRANULARITY_NONE, _(u"no location")),
                  (LOCATION_GRANULARITY_GPS, _(u"GPS")),
                  (LOCATION_GRANULARITY_ADDRESS, _(u"address")),
@@ -89,13 +91,11 @@ class LocationMixin(models.Model):
     def has_location(self):
         return not self.location_granularity == self.LOCATION_GRANULARITY_NONE
 
-    def save(self, force_insert=False, force_update=False, using=None):
+    def save(self, *args, **kwargs):
         if (self.latitude and self.longitude
-            and self.location_granularity == self.LOCATION_GRANULARITY_NONE):
+                and self.location_granularity == self.LOCATION_GRANULARITY_NONE):
             self.location_granularity = self.LOCATION_GRANULARITY_UNKNOWN
-        return super(LocationMixin, self).save(force_insert, force_update,
-            using)
-
+        return super(LocationMixin, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True
@@ -105,10 +105,13 @@ class AdventureQuerySet(QuerySet):
     def applying(self):
         """Show only adventures that have not been canceled."""
         return self.filter(canceled=False, accepted=False, rejected=False)
+
     def accepted(self):
         return self.filter(canceled=False, accepted=True, rejected=False)
+
     def rejected(self):
         return self.filter(canceled=False, accepted=False, rejected=True)
+
     def pending(self):
         return self.filter(canceled=False, accepted=False, rejected=False)
 
@@ -117,15 +120,20 @@ class AdventureManager(models.Manager):
     """Custom Object Manager for Adventures, excluding canceled ones."""
     def get_query_set(self):
         return AdventureQuerySet(model=self.model, using=self._db)
+
     def applying(self):
         """Show only adventures that have not been canceled."""
         return self.get_query_set().applying()
+
     def accepted(self):
         return self.get_query_set().accepted()
+
     def rejected(self):
         return self.get_query_set().rejected()
+
     def pending(self):
         return self.get_query_set().pending()
+
 
 class Adventure(models.Model):
     @property
@@ -229,7 +237,6 @@ class QuestManager(models.Manager):
             quest.state.force_done()
 
 
-
 class Quest(LocationMixin, models.Model):
     """A quest, owned by a user."""
     objects = QuestManager()
@@ -245,7 +252,7 @@ class Quest(LocationMixin, models.Model):
     START_ENOUGH_HEROES = 2
     START_CHOICES = (
         (START_MANUAL, "Manuell"),
-        (START_TIMER, "Mit Timer"),
+        (START_TIMER, "Zum Startzeitpunkt"),
         (START_ENOUGH_HEROES, "Genug Helden"),
     )
 
@@ -253,13 +260,15 @@ class Quest(LocationMixin, models.Model):
     END_TIMER = 1
     END_CHOICES = (
         (END_MANUAL, "Manuell"),
-        (END_TIMER, "Mit Timer"),
+        (END_TIMER, "Zum End-Datum"),
     )
 
-    start_trigger = models.IntegerField(choices=START_CHOICES, default=START_MANUAL)
-    end_trigger = models.IntegerField(choices=END_CHOICES, default=END_MANUAL)
+    start_trigger = models.IntegerField(choices=START_CHOICES, default=START_MANUAL,
+                                        verbose_name=_(u"Quest-Beginn"))
+    end_trigger = models.IntegerField(choices=END_CHOICES, default=END_MANUAL,
+                                      verbose_name=_(u"Quest-Ende"))
 
-    start_date = models.DateTimeField(blank=True, null=True)
+    start_date = models.DateTimeField(blank=True, null=True, verbose_name=_(u"Startzeitpunkt"))
     expiration_date = models.DateTimeField(default=lambda: now() + timedelta(days=30),
                                            verbose_name=_(u"Expiration date"),
                                            help_text=_(u"Until which date will "
