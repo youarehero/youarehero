@@ -20,7 +20,7 @@ class Migration(SchemaMigration):
 
         # Adding field 'Quest.start_date'
         db.add_column(u'herobase_quest', 'start_date',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now),
+                      self.gf('django.db.models.fields.DateTimeField')(blank=True, null=True),
                       keep_default=False)
 
         # Adding field 'Quest.min_heroes'
