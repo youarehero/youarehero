@@ -3,7 +3,7 @@ Willkommen bei you are hero {{ user.username }}!
 
 Bitte klicke auf den Link, um deine Registrierung fertigzustellen.
 {% block activate_link %}
-https://{{ site.domain }}{% url registration.views.activate activation_key=activation_key %}
+https://{{ site.domain }}{% url "registration_activate" activation_key=activation_key %}
 {% endblock %}
 
 Viel Freude mit you are hero,

@@ -19,7 +19,7 @@ from registration.forms import RegistrationFormUniqueEmail
 
 from herobase.models import Quest, UserProfile, AVATAR_IMAGES
 from herobase.widgets import LocationWidget
-
+from herobase.utils import is_minimum_age
 
 
 
@@ -154,6 +154,7 @@ class UserProfilePrivacyEdit(forms.ModelForm):
         model = UserProfile
         fields = ('public_location', )
 
+
 class UserAuthenticationForm(AuthenticationForm):
     """Custom login form."""
     error_messages = AuthenticationForm.error_messages
@@ -194,3 +195,12 @@ class UserAuthenticationForm(AuthenticationForm):
 
     def clean_email(self):
         self.cleaned_data['username'] = self.cleaned_data['email']
+
+
+class DateOfBirthRegistrationForm(RegistrationFormUniqueEmail):
+    username = forms.CharField(
+        max_length=75,
+        widget=forms.TextInput(attrs={'class': 'required'}),
+        label=_("Username")
+    )
+    date_of_birth = forms.DateField(label=_("Date of birth"))

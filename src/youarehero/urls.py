@@ -3,8 +3,11 @@ from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 import django.contrib.auth.views as auth_views
+from django.views.generic import RedirectView
 from herobase.forms import UserAuthenticationForm
 import autocomplete_light
+from herobase.views import AgeRequiredRegistrationView, RedirectToProfileActivationView
+
 autocomplete_light.autodiscover()
 admin.autodiscover()
 
@@ -55,25 +58,32 @@ urlpatterns = patterns(
             'template_name': 'registration/login.html',
             'authentication_form': UserAuthenticationForm},
         name='auth_login'),
-    url(regex=r'^accounts/register/$',
-        view='registration.views.register',
-        kwargs={
-            'backend': 'herobase.custom_registration.Backend'
-        },
-        name='registration_register'),
-    url(regex=r'^accounts/activate/(?P<activation_key>\w+)/$',
-        view='registration.views.activate',
-        kwargs={
-            'backend': 'herobase.custom_registration.Backend',
-            'success_url': '/profile/edit/?first_login=True',
-        },
-        name='registration_activate'),
+    #url(regex=r'^accounts/register/$',
+    #    view='registration.views.register',
+    #    kwargs={
+    #        'backend': 'herobase.custom_registration.Backend'
+    #    },
+    #    name='registration_register'),
+    #url(regex=r'^accounts/activate/(?P<activation_key>\w+)/$',
+    #    view='registration.views.activate',
+    #    kwargs={
+    #        'backend': 'herobase.custom_registration.Backend',
+    #        'success_url': '/profile/edit/?first_login=True',
+    #    },
+    #    name='registration_activate'),
     url(r'^accounts/logout/$',
         auth_views.logout,
         {'template_name': 'registration/logout.html',
          'next_page': '/'},
         name='auth_logout'),
+    url(regex=r'^accounts/register/$',
+        view=AgeRequiredRegistrationView.as_view(),
+        name='registration_register'),
+    url(regex=r'^accounts/activate/(?P<activation_key>\w+)/$',
+        view=RedirectToProfileActivationView.as_view(),
+        name='registration_activate'),
     (r'^accounts/', include('registration.backends.default.urls')),
+
     url(regex=r'^below_minimum_age$',
         view='herobase.views.below_minimum_age',
         name='registration_below_minimum_age'),
@@ -88,8 +98,7 @@ urlpatterns = patterns(
     # misc
 
     url(regex=r'^favicon\.ico$',
-        view='django.views.generic.simple.redirect_to',
-        kwargs={'url': 'static/img/favicon.ico'}),
+        view=RedirectView.as_view(url='static/img/favicon.ico')),
 
     # like_button
 

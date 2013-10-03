@@ -10,7 +10,7 @@ from django.utils.translation import ugettext as _
 
 class PlainTextPasswordHasher(BasePasswordHasher):
     """
-    I am an incredibly insecure password hasher you should *never* use;
+    I am an incredibly insecure algorithm you should *never* use;
     I am only for faster tests.
     """
     algorithm = "plain"

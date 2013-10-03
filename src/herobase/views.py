@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.comments import Comment
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.sites.models import Site, RequestSite
 from django.core.exceptions import ValidationError
 from django.db.models import Q
 from django.utils.translation import ugettext as _
@@ -22,14 +23,19 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView, UpdateView
+from registration.backends.default.views import RegistrationView, ActivationView
+import registration.signals
 
+
+from herobase.utils import is_minimum_age
 from heronotification.models import Notification
 from heromessage.models import Message
 from herorecommend.forms import UserSkillEditForm
 from herobase.forms import (QuestCreateForm, UserProfileEdit,
-                            UserProfilePrivacyEdit, UserAuthenticationForm)
-from herobase.models import Quest, Adventure, Like, CREATE_EXPERIENCE
+                            UserProfilePrivacyEdit, UserAuthenticationForm, DateOfBirthRegistrationForm)
+from herobase.models import Quest, Adventure, Like, CREATE_EXPERIENCE, UserProfile
 from herorecommend.models import MIN_SELECTED_SKILLS
+from registration.models import RegistrationProfile
 
 logger = logging.getLogger('youarehero.herobase')
 
@@ -534,3 +540,43 @@ def help(request):
 
 def hotline(request):
     return render(request, "herobase/hotline.html")
+
+
+class AgeRequiredRegistrationView(RegistrationView):
+    form_class = DateOfBirthRegistrationForm
+
+    def register(self, request, **cleaned_data):
+        username = cleaned_data['username']
+        email = cleaned_data['email']
+        password = cleaned_data['password1']
+        date_of_birth = cleaned_data['date_of_birth']
+        
+        if not is_minimum_age(date_of_birth):
+            return "BELOW_MINIMUM_AGE"
+        
+        if Site._meta.installed:
+            site = Site.objects.get_current()
+        else:
+            site = RequestSite(request)
+        new_user = RegistrationProfile.objects.create_inactive_user(username, email,
+                                                                    password, site)
+        registration.signals.user_registered.send(sender=self.__class__,
+                                     user=new_user,
+                                     request=request)
+
+        profile, created = UserProfile.objects.get_or_create(
+            user=new_user,
+        )
+        profile.date_of_birth = date_of_birth
+        profile.save()
+        return new_user
+
+    def get_success_url(self, request, user):
+        if user == "BELOW_MINIMUM_AGE":
+            return reverse("registration_below_minimum_age")
+        return super(AgeRequiredRegistrationView, self).get_success_url(request, user)
+
+
+class RedirectToProfileActivationView(ActivationView):
+    def get_success_url(self, request, user):
+        return reverse("userprofile_edit") + "?first_login=True"
