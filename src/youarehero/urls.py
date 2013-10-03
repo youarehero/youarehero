@@ -4,6 +4,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 import django.contrib.auth.views as auth_views
 from django.views.generic import RedirectView
+from django.views.generic.base import TemplateView
 from herobase.forms import UserAuthenticationForm
 import autocomplete_light
 from herobase.views import AgeRequiredRegistrationView, RedirectToProfileActivationView
@@ -16,27 +17,33 @@ urlpatterns = patterns(
     url(regex=r'^$',
         view='herobase.views.home_view',
         name='home'),
+    url(regex=r'^arg/$',
+        view=TemplateView.as_view(template_name="herobase/arg.html"),
+        name='arg'),
     url(regex=r'^press/$',
-        view='herobase.views.press',
+        view=TemplateView.as_view(template_name="herobase/press.html"),
         name="press"),
     url(regex=r'^dosanddonts/$',
-        view='herobase.views.dosanddonts',
+        view=TemplateView.as_view(template_name="herobase/dosanddonts.html"),
         name="dosanddonts"),
     url(regex=r'^imprint/$',
-        view='herobase.views.imprint',
+        view=TemplateView.as_view(template_name="herobase/imprint.html"),
         name="imprint"),
     url(regex=r'^manifesto/$',
-        view='herobase.views.manifesto',
+        view=TemplateView.as_view(template_name="herobase/manifesto.html"),
         name="manifesto"),
     url(regex=r'^leader/$',
         view='herobase.views.leader_board',
         name="leader_board"),
     url(regex=r'^help/$',
-        view='herobase.views.help',
+        view=TemplateView.as_view(template_name="herobase/help.html"),
         name='help'),
     url(regex=r'^hotline/$',
-        view='herobase.views.hotline',
+        view=TemplateView.as_view(template_name="herobase/hotline.html"),
         name='hotline'),
+    url(regex=r'^dismiss_notification/(?P<notification_id>\d+)/$',
+        view='heronotification.views.mark_notification_read',
+        name='mark_notification_read'),
 
     url(r'^profile/', include('herobase.urls.profile')),
     url(r'^quest/', include('herobase.urls.quest')),
@@ -44,37 +51,14 @@ urlpatterns = patterns(
     url(r'^recommend/', include('herorecommend.urls')),
     url(r'^team/', include('herobase.urls.team')),
 
-    url(regex=r'^dismiss_notification/(?P<notification_id>\d+)/$',
-        view='heronotification.views.mark_notification_read',
-        name='mark_notification_read'),
-
-    # third party apps
-    url(r'^comments/', include('django.contrib.comments.urls')),
-    url(r'autocomplete/', include('autocomplete_light.urls')),
-
+    # auth / registration
     url(regex=r'^accounts/login/$',
         view=auth_views.login,
-        kwargs={
-            'template_name': 'registration/login.html',
-            'authentication_form': UserAuthenticationForm},
+        kwargs={'template_name': 'registration/login.html', 'authentication_form': UserAuthenticationForm},
         name='auth_login'),
-    #url(regex=r'^accounts/register/$',
-    #    view='registration.views.register',
-    #    kwargs={
-    #        'backend': 'herobase.custom_registration.Backend'
-    #    },
-    #    name='registration_register'),
-    #url(regex=r'^accounts/activate/(?P<activation_key>\w+)/$',
-    #    view='registration.views.activate',
-    #    kwargs={
-    #        'backend': 'herobase.custom_registration.Backend',
-    #        'success_url': '/profile/edit/?first_login=True',
-    #    },
-    #    name='registration_activate'),
-    url(r'^accounts/logout/$',
-        auth_views.logout,
-        {'template_name': 'registration/logout.html',
-         'next_page': '/'},
+    url(regex=r'^accounts/logout/$',
+        view=auth_views.logout,
+        kwargs={'template_name': 'registration/logout.html', 'next_page': '/'},
         name='auth_logout'),
     url(regex=r'^accounts/register/$',
         view=AgeRequiredRegistrationView.as_view(),
@@ -82,31 +66,25 @@ urlpatterns = patterns(
     url(regex=r'^accounts/activate/(?P<activation_key>\w+)/$',
         view=RedirectToProfileActivationView.as_view(),
         name='registration_activate'),
+    url(regex=r'^below_minimum_age$',
+        view=TemplateView.as_view(template_name="herobase/below_minimum_age.html"),
+        name='registration_below_minimum_age'),
     (r'^accounts/', include('registration.backends.default.urls')),
 
-    url(regex=r'^below_minimum_age$',
-        view='herobase.views.below_minimum_age',
-        name='registration_below_minimum_age'),
 
     # admin
-
     url(regex=r'^admin/signups/',
         view='herobase.views.signups'),
-
     url(r'^admin/', include(admin.site.urls)),
 
     # misc
-
     url(regex=r'^favicon\.ico$',
         view=RedirectView.as_view(url='static/img/favicon.ico')),
 
-    # like_button
-
+    # third party apps
+    url(r'^comments/', include('django.contrib.comments.urls')),
+    url(r'autocomplete/', include('autocomplete_light.urls')),
     url(r'', include('like_button.urls')),
-
-    url(regex=r'^arg/$',
-        view='herobase.views.arg',
-        name='arg'),
 )
 
 from django.conf import settings
