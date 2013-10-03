@@ -123,6 +123,9 @@ class UserProfileEdit(forms.ModelForm):
             del cleaned_data['image']
         model_data = model_to_dict(self.instance)
         model_data.update(cleaned_data)
+        if (cleaned_data['start_date'] and cleaned_data['expiration_date']
+                and not cleaned_data['start_date'] < cleaned_data['expiration_date']):
+            raise ValidationError("Das Startdatum muss vor dem Enddatum liegen")
         return model_data
 
     class Meta:
