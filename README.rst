@@ -1,3 +1,8 @@
+
+.. image:: https://travis-ci.org/youarehero/youarehero.png
+   :target: https://travis-ci.org/youarehero/youarehero
+
+
 ==========================
 You are HERO documentation
 ==========================
