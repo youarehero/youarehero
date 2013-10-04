@@ -46,7 +46,7 @@ class QuestState(State):
     def accept_all(self):
         self.assert_no(self.accept_all_errors())
 
-        for adventure in self.quest.adventures.pending():
+        for adventure in self.quest.adventures.applying():
             adventure.state.accept()
 
     def start_errors(self):
@@ -142,13 +142,13 @@ class AdventureState(State):
     @property
     def adventure(self):
         if self._adventure is None:
-            self._adventure = self.quest.adventures.pending().get(user=self.hero)
+            self._adventure = self.quest.adventures.applying().get(user=self.hero)
         return self._adventure
 
     def accept_errors(self):
         if not self.quest.open:
             return "Can't accept heroes into a quest that isn't open."
-        if not self.quest.adventures.pending().filter(user=self.hero).exists():
+        if not self.quest.adventures.applying().filter(user=self.hero).exists():
             return "Can't accept a hero who is not applying."
     can_accept = there_are_no(accept_errors)
 

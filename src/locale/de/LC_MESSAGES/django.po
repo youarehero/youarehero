@@ -754,7 +754,7 @@ msgstr "Betreff"
 
 #: heromessage/forms.py:60 heromessage/models.py:17
 msgid "Message"
-msgstr "Nachricht an"
+msgstr "Nachricht"
 
 #: heromessage/models.py:30
 msgid "recipient"

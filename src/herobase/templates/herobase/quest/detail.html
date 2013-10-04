@@ -109,7 +109,7 @@
 
     {% include "herobase/quest/accepted_adventures.html" with adventures=quest.adventures.accepted %}
     {% if is_owner %}
-        {% include "herobase/quest/unaccepted_adventures.html" with adventures=quest.adventures.pending %}
+        {% include "herobase/quest/unaccepted_adventures.html" with adventures=quest.adventures.applying %}
     {% endif %}
     {% include "herobase/quest/comments_box.html" %}
 {% endblock %}

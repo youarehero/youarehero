@@ -2,18 +2,19 @@
 from datetime import datetime
 from django.contrib import messages
 from django.utils.timezone import now
+from herobase.models import Quest
 from herobase.utils import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db.models.query_utils import Q
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext as _
 from heronotification import notify
 
 from models import Message
-from forms import MessageForm, TeamMessageForm
+from forms import MessageForm, TeamMessageForm, QuestMessageForm
 import logging
 
 
@@ -52,6 +53,32 @@ def message_team(request, team=None):
             m = Message(
                 sender = request.user,
                 recipient = user,
+                title = form.cleaned_data['title'],
+                text = form.cleaned_data['text']
+            )
+            m.save()
+        return HttpResponseRedirect(reverse('message_list_out'))
+
+    return render(request, 'message/create.html', {'form': form})
+
+@login_required
+def message_quest_heroes(request, quest_id, group_name):
+    quest = get_object_or_404(Quest, pk=quest_id)
+    if request.user != quest.owner:
+        return HttpResponseForbidden()
+    form = QuestMessageForm(data=request.POST or None)
+
+    if form.is_valid():
+        if group_name == 'applicants':
+            adventures = quest.adventures.applying()
+        elif group_name == 'participants':
+            adventures = quest.adventures.accepted()
+        else:
+            return Http404()
+        for adventure in adventures.select_related('user'):
+            m = Message(
+                sender = request.user,
+                recipient = adventure.user,
                 title = form.cleaned_data['title'],
                 text = form.cleaned_data['text']
             )

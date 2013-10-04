@@ -84,8 +84,21 @@ h5 { font-size: 18px; }
 
 ul {list-style-type: none;}
 
-#content a {
+a {
   text-decoration: underline;
+  [class^="icon-"], [class*=" icon-"] {
+    text-decoration: none;
+  }
+  &.no-decoration {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.nav a {
+  text-decoration: none;
 }
 
 // Layout
@@ -698,7 +711,7 @@ html, body {
 
 // Box Buttons
 ul.buttons {
-  margin: (@cut-corner-radius) 0;
+  margin: (@cut-corner-radius / 2) 0;
   float: right;
   display: block;
   padding-left: 0;
@@ -766,10 +779,11 @@ ul.buttons {
     font-style: normal;
     color: inherit;
     display: block;
+    text-decoration: none;
     &:hover {
       color: inherit;
       text-decoration: none;
-      .text {text-decoration: underline;}
+      h2 {text-decoration: underline;}
     }
   }
   .text {
@@ -874,7 +888,7 @@ ul.buttons {
   }
 }
 
-.applications {
+.participants, .applications {
   form {
     display: inline-block;
   }
@@ -1350,7 +1364,8 @@ ul.buttons {
 }
 
 button {
-  border: none;
+  border: 0 none;
+  padding: 0;
   background: transparent;
 }
 

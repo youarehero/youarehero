@@ -112,9 +112,6 @@ class AdventureQuerySet(QuerySet):
     def rejected(self):
         return self.filter(canceled=False, accepted=False, rejected=True)
 
-    def pending(self):
-        return self.filter(canceled=False, accepted=False, rejected=False)
-
 
 class AdventureManager(models.Manager):
     """Custom Object Manager for Adventures, excluding canceled ones."""
@@ -130,9 +127,6 @@ class AdventureManager(models.Manager):
 
     def rejected(self):
         return self.get_query_set().rejected()
-
-    def pending(self):
-        return self.get_query_set().pending()
 
 
 class Adventure(models.Model):
