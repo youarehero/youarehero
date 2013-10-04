@@ -357,7 +357,7 @@ class Quest(LocationMixin, models.Model):
 
     @property
     def edit_window_expired(self):
-        return (now() - self.created).seconds < self.EDIT_WINDOW_SECONDS
+        return (now() - self.created).seconds > self.EDIT_WINDOW_SECONDS
 
     def get_state_display(self):
         if self.canceled:
