@@ -221,7 +221,8 @@ html, body {
     .cut-corners-bottom(@background);
 
     .headline {
-      margin-left: 25px;
+      margin-left: 22px;
+      padding-left: 0;
       padding-top: 15px;
       font-size: 16px;
       font-family: farao_textbold;
@@ -245,7 +246,9 @@ html, body {
       @avatar-height: 110px;
       vertical-align: top;
       position: relative;
-      margin-bottom: -12px;
+      padding: 0;
+      margin: 0 0 5px 22px;
+//      margin-bottom: -12px;
       z-index: 1;
       > span {display: block}
       .avatar {
@@ -254,8 +257,9 @@ html, body {
       }
       .experience-bar {
         border: 2px solid red;
-        width: 100%;
+        width: 89px;
         height: 14px;
+        margin-left: 21px;
         > div {
           height: 100%;
           background-color: red;
@@ -267,7 +271,8 @@ html, body {
         background-image: url("../img/levelstar.png");
         position: absolute;
         bottom: -@cut-corner-radius;
-        left: 0;
+        left: -6px;
+        bottom: -2px;
         text-align: center;
         color: white;
         font-size: 24px;
@@ -317,7 +322,7 @@ html, body {
 
     .active > a {
       & {
-        color: darken(@background-blue, 10%);
+        background: darken(@background-blue, 10%);
       }
       &:hover, &:focus {
         color: black;
@@ -420,7 +425,7 @@ html, body {
     top: 0;
     left: 0;
     text-align: center;
-    color: blue;
+    color: red;
     height: 34px;
     font-size: 12px;
     line-height: 34px;
