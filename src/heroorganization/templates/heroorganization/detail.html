@@ -7,5 +7,17 @@
 
 {% block content %}
     {% include "heroorganization/description_box.html" %}
-    {% include "heroorganization/quests_box.html" %}
+    <div class="row">
+        <div class="col-md-12"></div>
+    </div>
+    <h3>{% trans "Quests" %}</h3>
+
+    <ul>
+    {% for quest in object.quests.all %}
+        <li><a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a></li>
+
+    {% empty%}
+        <li>{% trans "We haven't created any quests yet." %}</li>
+    {% endfor %}
+    </ul>
 {% endblock %}
