@@ -198,8 +198,9 @@ class AdventureState(State):
 
         if self.quest.auto_accept:
             self.accept()
-        else:
             notify.hero_has_joined(self.quest.owner, self.adventure)
+        else:
+            notify.hero_has_applied(self.quest.owner, self.adventure)
 
     def reject_errors(self):
         if not self.quest.open:

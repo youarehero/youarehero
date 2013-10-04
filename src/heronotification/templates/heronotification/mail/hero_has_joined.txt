@@ -1,0 +1,8 @@
+Neue Helden und Heldinnen
+
+Verehrte Damen und Herren,
+für ihre Quest {{ target.quest.title }} hat sich ein neuer Teilnehmer gefunden!
+Besuchen sie http://{{ site.domain }}{{ target.quest.get_absolute_url }} um die Quest anzuzeigen.
+
+Hochachtungsvoll,
+Ihr Butler von you are hero

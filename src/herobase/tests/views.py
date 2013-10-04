@@ -186,7 +186,6 @@ class AuthenticatedIntegrationTest(TestCase):
             'expiration_date': '11.11.2014',
             'address': 'address',
         })
-        print response
         self.assertTrue(Quest.objects.filter(title='title', owner=self.user).exists())
 
     def test_quest_list(self):

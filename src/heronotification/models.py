@@ -92,10 +92,10 @@ class hero_has_applied(NotificationTypeBase):
     def get_image(cls, notification):
         return notification.target.user.profile.avatar_thumbnail_40
 
+
 class hero_has_cancelled(NotificationTypeBase):
     type_id = 2
     target_model = Adventure
-
 
     @classmethod
     def get_text(cls, notification):
@@ -107,6 +107,7 @@ class hero_has_cancelled(NotificationTypeBase):
     @classmethod
     def get_image(cls, notification):
         return notification.target.user.profile.avatar_thumbnail_40
+
 
 class hero_has_joined(NotificationTypeBase):
     type_id = 3
@@ -122,6 +123,7 @@ class hero_has_joined(NotificationTypeBase):
     @classmethod
     def get_image(cls, notification):
         return notification.target.user.profile.avatar_thumbnail_40
+
 
 class quest_started(NotificationTypeBase):
     type_id = 10
@@ -141,11 +143,11 @@ class quest_waiting_for_documentation(NotificationTypeBase):
     type_id = 11
     target_model = Quest
 
-
     @classmethod
     def get_text(cls, notification):
         return mark_safe(_("The quest <strong>%s</strong> is waiting for documentation.") %
                          escape(notification.target.title))
+
 
 class quest_cancelled(NotificationTypeBase):
     type_id = 12
@@ -159,6 +161,7 @@ class quest_cancelled(NotificationTypeBase):
     def get_text(cls, notification):
         return mark_safe(_("The quest <strong>%s<strong> has been cancelled.") %
                          escape(notification.target.title))
+
 
 class quest_done(NotificationTypeBase):
     type_id = 13
@@ -198,8 +201,9 @@ class hero_rejected(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return mark_safe(_("Your application for the quest <strong>%s</strong> has been rejected.") %
-                           escape(notification.target.title))
+        return mark_safe(_("Your application for the quest <strong>%s</strong> has been rejected.")
+                         % escape(notification.target.title))
+
 
 class message_received(NotificationTypeBase):
     type_id = 110
@@ -217,6 +221,7 @@ class message_received(NotificationTypeBase):
     @classmethod
     def is_read(cls, notification):
         return notification.target.read
+
 
 class welcome(NotificationTypeBase):
     type_id = 200
@@ -238,7 +243,7 @@ class Notification(models.Model):
 
     target = generic.GenericForeignKey()
     type_id = models.IntegerField(choices=((key, value.__name__)
-        for key, value in NOTIFICATION_TYPES.items()))
+                                           for key, value in NOTIFICATION_TYPES.items()))
 
     created = models.DateTimeField(auto_now_add=True)
     read = models.DateTimeField(blank=True, null=True)
@@ -249,7 +254,9 @@ class Notification(models.Model):
 
     @classmethod
     def for_user(cls, user):
-        items = cls.objects.filter(user=user).order_by('-read', '-created').select_related('content_type')
+        items = (cls.objects.filter(user=user)
+                 .order_by('-read', '-created')
+                 .select_related('content_type'))
         # collect all targets
         # maintain a mapping ct -> id -> item
         ct_target_item_map = defaultdict(lambda: defaultdict(list))
