@@ -15,7 +15,7 @@
                     <strong><a href="{% url "userprofile_public" comment.user.username %}">{{ comment.user.username }}</a>
                         am {{ comment.submit_date }}</strong>
                 </div>
-                <div>{{ comment.comment }}</div>
+                <div>{{ comment.comment|urlize|linebreaksbr }}</div>
             </li>
         {% empty %}
             <li>{% trans "There are no comments yet." %}</li>

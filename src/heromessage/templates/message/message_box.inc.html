@@ -15,7 +15,7 @@
         </div>
         <div class="box-content">
             <img src="{{ image }}" alt="" class="pull-left">
-            <p>{{ message.text }}</p>
+            <p>{{ message.text|urlize|linebreaksbr }}</p>
             {% if message.sender != request.user %}
                 <ul class="buttons">
                     <li>

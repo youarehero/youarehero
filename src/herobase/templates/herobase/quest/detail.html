@@ -8,27 +8,53 @@
             <span>Details zu</span>
 
             <h1>{{ quest.title }}</h1>
-
-            <p>{{ quest.description|linebreaksbr|urlize }}</p>
+            {%  comment %}
+            TODO:
+            - Auf https://youarehero.net/quest/162/ funktioniert urlize nicht richtig.
+            - Startseite muss Leute mehr motivieren, knapper gehlaten sein (landing page) und infos für neue und alte helden zeigen
+            - URLs mit quest-namen statt quest-id.
+            - Heldensprache für Anfänger vielleicht zu krass. Langsam steigern?
+            - Datumshelper bei Registierung.
+            - "Dieses Feld ist zwingend erforderlich." -> "zwingend" zu krassn. vielleicht "erforderlich"?
+                 oooooder: "ein jeder held braucht dieses feld" o.ä.
+            - anmeldemaske mit ajax validieren und erst bei (teils serverseitiger validierung) abschicken und nochmal serverseitig validieren (gleiche rules).
+            - anmeldeformular kompakter und vielleicht mittig.
+            - loginfeld zu hoch, header zu hoch
+            - dashboard/control center: charts zu anmeldungen, eröffneten/gelösten quest, teilnehmerstatistiken etc. einfach eine übersicht
+            - verhaltens"tracking": was wird gelöst/was nicht? warum/warum nicht? aktivitäten allgemein
+            - bei "benötigten helden" auch die anzahl der bereits teilnehmenden anzeigen. ggf. statusbalken o.ä.
+            - bei "benötigte helden" auch anzahlen von/bis ermöglichen, um zu sagen, wann ein quest nicht stattfindet.
+            - auflistungszeichen/seitenzahl auf der quest-übersicht vergrößern.
+            {%  endcomment %}
+            <p>{{ quest.description|urlize|linebreaksbr }}</p>
         </div>
         <div class="sidebar">
             <div class="data">
                 <dl>
+                    <dt>Status:</dt>
+                    <dd>{{ quest.get_state_display }}</dd>
+                    <dt>Ort:</dt>
+                    <dd>{% if quest.remote %}
+                        <span class="details"><i class="icon-map-marker"></i> frei</span>
+                    {% else %}
+                        <span class="details"><i class="icon-map-marker"></i> {{ quest.address }}</span>
+                    {% endif %}</dd>
+                    <dt>Datum:</dt>
+                    <dd>{% with date=quest.start_date %}
+                        {% if date %}
+                            <span class="details"><i class="icon-calendar"></i> {{ date }}</span>
+                        {% else %}
+                            <span class="details"><i class="icon-calendar"></i> frei</span>
+                        {% endif %}
+                    {% endwith %}</dd>
+                    <dt>Gesuchte Helden:</dt>
+                    <dd>{{ quest.max_heroes }}</dd>
                     <dt>Ersteller:</dt>
                     <dd>
                         <a href="{% url "userprofile_public" quest.owner.username %}">
                             {{ quest.owner.username }}
                         </a>
                     </dd>
-
-                    <dt>Status:</dt>
-                    <dd>{{ quest.get_state_display }}</dd>
-                    <dt>Gesuchte Helden</dt>
-                    <dd>{{ quest.max_heroes }}</dd>
-                    <dt>Erstellt am:</dt>
-                    <dd>{{ quest.created.date }}</dd>
-                    <dt>Läuft noch bis:</dt>
-                    <dd>{{ quest.expiration_date.date }}</dd>
                 </dl>
                 {% include "herobase/quest/quest_box_footer.html" %}
             </div>
