@@ -70,6 +70,12 @@ class QuestCreateForm(forms.ModelForm):
         self.fields['address'].help_text = _(u"Where does this quest take place?")
         self.fields['expiration_date'].widget = forms.DateInput(attrs={'autocomplete': 'off'})
 
+    def clean(self):
+        cleaned_data = super(QuestCreateForm, self).clean()
+        if (cleaned_data['start_date'] and cleaned_data['expiration_date']
+                and not cleaned_data['start_date'] < cleaned_data['expiration_date']):
+            raise ValidationError("Das Startdatum muss vor dem Enddatum liegen")
+        return cleaned_data
 
     class Meta:
         model = Quest
@@ -86,7 +92,9 @@ class UserProfileEdit(forms.ModelForm):
     # latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # address = forms.CharField(required=False, widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
-    image = forms.ChoiceField(choices=[('', '------')] + UserProfile.avatar_choices(), required=False)
+    image = forms.ChoiceField(choices=[('', '------')] + UserProfile.avatar_choices(),
+                              required=False)
+
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
@@ -123,9 +131,6 @@ class UserProfileEdit(forms.ModelForm):
             del cleaned_data['image']
         model_data = model_to_dict(self.instance)
         model_data.update(cleaned_data)
-        if (cleaned_data['start_date'] and cleaned_data['expiration_date']
-                and not cleaned_data['start_date'] < cleaned_data['expiration_date']):
-            raise ValidationError("Das Startdatum muss vor dem Enddatum liegen")
         return model_data
 
     class Meta:
