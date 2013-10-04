@@ -214,7 +214,7 @@ class QuestManager(models.Manager):
     def start_timer_set_but_not_started(self):
         return self.get_query_set().filter(
             start_trigger=Quest.START_TIMER,
-            start_date__lte=date.today(),
+            start_date__lte=datetime.now(),
             canceled=False,
             done=False,
             started=False,
@@ -227,7 +227,7 @@ class QuestManager(models.Manager):
     def expired_but_not_done(self):
         return self.get_query_set().filter(
             end_trigger=Quest.END_TIMER,
-            expiration_date__lt=date.today(),
+            expiration_date__lt=datetime.now(),
             canceled=False,
             done=False,
         )

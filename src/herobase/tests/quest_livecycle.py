@@ -144,7 +144,8 @@ class QuestTest(TestCase):
         self.assertTrue(Quest.objects.get(pk=quest1.pk).started)
 
     def test_find_quests_for_automatic_completion(self):
-        quest0 = G(Quest, end_trigger=Quest.END_TIMER, expiration_date=date.today())
+        quest0 = G(Quest, end_trigger=Quest.END_TIMER, expiration_date=(date.today() +
+                                                                        timedelta(days=1)))
         quest1 = G(Quest, end_trigger=Quest.END_TIMER, expiration_date=(date.today() -
                                                                         timedelta(days=1)))
         self.assertNotIn(quest0, Quest.objects.expired_but_not_done())
