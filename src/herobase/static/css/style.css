@@ -3505,6 +3505,9 @@ ul.buttons:after {
   color: blue;
   font-size: 18px;
 }
+.quest-detail > .sidebar > .data dl dd .details {
+  color: blue;
+}
 .quest-detail > .sidebar > .data dl * + dt {
   margin-top: 12px;
 }
