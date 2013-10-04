@@ -1902,6 +1902,9 @@ h5 {
 ul {
   list-style-type: none;
 }
+a {
+  text-decoration: underline;
+}
 body.city-karlsruhe {
   background-color: white;
 }
