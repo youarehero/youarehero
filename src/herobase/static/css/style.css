@@ -3170,8 +3170,11 @@ textarea {
   margin-top: 180px;
 }
 .infobox-container.bottom {
+  height: 50px;
+}
+.infobox-container.bottom > div {
   left: 393px;
-  top: -265px;
+  bottom: 0px;
 }
 ul.buttons {
   margin: 6px 0;
@@ -4527,6 +4530,7 @@ dl.data dd {
   position: relative;
   display: inline-block;
   text-align: center;
+  margin-top: 20px;
 }
 .linkbox a {
   color: inherit;
@@ -4621,7 +4625,13 @@ dl.data dd {
 .linkbox > a > span,
 .linkbox > a > i {
   font-size: 48px;
+  line-height: 38px;
   display: inline-block;
+  position: relative;
+  top: -5px;
+}
+.linkbox > a > i {
+  margin-top: -10px;
 }
 .linkbox > a i + span,
 .linkbox > a span + i {

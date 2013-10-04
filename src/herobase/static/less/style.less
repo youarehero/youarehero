@@ -838,8 +838,11 @@ textarea {
   }
 
   &.bottom {
-    left: 393px;
-    top: -265px;
+    height: 50px;
+    > div {
+      left: 393px;
+      bottom: 0px
+    }
   }
 }
 
@@ -1406,6 +1409,7 @@ dl.data {
   .cut-corners(@background-red);
   display: inline-block;
   text-align: center;
+  margin-top: @cut-corner-radius + 8px;
   > a {
     font-size: 0;
     letter-spacing: 0;
@@ -1419,7 +1423,13 @@ dl.data {
 
     > span, > i {
       font-size: 48px;
+      line-height: 38px;
       display: inline-block;
+      position: relative;
+      top: -5px;
+    }
+    > i {
+      margin-top: -10px;
     }
 
     i + span, span + i {margin-left: 20px}
