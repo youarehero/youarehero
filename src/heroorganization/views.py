@@ -25,8 +25,11 @@ class OrgAdminMixin(object):
     def dispatch(self, request, *args, **kwargs):
         try:
             self.organization = Organization.objects.get(user=request.user)
+            print "gotit"
+            self.kwargs['pk'] = kwargs['pk'] = self.organization.pk
         except Organization.DoesNotExist:
             return HttpResponseForbidden()
+
         return super(OrgAdminMixin, self).dispatch(request, *args, **kwargs)
 
 

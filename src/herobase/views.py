@@ -31,8 +31,8 @@ from herobase.utils import is_minimum_age
 from heronotification.models import Notification
 from heromessage.models import Message
 from herorecommend.forms import UserSkillEditForm
-from herobase.forms import (QuestCreateForm, UserProfileEdit,
-                            UserProfilePrivacyEdit, UserAuthenticationForm, DateOfBirthRegistrationForm)
+from herobase.forms import (QuestCreateForm, UserProfileEditForm,
+                            UserProfilePrivacyForm, UserAuthenticationForm, DateOfBirthRegistrationForm)
 from herobase.models import Quest, Adventure, Like, CREATE_EXPERIENCE, UserProfile
 from herorecommend.models import MIN_SELECTED_SKILLS
 from registration.models import RegistrationProfile
@@ -381,7 +381,7 @@ def userprofile(request, username=None,
         user = request.user
 
     try:
-        organization = user.is_organization
+        organization = user.organization
         return HttpResponseRedirect(organization.get_absolute_url())
     except ObjectDoesNotExist:
         pass
@@ -397,7 +397,7 @@ def userprofile(request, username=None,
 def userprofile_edit(request):
     """Render the userprofile form and handle possible changes."""
     user = request.user
-    form = UserProfileEdit(request.POST or None, instance=user.get_profile())
+    form = UserProfileEditForm(request.POST or None, instance=user.get_profile())
     first_login = bool(request.GET.get('first_login'))
     if form.is_valid():
         form.save()
@@ -418,7 +418,7 @@ def userprofile_privacy_settings(request):
     saved on the userprofile.
     """
     user = request.user
-    form = UserProfilePrivacyEdit(
+    form = UserProfilePrivacyForm(
         request.POST or None,
         instance=user.get_profile())
     if form.is_valid():

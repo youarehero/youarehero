@@ -3,11 +3,11 @@
 {% block content %}
     <h2>{{ organization.name }}</h2>
 
-    <p>Hallo Organisationsmensch, hier ist deine adminseite.</p>
+    <p>Hallo, hier ist deine Adminseite.</p>
     <p>Schau dir die Detailseite deiner Organisation an auf deinem
         <a href="{{ organization.get_absolute_url }}">Organisations-Profil</a>
     </p>
     <p>oder aktualisiere die Details auf der
-        <a href="{% url organization_admin_update pk=organization.pk %}">Editier-Seite</a>
+        <a href="{% url "organization_admin_update" pk=organization.pk %}">Editier-Seite</a>
     </p>
 {% endblock %}

@@ -5,5 +5,19 @@
     <h1>{{ object.name }} bearbeiten</h1>
 {% endblock %}
 {% block content %}
-    {% crispy form %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <h2>{{ organization.name }}</h2>
+
+                <p>Hallo, hier ist deine Adminseite.</p>
+
+                <p>Von hier kannst du die Details deiner Organisation bearbeiten die dann auf deinem
+                    <a href="{{ organization.get_absolute_url }}">Organisations-Profil</a>
+                    angezeigt werden.
+                </p>
+            </div>
+        </div>
+    </div>
+    {% include "herobase/layout/crispy_box.html" %}
 {% endblock %}

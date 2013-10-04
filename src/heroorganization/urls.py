@@ -8,13 +8,10 @@ logger = logging.getLogger(__name__)
 
 urlpatterns = patterns(
     '',
-    url(regex=r'^public/(?P<name>.+)/$',
+    url(regex=r'^profile/(?P<name>.+)/$',
         view=OrganizationDetailView.as_view(),
         name='organization_detail'),
     url(regex=r'^admin/$',
-        view=OrgAdminIndexView.as_view(),
-        name='organization_admin_index'),
-    url(regex=r'^admin/(?P<pk>\d+)/$',
         view=OrgAdminUpdateView.as_view(),
         name='organization_admin_update'),
 )
