@@ -1,7 +1,9 @@
 # Create your views here.
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import get_object_or_404
+from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView
@@ -19,6 +21,7 @@ class OrganizationDetailView(DetailView):
 
 
 class OrgAdminMixin(object):
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         try:
             self.organization = Organization.objects.get(user=request.user)
