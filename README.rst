@@ -1,5 +1,11 @@
+master
 
-.. image:: https://travis-ci.org/youarehero/youarehero.png
+.. image:: https://travis-ci.org/youarehero/youarehero.png?branch=master
+   :target: https://travis-ci.org/youarehero/youarehero
+
+dev
+
+.. image:: https://travis-ci.org/youarehero/youarehero.png?branch=dev
    :target: https://travis-ci.org/youarehero/youarehero
 
 
