@@ -409,7 +409,7 @@ msgstr "Vorgeschlagene Quests"
 
 #: herobase/templates/herobase/quest/accepted_adventures.html:4
 msgid "Participants"
-msgstr "Teilnehmer"
+msgstr "Teilnehmende"
 
 #: herobase/templates/herobase/quest/comments_box.html:5
 msgid "Comments"
