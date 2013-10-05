@@ -2283,6 +2283,9 @@ textarea {
   margin-left: auto;
   margin-right: auto;
 }
+#navigation #brand a:hover {
+  background: inherit;
+}
 #navigation #brand h2 {
   font-size: 16px;
 }
