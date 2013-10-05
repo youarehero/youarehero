@@ -1947,6 +1947,15 @@ html,
 body {
   height: 100%;
 }
+input,
+select,
+textarea {
+  color: #333333;
+  background: rgba(255, 255, 255, 0.6);
+  border: 0px none;
+  border-bottom: 2px solid #333333;
+  border-radius: 0;
+}
 #page {
   min-height: 100%;
   position: relative;
