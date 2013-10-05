@@ -24,20 +24,18 @@
             </li>
         </ul>
         <h1>{% trans "My Quests" %}</h1>
-        {#    <h2>{% trans "Current Quests" %}</h2>#}
-        {% paginate 6 quests %}
+        {% paginate 12 quests %}
         <div style="text-align: right">{% show_pages %}</div>
-        {% if quests %}
+        <div class="row">
             {% for quest in quests %}
-                {% if quest.owner == request.user %}
-                    {% include "herobase/quest/my_box_owner.html" %}
-                {% else %}
-                    {% include "herobase/quest/my_box_hero.html" %}
-                {% endif %}
+                {% include "herobase/quest/list_box.html" %}
+            {% empty %}
+                <div class="col-xs-12">
+                    <div class="box">{% trans "There don't seem to be any quests." %}</div>
+                </div>
             {% endfor %}
-        {% else %}
-        {#        {% trans "There are no quests." %}#}
-        {% endif %}
+        </div>
+
         <div style="text-align: right">{% show_pages %}</div>
     </div>
 
