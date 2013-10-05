@@ -1,7 +1,8 @@
 from django.contrib import admin
 from herobase.models import UserProfile, Quest, Adventure, Like
 from heromessage.models import Message
-from herorecommend.models import UserCombinedProfile,UserRatingProfile, UserSelectionProfile, SkillBase, QuestProfile
+from herorecommend.models import UserCombinedProfile, QuestProfile
+
 
 class UserProfileAdmin(admin.ModelAdmin):
     pass

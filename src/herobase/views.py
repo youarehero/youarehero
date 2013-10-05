@@ -23,6 +23,8 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView, UpdateView
+from heroorganization.models import Organization
+from heroorganization.views import OrganizationListView
 from registration.backends.default.views import RegistrationView, ActivationView
 import registration.signals
 
@@ -397,6 +399,8 @@ def userprofile(request, username=None,
 def userprofile_edit(request):
     """Render the userprofile form and handle possible changes."""
     user = request.user
+    if Organization.objects.filter(user=request.user).exists():
+        return HttpResponseRedirect(reverse("organization_update"))
     form = UserProfileEditForm(request.POST or None, instance=user.get_profile())
     first_login = bool(request.GET.get('first_login'))
     if form.is_valid():

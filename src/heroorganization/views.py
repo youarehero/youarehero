@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponseForbidden
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
@@ -28,32 +28,26 @@ class OrganizationDetailView(DetailView):
     template_name = "heroorganization/organization_detail.html"
 
 
-class OrgAdminMixin(object):
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        try:
-            self.organization = Organization.objects.get(user=request.user)
-            print "gotit"
-            self.kwargs['pk'] = kwargs['pk'] = self.organization.pk
-        except Organization.DoesNotExist:
-            return HttpResponseForbidden()
+@login_required
+def organization_update_view(request):
+    try:
+        organization = Organization.objects.get(user=request.user)
+        profile = request.user.get_profile()
+    except Organization.DoesNotExist:
+        return HttpResponseForbidden()
 
-        return super(OrgAdminMixin, self).dispatch(request, *args, **kwargs)
+    form = OrganizationForm(request.POST or None, request.FILES or None, initial={
+        'about': profile.about,
+    })
+    if form.is_valid():
+        data = form.cleaned_data
+        if data['image']:
+            profile.uploaded_image = data['image']
+        profile.about = data['about']
+        profile.save()
+        return HttpResponseRedirect(reverse("organization_update"))
 
-
-class OrgAdminIndexView(OrgAdminMixin, TemplateView):
-    template_name = "heroorganization/admin/index.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(OrgAdminIndexView, self).get_context_data(**kwargs)
-        context["organization"] = self.organization
-        return context
-
-
-class OrgAdminUpdateView(OrgAdminMixin, UpdateView):
-    template_name = "heroorganization/admin/update.html"
-    model = Organization
-    form_class = OrganizationForm
-
-    def get_success_url(self):
-        return reverse("organization_admin_index")
+    return render(request, 'heroorganization/organization_update.html', {
+        'form': form,
+        'organization': organization,
+    })

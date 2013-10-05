@@ -9,7 +9,10 @@ from .models import Organization
 logger = logging.getLogger(__name__)
 
 
-class OrganizationForm(forms.ModelForm):
+class OrganizationForm(forms.Form):
+    about = forms.CharField(required=False, widget=forms.Textarea)
+    image = forms.ImageField(required=False)
+
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
@@ -19,12 +22,8 @@ class OrganizationForm(forms.ModelForm):
         self.helper.layout = Layout(
             Fieldset(
                 _('Edit your Profile'),
-                Div('description', css_class='col-md-6'),
+                Div('about', css_class='col-md-6'),
                 Div('image', css_class='col-md-6'),
             ),
         )
         super(OrganizationForm, self).__init__(*args, **kwargs)
-
-    class Meta:
-        model = Organization
-        fields = []
