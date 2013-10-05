@@ -14,7 +14,7 @@ import registration
 from registration.models import RegistrationProfile
 import mock
 
-from herobase.models import Quest
+from herobase.models import Quest, UserProfile
 from factories import create_adventure, create_quest, create_user
 
 
@@ -94,7 +94,30 @@ class RegistrationTest(WebTest):
         self.assertTrue(User.objects.get(username=username).get_profile().is_legal_adult())
 
 
+class ProfileViewTest(WebTest):
+    def test_view_profile(self):
+        user = G(User, username='ahero')
+        profile = user.profile
+        profile.about = 'some facts about me'
+        profile.save()
+        other_user = G(User, username='anotherhero')
 
+        profile_page = self.app.get(reverse("userprofile_public", args=(user.username, )),
+                                    user=other_user)
+
+        profile_page.mustcontain("some facts about me", "ahero")
+
+    def test_update_profile(self):
+        user = G(User, username='ahero')
+        update_page = self.app.get(reverse("userprofile_edit"), user=user)
+
+        form = update_page.forms[0]
+        form['about'] = 'these are some facts about me'
+        response = form.submit()
+
+
+        user_profile = UserProfile.objects.get(user=user)
+        self.assertEqual('these are some facts about me', user_profile.about)
 
 
 class QuestTest(WebTest):
