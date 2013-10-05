@@ -4,12 +4,8 @@
 {% load endless %}
 {% load cache %}
 
-{% block head_javascript %}
-    <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-tooltip.js"></script>
-    <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-popover.js"></script>
-{% endblock %}
-
 {% block javascript %}
+    <script src="{% get_static_prefix %}js/masonry.pkgd.min.js"></script>
     <script>
         $(function() {
             $('.dropdown-menu p select, .dropdown label').click(function(e) {
@@ -31,8 +27,9 @@
 
 {% block content %}
     {% paginate 12 quests %}
-    <div style="text-align: right">{% show_pages %}</div>
-    <div class="row">
+    <div style="text-align: right"><p>{% show_pages %}</p></div>
+    <div class="js-masonry"
+  data-masonry-options='{ "columnWidth": 272, "itemSelector": ".quest-short" }'>
         {% for quest in quests %}
             {% include "herobase/quest/list_box.html" %}
         {% empty %}
@@ -48,5 +45,5 @@
         {% endfor %}
     </div>
 
-    <div style="text-align: right">{% show_pages %}</div>
+    <div style="text-align: right"><p>{% show_pages %}</p></div>
 {% endblock %}

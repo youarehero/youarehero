@@ -3185,6 +3185,9 @@ ul.buttons:after {
   font-size: 40px;
   color: black;
 }
+.js-masonry {
+  width: 850px;
+}
 .quest-short {
   color: #ffffff;
   background: rgba(255, 0, 0, 0.6);
@@ -3192,6 +3195,7 @@ ul.buttons:after {
   padding: 0;
   margin-top: 12px;
   position: relative;
+  width: 250px;
   color: white;
 }
 .quest-short a {
@@ -4163,9 +4167,6 @@ ul.buttons:after {
 }
 #comment-form .form-actions {
   margin-top: 20px;
-}
-#content > div {
-  width: 830px;
 }
 .help-inline {
   color: red;
