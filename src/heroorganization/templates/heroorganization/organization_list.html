@@ -1,0 +1,20 @@
+{% extends "herobase/layout/base.html" %}
+{% load i18n hero_message humanize %}
+
+{% block content %}
+    <div class="box">
+        <div class="row">
+            {% for organization in organization_list %}
+                <div class="col-xs-2">
+                    <a href="{% url "organization_detail" organization.user.username %}">
+                        <img src="{{ organization.user.get_profile.avatar_thumbnail_80 }}">
+                    </a>
+                </div>
+                <div class="col-xs-10">
+                    <h4><a href="{% url "organization_detail" organization.user.username %}">{{ organization.user.username }}</a></h4>
+                    <p>{{ organization.user.get_profile.about }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

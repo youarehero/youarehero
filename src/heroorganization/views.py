@@ -7,17 +7,25 @@ from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView
+from django.views.generic.list import ListView
 from herobase.forms import QuestCreateForm
 from herobase.models import Quest
 from heroorganization.forms import OrganizationForm
 from heroorganization.models import Organization
 
 
+class OrganizationListView(ListView):
+    slug_url_kwarg = 'name'
+    slug_field = 'user__username'
+    model = Organization
+    template_name = "heroorganization/organization_list.html"
+
+
 class OrganizationDetailView(DetailView):
     slug_url_kwarg = 'name'
     slug_field = 'user__username'
     model = Organization
-    template_name = "heroorganization/detail.html"
+    template_name = "heroorganization/organization_detail.html"
 
 
 class OrgAdminMixin(object):
