@@ -2,6 +2,7 @@
 import datetime
 import pprint
 from django.contrib.auth.models import User
+from django.core import mail
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import Client
@@ -42,6 +43,7 @@ class UnauthenticatedIntegrationTest(TestCase):
         #  testman.get_profile().save()
         # response = client.get(reverse('leader-board'))
         # self.assertEqual(response., testman.username)
+
 
 class RegistrationTest(WebTest):
     def test_minor_can_not_register(self):
@@ -92,6 +94,29 @@ class RegistrationTest(WebTest):
         self.assertContains(welcome_page, username)
 
         self.assertTrue(User.objects.get(username=username).get_profile().is_legal_adult())
+
+    def test_password_reset(self):
+        user = G(User)
+        self.assertFalse(User.objects.get(pk=user.pk).check_password('ap'))
+        request_reset_page = self.app.get(reverse("auth_password_reset"))
+        form = request_reset_page.forms[1]
+        form['email'] = user.email
+
+        response = form.submit()
+        self.assertRedirects(response, reverse("auth_password_reset_done"))
+
+        self.assertEqual(len(mail.outbox), 1)
+        text = mail.outbox[0].body
+        urls = re.findall(r'http(?s)://example.com(/[^  \n]+)', text)
+        reset_page = self.app.get(urls[0])
+
+        form = reset_page.forms[1]
+        form['new_password1'] = 'ap'
+        form['new_password2'] = 'ap'
+        changed = form.submit()
+        self.assertRedirects(changed, reverse("auth_password_reset_complete"))
+
+        self.assertTrue(User.objects.get(pk=user.pk).check_password('ap'))
 
 
 class ProfileViewTest(WebTest):
