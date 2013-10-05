@@ -3039,8 +3039,8 @@ body {
 .infobox-container.middle + .row {
   margin-top: 180px;
 }
-.infobox-container.bottom > div {
-  right: 55px;
+.infobox-container.bottom {
+  left: 393px;
   top: -265px;
 }
 ul.buttons {
@@ -3650,7 +3650,9 @@ ul.buttons:after {
   margin-top: 12px;
   position: relative;
   display: inline-block;
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 6px;
+  padding: 0 12px;
   color: white;
   text-align: center;
   height: 24px;
@@ -3737,6 +3739,7 @@ ul.buttons:after {
   padding: 0 12px;
 }
 .box-button i {
+  font-size: 24px;
   display: block;
   color: white;
   width: 100%;
