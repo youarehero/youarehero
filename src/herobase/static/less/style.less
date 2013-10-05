@@ -317,6 +317,7 @@ html, body {
       color: @white;
       &:hover, &:focus {
         color: black;
+        background: darken(@background-blue, 10%);
       }
     }
 
@@ -326,6 +327,7 @@ html, body {
       }
       &:hover, &:focus {
         color: black;
+        background: darken(@background-blue, 10%);
       }
     }
   }
@@ -1164,16 +1166,6 @@ ul.buttons {
 }
 
 .box-buttons-bottom {margin-top: 20px;}
-.manifestobox {
-  .box;
-  & + & {
-    margin-left: 37px;
-  }
-  h1 {font-size: 32px;}
-  h2 {font-size: 16px; font-weight: bold;}
-  display: inline-block;
-  max-width: 380px;
-}
 
 .sponsors {
   .make-row;

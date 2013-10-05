@@ -95,5 +95,12 @@
 .icon-yah-hand-left  { .icon-yah-font("∏"); }
 .icon-yah-hand-up    { .icon-yah-font("∫"); }
 .icon-yah-hand-down  { .icon-yah-font("ª"); }
-.icon-yah-question-mark { .icon-yah-font("?"); }
+.icon-yah-question-mark {
+  .icon-yah-font("?");
+  line-height: 13px;
+  font-weight: bold;
+  &:before {
+    margin-bottom: 12px;
+  }
+}
 .icon-yah-exclamation-mark { .icon-yah-font("!"); }
