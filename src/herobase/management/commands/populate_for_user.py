@@ -29,10 +29,10 @@ class Command(BaseCommand):
 
         for quest in user_quests:
             for other in random.sample(other_users, random.randint(1,5)):
-                quest_livecycle.hero_quest_apply(quest, other)
+                quest.adventure_state(other).apply()
 
         other_quests = [create_quest(max_heroes=10) for i in range(5)]
         for quest in other_quests:
-            quest_livecycle.hero_quest_apply(quest, user)
+            quest.adventure_state(user).apply()
             for other in random.sample(other_users, random.randint(1,5)):
-                quest_livecycle.hero_quest_apply(quest, other)
+                quest.adventure_state(other).apply()

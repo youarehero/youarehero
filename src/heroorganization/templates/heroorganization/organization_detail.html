@@ -1,0 +1,36 @@
+{% extends "herobase/layout/base.html" %}
+{% load crispy_forms_tags i18n static %}
+
+{% block page_title %}
+    <h1>{% trans "Organization" %} {{ object.name }}</h1>
+{% endblock %}
+
+{% block content %}
+    {% with user=organization.user profile=organization.user.get_profile %}
+        <div class="box">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Organisation</h1>
+                </div>
+
+                <div class="col-md-4"><img src="{{ profile.avatar }}" alt=""/></div>
+                <div class="col-md-8">
+                    <h2>{{ organization.name }}</h2>
+                    <p>{{ profile.about }}</p>
+                </div>
+            </div>
+        </div>
+    {% endwith %}
+{#    <div class="box">#}
+{#        <h3>{% trans "Quests" %}</h3>#}
+{##}
+{#        <ul>#}
+{#            {% for quest in object.quests.all %}#}
+{#                <li><a href="{{ quest.get_absolute_url }}">{{ quest.title }}</a></li>#}
+{##}
+{#            {% empty %}#}
+{#                <li>{% trans "We haven't created any quests yet." %}</li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    </div>#}
+{% endblock %}

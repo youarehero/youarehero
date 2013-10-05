@@ -1,10 +1,16 @@
 {% load i18n %}
 {% load url from future %}
 <div class="applications">
+    {% if adventures|length > 1 %}
+    <a href="{% url 'message_quest' quest.pk 'applicants' %}" data-toggle="tooltip"
+          data-title="{% trans "Send a message to all applicants" %}" class="pull-right">
+          <i class="icon-envelope-alt"></i> {% trans "to all" %}
+        </a>
+    {% endif %}
   <h1>{% trans "Applications" %}</h1>
   {% for a in adventures %}
   <span class="application">
-    <a href="{% url "userprofile_public" a.user.username %}">
+    <a href="{% url "userprofile_public" a.user.username %}" class="no-decoration">
       <img class="avatar" src="{{ a.user.profile.avatar }}"/>
       <p>{{ a.user.username }}</p>
     </a>

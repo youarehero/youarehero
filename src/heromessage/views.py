@@ -1,23 +1,25 @@
 # Create your views here.
 from datetime import datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.utils.timezone import now
-from herobase.utils import login_required
+from herobase.models import Quest
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db.models.query_utils import Q
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext as _
 from heronotification import notify
 
 from models import Message
-from forms import MessageForm, TeamMessageForm
+from forms import MessageForm, TeamMessageForm, QuestMessageForm
 import logging
 
 
 logger = logging.getLogger('youarehero.heromessage')
+
 
 @login_required
 def message_create(request, user_id=None, message_id=None):
@@ -26,7 +28,7 @@ def message_create(request, user_id=None, message_id=None):
         original_message = get_object_or_404(Message, pk=message_id, recipient=request.user)
         initial = {'recipient': original_message.sender, 'title': "Re: %s" % original_message.title}
     elif user_id:
-        initial = { 'recipient': get_object_or_404(User, pk=user_id)}
+        initial = {'recipient': get_object_or_404(User, pk=user_id)}
     else:
         initial = None
 
@@ -42,6 +44,7 @@ def message_create(request, user_id=None, message_id=None):
 
     return render(request, 'message/create.html', {'form': form})
 
+
 @login_required
 def message_team(request, team=None):
     form = TeamMessageForm(data=request.POST or None, initial = {'team': team})
@@ -52,6 +55,33 @@ def message_team(request, team=None):
             m = Message(
                 sender = request.user,
                 recipient = user,
+                title = form.cleaned_data['title'],
+                text = form.cleaned_data['text']
+            )
+            m.save()
+        return HttpResponseRedirect(reverse('message_list_out'))
+
+    return render(request, 'message/create.html', {'form': form})
+
+
+@login_required
+def message_quest_heroes(request, quest_id, group_name):
+    quest = get_object_or_404(Quest, pk=quest_id)
+    if request.user != quest.owner:
+        return HttpResponseForbidden()
+    form = QuestMessageForm(data=request.POST or None)
+
+    if form.is_valid():
+        if group_name == 'applicants':
+            adventures = quest.adventures.applying()
+        elif group_name == 'participants':
+            adventures = quest.adventures.accepted()
+        else:
+            return Http404()
+        for adventure in adventures.select_related('user'):
+            m = Message(
+                sender = request.user,
+                recipient = adventure.user,
                 title = form.cleaned_data['title'],
                 text = form.cleaned_data['text']
             )
@@ -73,17 +103,19 @@ def message_update(request, message_id):
         messages.success(request, _("Message successfully deleted"))
     return HttpResponseRedirect(reverse("message_list"))
 
+
 @login_required
 def message_list_out(request):
     return render(request, 'message/list_out.html',{
              'sent_messages': Message.objects.filter(sender=request.user, sender_deleted=None).select_related('recipient', 'sender', 'recipient__profile'),
              })
 
+
 def message_list_in(request):
     Message.objects.filter(recipient=request.user, read__isnull=True).update(read=now())
     return render(request, 'message/list_in.html',{
         'received_messages': Message.objects.filter(recipient=request.user, recipient_deleted=None).select_related('recipient', 'sender', 'sender__profile'),
-        })
+    })
 
 @login_required
 def message_detail(request, message_id):

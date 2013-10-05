@@ -46,7 +46,7 @@ def create_user(**kwargs):
     user.save()
     profile = user.get_profile()
     dob = datetime.date(year=1938, month=4, day=18)
-    dob += datetime.timedelta(days=create_counter[0])
+    dob += datetime.timedelta(days=create_counter[0] % 365)
     profile.date_of_birth = dob
     profile.save()
     return user

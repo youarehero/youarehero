@@ -112,9 +112,6 @@ class AdventureQuerySet(QuerySet):
     def rejected(self):
         return self.filter(canceled=False, accepted=False, rejected=True)
 
-    def pending(self):
-        return self.filter(canceled=False, accepted=False, rejected=False)
-
 
 class AdventureManager(models.Manager):
     """Custom Object Manager for Adventures, excluding canceled ones."""
@@ -130,9 +127,6 @@ class AdventureManager(models.Manager):
 
     def rejected(self):
         return self.get_query_set().rejected()
-
-    def pending(self):
-        return self.get_query_set().pending()
 
 
 class Adventure(models.Model):
@@ -379,10 +373,11 @@ class Quest(LocationMixin, models.Model):
 class AvatarImageMixin(models.Model):
     avatar_storage = FileSystemStorage(location=settings.ASSET_ROOT)
     image = models.FilePathField(blank=True, null=True)
+    uploaded_image = models.ImageField(upload_to="avatar_uploads", null=True, blank=True)
 
     def clean(self):
         images = AVATAR_IMAGES_TRUSTED if self.trusted else AVATAR_IMAGES
-        if self.image not in images:
+        if self.image and self.image not in images:
             raise ValidationError(_("Invalid avatar image given"))
 
     @classmethod
@@ -433,8 +428,11 @@ class AvatarImageMixin(models.Model):
 
     def _avatar_thumbnail(self, size, crop='0,0'):
         """Return a String, containing a path to a thumbnail-image."""
-        file_name = self.image or 'avatar/default.png'
-        thumbnailer = get_thumbnailer(self.avatar_storage, file_name)
+        if self.uploaded_image:
+            thumbnailer = get_thumbnailer(self.uploaded_image)
+        else:
+            file_name = self.uploaded_image or self.image or 'avatar/default.png'
+            thumbnailer = get_thumbnailer(self.avatar_storage, file_name)
         thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality': 90, 'crop':crop})
         return os.path.join(settings.MEDIA_URL, thumbnail.url)
 
@@ -450,7 +448,7 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
 
     user = models.OneToOneField(User, related_name='profile')
     experience = models.PositiveIntegerField(default=0)
-    location = models.CharField(max_length=255) # TODO : placeholder
+    location = models.CharField(max_length=255, blank=True, default='') # TODO : placeholder
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True,
         null=True)
     sex = models.IntegerField(choices=SEX_CHOICES, blank=True, null=True, verbose_name=_(u"sex"))

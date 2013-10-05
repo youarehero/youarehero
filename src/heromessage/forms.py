@@ -91,3 +91,36 @@ class TeamMessageForm(forms.Form):
 
     class Meta:
         fields = ('team', 'title', 'text')
+
+
+class QuestMessageForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_tag=False
+        self.helper.form_method = 'post'
+#        self.helper.form_action = 'message-c'
+        self.helper.form_class = 'form box'
+
+        self.helper.layout = Layout(
+            Div(
+                Div(
+                    'title',
+                    css_class="col-md-12",
+                    ),
+                css_class="row",
+            ),
+            Div(
+                Div(
+                    Field('text', css_class="col-md-12"),
+                    css_class="col-md-12",
+                ),
+                css_class="row",
+            ),
+
+        )
+        super(QuestMessageForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = Message
+        fields = ('title', 'text')

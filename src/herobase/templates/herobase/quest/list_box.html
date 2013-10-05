@@ -22,7 +22,7 @@
                     {% endwith %}
                 </p>
                 <p>
-                {{ quest.description|truncatewords:24 }}
+                {{ quest.description|truncatewords:24|linebreaksbr }}
                 </p>
                 {% include "herobase/quest/quest_box_footer.html" %}
             </span>

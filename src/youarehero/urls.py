@@ -32,6 +32,9 @@ urlpatterns = patterns(
     url(regex=r'^manifesto/$',
         view=TemplateView.as_view(template_name="herobase/manifesto.html"),
         name="manifesto"),
+    url(regex=r'^credits/$',
+        view=TemplateView.as_view(template_name="herobase/credits.html"),
+        name="credits"),
     url(regex=r'^leader/$',
         view='herobase.views.leader_board',
         name="leader_board"),
@@ -50,6 +53,7 @@ urlpatterns = patterns(
     url(r'^messages/', include('heromessage.urls')),
     url(r'^recommend/', include('herorecommend.urls')),
     url(r'^team/', include('herobase.urls.team')),
+    url(r'^org/', include('heroorganization.urls')),
 
     # auth / registration
     url(regex=r'^accounts/login/$',

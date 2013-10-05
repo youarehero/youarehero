@@ -84,6 +84,23 @@ h5 { font-size: 18px; }
 
 ul {list-style-type: none;}
 
+a {
+  text-decoration: underline;
+  [class^="icon-"], [class*=" icon-"] {
+    text-decoration: none;
+  }
+  &.no-decoration {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.nav a {
+  text-decoration: none;
+}
+
 // Layout
 //---------------
 @background: rgba(255, 255, 255, 0.6);
@@ -204,7 +221,8 @@ html, body {
     .cut-corners-bottom(@background);
 
     .headline {
-      margin-left: 25px;
+      margin-left: 22px;
+      padding-left: 0;
       padding-top: 15px;
       font-size: 16px;
       font-family: farao_textbold;
@@ -228,7 +246,9 @@ html, body {
       @avatar-height: 110px;
       vertical-align: top;
       position: relative;
-      margin-bottom: -12px;
+      padding: 0;
+      margin: 0 0 5px 22px;
+//      margin-bottom: -12px;
       z-index: 1;
       > span {display: block}
       .avatar {
@@ -237,8 +257,9 @@ html, body {
       }
       .experience-bar {
         border: 2px solid red;
-        width: 100%;
+        width: 89px;
         height: 14px;
+        margin-left: 21px;
         > div {
           height: 100%;
           background-color: red;
@@ -250,7 +271,8 @@ html, body {
         background-image: url("../img/levelstar.png");
         position: absolute;
         bottom: -@cut-corner-radius;
-        left: 0;
+        left: -6px;
+        bottom: -2px;
         text-align: center;
         color: white;
         font-size: 24px;
@@ -295,15 +317,17 @@ html, body {
       color: @white;
       &:hover, &:focus {
         color: black;
+        background: darken(@background-blue, 10%);
       }
     }
 
     .active > a {
       & {
-        color: darken(@background-blue, 10%);
+        background: darken(@background-blue, 10%);
       }
       &:hover, &:focus {
         color: black;
+        background: darken(@background-blue, 10%);
       }
     }
   }
@@ -403,7 +427,7 @@ html, body {
     top: 0;
     left: 0;
     text-align: center;
-    color: blue;
+    color: red;
     height: 34px;
     font-size: 12px;
     line-height: 34px;
@@ -694,7 +718,7 @@ html, body {
 
 // Box Buttons
 ul.buttons {
-  margin: (@cut-corner-radius) 0;
+  margin: (@cut-corner-radius / 2) 0;
   float: right;
   display: block;
   padding-left: 0;
@@ -762,10 +786,11 @@ ul.buttons {
     font-style: normal;
     color: inherit;
     display: block;
+    text-decoration: none;
     &:hover {
       color: inherit;
       text-decoration: none;
-      .text {text-decoration: underline;}
+      h2 {text-decoration: underline;}
     }
   }
   .text {
@@ -835,6 +860,9 @@ ul.buttons {
         dd {
           color: blue;
           font-size: 18px;
+          .details {
+            color: blue;
+          }
         }
 
         * + dt {
@@ -870,7 +898,7 @@ ul.buttons {
   }
 }
 
-.applications {
+.participants, .applications {
   form {
     display: inline-block;
   }
@@ -1138,16 +1166,6 @@ ul.buttons {
 }
 
 .box-buttons-bottom {margin-top: 20px;}
-.manifestobox {
-  .box;
-  & + & {
-    margin-left: 37px;
-  }
-  h1 {font-size: 32px;}
-  h2 {font-size: 16px; font-weight: bold;}
-  display: inline-block;
-  max-width: 380px;
-}
 
 .sponsors {
   .make-row;
@@ -1346,7 +1364,8 @@ ul.buttons {
 }
 
 button {
-  border: none;
+  border: 0 none;
+  padding: 0;
   background: transparent;
 }
 
