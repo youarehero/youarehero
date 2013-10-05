@@ -87,7 +87,7 @@ class QuestCreateForm(forms.ModelForm):
 
 
 
-class UserProfileEdit(forms.ModelForm):
+class UserProfileEditForm(forms.ModelForm):
     """Basic userprofile edit form. uses crispy-forms."""
     # latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
@@ -121,12 +121,12 @@ class UserProfileEdit(forms.ModelForm):
             ),
 
         )
-        super(UserProfileEdit, self).__init__(*args, **kwargs)
+        super(UserProfileEditForm, self).__init__(*args, **kwargs)
         # self.fields['location_granularity'].widget = forms.HiddenInput()
 
     # This method prevents us from overwriting the image field if it's empty.
     def clean(self):
-        cleaned_data = super(UserProfileEdit, self).clean()
+        cleaned_data = super(UserProfileEditForm, self).clean()
         if cleaned_data['image'] == "":
             del cleaned_data['image']
         model_data = model_to_dict(self.instance)
@@ -141,7 +141,7 @@ class UserProfileEdit(forms.ModelForm):
         )
 
 
-class UserProfilePrivacyEdit(forms.ModelForm):
+class UserProfilePrivacyForm(forms.ModelForm):
     """Special userprofile edit form for the fields containing privacy settings."""
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -160,7 +160,7 @@ class UserProfilePrivacyEdit(forms.ModelForm):
             ),
 
         )
-        super(UserProfilePrivacyEdit, self).__init__(*args, **kwargs)
+        super(UserProfilePrivacyForm, self).__init__(*args, **kwargs)
 
     class Meta:
         model = UserProfile

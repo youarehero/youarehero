@@ -31,22 +31,6 @@ class PlainTextPasswordHasher(BasePasswordHasher):
         ])
 
 
-def login_required(function):
-    """
-    Decorator for views that checks that the user is logged in, redirecting
-    to the log-in page if necessary.
-    """
-    def decorated(request, *args, **kwargs):
-
-        if not request.user.is_authenticated():
-            login_url = reverse('auth_login')
-            url = request.build_absolute_uri()  # this should be request.path
-            return HttpResponseRedirect("%s?next=%s" % (login_url, url))
-        else:
-            return function(request, *args, **kwargs)
-    return decorated
-
-
 def yearsago(years):
     d = date.today()
     try:

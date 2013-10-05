@@ -5,7 +5,7 @@
   <div class="nav-black">
     <div class="headline">you are <span class="username">{{ request.user.username }}</span></div>
     <a class="avatar-box" href="{% url "userprofile_private" %}">
-      <span class="avatar" style="background-image: url({{ request.user.profile.avatar_thumbnail_110|safe }});"></span>
+      <span class="avatar" style="background: url({{ request.user.profile.avatar_thumbnail_110|safe }}) no-repeat;"></span>
       <span class="experience-bar"><span style="width: {{ request.user.profile.relative_level_experience }}%;"></span></span>
       <span class="level">{{ request.user.profile.level }}</span>
     </a>

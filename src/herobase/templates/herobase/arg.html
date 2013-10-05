@@ -20,7 +20,7 @@
 </div>
 
 <div class="row centering">
-  <div class="linkbox">
+  <div class="linkbox col-sm-8 col-sm-offset-2">
   <a href="{% url "help" %}">
         <i class="icon-yah-hand-right"></i>
         <span class="small">
@@ -91,7 +91,7 @@
 </div>
 <div class="row">
   <div class="col-md-12 centering">
-    <div class="linkbox">
+    <div class="linkbox col-sm-10 col-sm-offset-1">
         <a href="/forums">
             <i class="icon-yah-hand-right"></i>
             <span>Gemeinschaft</span>
@@ -126,7 +126,7 @@
 
   {% if not request.user.is_authenticated %}
   <div class="col-md-8 centering">
-    <div class="linkbox">
+    <div class="linkbox col-md-8 col-md-offset-1">
         <a href="{% url "registration_register" %}">
             <i class="icon-yah-hand-right"></i>
             <span>Registrieren</span>
