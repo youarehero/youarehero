@@ -430,10 +430,11 @@ class AvatarImageMixin(models.Model):
         """Return a String, containing a path to a thumbnail-image."""
         if self.uploaded_image:
             thumbnailer = get_thumbnailer(self.uploaded_image)
+            thumbnail = thumbnailer.get_thumbnail({'quality': 90, 'size': (size[0], 0)})
         else:
             file_name = self.uploaded_image or self.image or 'avatar/default.png'
             thumbnailer = get_thumbnailer(self.avatar_storage, file_name)
-        thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality': 90, 'crop':crop})
+            thumbnail = thumbnailer.get_thumbnail({'size': size, 'quality': 90, 'crop': crop})
         return os.path.join(settings.MEDIA_URL, thumbnail.url)
 
     class Meta:
