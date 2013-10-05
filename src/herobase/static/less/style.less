@@ -141,6 +141,16 @@ html, body {
   height: 100%;
 }
 
+input,
+select,
+textarea {
+      color: @black;
+      background: rgba(255,255,255,0.6);
+      border: 0px none;
+      border-bottom: 2px solid @black;
+      border-radius: 0;
+    }
+
 #page {
     min-height: 100%;
     position: relative;
@@ -411,6 +421,9 @@ html, body {
       white-space: nowrap;
       margin-left: auto;
       margin-right: auto;
+      &:hover{
+        background: inherit;
+      }
     }
     h2 {
       font-size: 16px;
@@ -607,8 +620,8 @@ html, body {
   color: white;
 
   position: absolute;
-  top: (42px - @cut-corner-radius);
-  right: (27px - @cut-corner-radius);
+  top: 370px;
+  right: @cut-corner-radius;
   z-index: @floating-base-zindex;
 
   h1 {
@@ -710,8 +723,8 @@ html, body {
     }
   }
 
-  &.bottom > div {
-    right: 55px;
+  &.bottom {
+    left: 393px;
     top: -265px;
   }
 }
@@ -776,11 +789,14 @@ ul.buttons {
     }
   }
 }
+
+.js-masonry {width: 850px;}
+
 .quest-short {
   .box-red;
   .cut-corners;
   .quest;
-//  width: 100%;
+  width: 250px;
   color: white;
   a {
     font-style: normal;
@@ -912,13 +928,16 @@ ul.buttons {
   .box-red;
   .cut-corners;
   display: inline-block;
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 6px;
+  padding: 0 @cut-corner-radius;
   color: white;
   text-align: center;
   height: 48px - (2 * @cut-corner-radius);
   border: none;
   min-width: 48px;
   i {
+    font-size: 24px;
     display: block;
     color: white;
     width: 100%;
@@ -1158,7 +1177,8 @@ ul.buttons {
   margin-top: 20px;
 }
 
-#content > div {width: 830px;}
+
+
 .help-inline {
   color: red;
   display: inline-block;

@@ -1947,6 +1947,15 @@ html,
 body {
   height: 100%;
 }
+input,
+select,
+textarea {
+  color: #333333;
+  background: rgba(255, 255, 255, 0.6);
+  border: 0px none;
+  border-bottom: 2px solid #333333;
+  border-radius: 0;
+}
 #page {
   min-height: 100%;
   position: relative;
@@ -2273,6 +2282,9 @@ body {
   white-space: nowrap;
   margin-left: auto;
   margin-right: auto;
+}
+#navigation #brand a:hover {
+  background: inherit;
 }
 #navigation #brand h2 {
   font-size: 16px;
@@ -2705,8 +2717,8 @@ body {
   position: relative;
   color: white;
   position: absolute;
-  top: 30px;
-  right: 15px;
+  top: 370px;
+  right: 12px;
   z-index: 100;
 }
 .box-floating a {
@@ -3039,8 +3051,8 @@ body {
 .infobox-container.middle + .row {
   margin-top: 180px;
 }
-.infobox-container.bottom > div {
-  right: 55px;
+.infobox-container.bottom {
+  left: 393px;
   top: -265px;
 }
 ul.buttons {
@@ -3185,6 +3197,9 @@ ul.buttons:after {
   font-size: 40px;
   color: black;
 }
+.js-masonry {
+  width: 850px;
+}
 .quest-short {
   color: #ffffff;
   background: rgba(255, 0, 0, 0.6);
@@ -3192,6 +3207,7 @@ ul.buttons:after {
   padding: 0;
   margin-top: 12px;
   position: relative;
+  width: 250px;
   color: white;
 }
 .quest-short a {
@@ -3646,7 +3662,9 @@ ul.buttons:after {
   margin-top: 12px;
   position: relative;
   display: inline-block;
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 6px;
+  padding: 0 12px;
   color: white;
   text-align: center;
   height: 24px;
@@ -3733,6 +3751,7 @@ ul.buttons:after {
   padding: 0 12px;
 }
 .box-button i {
+  font-size: 24px;
   display: block;
   color: white;
   width: 100%;
@@ -4163,9 +4182,6 @@ ul.buttons:after {
 }
 #comment-form .form-actions {
   margin-top: 20px;
-}
-#content > div {
-  width: 830px;
 }
 .help-inline {
   color: red;

@@ -409,7 +409,7 @@ msgstr "Vorgeschlagene Quests"
 
 #: herobase/templates/herobase/quest/accepted_adventures.html:4
 msgid "Participants"
-msgstr "Teilnehmer"
+msgstr "Teilnehmende"
 
 #: herobase/templates/herobase/quest/comments_box.html:5
 msgid "Comments"
@@ -536,7 +536,7 @@ msgstr "Level"
 
 #: herobase/templates/herobase/userprofile/detail_mini.html:17
 msgid "XP"
-msgstr "XP"
+msgstr "EP"
 
 #: herobase/templates/herobase/userprofile/edit.html:31
 #: heronotification/models.py:211

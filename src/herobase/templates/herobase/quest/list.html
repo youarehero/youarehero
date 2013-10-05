@@ -4,12 +4,8 @@
 {% load endless %}
 {% load cache %}
 
-{% block head_javascript %}
-    <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-tooltip.js"></script>
-    <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-popover.js"></script>
-{% endblock %}
-
 {% block javascript %}
+    <script src="{% get_static_prefix %}js/masonry.pkgd.min.js"></script>
     <script>
         $(function() {
             $('.dropdown-menu p select, .dropdown label').click(function(e) {
@@ -18,12 +14,6 @@
         });
     </script>
 {% endblock %}
-{##}
-{#{% block css %}#}
-{#    <link  href="https://fonts.googleapis.com/css?family=Coming+Soon"#}
-{#           rel="stylesheet"#}
-{#           type="text/css">#}
-{#{% endblock %}#}
 
 {% block page_title %}
     <h1>{% trans "Billboard" %}</h1>
@@ -31,22 +21,38 @@
 
 {% block content %}
     {% paginate 12 quests %}
-    <div style="text-align: right">{% show_pages %}</div>
-    <div class="row">
+    <div class="box">
+        <div style="float: right; font-size: 16px;"><p>{% show_pages %}</p></div>
+        <form action="" method="get">
+            <input placeholder="Titel, Beschreibung" style="margin-top: -12px;" name="search" value="{{ search }}"/>
+            <button class="box-button" type="submit" value="search">Suchen</button>
+        </form>
+    </div>
+    <div class="clearfix">
+    <div class="js-masonry"
+  data-masonry-options='{ "columnWidth": 272, "itemSelector": ".quest-short" }'>
         {% for quest in quests %}
             {% include "herobase/quest/list_box.html" %}
-        {% empty %}
-            <div class="col-xs-12">
+        {% endfor %}
+    </div>
+    {% if not quests %}
+            <div class="box">
                 {% if search %}
-                    <div class="box">{% trans "No quests found matching your current criteria." %}
+                    <div>{% trans "No quests found matching your current criteria." %}
                         <a href="?search=">{% trans "Show all." %}</a>
                     </div>
                 {% else %}
                     <div class="box">{% trans "There don't seem to be any quests." %}</div>
                 {% endif %}
             </div>
-        {% endfor %}
+    {% endif %}
     </div>
 
-    <div style="text-align: right">{% show_pages %}</div>
+    <div class="box clearfix">
+        <div style="float: right; font-size: 16px;"><p>{% show_pages %}</p></div>
+        <form action="" method="get">
+            <input placeholder="Titel, Beschreibung" style="margin-top: -12px;" name="search" value="{{ search }}"/>
+            <button class="box-button" type="submit" value="search">Suchen</button>
+        </form>
+    </div>
 {% endblock %}
