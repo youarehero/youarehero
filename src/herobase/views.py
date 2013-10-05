@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.comments import Comment
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site, RequestSite
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db.models import Q
 from django.utils.translation import ugettext as _
 from django.utils import simplejson as json
@@ -20,9 +20,11 @@ from django.contrib import messages
 from django.http import (HttpResponseRedirect, Http404,
                          HttpResponse, HttpResponseForbidden)
 from django.core.urlresolvers import reverse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView, UpdateView
+from heroorganization.models import Organization
+from heroorganization.views import OrganizationListView
 from registration.backends.default.views import RegistrationView, ActivationView
 import registration.signals
 
@@ -31,8 +33,8 @@ from herobase.utils import is_minimum_age
 from heronotification.models import Notification
 from heromessage.models import Message
 from herorecommend.forms import UserSkillEditForm
-from herobase.forms import (QuestCreateForm, UserProfileEdit,
-                            UserProfilePrivacyEdit, UserAuthenticationForm, DateOfBirthRegistrationForm)
+from herobase.forms import (QuestCreateForm, UserProfileEditForm,
+                            UserProfilePrivacyForm, UserAuthenticationForm, DateOfBirthRegistrationForm)
 from herobase.models import Quest, Adventure, Like, CREATE_EXPERIENCE, UserProfile
 from herorecommend.models import MIN_SELECTED_SKILLS
 from registration.models import RegistrationProfile
@@ -380,6 +382,12 @@ def userprofile(request, username=None,
     else:
         user = request.user
 
+    try:
+        organization = user.organization
+        return HttpResponseRedirect(organization.get_absolute_url())
+    except ObjectDoesNotExist:
+        pass
+
     return render(request, template, {
         'user': user,
         'rank': user.get_profile().rank,
@@ -391,7 +399,9 @@ def userprofile(request, username=None,
 def userprofile_edit(request):
     """Render the userprofile form and handle possible changes."""
     user = request.user
-    form = UserProfileEdit(request.POST or None, instance=user.get_profile())
+    if Organization.objects.filter(user=request.user).exists():
+        return HttpResponseRedirect(reverse("organization_update"))
+    form = UserProfileEditForm(request.POST or None, instance=user.get_profile())
     first_login = bool(request.GET.get('first_login'))
     if form.is_valid():
         form.save()
@@ -412,7 +422,7 @@ def userprofile_privacy_settings(request):
     saved on the userprofile.
     """
     user = request.user
-    form = UserProfilePrivacyEdit(
+    form = UserProfilePrivacyForm(
         request.POST or None,
         instance=user.get_profile())
     if form.is_valid():
@@ -520,10 +530,10 @@ class AgeRequiredRegistrationView(RegistrationView):
         email = cleaned_data['email']
         password = cleaned_data['password1']
         date_of_birth = cleaned_data['date_of_birth']
-        
+
         if not is_minimum_age(date_of_birth):
             return "BELOW_MINIMUM_AGE"
-        
+
         if Site._meta.installed:
             site = Site.objects.get_current()
         else:

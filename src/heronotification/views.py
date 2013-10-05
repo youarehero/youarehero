@@ -1,9 +1,9 @@
 # Create your views here.
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.utils.timezone import now
 from django.views.decorators.http import require_POST
-from herobase.utils import login_required
 
 
 @login_required

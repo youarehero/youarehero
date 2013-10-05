@@ -53,6 +53,7 @@ urlpatterns = patterns(
     url(r'^messages/', include('heromessage.urls')),
     url(r'^recommend/', include('herorecommend.urls')),
     url(r'^team/', include('herobase.urls.team')),
+    url(r'^org/', include('heroorganization.urls')),
 
     # auth / registration
     url(regex=r'^accounts/login/$',
