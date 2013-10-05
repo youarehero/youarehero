@@ -536,7 +536,7 @@ msgstr "Level"
 
 #: herobase/templates/herobase/userprofile/detail_mini.html:17
 msgid "XP"
-msgstr "XP"
+msgstr "EP"
 
 #: herobase/templates/herobase/userprofile/edit.html:31
 #: heronotification/models.py:211
