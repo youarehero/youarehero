@@ -3043,6 +3043,7 @@ textarea {
 .infobox-container > div h1 {
   font-size: 48px;
   font-weight: normal;
+  font-family: farao_book_heldregular;
 }
 .infobox-container.middle > div {
   top: -65px;
@@ -4633,6 +4634,7 @@ ul.buttons:after {
 .arg-quests .arg-quest h1 {
   margin-top: 2px;
   font-size: 16px;
+  font-family: farao_book_heldregular;
 }
 .arg-quests .arg-quest.large {
   width: 312px;
