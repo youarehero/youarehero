@@ -72,8 +72,10 @@ class QuestCreateForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super(QuestCreateForm, self).clean()
-        if (cleaned_data['start_date'] and cleaned_data['expiration_date']
-                and not cleaned_data['start_date'] < cleaned_data['expiration_date']):
+        if ('start_date' in cleaned_data and cleaned_data['start_date'] and
+            'expiration_date' in cleaned_data and
+            cleaned_data['expiration_date'] and not cleaned_data['start_date']
+            < cleaned_data['expiration_date']):
             raise ValidationError("Das Startdatum muss vor dem Enddatum liegen")
         return cleaned_data
 
