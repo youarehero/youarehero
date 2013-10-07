@@ -16,7 +16,7 @@
                 <div class="col-md-4"><img src="{{ profile.avatar }}" alt=""/></div>
                 <div class="col-md-8">
                     <h2>{{ organization.name }}</h2>
-                    <p>{{ profile.about }}</p>
+                    <p>{{ profile.about|urlize|linebreaks }}</p>
                 </div>
             </div>
         </div>
