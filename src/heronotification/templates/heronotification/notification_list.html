@@ -1,6 +1,4 @@
 {% extends "herobase/layout/base.html" %}
-{% load i18n hero_message humanize %}
-{% load url from future %}
 
 {% block content %}
 
@@ -21,9 +19,8 @@
             </div>
         {% empty %}
             <div class="col-md-6">
-                <p>Du hast keine neue Benachrichtigung</p>
+                <p>Du hast keine Benachrichtigung</p>
             </div>
         {% endfor %}
     </div>
-    {% include "herobase/articles/articles.inc.html" %}
 {% endblock %}
