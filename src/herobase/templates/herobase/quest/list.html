@@ -22,11 +22,12 @@
 {% block content %}
     {% paginate 12 quests %}
     <div class="box">
-        <div style="float: right; font-size: 16px;"><p>{% show_pages %}</p></div>
-        <form action="" method="get">
+        <div style="float: right; font-size: 12px;"><p>{% show_pages %}</p></div>
+        <form action="" method="get" class="pull-right">
             <input placeholder="Titel, Beschreibung" style="margin-top: -12px;" name="search" value="{{ search }}"/>
-            <button class="box-button" type="submit" value="search">Suchen</button>
+            <button class="inline-button" type="submit" value="search">Suchen</button>
         </form>
+        <div>&nbsp;</div>
     </div>
     <div class="clearfix">
     <div class="js-masonry"
@@ -49,10 +50,11 @@
     </div>
 
     <div class="box clearfix">
-        <div style="float: right; font-size: 16px;"><p>{% show_pages %}</p></div>
-        <form action="" method="get">
+        <div style="float: right; font-size: 12px;"><p>{% show_pages %}</p></div>
+        <form action="" method="get" class="pull-right">
             <input placeholder="Titel, Beschreibung" style="margin-top: -12px;" name="search" value="{{ search }}"/>
-            <button class="box-button" type="submit" value="search">Suchen</button>
+            <button class="inline-button" type="submit" value="search">Suchen</button>
         </form>
+        <div>&nbsp;</div>
     </div>
 {% endblock %}

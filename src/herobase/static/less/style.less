@@ -86,7 +86,7 @@ ul {list-style-type: none;}
 
 a {
   text-decoration: underline;
-  [class^="icon-"], [class*=" icon-"] {
+  [class^="icon-"], [class*="icon-"] {
     text-decoration: none;
   }
   &.no-decoration {
@@ -931,13 +931,18 @@ ul.buttons {
   }
 }
 
+.inline-button {
+  font-style: italic;
+//  font-size: 16px;
+}
+
 .box-button {
   .box-red;
   .cut-corners;
   display: inline-block;
   font-size: 20px;
   line-height: 6px;
-  padding: 0 @cut-corner-radius;
+//  padding: 0 @cut-corner-radius;
   color: white;
   text-align: center;
   height: 48px - (2 * @cut-corner-radius);

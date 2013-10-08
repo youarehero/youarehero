@@ -1911,7 +1911,7 @@ a {
   text-decoration: underline;
 }
 a [class^="icon-"],
-a [class*=" icon-"] {
+a [class*="icon-"] {
   text-decoration: none;
 }
 a.no-decoration {
@@ -3659,6 +3659,9 @@ ul.buttons:after {
   color: red;
   font-size: 24px;
 }
+.inline-button {
+  font-style: italic;
+}
 .box-button {
   color: #ffffff;
   background: rgba(255, 0, 0, 0.6);
@@ -3669,7 +3672,6 @@ ul.buttons:after {
   display: inline-block;
   font-size: 20px;
   line-height: 6px;
-  padding: 0 12px;
   color: white;
   text-align: center;
   height: 24px;
