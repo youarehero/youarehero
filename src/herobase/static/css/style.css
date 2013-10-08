@@ -1923,6 +1923,10 @@ a.no-decoration:hover {
 .nav a {
   text-decoration: none;
 }
+a.plain {
+  text-decoration: none;
+  color: #333333;
+}
 body.city-karlsruhe {
   background-color: white;
 }
