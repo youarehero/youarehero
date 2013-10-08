@@ -2,7 +2,7 @@
 {% load url from future %}
 <div class="box-image hidden" data-position="2">
     <div class="image" style="background-image: url({% get_static_prefix %}img/articles/article2.png);"></div>
-    <h1 class="header">Großer FREEZE am Ludwigsplatz!</h1>
+    <h1 class="header red">Großer FREEZE am Ludwigsplatz!</h1>
     <h5 class="subheader">Anonyma hat<br/>zugeschlagen.</h5>
     <p class="text">
         Wie wir gerade erfahren haben, wurde am 21.09. die gestohlene Zeitmaschine in großem Stil auf dem Ludwigsplatz in Karlsruhe getestet.
@@ -13,7 +13,7 @@
     </p>
     {% if not request.user.is_authenticated %}
         <div class="box-floating">
-            <h1>Helden<br/>bedarf</h1>
+            <h1><a class="plain" href="#yah-ist-ein-spiel">Helden<br/>bedarf</a></h1>
             <p>Erfahre mehr, <a href="{% url "registration_register" %}">registriere</a> dich jetzt und beginne noch heute mit dem Spiel!</p>
             <div class="box-footer">
                 <a href="#yah-ist-ein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>

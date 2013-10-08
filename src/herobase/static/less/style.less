@@ -86,7 +86,7 @@ ul {list-style-type: none;}
 
 a {
   text-decoration: underline;
-  [class^="icon-"], [class*=" icon-"] {
+  [class^="icon-"], [class*="icon-"] {
     text-decoration: none;
   }
   &.no-decoration {
@@ -99,6 +99,11 @@ a {
 
 .nav a {
   text-decoration: none;
+}
+
+a.plain {
+  text-decoration: none;
+  color: @text-color;
 }
 
 // Layout
@@ -270,9 +275,10 @@ textarea {
         width: 89px;
         height: 14px;
         margin-left: 21px;
-        > div {
+        > span {
           height: 100%;
-          background-color: red;
+          background-color: blue;
+          display: block;
         }
       }
       .level {
@@ -509,6 +515,10 @@ textarea {
         }
       }
     }
+    .icon-circle {
+      font-size: 12px;
+      margin: 0 2px;
+    }
   }
 
   .icon-yah {
@@ -567,17 +577,18 @@ textarea {
 
   height: (@height - 2 * @cut-corner-radius);
 
-  > h1 {
-    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-  }
   .header {
     height: @header-height;
+  }
+  .header.red {
+     color: red;
+
   }
   .header, .subheader {
     display: block;
     z-index: 2;
     position: relative;
-    left: 15px;
+//    left: 15px;
   }
   .subheader {
     margin-bottom: 0;
@@ -791,7 +802,7 @@ ul.buttons {
   }
 }
 
-.js-masonry {width: 850px;}
+.js-masonry, .js-masonry-tab {width: 850px;}
 
 .quest-short {
   .box-red;
@@ -925,13 +936,18 @@ ul.buttons {
   }
 }
 
+.inline-button {
+  font-style: italic;
+//  font-size: 16px;
+}
+
 .box-button {
   .box-red;
   .cut-corners;
   display: inline-block;
   font-size: 20px;
   line-height: 6px;
-  padding: 0 @cut-corner-radius;
+//  padding: 0 @cut-corner-radius;
   color: white;
   text-align: center;
   height: 48px - (2 * @cut-corner-radius);
@@ -1194,33 +1210,41 @@ ul.buttons {
 .box-buttons-bottom {margin-top: 20px;}
 
 .sponsors {
-  .make-row;
-
-  > :first-child {margin-left: 15px;}
-  > :last-child {margin-right: 15px;}
-
-  .sponsor {
-    & + .sponsor {margin-left: 172px;}
-    .box;
+  .box;
+  a {
     display: inline-block;
+  }
+}
 
-    height: 100px + 34px;;
-    width: 150px;
-    margin-bottom: 24px;
+.userprofile {
+  .experience-bar {
+    border: 2px solid red;
+    width: 89px;
+    height: 14px;
+    margin-left: 21px;
+    > div {
+      height: 100%;
+      background-color: blue;
+
+    }
+  }
+  .level {
+    height: 42px;
+    width: 42px;
+    background-image: url("../img/levelstar.png");
+    position: absolute;
+    bottom: -@cut-corner-radius;
+    left: 9px;
+    bottom: 0;
     text-align: center;
-    line-height: 100px;
-    img {
-      max-height: 100px - 2 * @cut-corner-radius;
-      max-width: 150px - 2 * @cut-corner-radius;
-      vertical-align: middle;
-    }
-
-    h1 {
-      height: 42px;
-      font-size: 24px;
-      font-family: farao-textregular;
-      margin: 0;
-    }
+    color: white;
+    font-size: 24px;
+  }
+}
+dl.data {
+  dd {
+    font-size: 18px;
+    color: blue;
   }
 }
 

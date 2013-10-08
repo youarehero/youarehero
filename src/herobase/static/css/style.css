@@ -1911,7 +1911,7 @@ a {
   text-decoration: underline;
 }
 a [class^="icon-"],
-a [class*=" icon-"] {
+a [class*="icon-"] {
   text-decoration: none;
 }
 a.no-decoration {
@@ -1922,6 +1922,10 @@ a.no-decoration:hover {
 }
 .nav a {
   text-decoration: none;
+}
+a.plain {
+  text-decoration: none;
+  color: #333333;
 }
 body.city-karlsruhe {
   background-color: white;
@@ -2084,9 +2088,10 @@ textarea {
   height: 14px;
   margin-left: 21px;
 }
-#navigation .nav-black .avatar-box .experience-bar > div {
+#navigation .nav-black .avatar-box .experience-bar > span {
   height: 100%;
-  background-color: red;
+  background-color: blue;
+  display: block;
 }
 #navigation .nav-black .avatar-box .level {
   height: 42px;
@@ -2438,6 +2443,10 @@ textarea {
 #page-footer > ul > li.active > a:focus {
   color: #333333;
 }
+#page-footer > ul .icon-circle {
+  font-size: 12px;
+  margin: 0 2px;
+}
 #page-footer .icon-yah {
   display: inline-block;
   width: 100%;
@@ -2672,18 +2681,17 @@ textarea {
 .box-image:after {
   clear: both;
 }
-.box-image > h1 {
-  text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
-}
 .box-image .header {
   height: 90px;
+}
+.box-image .header.red {
+  color: red;
 }
 .box-image .header,
 .box-image .subheader {
   display: block;
   z-index: 2;
   position: relative;
-  left: 15px;
 }
 .box-image .subheader {
   margin-bottom: 0;
@@ -3198,7 +3206,8 @@ ul.buttons:after {
   font-size: 40px;
   color: black;
 }
-.js-masonry {
+.js-masonry,
+.js-masonry-tab {
   width: 850px;
 }
 .quest-short {
@@ -3655,6 +3664,9 @@ ul.buttons:after {
   color: red;
   font-size: 24px;
 }
+.inline-button {
+  font-style: italic;
+}
 .box-button {
   color: #ffffff;
   background: rgba(255, 0, 0, 0.6);
@@ -3665,7 +3677,6 @@ ul.buttons:after {
   display: inline-block;
   font-size: 20px;
   line-height: 6px;
-  padding: 0 12px;
   color: white;
   text-align: center;
   height: 24px;
@@ -4196,63 +4207,15 @@ ul.buttons:after {
 .box-buttons-bottom {
   margin-top: 20px;
 }
-.sponsors:before,
-.sponsors:after {
-  content: " ";
-  /* 1 */
-
-  display: table;
-  /* 2 */
-
-}
-.sponsors:after {
-  clear: both;
-}
-.sponsors:before,
-.sponsors:after {
-  content: " ";
-  /* 1 */
-
-  display: table;
-  /* 2 */
-
-}
-.sponsors:after {
-  clear: both;
-}
-@media (min-width: 768px) {
-  .container .sponsors {
-    margin-left: -15px;
-    margin-right: -15px;
-  }
-}
-.sponsors .row {
-  margin-left: -15px;
-  margin-right: -15px;
-}
-.sponsors > :first-child {
-  margin-left: 15px;
-}
-.sponsors > :last-child {
-  margin-right: 15px;
-}
-.sponsors .sponsor {
+.sponsors {
   background: rgba(255, 255, 255, 0.6);
+  margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   position: relative;
   margin-bottom: 36px;
-  display: inline-block;
-  height: 134px;
-  width: 150px;
-  margin-bottom: 24px;
-  text-align: center;
-  line-height: 100px;
 }
-.sponsors .sponsor + .sponsor {
-  margin-left: 172px;
-}
-.sponsors .sponsor:after {
+.sponsors:after {
   content: "";
   display: table;
   width: 100%;
@@ -4265,10 +4228,10 @@ ul.buttons:after {
   border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
 }
-.sponsors .sponsor > * {
+.sponsors > * {
   padding: 0 12px;
 }
-.sponsors .sponsor:before {
+.sponsors:before {
   content: "";
   display: table;
   width: 100%;
@@ -4281,11 +4244,11 @@ ul.buttons:after {
   border-bottom: 12px solid rgba(255, 255, 255, 0.6);
   border-top: 0 none;
 }
-.sponsors .sponsor > * {
+.sponsors > * {
   padding: 0 12px;
 }
-.sponsors .sponsor:before,
-.sponsors .sponsor:after {
+.sponsors:before,
+.sponsors:after {
   content: " ";
   /* 1 */
 
@@ -4293,11 +4256,11 @@ ul.buttons:after {
   /* 2 */
 
 }
-.sponsors .sponsor:after {
+.sponsors:after {
   clear: both;
 }
-.sponsors .sponsor:before,
-.sponsors .sponsor:after {
+.sponsors:before,
+.sponsors:after {
   content: " ";
   /* 1 */
 
@@ -4305,19 +4268,37 @@ ul.buttons:after {
   /* 2 */
 
 }
-.sponsors .sponsor:after {
+.sponsors:after {
   clear: both;
 }
-.sponsors .sponsor img {
-  max-height: 76px;
-  max-width: 126px;
-  vertical-align: middle;
+.sponsors a {
+  display: inline-block;
 }
-.sponsors .sponsor h1 {
+.userprofile .experience-bar {
+  border: 2px solid red;
+  width: 89px;
+  height: 14px;
+  margin-left: 21px;
+}
+.userprofile .experience-bar > div {
+  height: 100%;
+  background-color: blue;
+}
+.userprofile .level {
   height: 42px;
+  width: 42px;
+  background-image: url("../img/levelstar.png");
+  position: absolute;
+  bottom: -12px;
+  left: 9px;
+  bottom: 0;
+  text-align: center;
+  color: white;
   font-size: 24px;
-  font-family: farao-textregular;
-  margin: 0;
+}
+dl.data dd {
+  font-size: 18px;
+  color: blue;
 }
 .linkbox {
   color: #ffffff;

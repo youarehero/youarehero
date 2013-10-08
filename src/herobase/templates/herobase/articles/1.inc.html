@@ -2,18 +2,23 @@
 {% load url from future %}
 <div class="box-image hidden" data-position="1">
     <div class="image" style="background-image: url({% get_static_prefix %}img/articles/article1.png);"></div>
-    <h1 class="header">Zeitmaschine gestohlen!</h1>
+    <h1 class="header red">Zeitmaschine gestohlen!</h1>
     <h5 class="header">Forschungsgemeinde<br/>in Schock</h5>
     <p class="text">
-        Wie wir vom Opfer Prof. Dr. Dr. Rudolf Entropius (29), Gastprofessor am FZI Forschungszentrum Informatik, soeben erfahren haben, wurde ein wichtiges Forschungsobjekt, Frucht jahrzehnte langer Arbeit, entwendet. Es handelt sich dabei um eine Maschine, die die Zeit für eine gewisse Dauer stoppen kann.
-        Die mutmassliche Täterin, eine Schurkin die unter dem Decknamen Anonyma agiert, wurde laut Zeugen auch schon mehrfach in der Stadt beim Ausüben ihrer Taten gesichtet.
+        Wie wir vom Opfer Prof. Dr. Dr. Rudolf Entropius (29), Gastprofessor
+        am FZI Forschungszentrum Informatik, soeben erfahren haben, wurde ein
+        wichtiges Forschungsobjekt, Frucht jahrzehnte langer Arbeit, entwendet.
+        Es handelt sich dabei um eine Maschine, die die Zeit für eine gewisse
+        Dauer stoppen kann.
+        Die mutmaßliche Täterin, eine Schurkin die unter dem Decknamen Anonyma
+        agiert, wurde laut Zeugen auch schon mehrfach in Karlsruhe beim Ausüben ihrer Taten gesichtet.
 
 
         Hinweise, die zur Überführung des Täters/der Täterin führen, können im Heldenhauptquartier oder via email an Dr. Entropius (<a href="mailto:r.entropius@gmail.com">r.entropius@gmail.com</a>) persönlich abgegeben werden.
     </p>
     {% if not request.user.is_authenticated %}
         <div class="box-floating">
-            <h1>Helden<br/>bedarf</h1>
+            <h1><a class="plain" href="#yah-ist-ein-spiel">Helden<br/>bedarf</a></h1>
             <p>Erfahre mehr, <a href="{% url "registration_register" %}">registriere</a> dich jetzt und beginne noch heute mit dem Spiel!</p>
             <div class="box-footer">
                 <a href="#yah-ist-ein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>
