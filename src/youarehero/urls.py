@@ -44,10 +44,9 @@ urlpatterns = patterns(
     url(regex=r'^hotline/$',
         view=TemplateView.as_view(template_name="herobase/hotline.html"),
         name='hotline'),
-    url(regex=r'^dismiss_notification/(?P<notification_id>\d+)/$',
-        view='heronotification.views.mark_notification_read',
-        name='mark_notification_read'),
 
+
+    url(r'^notifications/', include('heronotification.urls')),
     url(r'^profile/', include('herobase.urls.profile')),
     url(r'^quest/', include('herobase.urls.quest')),
     url(r'^messages/', include('heromessage.urls')),

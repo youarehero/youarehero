@@ -60,7 +60,7 @@
     </li>
     <li class="{% ifactive "help" %}active{% endifactive %}"><a href="{% url "help" %}"><i class="icon-yah-question-mark icon-2x"></i></a></li>
     <li class="{% ifactive "/" %}active{% endifactive %}">
-      <a href="/#notifications">
+      <a href="{% url "notification_list" %}">
         <i class="icon-bell-alt icon-2x">
           {% with notifications=request.user.profile.unread_messages_and_notifications_count %}
           {% if notifications > 0 %}<b class="notificationcount">{{ notifications }}</b>{% endif %}

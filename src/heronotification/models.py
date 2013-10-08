@@ -253,10 +253,17 @@ class Notification(models.Model):
         return True
 
     @classmethod
-    def for_user(cls, user):
-        items = (cls.objects.filter(user=user)
-                 .order_by('-read', '-created')
-                 .select_related('content_type'))
+    def unread_for_user(cls, user, limit=64):
+        return [n for n in cls.for_user(user, limit=limit, include_read=False) if not n.is_read()]
+
+    @classmethod
+    def for_user(cls, user, limit=64, include_read=True):
+        items = cls.objects.filter(user=user)
+        if not include_read:
+            items = items.filter(read__isnull=True)
+        items = items.order_by('-read', '-created').select_related('content_type')[:limit]
+        # TODO : make this a lazy thing that only evaluates items after slicing
+
         # collect all targets
         # maintain a mapping ct -> id -> item
         ct_target_item_map = defaultdict(lambda: defaultdict(list))
@@ -321,11 +328,18 @@ class Notification(models.Model):
 
     def is_read(self):
         # FIXME: this still modifies the model
-        if self.read is None and (not hasattr(self.type, 'is_read')
-                                  or hasattr(self.type, 'is_read')
-                                  and self.type.is_read(self)):
+        if self.read is None and not hasattr(self.type, 'is_read'):
+            # here we return False because this message is marked read upon first checking is_read
             self.read = now()
             self.save()
+            return False
+        elif self.read is None and hasattr(self.type, 'is_read') and self.type.is_read(self):
+            # here we return True because this message has been determined to be read by it's
+            # is_read implementation, thus it was already read before
+            self.read = now()
+            self.save()
+            return self.read
+
         return self.read
 
     def html(self):

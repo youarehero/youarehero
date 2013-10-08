@@ -214,14 +214,9 @@ def home_view(request):
 @login_required
 def hero_home_view(request, template='herobase/hero_home.html'):
     """the hero home is only visible for authenticated heros."""
-    user = request.user
-    return render(
-        request,
-        template,
-        {
-            'notifications': [n for n in Notification.for_user(user)[:10] if not n.is_read()],
-            'messages': Message.latest_for_user(user)[:10]
-        })
+    return render(request, template, {
+        'notifications': Notification.unread_for_user(request.user),
+    })
 
 
 @login_required
