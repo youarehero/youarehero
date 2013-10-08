@@ -2676,11 +2676,11 @@ textarea {
 .box-image:after {
   clear: both;
 }
-.box-image > h1 {
-  text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
-}
 .box-image .header {
   height: 90px;
+}
+.box-image .header.red {
+  color: red;
 }
 .box-image .header,
 .box-image .subheader {
