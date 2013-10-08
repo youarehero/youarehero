@@ -4198,63 +4198,15 @@ ul.buttons:after {
 .box-buttons-bottom {
   margin-top: 20px;
 }
-.sponsors:before,
-.sponsors:after {
-  content: " ";
-  /* 1 */
-
-  display: table;
-  /* 2 */
-
-}
-.sponsors:after {
-  clear: both;
-}
-.sponsors:before,
-.sponsors:after {
-  content: " ";
-  /* 1 */
-
-  display: table;
-  /* 2 */
-
-}
-.sponsors:after {
-  clear: both;
-}
-@media (min-width: 768px) {
-  .container .sponsors {
-    margin-left: -15px;
-    margin-right: -15px;
-  }
-}
-.sponsors .row {
-  margin-left: -15px;
-  margin-right: -15px;
-}
-.sponsors > :first-child {
-  margin-left: 15px;
-}
-.sponsors > :last-child {
-  margin-right: 15px;
-}
-.sponsors .sponsor {
+.sponsors {
   background: rgba(255, 255, 255, 0.6);
+  margin-bottom: 24px;
   padding: 0;
   margin-top: 12px;
   position: relative;
   margin-bottom: 36px;
-  display: inline-block;
-  height: 134px;
-  width: 150px;
-  margin-bottom: 24px;
-  text-align: center;
-  line-height: 100px;
 }
-.sponsors .sponsor + .sponsor {
-  margin-left: 172px;
-}
-.sponsors .sponsor:after {
+.sponsors:after {
   content: "";
   display: table;
   width: 100%;
@@ -4267,10 +4219,10 @@ ul.buttons:after {
   border-top: 12px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0 none;
 }
-.sponsors .sponsor > * {
+.sponsors > * {
   padding: 0 12px;
 }
-.sponsors .sponsor:before {
+.sponsors:before {
   content: "";
   display: table;
   width: 100%;
@@ -4283,11 +4235,11 @@ ul.buttons:after {
   border-bottom: 12px solid rgba(255, 255, 255, 0.6);
   border-top: 0 none;
 }
-.sponsors .sponsor > * {
+.sponsors > * {
   padding: 0 12px;
 }
-.sponsors .sponsor:before,
-.sponsors .sponsor:after {
+.sponsors:before,
+.sponsors:after {
   content: " ";
   /* 1 */
 
@@ -4295,11 +4247,11 @@ ul.buttons:after {
   /* 2 */
 
 }
-.sponsors .sponsor:after {
+.sponsors:after {
   clear: both;
 }
-.sponsors .sponsor:before,
-.sponsors .sponsor:after {
+.sponsors:before,
+.sponsors:after {
   content: " ";
   /* 1 */
 
@@ -4307,19 +4259,11 @@ ul.buttons:after {
   /* 2 */
 
 }
-.sponsors .sponsor:after {
+.sponsors:after {
   clear: both;
 }
-.sponsors .sponsor img {
-  max-height: 76px;
-  max-width: 126px;
-  vertical-align: middle;
-}
-.sponsors .sponsor h1 {
-  height: 42px;
-  font-size: 24px;
-  font-family: farao-textregular;
-  margin: 0;
+.sponsors a {
+  display: inline-block;
 }
 .linkbox {
   color: #ffffff;
