@@ -2443,6 +2443,10 @@ textarea {
 #page-footer > ul > li.active > a:focus {
   color: #333333;
 }
+#page-footer > ul .icon-circle {
+  font-size: 12px;
+  margin: 0 2px;
+}
 #page-footer .icon-yah {
   display: inline-block;
   width: 100%;
