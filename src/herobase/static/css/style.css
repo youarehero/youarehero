@@ -2088,9 +2088,10 @@ textarea {
   height: 14px;
   margin-left: 21px;
 }
-#navigation .nav-black .avatar-box .experience-bar > div {
+#navigation .nav-black .avatar-box .experience-bar > span {
   height: 100%;
-  background-color: red;
+  background-color: blue;
+  display: block;
 }
 #navigation .nav-black .avatar-box .level {
   height: 42px;
@@ -3202,7 +3203,8 @@ ul.buttons:after {
   font-size: 40px;
   color: black;
 }
-.js-masonry {
+.js-masonry,
+.js-masonry-tab {
   width: 850px;
 }
 .quest-short {
@@ -4264,6 +4266,28 @@ ul.buttons:after {
 }
 .sponsors a {
   display: inline-block;
+}
+.userprofile .experience-bar {
+  border: 2px solid red;
+  width: 89px;
+  height: 14px;
+  margin-left: 21px;
+}
+.userprofile .experience-bar > div {
+  height: 100%;
+  background-color: blue;
+}
+.userprofile .level {
+  height: 42px;
+  width: 42px;
+  background-image: url("../img/levelstar.png");
+  position: absolute;
+  bottom: -12px;
+  left: 9px;
+  bottom: 0;
+  text-align: center;
+  color: white;
+  font-size: 24px;
 }
 .linkbox {
   color: #ffffff;

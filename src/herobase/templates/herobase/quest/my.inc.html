@@ -1,0 +1,117 @@
+{% load url from future %}
+{% load static %}
+{% load i18n hero_message activelink %}
+{% load endless %}
+
+{% block javascript %}
+    <script src="{% get_static_prefix %}js/masonry.pkgd.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var $container = $($('#quests_all').find('.js-masonry-tab').first());
+            // initialize
+            $container.masonry({
+                columnWidth: 272,
+                itemSelector: '.quest-short'
+            });
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                e.target // activated tab
+                e.relatedTarget // previous tab
+                var tab_id = $(e.target).attr('href');
+                console.log($(tab_id).find('.js-masonry-tab').first());
+                var $container = $($(tab_id).find('.js-masonry-tab').first());
+                // initialize
+                $container.masonry({
+                    columnWidth: 272,
+                    itemSelector: '.quest-short'
+                });
+            });
+        });
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="box">
+        <ul class="subsub">
+            <li class="active">
+                <a href="#quests_all" data-toggle="tab">Alle</a>
+            </li>
+            <li><i class="icon-circle"></i></li>
+            <li>
+                <a href="#quests_created" data-toggle="tab">Erstellt</a>
+            </li>
+            <li><i class="icon-circle"></i></li>
+            <li>
+                <a href="#quests_joined" data-toggle="tab">Angenommen</a>
+            </li>
+            <li><i class="icon-circle"></i></li>
+            <li>
+                <a href="#quests_done" data-toggle="tab">Erledigt</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div id="quests_all" class="tab-pane active">
+            {% paginate 12 quests_all %}
+            <div style="text-align: right"><p>{% show_pages %}</p></div>
+            <div class="js-masonry-tab">
+                {% for quest in quests_all %}
+                    {% include "herobase/quest/list_box.html" %}
+                {% endfor %}
+            </div>
+            {% if not quests_all %}
+                <div class="box">
+                    <div class="box">{% trans "There don't seem to be any quests." %}</div>
+                </div>
+            {% endif %}
+            <div style="text-align: right"><p>{% show_pages %}</p></div>
+        </div>
+        <div id="quests_created" class="tab-pane">
+            {% paginate 12 quests_created %}
+            <div style="text-align: right"><p>{% show_pages %}</p></div>
+            <div class="js-masonry-tab">
+                {% for quest in quests_created %}
+                    {% include "herobase/quest/list_box.html" %}
+                {% endfor %}
+            </div>
+            {% if not quests_created %}
+                <div class="box">
+                    <div class="box">{% trans "There don't seem to be any quests." %}</div>
+                </div>
+            {% endif %}
+            <div style="text-align: right"><p>{% show_pages %}</p></div>
+        </div>
+        <div id="quests_joined" class="tab-pane">
+            {% paginate 12 quests_joined %}
+            <div style="text-align: right"><p>{% show_pages %}</p></div>
+            <div class="js-masonry-tab">
+                {% for quest in quests_joined %}
+                    {% include "herobase/quest/list_box.html" %}
+                {% endfor %}
+            </div>
+            {% if not quests_joined %}
+                <div class="box">
+                    <div class="box">{% trans "There don't seem to be any quests." %}</div>
+                </div>
+            {% endif %}
+            <div style="text-align: right"><p>{% show_pages %}</p></div>
+        </div>
+        <div id="quests_done" class="tab-pane">
+            {% paginate 12 quests_done %}
+            <div style="text-align: right"><p>{% show_pages %}</p></div>
+            <div class="js-masonry-tab">
+                {% for quest in quests_done %}
+                    {% include "herobase/quest/list_box.html" %}
+                {% endfor %}
+            </div>
+            {% if not quests_done %}
+                <div class="box">
+                    <div class="box">{% trans "There don't seem to be any quests." %}</div>
+                </div>
+            {% endif %}
+            <div style="text-align: right"><p>{% show_pages %}</p></div>
+        </div>
+    </div>
+
+{% endblock %}

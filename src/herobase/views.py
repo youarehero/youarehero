@@ -388,10 +388,47 @@ def userprofile(request, username=None,
     except ObjectDoesNotExist:
         pass
 
+    # Quests
+    created_q = Q(owner=user)
+    joined_q = Q(adventures__user=user, adventures__canceled=False)
+
+    quests_all = Quest.objects.filter(
+        canceled=False,
+        done=False
+    ).filter(
+        created_q | joined_q
+    ).order_by('-created').distinct().select_related('owner', 'owner__profile')
+
+    quests_created = user.created_quests.filter(
+                canceled=False,
+                done=False
+            ).order_by('-created').select_related('owner', 'owner__profile')
+
+    quests_joined = Quest.objects.filter(
+                canceled=False,
+                done=False
+            ).filter(
+                adventures__user=user,
+                adventures__canceled=False
+            ).select_related('owner', 'owner__profile')
+
+    created_q = Q(owner=user)
+    joined_q = Q(adventures__user=user)
+    quests_done = Quest.objects.exclude(
+        canceled=False,
+        done=False
+    ).filter(
+        created_q | joined_q
+    ).order_by('-created').select_related('owner', 'owner__profile')
+
     return render(request, template, {
         'user': user,
         'rank': user.get_profile().rank,
         'completed_quest_count': user.adventures.filter(done=True).count(),
+        'quests_all': quests_all,
+        'quests_created': quests_created,
+        'quests_joined': quests_joined,
+        'quests_done': quests_done,
     })
 
 
