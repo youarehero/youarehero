@@ -23,7 +23,7 @@
                         {% endif %}
                     </div>
                     <div class="col-sm-5">
-                        <dl>
+                        <dl class="data">
                             {% if user.get_profile.team %}
                                 <dt>{% trans "Team" %}</dt>
                                 {% comment %}<dd><a href="{% url herobase.views.team user.get_profile.team %}">{{ user.get_profile.team }}</a></dd>{% endcomment %}

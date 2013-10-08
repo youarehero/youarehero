@@ -2688,7 +2688,6 @@ textarea {
   display: block;
   z-index: 2;
   position: relative;
-  left: 15px;
 }
 .box-image .subheader {
   margin-bottom: 0;
@@ -4288,6 +4287,10 @@ ul.buttons:after {
   text-align: center;
   color: white;
   font-size: 24px;
+}
+dl.data dd {
+  font-size: 18px;
+  color: blue;
 }
 .linkbox {
   color: #ffffff;
