@@ -61,6 +61,12 @@
                 {% include "herobase/quest/quest_box_footer.html" %}
             </div>
             {% if is_owner %}
+                <a href="{% url "quest_recreate" quest.pk %}">
+                        <button class="box-button"
+                                data-toggle="tooltip" data-title="Quest erneut Erzeugen">
+                            <i class="icon-copy"></i>
+                        </button>
+                </a>
                 {% if not quest.edit_window_expired %}
                     <a class="box-button" href="{% url "quest_update" quest.pk %}"
                        data-toggle="tooltip"

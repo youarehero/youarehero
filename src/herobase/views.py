@@ -13,6 +13,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site, RequestSite
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db.models import Q
+from django.forms.models import model_to_dict
 from django.utils.translation import ugettext as _
 from django.utils import simplejson as json
 from django.views.decorators.http import require_POST
@@ -108,11 +109,26 @@ class QuestCreateView(CreateView):
     context_object_name = "quest"
     form_class = QuestCreateForm
     template_name = "herobase/quest/create.html"
-    success_url = '../%(id)s/'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(QuestCreateView, self).dispatch(*args, **kwargs)
+
+    def get_success_url(self):
+        return self.object.get_absolute_url()
+
+
+    def get_form(self, form_class):
+        form_kwargs = self.get_form_kwargs()
+        recreate_id = self.kwargs.get('quest_id')
+        if recreate_id:
+            quest = Quest.objects.get(pk=recreate_id, owner=self.request.user)
+            initial = model_to_dict(quest)
+            for field in ('pk', 'start_date', 'expiration_date'):
+                initial.pop(field, None)
+            form_kwargs['initial'] = initial
+
+        return form_class(**form_kwargs)
 
     def form_valid(self, form):
         if not self.request.user.profile.is_legal_adult():
