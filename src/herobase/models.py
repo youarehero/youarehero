@@ -309,19 +309,19 @@ class Quest(LocationMixin, models.Model):
     TIME_EFFORT_MEDIUM = 2
     TIME_EFFORT_HIGH = 3
     time_effort = models.IntegerField(null=True, verbose_name=_(u"time effort"), choices=(
-        (TIME_EFFORT_LOW, u"Niedrig (800 EP)"),
+        (TIME_EFFORT_LOW, u"Niedrig (500 EP)"),
         (TIME_EFFORT_MEDIUM, u"Mittel (1000 EP)"),
-        (TIME_EFFORT_HIGH, u"Hoch (1200 EP)"),
+        (TIME_EFFORT_HIGH, u"Hoch (2000 EP)"),
     ))
 
     @property
     def experience(self):
         if self.time_effort == self.TIME_EFFORT_LOW:
-            return 800
+            return 500
         if self.time_effort == self.TIME_EFFORT_MEDIUM:
             return 1000
         if self.time_effort == self.TIME_EFFORT_HIGH:
-            return 1200
+            return 2000
         return 1000
 
     @property
@@ -502,7 +502,7 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
         return self.user.created_quests.count()
 
 
-    levels = [0, 1000, 2000, 4000, 7000, 10000000]
+    levels = [0, 1000, 2000, 4000, 7000, 11000, 16000, 10000000]
     @property
     def level(self):
         """Calculate the user's level based on her experience"""
