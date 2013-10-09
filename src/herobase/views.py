@@ -4,6 +4,8 @@ The Views module provide view functions, which were called by the
 `url dispatcher <https://docs.djangoproject.com/en/1.4/topics/http/urls/>`_,
 and aggregate some data for use in templates.
 """
+import datetime
+from django.contrib.auth import logout
 import logging
 
 from django.contrib.auth.models import User
@@ -482,6 +484,36 @@ def userprofile_edit(request):
         'first_login': first_login,
     })
 
+@login_required
+def userprofile_delete(request):
+    """Remove all Information of a User and set her inactive."""
+    if request.method == 'POST':
+        user = request.user
+        user.username = "Held in Rente %s" % user.pk
+        user.first_name = ''
+        user.last_name = ''
+        user.email = ''
+        user.is_active = False
+        user.is_staff = False
+        user.is_superuser = False
+        user.save()
+
+        profile = user.get_profile()
+        profile.location = ''
+        profile.sex = 3
+        profile.date_of_birth = datetime.date.fromtimestamp(0)
+        profile.team = ''
+        profile.public_location = False
+        profile.about = ''
+        profile.receive_system_email = False
+        profile.receive_private_email = False
+        profile.save()
+
+        logout(request)
+
+        return HttpResponseRedirect(reverse('home'))
+    else:
+        return render(request, "herobase/userprofile/confirm_delete.html", {})
 
 @login_required
 def userprofile_privacy_settings(request):
