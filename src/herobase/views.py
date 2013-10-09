@@ -507,6 +507,8 @@ def userprofile_delete(request):
         profile.about = ''
         profile.receive_system_email = False
         profile.receive_private_email = False
+        profile.uploaded_image = None
+        profile.image = None
         profile.save()
 
         logout(request)
