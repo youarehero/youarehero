@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load url from future %}
 
-<div class="footer">
+<div class="footer" style="height: 71px;">
   <a href="{% url "userprofile_public" quest.owner.username %}"
     class="avatar"
     style="background: url({{ quest.owner.profile.avatar_thumbnail_70|safe }}) no-repeat"></a>

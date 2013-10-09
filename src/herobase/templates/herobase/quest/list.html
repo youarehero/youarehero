@@ -4,15 +4,42 @@
 {% load endless %}
 {% load cache %}
 
-{% block javascript %}
+{% block head_javascript %}
     <script src="{% get_static_prefix %}js/masonry.pkgd.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
     <script>
+        var initMasonry = function() {
+            var $container = $('.js-masonry-manual').first();
+            // initialize
+            $container.masonry({
+                columnWidth: 272,
+                itemSelector: '.quest-short'
+            });
+        }
+
+        WebFont.load({
+            custom: {
+                families: ['farao_book_heldregular']
+            },
+            active: function() {
+                if (document.readyState !== 'complete') {
+                    $(document).ready(initMasonry);
+                } else {
+                    initMasonry();
+                }
+            }
+        });
+
         $(function() {
             $('.dropdown-menu p select, .dropdown label').click(function(e) {
                 e.stopPropagation();
             });
         });
     </script>
+{% endblock %}
+
+{% block javascript %}
+
 {% endblock %}
 
 {% block page_title %}
@@ -30,8 +57,7 @@
         <div>&nbsp;</div>
     </div>
     <div class="clearfix">
-    <div class="js-masonry"
-  data-masonry-options='{ "columnWidth": 272, "itemSelector": ".quest-short" }'>
+    <div class="js-masonry-manual">
         {% for quest in quests %}
             {% include "herobase/quest/list_box.html" %}
         {% endfor %}

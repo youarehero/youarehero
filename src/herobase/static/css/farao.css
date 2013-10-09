@@ -13,16 +13,6 @@
 }
 
 @font-face {
-    font-family: 'farao_textregular';
-    src: url('../fonts/faraotext/faraotext-webfont.eot');
-    src: url('../fonts/faraotext/faraotext-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/faraotext/faraotext-webfont.woff') format('woff'),
-         url('../fonts/faraotext/faraotext-webfont.ttf') format('truetype'),
-         url('../fonts/faraotext/faraotext-webfont.svg#farao_textregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
     font-family: 'farao_textbold';
     src: url('../fonts/faraotext/faraotextbold-webfont.eot');
     src: url('../fonts/faraotext/faraotextbold-webfont.eot?#iefix') format('embedded-opentype'),
@@ -32,64 +22,4 @@
     font-weight: normal;
     font-style: normal;
 }
-@font-face {
-    font-family: 'farao_textbold_italic';
-    src: url('../fonts/faraotext/faraotextbolditalic-webfont.eot');
-    src: url('../fonts/faraotext/faraotextbolditalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/faraotext/faraotextbolditalic-webfont.woff') format('woff'),
-         url('../fonts/faraotext/faraotextbolditalic-webfont.ttf') format('truetype'),
-         url('../fonts/faraotext/faraotextbolditalic-webfont.svg#farao_textbold_italic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'farao_textitalic';
-    src: url('../fonts/faraotext/faraotextitalic-webfont.eot');
-    src: url('../fonts/faraotext/faraotextitalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/faraotext/faraotextitalic-webfont.woff') format('woff'),
-         url('../fonts/faraotext/faraotextitalic-webfont.ttf') format('truetype'),
-         url('../fonts/faraotext/faraotextitalic-webfont.svg#farao_textitalic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: 'farao_bookregular';
-    src: url('../fonts/faraobook/faraobook-webfont.eot');
-    src: url('../fonts/faraobook/faraobook-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/faraobook/faraobook-webfont.woff') format('woff'),
-         url('../fonts/faraobook/faraobook-webfont.ttf') format('truetype'),
-         url('../fonts/faraobook/faraobook-webfont.svg#farao_bookregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'farao_bookbold';
-    src: url('../fonts/faraobook/faraobookbold-webfont.eot');
-    src: url('../fonts/faraobook/faraobookbold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/faraobook/faraobookbold-webfont.woff') format('woff'),
-         url('../fonts/faraobook/faraobookbold-webfont.ttf') format('truetype'),
-         url('../fonts/faraobook/faraobookbold-webfont.svg#farao_bookbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'farao_bookbold_italic';
-    src: url('../fonts/faraobook/faraobookbolditalic-webfont.eot');
-    src: url('../fonts/faraobook/faraobookbolditalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/faraobook/faraobookbolditalic-webfont.woff') format('woff'),
-         url('../fonts/faraobook/faraobookbolditalic-webfont.ttf') format('truetype'),
-         url('../fonts/faraobook/faraobookbolditalic-webfont.svg#farao_bookbold_italic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'farao_bookitalic';
-    src: url('../fonts/faraobook/faraobookitalic-webfont.eot');
-    src: url('../fonts/faraobook/faraobookitalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/faraobook/faraobookitalic-webfont.woff') format('woff'),
-         url('../fonts/faraobook/faraobookitalic-webfont.ttf') format('truetype'),
-         url('../fonts/faraobook/faraobookitalic-webfont.svg#farao_bookitalic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
