@@ -108,17 +108,15 @@ class QuestState(State):
 
     def done(self):
         self.assert_no(self.done_errors())
-        from herobase.models import QUEST_EXPERIENCE
-
         self.quest.done = True
         self.quest.save()
 
-        self.quest.owner.get_profile().experience += QUEST_EXPERIENCE
+        self.quest.owner.get_profile().experience += self.quest.experience
         self.quest.owner.get_profile().save()
 
         for adventure in self.quest.adventures.accepted():
             notify.quest_done(adventure.user, self.quest)
-            adventure.user.get_profile().experience += QUEST_EXPERIENCE
+            adventure.user.get_profile().experience += self.quest.experience
             adventure.user.get_profile().save()
 
     def force_done(self):

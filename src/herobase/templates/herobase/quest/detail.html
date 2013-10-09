@@ -55,6 +55,8 @@
                             {{ quest.owner.username }}
                         </a>
                     </dd>
+                    <dt>Aufwand</dt>
+                    <dd>{{ quest.get_time_effort_display }}</dd>
                 </dl>
                 {% include "herobase/quest/quest_box_footer.html" %}
             </div>
