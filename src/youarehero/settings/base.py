@@ -185,6 +185,7 @@ INSTALLED_APPS = (
     'herorecommend',
     'heronotification',
     'heroorganization',
+    'herocoupon',
 )
 
 TEST_APPS = (
