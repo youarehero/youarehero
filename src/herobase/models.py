@@ -34,7 +34,6 @@ from .quest_livecycle import QuestState, AdventureState
 from heromessage.models import Message
 from herobase.utils import is_legal_adult
 
-QUEST_EXPERIENCE = 1000
 CREATE_EXPERIENCE = 50
 APPLY_EXPERIENCE = 10
 COMMENT_EXPERIENCE = 10
@@ -310,10 +309,20 @@ class Quest(LocationMixin, models.Model):
     TIME_EFFORT_MEDIUM = 2
     TIME_EFFORT_HIGH = 3
     time_effort = models.IntegerField(null=True, verbose_name=_(u"time effort"), choices=(
-        (TIME_EFFORT_LOW, _(u"Low")),
-        (TIME_EFFORT_MEDIUM, _(u"Medium")),
-        (TIME_EFFORT_HIGH, _(u"High")),
+        (TIME_EFFORT_LOW, u"Niedrig (800 EP)"),
+        (TIME_EFFORT_MEDIUM, u"Mittel (1000 EP)"),
+        (TIME_EFFORT_HIGH, u"Hoch (1200 EP)"),
     ))
+
+    @property
+    def experience(self):
+        if self.time_effort == self.TIME_EFFORT_LOW:
+            return 800
+        if self.time_effort == self.TIME_EFFORT_MEDIUM:
+            return 1000
+        if self.time_effort == self.TIME_EFFORT_HIGH:
+            return 1200
+        return 1000
 
     @property
     def has_expired(self):
