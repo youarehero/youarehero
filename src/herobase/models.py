@@ -37,6 +37,7 @@ from herobase.utils import is_legal_adult
 CREATE_EXPERIENCE = 50
 APPLY_EXPERIENCE = 10
 COMMENT_EXPERIENCE = 10
+DOCUMENTATION_EXPERIENCE = 25
 
 # The classes a User can choose from. (Hero classes)
 CLASS_CHOICES =  (
@@ -628,7 +629,19 @@ def experience_for_comment(sender, comment, request, **kwargs):
         profile.experience += COMMENT_EXPERIENCE
         profile.save()
 
+
 comment_was_posted.connect(experience_for_comment)
+
+
+def experience_for_documentation(instance, raw, created, **kwargs):
+    if instance.user_id:
+        if created:
+            profile = instance.user.get_profile()
+            profile.experience += DOCUMENTATION_EXPERIENCE
+            profile.save()
+
+
+post_save.connect(experience_for_documentation, sender=Documentation)
 
 
 def create_user_profile(instance, raw, created, using, **kwargs):
