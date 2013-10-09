@@ -8,10 +8,6 @@
             <div class="col-md-6">
                 {{ notification.html }}
             </div>
-        {% empty %}
-            <div class="col-md-6">
-                <p>Du hast keine neue Benachrichtigung</p>
-            </div>
         {% endfor %}
     </div>
     {% include "herobase/articles/articles.inc.html" %}
