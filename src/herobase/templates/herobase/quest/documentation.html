@@ -4,6 +4,7 @@
         <div class="documentation box">
         <h2>Dokumentation</h2>
             {% with doc=owner_documentation %}
+                {% if doc %}
                 <div class="clearfix">
                     <strong><a href="{% url "userprofile_public" doc.user.username %}">
                         {{ doc.user.username }}</a>
@@ -13,9 +14,18 @@
                     {% endif %}
                     <p>{{ doc.text }}</p>
                 </div>
+                {% endif %}
             {% endwith %}
             {% for doc in hero_documentation %}
-                <div>{{ doc.text }}</div>
+                <div class="clearfix">
+                    <strong><a href="{% url "userprofile_public" doc.user.username %}">
+                        {{ doc.user.username }}</a>
+                    </strong>
+                    {% if doc.image %}
+                        <img class="pull-right" src="{% thumbnail doc.image 90x90 %}"/>
+                    {% endif %}
+                    <p>{{ doc.text }}</p>
+                </div>
             {% empty %}
                 {% if not owner_documentation %}
                     <p>Es gibt noch keine Dokumentation.</p>
