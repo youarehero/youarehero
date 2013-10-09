@@ -3914,6 +3914,10 @@ ul.buttons:after {
 .box > .box-content:after {
   clear: both;
 }
+.box.notification a {
+  text-decoration: none;
+  color: #333333;
+}
 .box.notification.read {
   background: rgba(200, 200, 200, 0.6);
   margin-bottom: 24px;

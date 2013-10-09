@@ -145,7 +145,22 @@ class ProfileViewTest(WebTest):
         self.assertEqual('these are some facts about me', user_profile.about)
 
 
-class QuestTest(WebTest):
+class QuestViewTest(WebTest):
+    def test_quest_document(self):
+        quest = G(Quest, auto_accept=True, min_heroes=1, start_trigger=Quest.START_ENOUGH_HEROES)
+        hero = G(User)
+        quest.adventure_state(hero).apply()
+        quest.state.done()
+
+        detail_page = self.app.get(reverse("quest_detail", args=(quest.pk, )), user=quest.owner)
+
+        form = detail_page.forms['documentation_form']
+        form['text'] = 'Ich dokumentiere'
+
+        updated = form.submit()
+
+        self.assertContains(updated.follow(), "Ich dokumentiere")
+
     def test_quest_create(self):
         owner = G(User)
         create_page = self.app.get(reverse("quest_create"), user=owner)

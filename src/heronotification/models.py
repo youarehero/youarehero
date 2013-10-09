@@ -2,6 +2,7 @@ from collections import defaultdict
 from datetime import datetime
 import logging
 from django.conf import settings
+from django.db.models.signals import post_save
 from django.utils.html import escape
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
@@ -253,10 +254,17 @@ class Notification(models.Model):
         return True
 
     @classmethod
-    def for_user(cls, user):
-        items = (cls.objects.filter(user=user)
-                 .order_by('-read', '-created')
-                 .select_related('content_type'))
+    def unread_for_user(cls, user, limit=64):
+        return cls.for_user(user, limit=limit, include_read=False)
+
+    @classmethod
+    def for_user(cls, user, limit=64, include_read=True):
+        items = cls.objects.filter(user=user)
+        if not include_read:
+            items = items.filter(read__isnull=True)
+        items = items.order_by('-read', '-created').select_related('content_type')[:limit]
+        # TODO : make this a lazy thing that only evaluates items after slicing
+
         # collect all targets
         # maintain a mapping ct -> id -> item
         ct_target_item_map = defaultdict(lambda: defaultdict(list))
@@ -319,14 +327,12 @@ class Notification(models.Model):
     def type(self):
         return NOTIFICATION_TYPES.get(self.type_id, None)
 
-    def is_read(self):
-        # FIXME: this still modifies the model
+    def update_read(self):
         if self.read is None and (not hasattr(self.type, 'is_read')
                                   or hasattr(self.type, 'is_read')
                                   and self.type.is_read(self)):
             self.read = now()
             self.save()
-        return self.read
 
     def html(self):
         try:
@@ -343,3 +349,12 @@ def welcome_new_user(sender, user, request, **kwargs):
 
 
 user_activated.connect(welcome_new_user)
+
+
+def update_read(instance, raw, **kwargs):
+    for notification_type in NOTIFICATION_TYPES.values():
+        if isinstance(instance, notification_type.target_model):
+            for n in Notification.objects.filter(read__isnull=True, object_id=instance.pk):
+                n.update_read()
+
+post_save.connect(update_read)

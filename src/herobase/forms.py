@@ -17,9 +17,14 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset, Div, Button, BaseInput
 from registration.forms import RegistrationFormUniqueEmail
 
-from herobase.models import Quest, UserProfile, AVATAR_IMAGES
+from herobase.models import Quest, UserProfile, AVATAR_IMAGES, Documentation
 from herobase.widgets import LocationWidget
 from herobase.utils import is_minimum_age
+
+class DocumentationForm(forms.ModelForm):
+    class Meta:
+        model = Documentation
+        fields = ('image', 'text', )
 
 
 class QuestCreateForm(forms.ModelForm):

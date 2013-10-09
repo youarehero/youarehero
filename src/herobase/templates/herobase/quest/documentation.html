@@ -1,0 +1,55 @@
+{% load i18n crispy_forms_tags thumbnail %}
+{% if quest.done %}
+    <div class="col-sm-6">
+        <div class="documentation box">
+        <h2>Dokumentation</h2>
+            {% with doc=owner_documentation %}
+                {% if doc %}
+                <div class="clearfix">
+                    <strong><a href="{% url "userprofile_public" doc.user.username %}">
+                        {{ doc.user.username }}</a>
+                    </strong>
+                    {% if doc.image %}
+                        <a href="{{ doc.image.url }}" target="_blank">
+                        <img class="pull-right" src="{% thumbnail doc.image 150x150 %}"/>
+                        </a>
+                    {% endif %}
+                    <p>{{ doc.text }}</p>
+                </div>
+                {% endif %}
+            {% endwith %}
+            {% for doc in hero_documentation %}
+                <div class="clearfix">
+                    <strong><a href="{% url "userprofile_public" doc.user.username %}">
+                        {{ doc.user.username }}</a>
+                    </strong>
+                    {% if doc.image %}
+                        <img class="pull-right" src="{% thumbnail doc.image 150x150 %}"/>
+                    {% endif %}
+                    <p>{{ doc.text }}</p>
+                </div>
+            {% empty %}
+                {% if not owner_documentation %}
+                    <p>Es gibt noch keine Dokumentation.</p>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+        {% if documentation_form %}
+            <div class="documentation_form box">
+            <p>Dokumentiere hier die Quest.</p>
+                <div>
+                    <form enctype="multipart/form-data" method="post" id="documentation_form"
+                          action="{% url "quest_document" quest.pk %}">
+                        {% csrf_token %}
+                        {{ documentation_form|crispy }}
+                        <br/>
+                        <button type="submit" name="submit" value="Kommentar abschicken" class="box-button text">
+                            <span>Dokumentation abschicken</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endif %}
