@@ -47,8 +47,10 @@ CLASS_CHOICES =  (
     (3, 'Action'),
     (4, 'Protective'))
 SEX_CHOICES =  (
-    (1, 'Männlich'),
-    (2, 'Weiblich'))
+    (1, 'Herr'),
+    (2, 'Frau'),
+    (3, 'keine'),
+)
 
 AVATAR_IMAGES_TRUSTED = sorted(map(
     lambda x: os.path.join('avatar', os.path.basename(x)),
@@ -452,7 +454,8 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
     location = models.CharField(max_length=255, blank=True, default='') # TODO : placeholder
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True,
         null=True)
-    sex = models.IntegerField(choices=SEX_CHOICES, blank=True, null=True, verbose_name=_(u"sex"))
+    sex = models.IntegerField(choices=SEX_CHOICES, blank=True, null=True,
+                              default=3, verbose_name=_(u"Anrede"))
 
     date_of_birth = models.DateField(default=date.fromtimestamp(0))
 
