@@ -1,5 +1,5 @@
 {% load url from future %}
-<div id="page-footer" class="container">
+<div id="page-footer" class="container clearfix">
     <ul class="nav nav-blue">
         <li><a href="{% url "imprint" %}" title="Impressum">Impressum/Kontakt</a></li>
         <li><i class="icon-circle"></i></li>
@@ -19,5 +19,11 @@
         <li><i class="icon-circle"></i></li>
         <li><a href="{% url 'credits' %}">Credits</a></li>
     </ul>
-    <i class="icon-yah"></i>
+    <div style="text-aign: center" class="clearfix">
+        <a href="{% url 'home' %}">
+        <i class="icon-yah"></i>
+    </a>
+    </div>
+    <div>&nbsp;</div>
+
 </div>
