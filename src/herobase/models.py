@@ -375,7 +375,7 @@ class Quest(LocationMixin, models.Model):
 class AvatarImageMixin(models.Model):
     avatar_storage = FileSystemStorage(location=settings.ASSET_ROOT)
     image = models.FilePathField(blank=True, null=True)
-    uploaded_image = models.ImageField(upload_to="avatar_uploads", null=True, blank=True)
+    uploaded_image = models.ImageField(upload_to="avatar_uploads", null=True, blank=True, verbose_name="Eigenes Bild hochladen")
 
     def clean(self):
         images = AVATAR_IMAGES_TRUSTED if self.trusted else AVATAR_IMAGES
