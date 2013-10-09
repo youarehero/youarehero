@@ -230,68 +230,48 @@ def quest_my(request):
     template = 'herobase/quest/my.html'
     user = request.user
 
+    # Quests
     created_q = Q(owner=user)
     joined_q = Q(adventures__user=user, adventures__canceled=False)
-    quests = Quest.objects.filter(
+
+    quests_all = Quest.objects.filter(
         canceled=False,
         done=False
     ).filter(
         created_q | joined_q
     ).order_by('-created').distinct().select_related('owner', 'owner__profile')
 
-    return render(request, template, {'quests': quests})
-
-
-def quest_my_created(request):
-    """Views the quests the hero is envolved with."""
-    template = 'herobase/quest/my.html'
-    user = request.user
-
-    return render(
-        request,
-        template,
-        {
-            'quests': user.created_quests.filter(
+    quests_created = user.created_quests.filter(
                 canceled=False,
                 done=False
             ).order_by('-created').select_related('owner', 'owner__profile')
-        })
 
-
-def quest_my_joined(request):
-    """Views the quests the hero is envolved with."""
-    template = 'herobase/quest/my.html'
-    user = request.user
-
-    return render(
-        request,
-        template,
-        {
-            'quests': Quest.objects.filter(
+    quests_joined = Quest.objects.filter(
                 canceled=False,
                 done=False
             ).filter(
                 adventures__user=user,
                 adventures__canceled=False
-            ).select_related('owner', 'owner__profile'),
-        })
-
-
-def quest_my_done(request):
-    """Views the quests the hero is envolved with."""
-    template = 'herobase/quest/my.html'
-    user = request.user
+            ).select_related('owner', 'owner__profile')
 
     created_q = Q(owner=user)
     joined_q = Q(adventures__user=user)
-    quests = Quest.objects.exclude(
+    quests_done = Quest.objects.exclude(
         canceled=False,
         done=False
     ).filter(
         created_q | joined_q
     ).order_by('-created').select_related('owner', 'owner__profile')
 
-    return render(request, template, {'quests': quests})
+    return render(request, template, {
+        'user': user,
+        'rank': user.get_profile().rank,
+        'completed_quest_count': user.adventures.filter(done=True).count(),
+        'quests_all': quests_all,
+        'quests_created': quests_created,
+        'quests_joined': quests_joined,
+        'quests_done': quests_done,
+    })
 
 
 @require_POST

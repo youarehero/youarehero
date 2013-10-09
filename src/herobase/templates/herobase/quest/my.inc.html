@@ -5,15 +5,31 @@
 
 {% block javascript %}
     <script src="{% get_static_prefix %}js/masonry.pkgd.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
     <script>
-        $(document).ready(function() {
+        var initMasonry = function() {
             var $container = $($('#quests_all').find('.js-masonry-tab').first());
             // initialize
             $container.masonry({
                 columnWidth: 272,
                 itemSelector: '.quest-short'
             });
+        };
 
+        WebFont.load({
+            custom: {
+                families: ['farao_book_heldregular']
+            },
+            active: function() {
+                if (document.readyState !== 'complete') {
+                    $(document).ready(initMasonry);
+                } else {
+                    initMasonry();
+                }
+            }
+        });
+
+        $(document).ready(function() {
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 e.target // activated tab
                 e.relatedTarget // previous tab
@@ -27,7 +43,6 @@
                 });
             });
         });
-
     </script>
 {% endblock %}
 

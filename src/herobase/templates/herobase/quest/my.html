@@ -1,43 +1,4 @@
 {% extends "herobase/layout/base.html" %}
-{% load url from future %}
-{% load staticfiles %}
-{% load i18n hero_message activelink %}
-{% load endless %}
-
 {% block content %}
-    <div>
-        <ul class="subsub">
-            <li class="{% ifactive "quest_my" %}active{% endifactive %}">
-                <a href="{% url "quest_my" %}">Alle</a>
-            </li>
-            <li><i class="icon-circle"></i></li>
-            <li class="{% ifactive "quest_my_created" %}active{% endifactive %}">
-                <a href="{% url "quest_my_created" %}">Erstellt</a>
-            </li>
-            <li><i class="icon-circle"></i></li>
-            <li class="{% ifactive "quest_my_joined" %}active{% endifactive %}">
-                <a href="{% url "quest_my_joined" %}">Angenommen</a>
-            </li>
-            <li><i class="icon-circle"></i></li>
-            <li class="{% ifactive "quest_my_done" %}active{% endifactive %}">
-                <a href="{% url "quest_my_done" %}">Erledigt</a>
-            </li>
-        </ul>
-        <h1>{% trans "My Quests" %}</h1>
-        {% paginate 12 quests %}
-        <div style="text-align: right">{% show_pages %}</div>
-        <div class="row">
-            {% for quest in quests %}
-                {% include "herobase/quest/list_box.html" %}
-            {% empty %}
-                <div class="col-xs-12">
-                    <div class="box">{% trans "There don't seem to be any quests." %}</div>
-                </div>
-            {% endfor %}
-        </div>
-
-        <div style="text-align: right">{% show_pages %}</div>
-    </div>
-
-
+    {% include "herobase/quest/my.inc.html" %}
 {% endblock %}

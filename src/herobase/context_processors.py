@@ -25,12 +25,12 @@ def butler_text(request):
         text ='Hier finden Sie alle Formulare, die Sie brauchen %%%salutation%%%.\nOb Sie der Welt eine weitere Aufgabe zum Lösen bieten oder ein neues Projekt einstellen wollen, ich habe die Formulare für Sie vorbereitet.'
     if active('quest_my'):
         text ='Hier finden Sie alle Quests die Sie angenommen oder aufgegeben haben %%%salutation%%%.\n Wenn ein Stern an der Quest ist bedeutet das das es sich um eine von ihnen aufgegeben Quest handelt.'
-    if active('quest_my_created'):
-        text ='Hier finden Sie alle Quests die Sie aufgegeben haben %%%salutation%%%.\n'
-    if active('quest_my_joined'):
-        text ='Hier finden Sie alle Quests die Sie angenommen haben %%%salutation%%%.\n'
-    if active('quest_my_done'):
-        text ='Hier finden Sie alle Quests die Sie bereits erledigt haben %%%salutation%%%.\n '
+    #if active('quest_my_created'):
+    #    text ='Hier finden Sie alle Quests die Sie aufgegeben haben %%%salutation%%%.\n'
+    #if active('quest_my_joined'):
+    #    text ='Hier finden Sie alle Quests die Sie angenommen haben %%%salutation%%%.\n'
+    #if active('quest_my_done'):
+    #    text ='Hier finden Sie alle Quests die Sie bereits erledigt haben %%%salutation%%%.\n '
     if not request.user.is_anonymous and profile.sex==1:
         text=text.replace("%%%salutation%%%","Sir")
     else:
