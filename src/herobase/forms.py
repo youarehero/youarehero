@@ -24,7 +24,7 @@ from herobase.utils import is_minimum_age
 class DocumentationForm(forms.ModelForm):
     class Meta:
         model = Documentation
-        fields = ('text', 'image',)
+        fields = ('image', 'text', )
 
 
 class QuestCreateForm(forms.ModelForm):
