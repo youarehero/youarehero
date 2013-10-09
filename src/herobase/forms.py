@@ -22,7 +22,6 @@ from herobase.widgets import LocationWidget
 from herobase.utils import is_minimum_age
 
 
-
 class QuestCreateForm(forms.ModelForm):
     """The Basic Quest create form. Uses django-crispy-forms (FormHelper) for 2 column bootstrap output. """
     remote = forms.ChoiceField(choices=(
@@ -30,7 +29,7 @@ class QuestCreateForm(forms.ModelForm):
         (True, _(u"remotely")),
         (False, _(u"locally"))
     ), help_text=_(u"Can this quest be done remotely or only locally?"),
-    label=_(u"Remote or local"))
+                               label=_(u"Remote or local"))
     # latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # address = forms.CharField(widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
@@ -73,8 +72,8 @@ class QuestCreateForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super(QuestCreateForm, self).clean()
         if ('start_date' in cleaned_data and cleaned_data['start_date'] and
-            'expiration_date' in cleaned_data and
-            cleaned_data['expiration_date'] and not cleaned_data['start_date']
+                    'expiration_date' in cleaned_data and
+                cleaned_data['expiration_date'] and not cleaned_data['start_date']
             < cleaned_data['expiration_date']):
             raise ValidationError("Das Startdatum muss vor dem Enddatum liegen")
         return cleaned_data
@@ -86,7 +85,6 @@ class QuestCreateForm(forms.ModelForm):
                   'start_trigger', 'end_trigger'
                   #'latitude', 'longitude', 'location_granularity'
         )
-
 
 
 class UserProfileEditForm(forms.ModelForm):
@@ -108,6 +106,7 @@ class UserProfileEditForm(forms.ModelForm):
                 _('Edit your Profile'),
                 Div(
                     'image',
+                    'uploaded_image',
                     'sex',
                     'about',
                     'team',
@@ -130,14 +129,12 @@ class UserProfileEditForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super(UserProfileEditForm, self).clean()
         if cleaned_data['image'] == "":
-            del cleaned_data['image']
-        model_data = model_to_dict(self.instance)
-        model_data.update(cleaned_data)
-        return model_data
+            cleaned_data['image'] = model_to_dict(self.instance).get('image')
+        return cleaned_data
 
     class Meta:
         model = UserProfile
-        fields = ('about', 'image', 'sex', 'team',
+        fields = ('about', 'image', 'sex', 'team', 'uploaded_image',
                   # 'receive_system_email', 'receive_private_email',
                   # 'address', 'latitude', 'longitude', 'location_granularity'
         )
@@ -145,9 +142,10 @@ class UserProfileEditForm(forms.ModelForm):
 
 class UserProfilePrivacyForm(forms.ModelForm):
     """Special userprofile edit form for the fields containing privacy settings."""
+
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
-        self.helper.form_tag=False
+        self.helper.form_tag = False
         self.helper.form_method = 'post'
         #self.helper.form_action = 'userprofile_privacy_settings'
         self.helper.form_class = 'form-horizontal'
@@ -173,7 +171,7 @@ class UserAuthenticationForm(AuthenticationForm):
     """Custom login form."""
     error_messages = AuthenticationForm.error_messages
     error_messages.update({'invalid_login': _("Please enter a correct e-mail address and password. "
-                                "Note that both fields are case-sensitive.")})
+                                              "Note that both fields are case-sensitive.")})
     email = forms.CharField(label=_("E-mail"), max_length=75)
     next = forms.CharField(widget=forms.HiddenInput(), initial="/")
 
@@ -193,17 +191,17 @@ class UserAuthenticationForm(AuthenticationForm):
                 next = "/"
             self.fields['next'].initial = next # put next in POST data
 
-
         del self.fields['username']
         self.fields.keyOrder.reverse()
 
         email = self.fields['email']
         email.label = ""
-        email.widget = forms.TextInput(attrs={'placeholder':'Identität', 'autocapitalize': 'off', 'autocorrect': 'off'})
+        email.widget = forms.TextInput(
+            attrs={'placeholder': 'Identität', 'autocapitalize': 'off', 'autocorrect': 'off'})
 
         password = self.fields['password']
         password.label = ""
-        password.widget = forms.PasswordInput(attrs={'placeholder':'Kennung'})
+        password.widget = forms.PasswordInput(attrs={'placeholder': 'Kennung'})
 
         self.helper.add_input(Submit('submit', 'Log in'))
 
