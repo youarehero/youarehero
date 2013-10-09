@@ -7,7 +7,7 @@
           <i class="icon-envelope-alt"></i> {% trans "to all" %}
         </a>
     {% endif %}
-  <h1>{% trans "Applications" %}</h1>
+  <h2>{% trans "Applications" %}</h2>
   {% for a in adventures %}
   <span class="application">
     <a href="{% url "userprofile_public" a.user.username %}" class="no-decoration">

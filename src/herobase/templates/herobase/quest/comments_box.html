@@ -1,57 +1,55 @@
-{% extends "herobase/layout/box.html" %}
 {% load i18n hero_actions hero_message crispy_forms_tags comments %}
 {% load url from future %}
-{% block title %}
-    <h2>{% trans "Comments" %}</h2>
-{% endblock %}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="box">
+            <h2>{% trans "Comments" %}</h2>
 
-{% block extra_classes %}collapsible{% endblock %}
-
-{% block content %}
-    <ul class="grid">
-        {% for comment in comments %}
-            <li class="span5">
-                <div>
-                    <strong><a href="{% url "userprofile_public" comment.user.username %}">{{ comment.user.username }}</a>
+            {% for comment in comments %}
+                <p>
+                    <strong><a href="{% url "userprofile_public" comment.user.username %}">
+                        {{ comment.user.username }}</a>
                         am {{ comment.submit_date }}</strong>
-                </div>
-                <div>{{ comment.comment|urlize|linebreaksbr }}</div>
-            </li>
-        {% empty %}
-            <li>{% trans "There are no comments yet." %}</li>
-        {% endfor %}
-    </ul>
+                <br>
+                {{ comment.comment|urlize|linebreaksbr }}</p>
+            {% empty %}
+                <p>{% trans "There are no comments yet." %}</p>
+            {% endfor %}
 
-    {% if user.is_authenticated %}
-        {% get_comment_form for quest as form %}
-        <form id="comment-form" action="{% comment_form_target %}" method="POST">
-            <fieldset>
-                <legend>Kommentieren</legend>
-                {% csrf_token %}
-                <div id="div_id_{{ form.comment.name }}"
-                     class="clearfix control-group">
-                    <label for="id_{{ form.comment.name }}" class="control-label requiredField">Text
-                        <span class="asteriskField">*</span>
-                    </label>
-                    <div class="controls">
-                        <textarea id="id_{{ form.comment.name }}" rows="10" cols="40" name="{{ form.comment.name }}" class="textarea"></textarea>
+            {% if user.is_authenticated %}
+                {% get_comment_form for quest as form %}
+                <form id="comment-form" action="{% comment_form_target %}" method="POST">
+                    <fieldset>
+                        <legend>Kommentieren</legend>
+                        {% csrf_token %}
+                        <div id="div_id_{{ form.comment.name }}"
+                             class="clearfix control-group">
+                            <label for="id_{{ form.comment.name }}" class="control-label requiredField">Text
+                                <span class="asteriskField">*</span>
+                            </label>
+                            <div class="controls">
+                                <textarea id="id_{{ form.comment.name }}" rows="10" cols="40" name="{{ form.comment.name }}" class="textarea"></textarea>
+                            </div>
+                        </div>
+                        {{ form.honeypot }}
+                        {{ form.content_type }}
+                        {{ form.object_pk }}
+                        {{ form.timestamp }}
+                        {{ form.security_hash }}
+                        <input type="hidden" name="next"
+                               value="{% url 'quest_detail' quest.pk %}"/>
+                    </fieldset>
+                    <div class="form-actions">
+                        <button type="submit" name="submit" value="Kommentar abschicken" class="box-button text">
+                          <span>Kommentar abschicken</span>
+                        </button>
                     </div>
-                </div>
-                {{ form.honeypot }}
-                {{ form.content_type }}
-                {{ form.object_pk }}
-                {{ form.timestamp }}
-                {{ form.security_hash }}
-                <input type="hidden" name="next"
-                       value="{% url 'quest_detail' quest.pk %}"/>
-            </fieldset>
-            <div class="form-actions">
-                <button type="submit" name="submit" value="Kommentar abschicken" class="box-button text">
-                  <span>Kommentar abschicken</span>
-                </button>
-            </div>
-        </form>
-    {% else %}
-        <p>Bitte <a href="{% url 'auth_login' %}">melde dich an</a> um zu kommentieren.</p>
-    {% endif %}
-{% endblock %}
+                </form>
+            {% else %}
+                <p>Bitte <a href="{% url 'auth_login' %}">melde dich an</a> um zu kommentieren.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+

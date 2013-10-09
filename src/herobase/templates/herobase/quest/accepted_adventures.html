@@ -7,7 +7,7 @@
             <i class="icon-envelope-alt"></i> {% trans "to all" %}
         </a>
     {% endif %}
-  <h1>{% trans "Participants" %}</h1>
+  <h2>{% trans "Participants" %}</h2>
   {% for a in adventures %}
   <span class="participant">
     <a href="{% url "userprofile_public" a.user.username %}" class="no-decoration">
