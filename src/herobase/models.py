@@ -524,15 +524,20 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
     @property
     def unread_messages_count(self):
         """Return number of unread messages."""
-        return Message.objects.filter(recipient=self.user,read__isnull=True,
-            recipient_deleted__isnull=True).count()
+        return Message.objects.filter(recipient=self.user, read__isnull=True,
+                                      recipient_deleted__isnull=True).count()
 
     @property
     def unread_messages_and_notifications_count(self):
-        """Returns the number of unread messages and notifications. """
+        """Returns the number of unread messages and notifications.
+        for every unread message there is an unread notification thus we need only count those."""
+
+        # TODO: this is slow, we should really change the is_read implementation
+        # computed notification read status should be changed upon updates to the target
+        # not when checking for is_read()
+
         from heronotification.models import Notification
-        return (self.unread_messages_count +
-                Notification.objects.filter(user=self.user, read=None).count())
+        return len(Notification.unread_for_user(self.user))
 
     @property
     def rank(self):

@@ -1,4 +1,4 @@
-{% load url from future %}
+{% load humanize %}
 {% block content %}
     <div class="box notification{% if notification.is_read %} read{% endif %}"
             {% if notification.is_dismissible and not notification.is_read %}
@@ -15,6 +15,7 @@
             {% if url %}
                 </a>
             {% endif %}
+            <div class="pull-right">{{ notification.created|naturaltime }}</div>
             </div>
         {% endwith %}
     </div>
