@@ -2,6 +2,7 @@ from collections import defaultdict
 from datetime import datetime
 import logging
 from django.conf import settings
+from django.db.models.signals import post_save
 from django.utils.html import escape
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
@@ -254,7 +255,7 @@ class Notification(models.Model):
 
     @classmethod
     def unread_for_user(cls, user, limit=64):
-        return [n for n in cls.for_user(user, limit=limit, include_read=False) if not n.is_read()]
+        return cls.for_user(user, limit=limit, include_read=False)
 
     @classmethod
     def for_user(cls, user, limit=64, include_read=True):
@@ -326,21 +327,12 @@ class Notification(models.Model):
     def type(self):
         return NOTIFICATION_TYPES.get(self.type_id, None)
 
-    def is_read(self):
-        # FIXME: this still modifies the model
-        if self.read is None and not hasattr(self.type, 'is_read'):
-            # here we return False because this message is marked read upon first checking is_read
+    def update_read(self):
+        if self.read is None and (not hasattr(self.type, 'is_read')
+                                  or hasattr(self.type, 'is_read')
+                                  and self.type.is_read(self)):
             self.read = now()
             self.save()
-            return False
-        elif self.read is None and hasattr(self.type, 'is_read') and self.type.is_read(self):
-            # here we return True because this message has been determined to be read by it's
-            # is_read implementation, thus it was already read before
-            self.read = now()
-            self.save()
-            return self.read
-
-        return self.read
 
     def html(self):
         try:
@@ -357,3 +349,13 @@ def welcome_new_user(sender, user, request, **kwargs):
 
 
 user_activated.connect(welcome_new_user)
+
+
+def update_read(instance, raw, **kwargs):
+    for notification_type in NOTIFICATION_TYPES.values():
+        if isinstance(instance, notification_type.target_model):
+            for n in Notification.objects.filter(read__isnull=True, object_id=instance.pk):
+                n.update_read()
+                print "updating", n
+
+post_save.connect(update_read)

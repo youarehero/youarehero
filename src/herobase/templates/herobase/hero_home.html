@@ -3,21 +3,10 @@
 {% load url from future %}
 
 {% block content %}
-
     <div class="row">
         {% for notification in notifications %}
             <div class="col-md-6">
                 {{ notification.html }}
-                {#          {% with url=notification.target.get_absolute_url %}#}
-                {#          {% if url %}#}
-                {#            <a href="{{ url }}">#}
-                {#          {% endif %}#}
-                {#              <p>{{ notification.text|truncatechars:120 }}</p>#}
-                {#              <div class="info">{{ notification.created|naturaltime }}</div>#}
-                {#          {% if url %}#}
-                {#            </a>#}
-                {#          {% endif %}#}
-                {#          {% endwith %}#}
             </div>
         {% empty %}
             <div class="col-md-6">

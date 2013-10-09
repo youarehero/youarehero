@@ -1,7 +1,7 @@
 {% load humanize %}
 {% block content %}
-    <div class="box notification{% if notification.is_read %} read{% endif %}"
-            {% if notification.is_dismissible and not notification.is_read %}
+    <div class="box notification{% if notification.read %} read{% endif %}"
+            {% if notification.is_dismissible and not notification.read %}
                 data-dismiss-url="{% url "mark_notification_read" notification.pk %}"
             {% endif %}
         >

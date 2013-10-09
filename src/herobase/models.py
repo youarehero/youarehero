@@ -531,11 +531,6 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
     def unread_messages_and_notifications_count(self):
         """Returns the number of unread messages and notifications.
         for every unread message there is an unread notification thus we need only count those."""
-
-        # TODO: this is slow, we should really change the is_read implementation
-        # computed notification read status should be changed upon updates to the target
-        # not when checking for is_read()
-
         from heronotification.models import Notification
         return len(Notification.unread_for_user(self.user))
 
