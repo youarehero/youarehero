@@ -60,7 +60,6 @@ class QuestTest(TestCase):
         quest.adventure_state(hero0).apply()
         quest.adventure_state(hero1).apply()
 
-        #quest_livecycle.owner_hero_accept(quest, hero0)
         quest.adventure_state(hero0).accept()
         quest.state.start()
 

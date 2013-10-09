@@ -380,6 +380,10 @@ class Quest(LocationMixin, models.Model):
         """String representation"""
         return self.title
 
+    @property
+    def heroes(self):
+        return User.objects.filter(adventures__in=self.adventures.accepted())
+
 
 class AvatarImageMixin(models.Model):
     avatar_storage = FileSystemStorage(location=settings.ASSET_ROOT)
@@ -567,6 +571,13 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
 
     def is_legal_adult(self):
         return is_legal_adult(self.date_of_birth)
+
+
+class Documentation(models.Model):
+    user = models.ForeignKey(User)
+    quest = models.ForeignKey(Quest)
+    text = models.TextField(blank=True, default='')
+    image = models.ImageField(blank=True, null=True, upload_to="documentation")
 
 
 class AbuseReport(models.Model):

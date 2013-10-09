@@ -141,6 +141,8 @@
         </div>
     </div>
 
+    {% include "herobase/quest/documentation.html" %}
+
     {% include "herobase/quest/accepted_adventures.html" with adventures=quest.adventures.accepted %}
     {% if is_owner %}
         {% include "herobase/quest/unaccepted_adventures.html" with adventures=quest.adventures.applying %}

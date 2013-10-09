@@ -35,8 +35,8 @@ from heronotification.models import Notification
 from heromessage.models import Message
 from herorecommend.forms import UserSkillEditForm
 from herobase.forms import (QuestCreateForm, UserProfileEditForm,
-                            UserProfilePrivacyForm, UserAuthenticationForm, DateOfBirthRegistrationForm)
-from herobase.models import Quest, Adventure, Like, CREATE_EXPERIENCE, UserProfile
+                            UserProfilePrivacyForm, UserAuthenticationForm, DateOfBirthRegistrationForm, DocumentationForm)
+from herobase.models import Quest, Adventure, Like, CREATE_EXPERIENCE, UserProfile, Documentation
 from herorecommend.models import MIN_SELECTED_SKILLS
 from registration.models import RegistrationProfile
 
@@ -204,11 +204,29 @@ def quest_detail_view(request, quest_id):
         object_pk=quest.pk
     ).select_related('user__profile')
 
+    hero_documentation = Documentation.objects.filter(quest=quest).exclude(user=quest.owner)
+    try:
+        owner_documentation = Documentation.objects.get(quest=quest, user=quest.owner)
+    except Documentation.DoesNotExist:
+        owner_documentation = None
+
+    if request.user == quest.owner or request.user in quest.heroes:
+        try:
+            documentation = Documentation.objects.get(user=request.user, quest=quest)
+        except Documentation.DoesNotExist:
+            documentation = None
+        documentation_form = DocumentationForm(instance=documentation)
+    else:
+        documentation_form = None
+
     context = {
         'quest': quest,
         'adventures': adventures,
         'butler_text': butler_text,
         'is_owner': is_owner,
+        'documentation_form': documentation_form,
+        'hero_documentation': hero_documentation,
+        'owner_documentation': owner_documentation,
         'comments': comments,
         'adventure': adventure,
         'quest_url': reverse('quest_detail', args=(quest.pk,)),
@@ -310,6 +328,28 @@ def owner_update_quest(request, quest_id):
     except ValidationError as e:
         messages.error(request, e.messages[0])
     return HttpResponseRedirect(reverse('quest_detail', args=(quest.pk, )))
+
+
+@require_POST
+@login_required
+def quest_document(request, pk):
+    quest = get_object_or_404(Quest, pk=pk)
+    if request.user != quest.owner and request.user not in quest.heroes:
+        return HttpResponseForbidden()
+
+    try:
+        documentation = Documentation.objects.get(quest=quest, user=request.user)
+    except Documentation.DoesNotExist:
+        documentation = None
+
+    form = DocumentationForm(request.POST, request.FILES, instance=documentation)
+    if form.is_valid():
+        documentation = form.save(commit=False)
+        documentation.quest = quest
+        documentation.user = request.user
+        documentation.save()
+
+    return HttpResponseRedirect(quest.get_absolute_url())
 
 
 @require_POST

@@ -1,0 +1,26 @@
+{% load i18n crispy_forms_tags %}
+{% if quest.done %}
+    <div>
+        <div class="documentation">
+            {% if owner_documentation %}
+                <div>{{ owner_documentation.text }}</div>
+            {% endif %}
+            {% if hero_documentation %}
+                {% for doc in hero_documentation %}
+                    <div>{{ doc.text }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        {% if documentation_form %}
+            <div class="documentation_form">
+                <div>
+                    <form enctype="multipart/form-data" method="post" id="documentation_form"
+                          action="{% url "quest_document" quest.pk %}">
+                        {% csrf_token %}
+                        {{ documentation_form|crispy }}
+                        <input type="submit"/>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+{% endif %}
