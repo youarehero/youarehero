@@ -17,6 +17,8 @@ from django.template import Context, TemplateDoesNotExist, Template
 from django.template.loader import get_template, render_to_string
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
+from heroachievements.achievements import Achievement
+from heroachievements.models import UserAchievement
 from registration.signals import user_activated
 from herobase.models import Quest, Adventure, get_system_user
 from heromessage.models import Message
@@ -235,6 +237,22 @@ class welcome(NotificationTypeBase):
     @classmethod
     def get_image(cls, notification):
         return notification.target.profile.avatar_thumbnail_40
+
+
+class achievement(NotificationTypeBase):
+    type_id = 500
+    target_model = UserAchievement
+
+    @classmethod
+    def get_text(cls, notification):
+        return u"Du hast eine Errungenschaft errungen: " + notification.target.text
+
+
+    @classmethod
+    def get_image(cls, notification):
+        return notification.target.image
+
+
 
 
 class Notification(models.Model):
