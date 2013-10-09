@@ -356,6 +356,5 @@ def update_read(instance, raw, **kwargs):
         if isinstance(instance, notification_type.target_model):
             for n in Notification.objects.filter(read__isnull=True, object_id=instance.pk):
                 n.update_read()
-                print "updating", n
 
 post_save.connect(update_read)
