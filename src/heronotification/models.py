@@ -248,8 +248,7 @@ class achievement(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return u"Du hast eine Errungenschaft errungen: " + notification.target.text
-
+        return u"Neue Errungenschaft: " + notification.target.title
 
     @classmethod
     def get_image(cls, notification):

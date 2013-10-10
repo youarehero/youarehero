@@ -4,6 +4,7 @@ import logging
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db.models import Q
 from django.utils.translation import ugettext as _
+import signals
 
 
 class LazyNotifier(object):
@@ -119,6 +120,8 @@ class QuestState(State):
             adventure.user.get_profile().experience += self.quest.experience
             adventure.user.get_profile().save()
 
+        signals.quest_done.send(None, quest=self.quest)
+
     def force_done(self):
         """Used for automatic time based ending of quests."""
 
@@ -129,6 +132,7 @@ class QuestState(State):
             # nobody gets any experience and we might need a special notification for this
             self.quest.done = True
             self.quest.save()
+            signals.quest_done.send(None, quest=self.quest)
 
 
 class AdventureState(State):

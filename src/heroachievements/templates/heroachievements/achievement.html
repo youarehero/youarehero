@@ -2,7 +2,10 @@
 
     <div class="box">
         <div class="box-content">
-            <span>{{ achievement.text }}</span>
             <img class="pull-left" src="{{ achievement.image }}"/>
+            <p class="pull-left">
+                <strong>{{ achievement.title }}</strong><br/>
+                {{ achievement.text }}
+            </p>
         </div>
     </div>
