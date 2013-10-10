@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from collections import OrderedDict
+from django.conf import settings
 
 registry = OrderedDict()
 
@@ -16,13 +17,16 @@ class Achievement(object):
     def __init__(self, name, text, image="img/levelstar.png", unique=True):
         self.name = name
         self.text = text
-        self.image = image
+        self._image = image
         self.unique = unique
         registry[self.name] = self
 
     def __unicode__(self):
         return self.name
 
+    @property
+    def image(self):
+        return settings.STATIC_URL + self._image
 
 create_quest_1 = Achievement("create_quest_1", "Erstelle deine erste Quest")
 create_quest_5 = Achievement("create_quest_5", "Erstelle 5 Quests.")

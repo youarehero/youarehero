@@ -28,7 +28,7 @@ class UserAchievement(models.Model):
 
     @property
     def image(self):
-        return settings.STATIC_URL + self.achievement.image
+        return self.achievement.image
 
     @property
     def text(self):
