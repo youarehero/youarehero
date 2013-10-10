@@ -91,20 +91,20 @@ def quest_done_achievements(quest, **kwargs):
     owner_done_count = quest.owner.created_quests.filter(done=True).count()
     if owner_done_count >= 1:
         grant(quest.owner, achievements.done_quest_owner_1)
-    elif owner_done_count >= 3:
+    if owner_done_count >= 3:
         grant(quest.owner, achievements.done_quest_owner_3)
-    elif owner_done_count >= 10:
+    if owner_done_count >= 10:
         grant(quest.owner, achievements.done_quest_owner_10)
-    elif owner_done_count >= 50:
+    if owner_done_count >= 50:
         grant(quest.owner, achievements.done_quest_owner_50)
 
     for hero in quest.heroes:
         hero_done_count = hero.adventures.filter(done=True).count()
         if hero_done_count >= 1:
             grant(hero, achievements.done_quest_hero_1)
-        elif hero_done_count >= 3:
+        if hero_done_count >= 3:
             grant(hero, achievements.done_quest_hero_3)
-        elif hero_done_count >= 10:
+        if hero_done_count >= 10:
             grant(hero, achievements.done_quest_hero_10)
-        elif hero_done_count >= 50:
+        if hero_done_count >= 50:
             grant(hero, achievements.done_quest_hero_50)
