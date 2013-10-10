@@ -13,9 +13,9 @@
                         <img src="{{ user.get_profile.avatar }}" alt="{{ user.username }}">
 
                         <div class="experience-bar">
-                            <div style="width: {{ request.user.profile.relative_level_experience }}%;"></div>
+                            <div style="width: {{ user.profile.relative_level_experience }}%;"></div>
                         </div>
-                        <div class="level">{{ request.user.profile.level }}</div>
+                        <div class="level">{{ user.profile.level }}</div>
                     </div>
                     <div class="col-sm-9">
                         {% if user != request.user %}

@@ -23,6 +23,7 @@ class Achievement(object):
     def __unicode__(self):
         return self.name
 
+
 create_quest_1 = Achievement("create_quest_1", "Erstelle deine erste Quest")
 create_quest_5 = Achievement("create_quest_5", "Erstelle 5 Quests.")
 
