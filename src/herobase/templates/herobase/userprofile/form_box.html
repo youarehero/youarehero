@@ -1,27 +1,18 @@
-{% extends "herobase/layout/box.html" %}
 {% load crispy_forms_tags i18n static %}
-{% block box %}
-    <form method="POST" action="" enctype="multipart/form-data">  {{ block.super }}</form>
-{% endblock %}
 
 {% load i18n static %}
 
-{% block buttons_top %}
-
-{% endblock %}
-
-{% block title %}
-{% endblock %}
-
 {% block content %}
-    {% if first_login %}
-    <h3>Willkommen bei You are Hero</h3>
-    <p>Suche dir jetzt ein Profilbild aus und schreib' wenn du möchtest ein paar Zeilen über dich.</p>
-    {% endif %}
-    {% crispy form %}
-{% endblock %}
-
-{% block buttons_bottom %}
-    <button class="box-button" type="submit" value="Save" name="save"  data-toggle="tooltip" data-title="Übernehmen">
-        <i class="icon-ok"></i></button>
+    <div class="box">
+        {% if first_login %}
+            <h3>Willkommen bei You are Hero</h3>
+            <p>Suche dir jetzt ein Profilbild aus und schreib' wenn du möchtest ein paar Zeilen über dich.</p>
+        {% endif %}
+        <form method="POST" action="" enctype="multipart/form-data" class="clearfix">
+        {% crispy form %}
+        <button class="box-button pull-right" type="submit" value="Save" name="save"  data-toggle="tooltip" data-title="Übernehmen">
+            <i class="icon-ok"></i></button>
+        </form>
+        <a href="{% url 'userprofile_delete' %}">Profil löschen</a>
+    </div>
 {% endblock %}

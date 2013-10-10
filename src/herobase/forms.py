@@ -110,22 +110,28 @@ class UserProfileEditForm(forms.ModelForm):
             Fieldset(
                 _('Edit your Profile'),
                 Div(
+                    Div(
+                        'about',
+                        # 'address',
+                        # 'receive_system_email',
+                        # 'receive_private_email',
+                        # 'latitude',
+                        # 'longitude',
+                        # 'location_granularity',
+                        css_class="col-md-6",
+                    ),
+                    Div(
+                        'sex',
+                        'team',
+                        css_class="col-md-6",
+                    ),
+                    css_class="row",
+                ),
+                Div(
                     'image',
                     'uploaded_image',
-                    'sex',
-                    'about',
-                    'team',
-
-                    # 'address',
-                    # 'receive_system_email',
-                    # 'receive_private_email',
-
-                    # 'latitude',
-                    # 'longitude',
-                    # 'location_granularity',
-                )
+                ),
             ),
-
         )
         super(UserProfileEditForm, self).__init__(*args, **kwargs)
         # self.fields['location_granularity'].widget = forms.HiddenInput()

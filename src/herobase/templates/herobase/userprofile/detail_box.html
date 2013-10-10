@@ -11,14 +11,18 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <img src="{{ user.get_profile.avatar }}" alt="{{ user.username }}">
-                        <div class="experience-bar"><div style="width: {{ request.user.profile.relative_level_experience }}%;"></div></div>
-                        <div class="level">{{ request.user.profile.level }}</div>
+
+                        <div class="experience-bar">
+                            <div style="width: {{ user.profile.relative_level_experience }}%;"></div>
+                        </div>
+                        <div class="level">{{ user.profile.level }}</div>
                     </div>
                     <div class="col-sm-9">
                         {% if user != request.user %}
                             <h3>Das ist {{ user.username }}</h3>
                         {% else %}
-                            <a href="{% url 'userprofile_edit' %}" class="pull-right"><i class="icon-cogs icon-2x"></i></a>
+                            <a href="{% url 'userprofile_edit' %}" class="pull-right"><i
+                                    class="icon-cogs icon-2x"></i></a>
                             <h3>Das bist du, {{ user.username }}</h3>
                         {% endif %}
                     </div>
@@ -29,12 +33,15 @@
                                 {% comment %}<dd><a href="{% url herobase.views.team user.get_profile.team %}">{{ user.get_profile.team }}</a></dd>{% endcomment %}
                                 <dd>{{ user.get_profile.team }}</dd>
                             {% endif %}
-                            <dt>{% trans "Member since" %} </dt><dd>{{ user.get_profile.created|timesince }}</dd>
-            {#                {% if user.get_profile.public_location %}#}
-            {#                    <dt>{% trans "Region" %}</dt><dd>{{ user.get_profile.location }}</dd>#}
-            {#                {% endif %}#}
-                            <dt>{% trans "Quests done" %}</dt><dd>{{ user.get_profile.quests_done }}</dd>
-                            <dt>{% trans "Quests created" %}</dt><dd>{{ user.get_profile.quests_created }}</dd>
+                            <dt>{% trans "Member since" %} </dt>
+                            <dd>{{ user.get_profile.created|timesince }}</dd>
+                            {#                {% if user.get_profile.public_location %}#}
+                            {#                    <dt>{% trans "Region" %}</dt><dd>{{ user.get_profile.location }}</dd>#}
+                            {#                {% endif %}#}
+                            <dt>{% trans "Quests done" %}</dt>
+                            <dd>{{ user.get_profile.quests_done }}</dd>
+                            <dt>{% trans "Quests created" %}</dt>
+                            <dd>{{ user.get_profile.quests_created }}</dd>
                         </dl>
                     </div>
                     <div class="col-sm-4">
@@ -46,11 +53,19 @@
         <div class="col-sm-1">
             {% if user != request.user %}
                 <a href="{% url "message_to" user.pk %}" data-toggle="tooltip" class="box-button"
-                  data-title="{% blocktrans with name=user.username%}Send a message to {{ name }}{% endblocktrans %}">
-                  <i class="icon-envelope-alt"></i>
+                   data-title="{% blocktrans with name=user.username %}Send a message to {{ name }}{% endblocktrans %}">
+                    <i class="icon-envelope-alt"></i>
                 </a>
             {% endif %}
         </div>
+    </div>
+    <h2>Errungenschaften</h2>
+    <div class="row">
+    {% for achievement in user.achievements.all %}
+        <div class="col-md-6">
+            {% include "heroachievements/achievement.html" %}
+        </div>
+    {% endfor %}
     </div>
 {% endblock %}
 

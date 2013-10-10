@@ -45,6 +45,9 @@ urlpatterns = patterns(
         view=TemplateView.as_view(template_name="herobase/hotline.html"),
         name='hotline'),
 
+    url(regex=r'^achievements/$',
+        view='heroachievements.views.achievement_list',
+        name='achievements'),
 
     url(r'^notifications/', include('heronotification.urls')),
     url(r'^profile/', include('herobase.urls.profile')),

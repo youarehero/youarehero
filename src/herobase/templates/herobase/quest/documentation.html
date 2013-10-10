@@ -10,7 +10,9 @@
                         {{ doc.user.username }}</a>
                     </strong>
                     {% if doc.image %}
-                        <img class="pull-right" src="{% thumbnail doc.image 90x90 %}"/>
+                        <a href="{{ doc.image.url }}" target="_blank">
+                        <img class="pull-right" src="{% thumbnail doc.image 150x150 %}"/>
+                        </a>
                     {% endif %}
                     <p>{{ doc.text }}</p>
                 </div>
@@ -22,7 +24,7 @@
                         {{ doc.user.username }}</a>
                     </strong>
                     {% if doc.image %}
-                        <img class="pull-right" src="{% thumbnail doc.image 90x90 %}"/>
+                        <img class="pull-right" src="{% thumbnail doc.image 150x150 %}"/>
                     {% endif %}
                     <p>{{ doc.text }}</p>
                 </div>

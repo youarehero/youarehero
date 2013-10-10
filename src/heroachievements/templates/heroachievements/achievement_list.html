@@ -1,0 +1,11 @@
+{% extends "herobase/layout/base.html" %}
+
+{% block content %}
+        {% for achievement in achievements %}
+            <div class="row">
+                <div class="col-md-6">
+                    {% include "heroachievements/achievement.html" %}
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}

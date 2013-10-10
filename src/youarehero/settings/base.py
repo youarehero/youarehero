@@ -185,6 +185,7 @@ INSTALLED_APPS = (
     'herorecommend',
     'heronotification',
     'heroorganization',
+    'heroachievements',
 )
 
 TEST_APPS = (
@@ -193,6 +194,7 @@ TEST_APPS = (
     'herorecommend',
     'heronotification',
     'heroorganization',
+    'heroachievements',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7

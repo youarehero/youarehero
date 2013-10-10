@@ -1,0 +1,23 @@
+{% extends "herobase/layout/base.html" %}
+{% load i18n static humanize %}
+
+{% block content %}
+    <div class="box">
+        <h1>Profil löschen</h1>
+        <div class="clearfix">
+            <div class="alert alert-danger">
+                <strong>Achtung!</strong>
+                Bist du sicher, dass du dein Profil bei you are hero
+                <strong>unwiderruflich löschen</strong> möchtest?
+            </div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <a href="{% url 'userprofile_edit' %}" class="btn btn-primary col-sm-3">
+                Nein, lieber nicht</a>
+                <button type="submit" name="submit" value="Ja" class="btn btn-danger col-sm-3 pull-right">
+                    <span>Ja, sicher löschen</span>
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

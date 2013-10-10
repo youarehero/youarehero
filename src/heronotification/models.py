@@ -2,6 +2,7 @@ from collections import defaultdict
 from datetime import datetime
 import logging
 from django.conf import settings
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.utils.html import escape
 from django.utils.translation import ugettext as _
@@ -17,6 +18,8 @@ from django.template import Context, TemplateDoesNotExist, Template
 from django.template.loader import get_template, render_to_string
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
+from heroachievements.achievements import Achievement
+from heroachievements.models import UserAchievement
 from registration.signals import user_activated
 from herobase.models import Quest, Adventure, get_system_user
 from heromessage.models import Message
@@ -42,10 +45,11 @@ class NotificationTypeMetaClass(type):
 
 class NotificationTypeBase(object):
     __metaclass__ = NotificationTypeMetaClass
+    send_email = True
 
     def __init__(self, user, target):
         Notification.create(user, target, type_id=self.type_id)
-        if user.email:
+        if user.email and self.send_email:
             self.send_notification_mail(user, target)
 
     @classmethod
@@ -237,6 +241,23 @@ class welcome(NotificationTypeBase):
         return notification.target.profile.avatar_thumbnail_40
 
 
+class achievement(NotificationTypeBase):
+    type_id = 500
+    target_model = UserAchievement
+    send_email = False
+
+    @classmethod
+    def get_text(cls, notification):
+        return u"Du hast eine Errungenschaft errungen: " + notification.target.text
+
+
+    @classmethod
+    def get_image(cls, notification):
+        return notification.target.image
+
+
+
+
 class Notification(models.Model):
     user = models.ForeignKey(User, related_name='notifications')
     content_type = models.ForeignKey(ContentType)
@@ -341,6 +362,7 @@ class Notification(models.Model):
             template = get_template('heronotification/notification_base.html')
 
         rendered = mark_safe(template.render(Context({'notification': self})))
+        self.update_read()
         return rendered
 
 
@@ -352,9 +374,38 @@ user_activated.connect(welcome_new_user)
 
 
 def update_read(instance, raw, **kwargs):
-    for notification_type in NOTIFICATION_TYPES.values():
-        if isinstance(instance, notification_type.target_model):
-            for n in Notification.objects.filter(read__isnull=True, object_id=instance.pk):
-                n.update_read()
+    notifications = Notification.objects.filter(read__isnull=True)
+    if isinstance(instance, Quest):
+        # for quests also alert adventures
+        quest_type = ContentType.objects.get_for_model(Quest)
+        adventure_type = ContentType.objects.get_for_model(Adventure)
+
+        q_quest = Q(content_type=quest_type) & Q(object_id=instance.pk)
+        q_adventure = (Q(content_type=adventure_type) &
+                       Q(object_id__in=instance.adventures.values_list('pk', flat=True)))
+
+        for n in notifications.filter(q_quest | q_adventure):
+            n.update_read()
+
+    elif isinstance(instance, Adventure):
+        # for adventure also alert quest
+        quest_type = ContentType.objects.get_for_model(Quest)
+        adventure_type = ContentType.objects.get_for_model(Adventure)
+
+        q_quest = Q(content_type=quest_type) & Q(object_id=instance.quest_id)
+        q_adventure = Q(content_type=adventure_type) & Q(object_id=instance.pk)
+
+        for n in notifications.filter(q_quest | q_adventure):
+            n.update_read()
+
+    else:
+        for notification_type in NOTIFICATION_TYPES.values():
+            if isinstance(instance, notification_type.target_model):
+                ct = ContentType.objects.get_for_model(Quest)
+                for n in notifications.filter(content_type=ct, object_id=instance.pk):
+                    n.update_read()
+                break
+
+
 
 post_save.connect(update_read)
