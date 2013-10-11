@@ -1,8 +1,9 @@
 # Create your views here.
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from herocoupon.models import Coupon
 
-
+@login_required
 def redeem_coupon(request, code):
     coupons = Coupon.objects.filter(code=code)
 
@@ -14,6 +15,7 @@ def redeem_coupon(request, code):
     if request.user in coupon.redeemed_by.all():
         return render(request, "herocoupon/already_used.html", {'code': code})
 
+    # The Couppon exists, is active and not already redeemed by the user
     profile = request.user.profile
     profile.experience += coupon.xp
     profile.save()

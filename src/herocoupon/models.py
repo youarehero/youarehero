@@ -16,7 +16,7 @@ class Coupon(models.Model):
     xp = models.PositiveSmallIntegerField(default=0)
     code = models.CharField(max_length=255, unique=True, editable=False)
     is_active = models.BooleanField(default=True)
-    redeemed_by = models.ManyToManyField(User)
+    redeemed_by = models.ManyToManyField(User, editable=False)
 
     @classmethod
     def generate_code(cls):
@@ -26,16 +26,12 @@ class Coupon(models.Model):
             return cls.generate_code()
         return code
 
-    def clean(self):
-        # prevent empty custom-id from unique checks
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        # generate code
         if not self.code or self.code.strip() == '':
             self.code = self.generate_code()
+        super(Coupon, self).save(force_insert, force_update, using, update_fields)
 
-        super(Coupon, self).clean()
-        errors = []
-        # validation checks here
-        if len(errors) > 0:
-            raise ValidationError(errors)
 
     def __unicode__(self):
         return u'%s%s%s' % (self.code, self.type, self.xp)
