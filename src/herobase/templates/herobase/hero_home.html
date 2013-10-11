@@ -3,11 +3,13 @@
 
 {% block content %}
     <div class="row">
+    <div class="col-md-6 col-md-offset-6">
         {% for notification in notifications %}
-            <div class="col-md-6">
+            <div class="clearfix">
                 {{ notification.html }}
             </div>
         {% endfor %}
+    </div>
     </div>
     {% include "herobase/articles/articles.inc.html" %}
 {% endblock %}
