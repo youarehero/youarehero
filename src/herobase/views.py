@@ -58,7 +58,8 @@ def quest_list_view(request, archive=False, done=False,
     if not archive and not done:
         quests = quests.open()
     if done:
-        quests = quests.done()
+        quests = Quest.objects.done().select_related('owner', 'owner__profile')\
+                                     .order_by('-done_time', 'pk')
 
     search = request.GET.get('search', '')
     if search:
