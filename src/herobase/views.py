@@ -244,7 +244,7 @@ def home_view(request):
     if request.user.is_authenticated():
         return hero_home_view(request)
     response = render(request, "herobase/public_home.html", {
-        'open_quests': Quest.objects.open(),
+        'recently_done_quests': Quest.objects.done().order_by('-done_time')[:3],
         'form': UserAuthenticationForm()})
     response['Access-Control-Allow-Origin'] = "www.facebook.com"
     return response
