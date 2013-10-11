@@ -51,6 +51,22 @@ class CouponTest(WebTest):
         self.assertIn(user, coupon.redeemed_by.all())
         self.assertEqual(coupon.is_active, False)
 
+    def test_lowercase_coupon(self):
+        user = G(User, username='ahero')
+        coupon = G(Coupon, type='single', xp=31563, is_active=True,
+                   code='', redeemed_by=[])
+        code = ''.join([c.lower() if c.isalpha() else c for c in coupon.code])
+        redeem_page = self.app.get(reverse('redeem', kwargs={'code': code}),
+                                   user=user)
+        user = User.objects.get(username=user.username)
+        coupon = Coupon.objects.get(code=coupon.code)
+
+        redeem_page.mustcontain(u'Herzlichen Glückwunsch', coupon.code,
+                                unicode(coupon.xp))
+        self.assertEqual(user.profile.experience, coupon.xp)
+        self.assertIn(user, coupon.redeemed_by.all())
+        self.assertEqual(coupon.is_active, False)
+
     def test_multi_coupon(self):
         user = G(User, username='ahero')
         coupon = G(Coupon, type='multi', xp=31563, is_active=True,

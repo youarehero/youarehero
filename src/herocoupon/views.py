@@ -5,6 +5,7 @@ from herocoupon.models import Coupon
 
 @login_required
 def redeem_coupon(request, code):
+    code = ''.join([c.upper() if c.isalpha() else c for c in code])
     coupons = Coupon.objects.filter(code=code)
 
     if not coupons.exists():
