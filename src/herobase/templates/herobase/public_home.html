@@ -115,11 +115,15 @@ Helden-Hilfe benötigst!
     </div>
     <div class="box">
         <h2>k&uuml;rzlich abgeschlossene Quests</h2>
-
     </div>
-    {% for quest in recently_done_quests %}
-        {% include "herobase/quest/list_box.html" %}
-    {% endfor %}
+    <div class="row">
+        {% for quest in recently_done_quests %}
+            <div class="col-sm-6 col-md-4">
+                {% include "herobase/quest/list_box.html" %}
+            </div>
+        {% endfor %}
+    </div>
+
     <br>
     <div class="sponsors">
         <h3>Gef&ouml;rdert durch</h3>
