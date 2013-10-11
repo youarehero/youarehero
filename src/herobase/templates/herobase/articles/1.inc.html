@@ -3,7 +3,7 @@
 <div class="box-image hidden" data-position="1">
     <div class="image" style="background-image: url({% get_static_prefix %}img/articles/article1.png);"></div>
     <h1 class="header red">Zeitmaschine gestohlen!</h1>
-    <h3 class="header">Forschungsgemeinde<br/>in Schock</h3>
+    <h2 class="subheader">Forschungsgemeinde<br/>in Schock</h2>
     <p class="text">
         Wie wir vom Opfer Prof. Dr. Dr. Rudolf Entropius (29), Gastprofessor
         am FZI Forschungszentrum Informatik, soeben erfahren haben, wurde ein
@@ -18,7 +18,7 @@
     </p>
     {% if not request.user.is_authenticated %}
         <div class="box-floating">
-            <h1><a class="plain" href="#yah-ist-ein-spiel">Helden<br/>bedarf</a></h1>
+            <h1 class="header"><a class="plain" href="#yah-ist-ein-spiel">Helden<br/>bedarf</a></h1>
             <p>Erfahre mehr, <a href="{% url "registration_register" %}">registriere</a> dich jetzt und beginne noch heute mit dem Spiel!</p>
             <div class="box-footer">
                 <a href="#yah-ist-ein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>

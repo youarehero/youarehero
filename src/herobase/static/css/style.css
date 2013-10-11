@@ -2150,6 +2150,7 @@ textarea {
 }
 #navigation .nav-white li > a {
   padding: 0;
+  padding-bottom: 1px;
   color: black;
 }
 #navigation .nav-white li > a > i {

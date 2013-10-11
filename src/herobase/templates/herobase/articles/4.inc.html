@@ -3,13 +3,13 @@
 <div class="box-image" data-position="4">
     <div class="image" style="background-image: url({% get_static_prefix %}img/articles/article4.png);"></div>
     <h1 class="header red">Helden arbeiten hart!</h1>
-    <h5 class="subheader">Können die Daten<br/>wiedererlangt werden?</h5>
+    <h2 class="subheader">Können die Daten<br/>wiedererlangt werden?</h2>
     <p class="text">
     Als die beiden Heldenhelfer am 08.10.2013 gegen 16:30 Uhr das Heldenhauptquartier betraten, schlug ihnen das Chaos entgegen. Scheinbar gefasst machten sie sich jedoch sofort an die dringliche Aufgabe, die Karte und die damit von Anonyma zerstörten Daten wieder zusammenzufügen. Eineinhalb Stunden und eine Rolle Tape später verließen sie schliesslich erfolgstrunken das Hauptquartier. Welche neuen Erkenntnisse mögen die gefundenen Daten bringen?
     </p>
     {% if not request.user.is_authenticated %}
         <div class="box-floating">
-            <h1><a class="plain" href="#yah-ist-ein-spiel">Helden<br/>bedarf</a></h1>
+            <h1 class="header"><a class="plain" href="#yah-ist-ein-spiel">Helden<br/>bedarf</a></h1>
             <p>Erfahre mehr, <a href="{% url "registration_register" %}">registriere</a> dich jetzt und beginne noch heute mit dem Spiel!</p>
             <div class="box-footer">
                 <a href="#yah-ist-ein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>
