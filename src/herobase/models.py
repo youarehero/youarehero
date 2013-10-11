@@ -198,6 +198,9 @@ class QuestQuerySet(QuerySet):
     def open(self):
         return self.filter(open=True).filter(expiration_date__gt=now())
 
+    def done(self):
+        return self.filter(done=True)
+
 
 class QuestManager(models.Manager):
     """Custom Quest Object Manager, for active and inactive `Quest` objects"""
@@ -206,6 +209,9 @@ class QuestManager(models.Manager):
 
     def open(self):
         return self.get_query_set().open()
+
+    def done(self):
+        return self.get_query_set().done()
 
     def start_timer_set_but_not_started(self):
         return self.get_query_set().filter(

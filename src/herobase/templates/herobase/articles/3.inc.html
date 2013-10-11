@@ -3,7 +3,7 @@
 <div class="box-image hidden" data-position="3">
     <div class="image" style="background-image: url({% get_static_prefix %}img/articles/article3.png);"></div>
     <h1 class="header red">Großer Schock im Hauptquartier!</h1>
-    <h3 class="subheader">Anonyma schlägt zu!</h3>
+    <h2 class="subheader">Anonyma schlägt zu!</h2>
     <p class="text">
         Am 28.09. betrat Wasteprincess, eine Karlsruher Heldin, das Helden-hauptquartier und erlitt einen kleinen Schock,
         als sie Zeugin eines zuvor erfolgten Einbruchs durch Anonyma wurde.
@@ -21,7 +21,7 @@
     </p>
     {% if not request.user.is_authenticated %}
         <div class="box-floating">
-            <h1><a class="plain" href="#yah-ist-ein-spiel">Helden<br/>bedarf</a></h1>
+            <h1 class="header"><a class="plain" href="#yah-ist-ein-spiel">Helden<br/>bedarf</a></h1>
             <p>Erfahre mehr, <a href="{% url "registration_register" %}">registriere</a> dich jetzt und beginne noch heute mit dem Spiel!</p>
             <div class="box-footer">
                 <a href="#yah-ist-ein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>
