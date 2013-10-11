@@ -45,7 +45,7 @@ from registration.models import RegistrationProfile
 logger = logging.getLogger('youarehero.herobase')
 
 
-def quest_list_view(request, archive=False,
+def quest_list_view(request, archive=False, done=False,
                     template='herobase/quest/list.html'):
     """Basic quest list, with django-filter app"""
     quests = Quest.objects.all().select_related('owner', 'owner__profile')\
@@ -55,8 +55,10 @@ def quest_list_view(request, archive=False,
             not request.user.profile.is_legal_adult()):
         quests = quests.filter(owner__profile__trusted=True)
 
-    if not archive:
+    if not archive and not done:
         quests = quests.open()
+    if done:
+        quests = quests.done()
 
     search = request.GET.get('search', '')
     if search:
@@ -66,6 +68,7 @@ def quest_list_view(request, archive=False,
     return render(request, template, {
         'quests': quests,
         'search': search,
+        'done': done,
     })
 
 
