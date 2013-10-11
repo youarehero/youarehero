@@ -194,6 +194,7 @@ TEST_APPS = (
     'herorecommend',
     'heronotification',
     'heroorganization',
+    'herocoupon',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7
