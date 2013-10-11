@@ -1,22 +1,11 @@
 {% extends "herobase/layout/base.html" %}
 
 {% block content %}
-
     <div class="row">
         <div class="col-md-6 col-md-offset-6">
         {% for notification in notifications %}
             <div class="clearfix">
-            {{ notification.html }}
-                {#          {% with url=notification.target.get_absolute_url %}#}
-                {#          {% if url %}#}
-                {#            <a href="{{ url }}">#}
-                {#          {% endif %}#}
-                {#              <p>{{ notification.text|truncatechars:120 }}</p>#}
-                {#              <div class="info">{{ notification.created|naturaltime }}</div>#}
-                {#          {% if url %}#}
-                {#            </a>#}
-                {#          {% endif %}#}
-                {#          {% endwith %}#}
+                {{ notification.html }}
             </div>
         {% empty %}
             <p>Du hast keine Benachrichtigung</p>
