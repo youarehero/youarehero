@@ -144,7 +144,7 @@ class AdventureState(State):
     @property
     def adventure(self):
         if self._adventure is None:
-            self._adventure = self.quest.adventures.applying().get(user=self.hero)
+            self._adventure = self.quest.adventures.get(user=self.hero)
         return self._adventure
 
     def accept_errors(self):
