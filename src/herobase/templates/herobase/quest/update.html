@@ -2,20 +2,42 @@
 {% load crispy_forms_tags i18n static thumbnail %}
 
 {% block javascript %}
-    <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-collapse.js"></script>
-    <script type="text/javascript" src="{% get_static_prefix %}bootstrap/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('#id_expiration_date').datepicker({autoclose: true, format: 'dd.mm.yyyy'});
-    });
+        $(document).ready(function(){
+            var today = new Date();
+            var day = today.getDate();
+            var month = today.getMonth();
+            var year = today.getFullYear();
+            $('.dateinput').datetimepicker({
+                format: 'dd.mm.yyyy',
+                weekStart: 1,
+                autoclose: true,
+                minView: 2,
+                maxView: 4,
+                startView: 2,
+                language: 'de',
+                initialDate: new Date(year, month, day),
+                startDate: new Date(year - 100, month, day),
+                endDate: new Date(year + 10, month, day)
+            });
+            $('.datetimeinput').datetimepicker({
+                format: 'dd.mm.yyyy hh:ii',
+                weekStart: 1,
+                autoclose: true,
+                minView: 1,
+                maxView: 4,
+                startView: 2,
+                language: 'de',
+                initialDate: new Date(year, month, day),
+                startDate: new Date(year - 100, month, day),
+                endDate: new Date(year + 10, month, day)
+            });
+        });
     </script>
-{% endblock %}
-{% block css %}
-    <link rel="stylesheet" href="{% get_static_prefix %}bootstrap/css/datepicker.css"/>
 {% endblock %}
 
 {% block page_title %}
-    <h1>{% trans "Create a Quest" %}</h1>
+    <h1>{% trans "Quest update" %}</h1>
 {% endblock %}
 
 {% block content %}

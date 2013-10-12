@@ -1499,3 +1499,41 @@ button {
 #article-right-arrow {
   right: -60px;
 }
+
+.datetimepicker {
+  border: 0 none;
+  padding: 0;
+//  .cut-coreners-bottom(rgba(255,255,255,0.6));
+  .border-radius(0);
+  table {
+    width: 50px * 4;
+    & > tbody > tr > td {
+      padding: 0;
+    }
+    & > thead > tr > th {
+      padding: 3px 5px 8px;
+      text-align: center;
+
+    }
+    .prev, .switch, .next {
+      cursor: pointer;
+      background: rgba(0,0,0,0.1);
+      &:hover {
+        background: rgba(0,0,200,0.6);
+      }
+    }
+    span,
+    tr td.day {
+      text-align: center;
+      cursor: pointer;
+      padding: 0 3px 6px;
+      &:hover {
+        background: rgba(0,0,255,0.6);
+      }
+    }
+    span {
+      width: 50px;
+      display: inline-block;
+    }
+  }
+}

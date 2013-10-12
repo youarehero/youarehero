@@ -5014,3 +5014,46 @@ button {
 #article-right-arrow {
   right: -60px;
 }
+.datetimepicker {
+  border: 0 none;
+  padding: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+.datetimepicker table {
+  width: 200px;
+}
+.datetimepicker table > tbody > tr > td {
+  padding: 0;
+}
+.datetimepicker table > thead > tr > th {
+  padding: 3px 5px 8px;
+  text-align: center;
+}
+.datetimepicker table .prev,
+.datetimepicker table .switch,
+.datetimepicker table .next {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.1);
+}
+.datetimepicker table .prev:hover,
+.datetimepicker table .switch:hover,
+.datetimepicker table .next:hover {
+  background: rgba(0, 0, 200, 0.6);
+}
+.datetimepicker table span,
+.datetimepicker table tr td.day {
+  text-align: center;
+  cursor: pointer;
+  padding: 0 3px 6px;
+}
+.datetimepicker table span:hover,
+.datetimepicker table tr td.day:hover {
+  background: rgba(0, 0, 255, 0.6);
+}
+.datetimepicker table span {
+  width: 50px;
+  display: inline-block;
+}
