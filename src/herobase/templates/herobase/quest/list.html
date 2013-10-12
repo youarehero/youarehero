@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load endless %}
 {% load cache %}
+{% load crispy_forms_tags %}
 
 {% block head_javascript %}
     <script src="{% get_static_prefix %}js/masonry.pkgd.min.js"></script>
@@ -50,8 +51,8 @@
     {% paginate 12 quests %}
     <div class="box">
         <div style="float: right; font-size: 12px;"><p>{% show_pages %}</p></div>
-        <form action="" method="get" class="pull-right">
-            <input placeholder="Titel, Beschreibung" style="margin-top: -12px;" name="search" value="{{ search }}"/>
+        <form action="" method="get" class="form-inline pull-right" id="quest_filter_form">
+            {% crispy filter_form %}
             <button class="inline-button" type="submit" value="search">Suchen</button>
         </form>
         <ul class="subsub">

@@ -37,7 +37,7 @@ from heronotification.models import Notification
 from heromessage.models import Message
 from herorecommend.forms import UserSkillEditForm
 from herobase.forms import (QuestCreateForm, UserProfileEditForm,
-                            UserProfilePrivacyForm, UserAuthenticationForm, DateOfBirthRegistrationForm, DocumentationForm)
+                            UserProfilePrivacyForm, UserAuthenticationForm, DateOfBirthRegistrationForm, DocumentationForm, QuestFilterForm)
 from herobase.models import Quest, Adventure, Like, CREATE_EXPERIENCE, UserProfile, Documentation
 from herorecommend.models import MIN_SELECTED_SKILLS
 from registration.models import RegistrationProfile
@@ -62,14 +62,28 @@ def quest_list_view(request, archive=False, done=False,
                                      .select_related('owner', 'owner__profile')\
                                      .order_by('-done_time', 'pk')
 
+    remote = request.GET.get('remote', '')
+    if remote == 'True':
+        quests = quests.filter(remote=True)
+    elif remote == 'False':
+        quests = quests.filter(remote=False)
+
+    time_effort = request.GET.get('time_effort', '')
+    if time_effort:
+        quests = quests.filter(time_effort=time_effort)
+
     search = request.GET.get('search', '')
     if search:
         quests = quests.filter(
-            Q(title__icontains=search) | Q(description__icontains=search))
+            Q(title__icontains=search) | Q(description__icontains=search) |
+            Q(address__icontains=search)
+        )
+
+    filter_form = QuestFilterForm(initial=request.GET)
 
     return render(request, template, {
         'quests': quests,
-        'search': search,
+        'filter_form': filter_form,
         'done': done,
     })
 

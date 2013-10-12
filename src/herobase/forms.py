@@ -92,6 +92,44 @@ class QuestCreateForm(forms.ModelForm):
         )
 
 
+class QuestFilterForm(forms.Form):
+    """The Basic Quest filter form. Uses django-crispy-forms (FormHelper) for bootstrap output. """
+    remote = forms.ChoiceField(choices=(
+        ("", u'Vor Ort | von überall'),
+        (True, _(u"remotely")),
+        (False, _(u"locally"))
+    ), label='')
+    time_effort = forms.ChoiceField(choices=(
+        ("", u"Zeitaufwand"),
+        (1, _(u"Niedrig")),
+        (2, _(u"Mittel")),
+        (3, _(u"Hoch"))
+    ), label='')
+    search = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': u'Titel, Beschreibung, Ort'}
+    ), label='')
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        #self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.layout = Layout(
+            Div(
+                'time_effort',
+                css_class="form-group"
+            ),
+            Div(
+                'remote',
+                css_class="form-group"
+            ),
+            Div(
+                'search',
+                css_class="form-group"
+            ),
+        )
+        super(QuestFilterForm, self).__init__(*args, **kwargs)
+
+
 class UserProfileEditForm(forms.ModelForm):
     """Basic userprofile edit form. uses crispy-forms."""
     # latitude = forms.FloatField(widget=forms.HiddenInput, required=False)

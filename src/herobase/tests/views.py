@@ -182,6 +182,39 @@ class QuestViewTest(WebTest):
         list_page = self.app.get(reverse("quest_list"))
         self.assertContains(list_page, "ALALA")
 
+    def test_quest_list_filter_remote(self):
+        quest1 = G(Quest, title="ALALAremote", remote=True)
+        quest2 = G(Quest, title="ALALAlocal", remote=False)
+        list_page = self.app.get(reverse("quest_list"))
+        form = list_page.forms['quest_filter_form']
+        form['remote'] = 'True'
+        response = form.submit()
+
+        self.assertContains(response, "ALALAremote")
+        self.assertNotContains(response, "ALALAlocal")
+
+    def test_quest_list_filter_time_effort(self):
+        quest1 = G(Quest, title="ALALAtime1", time_effort=1)
+        quest2 = G(Quest, title="ALALAtime2", time_effort=2)
+        list_page = self.app.get(reverse("quest_list"))
+        form = list_page.forms['quest_filter_form']
+        form['time_effort'] = '1'
+        response = form.submit()
+
+        self.assertContains(response, "ALALAtime1")
+        self.assertNotContains(response, "ALALAtime2")
+
+    def test_quest_list_filter_search_title(self):
+        quest1 = G(Quest, title="ALALAquest1")
+        quest2 = G(Quest, title="ALALAquest2")
+        list_page = self.app.get(reverse("quest_list"))
+        form = list_page.forms['quest_filter_form']
+        form['search'] = 'quest1'
+        response = form.submit()
+
+        self.assertContains(response, "ALALAquest1")
+        self.assertNotContains(response, "ALALAquest2")
+
     def test_quest_apply(self):
         quest = G(Quest, title="Awesome Task")
         hero = G(User)
