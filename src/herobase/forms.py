@@ -5,6 +5,7 @@ This module provides the form-classes (definition) for the basic models, especia
 import datetime
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django import forms
 from django.core.urlresolvers import reverse
@@ -135,6 +136,7 @@ class UserProfileEditForm(forms.ModelForm):
     # latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # address = forms.CharField(required=False, widget=LocationWidget("id_latitude", "id_longitude", "id_location_granularity"))
+    username = forms.CharField(required=True)
     image = forms.ChoiceField(choices=[('', '------')] + UserProfile.avatar_choices(),
                               required=False)
 
@@ -149,6 +151,7 @@ class UserProfileEditForm(forms.ModelForm):
                 _('Edit your Profile'),
                 Div(
                     Div(
+                        'username',
                         'about',
                         # 'address',
                         # 'receive_system_email',
@@ -161,6 +164,7 @@ class UserProfileEditForm(forms.ModelForm):
                     Div(
                         'sex',
                         'team',
+                        'date_of_birth',
                         css_class="col-md-6",
                     ),
                     css_class="row",
@@ -181,9 +185,17 @@ class UserProfileEditForm(forms.ModelForm):
             cleaned_data['image'] = model_to_dict(self.instance).get('image')
         return cleaned_data
 
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if User.objects.exclude(pk=self.instance.user.pk) \
+                       .filter(username__iexact=username).exists():
+            raise forms.ValidationError(_(u'Dieser Benutzername ist bereits vergeben.'))
+        return username
+
     class Meta:
         model = UserProfile
         fields = ('about', 'image', 'sex', 'team', 'uploaded_image',
+                  'date_of_birth', 'username',
                   # 'receive_system_email', 'receive_private_email',
                   # 'address', 'latitude', 'longitude', 'location_granularity'
         )

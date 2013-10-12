@@ -490,9 +490,14 @@ def userprofile_edit(request):
     user = request.user
     if Organization.objects.filter(user=request.user).exists():
         return HttpResponseRedirect(reverse("organization_update"))
-    form = UserProfileEditForm(request.POST or None, request.FILES or None, instance=user.get_profile())
+    initial = {'username' : user.username}
+
+    form = UserProfileEditForm(request.POST or None, request.FILES or None,
+                               instance=user.profile, initial=initial)
     first_login = bool(request.GET.get('first_login'))
     if form.is_valid():
+        user.username = request.POST.get('username', user.username)
+        user.save()
         form.save()
         messages.success(request, _(u'Profile successfully changed'))
         if first_login:

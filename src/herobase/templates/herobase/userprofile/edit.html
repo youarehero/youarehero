@@ -2,7 +2,6 @@
 {% load crispy_forms_tags i18n static %}
 
 {% block javascript %}
-
     <script type="text/javascript" src="{% get_static_prefix %}image-picker/image-picker.min.js"></script>
     {{ form.media }}
     <script type="text/javascript">
@@ -15,7 +14,25 @@
                 }
             });
             $("#id_image").imagepicker();
-        })
+        });
+        $(document).ready(function(){
+            var today = new Date();
+            var day = today.getDate();
+            var month = today.getMonth();
+            var year = today.getFullYear();
+            $('.dateinput').datetimepicker({
+                format: 'dd.mm.yyyy',
+                weekStart: 1,
+                autoclose: true,
+                minView: 2,
+                maxView: 4,
+                startView: 4,
+                language: 'de',
+                initialDate: new Date(year, month, day),
+                startDate: new Date(year - 100, month, day),
+                endDate: new Date(year, month, day)
+            });
+        });
     </script>
 {% endblock %}
 
