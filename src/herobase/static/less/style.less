@@ -426,7 +426,7 @@ textarea {
   }
 
   #brand {
-    margin-top: -70px;
+//    margin-top: -70px;
     width: 150px;
     a {
       width: 150px - (2 * @cut-corner-radius);
@@ -438,6 +438,7 @@ textarea {
       }
     }
     h2 {
+      margin-top: 0px;
       font-size: 16px;
     }
   }
@@ -527,14 +528,8 @@ textarea {
     }
   }
 
-  .icon-yah {
-    display: inline-block;
-    width: 100%;
-    height: 36px;
-    font-size: 36px;
-    line-height: 36px;
-    color: white;
-    text-align: center;
+  .icon-yah-logo {
+    color: @white;
     &:hover {
       color: @black;
     }
@@ -1513,7 +1508,6 @@ button {
     & > thead > tr > th {
       padding: 3px 5px 8px;
       text-align: center;
-
     }
     .prev, .switch, .next {
       cursor: pointer;

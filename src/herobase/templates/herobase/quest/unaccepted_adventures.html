@@ -4,7 +4,7 @@
     {% if adventures|length > 1 %}
     <a href="{% url 'message_quest' quest.pk 'applicants' %}" data-toggle="tooltip"
           data-title="{% trans "Send a message to all applicants" %}" class="pull-right">
-          <i class="icon-envelope-alt"></i> {% trans "to all" %}
+          <i class="icon-mail-all"></i>
         </a>
     {% endif %}
   <h2>{% trans "Applications" %}</h2>
