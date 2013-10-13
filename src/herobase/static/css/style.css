@@ -5082,3 +5082,22 @@ button {
   width: 50px;
   display: inline-block;
 }
+table.leader-table td.rank {
+  font-size: 36px;
+  font-weight: bold;
+  padding: 10px;
+  vertical-align: top;
+  line-height: 20px;
+  height: 90px;
+}
+table.leader-table a {
+  text-decoration: none;
+  color: red;
+}
+table.leader-table a:hover {
+  text-decoration: underline;
+}
+table.leader-table .active td.rank,
+table.leader-table .active a {
+  color: blue;
+}

@@ -581,14 +581,15 @@ def userprofile_skill_settings(request):
 @login_required
 def leader_board(request):
     """Render a view of the top heroes by rank."""
-    global_board = User.objects.select_related('profile').filter(
+    top50 = User.objects.select_related('profile').filter(
         profile__experience__gt=0
-    ).order_by('-profile__experience')[:10]
-    relativ_board = []
+    ).order_by('-profile__experience')[:50]
 
     return render(request, "herobase/leader_board.html", {
-        'global_board': global_board,
-        'relativ_board': relativ_board,
+        'top1to5': top50[:5],
+        'top6to10': top50[5:10],
+        'top11to25': top50[10:25],
+        'top26to50': top50[25:50],
     })
 
 

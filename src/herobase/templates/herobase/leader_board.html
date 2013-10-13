@@ -9,7 +9,55 @@
 {% endblock %}
 
 {% block content %}
-    {% with global=global_board  %}
-        {% include "herobase/stats/leaderboard_global_box.html" %}
-    {%  endwith %}
+    <div class="box">
+        <h1>Rangliste</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="box">
+                <h2>Top 5</h2>
+                <table class="leader-table">
+                    {% for user in top1to5 %}
+                        {% with active=False %}
+                            {% include "herobase/leader_board_box.inc.html" %}
+                        {% endwith %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="box">
+                <h2>Ränge 6-10</h2>
+                <table class="leader-table">
+                    {% for user in top6to10 %}
+                        {% with active=False %}
+                            {% include "herobase/leader_board_box.inc.html" %}
+                        {% endwith %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="box">
+                <h2>Ränge 11-25</h2>
+                <p>
+                    {% for user in top11to25 %}
+                        {{ user.profile.rank }}. {{ user.username }}<br>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="box">
+                <h2>Ränge 26-50</h2>
+                <p>
+                    {% for user in top26to50 %}
+                        {{ user.profile.rank }}. {{ user.username }}<br>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
