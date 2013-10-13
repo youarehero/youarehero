@@ -11,17 +11,20 @@
     </a>
     <div class="nav-icons">
       <ul class="nav">
-        <li><a href="{% url "arg" %}"><i class="icon-puzzle-piece"></i><br>Das Spiel</a></li>
+        <li class="{% ifstartswith "/arg/" %}active{% endifstartswith %}">
+            <a href="{% url "arg" %}"><i class="icon-puzzle-piece"></i><br>Das Spiel</a></li>
         <li class="{% ifstartswith "/quest/" %}active{% endifstartswith %}">
-        <a href="{% url "quest_list" %}"><i class="icon-pushpin"></i><br>Quests</a></li>
+            <a href="{% url "quest_list" %}"><i class="icon-pushpin"></i><br>Quests</a></li>
         <li class="{% ifstartswith "/messages" %}active{% endifstartswith %}">
-        <a href="{% url "message_list_in" %}"><i class="icon-comments">
+            <a href="{% url "message_list_in" %}"><i class="icon-comments">
             {% with unread_message_count=request.user.profile.unread_messages_count %}
             {% if unread_message_count != 0 %}
             <b>{{ unread_messages_count }}</b>
             {% endif %}
             {% endwith %}
         </i><br>Nachrichten</a></li>
+        <li class="{% ifstartswith "/leader/" %}active{% endifstartswith %}">
+            <a href="{% url "leader_board" %}"><i class="icon-trophy"></i><br>Rangliste</a></li>
       </ul>
 
       {% ifstartswith "/quest" %}
