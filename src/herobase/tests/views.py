@@ -119,6 +119,31 @@ class RegistrationTest(WebTest):
         self.assertTrue(User.objects.get(pk=user.pk).check_password('ap'))
 
 
+class LeaderBoardViewTest(WebTest):
+    def test_leaderboard_view(self):
+        users = []
+        for i in range(50):
+            user = G(User, username='aHero%s' % i)
+            profile = user.profile
+            profile.experience = i * 1000
+            profile.save()
+            users.append(user)
+        leaderboard_page = self.app.get(reverse('leader_board'), user=users[0])
+        leaderboard_page.mustcontain(*[u.username for u in users])
+
+    def test_profile_leaderboard_view(self):
+        users = []
+        for i in range(5):
+            user = G(User, username='aHero%s' % i)
+            profile = user.profile
+            profile.experience = i * 1000
+            profile.save()
+            users.append(user)
+        user = users[2]
+        profile_page = self.app.get(reverse("userprofile_public", args=(user.username, )),
+                                    user=users[0])
+        profile_page.mustcontain(*[u.username for u in users])
+
 class ProfileViewTest(WebTest):
     def test_view_profile(self):
         user = G(User, username='ahero')
@@ -140,9 +165,32 @@ class ProfileViewTest(WebTest):
         form['about'] = 'these are some facts about me'
         response = form.submit()
 
-
         user_profile = UserProfile.objects.get(user=user)
         self.assertEqual('these are some facts about me', user_profile.about)
+
+    def test_update_username(self):
+        user = G(User, username='ahero')
+        update_page = self.app.get(reverse("userprofile_edit"), user=user)
+
+        form = update_page.forms[0]
+        form['username'] = 'aNewHeroName'
+        response = form.submit()
+
+        user_profile = UserProfile.objects.get(user=user)
+        self.assertEqual('aNewHeroName', user_profile.user.username)
+
+    def test_update_username_exists(self):
+        user = G(User, username='ahero')
+        user2 = G(User, username='anotherhero')
+        update_page = self.app.get(reverse("userprofile_edit"), user=user)
+
+        form = update_page.forms[0]
+        form['username'] = 'AnotherHero'
+        response = form.submit()
+        response.mustcontain(u'Dieser Benutzername ist bereits vergeben.')
+
+        user_profile = UserProfile.objects.get(user=user)
+        self.assertEqual('ahero', user_profile.user.username)
 
 
 class QuestViewTest(WebTest):
