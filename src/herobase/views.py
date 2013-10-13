@@ -475,7 +475,8 @@ def userprofile(request, username=None,
 
     return render(request, template, {
         'user': user,
-        'rank': user.get_profile().rank,
+        'rank': user.profile.rank,
+        'relative_ladder': user.profile.get_relative_leaderboard(),
         'completed_quest_count': user.adventures.filter(done=True).count(),
         'quests_all': quests_all,
         'quests_created': quests_created,
@@ -583,7 +584,7 @@ def leader_board(request):
     """Render a view of the top heroes by rank."""
     top50 = User.objects.select_related('profile').filter(
         profile__experience__gt=0
-    ).order_by('-profile__experience')[:50]
+    ).order_by('-profile__experience', 'pk')[:50]
 
     return render(request, "herobase/leader_board.html", {
         'top1to5': top50[:5],

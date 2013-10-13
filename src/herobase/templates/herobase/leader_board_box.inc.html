@@ -1,3 +1,4 @@
+{% load url from future %}
 <tr {% if active %}class="active"{% endif %}>
     <td class="rank">{{ user.profile.rank }}.</td>
     <td>
@@ -10,6 +11,6 @@
             {{ user.username }}</a></strong><br>
         Level: {{ user.profile.level }}<br/>
         XP: {{ user.profile.experience }}<br/>
-        Erfolge: {{ user.profile.achievments.count }}
+        Erfolge: {{ user.profile.achievements.count }}
     </td>
 </tr>

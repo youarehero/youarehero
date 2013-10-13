@@ -576,6 +576,20 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
         # FIXME: we need to add the  ranks to the qs
         raise NotImplementedError("Need to re-implement as per docstring")
 
+    def get_relative_leaderboard(self):
+        """
+        Returns a relative leaderboard for this userprofile containing the
+        users close in rank.
+        """
+        min_rank = max(0, self.rank - 3)
+        max_rank = self.rank + 2
+        relative_leader_board = User.objects.select_related('profile').filter(
+                profile__experience__gt=0).order_by('-profile__experience', 'pk')[min_rank:max_rank]
+        for user in relative_leader_board:
+            if user == self.user:
+                user.active = True
+        return relative_leader_board
+
     def is_legal_adult(self):
         return is_legal_adult(self.date_of_birth)
 

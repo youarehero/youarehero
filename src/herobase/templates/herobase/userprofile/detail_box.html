@@ -65,13 +65,30 @@
             {% endif %}
         </div>
     </div>
-    <h2>Errungenschaften von {{ user.username }}</h2>
     <div class="row">
-    {% for achievement in user.achievements.all %}
-        <div class="col-md-6">
-            {% include "heroachievements/achievement.html" %}
+        <div class="col-sm-6">
+            <div class="box">
+                <h2>Rang in der Liste</h2>
+                <table class="leader-table">
+                    {% for user in relative_ladder %}
+                        {% with active=user.active %}
+                            {% include "herobase/leader_board_box.inc.html" %}
+                        {% endwith %}
+                    {% endfor %}
+                </table>
+            </div>
         </div>
-    {% endfor %}
+        <div class="col-sm-6">
+            <h2>Errungenschaften von {{ user.username }}</h2>
+            <div class="row">
+            {% for achievement in user.achievements.all %}
+                <div class="col-md-12">
+                    {% include "heroachievements/achievement.html" %}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
     </div>
+
 {% endblock %}
 

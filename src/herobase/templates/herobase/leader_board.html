@@ -44,7 +44,9 @@
                 <h2>Ränge 11-25</h2>
                 <p>
                     {% for user in top11to25 %}
-                        {{ user.profile.rank }}. {{ user.username }}<br>
+                        {{ user.profile.rank }}.
+                        <a href="{% url "userprofile_public" user.username %}">
+                            {{ user.username }}</a><br>
                     {% endfor %}
                 </p>
             </div>
@@ -54,7 +56,9 @@
                 <h2>Ränge 26-50</h2>
                 <p>
                     {% for user in top26to50 %}
-                        {{ user.profile.rank }}. {{ user.username }}<br>
+                        {{ user.profile.rank }}
+                        <a href="{% url "userprofile_public" user.username %}">
+                            {{ user.username }}</a><br>
                     {% endfor %}
                 </p>
             </div>
