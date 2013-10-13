@@ -1949,7 +1949,7 @@ a.no-decoration:hover {
 }
 a.plain {
   text-decoration: none;
-  color: #333333;
+  color: #000000;
 }
 body.city-karlsruhe {
   background-color: white;
@@ -1978,10 +1978,10 @@ body {
 input,
 select,
 textarea {
-  color: #333333;
+  color: #000000;
   background: rgba(255, 255, 255, 0.6);
   border: 0px none;
-  border-bottom: 2px solid #333333;
+  border-bottom: 2px solid #000000;
   border-radius: 0;
 }
 #page {
@@ -2033,7 +2033,7 @@ textarea {
   float: left;
 }
 #navigation .nav-black li > a {
-  color: #333333;
+  color: #000000;
   border: 1px dashed;
   border-color: transparent transparent #ffffff transparent;
 }
@@ -2096,7 +2096,7 @@ textarea {
   vertical-align: top;
   position: relative;
   padding: 0;
-  margin: 0 0 5px 22px;
+  margin: 0 0 -12px 22px;
   z-index: 1;
 }
 #navigation .nav-black .avatar-box > span {
@@ -2122,9 +2122,8 @@ textarea {
   width: 42px;
   background-image: url("../img/levelstar.png");
   position: absolute;
-  bottom: -12px;
-  left: -6px;
-  bottom: -2px;
+  left: -14px;
+  bottom: -14px;
   text-align: center;
   color: white;
   font-size: 24px;
@@ -2208,16 +2207,17 @@ textarea {
 }
 #navigation .nav-blue li > a:hover,
 #navigation .nav-blue li > a:focus {
-  color: black;
-  background: rgba(0, 0, 204, 0.6);
+  color: red;
+  background: inherit;
 }
 #navigation .nav-blue .active > a {
-  background: rgba(0, 0, 204, 0.6);
+  color: red;
+  background: inherit;
 }
 #navigation .nav-blue .active > a:hover,
 #navigation .nav-blue .active > a:focus {
-  color: black;
-  background: rgba(0, 0, 204, 0.6);
+  color: red;
+  background: inherit;
 }
 #navigation .nav-red {
   text-align: center;
@@ -2275,6 +2275,8 @@ textarea {
 }
 #navigation .nav.sub li > a {
   border: 0px none;
+  margin-bottom: -5px;
+  padding-bottom: 0;
 }
 #navigation .nav-font {
   font-size: 16px;
@@ -2313,6 +2315,7 @@ textarea {
   margin-right: auto;
 }
 #navigation #brand a:hover {
+  color: red;
   background: inherit;
 }
 #navigation #brand h2 {
@@ -2328,7 +2331,7 @@ textarea {
   top: 0;
   left: 0;
   text-align: center;
-  color: red;
+  color: #000000;
   height: 34px;
   font-size: 12px;
   line-height: 34px;
@@ -2340,7 +2343,7 @@ textarea {
   float: left;
 }
 .subsub > li > a {
-  color: #333333;
+  color: #000000;
   padding: 0 5px;
 }
 .subsub > li > a:hover,
@@ -2461,12 +2464,12 @@ textarea {
 #page-footer > ul > li > a:hover,
 #page-footer > ul > li > a:focus {
   background-color: transparent;
-  color: #333333;
+  color: #000000;
 }
 #page-footer > ul > li.active > a,
 #page-footer > ul > li.active > a:hover,
 #page-footer > ul > li.active > a:focus {
-  color: #333333;
+  color: #000000;
 }
 #page-footer > ul .icon-circle {
   font-size: 12px;
@@ -2476,7 +2479,7 @@ textarea {
   color: #ffffff;
 }
 #page-footer .icon-yah-logo:hover {
-  color: #333333;
+  color: #000000;
 }
 .box {
   background: rgba(255, 255, 255, 0.6);
@@ -4010,7 +4013,7 @@ ul.buttons:after {
 }
 .notification a {
   text-decoration: none;
-  color: #333333;
+  color: #000000;
 }
 .notification:after {
   content: "";
@@ -4409,11 +4412,18 @@ ul.buttons:after {
 .sponsors a {
   display: inline-block;
 }
+.userprofile .avatar-col {
+  padding: 0 0 0 2px;
+  width: 244px;
+  z-index: 99;
+}
 .userprofile .experience-bar {
   border: 2px solid red;
-  width: 89px;
-  height: 14px;
-  margin-left: 21px;
+  width: 222px;
+  height: 16px;
+  margin-left: 22px;
+  margin-top: 0;
+  z-index: 100;
 }
 .userprofile .experience-bar > div {
   height: 100%;
@@ -4424,16 +4434,25 @@ ul.buttons:after {
   width: 42px;
   background-image: url("../img/levelstar.png");
   position: absolute;
-  bottom: -12px;
-  left: 9px;
-  bottom: 0;
+  left: -11px;
+  bottom: -13px;
   text-align: center;
   color: white;
   font-size: 24px;
+  z-index: 101;
+}
+dl.data {
+  margin-top: 0;
+}
+dl.data dt {
+  font-size: 12px;
+  line-height: 14px;
 }
 dl.data dd {
-  font-size: 18px;
+  font-size: 16px;
+  line-height: 19px;
   color: blue;
+  margin-bottom: 12px;
 }
 .linkbox {
   color: #ffffff;
@@ -4992,7 +5011,7 @@ button {
 }
 .details {
   font-size: 14px;
-  color: #333333;
+  color: #000000;
   font-weight: bold;
 }
 .disabled {

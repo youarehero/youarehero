@@ -119,7 +119,7 @@ a.plain {
 @foreground-blue: rgba(0,0,255,1);
 @foreground-red: white;
 @foreground: #fff;
-@black: #333;
+@black: #000;
 @white: #fff;
 @linkhover: red;
 @linkhover-red: black;
@@ -267,7 +267,7 @@ textarea {
       vertical-align: top;
       position: relative;
       padding: 0;
-      margin: 0 0 5px 22px;
+      margin: 0 0 -12px 22px;
 //      margin-bottom: -12px;
       z-index: 1;
       > span {display: block}
@@ -291,9 +291,8 @@ textarea {
         width: 42px;
         background-image: url("../img/levelstar.png");
         position: absolute;
-        bottom: -@cut-corner-radius;
-        left: -6px;
-        bottom: -2px;
+        left: -14px;
+        bottom: -14px;
         text-align: center;
         color: white;
         font-size: 24px;
@@ -338,18 +337,19 @@ textarea {
       width: 100%;
       color: @white;
       &:hover, &:focus {
-        color: black;
-        background: darken(@background-blue, 10%);
+        color: red;
+        background: inherit;
       }
     }
 
     .active > a {
       & {
-        background: darken(@background-blue, 10%);
+        color: red;
+        background: inherit;
       }
       &:hover, &:focus {
-        color: black;
-        background: darken(@background-blue, 10%);
+        color: red;
+        background: inherit;
       }
     }
   }
@@ -393,6 +393,8 @@ textarea {
   .nav.sub {
     li > a {
       border: 0px none;
+      margin-bottom: -5px;
+      padding-bottom: 0;
     }
   }
 
@@ -434,6 +436,7 @@ textarea {
       margin-left: auto;
       margin-right: auto;
       &:hover{
+        color: red;
         background: inherit;
       }
     }
@@ -453,7 +456,7 @@ textarea {
     top: 0;
     left: 0;
     text-align: center;
-    color: red;
+    color: @black;
     height: 34px;
     font-size: 12px;
     line-height: 34px;
@@ -1257,11 +1260,18 @@ ul.buttons {
 }
 
 .userprofile {
+  .avatar-col {
+    padding: 0 0 0 2px;
+    width: 244px;
+    z-index: 99;
+  }
   .experience-bar {
     border: 2px solid red;
-    width: 89px;
-    height: 14px;
-    margin-left: 21px;
+    width: 222px;
+    height: 16px;
+    margin-left: 22px;
+    margin-top: 0;
+    z-index: 100;
     > div {
       height: 100%;
       background-color: blue;
@@ -1273,18 +1283,25 @@ ul.buttons {
     width: 42px;
     background-image: url("../img/levelstar.png");
     position: absolute;
-    bottom: -@cut-corner-radius;
-    left: 9px;
-    bottom: 0;
+    left: -11px;
+    bottom: -13px;
     text-align: center;
     color: white;
     font-size: 24px;
+    z-index: 101;
   }
 }
 dl.data {
+  margin-top: 0;
+  dt {
+    font-size: 12px;
+    line-height: 14px;
+  }
   dd {
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 19px;
     color: blue;
+    margin-bottom: 12px;
   }
 }
 

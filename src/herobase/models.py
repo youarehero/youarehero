@@ -412,7 +412,7 @@ class AvatarImageMixin(models.Model):
 
     def avatar(self):
         """Return a String, containing a path to a thumbnail-image 270x270."""
-        return self._avatar_thumbnail((150, 250))
+        return self._avatar_thumbnail((244, 410))
 
     @property
     def avatar_thumbnail(self):

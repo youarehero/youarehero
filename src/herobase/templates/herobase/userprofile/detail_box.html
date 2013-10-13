@@ -9,7 +9,16 @@
         <div class="col-sm-11">
             <div class="box userprofile">
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        {% if user != request.user %}
+                            <h1>Das ist {{ user.username }}</h1>
+                        {% else %}
+                            <a href="{% url 'userprofile_edit' %}" class="pull-right"><i
+                                    class="icon-cogs icon-2x"></i></a>
+                            <h1>Das bist du, {{ user.username }}</h1>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-4 avatar-col">
                         <img src="{{ user.get_profile.avatar }}" alt="{{ user.username }}">
 
                         <div class="experience-bar">
@@ -17,16 +26,7 @@
                         </div>
                         <div class="level">{{ user.profile.level }}</div>
                     </div>
-                    <div class="col-sm-9">
-                        {% if user != request.user %}
-                            <h3>Das ist {{ user.username }}</h3>
-                        {% else %}
-                            <a href="{% url 'userprofile_edit' %}" class="pull-right"><i
-                                    class="icon-cogs icon-2x"></i></a>
-                            <h3>Das bist du, {{ user.username }}</h3>
-                        {% endif %}
-                    </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-4">
                         <dl class="data">
                             {% if user.get_profile.team %}
                                 <dt>{% trans "Team" %}</dt>
@@ -42,6 +42,12 @@
                             <dd>{{ user.get_profile.quests_done }}</dd>
                             <dt>{% trans "Quests created" %}</dt>
                             <dd>{{ user.get_profile.quests_created }}</dd>
+                            <dt>{% trans "Level" %}</dt>
+                            <dd>{{ user.profile.level }}</dd>
+                            <dt>{% trans "XP" %}</dt>
+                            <dd>{{ user.profile.experience }}</dd>
+                            <dt>{% trans "Rang" %}</dt>
+                            <dd>{{ user.profile.rank }}</dd>
                         </dl>
                     </div>
                     <div class="col-sm-4">
@@ -59,7 +65,7 @@
             {% endif %}
         </div>
     </div>
-    <h2>Errungenschaften</h2>
+    <h2>Errungenschaften von {{ user.username }}</h2>
     <div class="row">
     {% for achievement in user.achievements.all %}
         <div class="col-md-6">
