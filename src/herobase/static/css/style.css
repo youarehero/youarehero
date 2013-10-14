@@ -1975,14 +1975,85 @@ html,
 body {
   height: 100%;
 }
+form.form-inline label {
+  float: left;
+  line-height: 28px;
+  font-size: 14px;
+}
+form.form-inline input,
+form.form-inline select,
+form.form-inline textarea {
+  font-size: 14px;
+  display: block;
+  width: 100%;
+}
+form.form-inline .controls {
+  overflow: hidden;
+}
+form.form-inline .no-label {
+  margin-top: 10px;
+}
+form.form-inline .help-inline {
+  max-width: 100%;
+}
 input,
-select,
+select {
+  color: #000000;
+  background: transparent;
+  border: 0px none;
+  border-bottom: 1px solid #000000;
+  border-radius: 0;
+  padding: 0 5px;
+}
 textarea {
   color: #000000;
-  background: rgba(255, 255, 255, 0.6);
-  border: 0px none;
-  border-bottom: 2px solid #000000;
+  background: transparent;
+  border: 1px dashed #000000;
   border-radius: 0;
+  padding: 0px 10px;
+}
+.red-buttons {
+  color: red;
+  font-size: 24px;
+}
+.red-buttons button {
+  color: red;
+  float: left;
+}
+.red-buttons button:hover,
+.red-buttons button:focus {
+  color: black;
+}
+.autocomplete-light-widget .deck [data-value] {
+  font-size: 14px;
+  margin: 5px 0 0 0;
+  border-bottom: 1px solid black;
+}
+.autocomplete-light-widget .deck [data-value] .remove {
+  font-family: FontAwesome;
+  background: none;
+  color: red;
+  overflow: hidden;
+  margin: 4px 2px 4px 6px;
+  text-indent: 0;
+}
+.autocomplete-light-widget .deck [data-value] .remove:before {
+  display: inline-block;
+  content: "\f00d";
+}
+.yourlabs-autocomplete {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  padding: 0;
+  border: 0 none;
+}
+.yourlabs-autocomplete .div {
+  padding: 0 5px 4px;
+}
+.yourlabs-autocomplete .div.hilight {
+  background: blue;
 }
 #page {
   min-height: 100%;

@@ -11,36 +11,23 @@ from herobase.models import UserProfile
 class MessageForm(forms.ModelForm):
     recipient = forms.ModelChoiceField(
         User.objects.all(),
-        widget=autocomplete_light.ChoiceWidget('UserAutocomplete')
+        widget=autocomplete_light.ChoiceWidget('UserAutocomplete'),
+        label=_(u'Neue Nachricht an'),
+    )
+    text = forms.CharField(
+        widget=forms.Textarea(),
+        label='',
     )
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_tag=False
         self.helper.form_method = 'post'
-#        self.helper.form_action = 'message-c'
-        self.helper.form_class = 'form box'
 
         self.helper.layout = Layout(
-            Div(
-                Div(
-                    'recipient',
-                    css_class="col-md-6",
-                    ),
-                Div(
-                    'title',
-                    css_class="col-md-6",
-                    ),
-                css_class="row",
-            ),
-            Div(
-                Div(
-                    Field('text', css_class="col-md-12"),
-                    css_class="col-md-12",
-                ),
-                css_class="row",
-            ),
-
+            'recipient',
+            'title',
+            Field('text', css_class="no-label"),
         )
         super(MessageForm, self).__init__(*args, **kwargs)
 

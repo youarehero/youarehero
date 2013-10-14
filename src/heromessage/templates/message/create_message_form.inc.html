@@ -3,20 +3,20 @@
 
 
 {% block content %}
-    <form method="POST" action="">
-        <div class="box clearfix">
-            <h1>Send Message</h1>
-            <div class="clearfix">
-                {% crispy form %}
-                <ul class="buttons">
-                    <li>
-                        <button type="submit" name="save" class="box-button text"  data-toggle="tooltip" data-title="Versenden">
-                            <span>Nachricht senden</span></button>
-                    </li>
-                </ul>
+    <div class="row">
+        <div class="col-md-7 col-md-offset-3">
+            <div class="box clearfix">
+                <form method="POST" action="" class="form-inline clearfix">
+                    {% crispy form %}
+                    <div class="red-buttons pull-right">
+                        <button type="submit" name="save" class="btn"  data-toggle="tooltip" data-title="Versenden">
+                            <i class="icon-ok icon-2x"></i></button>
+                        <button type="reset" name="reset" class="btn"  data-toggle="tooltip" data-title="Zurücksetzen">
+                            <i class="icon-remove icon-2x"></i></button>
+                    </div>
+                </form>
             </div>
-
         </div>
-    </form>
+    </div>
 {% endblock %}
 

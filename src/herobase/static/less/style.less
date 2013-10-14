@@ -151,16 +151,99 @@ html, body {
   height: 100%;
 }
 
+form.form-inline {
+  label {
+    float: left;
+    line-height: 28px;
+    font-size: 14px;
+  }
+  input,
+  select,
+  textarea {
+    font-size: 14px;
+    display: block;
+    width: 100%;
+  }
+  .controls {
+    overflow: hidden;
+  }
+  .no-label {
+    margin-top: 10px;
+  }
+  .help-inline {
+    max-width: 100%;
+  }
+}
 input,
-select,
+select {
+  color: @black;
+  background: transparent;
+  border: 0px none;
+  border-bottom: 1px solid @black;
+  border-radius: 0;
+  padding: 0 5px;
+}
 textarea {
-      color: @black;
-      background: rgba(255,255,255,0.6);
-      border: 0px none;
-      border-bottom: 2px solid @black;
-      border-radius: 0;
-    }
+  color: @black;
+  background: transparent;
+  border: 1px dashed @black;
+  border-radius: 0;
+  padding: 0px 10px;
+}
 
+.red-buttons {
+  color: red;
+  font-size: 24px;
+  button {
+    color: red;
+    float: left;
+  }
+  button:hover, button:focus {
+    color: black;
+  }
+}
+// autocomplete
+.autocomplete-light-widget {
+  .deck [data-value] {
+    font-size: 14px;
+    margin: 5px 0 0 0;
+    border-bottom: 1px solid black;
+    .remove {
+      font-family: FontAwesome;
+      background: none;
+      color: red;
+      overflow: hidden;
+//      display: inline;
+//      width: auto;
+//      height: auto;
+//      line-height: normal;
+//      vertical-align: baseline;
+//      background-image: none;
+//      background-position: 0% 0%;
+//      background-repeat: repeat;
+//      margin-top: 0;
+      margin: 4px 2px 4px 6px;
+      text-indent: 0;
+      &:before {
+        display: inline-block;
+        content: "\f00d";
+      }
+    }
+  }
+}
+.yourlabs-autocomplete {
+  .border-radius(0);
+  padding: 0;
+  border: 0 none;
+  .div {
+    padding: 0 5px 4px;
+    &.hilight {
+      background: blue;
+    }
+  }
+}
+
+// Layout
 #page {
     min-height: 100%;
     position: relative;
