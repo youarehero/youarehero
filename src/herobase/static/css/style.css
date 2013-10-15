@@ -2106,7 +2106,7 @@ textarea {
 #navigation .nav-black li > a {
   color: #000000;
   border: 1px dashed;
-  border-color: transparent transparent #ffffff transparent;
+  border-color: transparent transparent red transparent;
 }
 #navigation .nav-black li > a:hover,
 #navigation .nav-black li > a:focus {
@@ -2125,7 +2125,7 @@ textarea {
 #navigation .nav-black .active > a:hover,
 #navigation .nav-black .active > a:focus {
   color: #ff0000;
-  border-color: #ffffff #ffffff transparent #ffffff;
+  border-color: red red transparent red;
 }
 #navigation .nav-black:after {
   content: "";
