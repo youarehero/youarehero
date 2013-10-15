@@ -42,6 +42,7 @@
         <div class="col-sm-6">
             <div class="box">
                 <h2>Ränge 11-25</h2>
+
                 <p>
                     {% for user in top11to25 %}
                         {{ user.profile.rank }}.
@@ -54,6 +55,7 @@
         <div class="col-sm-6">
             <div class="box">
                 <h2>Ränge 26-50</h2>
+
                 <p>
                     {% for user in top26to50 %}
                         {{ user.profile.rank }}
@@ -63,5 +65,24 @@
                 </p>
             </div>
         </div>
+    </div>
+    <div class="box">
+        <h2>Liste der Errungenschaften</h2>
+    </div>
+    <div class="row">
+        {% for achievement in achievements %}
+            <div class="col-md-6 col-xs-12">
+                <div class="box">
+                    <div class="box-content">
+                        <img class="pull-left" src="{{ achievement.image }}"/>
+
+                        <p class="pull-left">
+                            <strong>&nbsp;{{ achievement.title }}</strong><br/>
+                            &nbsp;{{ achievement.text }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
