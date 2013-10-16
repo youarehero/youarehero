@@ -1,6 +1,6 @@
 {% load i18n %}
 {#<div class="col-sm-6 col-md-4">#}
-    <div class="quest-short">
+    <div class="quest-short {% if quest.done %}quest-done{% endif %}">
         <a href="{{ quest.get_absolute_url }}">
             <span class="header">!</span>
             <span class="text">
