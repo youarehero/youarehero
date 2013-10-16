@@ -97,24 +97,47 @@ def message_update(request, message_id):
     if 'delete' in request.POST:
         if message.recipient == request.user:
             message.recipient_deleted = now()
-        elif message.sender == request.user:
+        if message.sender == request.user:
             message.sender_deleted = now()
         message.save()
+        print message.recipient_deleted, message.sender_deleted
         messages.success(request, _("Message successfully deleted"))
-    return HttpResponseRedirect(reverse("message_list"))
+    if 'next' in request.POST:
+        return HttpResponseRedirect(request.POST.get('next'))
+    return HttpResponseRedirect(reverse("message_list_in"))
 
 
 @login_required
 def message_list_out(request):
+    sent_messages = Message.objects.filter(sender=request.user, sender_deleted=None)\
+                                   .select_related('recipient', 'sender', 'recipient__profile')
+    search = request.GET.get('search', '')
+    if search:
+        sent_messages = sent_messages.filter(
+            Q(recipient__username__icontains=search) |
+            Q(title__icontains=search) |
+            Q(text__icontains=search)
+        )
     return render(request, 'message/list_out.html',{
-             'sent_messages': Message.objects.filter(sender=request.user, sender_deleted=None).select_related('recipient', 'sender', 'recipient__profile'),
+             'sent_messages': sent_messages,
+             'search': search,
              })
 
-
+@login_required
 def message_list_in(request):
     Message.objects.filter(recipient=request.user, read__isnull=True).update(read=now())
+    received_messages = Message.objects.filter(recipient=request.user, recipient_deleted=None)\
+                                       .select_related('recipient', 'sender', 'sender__profile')
+    search = request.GET.get('search', '')
+    if search:
+        received_messages = received_messages.filter(
+            Q(sender__username__icontains=search) |
+            Q(title__icontains=search) |
+            Q(text__icontains=search)
+        )
     return render(request, 'message/list_in.html',{
-        'received_messages': Message.objects.filter(recipient=request.user, recipient_deleted=None).select_related('recipient', 'sender', 'sender__profile'),
+        'received_messages': received_messages,
+        'search': search,
     })
 
 @login_required

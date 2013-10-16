@@ -3,30 +3,48 @@
 
 {% block content %}
     <div class="box collapsible{% if not message.is_relatively_new %} collapsed{% endif %}">
-        <div class="box-title">
-            <span class="caret pull-left"></span>
-            <span class="pull-right">{{ message.sent }}</span>
-            {% if message.sender == request.user %}
-                an <strong>{{ message.recipient }}:</strong>
-            {% else %}
-                von <strong>{{ message.sender }}:</strong>
+        <div class="clearfix">
+            <div class="vertical-buttons red-buttons pull-right">
+                {% if message.sender == request.user %}
+                    <a href="{% url 'message_to' message.recipient.pk %}"><i class="icon-envelope-alt"></i></a>
+                {% else %}
+                    <a href="{% url "message_reply" message.pk %}"><i class="icon-envelope-alt"></i></a>
+                {% endif %}
+                <form action="{% url 'message_update' message.pk %}" method="post" id="delete_message_{{ message.pk }}">
+                    {% csrf_token %}
+                    {% if image_right %}
+                        <input type="hidden" name="next" value="{% url 'message_list_out' %}" />
+                    {% elif image_left %}
+                        <input type="hidden" name="next" value="{% url 'message_list_in' %}" />
+                    {% endif %}
+
+                    <button name="delete" value="delete" type="submit" class="btn">
+                        <i class="icon-remove icon-2x"></i>
+                    </button>
+                </form>
+            </div>
+
+            {% if image_left %}
+                <img src="{{ image_left }}" alt="" class="pull-left">
             {% endif %}
-            {{ message.title }}
+            {% if image_right %}
+                <img src="{{ image_right }}" alt="" class="pull-right">
+            {% endif %}
+
+            <div class="box-title">
+                <span class="caret pull-left"></span>
+                {% if message.sender == request.user %}
+                    Nachricht an <a href="{% url 'userprofile_public' message.recipient.pk %}">{{ message.recipient }}</a>
+                {% else %}
+                    Nachricht von <a href="{% url 'userprofile_public' message.sender.pk %}">{{ message.sender }}</a>
+                {% endif %}<br>
+                <em>{{ message.sent }}</em><br>
+                <strong>{{ message.title }}</strong>
+            </div>
         </div>
         <div class="box-content">
-            <img src="{{ image }}" alt="" class="pull-left">
             <p>{{ message.text|urlize|linebreaksbr }}</p>
-            {% if message.sender != request.user %}
-                <ul class="buttons">
-                    <li>
-                        <a href="{% url "message_reply" message.pk %}"  data-toggle="tooltip" data-title="Antworten">
-                    <i class=" icon-yah-arrow icon-40"></i>
-                </a>
-                    </li>
-                </ul>
-            {% endif %}
         </div>
-
     </div>
 {% endblock %}
 

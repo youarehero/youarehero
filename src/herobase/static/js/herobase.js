@@ -1,14 +1,16 @@
 $(document).ready(function() {
-    $(document).on('click', '.box.collapsible > .box-title', function(e) {
-        var $headline = $(this);
-        var $box = $headline.closest('.box');
-        var $content = $box.find('.box-content');
-        if ($box.hasClass('collapsed')) {
-            $box.removeClass('collapsed');
-            $content.slideDown();
-        } else {
-            $box.addClass('collapsed');
-            $content.slideUp();
+    $('#content').on('click', '.box.collapsible .box-title', function(e) {
+        if (!$(e.target).is('a')) {
+            var $headline = $(this);
+            var $box = $headline.closest('.box');
+            var $content = $box.find('.box-content');
+            if ($box.hasClass('collapsed')) {
+                $box.removeClass('collapsed');
+                $content.slideDown();
+            } else {
+                $box.addClass('collapsed');
+                $content.slideUp();
+            }
         }
     });
 
@@ -34,17 +36,17 @@ $(document).ready(function() {
         }
     });
 
-    $('body').on('click', '.like-button', function(e) {
-        e.preventDefault();
-        var likeButton = $(this);
-        var url = $(this).attr('href');
-        $.post(url, function(data, textStatus, xhr) {
-             if (data.success) {
-                 var likesCount = data.likes_count;
-                 $(likeButton).closest('.box').find('.likes-count').html(likesCount);
-             }
-        }, 'json');
-    });
+//    $('body').on('click', '.like-button', function(e) {
+//        e.preventDefault();
+//        var likeButton = $(this);
+//        var url = $(this).attr('href');
+//        $.post(url, function(data, textStatus, xhr) {
+//             if (data.success) {
+//                 var likesCount = data.likes_count;
+//                 $(likeButton).closest('.box').find('.likes-count').html(likesCount);
+//             }
+//        }, 'json');
+//    });
 
 
     // Article Arrows on Mainpage

@@ -1,5 +1,5 @@
 {% extends "herobase/layout/base.html" %}
-{% load crispy_forms_tags i18n static %}
+{% load crispy_forms_tags i18n static endless %}
 
 {% block javascript %}
     <script type="text/javascript" src="{% get_static_prefix %}js/forms.js"></script>
@@ -20,20 +20,38 @@
     {% include "message/submenu.inc.html"%}
 {% endblock %}
 
-{% block page_title %}
-    <h1>{% trans "Messages" %}</h1>
-{% endblock %}
-
 {% block content %}
-    <ul class="grid">
-        {% for message in sent_messages %}
-            <li class="span6">
-                {% with image=request.user.get_profile.avatar_thumbnail_80 %}
+    {% paginate 10 sent_messages %}
+    <div class="row">
+        <div class="col-sm-7">
+            {% for message in sent_messages %}
+                {% with image_left=False image_right=request.user.get_profile.avatar_thumbnail_80  %}
                     {% include "message/message_box.inc.html" %}
                 {% endwith %}
-            </li>
-        {% empty %}
-            <li>{% trans "No messages yet." %}</li>
-        {% endfor %}
-    </ul>
+            {% empty %}
+                <div class="box">
+                    <div class="box-content">
+                        {% if search %}
+                            {% trans "Keine Nachricht gefunden." %}
+                        {% else %}
+                            {% trans "No messages yet." %}
+                        {% endif %}
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-sm-5">
+            <div class="box">
+                <div style="float: right; font-size: 12px;"><p>{% show_pages %}</p></div>
+                <form action="" method="get" class="form-inline" id="message_filter_form">
+                    <div class="form-group form-group-sm">
+                        <input class="textinput " type="text" name="search" value="{{ search }}" />
+                    </div>
+                    <button class="inline-button" type="submit" value="search">Suchen</button>
+                </form>
+                <div>&nbsp;</div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

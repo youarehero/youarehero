@@ -2016,13 +2016,29 @@ textarea {
   color: red;
   font-size: 24px;
 }
-.red-buttons button {
+.red-buttons button,
+.red-buttons a {
   color: red;
   float: left;
 }
 .red-buttons button:hover,
-.red-buttons button:focus {
+.red-buttons a:hover,
+.red-buttons button:focus,
+.red-buttons a:focus {
   color: black;
+}
+.vertical-buttons {
+  text-align: center;
+}
+.vertical-buttons button[name=delete] {
+  padding: 0 3px;
+}
+.form-group-sm {
+  width: 150px;
+}
+.inline-button {
+  font-style: italic;
+  vertical-align: middle;
 }
 .autocomplete-light-widget .deck [data-value] {
   font-size: 14px;
@@ -2708,9 +2724,6 @@ textarea {
 }
 .box-blue.cut-corners > * {
   padding: 0 12px;
-}
-.box-content {
-  margin: 0 12px;
 }
 .box-image {
   background: rgba(255, 255, 255, 0.6);
@@ -3841,9 +3854,6 @@ ul.buttons:after {
   color: red;
   font-size: 24px;
 }
-.inline-button {
-  font-style: italic;
-}
 .box-button {
   color: #ffffff;
   background: rgba(255, 0, 0, 0.6);
@@ -4004,9 +4014,6 @@ ul.buttons:after {
   height: 130px;
   display: inline-block;
 }
-.adventures .inner-box .box-content {
-  margin: 0;
-}
 .adventures .inner-box a > * {
   display: block;
   margin-left: 25px;
@@ -4027,7 +4034,7 @@ ul.buttons:after {
 .box .caret {
   display: none;
 }
-.box.collapsible > .box-title {
+.box.collapsible .box-title {
   cursor: pointer;
   margin-bottom: 10px;
 }
@@ -4035,9 +4042,9 @@ ul.buttons:after {
   min-width: 12px;
   min-height: 12px;
   display: inline-block;
-  margin-right: 10px;
-  margin-top: 6px;
-  border-top: 10px solid #222222;
+  margin-right: 5px;
+  margin-top: 13px;
+  border-top: 10px solid #000;
   border-bottom: 0;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
@@ -4046,34 +4053,10 @@ ul.buttons:after {
   display: none;
 }
 .box.collapsible.collapsed .caret {
-  border-left: 10px solid #222222;
+  border-left: 10px solid #000;
   border-right: 0;
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
-}
-.box > .box-content:before,
-.box > .box-content:after {
-  content: " ";
-  /* 1 */
-
-  display: table;
-  /* 2 */
-
-}
-.box > .box-content:after {
-  clear: both;
-}
-.box > .box-content:before,
-.box > .box-content:after {
-  content: " ";
-  /* 1 */
-
-  display: table;
-  /* 2 */
-
-}
-.box > .box-content:after {
-  clear: both;
 }
 .notification {
   margin-right: 24px;
@@ -4178,6 +4161,16 @@ ul.buttons:after {
 }
 .clearfix:after {
   clear: both;
+}
+.margin-right {
+  margin-right: 12px;
+}
+.margin-left {
+  margin-left: 12px;
+}
+.margin-both {
+  margin-right: 12px;
+  margin-left: 12px;
 }
 .messages-summary {
   float: left;
