@@ -93,7 +93,6 @@ urlpatterns = patterns(
     # third party apps
     url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'autocomplete/', include('autocomplete_light.urls')),
-    url(r'', include('like_button.urls')),
 )
 
 from django.conf import settings
