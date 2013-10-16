@@ -230,6 +230,12 @@ class QuestViewTest(WebTest):
         list_page = self.app.get(reverse("quest_list"))
         self.assertContains(list_page, "ALALA")
 
+    def test_quest_list_show_started(self):
+        quest = G(Quest, title="ALALA")
+        quest.state.start()
+        list_page = self.app.get(reverse("quest_list"))
+        self.assertContains(list_page, "ALALA")
+
     def test_quest_list_filter_remote(self):
         quest1 = G(Quest, title="ALALAremote", remote=True)
         quest2 = G(Quest, title="ALALAlocal", remote=False)

@@ -350,7 +350,7 @@ class Quest(LocationMixin, models.Model):
         if not self.owner.profile.is_legal_adult():
             raise ValidationError("Minors are not allowed to create quests")
 
-        self.open = not self.pk or (not self.done and not self.canceled and not self.started)
+        self.open = not self.pk or (not self.done and not self.canceled)# and not self.started)
 
         if self.canceled and not self.canceled_time:
             self.canceled_time = now()
