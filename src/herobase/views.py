@@ -26,6 +26,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView, UpdateView
+from heroachievements import achievements
 from heroorganization.models import Organization
 from heroorganization.views import OrganizationListView
 from registration.backends.default.views import RegistrationView, ActivationView
@@ -591,6 +592,7 @@ def leader_board(request):
         'top6to10': top50[5:10],
         'top11to25': top50[10:25],
         'top26to50': top50[25:50],
+        'achievements': achievements.registry.values()
     })
 
 
