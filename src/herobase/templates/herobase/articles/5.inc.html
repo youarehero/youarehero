@@ -1,0 +1,25 @@
+{% load static %}
+{% load url from future %}
+<div class="box-image" data-position="5">
+    <div class="image" style="background-image: url({% get_static_prefix %}img/articles/article5.png);"></div>
+    <h1 class="header red">Neue Erkenntnisse bezüglich Anonyma!</h1>
+    <h2 class="subheader">Heldengemeinschaft rückt Schurkin auf die Pelle!</h2>
+    <p class="text">
+    Der Heldengemeinschaft gelang es in den letzten Tagen nicht nur, die zwei letzten Heldentributsorte, die sowohl
+    Ausrüstungsgegenstände als auch Hinweise zum Hauptquartier beinhalten, zu lokalisieren, sondern auch einen riesigen
+    Schritt in Richtung der Dechiffrierung von Anonymas Aufenthaltsort zu machen.
+    Nicht nur wurden die von Anonyma im Heldenhauptquartier zerstörten Daten wieder mühevoll zusammengefügt, sondern
+    auch interpretiert und darauffolgend ein wichtiger Ort besucht.
+    Es scheint, als wäre dabei eine Art Zeitkapsel gefunden worden, die diverse seltsame Objekte beinhaltet, deren
+    weitere Interpretation nun das oberste Ziel der Heldengemeinschaft darstellt.
+    </p>
+    {% if not request.user.is_authenticated %}
+        <div class="box-floating">
+            <h1 class="header"><a class="plain" href="#yah-ist-ein-spiel">Helden<br/>bedarf</a></h1>
+            <p>Erfahre mehr, <a href="{% url "registration_register" %}">registriere</a> dich jetzt und beginne noch heute mit dem Spiel!</p>
+            <div class="box-footer">
+                <a href="#yah-ist-ein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>
+            </div>
+        </div>
+    {% endif %}
+</div>
