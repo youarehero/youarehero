@@ -468,147 +468,6 @@
   height: 20px;
   line-height: 20px;
 }
-.icon-yah-time-short {
-  margin: 0;
-  vertical-align: middle;
-  font-style: normal;
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-variant: small-caps;
-  white-space: nowrap;
-  background-position: 0px 0px;
-  background-repeat: no-repeat;
-  position: relative;
-}
-.icon-yah-time-short:before {
-  content: "";
-  background-image: url("../img/icons/icons_40.png");
-  background-position: -400px 0;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-}
-.icon-yah-time-short:before.icon-80 {
-  background-image: url("../img/icons/icons_80.png");
-  background-position: -800px 0;
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
-}
-.icon-yah-time-short:before.icon-60 {
-  background-image: url("../img/icons/icons_60.png");
-  background-position: -600px 0;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
-}
-.icon-yah-time-short:before.icon-30 {
-  background-image: url("../img/icons/icons_30.png");
-  background-position: -300px 0;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-}
-.icon-yah-time-short:before.icon-20 {
-  background-image: url("../img/icons/icons_20.png");
-  background-position: -200px 0;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-}
-.icon-yah-time-middle {
-  margin: 0;
-  vertical-align: middle;
-  font-style: normal;
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-variant: small-caps;
-  white-space: nowrap;
-  background-position: 0px 0px;
-  background-repeat: no-repeat;
-  position: relative;
-}
-.icon-yah-time-middle:before {
-  content: "";
-  background-image: url("../img/icons/icons_40.png");
-  background-position: -440px 0;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-}
-.icon-yah-time-middle:before.icon-80 {
-  background-image: url("../img/icons/icons_80.png");
-  background-position: -880px 0;
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
-}
-.icon-yah-time-middle:before.icon-60 {
-  background-image: url("../img/icons/icons_60.png");
-  background-position: -660px 0;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
-}
-.icon-yah-time-middle:before.icon-30 {
-  background-image: url("../img/icons/icons_30.png");
-  background-position: -330px 0;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-}
-.icon-yah-time-middle:before.icon-20 {
-  background-image: url("../img/icons/icons_20.png");
-  background-position: -220px 0;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-}
-.icon-yah-time-long {
-  margin: 0;
-  vertical-align: middle;
-  font-style: normal;
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-variant: small-caps;
-  white-space: nowrap;
-  background-position: 0px 0px;
-  background-repeat: no-repeat;
-  position: relative;
-}
-.icon-yah-time-long:before {
-  content: "";
-  background-image: url("../img/icons/icons_40.png");
-  background-position: -480px 0;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-}
-.icon-yah-time-long:before.icon-80 {
-  background-image: url("../img/icons/icons_80.png");
-  background-position: -960px 0;
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
-}
-.icon-yah-time-long:before.icon-60 {
-  background-image: url("../img/icons/icons_60.png");
-  background-position: -720px 0;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
-}
-.icon-yah-time-long:before.icon-30 {
-  background-image: url("../img/icons/icons_30.png");
-  background-position: -360px 0;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-}
-.icon-yah-time-long:before.icon-20 {
-  background-image: url("../img/icons/icons_20.png");
-  background-position: -240px 0;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-}
 .icon-yah-logout {
   margin: 0;
   vertical-align: middle;
@@ -1891,6 +1750,24 @@
 }
 .icon-yah-logo:before {
   content: '';
+}
+.icon-yah-time-short {
+  font-family: zeigefingerregular;
+}
+.icon-yah-time-short:before {
+  content: '';
+}
+.icon-yah-time-middle {
+  font-family: zeigefingerregular;
+}
+.icon-yah-time-middle:before {
+  content: '';
+}
+.icon-yah-time-long {
+  font-family: zeigefingerregular;
+}
+.icon-yah-time-long:before {
+  content: '';
 }
 .using-horizontal-borders > * {
   padding-left: 0;
