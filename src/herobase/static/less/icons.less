@@ -89,6 +89,13 @@
   }
 }
 
+.icon-zeigefinger-font(@glyph) {
+  font-family: zeigefingerregular;
+  &:before {
+    content: @glyph;
+  }
+}
+
 .icon-yah            { .icon-yah-font("∞"); }
 .icon-yah-hand,
 .icon-yah-hand-right { .icon-yah-font("π"); }
@@ -105,15 +112,5 @@
 }
 .icon-yah-exclamation-mark { .icon-yah-font("!"); }
 
-.icon-mail-all {
-  font-family: zeigefingerregular;
-  &:before {
-    content: '';
-  }
-}
-.icon-yah-logo {
-  font-family: zeigefingerregular;
-  &:before {
-    content: '';
-  }
-}
+.icon-mail-all { .icon-zeigefinger-font(''); }
+.icon-yah-logo { .icon-zeigefinger-font(''); }
