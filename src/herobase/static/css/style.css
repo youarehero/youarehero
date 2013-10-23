@@ -3264,14 +3264,12 @@ ul.buttons:after {
   top: 12px;
 }
 .quest .footer > .icons {
-  margin-top: 12px;
-  margin-bottom: -24px;
   display: inline-block;
-  float: right;
-  height: 70px;
-  padding-top: 9px;
+  position: absolute;
+  right: 12px;
+  bottom: 0;
 }
-.quest .footer > .icons i.icon-map-marker {
+.quest .footer > .icons i {
   font-size: 40px;
   color: black;
 }
@@ -3378,14 +3376,12 @@ ul.buttons:after {
   top: 12px;
 }
 .quest-short .footer > .icons {
-  margin-top: 12px;
-  margin-bottom: -24px;
   display: inline-block;
-  float: right;
-  height: 70px;
-  padding-top: 9px;
+  position: absolute;
+  right: 12px;
+  bottom: 0;
 }
-.quest-short .footer > .icons i.icon-map-marker {
+.quest-short .footer > .icons i {
   font-size: 40px;
   color: black;
 }
@@ -3433,14 +3429,12 @@ ul.buttons:after {
   top: 12px;
 }
 .quest-detail .footer > .icons {
-  margin-top: 12px;
-  margin-bottom: -24px;
   display: inline-block;
-  float: right;
-  height: 70px;
-  padding-top: 9px;
+  position: absolute;
+  right: 12px;
+  bottom: 0;
 }
-.quest-detail .footer > .icons i.icon-map-marker {
+.quest-detail .footer > .icons i {
   font-size: 40px;
   color: black;
 }
