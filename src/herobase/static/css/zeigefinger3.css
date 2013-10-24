@@ -1,9 +1,9 @@
 @font-face {
     font-family: 'zeigefingerregular';
-    src: url('zeigefinger3-webfont.eot');
-    src: url('zeigefinger3-webfont.eot?#iefix') format('embedded-opentype'),
-         url('zeigefinger3-webfont.woff') format('woff'),
-         url('zeigefinger3-webfont.ttf') format('truetype');
+    src: url('../fonts/zeigefinger3/zeigefinger3-webfont.eot');
+    src: url('../fonts/zeigefinger3/zeigefinger3-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/zeigefinger3/zeigefinger3-webfont.woff') format('woff'),
+         url('../fonts/zeigefinger3/zeigefinger3-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
