@@ -3942,6 +3942,8 @@ ul.buttons:after {
 .notification a {
   text-decoration: none;
   color: #000000;
+  min-height: 40px;
+  display: block;
 }
 .notification:after {
   content: "";
