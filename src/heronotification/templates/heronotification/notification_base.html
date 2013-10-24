@@ -7,15 +7,11 @@
         >
         {% with url=notification.target.get_absolute_url %}
             <div class="box-content">
-            {% if url %}
-                <a href="{{ url }}">
-            {% endif %}
-                    <img src="{{ notification.image }}" alt="" class="pull-left"/>
-                    <p>{% block text %}{{ notification.text }}{% endblock %}</p>
-            {% if url %}
-                </a>
-            {% endif %}
-            <div class="pull-right">{{ notification.created|naturaltime }}</div>
+              <a {% if url %}href="{{ url }}"{% endif %}>
+                <img src="{{ notification.image }}" alt="" class="pull-left"/>
+                <p>{% block text %}{{ notification.text }}{% endblock %}</p>
+              </a>
+              <div class="pull-right">{{ notification.created|naturaltime }}</div>
             </div>
         {% endwith %}
     </div>
