@@ -2486,7 +2486,9 @@ textarea {
   padding: 0 12px;
 }
 .box:before,
-.box:after {
+.box > .box-content:before,
+.box:after,
+.box > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -2494,11 +2496,14 @@ textarea {
   /* 2 */
 
 }
-.box:after {
+.box:after,
+.box > .box-content:after {
   clear: both;
 }
 .box:before,
-.box:after {
+.box > .box-content:before,
+.box:after,
+.box > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -2506,7 +2511,8 @@ textarea {
   /* 2 */
 
 }
-.box:after {
+.box:after,
+.box > .box-content:after {
   clear: both;
 }
 .box-red {
@@ -2644,7 +2650,9 @@ textarea {
   padding: 0 12px;
 }
 .box-image:before,
-.box-image:after {
+.box-image > .box-content:before,
+.box-image:after,
+.box-image > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -2652,11 +2660,14 @@ textarea {
   /* 2 */
 
 }
-.box-image:after {
+.box-image:after,
+.box-image > .box-content:after {
   clear: both;
 }
 .box-image:before,
-.box-image:after {
+.box-image > .box-content:before,
+.box-image:after,
+.box-image > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -2664,7 +2675,8 @@ textarea {
   /* 2 */
 
 }
-.box-image:after {
+.box-image:after,
+.box-image > .box-content:after {
   clear: both;
 }
 .box-image .header {
@@ -2863,7 +2875,9 @@ textarea {
   padding: 0 12px;
 }
 .hero-box:before,
-.hero-box:after {
+.hero-box > .box-content:before,
+.hero-box:after,
+.hero-box > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -2871,11 +2885,14 @@ textarea {
   /* 2 */
 
 }
-.hero-box:after {
+.hero-box:after,
+.hero-box > .box-content:after {
   clear: both;
 }
 .hero-box:before,
-.hero-box:after {
+.hero-box > .box-content:before,
+.hero-box:after,
+.hero-box > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -2883,7 +2900,8 @@ textarea {
   /* 2 */
 
 }
-.hero-box:after {
+.hero-box:after,
+.hero-box > .box-content:after {
   clear: both;
 }
 .hero-box .background {
@@ -3485,7 +3503,9 @@ ul.buttons:after {
   padding: 0 12px;
 }
 .quest-detail > .text:before,
-.quest-detail > .text:after {
+.quest-detail > .text > .box-content:before,
+.quest-detail > .text:after,
+.quest-detail > .text > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -3493,11 +3513,14 @@ ul.buttons:after {
   /* 2 */
 
 }
-.quest-detail > .text:after {
+.quest-detail > .text:after,
+.quest-detail > .text > .box-content:after {
   clear: both;
 }
 .quest-detail > .text:before,
-.quest-detail > .text:after {
+.quest-detail > .text > .box-content:before,
+.quest-detail > .text:after,
+.quest-detail > .text > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -3505,7 +3528,8 @@ ul.buttons:after {
   /* 2 */
 
 }
-.quest-detail > .text:after {
+.quest-detail > .text:after,
+.quest-detail > .text > .box-content:after {
   clear: both;
 }
 .quest-detail > .text h1 {
@@ -3568,7 +3592,9 @@ ul.buttons:after {
   padding: 0 12px;
 }
 .quest-detail > .sidebar > .data:before,
-.quest-detail > .sidebar > .data:after {
+.quest-detail > .sidebar > .data > .box-content:before,
+.quest-detail > .sidebar > .data:after,
+.quest-detail > .sidebar > .data > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -3576,11 +3602,14 @@ ul.buttons:after {
   /* 2 */
 
 }
-.quest-detail > .sidebar > .data:after {
+.quest-detail > .sidebar > .data:after,
+.quest-detail > .sidebar > .data > .box-content:after {
   clear: both;
 }
 .quest-detail > .sidebar > .data:before,
-.quest-detail > .sidebar > .data:after {
+.quest-detail > .sidebar > .data > .box-content:before,
+.quest-detail > .sidebar > .data:after,
+.quest-detail > .sidebar > .data > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -3588,7 +3617,8 @@ ul.buttons:after {
   /* 2 */
 
 }
-.quest-detail > .sidebar > .data:after {
+.quest-detail > .sidebar > .data:after,
+.quest-detail > .sidebar > .data > .box-content:after {
   clear: both;
 }
 .quest-detail > .sidebar > .data dl {
@@ -3663,8 +3693,12 @@ ul.buttons:after {
 }
 .participants:before,
 .applications:before,
+.participants > .box-content:before,
+.applications > .box-content:before,
 .participants:after,
-.applications:after {
+.applications:after,
+.participants > .box-content:after,
+.applications > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -3673,13 +3707,19 @@ ul.buttons:after {
 
 }
 .participants:after,
-.applications:after {
+.applications:after,
+.participants > .box-content:after,
+.applications > .box-content:after {
   clear: both;
 }
 .participants:before,
 .applications:before,
+.participants > .box-content:before,
+.applications > .box-content:before,
 .participants:after,
-.applications:after {
+.applications:after,
+.participants > .box-content:after,
+.applications > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -3688,7 +3728,9 @@ ul.buttons:after {
 
 }
 .participants:after,
-.applications:after {
+.applications:after,
+.participants > .box-content:after,
+.applications > .box-content:after {
   clear: both;
 }
 .participants h1,
@@ -4091,7 +4133,9 @@ ul.buttons:after {
   padding: 0 12px;
 }
 .messages-summary:before,
-.messages-summary:after {
+.messages-summary > .box-content:before,
+.messages-summary:after,
+.messages-summary > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -4099,11 +4143,14 @@ ul.buttons:after {
   /* 2 */
 
 }
-.messages-summary:after {
+.messages-summary:after,
+.messages-summary > .box-content:after {
   clear: both;
 }
 .messages-summary:before,
-.messages-summary:after {
+.messages-summary > .box-content:before,
+.messages-summary:after,
+.messages-summary > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -4111,7 +4158,8 @@ ul.buttons:after {
   /* 2 */
 
 }
-.messages-summary:after {
+.messages-summary:after,
+.messages-summary > .box-content:after {
   clear: both;
 }
 .messages-summary > a i {
@@ -4192,7 +4240,9 @@ ul.buttons:after {
   padding: 0 12px;
 }
 .notifications-summary:before,
-.notifications-summary:after {
+.notifications-summary > .box-content:before,
+.notifications-summary:after,
+.notifications-summary > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -4200,11 +4250,14 @@ ul.buttons:after {
   /* 2 */
 
 }
-.notifications-summary:after {
+.notifications-summary:after,
+.notifications-summary > .box-content:after {
   clear: both;
 }
 .notifications-summary:before,
-.notifications-summary:after {
+.notifications-summary > .box-content:before,
+.notifications-summary:after,
+.notifications-summary > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -4212,7 +4265,8 @@ ul.buttons:after {
   /* 2 */
 
 }
-.notifications-summary:after {
+.notifications-summary:after,
+.notifications-summary > .box-content:after {
   clear: both;
 }
 .notifications-summary > a i {
@@ -4326,7 +4380,9 @@ ul.buttons:after {
   padding: 0 12px;
 }
 .sponsors:before,
-.sponsors:after {
+.sponsors > .box-content:before,
+.sponsors:after,
+.sponsors > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -4334,11 +4390,14 @@ ul.buttons:after {
   /* 2 */
 
 }
-.sponsors:after {
+.sponsors:after,
+.sponsors > .box-content:after {
   clear: both;
 }
 .sponsors:before,
-.sponsors:after {
+.sponsors > .box-content:before,
+.sponsors:after,
+.sponsors > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -4346,7 +4405,8 @@ ul.buttons:after {
   /* 2 */
 
 }
-.sponsors:after {
+.sponsors:after,
+.sponsors > .box-content:after {
   clear: both;
 }
 .sponsors a {
@@ -4567,7 +4627,9 @@ dl.data dd {
   padding: 0 12px;
 }
 .pressbox > div:before,
-.pressbox > div:after {
+.pressbox > div > .box-content:before,
+.pressbox > div:after,
+.pressbox > div > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -4575,11 +4637,14 @@ dl.data dd {
   /* 2 */
 
 }
-.pressbox > div:after {
+.pressbox > div:after,
+.pressbox > div > .box-content:after {
   clear: both;
 }
 .pressbox > div:before,
-.pressbox > div:after {
+.pressbox > div > .box-content:before,
+.pressbox > div:after,
+.pressbox > div > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -4587,7 +4652,8 @@ dl.data dd {
   /* 2 */
 
 }
-.pressbox > div:after {
+.pressbox > div:after,
+.pressbox > div > .box-content:after {
   clear: both;
 }
 .pressbox h1 {
@@ -4887,7 +4953,9 @@ dl.data dd {
   padding: 0 12px;
 }
 .arg-agenda .info:before,
-.arg-agenda .info:after {
+.arg-agenda .info > .box-content:before,
+.arg-agenda .info:after,
+.arg-agenda .info > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -4895,11 +4963,14 @@ dl.data dd {
   /* 2 */
 
 }
-.arg-agenda .info:after {
+.arg-agenda .info:after,
+.arg-agenda .info > .box-content:after {
   clear: both;
 }
 .arg-agenda .info:before,
-.arg-agenda .info:after {
+.arg-agenda .info > .box-content:before,
+.arg-agenda .info:after,
+.arg-agenda .info > .box-content:after {
   content: " ";
   /* 1 */
 
@@ -4907,7 +4978,8 @@ dl.data dd {
   /* 2 */
 
 }
-.arg-agenda .info:after {
+.arg-agenda .info:after,
+.arg-agenda .info > .box-content:after {
   clear: both;
 }
 .arg-agenda .info > i.icon-yah-hand-right {

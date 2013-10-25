@@ -644,7 +644,7 @@ textarea {
   background: @background;
   .cut-corners(@background);
   margin-bottom: 3 * @cut-corner-radius;
-  .clearfix;
+  &, >.box-content { .clearfix; }
 }
 .box-red {
   color: @foreground-red;
