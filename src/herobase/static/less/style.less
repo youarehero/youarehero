@@ -644,7 +644,7 @@ textarea {
   background: @background;
   .cut-corners(@background);
   margin-bottom: 3 * @cut-corner-radius;
-  .clearfix;
+  &, >.box-content { .clearfix; }
 }
 .box-red {
   color: @foreground-red;
@@ -899,13 +899,11 @@ ul.buttons {
       top: @cut-corner-radius;
     }
     > .icons {
-      margin-top: @cut-corner-radius;
-      margin-bottom: -(2 * @cut-corner-radius);
       display: inline-block;
-      float: right;
-      height: @avatar-height;
-      padding-top: ((@avatar-height - 40px) / 2) - (@cut-corner-radius / 2);
-      i.icon-map-marker {
+      position: absolute;
+      right: @cut-corner-radius;
+      bottom: 0;
+      i {
         font-size: 40px;
         color: black;
       }
@@ -1151,6 +1149,8 @@ ul.buttons {
   a {
     text-decoration: none;
     color: @text-color;
+    min-height: 40px;
+    display: block;
   }
   margin-right: 24px;
   background: rgba(255,0,0,0.6);
