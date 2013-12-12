@@ -5,6 +5,10 @@
     <ul id="brand" class="nav nav-blue">
       <li><a href="{% url "home" %}"><h2 class="subheader"><i class="icon-yah-logo icon-4x"></i><br>you are hero</h2></a></li>
     </ul>
+    <div class="langswitchflags">
+      <a href="#"><img src="{% get_static_prefix %}img/200px-Flag_of_Germany.png" class="langswitcher flag" x-target-lang="de"/></a>
+      <a href="#"><img src="{% get_static_prefix %}img/200px-Flag_of_the_United_States.png" class="langswitcher flag" x-target-lang="en"/></a>
+    </div>
   </div>
   {% if request.user.is_authenticated %}
     {% include "herobase/layout/navigation_authenticated.html" %}
