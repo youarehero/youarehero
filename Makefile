@@ -33,5 +33,5 @@ docs:
 	. env/bin/activate && cd docs && make clean html
 deploy: dirs env deps static docs syncdb migrate test 
 
-.PHONY: env deps test-deps clean syncdb migrate static test bootstrap jenkins deploy git-force-update docs
+.PHONY: deps test-deps clean syncdb migrate static test bootstrap jenkins deploy git-force-update docs
 
