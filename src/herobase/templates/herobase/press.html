@@ -1,7 +1,7 @@
 {% extends "herobase/layout/base.html" %}
-{% load static %}
+{% load static i18n %}
 {% block page_title %}
-    <h1>Welcome to a place where you can become a HERO!</h1>
+    <h1>{% trans "Welcome to a place where you can become a HERO!" %}</h1>
 {% endblock %}
 
 {% block content %}
@@ -10,15 +10,15 @@
       <img class="pull-right einladungskarte" src="{% get_static_prefix %}img/einladungskarte_240.jpg" />
     </div>
     <div>
-      <h1>you are hero &ndash; Das Spiel möge beginnen!</h1>
-      <h2>(k)ein Heldenspiel aus der HfG Karlsruhe</h2>
-      <p>
+      <h1>{% trans "you are hero &ndash; Das Spiel möge beginnen!" %}</h1>
+      <h2>{% trans "(k)ein Heldenspiel aus der HfG Karlsruhe" %}</h2>
+      <p>{% blocktrans %}
       <em>Gaming can make a better world</em> &ndash; das ist die Botschaft der Spieldesignerin Jane McGonigal. An der
       HfG Karlsruhe hat sich die Studentin Greta Hoffmann mit einer kleinen Gruppe von „Helden“ dieser Aufgabe unter
       dem Motto <em>you are hero</em> angenommen. Die Heldentruppe möchte sich ab dem 16. September 2013 mit einem
       großen Spiel in ganz Karlsruhe vorstellen &ndash; denn <em>you are hero</em> braucht dringend Verstärkung!
-      </p>
-      <p>
+      {% endblocktrans %}</p>
+      <p>{% blocktrans %}
       Das Spiel hat bereits begonnen: Kürzlich wurde vermehrt eine attraktive, aber zwielichtige Gestalt namens
       <em>Anonyma</em> in Karlsruhe gesichtet, besonders auf dem FEST und der KAMUNA sorgte sie für Unruhe. Man
       wundert sich zu Recht, weshalb sich diese <em>Femme fatale</em> gerade Karlsruhe ausgesucht hat, um ihr Unwesen
@@ -30,21 +30,21 @@
       wahllos im Internet herum. Am Wochenende klappt es dann meistens auch ganz gut, den Wohltätigkeitsflohmarkt und
       die Großmutter im Seniorenheim auf ein anderes Mal zu verschieben. Ja genau das sind die kleinen Schwächen, auf
       die <em>Anonyma</em> aus ist, um sie sich zu Nutze zu machen.
-      </p>
-      <p>
+      {% endblocktrans %}</p>
+      <p>{% blocktrans %}
       you are hero bittet daher ganz Karlsruhe aufs Spielfeld, um sich der Gefolgschaft von Müllexpertin <em>Trashley</em>
       (28./29. September), Informatics-Guru <em>Glitch</em> (05./06. Oktober), Weltenbummler <em>Citizen G.</em> (12./13.
       Oktober) oder Gourmet <em>Maître</em> (19./20. Oktober) anzuschließen. Von Rätseln bis zu Workshops und
       Outdoor-Aktionen finden sich viele heldenhafte Möglichkeiten der Unterstützung, um es mit <em>Anonyma</em>
       aufzunehmen. Wer weder ihre Verführungskünste noch unerwartete Begegnungen mit dem seltsamen <em>Professor Dr.
         Entropius</em> scheut, hat beste Chancen selbst zum Helden zu avancieren.
-      </p>
-      <p>
+      {% endblocktrans %}</p>
+      <p>{% blocktrans %}
       Sowohl Einzelpersonen als auch Gruppen können sich ab sofort auf
       <a href="http://www.youarehero.net">www.youarehero.net</a> registrieren. Das gesamte Spiel findet zwischen dem 16.
       September und dem 26. Oktober statt. Die Intensität der Teilnahme kann vollkommen flexibel gestaltet werden
       und ist kostenfrei.
-      </p>
+      {% endblocktrans %}</p>
     </div>
   </div>
 {%  endblock %}

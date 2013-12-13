@@ -1,1 +1,6 @@
+{% load i18n %}
+{% blocktrans %}
+
 Neue Nachricht von {{ target.sender }}: {{ target.title }}
+
+{% endblocktrans %}

@@ -9,9 +9,9 @@
                 <form method="POST" action="" class="form-inline clearfix">
                     {% crispy form %}
                     <div class="red-buttons pull-right">
-                        <button type="submit" name="save" class="btn"  data-toggle="tooltip" data-title="Versenden">
+                        <button type="submit" name="save" class="btn"  data-toggle="tooltip" data-title="{% trans 'Versenden' %}">
                             <i class="icon-ok icon-2x"></i></button>
-                        <button type="reset" name="reset" class="btn"  data-toggle="tooltip" data-title="Zurücksetzen">
+                        <button type="reset" name="reset" class="btn"  data-toggle="tooltip" data-title="{% trans 'Zurücksetzen' %}">
                             <i class="icon-remove icon-2x"></i></button>
                     </div>
                 </form>

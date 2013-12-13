@@ -1,19 +1,21 @@
 {% extends "herobase/layout/base.html" %}
 
+{% load i18n %}
+
 {% block page_title %}
-    <h1>Impressum</h1>
+    <h1>{% trans "Impressum" %}</h1>
 {% endblock %}
 
 {% block content %}
     <div class="box">
-        <h1>Credits</h1>
+        <h1>{% trans "Credits" %}</h1>
         <div class="row">
             <div class="col-sm-6">
-                <h2>Projektleitung</h2>
+                <h2>{% trans "Projektleitung" %}</h2>
                 <ul>
                     <li>Greta Hoffmann</li>
                 </ul>
-                <h2>Programmierung</h2>
+                <h2>{% trans "Programmierung" %}</h2>
                 <ul>
                     <li>Raphael Kimmig</li>
                     <li>Simon Kohlmeyer</li>
@@ -21,36 +23,36 @@
                     <li>Patrick Müller</li>
                     <li>Niklas Plessing</li>
                 </ul>
-                <h2>Blog</h2>
+                <h2>{% trans "Blog" %}</h2>
                 <ul>
                     <li>Benedikt Morschheuser</li>
                     <li>Eva Nitsche</li>
                 </ul>
-                <h2>Grafikdesign/Gestaltung</h2>
+                <h2>{% trans "Grafikdesign/Gestaltung" %}</h2>
                 <ul>
                     <li>Damian Domes - www.damiandomes.de</li>
                 </ul>
-                <h2>Illustration</h2>
+                <h2>{% trans "Illustration" %}</h2>
                 <ul>
                     <li>Greta Hoffmann</li>
                     <li>Sebastian Finzenhagen</li>
                 </ul>
             </div>
             <div class="col-sm-6">
-                <h2>Gamedesign & Content</h2>
+                <h2>{% trans "Gamedesign & Content" %}</h2>
                 <ul>
                     <li>Greta Hoffmann</li>
                     <li>Brice Clocher</li>
                 </ul>
-                <h2>Helden</h2>
+                <h2>{% trans "Helden" %}</h2>
                 <ul>
                     <li>geheim</li>
                 </ul>
-                <h2>Presse, Content und Organisation</h2>
+                <h2>{% trans "Presse, Content und Organisation" %}</h2>
                 <ul>
                     <li>Sabine Scharff</li>
                 </ul>
-                <h2>Besonderer Dank an</h2>
+                <h2>{% trans "Besonderer Dank an" %}</h2>
                 <ul>
                     <li>Andreas Goralczyk</li>
                     <li>Eva Franz</li>
@@ -67,7 +69,7 @@
                     <li>Juli Foos</li>
                     <li>Martin Buntz</li>
                 </ul>
-                <h2>Sound and music</h2>
+                <h2>{% trans "Sound and music" %}</h2>
                 <ul>
                     <li>Uses samples from 833-45 on <a href="freesound.org">freesound.org</a></li>
                     <li>Uses samples from Gorky173 on <a href="freesound.org">freesound.org</a></li>

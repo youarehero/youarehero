@@ -1,9 +1,10 @@
 {% extends "herobase/layout/base.html" %}
+{% load i18n %}
 
 {% block content %}
     <div class="box">
-        <h1>Herzlichen Glückwunsch</h1>
-        <p>Der Gutschein mit der Nummer "{{ code }}" wurde erfolgreich eingelöst.</p>
-        <h2>Du erhälst {{ xp }} EP.</h2>
+        <h1>{% trans "Herzlichen Glückwunsch" %}</h1>
+        <p>{% trans "Der Gutschein mit der Nummer "{{ code }}" wurde erfolgreich eingelöst." %}</p>
+        <h2>{% trans "Du erhälst {{ xp }} EP." %}</h2>
     </div>
 {% endblock %}

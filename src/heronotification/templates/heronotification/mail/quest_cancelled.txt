@@ -1,3 +1,6 @@
+{% load i18n %}
+{% blocktrans %}
+
 Notbremse
 
 Verehrte Damen und Herren,
@@ -7,3 +10,5 @@ Bei Wiederaufnahme der Quest benachrichtigen wir Sie umgehend.
 
 Hochachtungsvoll,
 Ihr Butler von you are hero
+
+{% endblocktrans %}

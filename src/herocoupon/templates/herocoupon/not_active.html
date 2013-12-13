@@ -1,8 +1,9 @@
 {% extends "herobase/layout/base.html" %}
+{% load i18n %}
 
 {% block content %}
     <div class="box">
-        <h1>Deaktiviert</h1>
-        <p>Der Gutschein mit der Nummer "{{ code }}" ist leider deaktiviert.</p>
+        <h1>{% trans "Deaktiviert" %}</h1>
+        <p>{% trans "Der Gutschein mit der Nummer "{{ code }}" ist leider deaktiviert." %}</p>
     </div>
 {% endblock %}

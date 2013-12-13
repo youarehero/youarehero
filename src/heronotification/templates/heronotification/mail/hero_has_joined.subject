@@ -1,1 +1,6 @@
+{% load i18n %}
+{% blocktrans %}
+
 {{ target.user.username }} nimmt an ihrer Quest {{ target.quest.title }} teil
+
+{% endblocktrans %}

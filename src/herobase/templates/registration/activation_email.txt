@@ -1,12 +1,15 @@
+{% load i18n %}
 {% autoescape off %}
-Willkommen bei you are hero {{ user.username }}!
+{% trans "Willkommen bei you are hero {{ user.username }}!" %}
 
-Bitte klicke auf den Link, um deine Registrierung fertigzustellen.
+{% trans "Bitte klicke auf den Link, um deine Registrierung fertigzustellen." %}
 {% block activate_link %}
 https://{{ site.domain }}{% url "registration_activate" activation_key=activation_key %}
 {% endblock %}
 
+{% blocktrans %}
 Viel Freude mit you are hero,
 
 das you are hero Team
+{% endblocktrans %}
 {% endautoescape %}

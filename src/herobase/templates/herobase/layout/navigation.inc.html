@@ -1,5 +1,6 @@
 {% load static i18n crispy_forms_tags activelink %}
 {% load url from future %}
+{% load i18n %}
 <div id="navigation" role="navigation">
   <div class="nav-container">
     <ul id="brand" class="nav nav-blue">
@@ -17,10 +18,11 @@
     <ul class="nav nav-white nav-font">
       <li>
       <a href="{% url "arg" %}">
-        <i class="icon-puzzle-piece"></i><br/>Das Spiel
+        {% comment %}Translators: This refers to the arg{% endcomment %}
+        <i class="icon-puzzle-piece"></i><br/>{% trans "Das Spiel" %}
       </a>
       <a href="{% url 'quest_list' %}">
-        <i class="icon-pushpin"></i><br/>Quests
+        <i class="icon-pushpin"></i><br/>{% trans "Quests" %}
       </a>
       </li>
     </ul>
@@ -28,7 +30,7 @@
   <div class="nav-container">
     <ul class="nav nav-red nav-font learn-more">
         <li><a href="{% url "manifesto" %}">
-        <i class="icon-yah-hand-right"></i> Erfahre mehr <i class="icon-yah-hand-left"></i>
+          <i class="icon-yah-hand-right"></i> {% trans "Find out more" %} <i class="icon-yah-hand-left"></i>
       </a></li>
     </ul>
   </div>
@@ -41,7 +43,7 @@
         </li>
       </ul>
       </li>
-      <li class="pull-down"><a href="{% url "registration_register" %}">Registrieren</a></li>
+      <li class="pull-down"><a href="{% url "registration_register" %}">{% trans "Registrieren" %}</a></li>
     </ul>
   </div>
   {% endif %}

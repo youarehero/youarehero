@@ -3,23 +3,25 @@
 {% load url from future %}
 
 {% block title %}
-    Held Sein - Hotline
+    Held Sein - {% trans "Hotline" %}
 {% endblock %}
 
 {% block content %}
 <div class="row">
   <div class="col-md-12">
     <div class="hotlinebox box">
-      <h1>Helden Hotline</h1><h3>- Soforthilfe für Helden in Not</h3>
+      <h1>{% trans "Helden Hotline" %}</h1><h3>- {% trans "Soforthilfe für Helden in Not" %}</h3>
 
       <p>
+      {% blocktrans %}
       Wenn Helden Hilfe brauchen, fragen sie erstmal die Community in den Foren.<br/>
       Aber wenn auch das nicht mehr hilft, wenden sich die Helden an die Helden-Hotline.<br/>
       Mit dieser Hotline können sie schnell mit den erfahrenen Helden in Kontakt treten - den Erschaffern des Spiels und
       dieser Website.
+      {% endblocktrans %}
       </p>
 
-      <p>“Der Helden-Briefkasten”: <a href="mailto:info@youarehero.net">info@youarehero.net</a></p>
+      <p>“{% trans "Der Helden-Briefkasten" %}”: <a href="mailto:info@youarehero.net">info@youarehero.net</a></p>
     </div>
   </div>
 </div>

@@ -53,15 +53,15 @@
         <div style="float: right; font-size: 12px;"><p>{% show_pages %}</p></div>
         <form action="" method="get" class="form-inline pull-right" id="quest_filter_form">
             {% crispy filter_form %}
-            <button class="inline-button" type="submit" value="search">Suchen</button>
+            <button class="inline-button" type="submit" value="search">{% trans "Suchen" %}</button>
         </form>
         <ul class="subsub">
             <li {% if not done %}class="active"{% endif %}>
-                <a href="{% url "quest_list" %}">Offen</a>
+                <a href="{% url "quest_list" %}">{% trans "Offen" %}</a>
             </li>
             <li><i class="icon-circle" style="font-size: 9px;"></i></li>
             <li {% if done %}class="active"{% endif %}>
-                <a href="{% url "quest_list_done" %}">Abgeschlossen</a>
+                <a href="{% url "quest_list_done" %}">{% trans "Abgeschlossen" %}</a>
             </li>
         </ul>
     </div>
@@ -87,8 +87,8 @@
     <div class="box clearfix">
         <div style="float: right; font-size: 12px;"><p>{% show_pages %}</p></div>
         <form action="" method="get" class="pull-right">
-            <input placeholder="Titel, Beschreibung" style="margin-top: -12px;" name="search" value="{{ search }}"/>
-            <button class="inline-button" type="submit" value="search">Suchen</button>
+            <input placeholder="{% trans 'Titel, Beschreibung' %}" style="margin-top: -12px;" name="search" value="{{ search }}"/>
+            <button class="inline-button" type="submit" value="search">{% trans "Suchen" %}</button>
         </form>
         <div>&nbsp;</div>
     </div>

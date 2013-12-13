@@ -1,3 +1,6 @@
+{% load i18n %}
+{% blocktrans %}
+
 Startschuss
 
 Verehrte Damen und Herren,
@@ -8,3 +11,5 @@ Sie können die Quest unter http://{{ site.domain }}{{ target.get_absolute_url }
 
 Hochachtungsvoll,
 Ihr Butler von you are hero
+
+{% endblocktrans %}

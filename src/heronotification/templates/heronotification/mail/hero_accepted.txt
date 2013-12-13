@@ -1,3 +1,6 @@
+{% load i18n %}
+{% blocktrans %}
+
 Glückwunsch
 
 Verehrte Damen und Herren,
@@ -6,3 +9,5 @@ Weitere Informationen erhalten sie unter http://{{ site.domain }}{{ target.get_a
 
 Hochachtungsvoll,
 Ihr Butler von you are hero
+
+{% endblocktrans %}

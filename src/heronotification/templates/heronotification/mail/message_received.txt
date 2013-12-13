@@ -1,3 +1,6 @@
+{% load i18n %}
+{% blocktrans %}
+
 Heldenpost
 
 Verehrte Damen und Herren,
@@ -10,3 +13,5 @@ Die Nachricht lautet:
 
 Hochachtungsvoll,
 Ihr Butler von you are hero
+
+{% endblocktrans %}

@@ -1,1 +1,6 @@
+{% load i18n %}
+{% blocktrans %}
+
 Die Quest {{ target.quest.title }} wurde abgebrochen
+
+{% endblocktrans %}

@@ -1,3 +1,6 @@
+{% load i18n %}
+{% blocktrans %}
+
 Neue Helden und Heldinnen
 
 Verehrte Damen und Herren,
@@ -6,3 +9,5 @@ Besuchen sie http://{{ site.domain }}{{ target.quest.get_absolute_url }} um die 
 
 Hochachtungsvoll,
 Ihr Butler von you are hero
+
+{% endblocktrans %}

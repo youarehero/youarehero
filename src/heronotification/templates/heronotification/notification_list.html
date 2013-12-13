@@ -1,4 +1,5 @@
 {% extends "herobase/layout/base.html" %}
+{% load i18n %}
 
 {% block content %}
     <div class="row">
@@ -8,7 +9,7 @@
                 {{ notification.html }}
             </div>
         {% empty %}
-            <p>Du hast keine Benachrichtigung</p>
+            <p>{% trans "Du hast keine Benachrichtigung" %}</p>
         {% endfor %}
         </div>
     </div>

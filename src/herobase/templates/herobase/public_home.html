@@ -22,9 +22,11 @@
                     </div>
 
                 <div class="text">
-                  <h1>Trashley Treasure</h1>
+                  <h1>{% trans "Trashley Treasure" %}</h1>
+                  {% blocktrans %}
                   Man erzählt sich, ihre Mutter sei eine Nähmaschine und ihr Vater eine Pyrolyseanlage. An ihrem
                   Wochenende wird der Mülleimer wieder leer und der Kleiderschrank voll.
+                  {% endblocktrans %}
                 </div>
             </div>
         </div>
@@ -32,9 +34,11 @@
             <div class="hero-box glitch">
                 <div class="background"></div>
                 <div class="text">
-                  <h1>The Glitch</h1>
+                  <h1>{% trans "The Glitch" %}</h1>
+                  {% blocktrans %}
                   Das Internet? Computer? Panik? The Glitch ist ein Hacker. Er ist aber auch lieb zu seinen Nachbarn.
                   Sein Wochenende ist freie Information.
+                  {% endblocktrans %}
                 </div>
             </div>
         </div>
@@ -42,22 +46,29 @@
             <div class="hero-box citizeng">
                 <div class="background"></div>
                 <div class="text">
-                  <h1>Citizen G</h1>
+                  <h1>{% trans "Citizen G" %}</h1>
+                  {% blocktrans %}
                   Er beweist, dass man auch ohne schottische Ahnen Schotte sein kann; oder eben, was und wann immer man
                   sein möchte. Hier geht es um interkulturellen Austausch und Röcke.
+                  {% endblocktrans %}
                 </div>
             </div>
         </div>
     </div>
     <div class="infobox-container middle">
       <div id="yah-ist-ein-spiel">
-        <h1>you are hero ist ein Spiel</h1>
+        <h1>{% trans "you are hero ist ein Spiel" %}</h1>
         <p>
+        {% blocktrans %}
         Löse Quests online oder in der Stadt, allein oder mit deinen Freunden, und hilf den Helden die Schurkin Anonyma zu
         erwischen, die gestohlene Zeitmaschine wiederzufinden und viele weitere Heldentaten. Es ist kostenlos und du
         kannst so viel zeit aufwenden, wie du möchtest.
+        {% endblocktrans %}
         <br/>
-        <a href="{% url "registration_register" %}">Registriere</a> dich und nimme Entropius’ Quests an um loszulegen.
+        {% url 'registration_register' as register_url %}
+        {% blocktrans %}
+          <a href="{{register_url}}">Registriere</a> dich und nimme Entropius’ Quests an um loszulegen.
+        {% endblocktrans %}
         </p>
         <div class="box-footer">
             <a href="#yah-ist-kein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>
@@ -69,10 +80,12 @@
         <div class="hero-box maitre">
           <div class="background"></div>
           <div class="text">
-            <h1>Ma&icirc;tre</h1>
+            <h1>{% trans "Ma&icirc;tre" %}</h1>
+            {% blocktrans %}
             Er beweist, dass man auch ohne schottische Ahnen Schotte sein kann; oder eben, was und wann immer man
             Gelangweilt vom Essen, begann er zu kochen. Er setzt sich ein für all die entrechteten Zutaten und weist
             ihnen einen Platz zu, in seinem Kochtopf. An diesem Wochenende geht es um die Sicherung unserer Ernährung.
+            {% endblocktrans %}
           </div>
         </div>
       </div>
@@ -93,16 +106,19 @@
 
     <div class="infobox-container bottom">
       <div id="yah-ist-kein-spiel" >
-        <h1>you are hero ist kein Spiel</h1>
+        <h1>{% trans "you are hero ist kein Spiel" %}</h1>
         <p>
+        {% url 'manifesto' as manifesto_url %}
+        {% blocktrans %}
         Dies ist eine ernste Angelegenheit!
-Wir wollen beweisen, dass Spielen die Welt retten kann.
-Wie? Indem wir dafür sorgen, dass es Spaß macht, Gutes zu tun.
-Wohltätigkeit, Ehrenamt und ein Gesellschaftlicher Geist, das sind
-reale Dinge, die uns allen helfen, besser zu leben.
-In unserem <a href="{% url "manifesto" %}">Manifest</a> kannst du nachlesen, wie you are hero das
-machen will, oder du trägst einfach deine eigene Quest ein, falls du selbst
-Helden-Hilfe benötigst!
+        Wir wollen beweisen, dass Spielen die Welt retten kann.
+        Wie? Indem wir dafür sorgen, dass es Spaß macht, Gutes zu tun.
+        Wohltätigkeit, Ehrenamt und ein Gesellschaftlicher Geist, das sind
+        reale Dinge, die uns allen helfen, besser zu leben.
+        In unserem <a href="{{ manifesto_url }}">Manifest</a> kannst du nachlesen, wie you are hero das
+        machen will, oder du trägst einfach deine eigene Quest ein, falls du selbst
+        Helden-Hilfe benötigst!
+        {% endblocktrans %}
         </p>
       </div>
     </div>
@@ -110,13 +126,13 @@ Helden-Hilfe benötigst!
         <div class="linkbox col-sm-8 col-sm-offset-2">
             <a href="{% url "registration_register" %}">
                 <i class="icon-yah-hand-right"></i>
-                <span>Registrieren</span>
+                <span>{% trans "Registrieren" %}</span>
                 <i class="icon-yah-hand-left"></i>
             </a>
         </div>
     </div>
     <div class="box">
-        <h2>k&uuml;rzlich abgeschlossene Quests</h2>
+        <h2>{% trans "k&uuml;rzlich abgeschlossene Quests" %}</h2>
     </div>
     <div class="row">
         {% for quest in recently_done_quests %}
@@ -128,20 +144,20 @@ Helden-Hilfe benötigst!
 
     <br>
     <div class="sponsors vertical-offset">
-        <h3>Gef&ouml;rdert durch</h3>
+        <h3>{% trans "Gef&ouml;rdert durch" %}</h3>
         <a href="http://www.staedte-im-wissenschaftsjahr.de/wordpress/you-are-hero/" target="_blank">
           <img src="{% get_static_prefix %}/img/sponsors/karlsruhe.png"/><br>
-            Stadt Karlsruhe
+            {% trans "Stadt Karlsruhe" %}
         </a>
 
         <a href="https://youarehero.net/blog/2012/10/17/you-are-hero-gewinnt-forderpreis-der-heinrich-hertz-gesellschaft/" target="_blank">
           <img src="{% get_static_prefix %}/img/sponsors/hhg.png"/><br>
-            Heinrich Hertz Gesellschaft
+            {% trans "Heinrich Hertz Gesellschaft" %}
         </a>
 
         <a href="https://youarehero.net/blog/2013/05/06/you-are-hero-gewinnt-preis-des-rotary-clubs-karlsruhe/" target="_blank">
           <img src="{% get_static_prefix %}/img/sponsors/rotary.png"/><br>
-            Rotary Club Karlsruhe
+            {% trans "Rotary Club Karlsruhe" %}
         </a>
         <br><br><br>
         <a href="http://postdigital.hfg-karlsruhe.de/gamelab" target="_blank">

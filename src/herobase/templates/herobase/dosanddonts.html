@@ -1,12 +1,14 @@
 {% extends "herobase/layout/base.html" %}
+{% load i18n %}
 
 {% block content %}
 <div class="box">
-    <h1>Wichtige Nutzungshinweise für you are hero</h1>
+    <h1>{% trans "Wichtige Nutzungshinweise für you are hero" %}</h1>
     <div class="row">
         <div class="col-sm-6">
-            <h2>Generell:</h2>
+            <h2>{% trans "Generell:" %}</h2>
             <p>
+            {% blocktrans %}
             Quests, die zu ihrer Erfüllung an den Austausch von Geld oder jedweder Güter gebunden sind, verstoßen gegen das
             Prinzip von you are hero, ein Beispiel: Wenn Sie während der Erfüllung einer Quest Mineralwasser und Snacks angeboten
             bekommen, ist das selbstverständlich in Ordnung. Werden Sie hingegen aufgefordert eine Quest zu erfüllen, weil sie
@@ -18,43 +20,44 @@
             Quests ggf. zu sperren oder Ihr Profil im äußersten Fall von »www.youarehero.net« zu löschen.  Sollten Sie im Zuge der
             Kommunikation private Daten mit Teilnehmenden von you are hero austauschen, behandeln Sie diese bitte diskret und
             vertraulich.
+            {% endblocktrans %}
             </p>
         </div>
         <div class="col-sm-6">
-            <h2>
-            Jugendschutz:
-            </h2>
+            <h2>{%  trans "Jugendschutz:" %}</h2>
 
             <p>
+            {% blocktrans %}
             Generell ist die Registrierung auf www.youarehero.net sowie die Teilnahme an you are hero-Aktionen erst ab 15 Jahren
             erlaubt.  Teilnehmenden unter 18 Jahren ist die Erfüllung von Reality-Quests nur mit Einwilligung eines
             Erziehungsberechtigten erlaubt.  Teilnehmenden unter 18 Jahren ist das Bewerben um und Einstellen von privaten
             Quests generell nicht erlaubt.
+            {% endblocktrans %}
             </p>
 
-            <h2>
-            Bewerbung und Annahme von Quests:
-            </h2>
+            <h2>{% trans "Bewerbung und Annahme von Quests:" %}</h2>
 
             <p>
+            {% blocktrans %}
             Bitte überlegen Sie sich Ihre Bewerbung um eine Quest gut und nehmen Sie diese ernst.  Manche Quests verlangen ein hohes
             Maß an Sensibilität für entsprechende Situationen (z.B. im Umgang mit Kranken). Bitte informieren Sie sich ggf. vorab
             eigenständig und ausreichend über die Anforderungen.  Sollten Fragen zu einer Bewerbung auftauchen, scheuen Sie sich
             nicht die Quest-Einstellenden zu kontaktieren.
+            {% endblocktrans %}
             </p>
 
 
-            <h2>
-            Einstellen und Vergabe von Quests:
-            </h2>
+            <h2>{% trans "Einstellen und Vergabe von Quests:" %}</h2>
 
             <p>
+            {% blocktrans %}
             Mit der Quest-Vergabe verpflichten Sie sich keine Teilnehmenden für unlautere Zwecke auszunutzen und im Sinne des
             Allgemeinwohls zu handeln.  Sie sind verpflichtet ein angemessenes Mindestalter für die Bewerbung um eine Quest
             anzugeben.  Bei der Vergabe einer Quest an Minderjährige sind Sie dazu angehalten, die Einwilligung eines
             Erziehungsberechtigten selbständig und nach eigenem Ermessen einzufordern.  Siehe hierzu auch die you are hero-Hinweise
             zum Thema Jugendschutz.  Quest-Einstellende tragen die volle Verantwortung für den Ablauf der Quest-Erfüllung. you are
             hero übernimmt hierfür keine Verantwortung.
+            {% endblocktrans %}
             </p>
         </div>
     </div>

@@ -1,4 +1,5 @@
 {% load url from future %}
+{% load i18n %}
 <tr {% if active %}class="active"{% endif %}>
     <td class="rank">{{ user.profile.rank }}.</td>
     <td>
@@ -9,8 +10,8 @@
     <td>
         <strong><a href="{% url "userprofile_public" user.username %}">
             {{ user.username }}</a></strong><br>
-        Level: {{ user.profile.level }}<br/>
-        XP: {{ user.profile.experience }}<br/>
-        Erfolge: {{ user.profile.achievements.count }}
+        {% trans "Level" %}: {{ user.profile.level }}<br/>
+        {% trans "XP" %}: {{ user.profile.experience }}<br/>
+        {% trans "Erfolge" %}: {{ user.profile.achievements.count }}
     </td>
 </tr>

@@ -19,7 +19,7 @@
             {% csrf_token %}
             <input type="hidden" name="action" value="accept">
             <button type="submit" name="action_btn"
-                value="{% trans "Accept" %}" data-toggle="tooltip" data-title="Annehmen">
+                value="{% trans "Accept" %}" data-toggle="tooltip" data-title="{% trans 'Annehmen' %}">
                 <i class="icon-ok"></i>
             </button>
         </form>
@@ -27,7 +27,7 @@
             {% csrf_token %}
             <input type="hidden" name="action" value="reject">
             <button type="submit" name="action_btn"
-                value="{% trans "Reject" %}" data-toggle="tooltip" data-title="Ablehnen">
+                value="{% trans "Reject" %}" data-toggle="tooltip" data-title="{% trans 'Ablehnen' %}">
                 <i class="icon-remove"></i>
             </button>
         </form>

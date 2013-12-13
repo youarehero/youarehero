@@ -1,3 +1,4 @@
+{% load i18n %}
 {% autoescape off %}
-Willkommen bei You are Hero
+{% trans "Willkommen bei You are Hero" %}
 {% endautoescape %}

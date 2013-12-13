@@ -20,7 +20,7 @@
                 {% get_comment_form for quest as form %}
                 <form id="comment-form" action="{% comment_form_target %}" method="POST">
                     <fieldset>
-                        <legend>Kommentieren</legend>
+                        <legend>{% trans "Kommentieren" %}</legend>
                         {% csrf_token %}
                         <div id="div_id_{{ form.comment.name }}"
                              class="clearfix control-group">
@@ -41,12 +41,13 @@
                     </fieldset>
                     <div class="form-actions">
                         <button type="submit" name="submit" value="Kommentar abschicken" class="box-button text">
-                          <span>Kommentar abschicken</span>
+                          <span>{% trans "Kommentar abschicken" %}</span>
                         </button>
                     </div>
                 </form>
             {% else %}
-                <p>Bitte <a href="{% url 'auth_login' %}">melde dich an</a> um zu kommentieren.</p>
+            {% url 'auth_login' as login_url %}
+            <p>{% blocktrans %}Bitte <a href="{{ login_url }}">melde dich an</a> um zu kommentieren.{% endblocktrans %}</p>
             {% endif %}
         </div>
     </div>

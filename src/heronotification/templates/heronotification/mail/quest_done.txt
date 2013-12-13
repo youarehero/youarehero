@@ -1,3 +1,6 @@
+{% load i18n %}
+{% blocktrans %}
+
 Glückwunsch,
 
 Verehrte Damen und Herren,
@@ -5,3 +8,5 @@ Die Quest {{ target.title }} wurde erfolgreich abgeschlossen.
 
 Hochachtungsvoll,
 Ihr Butler von you are hero
+
+{% endblocktrans %}

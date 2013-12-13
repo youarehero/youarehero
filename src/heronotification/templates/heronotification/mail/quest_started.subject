@@ -1,1 +1,6 @@
+{% load i18n %}
+{% blocktrans %}
+
 Die Quest {{ target.title }} hat begonnen
+
+{% endblocktrans %}

@@ -1,8 +1,9 @@
 {% extends "herobase/layout/layout-12.html" %}
+{% load i18n %}
 
 
 {% block content %}
-    <h1>Recommendations for user {{ user }}</h1>
+    <h1>{% trans "Recommendations for user {{ user }}" %}</h1>
     <ul>
         {% for quest in page.object_list %}
             <li>{{ quest.title }} {{ quest.weight }}</li>

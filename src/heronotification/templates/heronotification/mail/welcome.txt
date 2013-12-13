@@ -1,3 +1,6 @@
+{% load i18n %}
+{% blocktrans %}
+
 Willkommen!
 
 Verehrte Damen und Herren,
@@ -8,3 +11,5 @@ Meine Begrüßungsempfehlung für Sie ist der Besuch unserer DOs & DON'Ts.
 
 Hochachtungsvoll und auf bald,
 Ihr Butler von you are hero
+
+{% endblocktrans %}

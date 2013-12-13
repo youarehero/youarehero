@@ -1,14 +1,14 @@
 {% load url from future %}
-{% load activelink %}
+{% load i18n activelink %}
 {% if request.user.is_authenticated %}
     <ul class="page-tabs">
         <li class="{% ifactive "quest_my" %}on{% endifactive %}">
-            <a href="{% url "quest_my" %}">Alle</a></li>
+            <a href="{% url "quest_my" %}">{% trans "Alle" %}</a></li>
         <li class="{% ifactive "quest_my_joined" %}on{% endifactive %}">
-            <a href="{% url "quest_my_joined" %}">Angenommen</a></li>
+            <a href="{% url "quest_my_joined" %}">{% trans "Angenommen" %}</a></li>
         <li class="{% ifactive "quest_my_created" %}on{% endifactive %}">
-            <a href="{% url "quest_my_created" %}">Erstellt</a></li>
+            <a href="{% url "quest_my_created" %}">{% trans "Erstellt" %}</a></li>
         <li class="{% ifactive "quest_my_done" %}on{% endifactive %}">
-            <a href="{% url "quest_my_done" %}">Abgeschlossen</a></li>
+            <a href="{% url "quest_my_done" %}">{% trans "Abgeschlossen" %}</a></li>
     </ul>
 {% endif %}
