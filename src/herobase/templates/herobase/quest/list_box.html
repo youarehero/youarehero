@@ -1,31 +1,28 @@
 {% load i18n %}
-{#<div class="col-sm-6 col-md-4">#}
-    <div class="quest-short">
-        <a href="{{ quest.get_absolute_url }}">
-            <span class="header">!</span>
-            <span class="text">
-{#                Don't use h1 more than one time per page #}
-                <h2>{{ quest.title }}</h2>
-                <p>
-                    {% if quest.remote %}
-                        <span class="details disabled"><i class="icon-map-marker"></i> frei</span>
+<div class="quest-short">
+    <a href="{{ quest.get_absolute_url }}">
+        <span class="header">!</span>
+        <span class="text">
+            <h2>{{ quest.title }}</h2>
+            <p>
+                {% if quest.remote %}
+                    <span class="details disabled"><i class="icon-map-marker"></i> frei</span>
+                {% else %}
+                    <span class="details"><i class="icon-map-marker"></i> {{ quest.address }}</span>
+                {% endif %}
+                <br>
+                {% with date=quest.start_date %}
+                    {% if date %}
+                        <span class="details"><i class="icon-calendar"></i> {{ date }}</span>
                     {% else %}
-                        <span class="details"><i class="icon-map-marker"></i> {{ quest.address }}</span>
+                        <span class="details disabled"><i class="icon-calendar"></i> frei</span>
                     {% endif %}
-                    <br>
-                    {% with date=quest.start_date %}
-                        {% if date %}
-                            <span class="details"><i class="icon-calendar"></i> {{ date }}</span>
-                        {% else %}
-                            <span class="details disabled"><i class="icon-calendar"></i> frei</span>
-                        {% endif %}
-                    {% endwith %}
-                </p>
-                <p>
-                {{ quest.description|truncatewords:24|linebreaksbr }}
-                </p>
-                {% include "herobase/quest/quest_box_footer.html" %}
-            </span>
-        </a>
-    </div>
-{#</div>#}
+                {% endwith %}
+            </p>
+            <p>
+            {{ quest.description|truncatewords:24|linebreaksbr }}
+            </p>
+            {% include "herobase/quest/quest_box_footer.html" %}
+        </span>
+    </a>
+</div>
