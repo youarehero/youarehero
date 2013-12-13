@@ -4,6 +4,6 @@
 {% block content %}
     <div class="box">
         <h1>{% trans "Bereits verwendet" %}</h1>
-        <p>{% trans "Den Gutschein mit der Nummer "{{ code }}" hast du schon verwendet." %}</p>
+        <p>{% blocktrans %} Den Gutschein mit der Nummer "{{ code }}" hast du schon verwendet. {% endblocktrans %}</p>
     </div>
 {% endblock %}

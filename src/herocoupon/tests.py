@@ -45,7 +45,7 @@ class CouponTest(WebTest):
         user = User.objects.get(username=user.username)
         coupon = Coupon.objects.get(code=coupon.code)
 
-        redeem_page.mustcontain(u'Herzlichen Glückwunsch', coupon.code,
+        redeem_page.mustcontain(u'Herzlichen Gl&uuml;ckwunsch', coupon.code,
                                 unicode(coupon.xp))
         self.assertEqual(user.profile.experience, coupon.xp)
         self.assertIn(user, coupon.redeemed_by.all())
@@ -61,7 +61,7 @@ class CouponTest(WebTest):
         user = User.objects.get(username=user.username)
         coupon = Coupon.objects.get(code=coupon.code)
 
-        redeem_page.mustcontain(u'Herzlichen Glückwunsch', coupon.code,
+        redeem_page.mustcontain(u'Herzlichen Gl&uuml;ckwunsch', coupon.code,
                                 unicode(coupon.xp))
         self.assertEqual(user.profile.experience, coupon.xp)
         self.assertIn(user, coupon.redeemed_by.all())
@@ -77,7 +77,7 @@ class CouponTest(WebTest):
         user = User.objects.get(username=user.username)
         coupon = Coupon.objects.get(code=coupon.code)
 
-        redeem_page.mustcontain(u'Herzlichen Glückwunsch', coupon.code,
+        redeem_page.mustcontain(u'Herzlichen Gl&uuml;ckwunsch', coupon.code,
                                 unicode(coupon.xp))
         self.assertEqual(user.profile.experience, coupon.xp)
         self.assertIn(user, coupon.redeemed_by.all())

@@ -4,6 +4,6 @@
 {% block content %}
     <div class="box">
         <h1>{% trans "Ungültig" %}</h1>
-        <p>{% trans "Der Gutschein mit der Nummer "{{ code }}" wurde nicht gefunden." %}</p>
+        <p>{% blocktrans %} Der Gutschein mit der Nummer "{{ code }}" wurde nicht gefunden. {% endblocktrans %}</p>
     </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% load i18n %}
 {% autoescape off %}
-{% trans "Willkommen bei you are hero {{ user.username }}!" %}
+{% blocktrans %} Willkommen bei you are hero {{ user.username }}! {% endblocktrans %}
 
 {% trans "Bitte klicke auf den Link, um deine Registrierung fertigzustellen." %}
 {% block activate_link %}

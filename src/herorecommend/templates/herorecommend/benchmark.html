@@ -3,7 +3,7 @@
 
 
 {% block content %}
-    <h1>{% trans "Recommendations for user {{ user }}" %}</h1>
+    <h1>{% blocktrans %} Recommendations for user {{ user }} {% endblocktrans %}</h1>
     <ul>
         {% for quest in page.object_list %}
             <li>{{ quest.title }} {{ quest.weight }}</li>

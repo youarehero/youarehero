@@ -4,6 +4,6 @@
 {% block content %}
     <div class="box">
         <h1>{% trans "Deaktiviert" %}</h1>
-        <p>{% trans "Der Gutschein mit der Nummer "{{ code }}" ist leider deaktiviert." %}</p>
+        <p>{% blocktrans %} Der Gutschein mit der Nummer "{{ code }}" ist leider deaktiviert. {% endblocktrans %}</p>
     </div>
 {% endblock %}
