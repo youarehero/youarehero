@@ -1,0 +1,26 @@
+{% load static %}
+{% load url from future %}
+<div class="box-image" data-position="7">
+    <div class="image" style="background-image: url({% get_static_prefix %}img/articles/article7.png);"></div>
+    <h1 class="header red">Neue Helden gesucht!</h1>
+    <p class="text">
+    you are hero ist ein virtueller Treffpunkt für Helden und Heldenanwärter. Sogleich nach der Registrierung kreierst
+    Du Deinen Heldencharakter und sammelst Heldenpunkte indem du Quests (Aufgaben und Aufträge) von der Pinnwand
+    erfüllst. Die Herausforderung und zugleich heldenhafte Chance liegt darin, dass alle Quests in der Realität erfüllt
+    werden.
+    <br/>
+    Natürlich könnt auch Ihr auch selbst Quests einstellen, schließlich braucht jeder Held hin und wieder Unterstützung.
+    Das Ziel des Spiels ist ganz einfach: Nicht nur reden, sondern handeln
+    <br/>
+    – also rettet die Welt.
+    </p>
+    {% if not request.user.is_authenticated %}
+        <div class="box-floating">
+            <h1 class="header"><a class="plain" href="#yah-ist-ein-spiel">Helden<br/>bedarf</a></h1>
+            <p>Erfahre mehr, <a href="{% url "registration_register" %}">registriere</a> dich jetzt und beginne noch heute mit dem Spiel!</p>
+            <div class="box-footer">
+                <a href="#yah-ist-ein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>
+            </div>
+        </div>
+    {% endif %}
+</div>
