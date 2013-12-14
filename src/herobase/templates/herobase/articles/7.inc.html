@@ -1,0 +1,33 @@
+{% load static %}
+{% load url from future %}
+<div class="box-image" style="height: 710px;" data-position="7">
+    <div class="image" style="height: 734px; background-image: url({% get_static_prefix %}img/articles/article7.png);"></div>
+    <h1 class="header red" style="height: 25px;">Neue Helden gesucht!</h1>
+    <p class="text">
+    Karl Marx sagte wir brauchen neue Menschen.<br/>
+    Wir sagen, wir brauchen neue Helden.<br/>
+
+    You are HERO ist ein Spiel in zwei Welten. In der Onlinewelt kreierst Du Dir einen Heldencharakter und sammelst
+    Heldenpunkte indem Du Aufgaben oder Aufträge –sogenannte Quests – von unserer Pinnwand annimmst und erfüllst. Die
+    große Herausforderung ist dabei, dass Du diese Quests im realen Leben bewältigen musst. You are HERO -Quests können
+    alles Mögliche beinhalten, von kleineren Alltagsproblemen bis zur Rettung der Menschheit. Jeder Held kann innerhalb
+    der You are HERO-Plattform die angebotenen Quests annehmen, aber auch selbst welche einstellen. Die einzige Regel
+    lautet: Die Erfüllung der Quests darf die Helden kein Geld kosten, denn You are HERO ist Open-Source, frei und
+    kostenlos für jeden, der etwas zum Allgemeinwohl beitragen möchte – egal wie groß oder klein diese Allgemeinheit
+    auch sein mag. Das Ziel des Spiels ist schließlich ganz einfach: Nicht nur reden, sondern handeln – also rettet die
+    Welt.<br/>
+
+    Wenn Du bereits über ausreichende Helden-Skills in Form von Programmieren, Web-Designen, Spielen, Texten oder Denken
+    verfügst bist Du natürlich herzlich willkommen dem Headquarter der Superhelden beizutreten. Melde Dich einfach an
+    und finde heraus, wie Du Deine Helden-Skills noch weiter ausbauen kannst!
+    </p>
+    {% if not request.user.is_authenticated %}
+        <div class="box-floating">
+            <h1 class="header"><a class="plain" href="#yah-ist-ein-spiel">Helden<br/>bedarf</a></h1>
+            <p>Erfahre mehr, <a href="{% url "registration_register" %}">registriere</a> dich jetzt und beginne noch heute mit dem Spiel!</p>
+            <div class="box-footer">
+                <a href="#yah-ist-ein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>
+            </div>
+        </div>
+    {% endif %}
+</div>
