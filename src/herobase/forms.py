@@ -12,6 +12,7 @@ from django.core.urlresolvers import reverse
 from django.forms.models import model_to_dict
 
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import string_concat
 
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
@@ -96,18 +97,19 @@ class QuestCreateForm(forms.ModelForm):
 class QuestFilterForm(forms.Form):
     """The Basic Quest filter form. Uses django-crispy-forms (FormHelper) for bootstrap output. """
     remote = forms.ChoiceField(choices=(
-        ("", u'Vor Ort | von überall'),
+        ("", string_concat(_(u'remotely'), u' | ', _(u'locally'))),
         (True, _(u"remotely")),
         (False, _(u"locally"))
     ), label='')
     time_effort = forms.ChoiceField(choices=(
-        ("", u"Zeitaufwand"),
+        ("", _(u"Zeitaufwand")),
         (1, _(u"Niedrig")),
         (2, _(u"Mittel")),
         (3, _(u"Hoch"))
     ), label='')
     search = forms.CharField(widget=forms.TextInput(
-        attrs={'placeholder': u'Titel, Beschreibung, Ort'}
+        # translators: this is the placeholder for the quest search
+        attrs={'placeholder': _(u'Titel, Beschreibung, Ort')}
     ), label='')
 
     def __init__(self, *args, **kwargs):
@@ -258,13 +260,15 @@ class UserAuthenticationForm(AuthenticationForm):
         email = self.fields['email']
         email.label = ""
         email.widget = forms.TextInput(
-            attrs={'placeholder': 'Identität', 'autocapitalize': 'off', 'autocorrect': 'off'})
+            # translators: placeholder for email address in login form
+            attrs={'placeholder': _(u'Identität'), 'autocapitalize': 'off', 'autocorrect': 'off'})
 
         password = self.fields['password']
         password.label = ""
-        password.widget = forms.PasswordInput(attrs={'placeholder': 'Kennung'})
+        # translators: placeholder for password in login form
+        password.widget = forms.PasswordInput(attrs={'placeholder': _('Kennung')})
 
-        self.helper.add_input(Submit('submit', 'Log in'))
+        self.helper.add_input(Submit('submit', _('Log in')))
 
     def clean_email(self):
         self.cleaned_data['username'] = self.cleaned_data['email']

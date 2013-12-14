@@ -5,13 +5,14 @@ from herobase.models import Quest
 from django.contrib.comments import Comment
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.utils.translation import ugettext as _
 import pytz
 
 
 class Command(BaseCommand):
     args = '<timestamp>'
-    help = 'Sends mails to ADMIN with all new/modified ' +\
-        'quests and comments since <timestamp> (defaults to 1 day ago)'
+    help = _('Sends mails to ADMIN with all new/modified ' +\
+        'quests and comments since <timestamp> (defaults to 1 day ago)')
 
     def handle(self, *args, **options):
         if len(args) > 0:

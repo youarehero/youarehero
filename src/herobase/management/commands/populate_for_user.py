@@ -5,6 +5,7 @@ import random
 
 from django.contrib.auth.models import User
 from django.core.management import BaseCommand
+from django.utils.translation import ugettext as _
 
 from herobase import quest_livecycle
 from herobase.tests.factories import create_quest, create_user
@@ -15,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     args = '<username>'
-    help = 'Create quests and interactions for the specified user'
+    help = _('Create quests and interactions for the specified user')
 
     def handle(self, *args, **options):
         create_counter = int(time.time())

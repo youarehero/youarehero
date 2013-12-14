@@ -41,15 +41,15 @@ DOCUMENTATION_EXPERIENCE = 25
 
 # The classes a User can choose from. (Hero classes)
 CLASS_CHOICES =  (
-    (5, "Scientist"),
-    (1, 'Gadgeteer'),
-    (2, 'Diplomat'),
-    (3, 'Action'),
-    (4, 'Protective'))
+    (5, _("Scientist")),
+    (1, _('Gadgeteer')),
+    (2, _('Diplomat')),
+    (3, _('Action')),
+    (4, _('Protective')))
 SEX_CHOICES =  (
-    (1, 'Herr'),
-    (2, 'Frau'),
-    (3, 'keine'),
+    (1, _('Herr')),
+    (2, _('Frau')),
+    (3, _('keine')),
 )
 
 AVATAR_IMAGES_TRUSTED = sorted(map(
@@ -253,16 +253,21 @@ class Quest(LocationMixin, models.Model):
     START_TIMER = 1
     START_ENOUGH_HEROES = 2
     START_CHOICES = (
-        (START_MANUAL, "Manuell"),
-        (START_TIMER, "Zum Startzeitpunkt"),
-        (START_ENOUGH_HEROES, "Genug Helden"),
+        # translators: refers to the start trigger
+        (START_MANUAL, _("Manuell")),
+        # translators: refers to the start trigger
+        (START_TIMER, _("Zum Startzeitpunkt")),
+        # translators: refers to the start trigger
+        (START_ENOUGH_HEROES, _("Genug Helden")),
     )
 
     END_MANUAL = 0
     END_TIMER = 1
     END_CHOICES = (
-        (END_MANUAL, "Manuell"),
-        (END_TIMER, "Zum End-Datum"),
+        # translators: refers to the end trigger
+        (END_MANUAL, _("Manuell")),
+        # translators: refers to the end trigger
+        (END_TIMER, _("Zum End-Datum")),
     )
 
     start_trigger = models.IntegerField(choices=START_CHOICES, default=START_MANUAL,
@@ -284,7 +289,7 @@ class Quest(LocationMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True, db_index=True)
     modified = models.DateTimeField(auto_now=True, db_index=True)
 
-    min_heroes = models.PositiveIntegerField(default=0, verbose_name="Minimale Helden-Anzahl")
+    min_heroes = models.PositiveIntegerField(default=0, verbose_name=_("Minimale Helden-Anzahl"))
     max_heroes = models.PositiveIntegerField(default=1,
                                              validators=[MinValueValidator(1)],
                                              verbose_name=_(u"Number of heroes"),
@@ -293,8 +298,8 @@ class Quest(LocationMixin, models.Model):
                                                          u"this Quest?"))
     auto_accept = models.BooleanField(
         default=False,
-        verbose_name="Automatisch annehmen",
-        help_text="Helden die sich bewerben werden automatisch angenommen."
+        verbose_name=_("Automatisch annehmen"),
+        help_text=_("Helden die sich bewerben werden automatisch angenommen.")
     )
 
     # still needs heroes
@@ -316,9 +321,9 @@ class Quest(LocationMixin, models.Model):
     TIME_EFFORT_MEDIUM = 2
     TIME_EFFORT_HIGH = 3
     time_effort = models.IntegerField(null=True, verbose_name=_(u"time effort"), choices=(
-        (TIME_EFFORT_LOW, u"Niedrig (500 EP)"),
-        (TIME_EFFORT_MEDIUM, u"Mittel (1000 EP)"),
-        (TIME_EFFORT_HIGH, u"Hoch (2000 EP)"),
+        (TIME_EFFORT_LOW, _(u"Niedrig (500 EP)")),
+        (TIME_EFFORT_MEDIUM, _(u"Mittel (1000 EP)")),
+        (TIME_EFFORT_HIGH, _(u"Hoch (2000 EP)")),
     ))
 
     @property
@@ -373,15 +378,15 @@ class Quest(LocationMixin, models.Model):
 
     def get_state_display(self):
         if self.canceled:
-            return "abgebrochen"
+            return _("abgebrochen")
         elif self.done:
-            return "erledigt"
+            return _("erledigt")
         elif self.started:
-            return "hat begonnen"
+            return _("hat begonnen")
         elif self.expiration_date < now():
-            return "abgelaufen"
+            return _("abgelaufen")
         else:
-            return "offen"
+            return _("offen")
 
     def __unicode__(self):
         """String representation"""
@@ -395,7 +400,7 @@ class Quest(LocationMixin, models.Model):
 class AvatarImageMixin(models.Model):
     avatar_storage = FileSystemStorage(location=settings.ASSET_ROOT)
     image = models.FilePathField(blank=True, null=True)
-    uploaded_image = models.ImageField(upload_to="avatar_uploads", null=True, blank=True, verbose_name="Eigenes Bild hochladen")
+    uploaded_image = models.ImageField(upload_to="avatar_uploads", null=True, blank=True, verbose_name=_("Eigenes Bild hochladen"))
 
     def clean(self):
         images = AVATAR_IMAGES_TRUSTED if self.trusted else AVATAR_IMAGES

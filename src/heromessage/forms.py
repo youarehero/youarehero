@@ -38,7 +38,7 @@ class MessageForm(forms.ModelForm):
 
 class TeamMessageForm(forms.Form):
     team = forms.ChoiceField(
-        label = "Recipient Team",
+        label = _("Recipient Team"),
         choices = [(entry['team'], entry['team']) for entry in UserProfile.objects.values('team').exclude(team="").distinct()],
         widget=autocomplete_light.ChoiceWidget('TeamAutocomplete')
     )

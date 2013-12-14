@@ -41,7 +41,7 @@ class QuestState(State):
 
     def accept_all_errors(self):
         if not self.quest.open:
-            return "Can't accept all if quest not open."
+            return _(u"Can't accept all if quest not open.")
     can_accept_all = there_are_no(accept_all_errors)
 
     def accept_all(self):
@@ -52,13 +52,13 @@ class QuestState(State):
 
     def start_errors(self):
         if self.quest.started:
-            return "Can't start a started quest."
+            return _("Can't start a started quest.")
         if self.quest.canceled:
-            return "Can't start a canceled quest."
+            return _("Can't start a canceled quest.")
         if self.quest.done:
-            return "Can't start a done quest."
+            return _("Can't start a done quest.")
         if self.quest.adventures.accepted().count() < self.quest.min_heroes:
-            return "Can't start quest if there aren't enough heroes."
+            return _("Can't start quest if there aren't enough heroes.")
     can_start = there_are_no(start_errors)
 
     def start(self):
@@ -82,9 +82,9 @@ class QuestState(State):
 
     def cancel_errors(self):
         if self.quest.canceled:
-            return "Can't cancel a canceled quest."
+            return _("Can't cancel a canceled quest.")
         if self.quest.done:
-            return "Can't cancel a done quest."
+            return _("Can't cancel a done quest.")
     can_cancel = there_are_no(cancel_errors)
 
     def cancel(self):
@@ -98,13 +98,13 @@ class QuestState(State):
 
     def done_errors(self):
         if not self.quest.started:
-            return "Can't mark a quest as done that isn't started."
+            return _("Can't mark a quest as done that isn't started.")
 
         if self.quest.canceled:
-            return "Can't mark a canceled quest as done."
+            return _("Can't mark a canceled quest as done.")
 
         if self.quest.done:
-            return "Can't mark a done quest as done."
+            return _("Can't mark a done quest as done.")
     can_done = there_are_no(done_errors)
 
     def done(self):
@@ -149,9 +149,9 @@ class AdventureState(State):
 
     def accept_errors(self):
         if not self.quest.open:
-            return "Can't accept heroes into a quest that isn't open."
+            return _("Can't accept heroes into a quest that isn't open.")
         if not self.quest.adventures.applying().filter(user=self.hero).exists():
-            return "Can't accept a hero who is not applying."
+            return _("Can't accept a hero who is not applying.")
     can_accept = there_are_no(accept_errors)
 
     def accept(self):
@@ -174,13 +174,13 @@ class AdventureState(State):
 
     def apply_errors(self):
         if not self.quest.open:
-            return "Can not apply for a quest that isn't open."
+            return _("Can not apply for a quest that isn't open.")
         if self.quest.adventures.filter(user=self.hero, canceled=False).exists():
-            return "Can only apply once."
+            return _("Can only apply once.")
         if self.quest.adventures.filter(user=self.hero, accepted=True, canceled=False).exists():
-            return "Can not apply after being accepted."
+            return _("Can not apply after being accepted.")
         if not self.quest.owner.get_profile().trusted and not self.hero.profile.is_legal_adult():
-            return "Minors cannot apply for untrusted users' quests"
+            return _("Minors cannot apply for untrusted users' quests")
     can_apply = there_are_no(apply_errors)
 
     def apply(self):
@@ -206,10 +206,10 @@ class AdventureState(State):
 
     def reject_errors(self):
         if not self.quest.open:
-            return "Can't reject heroes when a quest isn't open."
+            return _("Can't reject heroes when a quest isn't open.")
         if not self.quest.adventures.filter(user=self.hero, accepted=False, rejected=False,
                                             canceled=False).exists():
-            return "Can't reject a hero who is not applying."
+            return _("Can't reject a hero who is not applying.")
     can_reject = there_are_no(reject_errors)
 
     def reject(self):
@@ -223,11 +223,11 @@ class AdventureState(State):
 
     def cancel_errors(self):
         if self.quest.started or self.quest.canceled or self.quest.done:
-            return "You can't cancel participation at this time."
+            return _("You can't cancel participation at this time.")
         if self.quest.adventures.filter(user=self.hero, canceled=True).exists():
-            return "You can't cancel multiple times."
+            return _("You can't cancel multiple times.")
         if not self.quest.adventures.filter(user=self.hero).exists():
-            return "You need to apply before cancelling."
+            return _("You need to apply before cancelling.")
     can_cancel = there_are_no(cancel_errors)
 
     def cancel(self):

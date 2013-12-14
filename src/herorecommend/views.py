@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_POST
+from django.utils.translation import ugettext as _
 from herobase.models import Quest
 from herorecommend import recommend_top
 
@@ -28,4 +29,4 @@ def rate(request, quest_id, rating):
     quest_rating.rating = rating
 
     quest_rating.save()
-    return HttpResponse("Done")
+    return HttpResponse(_("Done"))

@@ -248,7 +248,7 @@ class achievement(NotificationTypeBase):
 
     @classmethod
     def get_text(cls, notification):
-        return u"Neue Errungenschaft: " + notification.target.title
+        return _(u"Neue Errungenschaft: %s") % notification.target.title
 
     @classmethod
     def get_image(cls, notification):

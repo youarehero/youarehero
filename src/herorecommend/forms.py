@@ -4,6 +4,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms
 from models import UserSelectionProfile, SKILLS
+from django.utils.translation import ugettext as _
 
 
 logger = logging.getLogger(__name__)
@@ -35,7 +36,7 @@ class UserSkillEditForm(forms.ModelForm):
         #self.helper.form_action = 'user-edit'
         self.helper.form_class = 'form-horizontal'
 
-        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.add_input(Submit('submit', _('Submit')))
 
     class Meta:
         model = UserSelectionProfile
