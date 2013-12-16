@@ -138,7 +138,7 @@
   </div>
 </div>
 
-<div class="arg-agenda">
+<div class="row arg-agenda">
   <div class="col-md-4">
     <div class="info">
       <i class="icon-yah-hand-right"></i>
@@ -155,7 +155,6 @@
       </p>
     </div>
   </div>
-
   {% if not request.user.is_authenticated %}
   <div class="col-md-8 centering">
     <div class="linkbox col-md-8 col-md-offset-1">
@@ -168,122 +167,67 @@
   </div>
   {% else %}
   <div class="col-md-4">
-    <div class="hero-box trashley">
+      <div class="hero-box trashley">
 
-        <div class="background">
-            <a style="display: inline-block; height:100%; width:100%" href="https://www.youtube.com/watch?v=3Qlyv0TtBLw&list=PL-l5UIcgDrFIPR9XtOdJWoIgb-I7goApy"></a>
-        </div>
-      <div class="text">
-        <h1>Trashley Treasure</h1>
-        <h2>28./29. September</h2>
-        <p>
-        Man erzählt sich, ihre Mutter sei eine Nähmaschine und ihr Vater eine Pyrolyseanlage. An ihrem
-        Wochenende wird der Mülleimer wieder leer und der Kleiderschrank voll.
-        </p>
-        <p>
-        <h3>Samstag, 28.9.</h3>
-        HfG Karlsruhe, Lichthöfe
-        </p>
-        <p>10:00       <br/> Treffen, kurze Einführung</p>
-        <p>10:30       <br/> Recycling, was bedeutet das genau? (Vortrag)</p>
-        <p>11:00       <br/> Videovortrag</p>
-        <p>12:00-13:30 <br/> Mittagspause</p>
-        <p>13:30-19:00 <br/> Aus Müll mach Mode! (Workshop)</p>
+              <div class="background">
+              <a style="display: inline-block; height:100%; width:100%" href="https://www.youtube.com/watch?v=3Qlyv0TtBLw&list=PL-l5UIcgDrFIPR9XtOdJWoIgb-I7goApy"></a>
+              </div>
 
-        <p>
-        <h3>Sonntag, 29.9</h3>
-        HfG Karlsruhe, Lichthöfe
-        </p>
-        <p>11:00 <br/> Streetart und was es noch so alles gibt Vortrag</p>
-        <p>12:00 <br/> … und ab in die Stadt (Workshop)</p>
-        <p>16:00 <br/> Ende</p>
+          <div class="text">
+            <h1>{% trans "Trashley Treasure" %}</h1>
+            {% blocktrans %}
+            Man erzählt sich, ihre Mutter sei eine Nähmaschine und ihr Vater eine Pyrolyseanlage. An ihrem
+            Wochenende wird der Mülleimer wieder leer und der Kleiderschrank voll.
+            {% endblocktrans %}
+          </div>
       </div>
-    </div>
-    <div class="hero-box citizeng">
+  </div>
+  <div class="col-md-4">
+      <div class="hero-box glitch">
+          <div class="background"></div>
+          <div class="text">
+            <h1>{% trans "The Glitch" %}</h1>
+            {% blocktrans %}
+            Das Internet? Computer? Panik? The Glitch ist ein Hacker. Er ist aber auch lieb zu seinen Nachbarn.
+            Sein Wochenende ist freie Information.
+            {% endblocktrans %}
+          </div>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+      <div class="hero-box citizeng">
+          <div class="background"></div>
+          <div class="text">
+            <h1>{% trans "Citizen G" %}</h1>
+            {% blocktrans %}
+            Er beweist, dass man auch ohne schottische Ahnen Schotte sein kann; oder eben, was und wann immer man
+            sein möchte. Hier geht es um interkulturellen Austausch und Röcke.
+            {% endblocktrans %}
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4">
+    <div class="hero-box maitre">
       <div class="background"></div>
       <div class="text">
-        <h1>Citizen G</h1>
-        <h2>12./13. Oktober</h2>
+        <h1>{% trans "Ma&icirc;tre" %}</h1>
+        {% blocktrans %}
         Er beweist, dass man auch ohne schottische Ahnen Schotte sein kann; oder eben, was und wann immer man
-        sein möchte. Hier geht es um interkulturellen Austausch und Röcke.
-        <p>
-        <h3>Samstag, 12.10.</h3>
-        Innenstadt Karlsruhe,
-        bei Regen HfG Karlsruhe
-        </p>
-        <p>11:00 <br/> Intercultural Scrabble (Workshop)</p>
-        <p>
-        13:30 <br/> Schnupperkurse mit Hand und Fuß:<br>
-        – Französisch für Liebhaber<br>
-        – Isländisch für Vikinger<br>
-        – Spanisch für Leidenschaftliche
-        </p>
-        <p>16:00 <br/> Der globale Held (Diskussionsforum)</p>
-
-        <p>
-        <h3>Sonntag, 13.10.</h3>
-        Schloßgarten Karlsruhe,
-        bei Regen HfG Karlsruhe
-        </p>
-        <p>11:00 <br/> Live Action Roleplaying – LARP und sein kultureller Bezug (Vortrag)</p>
-        <p>13:00 <br/> Schwertkampf in Praxis und Theorie (Einführungslehrstunde)</p>
-        <p>16:00 <br/> HIGHLAND-CHARGE – Die Schotten sind los</p>
+        Gelangweilt vom Essen, begann er zu kochen. Er setzt sich ein für all die entrechteten Zutaten und weist
+        ihnen einen Platz zu, in seinem Kochtopf. An diesem Wochenende geht es um die Sicherung unserer Ernährung.
+        {% endblocktrans %}
       </div>
     </div>
   </div>
   <div class="col-md-4">
-    <div class="hero-box glitch">
+    <a href="{% url "registration_register" %}">
+      <div class="hero-box you">
         <div class="background"></div>
-        <div class="text">
-          <h1>The Glitch</h1>
-          <h2>5./6. Oktober</h2>
-          Das Internet? Computer? Panik? The Glitch ist ein Hacker. Er ist aber auch lieb zu seinen Nachbarn.
-          Sein Wochenende ist freie Information.
-          <p>
-          <h3>Samstag, 5.10.</h3>
-          HfG Karlsruhe, Lichthöfe
-          </p>
-          <p>10:00 <br/> Treffen, kurze Einführung</p>
-          <p>10:30 <br/> Software &amp; Space (Vortrag)</p>
-          <p>11:00 <br/> Hilfe, mein Computer hasst mich! (Workshop)</p>
-          <p>12:00-13:30 <br/> Mittagspause</p>
-          <p>13:30 <br/> Wir machen Spiele 1/2 (Workshop)</p>
-          <p>15:00 <br/> Neue Spielkulturen (Vortrag)</p>
-          <p>15:30-9:00 <br/> Wir machen Spiele 2/2 (Workshop)</p>
-
-          <p>
-          <h3>Sonntag, 6.10.</h3>
-          HfG Karlsruhe, Lichthöfe
-          </p>
-          <p>11:00 <br/> Datenschutz: Was &amp; Warum? (Vortrag)</p>
-          <p>12:00-13:00 <br/> Mittagspause</p>
-          <p>13:00 <br/> Lockpicking (Workshop)</p>
-          <p>13:00 <br/> Projekte mit Open Source Programmen: Einführung (Workshop)</p>
-        </div>
-    </div>
-    <div class="hero-box maitre">
-      <div class="background"></div>
-      <div class="text">
-        <h1>Ma&icirc;tre</h1>
-        <h2>19./20. Oktober</h2>
-        Gelangweilt vom Essen, begann er zu kochen. Er setzt sich ein für all die entrechteten Zutaten und weist ihnen
-        einen Platz zu, in seinem Kochtopf. An diesem Wochenende geht es um die Sicherung unserer Ernährung.
-        <p>
-        <h3>Samstag, 19.10.</h3>
-        HfG Karlsruhe, Lichthöfe
-        </p>
-        <p>10:00 <br/> Biowahn – Wo beginnt er, wo endet er? (Vortrag)</p>
-        <p>11:00 <br/> Schnitzeljagd – Urbaner Speiseplan (Workshop)</p>
-        <p>14:30 <br/> gemeinsames Kochen und Mittagessen<br/>
-        anschließend: Gesprächsrunde mit "Tischlein deck dich"</p>
-        <p>
-        </h3>Sonntag, 20.10.<//h3>
-        HfG Karlsruhe, Lichthöfe
-        </p>
-        <p>11:00 <br/> Containern Was ist verdorben und was nicht?</p>
-        <p>13:00 <br/> Ein Pop-Up Restaurant an einem Tag gebaut (Workshop)</p>
+        <div class="text"><h1>Du</h1></div>
       </div>
-    </div>
+    </a>
   </div>
   {% endif %}
 </div>
