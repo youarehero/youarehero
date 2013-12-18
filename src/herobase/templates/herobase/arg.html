@@ -188,17 +188,6 @@
       </p>
     </div>
   </div>
-  {% if not request.user.is_authenticated %}
-  <div class="col-md-8 centering">
-    <div class="linkbox col-md-8 col-md-offset-1">
-        <a href="{% url "registration_register" %}">
-            <i class="icon-yah-hand-right"></i>
-            <span>{% trans "Registrieren" %}</span>
-            <i class="icon-yah-hand-left"></i>
-        </a>
-    </div>
-  </div>
-  {% else %}
   <div class="col-md-4">
       <div class="hero-box trashley">
 
@@ -262,8 +251,18 @@
       </div>
     </a>
   </div>
-  {% endif %}
 </div>
+{% if not request.urser.is_authenticated %}
+<div class="row centering">
+    <div class="linkbox col-sm-8 col-sm-offset-2">
+        <a href="{% url "registration_register" %}">
+            <i class="icon-yah-hand-right"></i>
+            <span>{% trans "Registrieren" %}</span>
+            <i class="icon-yah-hand-left"></i>
+        </a>
+    </div>
+</div>
+{% endif %}
 
 {% endblock %}
 
