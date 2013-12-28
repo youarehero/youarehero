@@ -6,7 +6,7 @@
     <div class="box">
         {% if first_login %}
             <h3>{% trans "Willkommen bei You are Hero" %}</h3>
-            <p>{% trans "Suche dir jetzt ein Profilbild aus und schreib' wenn du möchtest ein paar Zeilen über dich." %}</p>
+            <p>{% trans "Chose a profile picture or upload your own and write some lines about yourself if you want to." %}</p>
         {% endif %}
         <form method="POST" action="" enctype="multipart/form-data" class="clearfix">
         {% crispy form %}

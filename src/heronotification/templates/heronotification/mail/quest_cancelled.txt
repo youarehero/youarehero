@@ -1,14 +1,16 @@
 {% load i18n %}
 {% blocktrans %}
 
-Notbremse
 
-Verehrte Damen und Herren,
-Sie sind registriert für die Quest {{ target.title }}.
-Lieder muss ich sie darüber in Kenntnis setzen, dass diese Quest abgebrochen werden musste.
-Bei Wiederaufnahme der Quest benachrichtigen wir Sie umgehend.
+Emergency break
 
-Hochachtungsvoll,
-Ihr Butler von you are hero
+Dear Ladies and Gentlemen,
+You have been registered for the quest %(target.title)s.
+Unfortunately I have to inform you that this quest had to be aborted.
+Should it be resumed, I will inform you promptly.
+
+Respectfully,
+Your you are hero butler
+
 
 {% endblocktrans %}

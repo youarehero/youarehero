@@ -8,8 +8,9 @@ https://{{ site.domain }}{% url "registration_activate" activation_key=activatio
 {% endblock %}
 
 {% blocktrans %}
-Viel Freude mit you are hero,
+We wish you lots of fun with you are hero,
 
-das you are hero Team
+your you are hero team.
+
 {% endblocktrans %}
 {% endautoescape %}
