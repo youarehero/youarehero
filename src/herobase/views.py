@@ -190,24 +190,24 @@ def quest_detail_view(request, quest_id):
     else:
         adventure = None
     if is_owner:
-        butler_text = _(u'Dies ist ihre Quest.')
+        butler_text = _(u'Dies ist Deine Quest.')
     elif not adventure:
         butler_text = _(
-            u"This quest needs heroes. "
-            u"Apply now by clicking the ✓ Button on the right.")
+            u"This quest needs heroes. Apply now by clicking the ✓ Button on the right.")
+
     elif adventure.accepted:
         butler_text = _(
-            u"Your application has been accepted. "
-            u"Press X to withdraw your participation.")
+            u"Your application has been accepted. Press X to withdraw your participation.")
+
     elif adventure.rejected:
         butler_text = _(
-            u"You have applied for this quest but the owner "
-            u"didn't want you to participate in it.")
+            u"You have applied for this quest but unfortunately the owner rejected your offer of participation.")
+
     elif not adventure.accepted and not adventure.rejected:
         butler_text = _(
-            u"You are currently applying for this quest. Press X to cancel."
-            u" You will be notified once the creator has "
-            u"decided about our participation")
+            u"You are currently applying for this quest. You will be notified once the creator has decided about our participation. Press X to cancel you application.")
+
+
     else:
         butler_text = u"Hello"
 

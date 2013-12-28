@@ -63,14 +63,14 @@
       <p>
       {% url 'hotline' as hotline_url %}
       {% blocktrans %}
-      Wenn wirklich nichts mehr geht, kann die Community die etablierten Helden
-      <a href="{{ hotline_url }}">um Rat bitten.</a>
+      In case of great need, the community will be able to turn to the elder heroes        <a href=\"%(hotline_url)s\">for advice.</a>
         {% endblocktrans %}
       </p>
     </div>
   </div>
   <div class="col-md-6">
     <div class="box">
+
       <h1>{% trans "Wie funktioniert you are hero?" %}</h1>
       <div>
         <h2><i class="icon-caret-down"></i> {% trans "Profil verwalten" %}</h2>
@@ -132,13 +132,13 @@
         <h2><i class="icon-caret-down"></i> {% trans "Nachrichten versenden" %}</h2>
         <p>
         {% blocktrans %}
-        Unter dem Icon, das mit "Nachrichten" gekennzeichnet ist und wie ein Briefumschlag aussieht, findet ihr eure
-        interne Mailbox.  Dort könnt ihr selbst Nachrichten erstellen (dazu solltet ihr aber den Nutzernamen der Person
-        kennen, die ihr anschreiben wollt) und euch alle Nachrichten anschauen, die ihr gesendet und empfangen habt.
-        {% endblocktrans %}
+The icon that says messages and that looks like an envelope provides you with your platforminternal mailbox.There you can write your own messages to other users (you’ll need to know the username of the person you want to contact though) and check out all messages that you have sent and received.{% endblocktrans %}
         </p>
       </div>
       <div>
+
+
+
         <h2><i class="icon-caret-down"></i> {% trans "Benachrichtigungen" %}</h2>
         <p>
         {% blocktrans %}

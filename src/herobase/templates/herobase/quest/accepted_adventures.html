@@ -3,7 +3,7 @@
 <div class="participants">
     {% if adventures|length > 1 %}
         <a href="{% url 'message_quest' quest.pk 'participants' %}" data-toggle="tooltip"
-            data-title="{% trans "Send a message to all applicants" %}" class="pull-right">
+            data-title="{% trans "Send a message to all participants" %}" class="pull-right">
             <i class="icon-mail-all"></i>
         </a>
     {% endif %}

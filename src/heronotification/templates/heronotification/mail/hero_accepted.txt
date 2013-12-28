@@ -1,13 +1,13 @@
 {% load i18n %}
 {% blocktrans %}
 
-Glückwunsch
+Congratulations
 
-Verehrte Damen und Herren,
-Ihre Bewerbung für die Quest {{ target.title }} wurde mit Freuden akzeptiert!
-Weitere Informationen erhalten sie unter http://{{ site.domain }}{{ target.get_absolute_url }}.
+Dear Ladies and Gentlemen,
+Your application for the quest {{ target.title }} has happily been accepted!
+More information you can find here http://{{ site.domain}}{{ target.get_absolute_url }}.
 
-Hochachtungsvoll,
-Ihr Butler von you are hero
+Respectfully,
+Your you are hero butler
 
 {% endblocktrans %}

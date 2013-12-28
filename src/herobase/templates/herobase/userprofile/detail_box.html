@@ -33,12 +33,13 @@
                                 {% comment %}<dd><a href="{% url herobase.views.team user.get_profile.team %}">{{ user.get_profile.team }}</a></dd>{% endcomment %}
                                 <dd>{{ user.get_profile.team }}</dd>
                             {% endif %}
+
                             <dt>{% trans "Member since" %} </dt>
                             <dd>{{ user.get_profile.created|timesince }}</dd>
                             {#                {% if user.get_profile.public_location %}#}
                             {#                    <dt>{% trans "Region" %}</dt><dd>{{ user.get_profile.location }}</dd>#}
                             {#                {% endif %}#}
-                            <dt>{% trans "Quests done" %}</dt>
+                            <dt>{% trans "Finished quests" %}</dt>
                             <dd>{{ user.get_profile.quests_done }}</dd>
                             <dt>{% trans "Quests created" %}</dt>
                             <dd>{{ user.get_profile.quests_created }}</dd>

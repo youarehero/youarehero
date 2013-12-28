@@ -47,7 +47,7 @@
                 </form>
             {% else %}
             {% url 'auth_login' as login_url %}
-            <p>{% blocktrans %}Bitte <a href="{{ login_url }}">melde dich an</a> um zu kommentieren.{% endblocktrans %}</p>
+            <p>{% blocktrans %}Please <a href=\"%(login_url)s\">log in</a> to comment.{% endblocktrans %}</p>
             {% endif %}
         </div>
     </div>

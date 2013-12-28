@@ -233,8 +233,8 @@ class UserProfilePrivacyForm(forms.ModelForm):
 class UserAuthenticationForm(AuthenticationForm):
     """Custom login form."""
     error_messages = AuthenticationForm.error_messages
-    error_messages.update({'invalid_login': _("Please enter a correct e-mail address and password. "
-                                              "Note that both fields are case-sensitive.")})
+    error_messages.update({'invalid_login': _("Please enter a correct e-mail address and password. Note that both fields are case-sensitive.")})
+
     email = forms.CharField(label=_("E-mail"), max_length=75)
     next = forms.CharField(widget=forms.HiddenInput(), initial="/")
 

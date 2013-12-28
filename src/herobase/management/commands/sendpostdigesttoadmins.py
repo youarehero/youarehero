@@ -11,8 +11,7 @@ import pytz
 
 class Command(BaseCommand):
     args = '<timestamp>'
-    help = _('Sends mails to ADMIN with all new/modified ' +\
-        'quests and comments since <timestamp> (defaults to 1 day ago)')
+    help = _('Sends mails to ADMIN with all new/modified quests and comments since <timestamp> (defaults to 1 day ago)')
 
     def handle(self, *args, **options):
         if len(args) > 0:

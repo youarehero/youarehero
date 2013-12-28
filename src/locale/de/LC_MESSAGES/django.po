@@ -1704,7 +1704,6 @@ msgid ""
 "        Helden-Hilfe benötigst!\n"
 "        "
 msgstr ""
-"\n"
 "This is a serious matter!"
 "We want to prove that games and playing can save the world."
 "How? By providing the means to have fun while doing good."
@@ -1712,7 +1711,6 @@ msgstr ""
 "In our <a href=\"%(manifesto_url)s\">Manifest</a>  you can check out how "
 "you are hero is planning on approaching this goal."
 "Or you just add your own Quest if you need the help of heroes or see something that needs to be done."
-"        "
 
 #: herobase/templates/herobase/public_home.html:135
 msgid "k&uuml;rzlich abgeschlossene Quests"
@@ -1857,10 +1855,13 @@ msgstr "compose"
 msgid "Vorgeschlagene Quests"
 msgstr "Suggested quests"
 
-#: herobase/templates/herobase/quest/accepted_adventures.html:6
 #: herobase/templates/herobase/quest/unaccepted_adventures.html:6
-msgid "Sende Nachricht an %(username)s"
-msgstr "Send a message to %(username)s"
+msgid "Sende Nachricht an alle Bewerbenden"
+msgstr "Send a message to all applicants"
+
+#: herobase/templates/herobase/quest/accepted_adventures.html:6
+msgid "Sende Nachricht an alle Teilnehmenden"
+msgstr "Send a message to all participants"
 
 #: herobase/templates/herobase/quest/accepted_adventures.html:10
 msgid "Teilnehmende"
@@ -1869,8 +1870,8 @@ msgstr "Participants"
 #: herobase/templates/herobase/quest/accepted_adventures.html:27
 #: herobase/templates/herobase/quest/unaccepted_adventures.html:35
 #: herobase/templates/herobase/userprofile/detail_box.html:63
-#, fuzzy, python-format
-msgid "Sende Nachricht an %(username)s "
+#, python-format
+msgid "Sende Nachricht an %(name)s "
 msgstr "Send a message to %(name)s"
 
 #: herobase/templates/herobase/quest/comments_box.html:6
