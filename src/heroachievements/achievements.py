@@ -51,4 +51,6 @@ done_quest_owner_50 = Achievement("done_quest_owner_50", _(u"Eminenz"),
 
 commented_3 = Achievement("commented_3", _(u"Kommentator"), _(u"Kommentiere 3 Quests"))
 
+heldsein = Achievement("heldsein", _(u"Gründer-Held"), _(u"Nimm am \"Held sein\"-ARG teil"))
+
 # liked_50 = Achievement("liked_50", "Jedermanns Freund", "Like ")
