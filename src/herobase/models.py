@@ -254,7 +254,7 @@ class Quest(LocationMixin, models.Model):
     START_ENOUGH_HEROES = 2
     START_CHOICES = (
         # translators: refers to the start trigger
-        (START_MANUAL, _("Manuell")),
+        (START_MANUAL, _("Manually")),
         # translators: refers to the start trigger
         (START_TIMER, _("At the starting time")),
         # translators: refers to the start trigger

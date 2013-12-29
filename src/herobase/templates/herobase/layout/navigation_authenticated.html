@@ -44,7 +44,7 @@
       {% ifstartswith "/messages" %}
       <ul class="nav sub">
         <li class="{% ifactive "message_list_in" %}active{% endifactive %}">
-        <a href="{% url "message_list_in" %}"><i class="icon-inbox icon-2x"></i><br>{% trans "Eingang" %}</a>
+        <a href="{% url "message_list_in" %}"><i class="icon-inbox icon-2x"></i><br>{% trans "inbox" %}</a>
         </li>
         <li class="{% ifactive "message_list_out" %}active{% endifactive %}">
         <a href="{% url "message_list_out" %}"><i class="icon-share icon-2x"></i><br>{% trans "outbox" %}</a>

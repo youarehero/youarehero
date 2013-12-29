@@ -3,7 +3,7 @@
 {% if request.user.is_authenticated %}
     <ul class="page-tabs">
         <li class="{% ifactive "quest_my" %}on{% endifactive %}">
-            <a href="{% url "quest_my" %}">{% trans "Alle" %}</a></li>
+            <a href="{% url "quest_my" %}">{% trans "All" %}</a></li>
         <li class="{% ifactive "quest_my_joined" %}on{% endifactive %}">
             <a href="{% url "quest_my_joined" %}">{% trans "Accepted" %}</a></li>
         <li class="{% ifactive "quest_my_created" %}on{% endifactive %}">
