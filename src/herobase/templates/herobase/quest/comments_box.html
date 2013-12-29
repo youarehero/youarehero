@@ -20,7 +20,7 @@
                 {% get_comment_form for quest as form %}
                 <form id="comment-form" action="{% comment_form_target %}" method="POST">
                     <fieldset>
-                        <legend>{% trans "Kommentieren" %}</legend>
+                        <legend>{% trans "Comment" %}</legend>
                         {% csrf_token %}
                         <div id="div_id_{{ form.comment.name }}"
                              class="clearfix control-group">

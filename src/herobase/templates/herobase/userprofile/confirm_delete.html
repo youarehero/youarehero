@@ -6,18 +6,18 @@
         <h1>{% trans "Profil löschen" %}</h1>
         <div class="clearfix">
             <div class="alert alert-danger">
-                <strong>{% trans "Achtung!" %}</strong>
+                <strong>{% trans "Warning!" %}</strong>
                 {% blocktrans %}
-                  Bist du sicher, dass du dein Profil bei you are hero
-                  <strong>unwiderruflich löschen</strong> möchtest?
+                  Are you sure that you want to <strong>irrevocably delete</strong> 
+                  your profile on you are hero?
                 {% endblocktrans %}
             </div>
             <form method="POST" action="">
                 {% csrf_token %}
                 <a href="{% url 'userprofile_edit' %}" class="btn btn-primary col-sm-3">
-                {% trans "Nein, lieber nicht" %}</a>
+                {% trans "No, preferrably not" %}</a>
                 <button type="submit" name="submit" value="Ja" class="btn btn-danger col-sm-3 pull-right">
-                    <span>{% trans "Ja, sicher löschen" %}</span>
+                    <span>{% trans "Yes, surely delete" %}</span>
                 </button>
             </form>
         </div>

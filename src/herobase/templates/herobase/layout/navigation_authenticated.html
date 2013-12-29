@@ -13,7 +13,7 @@
     <div class="nav-icons">
       <ul class="nav">
         <li class="{% ifstartswith "/arg/" %}active{% endifstartswith %}">
-            <a href="{% url "arg" %}"><i class="icon-puzzle-piece"></i><br>{% trans "Das Spiel" %}</a></li>
+            <a href="{% url "arg" %}"><i class="icon-puzzle-piece"></i><br>{% trans "The game" %}</a></li>
         <li class="{% ifstartswith "/quest/" %}active{% endifstartswith %}">
             <a href="{% url "quest_list" %}"><i class="icon-pushpin"></i><br>{% trans "Quests" %}</a></li>
         <li class="{% ifstartswith "/messages" %}active{% endifstartswith %}">
@@ -23,21 +23,21 @@
             <b>{{ unread_messages_count }}</b>
             {% endif %}
             {% endwith %}
-        </i><br>{% trans "Nachrichten" %}</a></li>
+        </i><br>{% trans "Messages" %}</a></li>
         <li class="{% ifstartswith "/leader/" %}active{% endifstartswith %}">
-            <a href="{% url "leader_board" %}"><i class="icon-trophy"></i><br>{% trans "Rangliste" %}</a></li>
+            <a href="{% url "leader_board" %}"><i class="icon-trophy"></i><br>{% trans "Leaderboard" %}</a></li>
       </ul>
 
       {% ifstartswith "/quest" %}
       <ul class="nav sub">
         <li class="{% ifstartswith "/quest/list" %}active{% endifstartswith %}">
-        <a href="{% url "quest_list" %}"><i class="icon-pushpin icon-2x"></i><br/>{% trans "Pinn<br/>wand" %}</a>
+        <a href="{% url "quest_list" %}"><i class="icon-pushpin icon-2x"></i><br/>{% trans "Billboard" %}</a>
         </li>
         <li class="{% ifactive "quest_create" %}active{% endifactive %}">
-        <a href="{% url "quest_create" %}"><i class="icon-edit-sign icon-2x"></i><br/>{% trans "Neue<br/>Quest" %}</a>
+        <a href="{% url "quest_create" %}"><i class="icon-edit-sign icon-2x"></i><br/>{% trans "New Quest" %}</a>
         </li>
         <li class="{% ifstartswith "/quest/my" %}active{% endifstartswith %}">
-        <a href="{% url "quest_my" %}"><i class="icon-inbox icon-2x"></i><br/>{% trans "Meine<br/>Quests" %}</a>
+        <a href="{% url "quest_my" %}"><i class="icon-inbox icon-2x"></i><br/>{% trans "My Quests" %}</a>
         </li>
       </ul>
       {% endifstartswith %}
@@ -47,10 +47,10 @@
         <a href="{% url "message_list_in" %}"><i class="icon-inbox icon-2x"></i><br>{% trans "Eingang" %}</a>
         </li>
         <li class="{% ifactive "message_list_out" %}active{% endifactive %}">
-        <a href="{% url "message_list_out" %}"><i class="icon-share icon-2x"></i><br>{% trans "Ausgang" %}</a>
+        <a href="{% url "message_list_out" %}"><i class="icon-share icon-2x"></i><br>{% trans "outbox" %}</a>
         </li>
         <li class="{% ifactive "message_create" %}active{% endifactive %}">
-        <a href="{% url "message_create" %}"><i class="icon-pencil icon-2x"></i><br>{% trans "Verfassen" %}</a></li>
+        <a href="{% url "message_create" %}"><i class="icon-pencil icon-2x"></i><br>{% trans "compose" %}</a></li>
       </ul>
       {% endifstartswith %}
     </div>

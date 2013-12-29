@@ -1,15 +1,2 @@
 {% load i18n %}
-{% blocktrans %}
-
-Startschuss
-
-Verehrte Damen und Herren,
-Sie sind registriert für die Quest {{ target.title }}.
-Gerne möchte ich ihnen mitteilen, dass für diese Quest soeben der Startschuss fiel.
-
-Sie können die Quest unter http://{{ site.domain }}{{ target.get_absolute_url }} erreichen.
-
-Hochachtungsvoll,
-Ihr Butler von you are hero
-
-{% endblocktrans %}
+{% blocktrans %}\n\nStarting shot\n\nDear Ladies and Gentlemen,\nYou are registered for the quest {{ target.title }}.\nI herby inform you, that the quest has officially started now.\n\nYou can find the quest here http://{{ site.domain }}{{ target.get_absolute_url }}.\n\nRespectfully,\nYour you are hero butler\n\n{% endblocktrans %}

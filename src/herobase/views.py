@@ -190,7 +190,7 @@ def quest_detail_view(request, quest_id):
     else:
         adventure = None
     if is_owner:
-        butler_text = _(u'Dies ist Deine Quest.')
+        butler_text = _(u'This is your quest.')
     elif not adventure:
         butler_text = _(
             u"This quest needs heroes. Apply now by clicking the ✓ Button on the right.")

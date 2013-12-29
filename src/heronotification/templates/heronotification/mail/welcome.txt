@@ -1,15 +1,2 @@
 {% load i18n %}
-{% blocktrans %}
-
-Willkommen!
-
-Verehrte Damen und Herren,
-mein Name ist Butler und ich möchte sie herzlich auf http://{{ site.domain }} begrüßen.
-Von jetzt an bis in alle Heldenzukunft stehe ich ihnen mit Rat und Tat zur Seite.
-
-Meine Begrüßungsempfehlung für Sie ist der Besuch unserer DOs & DON'Ts.
-
-Hochachtungsvoll und auf bald,
-Ihr Butler von you are hero
-
-{% endblocktrans %}
+{% blocktrans %}\n\nWelcome!\n\nDear Ladies and Gentlemen,\nI am the butler and would like to welcome you at http://{{ site.domain }}.\nFrom now on I will aid you as best as I can with help, hints and notifications.\n\nMy recommendation for the beginning would be the Do's and Don'ts of our website.\n\nRespectfully,\nYour you are hero butler\n\n{% endblocktrans %}

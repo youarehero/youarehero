@@ -12,7 +12,7 @@ class MessageForm(forms.ModelForm):
     recipient = forms.ModelChoiceField(
         User.objects.all(),
         widget=autocomplete_light.ChoiceWidget('UserAutocomplete'),
-        label=_(u'Neue Nachricht an'),
+        label=_(u'New message to'),
     )
     text = forms.CharField(
         widget=forms.Textarea(),

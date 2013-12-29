@@ -1,13 +1,2 @@
 {% load i18n %}
-{% blocktrans %}
-
-Neue Helden und Heldinnen
-
-Verehrte Damen und Herren,
-an ihrer Quest {{ target.quest.title }} nimmt nun auch {{ target.user.username }} teil.
-Besuchen sie http://{{ site.domain }}{{ target.quest.get_absolute_url }} um die Quest anzuzeigen.
-
-Hochachtungsvoll,
-Ihr Butler von you are hero
-
-{% endblocktrans %}
+{% blocktrans %}\n\nNew heroes and heroines\n\nDear Ladies and Gentlemen,\nThe quest {{ target.quest.title }} has found in {{ target.user.username }} a new participant.\nVisit http://{{ site.domain }}{{ target.quest.get_absolute_url }} to see the quest.\n\nRespectfully,\nYour you are hero butler\n\n{% endblocktrans %}

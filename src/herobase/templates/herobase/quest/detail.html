@@ -6,7 +6,7 @@
     <div class="quest-detail">
         <div class="text">
           {% comment %}Translators:This refers to details for a quest{% endcomment %}
-          <span>{% trans "Details zu" %}</span>
+          <span>{% trans "Details for" %}</span>
 
           <h1>{{ quest.title }}</h1>
           <p>{{ quest.description|urlize|linebreaksbr }}</p>
@@ -16,29 +16,29 @@
                 <dl>
                     <dt>{% trans "Status:" %}</dt>
                     <dd>{{ quest.get_state_display }}</dd>
-                    <dt>{% trans "Ort:" %}</dt>
+                    <dt>{% trans "Place" %}</dt>
                     <dd>{% if quest.remote %}
                       <span class="details"><i class="icon-map-marker"></i> {% trans "frei" %}</span>
                     {% else %}
                         <span class="details"><i class="icon-map-marker"></i> {{ quest.address }}</span>
                     {% endif %}</dd>
-                    <dt>{% trans "Datum:" %}</dt>
+                    <dt>{% trans "date:" %}</dt>
                     <dd>{% with date=quest.start_date %}
                         {% if date %}
                             <span class="details"><i class="icon-calendar"></i> {{ date }}</span>
                         {% else %}
-                          <span class="details"><i class="icon-calendar"></i> {% trans "frei" %}</span>
+                          <span class="details"><i class="icon-calendar"></i> {% trans "free" %}</span>
                         {% endif %}
                     {% endwith %}</dd>
-                    <dt>{% trans "Gesuchte Helden:" %}</dt>
+                    <dt>{% trans "Wanted heroes" %}</dt>
                     <dd>{{ quest.max_heroes }}</dd>
-                    <dt>{% trans "Ersteller:" %}</dt>
+                    <dt>{% trans "Creator" %}</dt>
                     <dd>
                         <a href="{% url "userprofile_public" quest.owner.username %}">
                             {{ quest.owner.username }}
                         </a>
                     </dd>
-                    <dt>{% trans "Aufwand" %}</dt>
+                    <dt>{% trans "Expenditure" %}</dt>
                     <dd>{{ quest.get_time_effort_display }}</dd>
                 </dl>
                 {% include "herobase/quest/quest_box_footer.html" %}
@@ -46,14 +46,14 @@
             {% if is_owner %}
                 <a href="{% url "quest_recreate" quest.pk %}">
                         <button class="box-button"
-                                data-toggle="tooltip" data-title="{% trans 'Quest erneut Erzeugen' %}">
+                                data-toggle="tooltip" data-title="{% trans 'Recreate quest' %}">
                             <i class="icon-copy"></i>
                         </button>
                 </a>
                 {% if not quest.edit_window_expired %}
                     <a class="box-button" href="{% url "quest_update" quest.pk %}"
                        data-toggle="tooltip"
-                       data-title="{% trans 'Bearbeiten' %}"><i class="icon-pencil"></i></a>
+                       data-title="{% trans 'Edit' %}"><i class="icon-pencil"></i></a>
                 {% endif %}
 
                 {% if quest.state.can_cancel %}
@@ -61,7 +61,7 @@
                         {% csrf_token %}
                         <input type="hidden" name="action" value="cancel">
                         <button class="box-button" type="submit" value="cancel" name="cancel"
-                                data-toggle="tooltip" data-title="{% trans 'Quest Abbrechen' %}">
+                                data-toggle="tooltip" data-title="{% trans 'Cancel quest' %}">
                             <i class="icon-trash"></i>
                         </button>
                     </form>
@@ -72,7 +72,7 @@
                         {% csrf_token %}
                         <input type="hidden" name="action" value="start">
                         <button class="box-button" type="submit" value="start" name="start"
-                                data-toggle="tooltip" data-title="{% trans 'Quest Start' %}">
+                                data-toggle="tooltip" data-title="{% trans 'Quest start' %}">
                             <i class="icon-ok"></i>
                         </button>
                     </form>
@@ -82,7 +82,7 @@
                         {% csrf_token %}
                         <input type="hidden" name="action" value="done">
                         <button class="box-button" type="submit" value="start" name="start"
-                                data-toggle="tooltip" data-title="{% trans 'Quest als erledigt markieren' %}">
+                                data-toggle="tooltip" data-title="{% trans 'Mark quest as solved' %}">
                             <i class="icon-ok"></i>
                         </button>
                     </form>
@@ -95,7 +95,7 @@
                         <input type="hidden" name="action" value="cancel">
                         <button class="box-button" type="submit" name="action_btn"
                                 value="{% trans "Cancel" %}" data-toggle="tooltip"
-                                data-title="{% trans 'Abbrechen' %}">
+                                data-title="{% trans 'Cancel' %}">
                             <i class="icon-remove"></i>
                         </button>
                     </form>

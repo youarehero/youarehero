@@ -5,7 +5,7 @@
 
 <div class="userprofile-small">
     <a href="{% url "userprofile_private" %}">
-        <h4>{% trans "Profil" %}</h4>
+        <h4>{% trans "Profile" %}</h4>
 
         <img src="{{ request.user.get_profile.avatar_thumbnail_110 }}" alt="{{ request.user.username }}">
         <h4>{{ request.user.username }}</h4>

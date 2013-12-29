@@ -57,7 +57,7 @@
         </form>
         <ul class="subsub">
             <li {% if not done %}class="active"{% endif %}>
-                <a href="{% url "quest_list" %}">{% trans "Offen" %}</a>
+                <a href="{% url "quest_list" %}">{% trans "Open" %}</a>
             </li>
             <li><i class="icon-circle" style="font-size: 9px;"></i></li>
             <li {% if done %}class="active"{% endif %}>
@@ -87,7 +87,7 @@
     <div class="box clearfix">
         <div style="float: right; font-size: 12px;"><p>{% show_pages %}</p></div>
         <form action="" method="get" class="pull-right">
-            <input placeholder="{% trans 'Titel, Beschreibung' %}" style="margin-top: -12px;" name="search" value="{{ search }}"/>
+            <input placeholder="{% trans 'Title, description' %}" style="margin-top: -12px;" name="search" value="{{ search }}"/>
             <button class="inline-button" type="submit" value="search">{% trans "Suchen" %}</button>
         </form>
         <div>&nbsp;</div>

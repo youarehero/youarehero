@@ -1,14 +1,2 @@
 {% load i18n %}
-{% blocktrans %}
-
-Neue Helden und Heldinnen
-
-Verehrte Damen und Herren,
-für ihre Quest {{ target.quest.title }} ist eine neue Bewerbung eingegangen.
-Bitte melden Sie sich baldmöglichst bei den Bewerbenden zurück!
-Besuchen sie http://{{ site.domain }}{{ target.quest.get_absolute_url }} um die Quest anzuzeigen und die Bewerbung zu bearbeiten.
-
-Hochachtungsvoll,
-Ihr Butler von you are hero
-
-{% endblocktrans %}
+{% blocktrans %}\n\nNew heroes and heroines\n\nDear Ladies and Gentlemen,\nThere has been a new application to the quest {{ target.quest.title }}.\nPlease report back to the applicants as soon as possible!\nVisit http://{{ site.domain }}{{ target.quest.get_absolute_url }} to see the quest and handle the application.\n\nRespectfully,\nYour you are hero butler\n\n{% endblocktrans %}

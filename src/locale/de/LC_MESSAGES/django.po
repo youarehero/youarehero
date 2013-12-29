@@ -18,103 +18,113 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: endless_pagination/templates/endless/show_more.html:4
-msgid "mehr"
-msgstr "more"
+msgid "more"
+msgstr "mehr"
 
 #: heroachievements/achievements.py:33
-msgid "Quest-Ersteller"
-msgstr "Quest provider"
+msgid "Quest provider"
+msgstr "Quest-Ersteller"
 
 #: heroachievements/achievements.py:33
-msgid "Erstelle deine erste Quest"
-msgstr "Create your first quest"
+msgid "Create your first quest"
+msgstr "Erstelle deine erste Quest"
 
 #: heroachievements/achievements.py:35
-msgid "Quest-Bewerber"
-msgstr "Quest applicant"
+msgid "Quest applicant"
+msgstr "Quest-Bewerber"
 
 #: heroachievements/achievements.py:35
-msgid "Bewirb dich für deine erste Quest."
-msgstr "Apply for your first quest"
+msgid "Apply for your first quest"
+msgstr "Bewirb dich für deine erste Quest."
 
 #: heroachievements/achievements.py:38
-msgid "Heldenanwärter"
-msgstr "Heroic aspirants"
+msgid "Heroic aspirants"
+msgstr "Heldenanwärter"
 
 #: heroachievements/achievements.py:38
-msgid "Erledige eine Quest."
-msgstr "Carry out a quest"
+msgid "Carry out a quest"
+msgstr "Erledige eine Quest."
 
 #: heroachievements/achievements.py:39
-msgid "Jungheld"
-msgstr "Subhero"
+msgid "Subhero"
+msgstr "Jungheld"
 
 #: heroachievements/achievements.py:39
-msgid "Erledige drei Quests."
-msgstr "Carry out three quests"
+msgid "Carry out three quests"
+msgstr "Erledige drei Quests."
 
 #: heroachievements/achievements.py:40
-msgid "Held"
-msgstr "Hero"
+msgid "Hero"
+msgstr "Held"
 
 #: heroachievements/achievements.py:40
-msgid "Erledige 10 Quests."
-msgstr "Carry out ten quests"
+msgid "Carry out ten quests"
+msgstr "Erledige 10 Quests."
 
 #: heroachievements/achievements.py:41
 msgid "Veteran"
 msgstr "Veteran"
 
 #: heroachievements/achievements.py:41
-msgid "Erledige 50 Quests."
-msgstr "Carry out fifty quests"
+msgid "Carry out fifty quests"
+msgstr "Erledige 50 Quests."
 
 #: heroachievements/achievements.py:43
-msgid "Schaffer"
-msgstr "Creator"
+msgid "Creator"
+msgstr "Schaffer"
 
 #: heroachievements/achievements.py:44
-msgid "Erstelle eine Quest die erledigt wird."
-msgstr "Create a quest that is being carried out"
+msgid "Create a quest that is being carried out"
+msgstr "Erstelle eine Quest die erledigt wird."
 
 #: heroachievements/achievements.py:45
-msgid "Auftraggeber"
-msgstr "Principal"
+msgid "Principal"
+msgstr "Auftraggeber"
 
 #: heroachievements/achievements.py:46
-msgid "Erstelle 3 Quests die erledigt werden."
-msgstr "Create three quests that are being carried out"
+msgid "Create three quests that are being carried out"
+msgstr "Erstelle 3 Quests die erledigt werden."
 
 #: heroachievements/achievements.py:47
-msgid "Klient"
-msgstr "Client"
+msgid "Client"
+msgstr "Klient"
 
 #: heroachievements/achievements.py:48
-msgid "Erstelle 10 Quests die erledigt werden."
-msgstr "Create ten quests that are being carried out"
+msgid "Create ten quests that are being carried out"
+msgstr "Erstelle 10 Quests die erledigt werden."
 
 #: heroachievements/achievements.py:49
-msgid "Eminenz"
-msgstr "Eminence"
+msgid "Eminence"
+msgstr "Eminenz"
 
 #: heroachievements/achievements.py:50
-msgid "Erstelle 50 Quests die erledigt werden."
-msgstr "Create fifty quests that are being carried out"
+msgid "Create fifty quests that are being carried out"
+msgstr "Erstelle 50 Quests die erledigt werden."
 
 #: heroachievements/achievements.py:52
-msgid "Kommentator"
-msgstr "Commentator"
+msgid "Commentator"
+msgstr "Kommentator"
 
 #: heroachievements/achievements.py:52
-msgid "Kommentiere 3 Quests"
-msgstr "Comment on three quests"
+msgid "Comment on three quests"
+msgstr "Kommentiere 3 Quests"
 
 #: herobase/context_processors.py:20
-msgid "Wollen Sie mich ärgern %%%salutation%%%?"
-msgstr "Do you want to spite me %%%salutation%%%?"
+msgid "Do you want to spite me %%%salutation%%%?"
+msgstr "Wollen Sie mich ärgern %%%salutation%%%?"
 
 #: herobase/context_processors.py:22
 msgid ""
+"Good day %%%salutation%%%,\n"
+"as soon as you have posted or accepted your first quests, the main page will "
+"provide you with a list of notifications about your recent activities "
+"and everything new that has happened in the past days.\n"
+"\n"
+"If you wish, you can also be informed about status modifications in your quests "
+"and respectively about new messages.\n"
+"\n"
+"This can be turned on and off as requested in your settings (the symbol with the cog)."
+msgstr ""
 "Guten Tag %%%salutation%%%,\n"
 "sobald Sie Ihre ersten Quests eingestellt bzw. angenommen haben, werden Sie "
 "hier auf der Startseite eine Übersicht dessen sehen, was für Sie ansteht; "
@@ -125,19 +135,17 @@ msgid ""
 "\n"
 "Dies können Sie nach Wunsch in den Optionen (das Symbol mit den Zahnrädern) "
 "einstellen."
-msgstr ""
-"Good day %%%salutation%%%,\n"
-"as soon as you have posted or accepted your first quests, the main page will "
-"provide you with a list of notifications about your recent activities "
-"and everything new that has happened in the past days.\n"
-"\n"
-"If you wish, you can also be informed about status modifications in your quests "
-"and respectively about new messages.\n"
-"\n"
-"This can be turned on and off as requested in your settings (the symbol with the cog)."
 
 #: herobase/context_processors.py:24
 msgid ""
+"This is the pinnboard %%%salutation%%%.\n"
+"Here you can find all available quests. Should you feel overwhelmed by the choice, "
+"you can use the searchbar to narrow down the choice via keywords or via "
+"different criteria such as time exposure or the necessity to do the quest.\n"
+"locally."
+"Visiting the pinnboard frequently will be worth your while - if I may say so.\n"
+"%%%salutation%%%."
+msgstr ""
 "Sie befinden sich auf der Pinnwand %%%salutation%%%.\n"
 "Hier finden Sie alle Quests, derer Sie sich annehmen können. Falls Sie von "
 "der Auswahl überwältigt sein sollten, können Sie mit Hilfe der Suchkriterien "
@@ -150,134 +158,126 @@ msgid ""
 "zu treffen.\n"
 "\\”Frenquentierte Besuche lohnen sich, wenn ich das so sagen darf %%"
 "%salutation%%%."
-msgstr ""
-"This is the pinnboard %%%salutation%%%.\n"
-"Here you can find all available quests. Should you feel overwhelmed by the choice, "
-"you can use the searchbar to narrow down the choice via keywords or via "
-"different criteria such as time exposure or the necessity to do the quest.\n"
-"locally."
-"Visiting the pinnboard frequently will be worth your while - if I may say so.\n"
-"%%%salutation%%%."
 
 #: herobase/context_processors.py:26
 msgid ""
-"Hier finden Sie alle Formulare, die Sie brauchen %%%salutation%%%.\n"
-"Ob Sie der Welt eine weitere Aufgabe zum Lösen bieten oder ein neues Projekt "
-"einstellen wollen, ich habe die Formulare für Sie vorbereitet."
-msgstr ""
 "Here you can find all the forms you need, %%%salutation%%%.\n"
 "Posting a new quest for the world to solve or offering a new project, "
 "you´ll be not lacking the forms to do so."
+msgstr ""
+"Hier finden Sie alle Formulare, die Sie brauchen %%%salutation%%%.\n"
+"Ob Sie der Welt eine weitere Aufgabe zum Lösen bieten oder ein neues Projekt "
+"einstellen wollen, ich habe die Formulare für Sie vorbereitet."
 
 #: herobase/context_processors.py:28
 msgid ""
+"Here you can see all quests that you have accepted and posted %%%salutation%%%.\n"
+" If there is a star mark it means that you are the quest provider."
+msgstr ""
 "Hier finden Sie alle Quests die Sie angenommen oder aufgegeben haben %%"
 "%salutation%%%.\n"
 " Wenn ein Stern an der Quest ist bedeutet das das es sich um eine von ihnen "
 "aufgegeben Quest handelt."
-msgstr ""
-"Here you can see all quests that you have accepted and posted %%%salutation%%%.\n"
-" If there is a star mark it means that you are the quest provider."
 
 #: herobase/filters.py:8
-msgid "Egal"
-msgstr "Any"
+msgid "Any"
+msgstr "Egal"
 
 #: herobase/forms.py:36 herobase/forms.py:100 herobase/forms.py:101
-msgid "von überall"
-msgstr "remotely"
+msgid "remotely"
+msgstr "von überall"
 
 #: herobase/forms.py:37 herobase/forms.py:100 herobase/forms.py:102
-msgid "vor Ort"
-msgstr "locally"
+msgid "locally"
+msgstr "vor Ort"
 
 #: herobase/forms.py:38 herobase/models.py:287
-msgid ""
+msgid "Can this quest be done remotely or only locally?"
+msgstr ""
 "Kann man diese Quest nur an einem bestimmten Ort oder von überall erledigen?"
-msgstr "Can this quest be done remotely or only locally?"
 
 
 #: herobase/forms.py:39
-msgid "Vor Ort oder von überall"
-msgstr "Remote or local"
+msgid "Remote or local"
+msgstr "Vor Ort oder von überall"
 
 #: herobase/forms.py:75
-msgid "Ort"
-msgstr "Place"
+msgid "Place"
+msgstr "Ort"
 
 #: herobase/forms.py:76
-msgid "Wo findet die Quest statt?"
-msgstr "Where does this quest take place?"
+msgid "Where does this quest take place?"
+msgstr "Wo findet die Quest statt?"
 
 #: herobase/forms.py:105
-msgid "Zeitaufwand"
-msgstr "Time exposure"
+msgid "Time exposure"
+msgstr "Zeitaufwand"
 
 #: herobase/forms.py:106
-msgid "Niedrig"
-msgstr "Low"
+msgid "Low"
+msgstr "Niedrig"
 
 #: herobase/forms.py:107
-msgid "Mittel"
-msgstr "Medium"
+msgid "Medium"
+msgstr "Mittel"
 
 #: herobase/forms.py:108
-msgid "Hoch"
-msgstr "High"
+msgid "High"
+msgstr "Hoch"
 
 #: herobase/forms.py:112
-msgid "Titel, Beschreibung, Ort"
-msgstr "Title, description, place"
+msgid "Title, description, place"
+msgstr "Titel, Beschreibung, Ort"
 
 #: herobase/forms.py:153 heroorganization/forms.py:24
-msgid "Profil editieren"
-msgstr "Edit your Profile"
+msgid "Edit your Profile"
+msgstr "Profil editieren"
 
 #: herobase/forms.py:194
-msgid "Dieser Benutzername ist bereits vergeben."
-msgstr "This Username has been taken already"
+msgid "This Username has been taken already"
+msgstr "Dieser Benutzername ist bereits vergeben."
 
 #: herobase/forms.py:219
-msgid "Privatsphäre"
-msgstr "Privacy Settings"
+msgid "Privacy Settings"
+msgstr "Privatsphäre"
 
 #: herobase/forms.py:236
 msgid ""
-"Bitte stelle sicher das E-Mail Adresse und Passwort korrekt sind. Achte auch "
-"auf Groß- und Kleinschreibung."
-msgstr ""
 "Please enter a correct e-mail address and password. Note that both fields "
 "are case-sensitive."
+msgstr ""
+"Bitte stelle sicher das E-Mail Adresse und Passwort korrekt sind. Achte auch "
+"auf Groß- und Kleinschreibung."
 
 #: herobase/forms.py:238
-msgid "E-Mail"
-msgstr "E-mail"
+msgid "E-mail"
+msgstr "E-Mail"
 
 #: herobase/forms.py:264
-msgid "Identität"
-msgstr "Identity"
+msgid "Identity"
+msgstr "Identität"
 
 #: herobase/forms.py:269
-msgid "Kennung"
-msgstr "Identifyer"
+msgid "Identifyer"
+msgstr "Kennung"
 
 #: herobase/forms.py:271
 #: herobase/templates/registration/password_reset_complete.html:10
 #: herobase/templates/registration/m/login.html:9
-msgid "Einloggen"
-msgstr "Log in"
+msgid "Log in"
+msgstr "Einloggen"
 
 #: herobase/forms.py:281
-msgid "Benutzername"
-msgstr "Username"
+msgid "Username"
+msgstr "Benutzername"
 
 #: herobase/forms.py:283
-msgid "Geburtsdatum"
-msgstr "Date of birth"
+msgid "Date of birth"
+msgstr "Geburtsdatum"
 
 #: herobase/models.py:44 herobase/templates/herobase/hero_classes.inc.html:40
-msgid "Wissenschaftler"
-msgstr "Scientist"
+msgid "Scientist"
+msgstr "Wissenschaftler"
 
 #: herobase/models.py:45 herobase/templates/herobase/hero_classes.inc.html:31
 msgid "Gadgeteer"
@@ -296,429 +296,429 @@ msgid "Protective"
 msgstr "Protective"
 
 #: herobase/models.py:50
-msgid "Herr"
-msgstr "Mister"
+msgid "Mister"
+msgstr "Herr"
 
 #: herobase/models.py:51
-msgid "Frau"
-msgstr "Misses"
+msgid "Misses"
+msgstr "Frau"
 
 #: herobase/models.py:52
-msgid "keine"
-msgstr "none"
+msgid "none"
+msgstr "keine"
 
 #: herobase/models.py:84
-msgid "kein Ort"
-msgstr "no location"
+msgid "no location"
+msgstr "kein Ort"
 
 #: herobase/models.py:85
 msgid "GPS"
 msgstr "GPS"
 
 #: herobase/models.py:86
-msgid "Addresse"
-msgstr "Adress"
+msgid "Adress"
+msgstr "Addresse"
 
 #: herobase/models.py:87
-msgid "Stadtteil"
-msgstr "district"
+msgid "district"
+msgstr "Stadtteil"
 
 #: herobase/models.py:88
-msgid "Stadt"
-msgstr "city"
+msgid "city"
+msgstr "Stadt"
 
 #: herobase/models.py:89
-msgid "Unbekannt"
-msgstr "unknown"
+msgid "unknown"
+msgstr "Unbekannt"
 
 #: herobase/models.py:188
-msgid "abgebrochen"
-msgstr "cancelled"
+msgid "cancelled"
+msgstr "abgebrochen"
 
 #: herobase/models.py:190
-msgid "nimmt teil"
-msgstr "participating"
+msgid "participating"
+msgstr "nimmt teil"
 
 #: herobase/models.py:192
-msgid "abgelehnt"
-msgstr "rejected"
+msgid "rejected"
+msgstr "abgelehnt"
 
 #: herobase/models.py:194
-msgid "beworben"
-msgstr "pending"
+msgid "pending"
+msgstr "beworben"
 
 #: herobase/models.py:247
-msgid "Titel"
-msgstr "Title"
+msgid "Title"
+msgstr "Titel"
 
 #: herobase/models.py:248
-msgid "Beschreibung"
-msgstr "Description"
+msgid "Description"
+msgstr "Beschreibung"
 
 #: herobase/models.py:249
-msgid "Eine kurze Beschreibung um was es in dem Quest geht."
-msgstr "A short description of what this quest is about."
+msgid "A short description of what this quest is about."
+msgstr "Eine kurze Beschreibung um was es in dem Quest geht."
 
 #: herobase/models.py:257 herobase/models.py:268
-msgid "Manuell"
-msgstr "Manually"
+msgid "Manually"
+msgstr "Manuell"
 
 #: herobase/models.py:259
-msgid "Zum Startzeitpunkt"
-msgstr "At the starting time"
+msgid "At the starting time"
+msgstr "Zum Startzeitpunkt"
 
 #: herobase/models.py:261
-msgid "Genug Helden"
-msgstr "Enough heroes"
+msgid "Enough heroes"
+msgstr "Genug Helden"
 
 #: herobase/models.py:270
-msgid "Zum End-Datum"
-msgstr "At the ending time"
+msgid "At the ending time"
+msgstr "Zum End-Datum"
 
 #: herobase/models.py:274
-msgid "Quest-Beginn"
-msgstr "Quest start"
+msgid "Quest start"
+msgstr "Quest-Beginn"
 
 #: herobase/models.py:276
-msgid "Quest-Ende"
-msgstr "Quest finish"
+msgid "Quest finish"
+msgstr "Quest-Ende"
 
 #: herobase/models.py:278
-msgid "Startzeitpunkt"
-msgstr "starting time"
+msgid "starting time"
+msgstr "Startzeitpunkt"
 
 #: herobase/models.py:280
-msgid "Ablaufdatum"
-msgstr "Expiration date"
+msgid "Expiration date"
+msgstr "Ablaufdatum"
 
 #: herobase/models.py:281
-msgid "Bis wann ist diese Quest sichtbar?"
-msgstr "Until when will this quest be visible?"
+msgid "Until when will this quest be visible?"
+msgstr "Bis wann ist diese Quest sichtbar?"
 
 #: herobase/models.py:286
-msgid "Kann aus der Ferne erledigt werden"
-msgstr "Can be done remotely"
+msgid "Can be done remotely"
+msgstr "Kann aus der Ferne erledigt werden"
 
 #: herobase/models.py:292
-msgid "Minimale Helden-Anzahl"
-msgstr "Minimum number of heroes"
+msgid "Minimum number of heroes"
+msgstr "Minimale Helden-Anzahl"
 
 #: herobase/models.py:295
-msgid "Anzahl Helden"
-msgstr "Number of heroes"
+msgid "Number of heroes"
+msgstr "Anzahl Helden"
 
 #: herobase/models.py:296
-msgid "Wie viele Helden können an dieser Quest teilnehmen?"
-msgstr "How many heroes can participate in this Quest?"
+msgid "How many heroes can participate in this Quest?"
+msgstr "Wie viele Helden können an dieser Quest teilnehmen?"
 
 #: herobase/models.py:301
-msgid "Automatisch annehmen"
-msgstr "Automatically accept"
+msgid "Automatically accept"
+msgstr "Automatisch annehmen"
 
 #: herobase/models.py:302
-msgid "Helden die sich bewerben werden automatisch angenommen."
-msgstr "Heroes that apply are being automatically accepted"
+msgid "Heroes that apply are being automatically accepted"
+msgstr "Helden die sich bewerben werden automatisch angenommen."
 
 #: herobase/models.py:323
-msgid "Zeitaufwand"
-msgstr "time effort"
+msgid "time effort"
+msgstr "Zeitaufwand"
 
 #: herobase/models.py:324
-msgid "Niedrig (500 EP)"
-msgstr "Low (500 XP)"
+msgid "Low (500 XP)"
+msgstr "Niedrig (500 EP)"
 
 #: herobase/models.py:325
-msgid "Mittel (1000 EP)"
-msgstr "Medium (1000 XP)"
+msgid "Medium (1000 XP)"
+msgstr "Mittel (1000 EP)"
 
 #: herobase/models.py:326
-msgid "Hoch (2000 EP)"
-msgstr "High (2000 XP)"
+msgid "High (2000 XP)"
+msgstr "Hoch (2000 EP)"
 
 #: herobase/models.py:381
-msgid "abgebrochen"
-msgstr "cancelled"
+msgid "cancelled"
+msgstr "abgebrochen"
 
 #: herobase/models.py:383
-msgid "erledigt"
-msgstr "done"
+msgid "done"
+msgstr "erledigt"
 
 #: herobase/models.py:385
-msgid "hat begonnen"
-msgstr "has started"
+msgid "has started"
+msgstr "hat begonnen"
 
 #: herobase/models.py:387
-msgid "abgelaufen"
-msgstr "expired"
+msgid "expired"
+msgstr "abgelaufen"
 
 #: herobase/models.py:389
-msgid "offen"
-msgstr "open"
+msgid "open"
+msgstr "offen"
 
 #: herobase/models.py:403
-msgid "Eigenes Bild hochladen"
-msgstr "Upload your own picture"
+msgid "Upload your own picture"
+msgstr "Eigenes Bild hochladen"
 
 #: herobase/models.py:408
-msgid "Invalides Avatar Bild"
-msgstr "Invalid avatar image given"
+msgid "Invalid avatar image given"
+msgstr "Invalides Avatar Bild"
 
 #: herobase/models.py:483
-msgid "Anrede"
-msgstr "title"
+msgid "title"
+msgstr "Anrede"
 
 #: herobase/models.py:497
-msgid "Standort ist öffentlich"
-msgstr "Location is public"
+msgid "Location is public"
+msgstr "Standort ist öffentlich"
 
 #: herobase/models.py:498
-msgid "Wenn aktiv können andere Helden deinen Standort sehen."
-msgstr "Enable this if you want to share your location with other Heroes."
+msgid "Enable this if you want to share your location with other Heroes."
+msgstr "Wenn aktiv können andere Helden deinen Standort sehen."
 
 #: herobase/models.py:501
-msgid "Über mich"
-msgstr "about me"
+msgid "about me"
+msgstr "Über mich"
 
 #: herobase/models.py:502
-msgid "Erzähle anderen Helden wer Du bist."
-msgstr "Tell other heroes who you are."
+msgid "Tell other heroes who you are."
+msgstr "Erzähle anderen Helden wer Du bist."
 
 #: herobase/models.py:505
-msgid "E-Mail bei Quest-Änderungen"
-msgstr "E-Mail on quest changes"
+msgid "E-Mail on quest changes"
+msgstr "E-Mail bei Quest-Änderungen"
 
 #: herobase/models.py:506
 msgid ""
-"Wenn aktiv erhältst Du eine E-Mail benachrichtigung sobald ein Quest an dem "
-"Du beteiligt bist deine Aufmerksamkeit benötigt."
-msgstr ""
 "Enable this if you want to receive an email notification when one of your "
 "quests needs attention."
+msgstr ""
+"Wenn aktiv erhältst Du eine E-Mail benachrichtigung sobald ein Quest an dem "
+"Du beteiligt bist deine Aufmerksamkeit benötigt."
 
 #: herobase/models.py:510
-msgid "E-Mail bei privaten Nachrichten"
-msgstr "E-Mail on private message"
+msgid "E-Mail on private message"
+msgstr "E-Mail bei privaten Nachrichten"
 
 #: herobase/models.py:511
 msgid ""
-"Wenn aktiv erhältst Du eine E-Mail wenn andere Nutzer dir eine Nachricht "
-"schreiben."
-msgstr ""
 "Enable this if you want to receive an email notification when someone sends "
 "you a private message."
+msgstr ""
+"Wenn aktiv erhältst Du eine E-Mail wenn andere Nutzer dir eine Nachricht "
+"schreiben."
 
 #: herobase/models.py:614
 msgid "text"
 msgstr "text"
 
 #: herobase/models.py:616
-msgid "Typ nicht gesetzt"
-msgstr "type not set"
+msgid "type not set"
+msgstr "Typ nicht gesetzt"
 
 #: herobase/models.py:617
-msgid "Spam"
-msgstr "spam"
+msgid "spam"
+msgstr "Spam"
 
 #: herobase/models.py:618
-msgid "Illegaler Inhalt"
-msgstr "illegal content"
+msgid "illegal content"
+msgstr "Illegaler Inhalt"
 
 #: herobase/models.py:619
-msgid "Diskriminierung"
-msgstr "hate speech"
+msgid "hate speech"
+msgstr "Diskriminierung"
 
 #: herobase/quest_livecycle.py:44
-msgid "Es können nicht alle akzeptiert werden, wenn die Quest nicht offen ist."
-msgstr "Can't accept all if quest not open."
+msgid "Can't accept all if quest not open."
+msgstr "Es können nicht alle akzeptiert werden, wenn die Quest nicht offen ist."
 
 #: herobase/quest_livecycle.py:55
-msgid "Eine gestartete Quest kann nicht gestartet werden."
-msgstr "Can't start a started quest."
+msgid "Can't start a started quest."
+msgstr "Eine gestartete Quest kann nicht gestartet werden."
 
 #: herobase/quest_livecycle.py:57
-msgid "Eine abgebrochene Quest kann nicht gestartet werden."
-msgstr "Can't start a canceled quest."
+msgid "Can't start a canceled quest."
+msgstr "Eine abgebrochene Quest kann nicht gestartet werden."
 
 #: herobase/quest_livecycle.py:59
-msgid "Eine abgeschlossene Quest kann nicht gestartet werden."
-msgstr "Can't start a done quest."
+msgid "Can't start a done quest."
+msgstr "Eine abgeschlossene Quest kann nicht gestartet werden."
 
 #: herobase/quest_livecycle.py:61
-msgid "Die Quest kann nicht gestartet werden, wenn es nicht genügend Helden gibt."
-msgstr "Can't start quest if there aren't enough heroes."
+msgid "Can't start quest if there aren't enough heroes."
+msgstr "Die Quest kann nicht gestartet werden, wenn es nicht genügend Helden gibt."
 
 #: herobase/quest_livecycle.py:85
-msgid "Eine abgebrochene Quest kann nicht abgebrochen werden."
-msgstr "Can't cancel a canceled quest."
+msgid "Can't cancel a canceled quest."
+msgstr "Eine abgebrochene Quest kann nicht abgebrochen werden."
 
 #: herobase/quest_livecycle.py:87
-msgid "Eine abgeschlossene Quest kann nicht abgebrochen werden."
-msgstr "Can't cancel a done quest."
+msgid "Can't cancel a done quest."
+msgstr "Eine abgeschlossene Quest kann nicht abgebrochen werden."
 
 #: herobase/quest_livecycle.py:101
-msgid "Eine Quest, die noch nicht angefangen hat, kann nicht als erledigt markiert werden."
-msgstr "Can't mark a quest as done that isn't started."
+msgid "Can't mark a quest as done that isn't started."
+msgstr "Eine Quest, die noch nicht angefangen hat, kann nicht als erledigt markiert werden."
 
 #: herobase/quest_livecycle.py:104
-msgid "Eine abgebrochene Quest kann nicht als abgeschlossen markiert werden."
-msgstr "Can't mark a canceled quest as done."
+msgid "Can't mark a canceled quest as done."
+msgstr "Eine abgebrochene Quest kann nicht als abgeschlossen markiert werden."
 
 #: herobase/quest_livecycle.py:107
-msgid "Eine abgeschlossene Quest kann nicht als abgeschlossen markiert werden."
-msgstr "Can't mark a done quest as done."
+msgid "Can't mark a done quest as done."
+msgstr "Eine abgeschlossene Quest kann nicht als abgeschlossen markiert werden."
 
 #: herobase/quest_livecycle.py:152
-msgid "Helden können nicht für eine nicht offene Quest angenommen werden."
-msgstr "Can't accept heroes into a quest that isn't open."
+msgid "Can't accept heroes into a quest that isn't open."
+msgstr "Helden können nicht für eine nicht offene Quest angenommen werden."
 
 #: herobase/quest_livecycle.py:154
-msgid "Ein Held, der sich nicht bewirbt, kann nicht akzeptiert werden"
-msgstr "Can't accept a hero who is not applying."
+msgid "Can't accept a hero who is not applying."
+msgstr "Ein Held, der sich nicht bewirbt, kann nicht akzeptiert werden"
 
 #: herobase/quest_livecycle.py:173
 #, python-format
-msgid "Du hast %s akzeptiert."
-msgstr "You have accepted %s."
+msgid "You have accepted %s."
+msgstr "Du hast %s akzeptiert."
 
 #: herobase/quest_livecycle.py:177
-msgid "Man kann sich nicht auf eine nicht offene Quest bewerben."
-msgstr "Can not apply for a quest that isn't open."
+msgid "Can not apply for a quest that isn't open."
+msgstr "Man kann sich nicht auf eine nicht offene Quest bewerben."
 
 #: herobase/quest_livecycle.py:179
-msgid "Man kann sich nur einmal bewerben."
-msgstr "Can only apply once."
+msgid "Can only apply once."
+msgstr "Man kann sich nur einmal bewerben."
 
 #: herobase/quest_livecycle.py:181
-msgid "Man kann sich nciht bewerben, nachdem man akzeptiert wurde."
-msgstr "Can not apply after being accepted."
+msgid "Can not apply after being accepted."
+msgstr "Man kann sich nciht bewerben, nachdem man akzeptiert wurde."
 
 #: herobase/quest_livecycle.py:183
-msgid "Minderjährige können sich nicht auf eine Quest eines unverifizierten Benutzers bewerben."
-msgstr "Minors cannot apply for untrusted users' quests"
+msgid "Minors cannot apply for untrusted users' quests"
+msgstr "Minderjährige können sich nicht auf eine Quest eines unverifizierten Benutzers bewerben."
 
 #: herobase/quest_livecycle.py:209
-msgid "Man kann Helden nicht ablehnen, wenn die Quest nicht offen ist."
-msgstr "Can't reject heroes when a quest isn't open."
+msgid "Can't reject heroes when a quest isn't open."
+msgstr "Man kann Helden nicht ablehnen, wenn die Quest nicht offen ist."
 
 #: herobase/quest_livecycle.py:212
-msgid "Man kann einen Helden nicht ablehnen, der sich nicht bewirbt."
-msgstr "Can't reject a hero who is not applying."
+msgid "Can't reject a hero who is not applying."
+msgstr "Man kann einen Helden nicht ablehnen, der sich nicht bewirbt."
 
 #: herobase/quest_livecycle.py:222
 #, python-format
-msgid "Du hast %s abgelehnt."
-msgstr "You have rejected %s."
+msgid "You have rejected %s."
+msgstr "Du hast %s abgelehnt."
 
 #: herobase/quest_livecycle.py:226
 #, fuzzy
-msgid "Du kannst deine Teilnahme gerade nicht zurückziehen."
-msgstr "You can't cancel participation at this time."
+msgid "You can't cancel participation at this time."
+msgstr "Du kannst deine Teilnahme gerade nicht zurückziehen."
 
 #: herobase/quest_livecycle.py:228
-msgid "Du kannst eine Quest nicht mehrmals abbrechen."
-msgstr "You can't cancel multiple times."
+msgid "You can't cancel multiple times."
+msgstr "Du kannst eine Quest nicht mehrmals abbrechen."
 
 #: herobase/quest_livecycle.py:230
-msgid "Du musst dich bewerben, befor du abbrechen kannst."
-msgstr "You need to apply before cancelling."
+msgid "You need to apply before cancelling."
+msgstr "Du musst dich bewerben, befor du abbrechen kannst."
 
 #: herobase/utils.py:29
-msgid "Algorithmus"
-msgstr "algorithm"
+msgid "algorithm"
+msgstr "Algorithmus"
 
 #: herobase/utils.py:30
-msgid "Hash"
-msgstr "hash"
+msgid "hash"
+msgstr "Hash"
 
 #: herobase/views.py:110 herobase/views.py:119
-msgid "Nur der Ersteller einer Quest kann sie editieren."
-msgstr "Only the owner can edit the quest."
+msgid "Only the owner can edit the quest."
+msgstr "Nur der Ersteller einer Quest kann sie editieren."
 
 #: herobase/views.py:112 herobase/views.py:121
 #, python-format
-msgid "Du kannst die Quest nur für %s minuten bearbeiten."
-msgstr "You can only edit quests for %s minutes."
+msgid "You can only edit quests for %s minutes."
+msgstr "Du kannst die Quest nur für %s minuten bearbeiten."
 
 #: herobase/views.py:193
-msgid "Dies ist Deine Quest."
-msgstr "This is your quest."
+msgid "This is your quest."
+msgstr "Dies ist Deine Quest."
 
 #: herobase/views.py:196
 msgid ""
+"This quest needs heroes. Apply now by clicking the ✓ Button on the right."
+msgstr ""
 "Dieser Quest braucht Helden. Bewerbe dich indem du den ✓ Knopf auf der "
 "rechten Seite anklickst."
-msgstr ""
-"This quest needs heroes. Apply now by clicking the ✓ Button on the right."
 
 #: herobase/views.py:200
 msgid ""
+"Your application has been accepted. Press X to withdraw your participation."
+msgstr ""
 "Deine Bewerbung wurde angebnommen. Mit dem X Knopf kannst du deine Teilnahme "
 "zurückziehen."
-msgstr ""
-"Your application has been accepted. Press X to withdraw your participation."
 
 #: herobase/views.py:204
 msgid ""
-"Du hast dich für diese Quest beworben, aber der Veranstalter hat deine "
-"Bewerbung leider abgelehnt."
-msgstr ""
 "You have applied for this quest but unfortunately the owner rejected your offer "
 "of participation."
+msgstr ""
+"Du hast dich für diese Quest beworben, aber der Veranstalter hat deine "
+"Bewerbung leider abgelehnt."
 
 
 #: herobase/views.py:208
 msgid ""
-"Du hast dich für diese Quest beworben. Du wirst benachrichtigt sobald der"
-"Veranstalter über deine Teilnahme entschieden hat."
-"Drücke X um die Bewerbung zurückzuziehen. "
-msgstr ""
 "You are currently applying for this quest. You will be "
 "notified once the creator has decided about our participation. "
 "Press X to cancel you application."
+msgstr ""
+"Du hast dich für diese Quest beworben. Du wirst benachrichtigt sobald der"
+"Veranstalter über deine Teilnahme entschieden hat."
+"Drücke X um die Bewerbung zurückzuziehen. "
 
 #: herobase/views.py:504
-msgid "Profil erfolgreich gespeichert."
-msgstr "Profile successfully changed"
+msgid "Profile successfully changed"
+msgstr "Profil erfolgreich gespeichert."
 
 #: herobase/views.py:558
-msgid "Privatsphäre-Einstellungen wurden gespeichert"
-msgstr "Privacy settings successfully changed"
+msgid "Privacy settings successfully changed"
+msgstr "Privatsphäre-Einstellungen wurden gespeichert"
 
 #: herobase/management/commands/populate_for_user.py:19
-msgid "Erstelle Quests und Interaktionen für diesen Benutzer"
-msgstr "Create quests and interactions for the specified user"
+msgid "Create quests and interactions for the specified user"
+msgstr "Erstelle Quests und Interaktionen für diesen Benutzer"
 
 #: herobase/management/commands/process_quest_triggers.py:7
-msgid "Update die Quests mit Zeit-basierten Start/Ende Auslösern"
-msgstr "Update quests with timer based start/end triggers"
+msgid "Update quests with timer based start/end triggers"
+msgstr "Update die Quests mit Zeit-basierten Start/Ende Auslösern"
 
 #: herobase/management/commands/sendpostdigesttoadmins.py:14
 msgid ""
-"Sendet E-Mails an die Administratoren mit allen neuen und modifizierten Quests "
-" seit <timestamp> (defaults bis zu einem vergangenen Tag)"
-msgstr ""
 "Sends mails to ADMIN with all new/modified quests and comments since "
 "<timestamp> (defaults to 1 day ago)"
+msgstr ""
+"Sendet E-Mails an die Administratoren mit allen neuen und modifizierten Quests "
+" seit <timestamp> (defaults bis zu einem vergangenen Tag)"
 
 #: herobase/templates/herobase/arg.html:26
-msgid "Spielanleitung<br/>Alternate Reality Games"
-msgstr "Game instructions<br/>Alternate Reality Games"
+msgid "Game instructions<br/>Alternate Reality Games"
+msgstr "Spielanleitung<br/>Alternate Reality Games"
 
 #: herobase/templates/herobase/arg.html:36
-msgid "ARG Quests"
-msgstr "ARG quests"
+msgid "ARG quests"
+msgstr "ARG Quests"
 
 #: herobase/templates/herobase/arg.html:124
-msgid "Gemeinschaft"
-msgstr "Community"
+msgid "Community"
+msgstr "Gemeinschaft"
 
 #: herobase/templates/herobase/arg.html:134
-msgid "Helden stellen sich vor"
-msgstr "Heroes present themselves"
+msgid "Heroes present themselves"
+msgstr "Helden stellen sich vor"
 
 #: herobase/templates/herobase/arg.html:135
-msgid "4 Wochenenden / 4 Themen"
-msgstr "4 Weekends / 4 Topics"
+msgid "4 Weekends / 4 Topics"
+msgstr "4 Wochenenden / 4 Themen"
 
 #: herobase/templates/herobase/arg.html:136
 msgid "28.9.-26.10."
@@ -726,6 +726,17 @@ msgstr "28.9.-26.10."
 
 #: herobase/templates/herobase/arg.html:146
 msgid ""
+"\n"
+"        We are providing you with new powers so that you don´t have to fight "
+"Anonyma"
+"          without some proper training."
+"        On four weekends you have the chance to train your heroic powers, "
+"get useful hints\n"
+"          and prepare yourselves for your being\n"
+"        as a superhero, while looking for hints and traces of the villain "
+"Anonyma\n"
+"          over the course of the week\n"
+msgstr ""
 "\n"
 "        Damit ihr Anonyma nicht ohne Training gegenübertreten müsst, werden "
 "wir euch neue\n"
@@ -738,42 +749,31 @@ msgid ""
 "          über den Verbleib der Schurkin\n"
 "        Anonyma sucht.\n"
 "        "
-msgstr ""
-"\n"
-"        We are providing you with new powers so that you don´t have to fight "
-"Anonyma"
-"          without some proper training."
-"        On four weekends you have the chance to train your heroic powers, "
-"get useful hints\n"
-"          and prepare yourselves for your being\n"
-"        as a superhero, while looking for hints and traces of the villain "
-"Anonyma\n"
-"          over the course of the week\n"
 
 #: herobase/templates/herobase/arg.html:164
 #: herobase/templates/herobase/public_home.html:129
 #: herobase/templates/herobase/layout/navigation.inc.html:46
 #, fuzzy
-msgid "Registrieren"
-msgstr "Registration"
+msgid "Registration"
+msgstr "Registrieren"
 
 #: herobase/templates/herobase/below_minimum_age.html:5
-msgid "Entschuldigung"
-msgstr "Sorry"
+msgid "Sorry"
+msgstr "Entschuldigung"
 
 #: herobase/templates/herobase/below_minimum_age.html:9
 msgid ""
-"Es tut uns sehr leid, aber wir können dich vor deinem fünfzehnten Geburtstag "
-"nicht an you are hero teilnehmen lassen."
-msgstr ""
 "We're really sorry, but we cannot let you participate at you are hero before "
 "your fifteenth birthday."
+msgstr ""
+"Es tut uns sehr leid, aber wir können dich vor deinem fünfzehnten Geburtstag "
+"nicht an you are hero teilnehmen lassen."
 
 #: herobase/templates/herobase/credits.html:6
 #: herobase/templates/herobase/imprint.html:5
 #: herobase/templates/herobase/manifesto.html:5
-msgid "Impressum"
-msgstr "Imprint"
+msgid "Imprint"
+msgstr "Impressum"
 
 #: herobase/templates/herobase/credits.html:11
 #: herobase/templates/herobase/layout/footer.inc.html:21
@@ -781,12 +781,12 @@ msgid "Credits"
 msgstr "Credits"
 
 #: herobase/templates/herobase/credits.html:14
-msgid "Projektleitung"
-msgstr "Project lead"
+msgid "Project lead"
+msgstr "Projektleitung"
 
 #: herobase/templates/herobase/credits.html:18
-msgid "Programmierung"
-msgstr "Programming"
+msgid "Programming"
+msgstr "Programmierung"
 
 #: herobase/templates/herobase/credits.html:26
 #: herobase/templates/herobase/layout/footer.inc.html:15
@@ -797,8 +797,8 @@ msgid "Blog"
 msgstr "Blog"
 
 #: herobase/templates/herobase/credits.html:31
-msgid "Grafikdesign/Gestaltung"
-msgstr "Graphicdesign/composition"
+msgid "Graphicdesign/composition"
+msgstr "Grafikdesign/Gestaltung"
 
 #: herobase/templates/herobase/credits.html:35
 #, fuzzy
@@ -810,31 +810,48 @@ msgid "Gamedesign & Content"
 msgstr "Gamedesign & Content"
 
 #: herobase/templates/herobase/credits.html:47
-msgid "Helden"
-msgstr "Heroes"
+msgid "Heroes"
+msgstr "Helden"
 
 #: herobase/templates/herobase/credits.html:51
-msgid "Presse, Content und Organisation"
-msgstr "Press, content and organisation"
+msgid "Press, content and organisation"
+msgstr "Presse, Content und Organisation"
 
 #: herobase/templates/herobase/credits.html:55
-msgid "Besonderer Dank an"
-msgstr "Special thanks to"
+msgid "Special thanks to"
+msgstr "Besonderer Dank an"
 
 #: herobase/templates/herobase/credits.html:72
-msgid "Sound und Musik"
-msgstr "Sound and music"
+msgid "Sound and music"
+msgstr "Sound und Musik"
 
 #: herobase/templates/herobase/dosanddonts.html:6
-msgid "Wichtige Nutzungshinweise für you are hero"
-msgstr "Important usage hints for you are hero"
+msgid "Important usage hints for you are hero"
+msgstr "Wichtige Nutzungshinweise für you are hero"
 
 #: herobase/templates/herobase/dosanddonts.html:9
-msgid "Generell:"
-msgstr "General:"
+msgid "General:"
+msgstr "Generell:"
 
 #: herobase/templates/herobase/dosanddonts.html:11
 msgid ""
+"            Quests, whose fulfillment criterias are bound to money or other goods "
+"violate the principles of you are hero.\n"
+"			 An example: If you are being offered, while fulfilling your Quest, some "
+"snacks or something to drink, this is no problem at all. \n"
+"			 Whereas a quest, whre you are being offered food and drink in exchange, "
+"this goes against the ethic of you are hero. \n"
+"			 These kinds of violations should be reported to info@youarehero.net."
+"Should you get doubts about the integrity of a players participation, \n"
+"			 please inform us as soon as possible at info@youarehero.net. "
+"Should you are hero receive a complaint or a message, \n"
+"			 that questions your legitimity or identity at your application, "
+"fulfillment or set up of quests, you are hero ventures to \n"
+"			 get into personal contact with you, deleting your quests p.r.n. "
+"or to even delete your profile. Should you choose to exchange \n"
+"			 data with a questgiver or -taker in the process of communication, "
+"please treat it with the utmost discretion and confidentiality."
+msgstr ""
 "\n"
 "            Quests, die zu ihrer Erfüllung an den Austausch von Geld oder "
 "jedweder Güter gebunden sind, verstoßen gegen das\n"
@@ -858,30 +875,19 @@ msgid ""
 "austauschen, behandeln Sie diese bitte diskret und\n"
 "            vertraulich.\n"
 "            "
-msgstr ""
-"            Quests, whose fulfillment criterias are bound to money or other goods "
-"violate the principles of you are hero.\n"
-"			 An example: If you are being offered, while fulfilling your Quest, some "
-"snacks or something to drink, this is no problem at all. \n"
-"			 Whereas a quest, whre you are being offered food and drink in exchange, "
-"this goes against the ethic of you are hero. \n"
-"			 These kinds of violations should be reported to info@youarehero.net."
-"Should you get doubts about the integrity of a players participation, \n"
-"			 please inform us as soon as possible at info@youarehero.net. "
-"Should you are hero receive a complaint or a message, \n"
-"			 that questions your legitimity or identity at your application, "
-"fulfillment or set up of quests, you are hero ventures to \n"
-"			 get into personal contact with you, deleting your quests p.r.n. "
-"or to even delete your profile. Should you choose to exchange \n"
-"			 data with a questgiver or -taker in the process of communication, "
-"please treat it with the utmost discretion and confidentiality."
 
 #: herobase/templates/herobase/dosanddonts.html:27
-msgid "Jugendschutz:"
-msgstr "Youth protection:"
+msgid "Youth protection:"
+msgstr "Jugendschutz:"
 
 #: herobase/templates/herobase/dosanddonts.html:30
 msgid ""
+"Generally the registration on www.youarehero.net, as well as the participation "
+"at you are hero-actions only allowed starting the age of 15. Users below the age "
+"of 18 can only fulfill quests that can’t be done from a computer with consent of "
+"their parents. Users below the age of 18 can´t and are not allowed to post quests "
+"on the platform."
+msgstr ""
 "\n"
 "            Generell ist die Registrierung auf www.youarehero.net sowie die "
 "Teilnahme an you are hero-Aktionen erst ab 15 Jahren\n"
@@ -891,19 +897,19 @@ msgid ""
 "ist das Bewerben um und Einstellen von privaten\n"
 "            Quests generell nicht erlaubt.\n"
 "            "
-msgstr ""
-"Generally the registration on www.youarehero.net, as well as the participation "
-"at you are hero-actions only allowed starting the age of 15. Users below the age "
-"of 18 can only fulfill quests that can’t be done from a computer with consent of "
-"their parents. Users below the age of 18 can´t and are not allowed to post quests "
-"on the platform."
 
 #: herobase/templates/herobase/dosanddonts.html:38
-msgid "Bewerbung und Annahme von Quests:"
-msgstr "Application and acceptance of quests:"
+msgid "Application and acceptance of quests:"
+msgstr "Bewerbung und Annahme von Quests:"
 
 #: herobase/templates/herobase/dosanddonts.html:41
 msgid ""
+"Please think carefully about accepting a quest and take it seriously. "
+"Some quests demand a high level of sensibility for the respective situation "
+"(e.g. in the dealings with sick or weak people). Please inform yourself "
+"beforehand and sufficiently about the demanded requirements. Should any "
+"question towards an application appear, do not baulk to contact the quest provider."
+msgstr ""
 "\n"
 "            Bitte überlegen Sie sich Ihre Bewerbung um eine Quest gut und "
 "nehmen Sie diese ernst.  Manche Quests verlangen ein hohes\n"
@@ -913,19 +919,19 @@ msgid ""
 "Fragen zu einer Bewerbung auftauchen, scheuen Sie sich\n"
 "            nicht die Quest-Einstellenden zu kontaktieren.\n"
 "            "
-msgstr ""
-"Please think carefully about accepting a quest and take it seriously. "
-"Some quests demand a high level of sensibility for the respective situation "
-"(e.g. in the dealings with sick or weak people). Please inform yourself "
-"beforehand and sufficiently about the demanded requirements. Should any "
-"question towards an application appear, do not baulk to contact the quest provider."
 
 #: herobase/templates/herobase/dosanddonts.html:50
-msgid "Einstellen und Vergabe von Quests:"
-msgstr "Posting and assignment of quests:"
+msgid "Posting and assignment of quests:"
+msgstr "Einstellen und Vergabe von Quests:"
 
 #: herobase/templates/herobase/dosanddonts.html:53
 msgid ""
+"With the assignment of a quest you enlist yourself to not abuse quest takers "
+"for dishonest means but act in the sense of the common good. If you decide to "
+"give a quest to an underage, you are encouraged to ask for a consent of legal "
+"guardians. See also youth protection. Quest providers accept full responsibility "
+"for the procedure of the quest fulfillment. you are hero is not taking responisbility for this."
+msgstr ""
 "\n"
 "            Mit der Quest-Vergabe verpflichten Sie sich keine Teilnehmenden "
 "für unlautere Zwecke auszunutzen und im Sinne des\n"
@@ -939,23 +945,22 @@ msgid ""
 "Verantwortung für den Ablauf der Quest-Erfüllung. you are\n"
 "            hero übernimmt hierfür keine Verantwortung.\n"
 "            "
-msgstr ""
-"With the assignment of a quest you enlist yourself to not abuse quest takers "
-"for dishonest means but act in the sense of the common good. If you decide to "
-"give a quest to an underage, you are encouraged to ask for a consent of legal "
-"guardians. See also youth protection. Quest providers accept full responsibility "
-"for the procedure of the quest fulfillment. you are hero is not taking responisbility for this."
 
 #: herobase/templates/herobase/help.html:6
-msgid "Hilfe"
-msgstr "Help"
+msgid "Help"
+msgstr "Hilfe"
 
 #: herobase/templates/herobase/help.html:13
-msgid "Spielanleitung Alternate Reality Games"
-msgstr "Rules for the Alternate Reality Game"
+msgid "Rules for the Alternate Reality Game"
+msgstr "Spielanleitung Alternate Reality Games"
 
 #: herobase/templates/herobase/help.html:15
 msgid ""
+"This game is no ordinary game: it’s an “alternate reality game”. "
+"That means that the story of Anonyma happens “for real” in the city "
+"of Karlsruhe, and all the players are acting like if they were “real” heroes. "
+"This is a fun, but also kind of new game, so here are some basic rules that explain it clearly!"
+msgstr ""
 "\n"
 "      Dieses ist kein gewöhnliches Spiel; es ist ein “Alternate Reality "
 "Game”. Das heisst, dass Anonymas Geschichte\n"
@@ -964,19 +969,18 @@ msgid ""
 "      Spaß, ist aber eine neue Spielform, daher im Folgenden ein paar "
 "Basisregeln um es besser zu erklären:\n"
 "      "
-msgstr ""
-"This game is no ordinary game: it’s an “alternate reality game”. "
-"That means that the story of Anonyma happens “for real” in the city "
-"of Karlsruhe, and all the players are acting like if they were “real” heroes. "
-"This is a fun, but also kind of new game, so here are some basic rules that explain it clearly!"
 
 
 #: herobase/templates/herobase/help.html:22
-msgid "Zusammenarbeiten."
-msgstr "Collaborate."
+msgid "Collaborate."
+msgstr "Zusammenarbeiten."
 
 #: herobase/templates/herobase/help.html:24
 msgid ""
+"When quests become mentally or physically challenging, heroes rely on teamwork "
+"and community. Don’t be shy; interacting with fellow players can be the best part "
+"of the game! So go and check out the forums."
+msgstr ""
 "\n"
 "      Wenn eine Aufgabe mental oder physisch zu anstrengend wird, verlassen "
 "sich Helden auf Teamwork und die\n"
@@ -984,17 +988,18 @@ msgid ""
 "anderen Spielern ist das Beste am Spiel! Also\n"
 "      besucht das Forum regelmässig.\n"
 "      "
-msgstr ""
-"When quests become mentally or physically challenging, heroes rely on teamwork "
-"and community. Don’t be shy; interacting with fellow players can be the best part "
-"of the game! So go and check out the forums."
 
 #: herobase/templates/herobase/help.html:31
-msgid "Teilen."
-msgstr "Share."
+msgid "Share."
+msgstr "Teilen."
 
 #: herobase/templates/herobase/help.html:33
 msgid ""
+"If you find a piece of information, or even if you get a fresh idea about a quest, "
+"don’t keep it to yourself! Remember that all heroes are allies against Anonyma "
+"and the other villains. There is no single winner in the end, so just share what "
+"you’ve got on the forums or the hero wiki!"
+msgstr ""
 "\n"
 "      Wenn ihr mit einer Information konfrontiert seid oder eine neue Idee "
 "für das Lösen einer Quest habt, behaltet sie\n"
@@ -1004,19 +1009,18 @@ msgid ""
 "Hinweise, die ihr findet auf den Foren oder\n"
 "      im Heldenwiki.\n"
 "      "
-msgstr ""
-"If you find a piece of information, or even if you get a fresh idea about a quest, "
-"don’t keep it to yourself! Remember that all heroes are allies against Anonyma "
-"and the other villains. There is no single winner in the end, so just share what "
-"you’ve got on the forums or the hero wiki!"
 
 
 #: herobase/templates/herobase/help.html:41
-msgid "Rausgehen."
-msgstr "Go out."
+msgid "Go out."
+msgstr "Rausgehen."
 
 #: herobase/templates/herobase/help.html:43
 msgid ""
+"At some point, quests will take heroes out there in the world. Whether it is to "
+"look for important clues, or to perform heroic actions, remember to obey elementary "
+"safety measures. Heroes too can get hurt."
+msgstr ""
 "\n"
 "      An einem bestimmten Punkt werden die Quests die Helden raus ins reale "
 "Leben führen. Ob es auf der Suche nach\n"
@@ -1024,17 +1028,18 @@ msgid ""
 "bitte denkt an elementare Sicherheitsregeln.\n"
 "      Auch Helden können sich verletzen.\n"
 "      "
-msgstr ""
-"At some point, quests will take heroes out there in the world. Whether it is to "
-"look for important clues, or to perform heroic actions, remember to obey elementary "
-"safety measures. Heroes too can get hurt."
 
 #: herobase/templates/herobase/help.html:50
-msgid "Durchhalten (und manchmal über den Tellerrand schauen)"
-msgstr "Persevere (Think out of the box)."
+msgid "Persevere (Think out of the box)."
+msgstr "Durchhalten (und manchmal über den Tellerrand schauen)"
 
 #: herobase/templates/herobase/help.html:52
 msgid ""
+"When quests require them to do things they never have done - or even heard of - "
+"before, true heroes don’t give up. Even if the task is seamingly impossible. "
+"Sometimes, it’s just a matter of perspective. So, be resourceful, imaginative and "
+"persistent. And don’t forget to play with your friends and fellow heroes!"
+msgstr ""
 "\n"
 "      Wenn Quests vom einem verlangen, Dinge zu tun, die man noch nie getan\n"
 "          oder von denen man noch nicht mal gehört\n"
@@ -1045,36 +1050,38 @@ msgid ""
 "          Und vergesst nicht, gemeinsam mit euren\n"
 "      Freunden und Mithelden zu spielen!\n"
 "      "
-msgstr ""
-"When quests require them to do things they never have done - or even heard of - "
-"before, true heroes don’t give up. Even if the task is seamingly impossible. "
-"Sometimes, it’s just a matter of perspective. So, be resourceful, imaginative and "
-"persistent. And don’t forget to play with your friends and fellow heroes!"
 
 #: herobase/templates/herobase/help.html:65
 #, python-format
 msgid ""
 "\n"
+"      In case of great need, the community will be able to turn to the elder heroes  "
+"      <a href=\"%(hotline_url)s\">for advice.</a>\n"
+"        "
+msgstr ""
+"\n"
 "      Wenn wirklich nichts mehr geht, kann die Community die etablierten "
 "Helden\n"
 "      <a href=\"%(hotline_url)s\">um Rat bitten.</a>\n"
 "        "
-msgstr ""
-"\n"
-"      In case of great need, the community will be able to turn to the elder heroes  "
-"      <a href=\"%(hotline_url)s\">for advice.</a>\n"
-"        "
 
 #: herobase/templates/herobase/help.html:74
-msgid "Wie funktioniert you are hero?"
-msgstr "How does you are hero work?"
+msgid "How does you are hero work?"
+msgstr "Wie funktioniert you are hero?"
 
 #: herobase/templates/herobase/help.html:76
-msgid "Profil verwalten"
-msgstr "Manage the profile"
+msgid "Manage the profile"
+msgstr "Profil verwalten"
 
 #: herobase/templates/herobase/help.html:78
 msgid ""
+"\n"
+"If you want to manage your profile click on the symbol with the cog on the upper "
+"right of the page, change whatever needs changing and complete the process by clicking "
+"on the red button with the tick on the lower part of the page."
+"Your actions are thereby being saved and immediately depicted according to the changes "
+"you made."
+msgstr ""
 "\n"
 "        Wenn ihr euer Profil verwalten wollt, dann klickt auf das Symbol mit "
 "den Zahnrädern rechts oben, bearbeitet und ändert was es zu ändern gibt und "
@@ -1082,20 +1089,20 @@ msgid ""
 "        Eure Änderungen werden damit gespeichert und sofort geändert "
 "angezeigt.\n"
 "        "
-msgstr ""
-"\n"
-"If you want to manage your profile click on the symbol with the cog on the upper "
-"right of the page, change whatever needs changing and complete the process by clicking "
-"on the red button with the tick on the lower part of the page."
-"Your actions are thereby being saved and immediately depicted according to the changes "
-"you made."
 
 #: herobase/templates/herobase/help.html:85
-msgid "EP sammeln"
-msgstr "Collecting XP"
+msgid "Collecting XP"
+msgstr "EP sammeln"
 
 #: herobase/templates/herobase/help.html:87
 msgid ""
+"\n"
+"You can collect XP (or Experience Points), by accepting quests and solving them."
+"But you also get experience points by posting quests and seeing them through."
+"The points are being delivered after the conclusion of the quest."
+"After having aqcuired a certain amount of XP you gain a level. This will prove you "
+"to the rest of the community as experienced heroes."
+msgstr ""
 "\n"
 "        EP (oder auch Erfahrungspunkte; aus dem englischen: Experience "
 "Points) sammelt ihr, indem ihr Quests annehmt und\n"
@@ -1105,20 +1112,21 @@ msgid ""
 "erreicht habt, steigt ihr ein Level auf. Das\n"
 "        kennzeichnet euch gegenüber der Gemeinschaft als erfahrene Helden.\n"
 "        "
-msgstr ""
-"\n"
-"You can collect XP (or Experience Points), by accepting quests and solving them."
-"But you also get experience points by posting quests and seeing them through."
-"The points are being delivered after the conclusion of the quest."
-"After having aqcuired a certain amount of XP you gain a level. This will prove you "
-"to the rest of the community as experienced heroes."
 
 #: herobase/templates/herobase/help.html:96
-msgid "Quest annehmen"
-msgstr "Accepting a quest"
+msgid "Accepting a quest"
+msgstr "Quest annehmen"
 
 #: herobase/templates/herobase/help.html:98
 msgid ""
+"\n"
+"If you feel that a quests suits you and you´d like to take part then just press "
+"the big red button that sais “apply”."
+"As soon as the quest provider accepts you as a participant you are part of the "
+"quest and therefore also partly responsible for its solving."
+"After the conclusion of the quest, which happens as soon as the quest provider "
+"marks it as finished, you receive your well-earned XP."
+msgstr ""
 "\n"
 "        Wenn euch eine Quest gefällt und ihr gerne mitmachen möchtet, dann "
 "drückt einfach den großen roten Knopf, auf\n"
@@ -1129,53 +1137,50 @@ msgid ""
 "        abgeschlossen markiert wird, bekommt ihr dann eure Erfahrungspunkte "
 "zugewiesen.\n"
 "        "
-msgstr ""
-"\n"
-"If you feel that a quests suits you and you´d like to take part then just press "
-"the big red button that sais “apply”."
-"As soon as the quest provider accepts you as a participant you are part of the "
-"quest and therefore also partly responsible for its solving."
-"After the conclusion of the quest, which happens as soon as the quest provider "
-"marks it as finished, you receive your well-earned XP."
 
 #: herobase/templates/herobase/help.html:106
-msgid "Symbol Zeitaufwand"
-msgstr "Symbol time exposure"
+msgid "Symbol time exposure"
+msgstr "Symbol Zeitaufwand"
 
 #: herobase/templates/herobase/help.html:108
 msgid ""
 "\n"
+"The symbol with the clock indicates the approximate time it will take to solve the quest."
+msgstr ""
+"\n"
 "        Das Symbol mit der Uhr kennzeichnet wie viel Zeit die Erfüllung der "
 "Quest vermutlich in Anspruch nehmen wird.\n"
 "        "
-msgstr ""
-"\n"
-"The symbol with the clock indicates the approximate time it will take to solve the quest."
 
 #: herobase/templates/herobase/help.html:113
-msgid "Symbol Ort"
-msgstr "Symbol location"
+msgid "Symbol location"
+msgstr "Symbol Ort"
 
 #: herobase/templates/herobase/help.html:115
 msgid ""
+"\n"
+"If you see this symbol, it means that this quest has to be solved locally. "
+"Every quest without this symbol can be solved online or digitally."
+"The place is depicted in the quest."
+msgstr ""
 "\n"
 "        Wenn ihr dieses Symbol seht, heisst das, dass diese Quest lokal vor "
 "Ort erledigt werden muss. Alle Quests ohne dieses Symbol können online bzw. "
 "digital erfüllt werden.\n"
 "        Den Ort seht ihr in der Quest angezeigt.\n"
 "        "
-msgstr ""
-"\n"
-"If you see this symbol, it means that this quest has to be solved locally. "
-"Every quest without this symbol can be solved online or digitally."
-"The place is depicted in the quest."
 
 #: herobase/templates/herobase/help.html:122
-msgid "Quest einstellen"
-msgstr "Post a quest"
+msgid "Post a quest"
+msgstr "Quest einstellen"
 
 #: herobase/templates/herobase/help.html:124
 msgid ""
+"\n"
+"The icon “new quest” (the one with the pencil) provides you with a form "
+"that allows you to post your own quests. Fill in all the fields conscientiously. "
+"The more informations you provide, the easier it will be to find heros that want to participate."
+msgstr ""
 "\n"
 "        Unter dem Icon “neue Quest” (das mit dem Stift) findet ihr ein "
 "Formular, das es euch ermöglicht, selbst Quests\n"
@@ -1183,18 +1188,20 @@ msgid ""
 "Informationen ihr eingebt, desto leichter wird es\n"
 "        sein, Helden zu finden, die teilnehmen wollen.\n"
 "        "
-msgstr ""
-"\n"
-"The icon “new quest” (the one with the pencil) provides you with a form "
-"that allows you to post your own quests. Fill in all the fields conscientiously. "
-"The more informations you provide, the easier it will be to find heros that want to participate."
 
 #: herobase/templates/herobase/help.html:132
-msgid "Nachrichten versenden"
-msgstr "Sending messages"
+msgid "Sending messages"
+msgstr "Nachrichten versenden"
 
 #: herobase/templates/herobase/help.html:134
 msgid ""
+"\n"
+"The icon that says messages and that looks like an envelope provides you "
+"with your platforminternal mailbox."
+"There you can write your own messages to other users (you’ll need to know "
+"the username of the person you want to contact though) and check out all messages "
+"that you have sent and received."
+msgstr ""
 "\n"
 "        Unter dem Icon, das mit \"Nachrichten\" gekennzeichnet ist und wie "
 "ein Briefumschlag aussieht, findet ihr eure\n"
@@ -1203,20 +1210,19 @@ msgid ""
 "        kennen, die ihr anschreiben wollt) und euch alle Nachrichten "
 "anschauen, die ihr gesendet und empfangen habt.\n"
 "        "
-msgstr ""
-"\n"
-"The icon that says messages and that looks like an envelope provides you "
-"with your platforminternal mailbox."
-"There you can write your own messages to other users (you’ll need to know "
-"the username of the person you want to contact though) and check out all messages "
-"that you have sent and received."
 
 #: herobase/templates/herobase/help.html:142
-msgid "Benachrichtigungen"
-msgstr "Notifications"
+msgid "Notifications"
+msgstr "Benachrichtigungen"
 
 #: herobase/templates/herobase/help.html:144
 msgid ""
+"\n"
+"The symbol with the bell represents notifications."
+"With it you can immediatly see if something new happens on the plattform."
+"If you click on it you will be forwarded to a list that tells you everything "
+"that has happened on the platform."
+msgstr ""
 "\n"
 "        Das Glockensymbol oben repräsentiert eure Benachrichtigungen.  Ihr "
 "könnt dort\n"
@@ -1226,49 +1232,43 @@ msgid ""
 "            die euch genau aufzeigt, was\n"
 "        alles schon auf der Plattform passiert ist.\n"
 "        "
-msgstr ""
-"\n"
-"The symbol with the bell represents notifications."
-"With it you can immediatly see if something new happens on the plattform."
-"If you click on it you will be forwarded to a list that tells you everything "
-"that has happened on the platform."
 
 #. Translators: This refers to the arg
 #: herobase/templates/herobase/help.html:155
 #: herobase/templates/herobase/layout/navigation.inc.html:22
 #: herobase/templates/herobase/layout/navigation_authenticated.html:16
-msgid "Das Spiel"
-msgstr "The game"
+msgid "The game"
+msgstr "Das Spiel"
 
 #: herobase/templates/herobase/help.html:157
 msgid ""
+"\n"
+"The icon with the puzzle piece reveals all that happened in the course "
+"of the arg that has happened over the summer in Karlsruhe."
+msgstr ""
 "\n"
 "        Unter dem Icon mit dem Puzzlesymbol findet ihr alle Infos, die "
 "relevant sind für das in Karlsruhe stattfindende\n"
 "        Spiel.\n"
 "        "
-msgstr ""
-"\n"
-"The icon with the puzzle piece reveals all that happened in the course "
-"of the arg that has happened over the summer in Karlsruhe."
 
 #: herobase/templates/herobase/hero_classes.html:5
-msgid "Heldenklassen"
-msgstr "Heroic classes"
+msgid "Heroic classes"
+msgstr "Heldenklassen"
 
 #: herobase/templates/herobase/hero_classes.inc.html:3
 msgid ""
+"The heroic class of your character gives an indication about the kind of class you like."
+" Of course you can take any quest you like but your class indicates a certain preference."
+msgstr ""
 "Die Heldenklasse Deines Charakters gibt an welche Arten von Quests Du "
 "bevorzugst. Natürlich kannst Du jede Quest\n"
 "        annehmen, die Dir gefällt, aber Deine Klasse sollte eine gewisse "
 "Präferenz zum Ausdruck bringen."
-msgstr ""
-"The heroic class of your character gives an indication about the kind of class you like."
-" Of course you can take any quest you like but your class indicates a certain preference."
 
 #: herobase/templates/herobase/hero_classes.inc.html:6
-msgid "Jede Quest ist entsprechend einer oder mehrerer dieser Heldenklassen zugeordnet."
-msgstr "Every quest is being matched with one or more of those heroic classes"
+msgid "Every quest is being matched with one or more of those heroic classes"
+msgstr "Jede Quest ist entsprechend einer oder mehrerer dieser Heldenklassen zugeordnet."
 
 #: herobase/templates/herobase/hero_classes.inc.html:9
 msgid ""
@@ -1349,33 +1349,40 @@ msgstr ""
 #: herobase/templates/herobase/home_login_box.inc.html:30
 #: herobase/templates/registration/login_box.inc.html:6
 #: herobase/templates/registration/registration_box.inc.html:28
-msgid "Einloggen"
-msgstr "Login"
+msgid "Login"
+msgstr "Einloggen"
 
 #: herobase/templates/herobase/home_login_box.inc.html:23
 #: herobase/templates/registration/login_box.inc.html:13
-msgid "Passwort vergessen?"
-msgstr "Forgot the password?"
+msgid "Forgot the password?"
+msgstr "Passwort vergessen?"
 
 #: herobase/templates/herobase/home_registration_box.inc.html:23
 #: herobase/templates/registration/login_box.inc.html:17
-msgid "Jetzt Registrieren!"
-msgstr "Join now!"
+msgid "Join now!"
+msgstr "Jetzt Registrieren!"
 
 #: herobase/templates/herobase/hotline.html:6
 msgid "Hotline"
 msgstr "Hotline"
 
 #: herobase/templates/herobase/hotline.html:13
-msgid "Helden Hotline"
-msgstr "Hero hotline"
+msgid "Hero hotline"
+msgstr "Helden Hotline"
 
 #: herobase/templates/herobase/hotline.html:13
-msgid "Soforthilfe für Helden in Not"
-msgstr "Immediate help for stranded heroes"
+msgid "Immediate help for stranded heroes"
+msgstr "Soforthilfe für Helden in Not"
 
 #: herobase/templates/herobase/hotline.html:16
 msgid ""
+"\n"
+"When heroes need help, they ask the community on the forums. But when even "
+"that is not enough, heroes turn to the hero hotline. Thanks to the hotline, "
+"they can quickly get in touch with the elder heroes - creators of this game and website."
+"“The Hero Phone”: 01573-1914755 (leave message if no answer)"
+"“The Hero Mailbox”: info@youarehero.net"
+msgstr ""
 "\n"
 "      Wenn Helden Hilfe brauchen, fragen sie erstmal die Community in den "
 "Foren.<br/>\n"
@@ -1385,28 +1392,31 @@ msgid ""
 "Kontakt treten - den Erschaffern des Spiels und\n"
 "      dieser Website.\n"
 "      "
-msgstr ""
-"\n"
-"When heroes need help, they ask the community on the forums. But when even "
-"that is not enough, heroes turn to the hero hotline. Thanks to the hotline, "
-"they can quickly get in touch with the elder heroes - creators of this game and website."
-"“The Hero Phone”: 01573-1914755 (leave message if no answer)"
-"“The Hero Mailbox”: info@youarehero.net"
 
 #: herobase/templates/herobase/hotline.html:24
-msgid "Der Helden-Briefkasten"
-msgstr "The heroic mailbox"
+msgid "The heroic mailbox"
+msgstr "Der Helden-Briefkasten"
 
 #: herobase/templates/herobase/imprint.html:13
-msgid "Verantwortlich für den Inhalt"
-msgstr "Responsible for content"
+msgid "Responsible for content"
+msgstr "Verantwortlich für den Inhalt"
 
 #: herobase/templates/herobase/imprint.html:26
-msgid "Haftungshinweise"
-msgstr "liability note"
+msgid "liability note"
+msgstr "Haftungshinweise"
 
 #: herobase/templates/herobase/imprint.html:27
 msgid ""
+"\n"
+"                    Despite thorough contentual controls we do not assume "
+"liability for content of external links. The content of the linked "
+"pages lies solemnly in the responsibility of the respective owners.\n"
+"                    In case that statements on this website infringe "
+"property rights, like trade- or copyright breaches, we entreat you to give "
+"us immediaty notice via email or otherwise.\n"
+"                    In that case we will immediatly rid the page from its unlawful condition.\n"
+"                "
+msgstr ""
 "\n"
 "                    Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir "
 "keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten "
@@ -1418,47 +1428,37 @@ msgid ""
 "                    Wir werden in diesem Fall sofort rechtmäßige Zustände "
 "herstellen.\n"
 "                "
-msgstr ""
-"\n"
-"                    Despite thorough contentual controls we do not assume "
-"liability for content of external links. The content of the linked "
-"pages lies solemnly in the responsibility of the respective owners.\n"
-"                    In case that statements on this website infringe "
-"property rights, like trade- or copyright breaches, we entreat you to give "
-"us immediaty notice via email or otherwise.\n"
-"                    In that case we will immediatly rid the page from its unlawful condition.\n"
-"                "
 
 #: herobase/templates/herobase/leader_board.html:8
 #: herobase/templates/herobase/layout/mainmenu.inc.html:29
 #: herobase/templates/herobase/layout/mainmenu.inc.html:30
-msgid "Bestenliste"
-msgstr "Leaderboard"
+msgid "Leaderboard"
+msgstr "Bestenliste"
 
 #: herobase/templates/herobase/leader_board.html:13
 #: herobase/templates/herobase/layout/navigation_authenticated.html:28
-msgid "Rangliste"
-msgstr "Leaderboard"
+msgid "Leaderboard"
+msgstr "Rangliste"
 
 #: herobase/templates/herobase/leader_board.html:18
 msgid "Top 5"
 msgstr "Top 5"
 
 #: herobase/templates/herobase/leader_board.html:30
-msgid "Ränge 6-10"
-msgstr "Ranks 6 to 10"
+msgid "Ranks 6 to 10"
+msgstr "Ränge 6-10"
 
 #: herobase/templates/herobase/leader_board.html:44
-msgid "Ränge 11-25"
-msgstr "Ranks 11 to 25"
+msgid "Ranks 11 to 25"
+msgstr "Ränge 11-25"
 
 #: herobase/templates/herobase/leader_board.html:57
-msgid "Ränge 26-50"
-msgstr "Ranks 26 to 50"
+msgid "Ranks 26 to 50"
+msgstr "Ränge 26-50"
 
 #: herobase/templates/herobase/leader_board.html:70
-msgid "Liste der Errungenschaften"
-msgstr "List of Achievements"
+msgid "List of Achievements"
+msgstr "Liste der Errungenschaften"
 
 #: herobase/templates/herobase/leader_board_box.inc.html:13
 #: herobase/templates/herobase/userprofile/detail_box.html:46
@@ -1469,28 +1469,38 @@ msgstr "Level"
 #: herobase/templates/herobase/leader_board_box.inc.html:14
 #: herobase/templates/herobase/userprofile/detail_box.html:48
 #: herobase/templates/herobase/userprofile/detail_mini.html:17
-msgid "EP"
-msgstr "XP"
+msgid "XP"
+msgstr "EP"
 
 #: herobase/templates/herobase/leader_board_box.inc.html:15
-msgid "Erfolge"
-msgstr "Successes"
+msgid "Successes"
+msgstr "Erfolge"
 
 #: herobase/templates/herobase/press.html:4
-msgid "Willkommen auf der Plattform für Helden!"
-msgstr "Welcome to a place where you can become a hero!"
+msgid "Welcome to a place where you can become a hero!"
+msgstr "Willkommen auf der Plattform für Helden!"
 
 #: herobase/templates/herobase/press.html:13
-msgid "you are hero &ndash; Das Spiel möge beginnen!"
-msgstr "you are hero &ndash; May the game begin!"
+msgid "you are hero &ndash; May the game begin!"
+msgstr "you are hero &ndash; Das Spiel möge beginnen!"
 
 #: herobase/templates/herobase/press.html:14
-msgid "(k)ein Heldenspiel aus der HfG Karlsruhe"
-msgstr "a heroic game from the Karlsruhe University of Arts and Design "
+msgid "a heroic game from the Karlsruhe University of Arts and Design "
+msgstr "(k)ein Heldenspiel aus der HfG Karlsruhe"
 
 
 #: herobase/templates/herobase/press.html:15
 msgid ""
+"\n"
+"      <em>Gaming can make a better world</em> &ndash; this is the ,essage of game designer "
+"Jane McGonigal. At the Karlsruhe University of Arts and Design\n"
+"      Student Greta Hoffmann has accepted this challenge together "
+"with a group of heroes dieser Aufgabe under the motto \n"
+"      <em>you are hero</em>. These heroes want to introduce themselves"
+"to the city of Karlsruhe with a big game starting on the 16. September 2013.\n"
+" Because <em>you are hero</em> urgently needs reinforcements!\n"
+"      "
+msgstr ""
 "\n"
 "      <em>Gaming can make a better world</em> &ndash; das ist die Botschaft "
 "der Spieldesignerin Jane McGonigal. An der\n"
@@ -1501,20 +1511,17 @@ msgid ""
 "      großen Spiel in ganz Karlsruhe vorstellen &ndash; denn <em>you are "
 "hero</em> braucht dringend Verstärkung!\n"
 "      "
-msgstr ""
-"\n"
-"      <em>Gaming can make a better world</em> &ndash; this is the ,essage of game designer "
-"Jane McGonigal. At the Karlsruhe University of Arts and Design\n"
-"      Student Greta Hoffmann has accepted this challenge together "
-"with a group of heroes dieser Aufgabe under the motto \n"
-"      <em>you are hero</em>. These heroes want to introduce themselves"
-"to the city of Karlsruhe with a big game starting on the 16. September 2013.\n"
-" Because <em>you are hero</em> urgently needs reinforcements!\n"
-"      "
 
 #: herobase/templates/herobase/press.html:21
 # recheck
 msgid ""
+"\n"
+"The game has already started: Recently an attractive but dubious figure calling"
+" herself <em>Anonyma</em> has been increasingly sighted in Karlsruhe. "
+"Especially on das FEST and at the KAMUNA she rocked the boat."
+"One asks oneself, why this <em>Femme fatale</em> has chosen our city to "
+"do her mischief. Actually we enjoy quite a peaceful living here"
+msgstr ""
 "\n"
 "      Das Spiel hat bereits begonnen: Kürzlich wurde vermehrt eine "
 "attraktive, aber zwielichtige Gestalt namens\n"
@@ -1538,13 +1545,6 @@ msgid ""
 "genau das sind die kleinen Schwächen, auf\n"
 "      die <em>Anonyma</em> aus ist, um sie sich zu Nutze zu machen.\n"
 "      "
-msgstr ""
-"\n"
-"The game has already started: Recently an attractive but dubious figure calling"
-" herself <em>Anonyma</em> has been increasingly sighted in Karlsruhe. "
-"Especially on das FEST and at the KAMUNA she rocked the boat."
-"One asks oneself, why this <em>Femme fatale</em> has chosen our city to "
-"do her mischief. Actually we enjoy quite a peaceful living here"
 
 #: herobase/templates/herobase/press.html:34
 msgid ""
@@ -1583,16 +1583,16 @@ msgstr "Trashley Treasure"
 #: herobase/templates/herobase/public_home.html:26
 msgid ""
 "\n"
+"                  One rumours that her mother was a sewing mashine and her father "
+"a pyrolysis facilty. On her weekends\n"
+"                  trashes are emptied and wardrobes fill themselves.\n"
+"                  "
+msgstr ""
+"\n"
 "                  Man erzählt sich, ihre Mutter sei eine Nähmaschine und ihr "
 "Vater eine Pyrolyseanlage. An ihrem\n"
 "                  Wochenende wird der Mülleimer wieder leer und der "
 "Kleiderschrank voll.\n"
-"                  "
-msgstr ""
-"\n"
-"                  One rumours that her mother was a sewing mashine and her father "
-"a pyrolysis facilty. On her weekends\n"
-"                  trashes are emptied and wardrobes fill themselves.\n"
 "                  "
 
 #: herobase/templates/herobase/public_home.html:37
@@ -1602,15 +1602,15 @@ msgstr "The Glitch"
 #: herobase/templates/herobase/public_home.html:38
 msgid ""
 "\n"
-"                  Das Internet? Computer? Panik? The Glitch ist ein Hacker. "
-"Er ist aber auch lieb zu seinen Nachbarn.\n"
-"                  Sein Wochenende ist freie Information.\n"
-"                  "
-msgstr ""
-"\n"
 "                  The internet? Computers? Panic? The Glitch is a hacker. "
 "But he is also nice to his neighbours.\n"
 "                  His weekend is free information.\n"
+"                  "
+msgstr ""
+"\n"
+"                  Das Internet? Computer? Panik? The Glitch ist ein Hacker. "
+"Er ist aber auch lieb zu seinen Nachbarn.\n"
+"                  Sein Wochenende ist freie Information.\n"
 "                  "
 
 #: herobase/templates/herobase/public_home.html:49
@@ -1620,24 +1620,30 @@ msgstr "Citizen G"
 #: herobase/templates/herobase/public_home.html:50
 msgid ""
 "\n"
+"                  He is living proof that you can be a Schottish (or whatever you want to be) "
+"with or without schottish ancestry\n"
+"                  He's all about intercultural exchange and kilts\n"
+"                  "
+msgstr ""
+"\n"
 "                  Er beweist, dass man auch ohne schottische Ahnen Schotte "
 "sein kann; oder eben, was und wann immer man\n"
 "                  sein möchte. Hier geht es um interkulturellen Austausch "
 "und Kilts.\n"
 "                  "
-msgstr ""
-"\n"
-"                  He is living proof that you can be a Schottish (or whatever you want to be) "
-"with or without schottish ancestry\n"
-"                  He's all about intercultural exchange and kilts\n"
-"                  "
 
 #: herobase/templates/herobase/public_home.html:60
-msgid "you are hero ist ein Spiel"
-msgstr "you are hero is a game"
+msgid "you are hero is a game"
+msgstr "you are hero ist ein Spiel"
 
 #: herobase/templates/herobase/public_home.html:62
 msgid ""
+"\n"
+"Solve Quests online or in the city, alone or with friends, and help the hero "
+"community to save the world. It is free and you can spend as much (or little) "
+"time as you want. Register now and accept the Tutorial-Quest to start."
+"        "
+msgstr ""
 "\n"
 "        Löse Quests online oder in der Stadt, allein oder mit deinen "
 "Freunden, und hilf den Helden die Schurkin Anonyma zu\n"
@@ -1645,24 +1651,18 @@ msgid ""
 "weitere Heldentaten. Es ist kostenlos und du\n"
 "        kannst so viel zeit aufwenden, wie du möchtest.\n"
 "        "
-msgstr ""
-"\n"
-"Solve Quests online or in the city, alone or with friends, and help the hero "
-"community to save the world. It is free and you can spend as much (or little) "
-"time as you want. Register now and accept the Tutorial-Quest to start."
-"        "
 
 #: herobase/templates/herobase/public_home.html:69
 #, python-format
 msgid ""
 "\n"
-"          <a href=\"%(register_url)s\">Registriere</a> dich und nimm "
-"Entropius’ Quest an um loszulegen.\n"
+"          <a href=\"%(register_url)s\">Register</a> and accept "
+"Entropius’ quest to start.\n"
 "        "
 msgstr ""
 "\n"
-"          <a href=\"%(register_url)s\">Register</a> and accept "
-"Entropius’ quest to start.\n"
+"          <a href=\"%(register_url)s\">Registriere</a> dich und nimm "
+"Entropius’ Quest an um loszulegen.\n"
 "        "
 
 #: herobase/templates/herobase/public_home.html:83
@@ -1672,25 +1672,33 @@ msgstr "Ma&icirc;tre"
 #: herobase/templates/herobase/public_home.html:84
 msgid ""
 "\n"
+"            Bored by eating he started to cook. He will fight for all the "
+"	disfranchised ingredients and shows them their right place in the\n"
+"            pot. This weekend is all under the topic of securing our alimentation.\n"
+"            "
+msgstr ""
+"\n"
 "            Gelangweilt vom Essen, begann er zu kochen. Er setzt sich ein "
 "für all die entrechteten Zutaten und weist\n"
 "            ihnen einen Platz zu, in seinem Kochtopf. An diesem Wochenende "
 "geht es um die Sicherung unserer Ernährung.\n"
 "            "
-msgstr ""
-"\n"
-"            Bored by eating he started to cook. He will fight for all the "
-"	disfranchised ingredients and shows them their right place in the\n"
-"            pot. This weekend is all under the topic of securing our alimentation.\n"
-"            "
 
 #: herobase/templates/herobase/public_home.html:109
-msgid "you are hero ist kein Spiel"
-msgstr "you are hero is no game"
+msgid "you are hero is no game"
+msgstr "you are hero ist kein Spiel"
 
 #: herobase/templates/herobase/public_home.html:112
 #, python-format
 msgid ""
+"This is a serious matter!"
+"We want to prove that games and playing can save the world."
+"How? By providing the means to have fun while doing good."
+"Beneficence, charity and a social mind are real things that can help us all to live in a better world."
+"In our <a href=\"%(manifesto_url)s\">Manifest</a>  you can check out how "
+"you are hero is planning on approaching this goal."
+"Or you just add your own Quest if you need the help of heroes or see something that needs to be done."
+msgstr ""
 "\n"
 "        Dies ist eine ernste Angelegenheit!\n"
 "        Wir wollen beweisen, dass Spielen die Welt retten kann.\n"
@@ -1703,46 +1711,38 @@ msgid ""
 "selbst\n"
 "        Helden-Hilfe benötigst!\n"
 "        "
-msgstr ""
-"This is a serious matter!"
-"We want to prove that games and playing can save the world."
-"How? By providing the means to have fun while doing good."
-"Beneficence, charity and a social mind are real things that can help us all to live in a better world."
-"In our <a href=\"%(manifesto_url)s\">Manifest</a>  you can check out how "
-"you are hero is planning on approaching this goal."
-"Or you just add your own Quest if you need the help of heroes or see something that needs to be done."
 
 #: herobase/templates/herobase/public_home.html:135
-msgid "k&uuml;rzlich abgeschlossene Quests"
-msgstr "Recently finished quests"
+msgid "Recently finished quests"
+msgstr "k&uuml;rzlich abgeschlossene Quests"
 
 #: herobase/templates/herobase/public_home.html:147
-msgid "Gef&ouml;rdert durch"
-msgstr "sponsored by"
+msgid "sponsored by"
+msgstr "Gef&ouml;rdert durch"
 
 #: herobase/templates/herobase/public_home.html:150
-msgid "Stadt Karlsruhe"
-msgstr "city of Karlsruhe"
+msgid "city of Karlsruhe"
+msgstr "Stadt Karlsruhe"
 
 #: herobase/templates/herobase/public_home.html:155
-msgid "Heinrich Hertz Gesellschaft"
-msgstr "Heinrich Hertz society"
+msgid "Heinrich Hertz society"
+msgstr "Heinrich Hertz Gesellschaft"
 
 #: herobase/templates/herobase/public_home.html:160
 msgid "Rotary Club Karlsruhe"
 msgstr "Rotary Club Karlsruhe"
 
 #: herobase/templates/herobase/stats.html:77
-msgid "Statistik"
-msgstr "Statistics"
+msgid "Statistics"
+msgstr "Statistik"
 
 #: herobase/templates/herobase/stats.html:84
-msgid "Es gibt keine Quests."
-msgstr "There are no open quests."
+msgid "There are no open quests."
+msgstr "Es gibt keine Quests."
 
 #: herobase/templates/herobase/stats.html:85
-msgid "Es gibt keine abgeschlossenen Quests."
-msgstr "There are no completed quests."
+msgid "There are no completed quests."
+msgstr "Es gibt keine abgeschlossenen Quests."
 
 #: herobase/templates/herobase/team.html:5
 #: herobase/templates/herobase/userprofile/detail_box.html:32
@@ -1750,20 +1750,20 @@ msgid "Team"
 msgstr "Team"
 
 #: herobase/templates/herobase/layout/footer.inc.html:5
-msgid "Impressum/Kontakt"
-msgstr "Imprint/Contact"
+msgid "Imprint/Contact"
+msgstr "Impressum/Kontakt"
 
 #: herobase/templates/herobase/layout/footer.inc.html:7
-msgid "Presse"
-msgstr "Press"
+msgid "Press"
+msgstr "Presse"
 
 #: herobase/templates/herobase/layout/footer.inc.html:9
-msgid "Hinweise"
-msgstr "Hints"
+msgid "Hints"
+msgstr "Hinweise"
 
 #: herobase/templates/herobase/layout/footer.inc.html:13
-msgid "Manifest"
-msgstr "Manifesto"
+msgid "Manifesto"
+msgstr "Manifest"
 
 #: herobase/templates/herobase/layout/footer.inc.html:17
 msgid "Forum"
@@ -1777,42 +1777,42 @@ msgstr "Wiki"
 #: herobase/templates/herobase/layout/mainmenu.inc.html:8
 #: herobase/templates/herobase/layout/mainmenu.inc.html:47
 #: herobase/templates/herobase/layout/mainmenu.inc.html:48
-msgid "Start"
-msgstr "Home"
+msgid "Home"
+msgstr "Start"
 
 #: herobase/templates/herobase/layout/mainmenu.inc.html:12
 #: herobase/templates/herobase/layout/mainmenu.inc.html:13
 #: herobase/templates/herobase/layout/mainmenu.inc.html:52
 #: herobase/templates/herobase/layout/mainmenu.inc.html:53
 #: herobase/templates/herobase/quest/list.html:47
-msgid "Pinnwand"
-msgstr "Billboard"
+msgid "Billboard"
+msgstr "Pinnwand"
 
 #: herobase/templates/herobase/layout/mainmenu.inc.html:18
-msgid "Eine Quest erstellen"
-msgstr "Create new Quest"
+msgid "Create new Quest"
+msgstr "Eine Quest erstellen"
 
 #: herobase/templates/herobase/layout/mainmenu.inc.html:19
-msgid "Neu"
-msgstr "New"
+msgid "New"
+msgstr "Neu"
 
 #: herobase/templates/herobase/layout/mainmenu.inc.html:24
 #: herobase/templates/herobase/layout/mainmenu.inc.html:25
-msgid "Meine Quests"
-msgstr "My quests"
+msgid "My quests"
+msgstr "Meine Quests"
 
 #: herobase/templates/herobase/layout/mainmenu.inc.html:34
-msgid "Private Nachrichten"
-msgstr "Private Messages"
+msgid "Private Messages"
+msgstr "Private Nachrichten"
 
 #: herobase/templates/herobase/layout/mainmenu.inc.html:40
 #: heromessage/templates/message/create.html:9
-msgid "Nachrichten"
-msgstr "Messages"
+msgid "Messages"
+msgstr "Nachrichten"
 
 #: herobase/templates/herobase/layout/mainmenu.inc.html:63
-msgid "Informationen"
-msgstr "Informations"
+msgid "Informations"
+msgstr "Informationen"
 
 #: herobase/templates/herobase/layout/navigation.inc.html:25
 #: herobase/templates/herobase/layout/navigation_authenticated.html:18
@@ -1820,90 +1820,90 @@ msgid "Quests"
 msgstr "Quests"
 
 #: herobase/templates/herobase/layout/navigation.inc.html:33
-msgid "Erfahre mehr"
-msgstr "Find out more"
+msgid "Find out more"
+msgstr "Erfahre mehr"
 
 #: herobase/templates/herobase/layout/navigation_authenticated.html:26
-msgid "Nachrichten"
-msgstr "Messages"
+msgid "Messages"
+msgstr "Nachrichten"
 
 #: herobase/templates/herobase/layout/navigation_authenticated.html:34
-msgid "Pinn<br/>wand"
-msgstr "Billboard"
+msgid "Billboard"
+msgstr "Pinn<br/>wand"
 
 #: herobase/templates/herobase/layout/navigation_authenticated.html:37
-msgid "Neue<br/>Quest"
-msgstr "New Quest"
+msgid "New Quest"
+msgstr "Neue<br/>Quest"
 
 #: herobase/templates/herobase/layout/navigation_authenticated.html:40
-msgid "Meine<br/>Quests"
-msgstr "My Quests"
+msgid "My Quests"
+msgstr "Meine<br/>Quests"
 
 #: herobase/templates/herobase/layout/navigation_authenticated.html:47
-msgid "Eingang"
-msgstr "inbox"
+msgid "inbox"
+msgstr "Eingang"
 
 #: herobase/templates/herobase/layout/navigation_authenticated.html:50
-msgid "Ausgang"
-msgstr "outbox"
+msgid "outbox"
+msgstr "Ausgang"
 
 #: herobase/templates/herobase/layout/navigation_authenticated.html:53
-msgid "Verfassen"
-msgstr "compose"
+msgid "compose"
+msgstr "Verfassen"
 
 #: herobase/templates/herobase/m/home.html:37
-msgid "Vorgeschlagene Quests"
-msgstr "Suggested quests"
+msgid "Suggested quests"
+msgstr "Vorgeschlagene Quests"
 
 #: herobase/templates/herobase/quest/unaccepted_adventures.html:6
-msgid "Sende Nachricht an alle Bewerbenden"
-msgstr "Send a message to all applicants"
+msgid "Send a message to all applicants"
+msgstr "Sende Nachricht an alle Bewerbenden"
 
 #: herobase/templates/herobase/quest/accepted_adventures.html:6
-msgid "Sende Nachricht an alle Teilnehmenden"
-msgstr "Send a message to all participants"
+msgid "Send a message to all participants"
+msgstr "Sende Nachricht an alle Teilnehmenden"
 
 #: herobase/templates/herobase/quest/accepted_adventures.html:10
-msgid "Teilnehmende"
-msgstr "Participants"
+msgid "Participants"
+msgstr "Teilnehmende"
 
 #: herobase/templates/herobase/quest/accepted_adventures.html:27
 #: herobase/templates/herobase/quest/unaccepted_adventures.html:35
 #: herobase/templates/herobase/userprofile/detail_box.html:63
 #, python-format
-msgid "Sende Nachricht an %(name)s "
-msgstr "Send a message to %(name)s"
+msgid "Send a message to %(name)s"
+msgstr "Sende Nachricht an %(name)s "
 
 #: herobase/templates/herobase/quest/comments_box.html:6
-msgid "Kommentare"
-msgstr "Comments"
+msgid "Comments"
+msgstr "Kommentare"
 
 #: herobase/templates/herobase/quest/comments_box.html:16
-msgid "Es gibt noch keine Kommentare."
-msgstr "There are no comments yet."
+msgid "There are no comments yet."
+msgstr "Es gibt noch keine Kommentare."
 
 #: herobase/templates/herobase/quest/comments_box.html:23
-msgid "Kommentieren"
-msgstr "Comment"
+msgid "Comment"
+msgstr "Kommentieren"
 
 #: herobase/templates/herobase/quest/comments_box.html:44
 #: herobase/templates/herobase/quest/documentation.html:47
-msgid "Kommentar abschicken"
-msgstr "Post comment"
+msgid "Post comment"
+msgstr "Kommentar abschicken"
 
 #: herobase/templates/herobase/quest/comments_box.html:50
 #, python-format
-msgid "Bitte <a href=\"%(login_url)s\">melde dich an</a> um zu kommentieren."
-msgstr "Please <a href=\"%(login_url)s\">log in</a> to comment."
+msgid "Please <a href=\"%(login_url)s\">log in</a> to comment."
+msgstr "Bitte <a href=\"%(login_url)s\">melde dich an</a> um zu kommentieren."
 
 #: herobase/templates/herobase/quest/create.html:40
-msgid "Quest bearbeiten"
-msgstr "Update your Quest"
+msgid "Update your Quest"
+msgstr "Quest bearbeiten"
 
 #. Translators:This refers to details for a quest
 #: herobase/templates/herobase/quest/detail.html:9
-msgid "Details zu"
-msgstr "Details for"
+msgid "Details for"
+msgstr "Details zu"
 
 #: herobase/templates/herobase/quest/detail.html:17
 #, fuzzy
@@ -1911,176 +1911,176 @@ msgid "Status:"
 msgstr "Status:"
 
 #: herobase/templates/herobase/quest/detail.html:19
-msgid "Ort:"
-msgstr "Place"
+msgid "Place"
+msgstr "Ort:"
 
 #: herobase/templates/herobase/quest/detail.html:21
 #: herobase/templates/herobase/quest/detail.html:30
-msgid "frei"
-msgstr "free"
+msgid "free"
+msgstr "frei"
 
 #: herobase/templates/herobase/quest/detail.html:25
-msgid "Datum:"
-msgstr "date:"
+msgid "date:"
+msgstr "Datum:"
 
 #: herobase/templates/herobase/quest/detail.html:33
-msgid "Gesuchte Helden:"
-msgstr "Wanted heroes"
+msgid "Wanted heroes"
+msgstr "Gesuchte Helden:"
 
 #: herobase/templates/herobase/quest/detail.html:35
-msgid "Ersteller:"
-msgstr "Creator"
+msgid "Creator"
+msgstr "Ersteller:"
 
 #: herobase/templates/herobase/quest/detail.html:41
-msgid "Aufwand"
-msgstr "Expenditure"
+msgid "Expenditure"
+msgstr "Aufwand"
 
 #: herobase/templates/herobase/quest/detail.html:49
-msgid "Quest erneut Erzeugen"
-msgstr "Recreate quest"
+msgid "Recreate quest"
+msgstr "Quest erneut Erzeugen"
 
 #: herobase/templates/herobase/quest/detail.html:56
-msgid "Bearbeiten"
-msgstr "Edit"
+msgid "Edit"
+msgstr "Bearbeiten"
 
 #: herobase/templates/herobase/quest/detail.html:64
-msgid "Quest Abbrechen"
-msgstr "Cancel quest"
+msgid "Cancel quest"
+msgstr "Quest Abbrechen"
 
 #: herobase/templates/herobase/quest/detail.html:75
-msgid "Quest Start"
-msgstr "Quest start"
+msgid "Quest start"
+msgstr "Quest Start"
 
 #: herobase/templates/herobase/quest/detail.html:85
-msgid "Quest als erledigt markieren"
-msgstr "Mark quest as solved"
+msgid "Mark quest as solved"
+msgstr "Quest als erledigt markieren"
 
 #: herobase/templates/herobase/quest/detail.html:97
-msgid "Abbrechen"
-msgstr "Cancel"
+msgid "Cancel"
+msgstr "Abbrechen"
 
 #: herobase/templates/herobase/quest/detail.html:98
-msgid "Abbrechen"
-msgstr "Cancel"
+msgid "Cancel"
+msgstr "Abbrechen"
 
 #: herobase/templates/herobase/quest/detail.html:113
 #: herobase/templates/herobase/quest/detail.html:119
-msgid "Bewerben"
-msgstr "Apply"
+msgid "Apply"
+msgstr "Bewerben"
 
 #: herobase/templates/herobase/quest/documentation.html:5
-msgid "Dokumentation"
-msgstr "Documentation"
+msgid "Documentation"
+msgstr "Dokumentation"
 
 #: herobase/templates/herobase/quest/documentation.html:33
-msgid "Es gibt noch keine Dokumentation."
-msgstr "There is no Documentation yet."
+msgid "There is no Documentation yet."
+msgstr "Es gibt noch keine Dokumentation."
 
 #: herobase/templates/herobase/quest/documentation.html:40
-msgid "Dokumentiere hier die Quest."
-msgstr "Document your Quest here."
+msgid "Document your Quest here."
+msgstr "Dokumentiere hier die Quest."
 
 #: herobase/templates/herobase/quest/documentation.html:48
-msgid "Dokumentation abschicken"
-msgstr "Post documentation"
+msgid "Post documentation"
+msgstr "Dokumentation abschicken"
 
 #: herobase/templates/herobase/quest/list.html:56
 #: herobase/templates/herobase/quest/list.html:91
 #: heromessage/templates/message/list_in.html:51
 #: heromessage/templates/message/list_out.html:51
-msgid "Suchen"
-msgstr "Search"
+msgid "Search"
+msgstr "Suchen"
 
 #: herobase/templates/herobase/quest/list.html:60
-msgid "Offen"
-msgstr "Open"
+msgid "Open"
+msgstr "Offen"
 
 #: herobase/templates/herobase/quest/list.html:64
 #: herobase/templates/herobase/quest/submenu.inc.html:12
-msgid "Abgeschlossen"
-msgstr "Completed"
+msgid "Completed"
+msgstr "Abgeschlossen"
 
 #: herobase/templates/herobase/quest/list.html:77
-msgid "Keine Quests gefunden, die deiner Suchanfrage entsprechen."
-msgstr "No quests found matching your current criteria."
+msgid "No quests found matching your current criteria."
+msgstr "Keine Quests gefunden, die deiner Suchanfrage entsprechen."
 
 #: herobase/templates/herobase/quest/list.html:78
-msgid "Alle Anzeigen."
-msgstr "Show all."
+msgid "Show all."
+msgstr "Alle Anzeigen."
 
 #: herobase/templates/herobase/quest/list.html:81
 #: herobase/templates/herobase/quest/my.inc.html:85
 #: herobase/templates/herobase/quest/my.inc.html:100
 #: herobase/templates/herobase/quest/my.inc.html:115
 #: herobase/templates/herobase/quest/my.inc.html:130
-msgid "Es gibt keine Quests."
-msgstr "There don't seem to be any quests."
+msgid "There don't seem to be any quests."
+msgstr "Es gibt keine Quests."
 
 #: herobase/templates/herobase/quest/list.html:90
-msgid "Titel, Beschreibung"
-msgstr "Title, description"
+msgid "Title, description"
+msgstr "Titel, Beschreibung"
 
 #: herobase/templates/herobase/quest/my.inc.html:56
 #: herobase/templates/herobase/quest/submenu.inc.html:6
-msgid "Alle"
-msgstr "All"
+msgid "All"
+msgstr "Alle"
 
 #: herobase/templates/herobase/quest/my.inc.html:60
 #: herobase/templates/herobase/quest/submenu.inc.html:10
-msgid "Erstellt"
-msgstr "Created"
+msgid "Created"
+msgstr "Erstellt"
 
 #: herobase/templates/herobase/quest/my.inc.html:64
 #: herobase/templates/herobase/quest/submenu.inc.html:8
-msgid "Angenommen"
-msgstr "Accepted"
+msgid "Accepted"
+msgstr "Angenommen"
 
 #: herobase/templates/herobase/quest/my.inc.html:68
-msgid "Erledigt"
-msgstr "Finished"
+msgid "Finished"
+msgstr "Erledigt"
 
 #: herobase/templates/herobase/quest/my_box_hero.html:12
-msgid "Muss vor Ort erledigt werden"
-msgstr "Has to be done locally"
+msgid "Has to be done locally"
+msgstr "Muss vor Ort erledigt werden"
 
 #: herobase/templates/herobase/quest/my_box_hero.html:17
 #: herobase/templates/herobase/quest/quest_box_footer.html:13
-msgid "geringer Zeitaufwand"
-msgstr "low time effort"
+msgid "low time effort"
+msgstr "geringer Zeitaufwand"
 
 #: herobase/templates/herobase/quest/my_box_hero.html:19
 #: herobase/templates/herobase/quest/quest_box_footer.html:15
-msgid "mittlerer Zeitaufwand"
-msgstr "medium time effort"
+msgid "medium time effort"
+msgstr "mittlerer Zeitaufwand"
 
 #: herobase/templates/herobase/quest/my_box_hero.html:21
 #: herobase/templates/herobase/quest/quest_box_footer.html:17
-msgid "hoher Zeitaufwand"
-msgstr "high time effort"
+msgid "high time effort"
+msgstr "hoher Zeitaufwand"
 
 #: herobase/templates/herobase/quest/my_box_owner.html:13
-msgid "Dies ist Deine Quest."
-msgstr "This is your Quest"
+msgid "This is your Quest"
+msgstr "Dies ist Deine Quest."
 
 #: herobase/templates/herobase/quest/unaccepted_adventures.html:10
-msgid "Bewerbungen"
-msgstr "Applications"
+msgid "Applications"
+msgstr "Bewerbungen"
 
 #: herobase/templates/herobase/quest/unaccepted_adventures.html:22
-msgid "Annehmen"
-msgstr "Accept"
+msgid "Accept"
+msgstr "Annehmen"
 
 #: herobase/templates/herobase/quest/unaccepted_adventures.html:22
-msgid "Annehmen"
-msgstr "Accept"
+msgid "Accept"
+msgstr "Annehmen"
 
 #: herobase/templates/herobase/quest/unaccepted_adventures.html:30
-msgid "Ablehnen"
-msgstr "Reject"
+msgid "Reject"
+msgstr "Ablehnen"
 
 #: herobase/templates/herobase/quest/unaccepted_adventures.html:30
-msgid "Ablehnen"
-msgstr "Reject"
+msgid "Reject"
+msgstr "Ablehnen"
 
 #: herobase/templates/herobase/quest/update.html:40
 msgid "Quest update"
@@ -2088,557 +2088,544 @@ msgstr "Quest update"
 
 #: herobase/templates/herobase/userprofile/confirm_delete.html:6
 #: herobase/templates/herobase/userprofile/form_box.html:16
-msgid "Profil löschen"
-msgstr "Delete profile"
+msgid "Delete profile"
+msgstr "Profil löschen"
 
 #: herobase/templates/herobase/userprofile/confirm_delete.html:9
-msgid "Achtung!"
-msgstr "Warning!"
+msgid "Warning!"
+msgstr "Achtung!"
 
 #: herobase/templates/herobase/userprofile/confirm_delete.html:10
 msgid ""
 "\n"
-"                  Bist du sicher, dass du dein Profil bei you are hero\n"
-"                  <strong>unwiderruflich löschen</strong> möchtest?\n"
-"                "
-msgstr ""
-"\n"
 "                  Are you sure that you want to <strong>irrevocably delete</strong> \n"
 "                  your profile on you are hero?\n"
 "                "
+msgstr ""
+"\n"
+"                  Bist du sicher, dass du dein Profil bei you are hero\n"
+"                  <strong>unwiderruflich löschen</strong> möchtest?\n"
+"                "
 
 #: herobase/templates/herobase/userprofile/confirm_delete.html:18
-msgid "Nein, lieber nicht"
-msgstr "No, preferrably not"
+msgid "No, preferrably not"
+msgstr "Nein, lieber nicht"
 
 #: herobase/templates/herobase/userprofile/confirm_delete.html:20
-msgid "Ja, sicher löschen"
-msgstr "Yes, surely delete"
+msgid "Yes, surely delete"
+msgstr "Ja, sicher löschen"
 
 #: herobase/templates/herobase/userprofile/detail.html:5
 #: herobase/templates/herobase/userprofile/edit.html:44
 #: herobase/templates/herobase/userprofile/privacy_settings.html:5
 #: herobase/templates/herobase/userprofile/m/detail.html:52
-msgid "Profil"
-msgstr "Profile"
+msgid "Profile"
+msgstr "Profil"
 
 #: herobase/templates/herobase/userprofile/detail_box.html:14
 #, python-format
-msgid " Das ist %(user.username)s "
-msgstr "This is %(username)s"
+msgid "This is %(username)s"
+msgstr " Das ist %(user.username)s "
 
 #: herobase/templates/herobase/userprofile/detail_box.html:18
 #, python-format
-msgid " Das bist du, %(user.username)s "
-msgstr "This is you, %(user.username)s "
+msgid "This is you, %(user.username)s "
+msgstr " Das bist du, %(user.username)s "
 
 #: herobase/templates/herobase/userprofile/detail_box.html:37
 #: herobase/templates/herobase/userprofile/m/detail.html:57
-msgid "Mitglied seit"
-msgstr "Member since"
+msgid "Member since"
+msgstr "Mitglied seit"
 
 #: herobase/templates/herobase/userprofile/detail_box.html:42
 #: herobase/templates/herobase/userprofile/m/detail.html:62
-msgid "Erledigte Quests"
-msgstr "Finished quests"
+msgid "Finished quests"
+msgstr "Erledigte Quests"
 
 #: herobase/templates/herobase/userprofile/detail_box.html:44
-msgid "Erstellte Quests"
-msgstr "Quests created"
+msgid "Quests created"
+msgstr "Erstellte Quests"
 
 #: herobase/templates/herobase/userprofile/detail_box.html:50
-msgid "Rang"
-msgstr "Rank"
+msgid "Rank"
+msgstr "Rang"
 
 #: herobase/templates/herobase/userprofile/detail_box.html:72
-msgid "Rang in der Liste"
-msgstr "Rank in the list"
+msgid "Rank in the list"
+msgstr "Rang in der Liste"
 
 #: herobase/templates/herobase/userprofile/detail_box.html:83
 #, python-format
-msgid " Errungenschaften von %(user.username)s "
-msgstr "Achievenments of %(user.username)s"
+msgid "Achievenments of %(user.username)s"
+msgstr " Errungenschaften von %(user.username)s "
 
 #: herobase/templates/herobase/userprofile/detail_mini.html:8
-msgid "Profil"
-msgstr "Profile"
+msgid "Profile"
+msgstr "Profil"
 
 #: herobase/templates/herobase/userprofile/edit.html:48
 #: heronotification/models.py:237
-msgid "Willkommen bei You are Hero"
-msgstr "Welcome to you are hero"
+msgid "Welcome to you are hero"
+msgstr "Willkommen bei You are Hero"
 
 #: herobase/templates/herobase/userprofile/form_box.html:8
 #: herobase/templates/registration/activation_email_subject.txt:3
 #, fuzzy
-msgid "Willkommen bei You are Hero"
-msgstr "Welcome to you are hero"
+msgid "Welcome to you are hero"
+msgstr "Willkommen bei You are Hero"
 
 #: herobase/templates/herobase/userprofile/form_box.html:9
-msgid "Suche dir jetzt ein Profilbild aus und schreib' wenn du möchtest ein paar Zeilen über dich."
-msgstr "Chose a profile picture or upload your own and write some lines about yourself if you want to."
+msgid "Chose a profile picture or upload your own and write some lines about yourself if you want to."
+msgstr "Suche dir jetzt ein Profilbild aus und schreib' wenn du möchtest ein paar Zeilen über dich."
 
 #: herobase/templates/herobase/userprofile/form_box.html:13
 #: heroorganization/templates/heroorganization/organization_update.html:41
-msgid "Übernehmen"
-msgstr "Apply"
+msgid "Apply"
+msgstr "Übernehmen"
 
 #: herobase/templates/herobase/userprofile/public_avatar.inc.html:8
 #, python-format
-msgid " %(user.get_profile.quests_done)s Quests erledigt "
-msgstr " %(user.get_profile.quests_done)s Quests finished "
+msgid " %(user.get_profile.quests_done)s Quests finished "
+msgstr " %(user.get_profile.quests_done)s Quests erledigt "
 
 #: herobase/templates/herobase/userprofile/public_avatar.inc.html:9
 #, python-format
-msgid " %(user.get_profile.quests_created)s Quests erstellt "
-msgstr " %(user.get_profile.quests_created)s Quests created "
+msgid " %(user.get_profile.quests_created)s Quests created "
+msgstr " %(user.get_profile.quests_created)s Quests erstellt "
 
 #: herobase/templates/herobase/userprofile/skill_settings.html:5
-msgid "Fertigkeiten"
-msgstr "Skills"
+msgid "Skills"
+msgstr "Fertigkeiten"
 
 #: herobase/templates/herobase/userprofile/skill_settings.html:11
 #, python-format
 msgid ""
-"Du hast nur %(selected)s Fertigkeiten ausgewählt. Bitte wähle mindestens\n"
-" %(minimum)s aus, um personalisierte Ergebnisse zu erhalten."
-msgstr ""
 "You have only selected %(selected)s skills. Please select\n"
 "    at least %(minimum)s to get personalized results."
+msgstr ""
+"Du hast nur %(selected)s Fertigkeiten ausgewählt. Bitte wähle mindestens\n"
+" %(minimum)s aus, um personalisierte Ergebnisse zu erhalten."
 
 #: herobase/templates/herobase/userprofile/submenu.inc.html:7
-msgid "Profil"
-msgstr "Profile"
+msgid "Profile"
+msgstr "Profil"
 
 #: herobase/templates/herobase/userprofile/submenu.inc.html:10
-msgid "Optionen"
-msgstr "Settings"
+msgid "Settings"
+msgstr "Optionen"
 
 #: herobase/templates/herobase/userprofile/m/detail.html:55
 #, python-format
-msgid "%(username)s ist auf Platz %(rank)s in der Bestenliste."
-msgstr "%(username)s is ranked %(rank)s in the leaderboard."
+msgid "%(username)s is ranked %(rank)s in the leaderboard."
+msgstr "%(username)s ist auf Platz %(rank)s in der Bestenliste."
 
 #: herobase/templates/herobase/userprofile/m/detail.html:59
 msgid "Region"
 msgstr "Region"
 
 #: herobase/templates/registration/activate.html:5
-msgid "Account-Bestätigung fehlgeschlagen"
-msgstr "Account-activation failed"
+msgid "Account-activation failed"
+msgstr "Account-Bestätigung fehlgeschlagen"
 
 #: herobase/templates/registration/activate.html:9
 #, python-format
-msgid "Der Aktivierungsschlüssel \"%(activation_key)s\" ist ungültig."
-msgstr "Sorry, the activation key \"%(activation_key)s\" is invalid."
+msgid "Sorry, the activation key \"%(activation_key)s\" is invalid."
+msgstr "Der Aktivierungsschlüssel \"%(activation_key)s\" ist ungültig."
 
 #: herobase/templates/registration/activation_complete.html:6
-msgid "Account-Aktivierung abgeschlossen."
-msgstr "Account activation completed."
+msgid "Account activation completed."
+msgstr "Account-Aktivierung abgeschlossen."
 
 #: herobase/templates/registration/activation_complete.html:12
 #, python-format
 msgid ""
+"Welcome Hero %(user.username)s, <br>\n"
+"        your account is now active.\n"
+"        Start <a href=\"%(quest_list_url)s\">browsing open quests</a>\n"
+"        or <a href=\"%(quest_create_url)s\">create your own quest</a>.\n"
+"    "
+msgstr ""
 "Willkommen Held %(user.username)s, <br>\n"
 "dein Account ist jetzt aktiviert.        Schau in die <a href="
 "\"%(quest_list_url)s\">Quest-Liste</a>\n"
 "        oder <a href=\"%(quest_create_url)s\"> stelle selbst einen Quest ein."
 "</a>.\n"
 " "
-msgstr ""
-"Welcome Hero %(user.username)s, <br>\n"
-"        your account is now active.\n"
-"        Start <a href=\"%(quest_list_url)s\">browsing open quests</a>\n"
-"        or <a href=\"%(quest_create_url)s\">create your own quest</a>.\n"
-"    "
 
 #: herobase/templates/registration/activation_email.txt:3
 #, python-format
-msgid " Willkommen bei you are hero %(user.username)s! "
-msgstr "Welcome to you are hero: %(user.username)s! "
+msgid "Welcome to you are hero: %(user.username)s! "
+msgstr " Willkommen bei you are hero %(user.username)s! "
 
 #: herobase/templates/registration/activation_email.txt:5
-msgid "Bitte klicke auf den Link, um deine Registrierung fertigzustellen."
-msgstr "Please click on this link to complete your registration."
+msgid "Please click on this link to complete your registration."
+msgstr "Bitte klicke auf den Link, um deine Registrierung fertigzustellen."
 
 #: herobase/templates/registration/activation_email.txt:10
 msgid ""
 "\n"
-"Viel Freude mit you are hero,\n"
-"\n"
-"das you are hero Team.\n"
-msgstr ""
-"\n"
 "We wish you lots of fun with you are hero,\n"
 "\n"
 "your you are hero team.\n"
+msgstr ""
+"\n"
+"Viel Freude mit you are hero,\n"
+"\n"
+"das you are hero Team.\n"
 
 #: herobase/templates/registration/login_box.inc.html:16
-msgid "Du hast noch keinen Account?"
-msgstr "You don't have an account yet?"
+msgid "You don't have an account yet?"
+msgstr "Du hast noch keinen Account?"
 
 #: herobase/templates/registration/logout.html:5
-msgid "Auf Wiedersehen!"
-msgstr "Good bye!"
+msgid "Good bye!"
+msgstr "Auf Wiedersehen!"
 
 #: herobase/templates/registration/logout.html:9
 msgid ""
-"Vielen Dank für die Benutzung von you are hero. Beehren Sie uns bald wieder."
-msgstr ""
 "Thank you for using you are hero. We hope to see you soon."
+msgstr ""
+"Vielen Dank für die Benutzung von you are hero. Beehren Sie uns bald wieder."
 
 #: herobase/templates/registration/password_reset_complete.html:5
-msgid "Password erfolgreich zurückgesetzt."
-msgstr "Password reset complete"
+msgid "Password reset complete"
+msgstr "Password erfolgreich zurückgesetzt."
 
 #: herobase/templates/registration/password_reset_complete.html:9
-msgid "Dein Password wurde gesetzt. Du kannst Dich jetzt anmelden."
-msgstr "Your password has been set. You may go ahead and log in now."
+msgid "Your password has been set. You may go ahead and log in now."
+msgstr "Dein Password wurde gesetzt. Du kannst Dich jetzt anmelden."
 
 #: herobase/templates/registration/password_reset_confirm.html:5
 #: herobase/templates/registration/password_reset_done.html:5
 #: herobase/templates/registration/password_reset_form.html:5
-msgid "Passwort zurücksetzen"
-msgstr "Password reset"
+msgid "Password reset"
+msgstr "Passwort zurücksetzen"
 
 #: herobase/templates/registration/password_reset_confirm.html:10
-msgid "Passwort zurücksetzen bestätigen"
-msgstr "Confirm password reset"
+msgid "Confirm password reset"
+msgstr "Passwort zurücksetzen bestätigen"
 
 #: herobase/templates/registration/password_reset_confirm.html:11
 msgid ""
-"Bitte gib Dein Passwort zwei mal ein, damit wir sicher sein können das kein "
-"Vertipper darin ist."
-msgstr ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
+msgstr ""
+"Bitte gib Dein Passwort zwei mal ein, damit wir sicher sein können das kein "
+"Vertipper darin ist."
 
 #: herobase/templates/registration/password_reset_confirm.html:16
-msgid "Mein Passwort ändern"
-msgstr "Change my password"
+msgid "Change my password"
+msgstr "Mein Passwort ändern"
 
 #: herobase/templates/registration/password_reset_confirm.html:20
-msgid "Passwort zurücksetzen fehlgeschlagen"
-msgstr "Password reset failed"
+msgid "Password reset failed"
+msgstr "Passwort zurücksetzen fehlgeschlagen"
 
 #: herobase/templates/registration/password_reset_confirm.html:22
 #, python-format
 msgid ""
-"\n"
-"            Der Link zum Zurücksetzen Ihres Passworts ist ungültig, "
-"wahrscheinlich weil er schon einmal benutzt wurde.\n"
-"            Bitte <a href=\"%(password_reset_url)s\">setzen Sie Ihr Passwort "
-"erneut zurück.</a>\n"
-"        "
-msgstr ""
 "\n"
 "            The password reset link was invalid, possibly because it has "
 "already been used.\n"
 "            Please request a <a href=\"%(password_reset_url)s\">new password."
 "</a>\n"
 "        "
+msgstr ""
+"\n"
+"            Der Link zum Zurücksetzen Ihres Passworts ist ungültig, "
+"wahrscheinlich weil er schon einmal benutzt wurde.\n"
+"            Bitte <a href=\"%(password_reset_url)s\">setzen Sie Ihr Passwort "
+"erneut zurück.</a>\n"
+"        "
 
 #: herobase/templates/registration/password_reset_done.html:9
 msgid ""
-"Wir haben dir eine E-Mail mit den Schritten die du zur Passwort-Änderung "
-"benötigst gemailt. Du solltest sie in kürze Erhalten."
-msgstr ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should be receiving it shortly."
+msgstr ""
+"Wir haben dir eine E-Mail mit den Schritten die du zur Passwort-Änderung "
+"benötigst gemailt. Du solltest sie in kürze Erhalten."
 
 #: herobase/templates/registration/password_reset_email.html:3
 #, python-format
 msgid ""
-"Sie erhalten diese E-Mail, da Sie das Passwort für ihren %(site_name)s "
-"Account zurücksetzen lassen möchten."
-msgstr ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
+msgstr ""
+"Sie erhalten diese E-Mail, da Sie das Passwort für ihren %(site_name)s "
+"Account zurücksetzen lassen möchten."
 
 #: herobase/templates/registration/password_reset_email.html:5
-msgid "Bitte öffnen Sie folgende Seite, um Ihr neues Passwort einzugeben:"
-msgstr "Please go to the following page and choose a new password:"
+msgid "Please go to the following page and choose a new password:"
+msgstr "Bitte öffnen Sie folgende Seite, um Ihr neues Passwort einzugeben:"
 
 #: herobase/templates/registration/password_reset_email.html:10
 #, python-format
-msgid "Ihr Benutzername, falls Sie ihn vergessen haben: %(user.username)s"
-msgstr "Your username, in case you've forgotten: %(user.username)s"
+msgid "Your username, in case you've forgotten: %(user.username)s"
+msgstr "Ihr Benutzername, falls Sie ihn vergessen haben: %(user.username)s"
 
 #: herobase/templates/registration/password_reset_email.html:12
-msgid "Vielen Dank, dass Sie unsere Website benutzen!"
-msgstr "Thanks for using our site!"
+msgid "Thanks for using our site!"
+msgstr "Vielen Dank, dass Sie unsere Website benutzen!"
 
 #: herobase/templates/registration/password_reset_email.html:14
 #, python-format
-msgid "Das Team von %(site_name)s"
-msgstr "The %(site_name)s team."
+msgid "The %(site_name)s team."
+msgstr "Das Team von %(site_name)s"
 
 #: herobase/templates/registration/password_reset_form.html:9
 msgid ""
-"Passwort vergessen? Gib deine E-Mail-Adresse ein und wir schicken dir "
-"Informationen um ein neues Passwort festzulegen"
-msgstr ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
+msgstr ""
+"Passwort vergessen? Gib deine E-Mail-Adresse ein und wir schicken dir "
+"Informationen um ein neues Passwort festzulegen"
 
 #: herobase/templates/registration/password_reset_form.html:15
-msgid "Passwort zurücksetzen"
-msgstr "Reset my password"
+msgid "Reset my password"
+msgstr "Passwort zurücksetzen"
 
 #: herobase/templates/registration/registration_box.inc.html:14
-msgid "Sei ein Held!"
-msgstr "Be a hero!"
+msgid "Be a hero!"
+msgstr "Sei ein Held!"
 
 #: herobase/templates/registration/registration_box.inc.html:20
-msgid "Ein Held zu sein ist aufregend. Mach mit!"
-msgstr "Being a hero is exciting. Try it yourself!"
+msgid "Being a hero is exciting. Try it yourself!"
+msgstr "Ein Held zu sein ist aufregend. Mach mit!"
 
 #: herobase/templates/registration/registration_box.inc.html:29
-msgid "Registrieren"
-msgstr "Register"
+msgid "Register"
+msgstr "Registrieren"
 
 #: herobase/templates/registration/registration_complete.html:5
-msgid "Registrierung abgeschlossen"
-msgstr "Registration complete"
+msgid "Registration complete"
+msgstr "Registrierung abgeschlossen"
 
 #: herobase/templates/registration/registration_complete.html:9
 msgid ""
-"Du solltest bald eine E-Mail von uns erhalten. Klick bitte den Link darin "
-"an, um deine Anmeldung abzuschließen."
-msgstr ""
 "An email containing account-activation information has been sent to the "
 "email-address you specified in the registration form."
+msgstr ""
+"Du solltest bald eine E-Mail von uns erhalten. Klick bitte den Link darin "
+"an, um deine Anmeldung abzuschließen."
 
 #: herobase/templates/registration/registration_form.html:5
-msgid "Registrierung"
-msgstr "Registration"
+msgid "Registration"
+msgstr "Registrierung"
 
 #: herobase/templates/registration/m/login.html:12
-msgid "Registriere Dich!"
-msgstr "Sign up now!"
+msgid "Sign up now!"
+msgstr "Registriere Dich!"
 
 #: herobase/templates/registration/m/login.html:13
-msgid "hier"
-msgstr "here"
+msgid "here"
+msgstr "hier"
 
 #: herocoupon/models.py:12
-msgid "Einzel"
-msgstr "Single"
+msgid "Single"
+msgstr "Einzel"
 
 #: herocoupon/models.py:13
 msgid "Multi"
 msgstr "Multi"
 
 #: herocoupon/templates/herocoupon/already_used.html:6
-msgid "Bereits verwendet"
-msgstr "Already used"
+msgid "Already used"
+msgstr "Bereits verwendet"
 
 #: herocoupon/templates/herocoupon/already_used.html:7
 #, python-format
-msgid " Den Gutschein mit der Nummer \"%(code)s\" hast du schon verwendet. "
-msgstr " The voucher with the number \"%(code)s\" has been used already. "
+msgid " The voucher with the number \"%(code)s\" has been used already. "
+msgstr " Den Gutschein mit der Nummer \"%(code)s\" hast du schon verwendet. "
 
 #: herocoupon/templates/herocoupon/not_active.html:6
-msgid "Deaktiviert"
-msgstr "Deactivated"
+msgid "Deactivated"
+msgstr "Deaktiviert"
 
 #: herocoupon/templates/herocoupon/not_active.html:7
 #, python-format
-msgid " Der Gutschein mit der Nummer \"%(code)s\" ist leider deaktiviert. "
-msgstr " The voucher with the number \"%(code)s\" is unfortunately deactivated"
+msgid " The voucher with the number \"%(code)s\" is unfortunately deactivated"
+msgstr " Der Gutschein mit der Nummer \"%(code)s\" ist leider deaktiviert. "
 
 #: herocoupon/templates/herocoupon/not_found.html:6
-msgid "Ungültig"
-msgstr "Invalid"
+msgid "Invalid"
+msgstr "Ungültig"
 
 #: herocoupon/templates/herocoupon/not_found.html:7
 #, python-format
-msgid " Der Gutschein mit der Nummer \"%(code)s\" wurde nicht gefunden. "
-msgstr " The voucher with the number \"%(code)s\" has not been found"
+msgid " The voucher with the number \"%(code)s\" has not been found"
+msgstr " Der Gutschein mit der Nummer \"%(code)s\" wurde nicht gefunden. "
 
 #: herocoupon/templates/herocoupon/success.html:6
-msgid "Herzlichen Gl&uuml;ckwunsch"
-msgstr "Congratulations!"
+msgid "Congratulations!"
+msgstr "Herzlichen Gl&uuml;ckwunsch"
 
 #: herocoupon/templates/herocoupon/success.html:7
 #, python-format
-msgid ""
+msgid " The voucher with the number \"%(code)s\" has succesfully been redeemed"
+msgstr ""
 " Der Gutschein mit der Nummer \"%(code)s\" wurde erfolgreich eingel&ouml;st. "
-msgstr " The voucher with the number \"%(code)s\" has succesfully been redeemed"
 
 #: herocoupon/templates/herocoupon/success.html:8
 #, python-format
-msgid " Du erh&auml;lst %(xp)s EP. "
-msgstr " You gain %(xp)s XP. "
+msgid " You gain %(xp)s XP. "
+msgstr " Du erh&auml;lst %(xp)s EP. "
 
 #: heromessage/forms.py:15
-msgid "Neue Nachricht an"
-msgstr "New message to"
+msgid "New message to"
+msgstr "Neue Nachricht an"
 
 #: heromessage/forms.py:41
-msgid "Empfänger Team"
-msgstr "Recipient team"
+msgid "Recipient team"
+msgstr "Empfänger Team"
 
 #: heromessage/forms.py:46 heromessage/models.py:17
-msgid "Betreff"
-msgstr "Subject"
+msgid "Subject"
+msgstr "Betreff"
 
 #: heromessage/forms.py:47 heromessage/models.py:18
-msgid "Nachricht"
-msgstr "Message"
+msgid "Message"
+msgstr "Nachricht"
 
 #: heromessage/models.py:31
-msgid "Empfänger"
-msgstr "Recipient"
+msgid "Recipient"
+msgstr "Empfänger"
 
 #: heromessage/models.py:32
-msgid "Absender"
-msgstr "Consignor"
+msgid "Consignor"
+msgstr "Absender"
 
 #: heromessage/views.py:41
-msgid "Nachricht erfolgreich verschickt"
-msgstr "Message successfully sent"
+msgid "Message successfully sent"
+msgstr "Nachricht erfolgreich verschickt"
 
 #: heromessage/views.py:104
-msgid "Nachricht erfolgreich gelöscht"
-msgstr "Message successfully deleted"
+msgid "Message successfully deleted"
+msgstr "Nachricht erfolgreich gelöscht"
 
 #: heromessage/templates/message/create_message_form.inc.html:12
-msgid "Versenden"
-msgstr "Send"
+msgid "Send"
+msgstr "Versenden"
 
 #: heromessage/templates/message/create_message_form.inc.html:14
-msgid "Zurücksetzen"
-msgstr "Reset"
+msgid "Reset"
+msgstr "Zurücksetzen"
 
 #: heromessage/templates/message/list_in.html:8
 #: heromessage/templates/message/list_out.html:8
-msgid "Diese Nachricht wirklich löschen?"
-msgstr "Really delete this Message?"
+msgid "Really delete this Message?"
+msgstr "Diese Nachricht wirklich löschen?"
 
 #: heromessage/templates/message/list_in.html:35
 #: heromessage/templates/message/list_out.html:35
-msgid "Keine Nachricht gefunden."
-msgstr "No message found"
+msgid "No message found"
+msgstr "Keine Nachricht gefunden."
 
 #: heromessage/templates/message/list_in.html:37
 #: heromessage/templates/message/list_out.html:37
-msgid "Noch keine Nachrichten."
-msgstr "No messages yet."
+msgid "No messages yet."
+msgstr "Noch keine Nachrichten."
 
 #: heromessage/templates/message/submenu.inc.html:8
-msgid "verfassen"
-msgstr "compose"
+msgid "compose"
+msgstr "verfassen"
 
 #: heromessage/templates/message/submenu.inc.html:12
-msgid "Team-Nachricht verfassen"
-msgstr "Compose message to team"
+msgid "Compose message to team"
+msgstr "Team-Nachricht verfassen"
 
 #: heromessage/templates/message/submenu.inc.html:17
-msgid "Eingang"
-msgstr "Inbox"
+msgid "Inbox"
+msgstr "Eingang"
 
 #: heromessage/templates/message/submenu.inc.html:22
-msgid "Ausgang"
-msgstr "Outbox"
+msgid "Outbox"
+msgstr "Ausgang"
 
 #: heromessage/templatetags/hero_message.py:15
 #, python-format
-msgid "Sende Nachricht an %(username)s"
-msgstr "Send message to %(username)s"
+msgid "Send message to %(username)s"
+msgstr "Sende Nachricht an %(username)s"
 
 #: heromessage/templatetags/hero_message.py:23
 #, python-format
-msgid "Sende Nachricht an team %(team)s"
-msgstr "Send message to team %(team)s"
+msgid "Send message to team %(team)s"
+msgstr "Sende Nachricht an team %(team)s"
 
 #: heronotification/models.py:91
 #, python-format
 msgid ""
-"<strong>%(user)s</strong> bewirbt sich für deine Quest <strong>%(title)s.</"
-"strong>"
-msgstr ""
 "<strong>%(user)s</strong> is applying for your quest <strong>%(title)s</"
 "strong>."
+msgstr ""
+"<strong>%(user)s</strong> bewirbt sich für deine Quest <strong>%(title)s.</"
+"strong>"
 
 #: heronotification/models.py:107
 #, python-format
 msgid ""
-"<strong>%(user)s</strong> hat seine Bewerbung für deine Quest <strong>"
-"%(title)s</strong> zurückgezogen."
-msgstr ""
 "<strong>%(user)s</strong> has withdrawn his application for your quest "
 "<strong>%(title)s</strong>."
+msgstr ""
+"<strong>%(user)s</strong> hat seine Bewerbung für deine Quest <strong>"
+"%(title)s</strong> zurückgezogen."
 
 #: heronotification/models.py:123
 #, python-format
 msgid ""
+"<strong>%(user)s</strong> has joined your quest <strong>%(title)s</strong>."
+msgstr ""
 "<strong>%(user)s</strong> bewirbt sich für deine Quest <strong>%(title)s.</"
 "strong>"
-msgstr ""
-"<strong>%(user)s</strong> has joined your quest <strong>%(title)s</strong>."
 
 #: heronotification/models.py:143
 #, python-format
-msgid "Die Quest <strong>%s</strong> hat begonnen."
-msgstr "The quest <strong>%s</strong> has been started."
+msgid "The quest <strong>%s</strong> has been started."
+msgstr "Die Quest <strong>%s</strong> hat begonnen."
 
 #: heronotification/models.py:153
 #, python-format
-msgid "Die Quest <strong>%s</strong> erwartet Dokumentation."
-msgstr "The quest <strong>%s</strong> is waiting for documentation."
+msgid "The quest <strong>%s</strong> is waiting for documentation."
+msgstr "Die Quest <strong>%s</strong> erwartet Dokumentation."
 
 #: heronotification/models.py:167
 #, python-format
-msgid "Die Quest <strong>%s</strong> wurde abgebrochen."
-msgstr "The quest <strong>%s<strong> has been cancelled."
+msgid "The quest <strong>%s<strong> has been cancelled."
+msgstr "Die Quest <strong>%s</strong> wurde abgebrochen."
 
 #: heronotification/models.py:181
 #, python-format
-msgid "Die Quest <strong>%s</strong> ist abgeschlossen."
-msgstr "The quest <strong>%s</strong> has been completed."
+msgid "The quest <strong>%s</strong> has been completed."
+msgstr "Die Quest <strong>%s</strong> ist abgeschlossen."
 
 #: heronotification/models.py:195
 #, python-format
-msgid "Du wurdest für die Quest <strong>%s</strong> akzeptiert."
-msgstr "You have been accepted for the quest <strong>%s.</strong>"
+msgid "You have been accepted for the quest <strong>%s.</strong>"
+msgstr "Du wurdest für die Quest <strong>%s</strong> akzeptiert."
 
 #: heronotification/models.py:209
 #, python-format
-msgid "Deine Bewerbung für die Quest <strong>%s</strong> wurde nicht angenommen."
-msgstr ""
+msgid ""
 "Your application for the quest <strong>%s</strong> has been rejected."
+msgstr "Deine Bewerbung für die Quest <strong>%s</strong> wurde nicht angenommen."
 
 #: heronotification/models.py:219
 #, python-format
-msgid "Du hast eine Nachricht von <strong>%s</strong> erhalten."
-msgstr "You have received a message from <strong>%s</strong>."
+msgid "You have received a message from <strong>%s</strong>."
+msgstr "Du hast eine Nachricht von <strong>%s</strong> erhalten."
 
 #: heronotification/models.py:251
 #, python-format
-msgid "Neue Errungenschaft: %s"
-msgstr "New Achievement: %s"
+msgid "New Achievement: %s"
+msgstr "Neue Errungenschaft: %s"
 
 #: heronotification/templates/heronotification/notification_list.html:12
-msgid "Du hast keine Benachrichtigung"
-msgstr "You have no Notifications"
+msgid "You have no Notifications"
+msgstr "Du hast keine Benachrichtigung"
 
 #: heronotification/templates/heronotification/mail/hero_accepted.txt:2
 #, python-format
 msgid ""
-"\n"
-"\n"
-"Glückwunsch\n"
-"\n"
-"Verehrte Damen und Herren,\n"
-"Ihre Bewerbung für die Quest %(target.title)s wurde mit Freuden akzeptiert!\n"
-"Weitere Informationen erhalten sie unter http://%(site.domain)s"
-"%(target.get_absolute_url)s.\n"
-"\n"
-"Hochachtungsvoll,\n"
-"Ihr Butler von you are hero\n"
-"\n"
-msgstr ""
 "\n"
 "\n"
 "Congratulations\n"
@@ -2651,24 +2638,23 @@ msgstr ""
 "Respectfully,\n"
 "Your you are hero butler\n"
 "\n"
-
-#: heronotification/templates/heronotification/mail/hero_has_applied.txt:2
-#, python-format
-msgid ""
+msgstr ""
 "\n"
 "\n"
-"Neue Helden und Heldinnen\n"
+"Glückwunsch\n"
 "\n"
 "Verehrte Damen und Herren,\n"
-"für ihre Quest %(target.quest.title)s ist eine neue Bewerbung eingegangen.\n"
-"Bitte melden Sie sich baldmöglichst bei den Bewerbenden zurück!\n"
-"Besuchen sie http://%(site.domain)s%(target.quest.get_absolute_url)s um die "
-"Quest anzuzeigen und die Bewerbung zu bearbeiten.\n"
+"Ihre Bewerbung für die Quest %(target.title)s wurde mit Freuden akzeptiert!\n"
+"Weitere Informationen erhalten sie unter http://%(site.domain)s"
+"%(target.get_absolute_url)s.\n"
 "\n"
 "Hochachtungsvoll,\n"
 "Ihr Butler von you are hero\n"
 "\n"
-msgstr ""
+
+#: heronotification/templates/heronotification/mail/hero_has_applied.txt:2
+#, python-format
+msgid ""
 "\n"
 "\n"
 "New heroes and heroines\n"
@@ -2682,10 +2668,37 @@ msgstr ""
 "Respectfully,\n"
 "Your you are hero butler\n"
 "\n"
+msgstr ""
+"\n"
+"\n"
+"Neue Helden und Heldinnen\n"
+"\n"
+"Verehrte Damen und Herren,\n"
+"für ihre Quest %(target.quest.title)s ist eine neue Bewerbung eingegangen.\n"
+"Bitte melden Sie sich baldmöglichst bei den Bewerbenden zurück!\n"
+"Besuchen sie http://%(site.domain)s%(target.quest.get_absolute_url)s um die "
+"Quest anzuzeigen und die Bewerbung zu bearbeiten.\n"
+"\n"
+"Hochachtungsvoll,\n"
+"Ihr Butler von you are hero\n"
+"\n"
 
 #: heronotification/templates/heronotification/mail/hero_has_cancelled.txt:2
 #, python-format
 msgid ""
+"\n"
+"\n"
+"Withdrawal\n"
+"\n"
+"Dear Ladies and Gentlemen,\n"
+"%(target.user.username)s has withdrawn his participation on your quest "
+"%(target.quest.title)s .\n"
+"You can visit the quest here http://%(site.domain)s %(target.quest.get_absolute_url)s.\n"
+"\n"
+"Respectfully,\n"
+"Your you are hero butler\n"
+"\n"
+msgstr ""
 "\n"
 "\n"
 "Fallrückzieher\n"
@@ -2699,23 +2712,22 @@ msgid ""
 "Hochachtungsvoll,\n"
 "Ihr Butler von you are hero\n"
 "\n"
-msgstr ""
-"\n"
-"\n"
-"Withdrawal\n"
-"\n"
-"Dear Ladies and Gentlemen,\n"
-"%(target.user.username)s has withdrawn his participation on your quest "
-"%(target.quest.title)s .\n"
-"You can visit the quest here http://%(site.domain)s %(target.quest.get_absolute_url)s.\n"
-"\n"
-"Respectfully,\n"
-"Your you are hero butler\n"
-"\n"
 
 #: heronotification/templates/heronotification/mail/hero_has_joined.txt:2
 #, python-format
 msgid ""
+"\n"
+"\n"
+"New heroes and heroines\n"
+"\n"
+"Dear Ladies and Gentlemen,\n"
+"The quest %(target.quest.title)s has found in %(target.user.username)s a new participant.\n"
+"Visit http://%(site.domain)s%(target.quest.get_absolute_url)s to see the quest.\n"
+"\n"
+"Respectfully,\n"
+"Your you are hero butler\n"
+"\n"
+msgstr ""
 "\n"
 "\n"
 "Neue Helden und Heldinnen\n"
@@ -2729,22 +2741,22 @@ msgid ""
 "Hochachtungsvoll,\n"
 "Ihr Butler von you are hero\n"
 "\n"
-msgstr ""
-"\n"
-"\n"
-"New heroes and heroines\n"
-"\n"
-"Dear Ladies and Gentlemen,\n"
-"The quest %(target.quest.title)s has found in %(target.user.username)s a new participant.\n"
-"Visit http://%(site.domain)s%(target.quest.get_absolute_url)s to see the quest.\n"
-"\n"
-"Respectfully,\n"
-"Your you are hero butler\n"
-"\n"
 
 #: heronotification/templates/heronotification/mail/hero_rejected.txt:2
 #, python-format
 msgid ""
+"\n"
+"\n"
+"Apologies\n"
+"\n"
+"Dear Ladies and Gentlemen,\n"
+"unfortunately your application to the quest %(target.title)s could not be regarded this time.\n"
+"Bear up and on to the next challenge!\n"
+"\n"
+"Respectfully,\n"
+"Your you are hero butler\n"
+"\n"
+msgstr ""
 "\n"
 "\n"
 "Verzeihung\n"
@@ -2757,38 +2769,10 @@ msgid ""
 "Hochachtungsvoll,\n"
 "Ihr Butler von you are hero\n"
 "\n"
-msgstr ""
-"\n"
-"\n"
-"Apologies\n"
-"\n"
-"Dear Ladies and Gentlemen,\n"
-"unfortunately your application to the quest %(target.title)s could not be regarded this time.\n"
-"Bear up and on to the next challenge!\n"
-"\n"
-"Respectfully,\n"
-"Your you are hero butler\n"
-"\n"
 
 #: heronotification/templates/heronotification/mail/message_received.txt:2
 #, python-format
 msgid ""
-"\n"
-"\n"
-"Heldenpost\n"
-"\n"
-"Verehrte Damen und Herren,\n"
-"Sie haben eine neue Nachricht von %(target.sender)s in ihrer Heldenpost.\n"
-"\n"
-"Die Nachricht lautet:\n"
-"%(target.title)s\n"
-"\n"
-"%(target.text)s\n"
-"\n"
-"Hochachtungsvoll,\n"
-"Ihr Butler von you are hero\n"
-"\n"
-msgstr ""
 "\n"
 "\n"
 "Heroic post\n"
@@ -2804,10 +2788,39 @@ msgstr ""
 "Respectfully,\n"
 "Your you are hero butler\n"
 "\n"
+msgstr ""
+"\n"
+"\n"
+"Heldenpost\n"
+"\n"
+"Verehrte Damen und Herren,\n"
+"Sie haben eine neue Nachricht von %(target.sender)s in ihrer Heldenpost.\n"
+"\n"
+"Die Nachricht lautet:\n"
+"%(target.title)s\n"
+"\n"
+"%(target.text)s\n"
+"\n"
+"Hochachtungsvoll,\n"
+"Ihr Butler von you are hero\n"
+"\n"
 
 #: heronotification/templates/heronotification/mail/quest_cancelled.txt:2
 #, python-format
 msgid ""
+"\n"
+"\n"
+"Emergency break\n"
+"\n"
+"Dear Ladies and Gentlemen,\n"
+"You have been registered for the quest %(target.title)s.\n"
+"Unfortunately I have to inform you that this quest had to be aborted.\n"
+"Should it be resumed, I will inform you promptly.\n"
+"\n"
+"Respectfully,\n"
+"Your you are hero butler\n"
+"\n"
+msgstr ""
 "\n"
 "\n"
 "Notbremse\n"
@@ -2821,34 +2834,10 @@ msgid ""
 "Hochachtungsvoll,\n"
 "Ihr Butler von you are hero\n"
 "\n"
-msgstr ""
-"\n"
-"\n"
-"Emergency break\n"
-"\n"
-"Dear Ladies and Gentlemen,\n"
-"You have been registered for the quest %(target.title)s.\n"
-"Unfortunately I have to inform you that this quest had to be aborted.\n"
-"Should it be resumed, I will inform you promptly.\n"
-"\n"
-"Respectfully,\n"
-"Your you are hero butler\n"
-"\n"
 
 #: heronotification/templates/heronotification/mail/quest_done.txt:2
 #, python-format
 msgid ""
-"\n"
-"\n"
-"Glückwunsch,\n"
-"\n"
-"Verehrte Damen und Herren,\n"
-"Die Quest %(target.title)s wurde erfolgreich abgeschlossen.\n"
-"\n"
-"Hochachtungsvoll,\n"
-"Ihr Butler von you are hero\n"
-"\n"
-msgstr ""
 "\n"
 "\n"
 "Congratulations,\n"
@@ -2859,10 +2848,35 @@ msgstr ""
 "Respectfully,\n"
 "Your you are hero butler\n"
 "\n"
+msgstr ""
+"\n"
+"\n"
+"Glückwunsch,\n"
+"\n"
+"Verehrte Damen und Herren,\n"
+"Die Quest %(target.title)s wurde erfolgreich abgeschlossen.\n"
+"\n"
+"Hochachtungsvoll,\n"
+"Ihr Butler von you are hero\n"
+"\n"
 
 #: heronotification/templates/heronotification/mail/quest_started.txt:2
 #, python-format
 msgid ""
+"\n"
+"\n"
+"Starting shot\n"
+"\n"
+"Dear Ladies and Gentlemen,\n"
+"You are registered for the quest %(target.title)s.\n"
+"I herby inform you, that the quest has officially started now.\n"
+"\n"
+"You can find the quest here http://%(site.domain)s%(target.get_absolute_url)s.\n"
+"\n"
+"Respectfully,\n"
+"Your you are hero butler\n"
+"\n"
+msgstr ""
 "\n"
 "\n"
 "Startschuss\n"
@@ -2878,24 +2892,24 @@ msgid ""
 "Hochachtungsvoll,\n"
 "Ihr Butler von you are hero\n"
 "\n"
-msgstr ""
-"\n"
-"\n"
-"Starting shot\n"
-"\n"
-"Dear Ladies and Gentlemen,\n"
-"You are registered for the quest %(target.title)s.\n"
-"I herby inform you, that the quest has officially started now.\n"
-"\n"
-"You can find the quest here http://%(site.domain)s%(target.get_absolute_url)s.\n"
-"\n"
-"Respectfully,\n"
-"Your you are hero butler\n"
-"\n"
 
 #: heronotification/templates/heronotification/mail/welcome.txt:2
 #, python-format
 msgid ""
+"\n"
+"\n"
+"Welcome!\n"
+"\n"
+"Dear Ladies and Gentlemen,\n"
+"I am the butler and would like to welcome you at http://%(site.domain)s.\n"
+"From now on I will aid you as best as I can with help, hints and notifications.\n"
+"\n"
+"My recommendation for the beginning would be the Do's and Don'ts of our website.\n"
+"\n"
+"Respectfully,\n"
+"Your you are hero butler\n"
+"\n"
+msgstr ""
 "\n"
 "\n"
 "Willkommen!\n"
@@ -2911,45 +2925,38 @@ msgid ""
 "Hochachtungsvoll und auf bald,\n"
 "Ihr Butler von you are hero\n"
 "\n"
-msgstr ""
-"\n"
-"\n"
-"Welcome!\n"
-"\n"
-"Dear Ladies and Gentlemen,\n"
-"I am the butler and would like to welcome you at http://%(site.domain)s.\n"
-"From now on I will aid you as best as I can with help, hints and notifications.\n"
-"\n"
-"My recommendation for the beginning would be the Do's and Don'ts of our website.\n"
-"\n"
-"Respectfully,\n"
-"Your you are hero butler\n"
-"\n"
 
 #: heroorganization/templates/heroorganization/organization_detail.html:5
-msgid "Organisation"
-msgstr "Organization"
+msgid "Organization"
+msgstr "Organisation"
 
 #: heroorganization/templates/heroorganization/organization_detail.html:13
-msgid "Organisation"
-msgstr "Organization"
+msgid "Organization"
+msgstr "Organisation"
 
 #: heroorganization/templates/heroorganization/organization_list.html:7
-msgid "Organisationen"
-msgstr "Organizations"
+msgid "Organizations"
+msgstr "Organisationen"
 
 #: heroorganization/templates/heroorganization/organization_update.html:5
 #, python-format
-msgid " %(object.name)s bearbeiten "
-msgstr " Edit %(object.name)s "
+msgid " Edit %(object.name)s "
+msgstr " %(object.name)s bearbeiten "
 
 #: heroorganization/templates/heroorganization/organization_update.html:14
-msgid "Hallo, hier ist deine Adminseite."
-msgstr "Hello, here is your Admin-page"
+msgid "Hello, here is your Admin-page"
+msgstr "Hallo, hier ist deine Adminseite."
 
 #: heroorganization/templates/heroorganization/organization_update.html:16
 #, python-format
 msgid ""
+"\n"
+"                    here you can edit the details to your organization "
+"that will then be depicted on your\n"
+"                    <a href=\"%(organization.get_absolute_url)s"
+"\">organization profile</a>.\n"
+"                "
+msgstr ""
 "\n"
 "                    Von hier kannst du die Details deiner Organisation "
 "bearbeiten die dann auf deinem\n"
@@ -2957,26 +2964,19 @@ msgid ""
 "\">Organisations-Profil</a>\n"
 "                    angezeigt werden.\n"
 "                "
-msgstr ""
-"\n"
-"                    here you can edit the details to your organization "
-"that will then be depicted on your\n"
-"                    <a href=\"%(organization.get_absolute_url)s"
-"\">organization profile</a>.\n"
-"                "
 
 #: herorecommend/forms.py:39
-msgid "Absenden"
-msgstr "Submit"
+msgid "Submit"
+msgstr "Absenden"
 
 #: herorecommend/views.py:32
-msgid "Erledigt"
-msgstr "Done"
+msgid "Done"
+msgstr "Erledigt"
 
 #: herorecommend/templates/herorecommend/benchmark.html:6
 #, python-format
-msgid "Epfehlungen für die Nutzer"
-msgstr " Recommendations for user %(user)s "
+msgid " Recommendations for user %(user)s "
+msgstr "Epfehlungen für die Nutzer"
 
 #: mail_debug_panel/templates/mail_debug_panel/debug_toolbar_message.html:9
 msgid "Details"
@@ -2987,12 +2987,12 @@ msgid "Text"
 msgstr "Text"
 
 #: youarehero/settings/base.py:52
-msgid "Deutsch"
-msgstr "German"
+msgid "German"
+msgstr "Deutsch"
 
 #: youarehero/settings/base.py:53
-msgid "Englisch"
-msgstr "English"
+msgid "English"
+msgstr "Englisch"
 
 #~ msgid "Niedrig"
 #~ msgstr "Low"

@@ -5,10 +5,10 @@
         <li class="{% ifactive "quest_my" %}on{% endifactive %}">
             <a href="{% url "quest_my" %}">{% trans "Alle" %}</a></li>
         <li class="{% ifactive "quest_my_joined" %}on{% endifactive %}">
-            <a href="{% url "quest_my_joined" %}">{% trans "Angenommen" %}</a></li>
+            <a href="{% url "quest_my_joined" %}">{% trans "Accepted" %}</a></li>
         <li class="{% ifactive "quest_my_created" %}on{% endifactive %}">
-            <a href="{% url "quest_my_created" %}">{% trans "Erstellt" %}</a></li>
+            <a href="{% url "quest_my_created" %}">{% trans "Created" %}</a></li>
         <li class="{% ifactive "quest_my_done" %}on{% endifactive %}">
-            <a href="{% url "quest_my_done" %}">{% trans "Abgeschlossen" %}</a></li>
+            <a href="{% url "quest_my_done" %}">{% trans "Completed" %}</a></li>
     </ul>
 {% endif %}

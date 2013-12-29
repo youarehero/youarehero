@@ -1,13 +1,2 @@
 {% load i18n %}
-{% blocktrans %}
-
-Fallrückzieher
-
-Verehrte Damen und Herren,
-{{ target.user.username }} hat die Teilnahme auf ihre Quest {{ target.quest.title }} widerrufen.
-Sie können die Quest unter http://{{ site.domain }}{{ target.quest.get_absolute_url }} erreichen.
-
-Hochachtungsvoll,
-Ihr Butler von you are hero
-
-{% endblocktrans %}
+{% blocktrans %}\n\nWithdrawal\n\nDear Ladies and Gentlemen,\n{{ target.user.username }} has withdrawn his participation on your quest {{ target.quest.title }} .\nYou can visit the quest here http://{{ site.domain }} {{ target.quest.get_absolute_url }}.\n\nRespectfully,\nYour you are hero butler\n\n{% endblocktrans %}

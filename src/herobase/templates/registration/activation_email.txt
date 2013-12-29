@@ -1,8 +1,8 @@
 {% load i18n %}
 {% autoescape off %}
-{% blocktrans %} Willkommen bei you are hero {{ user.username }}! {% endblocktrans %}
+{% blocktrans %}Welcome to you are hero: {{ user.username }}! {% endblocktrans %}
 
-{% trans "Bitte klicke auf den Link, um deine Registrierung fertigzustellen." %}
+{% trans "Please click on this link to complete your registration." %}
 {% block activate_link %}
 https://{{ site.domain }}{% url "registration_activate" activation_key=activation_key %}
 {% endblock %}

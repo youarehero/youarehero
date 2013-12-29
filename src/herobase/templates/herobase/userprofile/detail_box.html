@@ -11,11 +11,11 @@
                 <div class="row">
                     <div class="col-sm-12">
                         {% if user != request.user %}
-                          <h1>{% blocktrans %} Das ist {{ user.username }} {% endblocktrans %}</h1>
+                          <h1>{% blocktrans %}This is {{ username }}{% endblocktrans %}</h1>
                         {% else %}
                             <a href="{% url 'userprofile_edit' %}" class="pull-right"><i
                                     class="icon-cogs icon-2x"></i></a>
-                              <h1>{% blocktrans %} Das bist du, {{ user.username }} {% endblocktrans %}</h1>
+                              <h1>{% blocktrans %}This is you, {{ user.username }} {% endblocktrans %}</h1>
                         {% endif %}
                     </div>
                     <div class="col-sm-4 avatar-col">
@@ -47,7 +47,7 @@
                             <dd>{{ user.profile.level }}</dd>
                             <dt>{% trans "XP" %}</dt>
                             <dd>{{ user.profile.experience }}</dd>
-                            <dt>{% trans "Rang" %}</dt>
+                            <dt>{% trans "Rank" %}</dt>
                             <dd>{{ user.profile.rank }}</dd>
                         </dl>
                     </div>
@@ -69,7 +69,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="box">
-                <h2>{% trans "Rang in der Liste" %}</h2>
+                <h2>{% trans "Rank in the list" %}</h2>
                 <table class="leader-table">
                     {% for user in relative_ladder %}
                         {% with active=user.active %}
@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <h2>{% blocktrans %} Errungenschaften von {{ user.username }} {% endblocktrans %}</h2>
+            <h2>{% blocktrans %}Achievenments of {{ user.username }}{% endblocktrans %}</h2>
             <div class="row">
             {% for achievement in user.achievements.all %}
                 <div class="col-md-12">

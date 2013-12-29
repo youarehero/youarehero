@@ -3,61 +3,36 @@
 {% load url from future %}
 
 {% block title %}
-    you are hero - {% trans "Hilfe" %}
+    you are hero - {% trans "Help" %}
 {% endblock %}
 
 {% block content %}
 <div class="row">
   <div class="col-md-6">
     <div class="box">
-      <h1>{% trans "Spielanleitung Alternate Reality Games" %}</h1>
+      <h1>{% trans "Rules for the Alternate Reality Game" %}</h1>
       <p>
-      {% blocktrans %}
-      Dieses ist kein gewöhnliches Spiel; es ist ein “Alternate Reality Game”. Das heisst, dass Anonymas Geschichte
-      “wirklich” in der Stadt Karlsruhe passiert. Und alle Spieler spielen “wirkliche” Helden. Das macht ziemlich viel
-      Spaß, ist aber eine neue Spielform, daher im Folgenden ein paar Basisregeln um es besser zu erklären:
-      {% endblocktrans %}
+      {% blocktrans %}This game is no ordinary game: it’s an “alternate reality game”. That means that the story of Anonyma happens “for real” in the city of Karlsruhe, and all the players are acting like if they were “real” heroes. This is a fun, but also kind of new game, so here are some basic rules that explain it clearly!{% endblocktrans %}
       </p>
 
-      <h2>1) {% trans "Zusammenarbeiten." %}</h2>
+      <h2>1) {% trans "Collaborate." %}</h2>
       <p>
-      {% blocktrans %}
-      Wenn eine Aufgabe mental oder physisch zu anstrengend wird, verlassen sich Helden auf Teamwork und die
-      Gemeinschaft.  Seid nicht schüchtern, die Zusammenarbeit mit den anderen Spielern ist das Beste am Spiel! Also
-      besucht das Forum regelmässig.
-      {% endblocktrans %}
+      {% blocktrans %}When quests become mentally or physically challenging, heroes rely on teamwork and community. Don’t be shy; interacting with fellow players can be the best part of the game! So go and check out the forums.{% endblocktrans %}
       </p>
 
-      <h2>2) {% trans "Teilen." %}</h2>
+      <h2>2) {% trans "Share." %}</h2>
       <p>
-      {% blocktrans %}
-      Wenn ihr mit einer Information konfrontiert seid oder eine neue Idee für das Lösen einer Quest habt, behaltet sie
-      nicht für euch! Vergesst nicht, dass alle Helden Verbündete sind im Kampf gegen Anonyma und die anderen Schurken!
-      Es gibt keinen einzelnen Gewinner am Schluss also teilt alle Infos und Hinweise, die ihr findet auf den Foren oder
-      im Heldenwiki.
-      {% endblocktrans %}
+      {% blocktrans %}If you find a piece of information, or even if you get a fresh idea about a quest, don’t keep it to yourself! Remember that all heroes are allies against Anonyma and the other villains. There is no single winner in the end, so just share what you’ve got on the forums or the hero wiki!{% endblocktrans %}
       </p>
 
-      <h2>3) {% trans "Rausgehen." %}</h2>
+      <h2>3) {% trans "Go out." %}</h2>
       <p>
-      {% blocktrans %}
-      An einem bestimmten Punkt werden die Quests die Helden raus ins reale Leben führen. Ob es auf der Suche nach
-      wichtigen Hinweisen ist oder um heldenhafte Aktionen zu vollbringen, bitte denkt an elementare Sicherheitsregeln.
-      Auch Helden können sich verletzen.
-      {% endblocktrans %}
+      {% blocktrans %}At some point, quests will take heroes out there in the world. Whether it is to look for important clues, or to perform heroic actions, remember to obey elementary safety measures. Heroes too can get hurt.{% endblocktrans %}
       </p>
 
-      <h2>4) {% trans "Durchhalten (und manchmal über den Tellerrand schauen)" %}</h2>
+      <h2>4) {% trans "Persevere (Think out of the box)." %}</h2>
       <p>
-      {% blocktrans %}
-      Wenn Quests vom einem verlangen, Dinge zu tun, die man noch nie getan
-          oder von denen man noch nicht mal gehört
-      hat - Helden geben nicht auf. Auch wenn das Problem erst mal unlösbar
-          scheint. Manchmal ist alles nur eine Frage
-      der Perspektive. Also seid einfallsreich, erfindungsreich und ausdauernd.
-          Und vergesst nicht, gemeinsam mit euren
-      Freunden und Mithelden zu spielen!
-      {% endblocktrans %}
+      {% blocktrans %}When quests require them to do things they never have done - or even heard of - before, true heroes don’t give up. Even if the task is seamingly impossible. Sometimes, it’s just a matter of perspective. So, be resourceful, imaginative and persistent. And don’t forget to play with your friends and fellow heroes!{% endblocktrans %}
       </p>
 
       <p>
@@ -71,65 +46,49 @@
   <div class="col-md-6">
     <div class="box">
 
-      <h1>{% trans "Wie funktioniert you are hero?" %}</h1>
+      <h1>{% trans "How does you are hero work?" %}</h1>
       <div>
-        <h2><i class="icon-caret-down"></i> {% trans "Profil verwalten" %}</h2>
+        <h2><i class="icon-caret-down"></i> {% trans "Manage the profile" %}</h2>
         <p>
         {% blocktrans %}
-        Wenn ihr euer Profil verwalten wollt, dann klickt auf das Symbol mit den Zahnrädern rechts oben, bearbeitet und ändert was es zu ändern gibt und klickt abschliessend auf den roten Knopf mit dem Haken unten auf der Seite.
-        Eure Änderungen werden damit gespeichert und sofort geändert angezeigt.
-        {% endblocktrans %}
+If you want to manage your profile click on the symbol with the cog on the upper right of the page, change whatever needs changing and complete the process by clicking on the red button with the tick on the lower part of the page.Your actions are thereby being saved and immediately depicted according to the changes you made.{% endblocktrans %}
         </p>
       </div>
       <div>
-        <h2><i class="icon-caret-down"></i> {% trans "EP sammeln" %}</h2>
+        <h2><i class="icon-caret-down"></i> {% trans "Collecting XP" %}</h2>
         <p>
         {% blocktrans %}
-        EP (oder auch Erfahrungspunkte; aus dem englischen: Experience Points) sammelt ihr, indem ihr Quests annehmt und
-        diese löst.  Ihr bekommt aber auch Erfahrungspunkte als Auftraggeber.  Vergeben werden die Punkte nach Abschluss
-        der Quest.  Wenn ihr eine bestimmte Menge an Erfahrungspunkten erreicht habt, steigt ihr ein Level auf. Das
-        kennzeichnet euch gegenüber der Gemeinschaft als erfahrene Helden.
-        {% endblocktrans %}
+You can collect XP (or Experience Points), by accepting quests and solving them.But you also get experience points by posting quests and seeing them through.The points are being delivered after the conclusion of the quest.After having aqcuired a certain amount of XP you gain a level. This will prove you to the rest of the community as experienced heroes.{% endblocktrans %}
         </p>
       </div>
       <div>
-        <h2><i class="icon-caret-down"></i> {% trans "Quest annehmen" %}</h2>
+        <h2><i class="icon-caret-down"></i> {% trans "Accepting a quest" %}</h2>
         <p>
         {% blocktrans %}
-        Wenn euch eine Quest gefällt und ihr gerne mitmachen möchtet, dann drückt einfach den großen roten Knopf, auf
-        dem “Bewerben” steht.  Sobald der Auftraggeber euch bestätigt seid ihr Teil der Quest und mit dafür
-        verantwortlich, dass sie auch gelöst wird.  Nach Abschluss der Quest, die durch den Auftraggeber als
-        abgeschlossen markiert wird, bekommt ihr dann eure Erfahrungspunkte zugewiesen.
-        {% endblocktrans %}
+If you feel that a quests suits you and you´d like to take part then just press the big red button that sais “apply”.As soon as the quest provider accepts you as a participant you are part of the quest and therefore also partly responsible for its solving.After the conclusion of the quest, which happens as soon as the quest provider marks it as finished, you receive your well-earned XP.{% endblocktrans %}
         </p>
 
-        <h3>{% trans "Symbol Zeitaufwand" %}</h3>
+        <h3>{% trans "Symbol time exposure" %}</h3>
         <p>
         {% blocktrans %}
-        Das Symbol mit der Uhr kennzeichnet wie viel Zeit die Erfüllung der Quest vermutlich in Anspruch nehmen wird.
-        {% endblocktrans %}
+The symbol with the clock indicates the approximate time it will take to solve the quest.{% endblocktrans %}
         </p>
 
-        <h3>{% trans "Symbol Ort" %}</h3>
+        <h3>{% trans "Symbol location" %}</h3>
         <p>
         {% blocktrans %}
-        Wenn ihr dieses Symbol seht, heisst das, dass diese Quest lokal vor Ort erledigt werden muss. Alle Quests ohne dieses Symbol können online bzw. digital erfüllt werden.
-        Den Ort seht ihr in der Quest angezeigt.
-        {% endblocktrans %}
+If you see this symbol, it means that this quest has to be solved locally. Every quest without this symbol can be solved online or digitally.The place is depicted in the quest.{% endblocktrans %}
         </p>
       </div>
       <div>
-        <h2><i class="icon-caret-down"></i> {% trans "Quest einstellen" %}</h2>
+        <h2><i class="icon-caret-down"></i> {% trans "Post a quest" %}</h2>
         <p>
         {% blocktrans %}
-        Unter dem Icon “neue Quest” (das mit dem Stift) findet ihr ein Formular, das es euch ermöglicht, selbst Quests
-        einzustellen. Füllt die Felder alle gewissenhaft aus, je mehr Informationen ihr eingebt, desto leichter wird es
-        sein, Helden zu finden, die teilnehmen wollen.
-        {% endblocktrans %}
+The icon “new quest” (the one with the pencil) provides you with a form that allows you to post your own quests. Fill in all the fields conscientiously. The more informations you provide, the easier it will be to find heros that want to participate.{% endblocktrans %}
         </p>
       </div>
       <div>
-        <h2><i class="icon-caret-down"></i> {% trans "Nachrichten versenden" %}</h2>
+        <h2><i class="icon-caret-down"></i> {% trans "Sending messages" %}</h2>
         <p>
         {% blocktrans %}
 The icon that says messages and that looks like an envelope provides you with your platforminternal mailbox.There you can write your own messages to other users (you’ll need to know the username of the person you want to contact though) and check out all messages that you have sent and received.{% endblocktrans %}
@@ -139,15 +98,10 @@ The icon that says messages and that looks like an envelope provides you with yo
 
 
 
-        <h2><i class="icon-caret-down"></i> {% trans "Benachrichtigungen" %}</h2>
+        <h2><i class="icon-caret-down"></i> {% trans "Notifications" %}</h2>
         <p>
         {% blocktrans %}
-        Das Glockensymbol oben repräsentiert eure Benachrichtigungen.  Ihr könnt dort
-            sofort sehen, wenn etwas Neues auf
-        der Plattform passiert.  Wenn ihr draufklickt werdet ihr zu einer Liste geführt,
-            die euch genau aufzeigt, was
-        alles schon auf der Plattform passiert ist.
-        {% endblocktrans %}
+The symbol with the bell represents notifications.With it you can immediatly see if something new happens on the plattform.If you click on it you will be forwarded to a list that tells you everything that has happened on the platform.{% endblocktrans %}
         </p>
       </div>
       <div>
@@ -155,9 +109,7 @@ The icon that says messages and that looks like an envelope provides you with yo
         <h2><i class="icon-caret-down"></i> {% trans "Das Spiel" %}</h2>
         <p>
         {% blocktrans %}
-        Unter dem Icon mit dem Puzzlesymbol findet ihr alle Infos, die relevant sind für das in Karlsruhe stattfindende
-        Spiel.
-        {% endblocktrans %}
+The icon with the puzzle piece reveals all that happened in the course of the arg that has happened over the summer in Karlsruhe.{% endblocktrans %}
         </p>
       </div>
     </div>
