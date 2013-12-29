@@ -1,2 +1,15 @@
 {% load i18n %}
-{% blocktrans %}\n\nStarting shot\n\nDear Ladies and Gentlemen,\nYou are registered for the quest {{ target.title }}.\nI herby inform you, that the quest has officially started now.\n\nYou can find the quest here http://{{ site.domain }}{{ target.get_absolute_url }}.\n\nRespectfully,\nYour you are hero butler\n\n{% endblocktrans %}
+{% blocktrans %}
+
+Starting shot
+
+Dear Ladies and Gentlemen,
+You are registered for the quest {{ target.title }}.
+I herby inform you, that the quest has officially started now.
+
+You can find the quest here http://{{ site.domain }}{{ target.get_absolute_url }}.
+
+Respectfully,
+Your you are hero butler
+
+{% endblocktrans %}

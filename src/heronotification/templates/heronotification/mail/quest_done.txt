@@ -1,2 +1,12 @@
 {% load i18n %}
-{% blocktrans %}\n\nCongratulations,\n\nDear Ladies and Gentlemen,\nThe quest {{ target.title }} has successfully been completed.\n\nRespectfully,\nYour you are hero butler\n\n{% endblocktrans %}
+{% blocktrans %}
+
+Congratulations,
+
+Dear Ladies and Gentlemen,
+The quest {{ target.title }} has successfully been completed.
+
+Respectfully,
+Your you are hero butler
+
+{% endblocktrans %}

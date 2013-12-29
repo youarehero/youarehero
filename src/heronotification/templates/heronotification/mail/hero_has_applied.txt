@@ -1,2 +1,14 @@
 {% load i18n %}
-{% blocktrans %}\n\nNew heroes and heroines\n\nDear Ladies and Gentlemen,\nThere has been a new application to the quest {{ target.quest.title }}.\nPlease report back to the applicants as soon as possible!\nVisit http://{{ site.domain }}{{ target.quest.get_absolute_url }} to see the quest and handle the application.\n\nRespectfully,\nYour you are hero butler\n\n{% endblocktrans %}
+{% blocktrans %}
+
+New heroes and heroines
+
+Dear Ladies and Gentlemen,
+There has been a new application to the quest {{ target.quest.title }}.
+Please report back to the applicants as soon as possible!
+Visit http://{{ site.domain }}{{ target.quest.get_absolute_url }} to see the quest and handle the application.
+
+Respectfully,
+Your you are hero butler
+
+{% endblocktrans %}

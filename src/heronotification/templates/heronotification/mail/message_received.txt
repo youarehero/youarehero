@@ -1,2 +1,17 @@
 {% load i18n %}
-{% blocktrans %}\n\nHeroic post\n\nDear Ladies and Gentlemen,\nYou have received a new message from {{ target.sender }} in your heroes mailbox.\n\nThe message sais:\n{{ target.title }}\n\n{{ target.text }}\n\nRespectfully,\nYour you are hero butler\n\n{% endblocktrans %}
+{% blocktrans %}
+
+Heroic post
+
+Dear Ladies and Gentlemen,
+You have received a new message from {{ target.sender }} in your heroes mailbox.
+
+The message sais:
+{{ target.title }}
+
+{{ target.text }}
+
+Respectfully,
+Your you are hero butler
+
+{% endblocktrans %}

@@ -1,2 +1,15 @@
 {% load i18n %}
-{% blocktrans %}\n\nWelcome!\n\nDear Ladies and Gentlemen,\nI am the butler and would like to welcome you at http://{{ site.domain }}.\nFrom now on I will aid you as best as I can with help, hints and notifications.\n\nMy recommendation for the beginning would be the Do's and Don'ts of our website.\n\nRespectfully,\nYour you are hero butler\n\n{% endblocktrans %}
+{% blocktrans %}
+
+Welcome!
+
+Dear Ladies and Gentlemen,
+I am the butler and would like to welcome you at http://{{ site.domain }}.
+From now on I will aid you as best as I can with help, hints and notifications.
+
+My recommendation for the beginning would be the Do's and Don'ts of our website.
+
+Respectfully,
+Your you are hero butler
+
+{% endblocktrans %}

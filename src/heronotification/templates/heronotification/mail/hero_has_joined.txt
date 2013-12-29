@@ -1,2 +1,13 @@
 {% load i18n %}
-{% blocktrans %}\n\nNew heroes and heroines\n\nDear Ladies and Gentlemen,\nThe quest {{ target.quest.title }} has found in {{ target.user.username }} a new participant.\nVisit http://{{ site.domain }}{{ target.quest.get_absolute_url }} to see the quest.\n\nRespectfully,\nYour you are hero butler\n\n{% endblocktrans %}
+{% blocktrans %}
+
+New heroes and heroines
+
+Dear Ladies and Gentlemen,
+The quest {{ target.quest.title }} has found in {{ target.user.username }} a new participant.
+Visit http://{{ site.domain }}{{ target.quest.get_absolute_url }} to see the quest.
+
+Respectfully,
+Your you are hero butler
+
+{% endblocktrans %}
