@@ -5,7 +5,7 @@
 Emergency break
 
 Dear Ladies and Gentlemen,
-You have been registered for the quest %(target.title)s.
+You have been registered for the quest {{target.title}}.
 Unfortunately I have to inform you that this quest had to be aborted.
 Should it be resumed, I will inform you promptly.
 

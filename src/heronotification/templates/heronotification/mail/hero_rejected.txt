@@ -5,7 +5,7 @@
 Apologies
 
 Dear Ladies and Gentlemen,
-unfortunately your application to the quest %(target.title)s could not be regarded this time.
+unfortunately your application to the quest {{target.title}} could not be regarded this time.
 Bear up and on to the next challenge!
 
 Respectfully,

@@ -63,7 +63,7 @@
       <p>
       {% url 'hotline' as hotline_url %}
       {% blocktrans %}
-      In case of great need, the community will be able to turn to the elder heroes        <a href=\"%(hotline_url)s\">for advice.</a>
+      In case of great need, the community will be able to turn to the elder heroes        <a href="{{hotline_url}}">for advice.</a>
         {% endblocktrans %}
       </p>
     </div>
