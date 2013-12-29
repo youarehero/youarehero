@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collections import OrderedDict
 from django.conf import settings
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, pgettext
 
 registry = OrderedDict()
 
@@ -40,7 +40,8 @@ done_quest_hero_3 = Achievement("done_quest_hero_3",  _(u"Subhero"), _(u"Carry o
 done_quest_hero_10 = Achievement("done_quest_hero_10",  _(u"Hero"), _(u"Carry out ten quests"))
 done_quest_hero_50 = Achievement("done_quest_hero_50",  _(u"Veteran"), _(u"Carry out fifty quests"))
 
-done_quest_owner_1 = Achievement("done_quest_owner_1", _(u"Creator"),
+done_quest_owner_1 = Achievement("done_quest_owner_1",
+                                 pgettext("Achievement title", u"Creator"),
                                  _(u"Create a quest that is being carried out"))
 done_quest_owner_3 = Achievement("done_quest_owner_3", _(u"Principal"),
                                  _(u"Create three quests that are being carried out"))

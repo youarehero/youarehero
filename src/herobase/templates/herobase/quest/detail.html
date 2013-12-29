@@ -110,13 +110,13 @@
                             {% csrf_token %}
                             <input type="hidden" name="action" value="apply">
                             <button class="box-button text" type="submit" name="action_btn">
-                                <span>{% trans "Apply" %}</span>
+                                <span>{% trans "Apply" context "application" %}</span>
                             </button>
                         </form>
                     {% else %}
                         <a class="box-button text hfill"
                            href="{% url 'auth_login' %}?next={{ quest_url }}">
-                            <span>{% trans "Apply" %}</span>
+                            <span>{% trans "Apply" context "application" %}</span>
                         </a>
                     {% endif %}
                 {% endif %}
