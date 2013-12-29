@@ -12,7 +12,7 @@ class MessageForm(forms.ModelForm):
     recipient = forms.ModelChoiceField(
         User.objects.all(),
         widget=autocomplete_light.ChoiceWidget('UserAutocomplete'),
-        label=_(u'Neue Nachricht an'),
+        label=_(u'New message to'),
     )
     text = forms.CharField(
         widget=forms.Textarea(),
@@ -38,7 +38,7 @@ class MessageForm(forms.ModelForm):
 
 class TeamMessageForm(forms.Form):
     team = forms.ChoiceField(
-        label = _("Recipient Team"),
+        label = _("Recipient team"),
         choices = [(entry['team'], entry['team']) for entry in UserProfile.objects.values('team').exclude(team="").distinct()],
         widget=autocomplete_light.ChoiceWidget('TeamAutocomplete')
     )

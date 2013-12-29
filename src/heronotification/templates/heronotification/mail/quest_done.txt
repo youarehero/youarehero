@@ -1,12 +1,12 @@
 {% load i18n %}
 {% blocktrans %}
 
-Glückwunsch,
+Congratulations,
 
-Verehrte Damen und Herren,
-Die Quest {{ target.title }} wurde erfolgreich abgeschlossen.
+Dear Ladies and Gentlemen,
+The quest {{ target.title }} has successfully been completed.
 
-Hochachtungsvoll,
-Ihr Butler von you are hero
+Respectfully,
+Your you are hero butler
 
 {% endblocktrans %}

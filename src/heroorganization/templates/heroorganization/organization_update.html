@@ -2,7 +2,7 @@
 {% load i18n crispy_forms_tags %}
 
 {% block page_title %}
-  <h1>{% blocktrans %} {{ object.name }} bearbeiten {% endblocktrans %}</h1>
+  <h1>{% blocktrans %} Edit {{ object.name }} {% endblocktrans %}</h1>
 {% endblock %}
 
 {% block content %}
@@ -11,12 +11,11 @@
             <div class="box">
                 <h2>{{ organization.name }}</h2>
 
-                <p>{% trans "Hallo, hier ist deine Adminseite." %}</p>
+                <p>{% trans "Hello, here is your Admin-page" %}</p>
 
                 <p>{% blocktrans %}
-                    Von hier kannst du die Details deiner Organisation bearbeiten die dann auf deinem
-                    <a href="{{ organization.get_absolute_url }}">Organisations-Profil</a>
-                    angezeigt werden.
+                    here you can edit the details to your organization that will then be depicted on your
+                    <a href="{{ organization.get_absolute_url }}">organization profile</a>.
                 {% endblocktrans %}</p>
             </div>
         </div>
@@ -38,7 +37,7 @@
             <div class="box-buttons-bottom">
                 <button class="box-button" type="submit" value="Save" name="save"
                         data-toggle="tooltip"
-                        data-title="{% trans 'Übernehmen' %}">
+                        data-title="{% trans 'Apply' context "save" %}">
                     <i class="icon-ok"></i></button>
             </div>
         </div>

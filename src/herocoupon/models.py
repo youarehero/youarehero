@@ -10,7 +10,7 @@ import random
 class Coupon(models.Model):
     TYPE_CHOICES = (
         ('single', _(u'Single')),
-        ('multi', _(u'multi')),
+        ('multi', _(u'Multi')),
     )
     type = models.CharField(max_length=255, choices=TYPE_CHOICES, default='single')
     xp = models.PositiveSmallIntegerField(default=0)

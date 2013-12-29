@@ -5,14 +5,14 @@
 {% block content %}
     <div class="box">
         {% if first_login %}
-            <h3>{% trans "Willkommen bei You are Hero" %}</h3>
-            <p>{% trans "Suche dir jetzt ein Profilbild aus und schreib' wenn du möchtest ein paar Zeilen über dich." %}</p>
+            <h3>{% trans "Welcome to you are hero." %}</h3>
+            <p>{% trans "Chose a profile picture or upload your own and write some lines about yourself if you want to." %}</p>
         {% endif %}
         <form method="POST" action="" enctype="multipart/form-data" class="clearfix">
         {% crispy form %}
-        <button class="box-button pull-right" type="submit" value="Save" name="save"  data-toggle="tooltip" data-title="{% trans 'Übernehmen' %}">
+        <button class="box-button pull-right" type="submit" value="Save" name="save"  data-toggle="tooltip" data-title="{% trans 'Apply' context "save" %}">
             <i class="icon-ok"></i></button>
         </form>
-        <a href="{% url 'userprofile_delete' %}">{% trans "Profil löschen" %}</a>
+        <a href="{% url 'userprofile_delete' %}">{% trans "Delete profile" %}</a>
     </div>
 {% endblock %}

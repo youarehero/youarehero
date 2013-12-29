@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collections import OrderedDict
 from django.conf import settings
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, pgettext
 
 registry = OrderedDict()
 
@@ -30,25 +30,26 @@ class Achievement(object):
     def image(self):
         return settings.STATIC_URL + self._image
 
-create_quest_1 = Achievement("create_quest_1", _(u"Quest-Ersteller"), _(u"Erstelle deine erste Quest"))
+create_quest_1 = Achievement("create_quest_1", _(u"Quest provider"), _(u"Create your first quest"))
 
-apply_quest_1 = Achievement("apply_quest_1", _(u"Quest-Bewerber"), _(u"Bewirb dich für deine erste Quest."))
+apply_quest_1 = Achievement("apply_quest_1", _(u"Quest applicant"), _(u"Apply for your first quest"))
 
 
-done_quest_hero_1 = Achievement("done_quest_hero_1",  _(u"Heldenanwärter"), _(u"Erledige eine Quest."))
-done_quest_hero_3 = Achievement("done_quest_hero_3",  _(u"Jungheld"), _(u"Erledige drei Quests."))
-done_quest_hero_10 = Achievement("done_quest_hero_10",  _(u"Held"), _(u"Erledige 10 Quests."))
-done_quest_hero_50 = Achievement("done_quest_hero_50",  _(u"Veteran"), _(u"Erledige 50 Quests."))
+done_quest_hero_1 = Achievement("done_quest_hero_1",  _(u"Heroic aspirants"), _(u"Carry out a quest"))
+done_quest_hero_3 = Achievement("done_quest_hero_3",  _(u"Subhero"), _(u"Carry out three quests"))
+done_quest_hero_10 = Achievement("done_quest_hero_10",  _(u"Hero"), _(u"Carry out ten quests"))
+done_quest_hero_50 = Achievement("done_quest_hero_50",  _(u"Veteran"), _(u"Carry out fifty quests"))
 
-done_quest_owner_1 = Achievement("done_quest_owner_1", _(u"Schaffer"),
-                                 _(u"Erstelle eine Quest die erledigt wird."))
-done_quest_owner_3 = Achievement("done_quest_owner_3", _(u"Auftraggeber"),
-                                 _(u"Erstelle 3 Quests die erledigt werden."))
-done_quest_owner_10 = Achievement("done_quest_owner_10", _(u"Klient"),
-                                  _(u"Erstelle 10 Quests die erledigt werden."))
-done_quest_owner_50 = Achievement("done_quest_owner_50", _(u"Eminenz"),
-                                  _(u"Erstelle 50 Quests die erledigt werden."))
+done_quest_owner_1 = Achievement("done_quest_owner_1",
+                                 pgettext("Achievement title", u"Creator"),
+                                 _(u"Create a quest that is being carried out"))
+done_quest_owner_3 = Achievement("done_quest_owner_3", _(u"Principal"),
+                                 _(u"Create three quests that are being carried out"))
+done_quest_owner_10 = Achievement("done_quest_owner_10", _(u"Client"),
+                                  _(u"Create ten quests that are being carried out"))
+done_quest_owner_50 = Achievement("done_quest_owner_50", _(u"Eminence"),
+                                  _(u"Create fifty quests that are being carried out"))
 
-commented_3 = Achievement("commented_3", _(u"Kommentator"), _(u"Kommentiere 3 Quests"))
+commented_3 = Achievement("commented_3", _(u"Commentator"), _(u"Comment on three quests"))
 
 # liked_50 = Achievement("liked_50", "Jedermanns Freund", "Like ")

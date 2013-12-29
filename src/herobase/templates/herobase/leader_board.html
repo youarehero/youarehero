@@ -10,7 +10,7 @@
 
 {% block content %}
     <div class="box">
-        <h1>{% trans "Rangliste" %}</h1>
+        <h1>{% trans "Leaderboard" %}</h1>
     </div>
     <div class="row">
         <div class="col-sm-6">
@@ -27,7 +27,7 @@
         </div>
         <div class="col-sm-6">
             <div class="box">
-                <h2>{% trans "Ränge 6-10" %}</h2>
+                <h2>{% trans "Ranks 6 to 10" %}</h2>
                 <table class="leader-table">
                     {% for user in top6to10 %}
                         {% with active=False %}
@@ -41,7 +41,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="box">
-                <h2>{% trans "Ränge 11-25" %}</h2>
+                <h2>{% trans "Ranks 11 to 25" %}</h2>
 
                 <p>
                     {% for user in top11to25 %}
@@ -54,7 +54,7 @@
         </div>
         <div class="col-sm-6">
             <div class="box">
-                <h2>{% trans "Ränge 26-50" %}</h2>
+                <h2>{% trans "Ranks 26 to 50" %}</h2>
 
                 <p>
                     {% for user in top26to50 %}
@@ -67,7 +67,7 @@
         </div>
     </div>
     <div class="box">
-        <h2>{% trans "Liste der Errungenschaften" %}</h2>
+        <h2>{% trans "List of Achievements" %}</h2>
     </div>
     <div class="row">
         {% for achievement in achievements %}

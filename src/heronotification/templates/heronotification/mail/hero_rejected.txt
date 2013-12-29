@@ -1,13 +1,15 @@
 {% load i18n %}
 {% blocktrans %}
 
-Verzeihung
 
-Verehrte Damen und Herren,
-leider konnte ihre Bewerbung für die Quest {{ target.title }} dieses Mal nicht berücksichtigt werde.
-Kopf hoch und auf zur nächsten Herausforderung!
+Apologies
 
-Hochachtungsvoll,
-Ihr Butler von you are hero
+Dear Ladies and Gentlemen,
+unfortunately your application to the quest {{target.title}} could not be regarded this time.
+Bear up and on to the next challenge!
+
+Respectfully,
+Your you are hero butler
+
 
 {% endblocktrans %}

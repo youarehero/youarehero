@@ -17,15 +17,15 @@ def butler_text(request):
     below = lambda *args, **kwargs: request.path.startswith(reverse(*args, **kwargs))
     if not request.user.is_anonymous:
         profile = request.user.get_profile()
-    text = _(u'Wollen Sie mich ärgern %%%salutation%%%?')
+    text = _(u'Do you want to spite me %%%salutation%%%?')
     if active('home'):
-        text = _(u'Guten Tag %%%salutation%%%,\nsobald Sie Ihre ersten Quests eingestellt bzw. angenommen haben, werden Sie hier auf der Startseite eine Übersicht dessen sehen, was für Sie ansteht; bzw. was sich in den letzten Tagen Neues ereignet hat.\n\nWenn Sie es wünschen können Sie auch per email über Statusänderungen in Ihren Quests bzw. über neue Nachrichten informiert werden.\n\nDies können Sie nach Wunsch in den Optionen (das Symbol mit den Zahnrädern) einstellen.')
+        text = _(u'Good day %%%salutation%%%,\nas soon as you have posted or accepted your first quests, the main page will provide you with a list of notifications about your recent activities and everything new that has happened in the past days.\n\nIf you wish, you can also be informed about status modifications in your quests and respectively about new messages.\n\nThis can be turned on and off as requested in your settings (the symbol with the cog).')
     if active('quest_list'):
-        text = _(u'Sie befinden sich auf der Pinnwand %%%salutation%%%.\nHier finden Sie alle Quests, derer Sie sich annehmen können. Falls Sie von der Auswahl überwältigt sein sollten, können Sie mit Hilfe der Suchkriterien Ihre Auswahl einschränken.\nSo gibt es die Möglichkeit nach Stichworten suchen um etwas zu finden, das zu Ihnen passt oder auf das Sie gerade Lust haben.\n\nAuch bestimmte Kriterien wie der geschätzte Zeitaufwand oder ob Sie für die Quest lokal anwesend sein müssen, sollen es Ihnen erleichtern, eine Auswahl zu treffen.\n\\”Frenquentierte Besuche lohnen sich, wenn ich das so sagen darf %%%salutation%%%.')
+        text = _(u'This is the pinnboard %%%salutation%%%.\nHere you can find all available quests. Should you feel overwhelmed by the choice, you can use the searchbar to narrow down the choice via keywords or via different criteria such as time exposure or the necessity to do the quest.\nlocally.Visiting the pinnboard frequently will be worth your while - if I may say so.\n%%%salutation%%%.')
     if active('quest_create'):
-        text =_(u'Hier finden Sie alle Formulare, die Sie brauchen %%%salutation%%%.\nOb Sie der Welt eine weitere Aufgabe zum Lösen bieten oder ein neues Projekt einstellen wollen, ich habe die Formulare für Sie vorbereitet.')
+        text =_(u'Here you can find all the forms you need, %%%salutation%%%.\nPosting a new quest for the world to solve or offering a new project, you´ll be not lacking the forms to do so.')
     if active('quest_my'):
-        text =_(u'Hier finden Sie alle Quests die Sie angenommen oder aufgegeben haben %%%salutation%%%.\n Wenn ein Stern an der Quest ist bedeutet das das es sich um eine von ihnen aufgegeben Quest handelt.')
+        text =_(u'Here you can see all quests that you have accepted and posted %%%salutation%%%.\n If there is a star mark it means that you are the quest provider.')
     #if active('quest_my_created'):
     #    text ='Hier finden Sie alle Quests die Sie aufgegeben haben %%%salutation%%%.\n'
     #if active('quest_my_joined'):

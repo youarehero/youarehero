@@ -15,17 +15,14 @@
 
     <div class="infobox-container middle">
       <div id="yah-ist-ein-spiel">
-        <h1>{% trans "you are hero ist ein Spiel" %}</h1>
+        <h1>{% trans "you are hero is a game" %}</h1>
         <p>
         {% blocktrans %}
-        Löse Quests online oder in der Stadt, allein oder mit deinen Freunden, und hilf den Helden die Schurkin Anonyma zu
-        erwischen, die gestohlene Zeitmaschine wiederzufinden und viele weitere Heldentaten. Es ist kostenlos und du
-        kannst so viel zeit aufwenden, wie du möchtest.
-        {% endblocktrans %}
+Solve Quests online or in the city, alone or with friends, and help the hero community to save the world. It is free and you can spend as much (or little) time as you want. Register now and accept the Tutorial-Quest to start.        {% endblocktrans %}
         <br/>
         {% url 'registration_register' as register_url %}
         {% blocktrans %}
-          <a href="{{register_url}}">Registriere</a> dich und nimme Entropius’ Quests an um loszulegen.
+          <a href="{{register_url}}">Register</a> and accept Entropius’ quest to start.
         {% endblocktrans %}
         </p>
         <div class="box-footer">
@@ -36,33 +33,34 @@
 
     <div class="infobox-container bottom">
       <div id="yah-ist-kein-spiel" >
-        <h1>{% trans "you are hero ist kein Spiel" %}</h1>
+
+        <h1>{% trans "you are hero is no game" %}</h1>
         <p>
         {% url 'manifesto' as manifesto_url %}
-        {% blocktrans %}
-        Dies ist eine ernste Angelegenheit!
-        Wir wollen beweisen, dass Spielen die Welt retten kann.
-        Wie? Indem wir dafür sorgen, dass es Spaß macht, Gutes zu tun.
-        Wohltätigkeit, Ehrenamt und ein Gesellschaftlicher Geist, das sind
-        reale Dinge, die uns allen helfen, besser zu leben.
-        In unserem <a href="{{ manifesto_url }}">Manifest</a> kannst du nachlesen, wie you are hero das
-        machen will, oder du trägst einfach deine eigene Quest ein, falls du selbst
-        Helden-Hilfe benötigst!
-        {% endblocktrans %}
+        {% blocktrans %}This is a serious matter!We want to prove that games and playing can save the world.How? By providing the means to have fun while doing good.Beneficence, charity and a social mind are real things that can help us all to live in a better world.In our <a href="{{manifesto_url}}">Manifest</a>  you can check out how you are hero is planning on approaching this goal.Or you just add your own Quest if you need the help of heroes or see something that needs to be done.{% endblocktrans %}
         </p>
       </div>
     </div>
+
+
+
+
+
+
+
+
     <div class="row centering">
         <div class="linkbox col-sm-8 col-sm-offset-2">
             <a href="{% url "registration_register" %}">
                 <i class="icon-yah-hand-right"></i>
-                <span>{% trans "Registrieren" %}</span>
+
+                <span>{% trans "Register" %}</span>
                 <i class="icon-yah-hand-left"></i>
             </a>
         </div>
     </div>
     <div class="box">
-        <h2>{% trans "k&uuml;rzlich abgeschlossene Quests" %}</h2>
+        <h2>{% trans "Recently finished quests" %}</h2>
     </div>
     <div class="row">
         {% for quest in recently_done_quests %}
@@ -74,15 +72,15 @@
 
     <br>
     <div class="sponsors vertical-offset">
-        <h3>{% trans "Gef&ouml;rdert durch" %}</h3>
+        <h3>{% trans "sponsored by" %}</h3>
         <a href="http://www.staedte-im-wissenschaftsjahr.de/wordpress/you-are-hero/" target="_blank">
           <img src="{% get_static_prefix %}/img/sponsors/karlsruhe.png"/><br>
-            {% trans "Stadt Karlsruhe" %}
+            {% trans "city of Karlsruhe" %}
         </a>
 
         <a href="https://youarehero.net/blog/2012/10/17/you-are-hero-gewinnt-forderpreis-der-heinrich-hertz-gesellschaft/" target="_blank">
           <img src="{% get_static_prefix %}/img/sponsors/hhg.png"/><br>
-            {% trans "Heinrich Hertz Gesellschaft" %}
+            {% trans "Heinrich Hertz society" %}
         </a>
 
         <a href="https://youarehero.net/blog/2013/05/06/you-are-hero-gewinnt-preis-des-rotary-clubs-karlsruhe/" target="_blank">

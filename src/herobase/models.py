@@ -47,9 +47,9 @@ CLASS_CHOICES =  (
     (3, _('Action')),
     (4, _('Protective')))
 SEX_CHOICES =  (
-    (1, _('Herr')),
-    (2, _('Frau')),
-    (3, _('keine')),
+    (1, _('Mister')),
+    (2, _('Misses')),
+    (3, _('none')),
 )
 
 AVATAR_IMAGES_TRUSTED = sorted(map(
@@ -83,7 +83,7 @@ class LocationMixin(models.Model):
         default=LOCATION_GRANULARITY_NONE,
         choices=((LOCATION_GRANULARITY_NONE, _(u"no location")),
                  (LOCATION_GRANULARITY_GPS, _(u"GPS")),
-                 (LOCATION_GRANULARITY_ADDRESS, _(u"address")),
+                 (LOCATION_GRANULARITY_ADDRESS, _(u"Adress")),
                  (LOCATION_GRANULARITY_DISTRICT, _(u"district")),
                  (LOCATION_GRANULARITY_CITY, _(u"city")),
                  (LOCATION_GRANULARITY_UNKNOWN, _(u"unknown")),
@@ -246,42 +246,42 @@ class Quest(LocationMixin, models.Model):
     owner = models.ForeignKey(User, related_name='created_quests')
     title = models.CharField(max_length=255, verbose_name=_(u"Title"))
     description = models.TextField(verbose_name=_(u"Description"),
-                                   help_text=_(u"A short description of what "
-                                               u"this quest is about."))
+                                   help_text=_(u"A short description of what this quest is about."))
+
 
     START_MANUAL = 0
     START_TIMER = 1
     START_ENOUGH_HEROES = 2
     START_CHOICES = (
         # translators: refers to the start trigger
-        (START_MANUAL, _("Manuell")),
+        (START_MANUAL, _("Manually")),
         # translators: refers to the start trigger
-        (START_TIMER, _("Zum Startzeitpunkt")),
+        (START_TIMER, _("At the starting time")),
         # translators: refers to the start trigger
-        (START_ENOUGH_HEROES, _("Genug Helden")),
+        (START_ENOUGH_HEROES, _("Enough heroes")),
     )
 
     END_MANUAL = 0
     END_TIMER = 1
     END_CHOICES = (
         # translators: refers to the end trigger
-        (END_MANUAL, _("Manuell")),
+        (END_MANUAL, _("Manually")),
         # translators: refers to the end trigger
-        (END_TIMER, _("Zum End-Datum")),
+        (END_TIMER, _("At the ending time")),
     )
 
     start_trigger = models.IntegerField(choices=START_CHOICES, default=START_MANUAL,
-                                        verbose_name=_(u"Quest-Beginn"))
+                                        verbose_name=_(u"Quest start"))
     end_trigger = models.IntegerField(choices=END_CHOICES, default=END_MANUAL,
-                                      verbose_name=_(u"Quest-Ende"))
+                                      verbose_name=_(u"Quest finish"))
 
-    start_date = models.DateTimeField(blank=True, null=True, verbose_name=_(u"Startzeitpunkt"))
+    start_date = models.DateTimeField(blank=True, null=True, verbose_name=_(u"starting time"))
     expiration_date = models.DateTimeField(default=lambda: now() + timedelta(days=30),
                                            verbose_name=_(u"Expiration date"),
-                                           help_text=_(u"Until which date will "
-                                                       u"this quest be visible?"))
+                                           help_text=_(u"Until when will this quest be visible?"))
 
     heroes = models.ManyToManyField(User, through=Adventure, related_name='quests')
+
 
     remote = models.BooleanField(default=True, verbose_name=_(u"Can be done remotely"),
                                  help_text=_(u"Can this quest be done remotely or only locally?"))
@@ -289,17 +289,17 @@ class Quest(LocationMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True, db_index=True)
     modified = models.DateTimeField(auto_now=True, db_index=True)
 
-    min_heroes = models.PositiveIntegerField(default=0, verbose_name=_("Minimale Helden-Anzahl"))
+    min_heroes = models.PositiveIntegerField(default=0, verbose_name=_("Minimum number of heroes"))
     max_heroes = models.PositiveIntegerField(default=1,
                                              validators=[MinValueValidator(1)],
                                              verbose_name=_(u"Number of heroes"),
-                                             help_text=_(u"How many heroes "
-                                                         u"can participate in "
-                                                         u"this Quest?"))
+                                             help_text=_(u"How many heroes can participate in this Quest?"))
+
+
     auto_accept = models.BooleanField(
         default=False,
-        verbose_name=_("Automatisch annehmen"),
-        help_text=_("Helden die sich bewerben werden automatisch angenommen.")
+        verbose_name=_("Automatically accept"),
+        help_text=_("Heroes that apply are being automatically accepted")
     )
 
     # still needs heroes
@@ -321,9 +321,9 @@ class Quest(LocationMixin, models.Model):
     TIME_EFFORT_MEDIUM = 2
     TIME_EFFORT_HIGH = 3
     time_effort = models.IntegerField(null=True, verbose_name=_(u"time effort"), choices=(
-        (TIME_EFFORT_LOW, _(u"Niedrig (500 EP)")),
-        (TIME_EFFORT_MEDIUM, _(u"Mittel (1000 EP)")),
-        (TIME_EFFORT_HIGH, _(u"Hoch (2000 EP)")),
+        (TIME_EFFORT_LOW, _(u"Low (500 XP)")),
+        (TIME_EFFORT_MEDIUM, _(u"Medium (1000 XP)")),
+        (TIME_EFFORT_HIGH, _(u"High (2000 XP)")),
     ))
 
     @property
@@ -378,15 +378,15 @@ class Quest(LocationMixin, models.Model):
 
     def get_state_display(self):
         if self.canceled:
-            return _("abgebrochen")
+            return _("cancelled")
         elif self.done:
-            return _("erledigt")
+            return _("done")
         elif self.started:
-            return _("hat begonnen")
+            return _("has started")
         elif self.expiration_date < now():
-            return _("abgelaufen")
+            return _("expired")
         else:
-            return _("offen")
+            return _("open")
 
     def __unicode__(self):
         """String representation"""
@@ -400,7 +400,7 @@ class Quest(LocationMixin, models.Model):
 class AvatarImageMixin(models.Model):
     avatar_storage = FileSystemStorage(location=settings.ASSET_ROOT)
     image = models.FilePathField(blank=True, null=True)
-    uploaded_image = models.ImageField(upload_to="avatar_uploads", null=True, blank=True, verbose_name=_("Eigenes Bild hochladen"))
+    uploaded_image = models.ImageField(upload_to="avatar_uploads", null=True, blank=True, verbose_name=_("Upload your own picture"))
 
     def clean(self):
         images = AVATAR_IMAGES_TRUSTED if self.trusted else AVATAR_IMAGES
@@ -480,7 +480,7 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
     hero_class = models.IntegerField(choices=CLASS_CHOICES, blank=True,
         null=True)
     sex = models.IntegerField(choices=SEX_CHOICES, blank=True, null=True,
-                              default=3, verbose_name=_(u"Anrede"))
+                              default=3, verbose_name=_(u"title"))
 
     date_of_birth = models.DateField(default=date.fromtimestamp(0))
 
@@ -495,21 +495,20 @@ class UserProfile(LocationMixin, AvatarImageMixin, models.Model):
 
     public_location = models.BooleanField(default=False,
         verbose_name=_("Location is public"),
-        help_text=_("Enable this if you want to share "
-                    "your location with other Heroes."))
+        help_text=_("Enable this if you want to share your location with other Heroes."))
+
 
     about = models.TextField(blank=True, default='', verbose_name=_(u"about me"),
         help_text=_('Tell other heroes who you are.'))
 
     receive_system_email = models.BooleanField(default=False,
         verbose_name=_("E-Mail on quest changes"),
-        help_text=_("Enable this if you want to receive an email notification "
-                    "when one of your quests needs attention."))
+        help_text=_("Enable this if you want to receive an email notification when one of your quests needs attention."))
+
 
     receive_private_email = models.BooleanField(default=False,
         verbose_name=_("E-Mail on private message"),
-        help_text=_("Enable this if you want to receive an email notification "
-                    "when someone sends you a private message."))
+        help_text=_("Enable this if you want to receive an email notification when someone sends you a private message."))
 
     def quests_done(self):
         return self.user.adventures.filter(quest__done=True, accepted=True, canceled=False).count()
@@ -611,6 +610,7 @@ class AbuseReport(models.Model):
     TYPE_SPAM = 1
     TYPE_ILLEGAL_CONTENT = 2
     TYPE_HATE_SPEECH = 3
+
     text = models.TextField(verbose_name=_("text"))
     type = models.IntegerField(default=TYPE_NOT_SET, choices=(
         (TYPE_NOT_SET, _("type not set")),

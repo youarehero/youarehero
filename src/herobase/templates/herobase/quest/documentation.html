@@ -2,7 +2,7 @@
 {% if quest.done %}
     <div class="col-sm-6">
         <div class="documentation box">
-        <h2>{% trans "Dokumentation" %}</h2>
+        <h2>{% trans "Documentation" %}</h2>
             {% with doc=owner_documentation %}
                 {% if doc %}
                 <div class="clearfix">
@@ -30,22 +30,22 @@
                 </div>
             {% empty %}
                 {% if not owner_documentation %}
-                    <p>{% trans "Es gibt noch keine Dokumentation." %}</p>
+                    <p>{% trans "There is no Documentation yet." %}</p>
                 {% endif %}
             {% endfor %}
 
         </div>
         {% if documentation_form %}
             <div class="documentation_form box">
-            <p>{% trans "Dokumentiere hier die Quest." %}</p>
+            <p>{% trans "Document your Quest here." %}</p>
                 <div>
                     <form enctype="multipart/form-data" method="post" id="documentation_form"
                           action="{% url "quest_document" quest.pk %}">
                         {% csrf_token %}
                         {{ documentation_form|crispy }}
                         <br/>
-                        <button type="submit" name="submit" value="{% trans 'Kommentar abschicken' %}" class="box-button text">
-                            <span>{% trans "Dokumentation abschicken" %}</span>
+                        <button type="submit" name="submit" value="{% trans 'Post comment' %}" class="box-button text">
+                            <span>{% trans "Post documentation" %}</span>
                         </button>
                     </form>
                 </div>

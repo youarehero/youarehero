@@ -102,14 +102,14 @@ class QuestFilterForm(forms.Form):
         (False, _(u"locally"))
     ), label='')
     time_effort = forms.ChoiceField(choices=(
-        ("", _(u"Zeitaufwand")),
-        (1, _(u"Niedrig")),
-        (2, _(u"Mittel")),
-        (3, _(u"Hoch"))
+        ("", _(u"Time exposure")),
+        (1, _(u"Low")),
+        (2, _(u"Medium")),
+        (3, _(u"High"))
     ), label='')
     search = forms.CharField(widget=forms.TextInput(
         # translators: this is the placeholder for the quest search
-        attrs={'placeholder': _(u'Titel, Beschreibung, Ort')}
+        attrs={'placeholder': _(u'Title, description, place')}
     ), label='')
 
     def __init__(self, *args, **kwargs):
@@ -191,7 +191,7 @@ class UserProfileEditForm(forms.ModelForm):
         username = self.cleaned_data['username']
         if User.objects.exclude(pk=self.instance.user.pk) \
                        .filter(username__iexact=username).exists():
-            raise forms.ValidationError(_(u'Dieser Benutzername ist bereits vergeben.'))
+            raise forms.ValidationError(_(u'This Username has been taken already'))
         return username
 
     class Meta:
@@ -233,8 +233,8 @@ class UserProfilePrivacyForm(forms.ModelForm):
 class UserAuthenticationForm(AuthenticationForm):
     """Custom login form."""
     error_messages = AuthenticationForm.error_messages
-    error_messages.update({'invalid_login': _("Please enter a correct e-mail address and password. "
-                                              "Note that both fields are case-sensitive.")})
+    error_messages.update({'invalid_login': _("Please enter a correct e-mail address and password. Note that both fields are case-sensitive.")})
+
     email = forms.CharField(label=_("E-mail"), max_length=75)
     next = forms.CharField(widget=forms.HiddenInput(), initial="/")
 
@@ -261,12 +261,12 @@ class UserAuthenticationForm(AuthenticationForm):
         email.label = ""
         email.widget = forms.TextInput(
             # translators: placeholder for email address in login form
-            attrs={'placeholder': _(u'Identität'), 'autocapitalize': 'off', 'autocorrect': 'off'})
+            attrs={'placeholder': _(u'Identity'), 'autocapitalize': 'off', 'autocorrect': 'off'})
 
         password = self.fields['password']
         password.label = ""
         # translators: placeholder for password in login form
-        password.widget = forms.PasswordInput(attrs={'placeholder': _('Kennung')})
+        password.widget = forms.PasswordInput(attrs={'placeholder': _('Identifyer')})
 
         self.helper.add_input(Submit('submit', _('Log in')))
 

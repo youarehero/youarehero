@@ -21,8 +21,8 @@
         </li>
         {% endif %}
         <li class="{% ifstartswith "quest_my" %}on{% endifstartswith %}">
-            <a href="{% url "quest_my" %}" rel="tooltip" title="{% trans 'My Quests' %}">
-                <i class="icon-yah-my-quests icon-60"><span>{% trans 'My Quests' %}</span></i>
+            <a href="{% url "quest_my" %}" rel="tooltip" title="{% trans 'My quests' %}">
+                <i class="icon-yah-my-quests icon-60"><span>{% trans 'My quests' %}</span></i>
             </a>
         </li>
         <li class="{% ifstartswith "leader_board" %}on{% endifstartswith %}">
@@ -60,7 +60,7 @@
         </li>
         <li class="{% ifactive "press" %}on{% endifactive %}">
             <a href="{% url "press" %}" rel="tooltip" title="{% trans 'Blog' %}">
-                <i class="icon-yah-info icon-60"><span>{% trans 'Informationen' %}</span></i>
+                <i class="icon-yah-info icon-60"><span>{% trans 'Informations' %}</span></i>
             </a>
         </li>
     {% endif %}

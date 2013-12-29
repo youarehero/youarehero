@@ -11,11 +11,11 @@
                 <div class="row">
                     <div class="col-sm-12">
                         {% if user != request.user %}
-                          <h1>{% blocktrans %} Das ist {{ user.username }} {% endblocktrans %}</h1>
+                          <h1>{% blocktrans %}This is {{ username }}{% endblocktrans %}</h1>
                         {% else %}
                             <a href="{% url 'userprofile_edit' %}" class="pull-right"><i
                                     class="icon-cogs icon-2x"></i></a>
-                              <h1>{% blocktrans %} Das bist du, {{ user.username }} {% endblocktrans %}</h1>
+                              <h1>{% blocktrans %}This is you, {{ user.username }} {% endblocktrans %}</h1>
                         {% endif %}
                     </div>
                     <div class="col-sm-4 avatar-col">
@@ -33,12 +33,13 @@
                                 {% comment %}<dd><a href="{% url herobase.views.team user.get_profile.team %}">{{ user.get_profile.team }}</a></dd>{% endcomment %}
                                 <dd>{{ user.get_profile.team }}</dd>
                             {% endif %}
+
                             <dt>{% trans "Member since" %} </dt>
                             <dd>{{ user.get_profile.created|timesince }}</dd>
                             {#                {% if user.get_profile.public_location %}#}
                             {#                    <dt>{% trans "Region" %}</dt><dd>{{ user.get_profile.location }}</dd>#}
                             {#                {% endif %}#}
-                            <dt>{% trans "Quests done" %}</dt>
+                            <dt>{% trans "Finished quests" %}</dt>
                             <dd>{{ user.get_profile.quests_done }}</dd>
                             <dt>{% trans "Quests created" %}</dt>
                             <dd>{{ user.get_profile.quests_created }}</dd>
@@ -46,7 +47,7 @@
                             <dd>{{ user.profile.level }}</dd>
                             <dt>{% trans "XP" %}</dt>
                             <dd>{{ user.profile.experience }}</dd>
-                            <dt>{% trans "Rang" %}</dt>
+                            <dt>{% trans "Rank" %}</dt>
                             <dd>{{ user.profile.rank }}</dd>
                         </dl>
                     </div>
@@ -68,7 +69,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="box">
-                <h2>{% trans "Rang in der Liste" %}</h2>
+                <h2>{% trans "Rank in the list" %}</h2>
                 <table class="leader-table">
                     {% for user in relative_ladder %}
                         {% with active=user.active %}
@@ -79,7 +80,7 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <h2>{% blocktrans %} Errungenschaften von {{ user.username }} {% endblocktrans %}</h2>
+            <h2>{% blocktrans %}Achievenments of {{ user.username }}{% endblocktrans %}</h2>
             <div class="row">
             {% for achievement in user.achievements.all %}
                 <div class="col-md-12">

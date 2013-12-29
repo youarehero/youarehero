@@ -28,8 +28,8 @@ class Message(models.Model):
 
     in_reply_to = models.ForeignKey('self', null=True, blank=True, related_name='+')
 
-    recipient = models.ForeignKey(User, related_name='sent_messages', verbose_name=_("Empfänger"))
-    sender = models.ForeignKey(User, related_name='received_messages', verbose_name=_("Absender"))
+    recipient = models.ForeignKey(User, related_name='sent_messages', verbose_name=_("Recipient"))
+    sender = models.ForeignKey(User, related_name='received_messages', verbose_name=_("Consignor"))
 
     class Meta:
         ordering = ['-sent']

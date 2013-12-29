@@ -1,15 +1,15 @@
 {% load i18n %}
 {% blocktrans %}
 
-Willkommen!
+Welcome!
 
-Verehrte Damen und Herren,
-mein Name ist Butler und ich möchte sie herzlich auf http://{{ site.domain }} begrüßen.
-Von jetzt an bis in alle Heldenzukunft stehe ich ihnen mit Rat und Tat zur Seite.
+Dear Ladies and Gentlemen,
+I am the butler and would like to welcome you at http://{{ site.domain }}.
+From now on I will aid you as best as I can with help, hints and notifications.
 
-Meine Begrüßungsempfehlung für Sie ist der Besuch unserer DOs & DON'Ts.
+My recommendation for the beginning would be the Do's and Don'ts of our website.
 
-Hochachtungsvoll und auf bald,
-Ihr Butler von you are hero
+Respectfully,
+Your you are hero butler
 
 {% endblocktrans %}

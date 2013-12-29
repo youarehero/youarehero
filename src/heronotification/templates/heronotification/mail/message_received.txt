@@ -1,17 +1,17 @@
 {% load i18n %}
 {% blocktrans %}
 
-Heldenpost
+Heroic post
 
-Verehrte Damen und Herren,
-Sie haben eine neue Nachricht von {{ target.sender }} in ihrer Heldenpost.
+Dear Ladies and Gentlemen,
+You have received a new message from {{ target.sender }} in your heroes mailbox.
 
-Die Nachricht lautet:
+The message sais:
 {{ target.title }}
 
 {{ target.text }}
 
-Hochachtungsvoll,
-Ihr Butler von you are hero
+Respectfully,
+Your you are hero butler
 
 {% endblocktrans %}
