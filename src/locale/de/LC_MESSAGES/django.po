@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-29 05:26+0100\n"
+"POT-Creation-Date: 2013-12-29 16:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,6 +109,14 @@ msgstr "Kommentator"
 #: heroachievements/achievements.py:53
 msgid "Comment on three quests"
 msgstr "Kommentiere 3 Quests"
+
+#: heroachievements/achievements.py:55
+msgid "Gründer-Held"
+msgstr "Founder-hero"
+
+#: heroachievements/achievements.py:55
+msgid "Nimm am \"Held sein\"-ARG teil"
+msgstr "Participate in the \"Held sein\"-ARG"
 
 #: herobase/context_processors.py:20
 msgid "Do you want to spite me %%%salutation%%%?"
@@ -704,31 +712,87 @@ msgstr ""
 "Sendet E-Mails an die Administratoren mit allen neuen und modifizierten "
 "Quests  seit <timestamp> (defaults bis zu einem vergangenen Tag)"
 
+#: herobase/templates/herobase/arg.html:20
+msgid ""
+"\n"
+"        What you can see here is the story of a game called you are hero, "
+"which was played in Karlsruhe, Germany over the Summer.\n"
+"        It is the story of a villain the heroines and heros of Karlsruhe had "
+"to face.\n"
+msgstr ""
+"\n"
+"        Was hier zu sehen ist, ist die Dokumentation des im Laufe des "
+"Sommers in Karlsruhe gespielten Spiels you are\n"
+"        hero, die Geschichte einer Schurkin, der sich die Helden und "
+"Heldinnen aus Karlsruhe stellen mussten.\n"
+
 #: herobase/templates/herobase/arg.html:26
+msgid ""
+"\n"
+"        The video further down marks the beginning of the story. It involved "
+"a four hero-workshops, a flashmob, hero-caching and other pervasive games "
+"and events, which are documented as quests on this page.\n"
+"        "
+msgstr ""
+"\n"
+"        Im Rahmen dieser Geschichte, deren Einleitung Sie im Video weiter "
+"unten finden können, haben unter\n"
+"        Anderem 4 Helden-Workshops stattgefunden, ein Flashmob, Herocaching "
+"und andere Alltagsdurchdringende Spiele und\n"
+"        Events stattgefunden, die weiter unten in Form von Quests "
+"dokumentiert sind.\n"
+"        "
+
+#: herobase/templates/herobase/arg.html:31
+msgid ""
+"\n"
+"        The game is now over, but heroines and heroes of all nations are "
+"needed to save the world and protect it from harm.\n"
+"        "
+msgstr ""
+"\n"
+"        Das Spiel ist nun vorbei, aber Helden aller Nationen sind weiterhin "
+"dazu aufgerufen, die Welt zu retten und vor\n"
+"        Unheil zu beschützen.\n"
+"        "
+
+#: herobase/templates/herobase/arg.html:35
+msgid ""
+"\n"
+"        Many thanks to all Participants, Heroines and Heroes, Helpers and "
+"Team members and everybody else who made this big Event possible!\n"
+"        "
+msgstr ""
+"\n"
+"        Vielen Dank an alle Spieler, Helden, Helfer und Teammitglieder, die "
+"dieses große Event ermöglicht haben!\n"
+"        "
+
+#: herobase/templates/herobase/arg.html:56
 msgid "Game instructions<br/>Alternate Reality Games"
 msgstr "Spielanleitung<br/>Alternate Reality Games"
 
-#: herobase/templates/herobase/arg.html:36
+#: herobase/templates/herobase/arg.html:66
 msgid "ARG quests"
 msgstr "ARG Quests"
 
-#: herobase/templates/herobase/arg.html:124
+#: herobase/templates/herobase/arg.html:154
 msgid "Community"
 msgstr "Gemeinschaft"
 
-#: herobase/templates/herobase/arg.html:134
+#: herobase/templates/herobase/arg.html:164
 msgid "Heroes present themselves"
 msgstr "Helden stellen sich vor"
 
-#: herobase/templates/herobase/arg.html:135
+#: herobase/templates/herobase/arg.html:165
 msgid "4 Weekends / 4 Topics"
 msgstr "4 Wochenenden / 4 Themen"
 
-#: herobase/templates/herobase/arg.html:136
+#: herobase/templates/herobase/arg.html:166
 msgid "28.9.-26.10."
 msgstr "28.9.-26.10."
 
-#: herobase/templates/herobase/arg.html:146
+#: herobase/templates/herobase/arg.html:176
 msgid ""
 "\n"
 "        We are providing you with new powers so that you don´t have to fight "
@@ -751,8 +815,84 @@ msgstr ""
 "          über den Verbleib der Schurkin\n"
 "        Anonyma sucht.\n"
 
-#: herobase/templates/herobase/arg.html:161
-#: herobase/templates/herobase/public_home.html:126
+#: herobase/templates/herobase/arg.html:193
+msgid "Trashley Treasure"
+msgstr "Trashley Treasure"
+
+#: herobase/templates/herobase/arg.html:194
+msgid ""
+"\n"
+"            One rumours that her mother was a sewing mashine and her father "
+"a pyrolysis facilty. On her weekends\n"
+"            trashes are emptied and wardrobes fill themselves.\n"
+"            "
+msgstr ""
+"\n"
+"                  Man erzählt sich, ihre Mutter sei eine Nähmaschine und ihr "
+"Vater eine Pyrolyseanlage. An ihrem\n"
+"                  Wochenende wird der Mülleimer wieder leer und der "
+"Kleiderschrank voll.\n"
+"                  "
+
+#: herobase/templates/herobase/arg.html:205
+msgid "The Glitch"
+msgstr "The Glitch"
+
+#: herobase/templates/herobase/arg.html:206
+msgid ""
+"\n"
+"            The internet? Computers? Panic? The Glitch is a hacker. But he "
+"is also nice to his neighbours.\n"
+"            His weekend is free information.\n"
+"            "
+msgstr ""
+"\n"
+"                  Das Internet? Computer? Panik? The Glitch ist ein Hacker. "
+"Er ist aber auch lieb zu seinen Nachbarn.\n"
+"                  Sein Wochenende ist freie Information.\n"
+"                  "
+
+#: herobase/templates/herobase/arg.html:219
+msgid "Citizen G"
+msgstr "Citizen G"
+
+#: herobase/templates/herobase/arg.html:220
+msgid ""
+"\n"
+"            He is living proof that you can be a Schottish (or whatever you "
+"want to be) with or without schottish ancestry\n"
+"            He's all about intercultural exchange and kilts\n"
+"            "
+msgstr ""
+"\n"
+"                  Er beweist, dass man auch ohne schottische Ahnen Schotte "
+"sein kann; oder eben, was und wann immer man\n"
+"                  sein möchte. Hier geht es um interkulturellen Austausch "
+"und Kilts.\n"
+"                  "
+
+#: herobase/templates/herobase/arg.html:231
+msgid "Ma&icirc;tre"
+msgstr "Ma&icirc;tre"
+
+#: herobase/templates/herobase/arg.html:232
+msgid ""
+"\n"
+"        Bored by eating he started to cook. He will fight for all the "
+"\\tdisfranchised ingredients and shows them their right place in the\n"
+"        pot. This weekend is all under the topic of securing our "
+"alimentation.\n"
+"        "
+msgstr ""
+"\n"
+"            Gelangweilt vom Essen, begann er zu kochen. Er setzt sich ein "
+"für all die entrechteten Zutaten und weist\n"
+"            ihnen einen Platz zu, in seinem Kochtopf. An diesem Wochenende "
+"geht es um die Sicherung unserer Ernährung.\n"
+"            "
+
+#: herobase/templates/herobase/arg.html:253
+#: herobase/templates/herobase/public_home.html:57
 #: herobase/templates/registration/registration_box.inc.html:29
 msgid "Register"
 msgstr "Registrieren"
@@ -1559,67 +1699,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: herobase/templates/herobase/public_home.html:25
-msgid "Trashley Treasure"
-msgstr "Trashley Treasure"
-
-#: herobase/templates/herobase/public_home.html:26
-msgid ""
-"\n"
-"                  One rumours that her mother was a sewing mashine and her "
-"father a pyrolysis facilty. On her weekends\n"
-"                  trashes are emptied and wardrobes fill themselves.\n"
-"                  "
-msgstr ""
-"\n"
-"                  Man erzählt sich, ihre Mutter sei eine Nähmaschine und ihr "
-"Vater eine Pyrolyseanlage. An ihrem\n"
-"                  Wochenende wird der Mülleimer wieder leer und der "
-"Kleiderschrank voll.\n"
-"                  "
-
-#: herobase/templates/herobase/public_home.html:37
-msgid "The Glitch"
-msgstr "The Glitch"
-
-#: herobase/templates/herobase/public_home.html:38
-msgid ""
-"\n"
-"                  The internet? Computers? Panic? The Glitch is a hacker. "
-"But he is also nice to his neighbours.\n"
-"                  His weekend is free information.\n"
-"                  "
-msgstr ""
-"\n"
-"                  Das Internet? Computer? Panik? The Glitch ist ein Hacker. "
-"Er ist aber auch lieb zu seinen Nachbarn.\n"
-"                  Sein Wochenende ist freie Information.\n"
-"                  "
-
-#: herobase/templates/herobase/public_home.html:49
-msgid "Citizen G"
-msgstr "Citizen G"
-
-#: herobase/templates/herobase/public_home.html:50
-msgid ""
-"\n"
-"                  He is living proof that you can be a Schottish (or "
-"whatever you want to be) with or without schottish ancestry\n"
-"                  He's all about intercultural exchange and kilts\n"
-"                  "
-msgstr ""
-"\n"
-"                  Er beweist, dass man auch ohne schottische Ahnen Schotte "
-"sein kann; oder eben, was und wann immer man\n"
-"                  sein möchte. Hier geht es um interkulturellen Austausch "
-"und Kilts.\n"
-"                  "
-
-#: herobase/templates/herobase/public_home.html:60
+#: herobase/templates/herobase/public_home.html:18
 msgid "you are hero is a game"
 msgstr "you are hero ist ein Spiel"
 
-#: herobase/templates/herobase/public_home.html:62
+#: herobase/templates/herobase/public_home.html:20
 msgid ""
 "\n"
 "Solve Quests online or in the city, alone or with friends, and help the hero "
@@ -1635,7 +1719,7 @@ msgstr ""
 "        kannst so viel zeit aufwenden, wie du möchtest.\n"
 "        "
 
-#: herobase/templates/herobase/public_home.html:66
+#: herobase/templates/herobase/public_home.html:24
 #, python-format
 msgid ""
 "\n"
@@ -1648,31 +1732,11 @@ msgstr ""
 "Entropius’ Quest an um loszulegen.\n"
 "        "
 
-#: herobase/templates/herobase/public_home.html:80
-msgid "Ma&icirc;tre"
-msgstr "Ma&icirc;tre"
-
-#: herobase/templates/herobase/public_home.html:81
-msgid ""
-"\n"
-"            Bored by eating he started to cook. He will fight for all the "
-"\tdisfranchised ingredients and shows them their right place in the\n"
-"            pot. This weekend is all under the topic of securing our "
-"alimentation.\n"
-"            "
-msgstr ""
-"\n"
-"            Gelangweilt vom Essen, begann er zu kochen. Er setzt sich ein "
-"für all die entrechteten Zutaten und weist\n"
-"            ihnen einen Platz zu, in seinem Kochtopf. An diesem Wochenende "
-"geht es um die Sicherung unserer Ernährung.\n"
-"            "
-
-#: herobase/templates/herobase/public_home.html:106
+#: herobase/templates/herobase/public_home.html:37
 msgid "you are hero is no game"
 msgstr "you are hero ist kein Spiel"
 
-#: herobase/templates/herobase/public_home.html:109
+#: herobase/templates/herobase/public_home.html:40
 #, python-format
 msgid ""
 "This is a serious matter!We want to prove that games and playing can save "
@@ -1693,23 +1757,23 @@ msgstr ""
 "machen will, oder du trägst einfach deine eigene Quest ein, falls du selbst\n"
 "Helden-Hilfe benötigst!"
 
-#: herobase/templates/herobase/public_home.html:132
+#: herobase/templates/herobase/public_home.html:63
 msgid "Recently finished quests"
 msgstr "k&uuml;rzlich abgeschlossene Quests"
 
-#: herobase/templates/herobase/public_home.html:144
+#: herobase/templates/herobase/public_home.html:75
 msgid "sponsored by"
 msgstr "Gef&ouml;rdert durch"
 
-#: herobase/templates/herobase/public_home.html:147
+#: herobase/templates/herobase/public_home.html:78
 msgid "city of Karlsruhe"
 msgstr "Stadt Karlsruhe"
 
-#: herobase/templates/herobase/public_home.html:152
+#: herobase/templates/herobase/public_home.html:83
 msgid "Heinrich Hertz society"
 msgstr "Heinrich Hertz Gesellschaft"
 
-#: herobase/templates/herobase/public_home.html:157
+#: herobase/templates/herobase/public_home.html:88
 msgid "Rotary Club Karlsruhe"
 msgstr "Rotary Club Karlsruhe"
 
@@ -2956,172 +3020,3 @@ msgstr "Deutsch"
 msgid "English"
 msgstr "Englisch"
 
-#~ msgid "Niedrig"
-#~ msgstr "Low"
-
-#~ msgid "Mittel"
-#~ msgstr "Medium"
-
-#~ msgid "Hoch"
-#~ msgstr "High"
-
-#~ msgid "Geschlecht"
-#~ msgstr "sex"
-
-#~ msgid "Das bist Du."
-#~ msgstr "That's you."
-
-#~ msgid "Über"
-#~ msgstr "About"
-
-#~ msgid ""
-#~ "<strong>%(username)s</strong> ist auf <strong>Platz %(rank)s</strong> in "
-#~ "der Bestenliste."
-#~ msgstr ""
-#~ "<strong>%(username)s</strong> is <strong>ranked %(rank)s</strong> in the "
-#~ "leaderboard."
-
-#~ msgid "Es gibt noch keine Teilnehmer."
-#~ msgstr "There are no participants yet."
-
-#~ msgid "Alle annehmen"
-#~ msgstr "Accept all"
-
-#~ msgid "Videos"
-#~ msgstr "Videos"
-
-#~ msgid "Mehr Videos"
-#~ msgstr "More videos"
-
-#~ msgid "Worum geht's eigentlich?"
-#~ msgstr "What's it all about?"
-
-#~ msgid "Mehr lesen"
-#~ msgstr "Read more"
-
-#~ msgid "News"
-#~ msgstr "News"
-
-#~ msgid "Abmelden"
-#~ msgstr "Logout"
-
-#~ msgid "Die Quest gefällt mir"
-#~ msgstr "Like the Quest"
-
-#~ msgid "Dein Level ist nicht hoch genug für dieses Quest-Level!"
-#~ msgstr "Your level is not high enough for this quest level!"
-
-#~ msgid "Erfahrung zu hoch für level."
-#~ msgstr "Experience to high for level."
-
-#~ msgid "beworben"
-#~ msgstr "applied"
-
-#~ msgid "abgebrochen"
-#~ msgstr "cancelled"
-
-#~ msgid "angenommen"
-#~ msgstr "accepted"
-
-#~ msgid "Bestätigung angefordert"
-#~ msgstr "confirmation requested"
-
-#~ msgid "ablehnen"
-#~ msgstr "refuse"
-
-#~ msgid "erledigt"
-#~ msgstr "done"
-
-#~ msgid "automatisch annehmen"
-#~ msgstr "accept automatically"
-
-#~ msgid ""
-#~ "Wenn aktiv werden Helden automatisch angenommen. Das bedeutet das Du "
-#~ "Hilfsangebote nicht ablehnen kannst."
-#~ msgstr ""
-#~ "If set heroes will be accepted automatically. This means that you won't "
-#~ "be able to refuse an offer."
-
-#~ msgid "1 (Einfach)"
-#~ msgstr "1 (Easy)"
-
-#~ msgid "2 (Normal)"
-#~ msgstr "2 (Okay)"
-
-#~ msgid "3 (Erfahren)"
-#~ msgstr "3 (Experienced)"
-
-#~ msgid "4 (Herausfordernd)"
-#~ msgstr "4 (Challenging)"
-
-#~ msgid "Heroisch"
-#~ msgstr "Heroic"
-
-#~ msgid "offen"
-#~ msgstr "open"
-
-#~ msgid "voll"
-#~ msgstr "full"
-
-#~ msgid "Maximale Erfahrung für einen Level {0} Quest ist {1}"
-#~ msgstr "Maximum experience for quest with level {0} is {1}"
-
-#~ msgid "als erledigt markieren"
-#~ msgstr "mark as done"
-
-#~ msgid "Ort"
-#~ msgstr "Place"
-
-#~ msgid "Questdesign im Real Life"
-#~ msgstr "Questdesign in real life"
-
-#~ msgid "YAH-Entwicklungs-Server"
-#~ msgstr "YAH Development Server "
-
-#~ msgid "Noch hilft Dir niemand."
-#~ msgstr "Nobody is helping you yet."
-
-#~ msgid "Eine Quest erstellen"
-#~ msgstr "Create a quest"
-
-#~ msgid "alle Klassen"
-#~ msgstr "all classes"
-
-#~ msgid "Autor"
-#~ msgstr "Author"
-
-#~ msgid "Erfahrung"
-#~ msgstr "Experience"
-
-#~ msgid "So sieht dein Profil für andere Helden aus."
-#~ msgstr "This is what your profile looks like to other heroes."
-
-#~ msgid "Eine Nachricht verfassen."
-#~ msgstr "Send a new Message"
-
-#~ msgid "Zurück zum Posteingang"
-#~ msgstr "Back to the inbox"
-
-#~ msgid "gesendet"
-#~ msgstr "sent"
-
-#~ msgid "Nachricht von"
-#~ msgstr "Message from"
-
-#~ msgid "empfangen"
-#~ msgstr "received"
-
-#~ msgid "von"
-#~ msgstr "from"
-
-#~ msgid "Datum"
-#~ msgstr "Date"
-
-#~ msgid "An"
-#~ msgstr "To"
-
-#~ msgid "löschen"
-#~ msgstr "delete"
-
-#~ msgid "Du hast noch keine Nachrichten verschickt."
-#~ msgstr "You haven't sent any messages yet."
