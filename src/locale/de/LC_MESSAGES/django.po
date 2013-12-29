@@ -70,8 +70,14 @@ msgid "Carry out fifty quests"
 msgstr "Erledige 50 Quests."
 
 #: heroachievements/achievements.py:43
+#: herobase/templates/herobase/quest/detail.html:35
+#, fuzzy
 msgid "Creator"
-msgstr "Schaffer"
+msgstr ""
+"#-#-#-#-#  django.po (PACKAGE VERSION)  #-#-#-#-#\n"
+"Schaffer\n"
+"#-#-#-#-#  django.po (PACKAGE VERSION)  #-#-#-#-#\n"
+"Ersteller:"
 
 #: heroachievements/achievements.py:44
 msgid "Create a quest that is being carried out"
@@ -117,13 +123,14 @@ msgstr "Wollen Sie mich ärgern %%%salutation%%%?"
 msgid ""
 "Good day %%%salutation%%%,\n"
 "as soon as you have posted or accepted your first quests, the main page will "
-"provide you with a list of notifications about your recent activities "
-"and everything new that has happened in the past days.\n"
+"provide you with a list of notifications about your recent activities and "
+"everything new that has happened in the past days.\n"
 "\n"
-"If you wish, you can also be informed about status modifications in your quests "
-"and respectively about new messages.\n"
+"If you wish, you can also be informed about status modifications in your "
+"quests and respectively about new messages.\n"
 "\n"
-"This can be turned on and off as requested in your settings (the symbol with the cog)."
+"This can be turned on and off as requested in your settings (the symbol with "
+"the cog)."
 msgstr ""
 "Guten Tag %%%salutation%%%,\n"
 "sobald Sie Ihre ersten Quests eingestellt bzw. angenommen haben, werden Sie "
@@ -139,11 +146,12 @@ msgstr ""
 #: herobase/context_processors.py:24
 msgid ""
 "This is the pinnboard %%%salutation%%%.\n"
-"Here you can find all available quests. Should you feel overwhelmed by the choice, "
-"you can use the searchbar to narrow down the choice via keywords or via "
-"different criteria such as time exposure or the necessity to do the quest.\n"
-"locally."
-"Visiting the pinnboard frequently will be worth your while - if I may say so.\n"
+"Here you can find all available quests. Should you feel overwhelmed by the "
+"choice, you can use the searchbar to narrow down the choice via keywords or "
+"via different criteria such as time exposure or the necessity to do the "
+"quest.\n"
+"locally.Visiting the pinnboard frequently will be worth your while - if I "
+"may say so.\n"
 "%%%salutation%%%."
 msgstr ""
 "Sie befinden sich auf der Pinnwand %%%salutation%%%.\n"
@@ -162,8 +170,8 @@ msgstr ""
 #: herobase/context_processors.py:26
 msgid ""
 "Here you can find all the forms you need, %%%salutation%%%.\n"
-"Posting a new quest for the world to solve or offering a new project, "
-"you´ll be not lacking the forms to do so."
+"Posting a new quest for the world to solve or offering a new project, you´ll "
+"be not lacking the forms to do so."
 msgstr ""
 "Hier finden Sie alle Formulare, die Sie brauchen %%%salutation%%%.\n"
 "Ob Sie der Welt eine weitere Aufgabe zum Lösen bieten oder ein neues Projekt "
@@ -171,7 +179,8 @@ msgstr ""
 
 #: herobase/context_processors.py:28
 msgid ""
-"Here you can see all quests that you have accepted and posted %%%salutation%%%.\n"
+"Here you can see all quests that you have accepted and posted %%%salutation%%"
+"%.\n"
 " If there is a star mark it means that you are the quest provider."
 msgstr ""
 "Hier finden Sie alle Quests die Sie angenommen oder aufgegeben haben %%"
@@ -196,12 +205,11 @@ msgid "Can this quest be done remotely or only locally?"
 msgstr ""
 "Kann man diese Quest nur an einem bestimmten Ort oder von überall erledigen?"
 
-
 #: herobase/forms.py:39
 msgid "Remote or local"
 msgstr "Vor Ort oder von überall"
 
-#: herobase/forms.py:75
+#: herobase/forms.py:75 herobase/templates/herobase/quest/detail.html:19
 msgid "Place"
 msgstr "Ort"
 
@@ -331,7 +339,7 @@ msgstr "Stadt"
 msgid "unknown"
 msgstr "Unbekannt"
 
-#: herobase/models.py:188
+#: herobase/models.py:188 herobase/models.py:381
 msgid "cancelled"
 msgstr "abgebrochen"
 
@@ -375,7 +383,7 @@ msgstr "Genug Helden"
 msgid "At the ending time"
 msgstr "Zum End-Datum"
 
-#: herobase/models.py:274
+#: herobase/models.py:274 herobase/templates/herobase/quest/detail.html:75
 msgid "Quest start"
 msgstr "Quest-Beginn"
 
@@ -434,10 +442,6 @@ msgstr "Mittel (1000 EP)"
 #: herobase/models.py:326
 msgid "High (2000 XP)"
 msgstr "Hoch (2000 EP)"
-
-#: herobase/models.py:381
-msgid "cancelled"
-msgstr "abgebrochen"
 
 #: herobase/models.py:383
 msgid "done"
@@ -529,7 +533,8 @@ msgstr "Diskriminierung"
 
 #: herobase/quest_livecycle.py:44
 msgid "Can't accept all if quest not open."
-msgstr "Es können nicht alle akzeptiert werden, wenn die Quest nicht offen ist."
+msgstr ""
+"Es können nicht alle akzeptiert werden, wenn die Quest nicht offen ist."
 
 #: herobase/quest_livecycle.py:55
 msgid "Can't start a started quest."
@@ -545,7 +550,8 @@ msgstr "Eine abgeschlossene Quest kann nicht gestartet werden."
 
 #: herobase/quest_livecycle.py:61
 msgid "Can't start quest if there aren't enough heroes."
-msgstr "Die Quest kann nicht gestartet werden, wenn es nicht genügend Helden gibt."
+msgstr ""
+"Die Quest kann nicht gestartet werden, wenn es nicht genügend Helden gibt."
 
 #: herobase/quest_livecycle.py:85
 msgid "Can't cancel a canceled quest."
@@ -557,7 +563,9 @@ msgstr "Eine abgeschlossene Quest kann nicht abgebrochen werden."
 
 #: herobase/quest_livecycle.py:101
 msgid "Can't mark a quest as done that isn't started."
-msgstr "Eine Quest, die noch nicht angefangen hat, kann nicht als erledigt markiert werden."
+msgstr ""
+"Eine Quest, die noch nicht angefangen hat, kann nicht als erledigt markiert "
+"werden."
 
 #: herobase/quest_livecycle.py:104
 msgid "Can't mark a canceled quest as done."
@@ -565,7 +573,8 @@ msgstr "Eine abgebrochene Quest kann nicht als abgeschlossen markiert werden."
 
 #: herobase/quest_livecycle.py:107
 msgid "Can't mark a done quest as done."
-msgstr "Eine abgeschlossene Quest kann nicht als abgeschlossen markiert werden."
+msgstr ""
+"Eine abgeschlossene Quest kann nicht als abgeschlossen markiert werden."
 
 #: herobase/quest_livecycle.py:152
 msgid "Can't accept heroes into a quest that isn't open."
@@ -594,7 +603,9 @@ msgstr "Man kann sich nciht bewerben, nachdem man akzeptiert wurde."
 
 #: herobase/quest_livecycle.py:183
 msgid "Minors cannot apply for untrusted users' quests"
-msgstr "Minderjährige können sich nicht auf eine Quest eines unverifizierten Benutzers bewerben."
+msgstr ""
+"Minderjährige können sich nicht auf eine Quest eines unverifizierten "
+"Benutzers bewerben."
 
 #: herobase/quest_livecycle.py:209
 msgid "Can't reject heroes when a quest isn't open."
@@ -659,22 +670,21 @@ msgstr ""
 
 #: herobase/views.py:204
 msgid ""
-"You have applied for this quest but unfortunately the owner rejected your offer "
-"of participation."
+"You have applied for this quest but unfortunately the owner rejected your "
+"offer of participation."
 msgstr ""
 "Du hast dich für diese Quest beworben, aber der Veranstalter hat deine "
 "Bewerbung leider abgelehnt."
 
-
 #: herobase/views.py:208
 msgid ""
-"You are currently applying for this quest. You will be "
-"notified once the creator has decided about our participation. "
-"Press X to cancel you application."
+"You are currently applying for this quest. You will be notified once the "
+"creator has decided about our participation. Press X to cancel you "
+"application."
 msgstr ""
-"Du hast dich für diese Quest beworben. Du wirst benachrichtigt sobald der"
-"Veranstalter über deine Teilnahme entschieden hat."
-"Drücke X um die Bewerbung zurückzuziehen. "
+"Du hast dich für diese Quest beworben. Du wirst benachrichtigt sobald "
+"derVeranstalter über deine Teilnahme entschieden hat.Drücke X um die "
+"Bewerbung zurückzuziehen. "
 
 #: herobase/views.py:504
 msgid "Profile successfully changed"
@@ -697,8 +707,8 @@ msgid ""
 "Sends mails to ADMIN with all new/modified quests and comments since "
 "<timestamp> (defaults to 1 day ago)"
 msgstr ""
-"Sendet E-Mails an die Administratoren mit allen neuen und modifizierten Quests "
-" seit <timestamp> (defaults bis zu einem vergangenen Tag)"
+"Sendet E-Mails an die Administratoren mit allen neuen und modifizierten "
+"Quests  seit <timestamp> (defaults bis zu einem vergangenen Tag)"
 
 #: herobase/templates/herobase/arg.html:26
 msgid "Game instructions<br/>Alternate Reality Games"
@@ -728,10 +738,8 @@ msgstr "28.9.-26.10."
 msgid ""
 "\n"
 "        We are providing you with new powers so that you don´t have to fight "
-"Anonyma"
-"          without some proper training."
-"        On four weekends you have the chance to train your heroic powers, "
-"get useful hints\n"
+"Anonyma          without some proper training.        On four weekends you "
+"have the chance to train your heroic powers, get useful hints\n"
 "          and prepare yourselves for your being\n"
 "        as a superhero, while looking for hints and traces of the villain "
 "Anonyma\n"
@@ -750,12 +758,9 @@ msgstr ""
 "        Anonyma sucht.\n"
 "        "
 
-#: herobase/templates/herobase/arg.html:164
-#: herobase/templates/herobase/public_home.html:129
-#: herobase/templates/herobase/layout/navigation.inc.html:46
-#, fuzzy
+#: herobase/templates/registration/registration_form.html:5
 msgid "Registration"
-msgstr "Registrieren"
+msgstr "Registrierung"
 
 #: herobase/templates/herobase/below_minimum_age.html:5
 msgid "Sorry"
@@ -835,21 +840,21 @@ msgstr "Generell:"
 
 #: herobase/templates/herobase/dosanddonts.html:11
 msgid ""
-"            Quests, whose fulfillment criterias are bound to money or other goods "
-"violate the principles of you are hero.\n"
-"			 An example: If you are being offered, while fulfilling your Quest, some "
-"snacks or something to drink, this is no problem at all. \n"
-"			 Whereas a quest, whre you are being offered food and drink in exchange, "
-"this goes against the ethic of you are hero. \n"
-"			 These kinds of violations should be reported to info@youarehero.net."
+"            Quests, whose fulfillment criterias are bound to money or other "
+"goods violate the principles of you are hero.\n"
+"\t\t\t An example: If you are being offered, while fulfilling your Quest, "
+"some snacks or something to drink, this is no problem at all. \n"
+"\t\t\t Whereas a quest, whre you are being offered food and drink in "
+"exchange, this goes against the ethic of you are hero. \n"
+"\t\t\t These kinds of violations should be reported to info@youarehero.net."
 "Should you get doubts about the integrity of a players participation, \n"
-"			 please inform us as soon as possible at info@youarehero.net. "
-"Should you are hero receive a complaint or a message, \n"
-"			 that questions your legitimity or identity at your application, "
+"\t\t\t please inform us as soon as possible at info@youarehero.net. Should "
+"you are hero receive a complaint or a message, \n"
+"\t\t\t that questions your legitimity or identity at your application, "
 "fulfillment or set up of quests, you are hero ventures to \n"
-"			 get into personal contact with you, deleting your quests p.r.n. "
-"or to even delete your profile. Should you choose to exchange \n"
-"			 data with a questgiver or -taker in the process of communication, "
+"\t\t\t get into personal contact with you, deleting your quests p.r.n. or to "
+"even delete your profile. Should you choose to exchange \n"
+"\t\t\t data with a questgiver or -taker in the process of communication, "
 "please treat it with the utmost discretion and confidentiality."
 msgstr ""
 "\n"
@@ -882,11 +887,11 @@ msgstr "Jugendschutz:"
 
 #: herobase/templates/herobase/dosanddonts.html:30
 msgid ""
-"Generally the registration on www.youarehero.net, as well as the participation "
-"at you are hero-actions only allowed starting the age of 15. Users below the age "
-"of 18 can only fulfill quests that can’t be done from a computer with consent of "
-"their parents. Users below the age of 18 can´t and are not allowed to post quests "
-"on the platform."
+"Generally the registration on www.youarehero.net, as well as the "
+"participation at you are hero-actions only allowed starting the age of 15. "
+"Users below the age of 18 can only fulfill quests that can’t be done from a "
+"computer with consent of their parents. Users below the age of 18 can´t and "
+"are not allowed to post quests on the platform."
 msgstr ""
 "\n"
 "            Generell ist die Registrierung auf www.youarehero.net sowie die "
@@ -904,11 +909,11 @@ msgstr "Bewerbung und Annahme von Quests:"
 
 #: herobase/templates/herobase/dosanddonts.html:41
 msgid ""
-"Please think carefully about accepting a quest and take it seriously. "
-"Some quests demand a high level of sensibility for the respective situation "
-"(e.g. in the dealings with sick or weak people). Please inform yourself "
-"beforehand and sufficiently about the demanded requirements. Should any "
-"question towards an application appear, do not baulk to contact the quest provider."
+"Please think carefully about accepting a quest and take it seriously. Some "
+"quests demand a high level of sensibility for the respective situation (e.g. "
+"in the dealings with sick or weak people). Please inform yourself beforehand "
+"and sufficiently about the demanded requirements. Should any question "
+"towards an application appear, do not baulk to contact the quest provider."
 msgstr ""
 "\n"
 "            Bitte überlegen Sie sich Ihre Bewerbung um eine Quest gut und "
@@ -927,10 +932,11 @@ msgstr "Einstellen und Vergabe von Quests:"
 #: herobase/templates/herobase/dosanddonts.html:53
 msgid ""
 "With the assignment of a quest you enlist yourself to not abuse quest takers "
-"for dishonest means but act in the sense of the common good. If you decide to "
-"give a quest to an underage, you are encouraged to ask for a consent of legal "
-"guardians. See also youth protection. Quest providers accept full responsibility "
-"for the procedure of the quest fulfillment. you are hero is not taking responisbility for this."
+"for dishonest means but act in the sense of the common good. If you decide "
+"to give a quest to an underage, you are encouraged to ask for a consent of "
+"legal guardians. See also youth protection. Quest providers accept full "
+"responsibility for the procedure of the quest fulfillment. you are hero is "
+"not taking responisbility for this."
 msgstr ""
 "\n"
 "            Mit der Quest-Vergabe verpflichten Sie sich keine Teilnehmenden "
@@ -956,10 +962,11 @@ msgstr "Spielanleitung Alternate Reality Games"
 
 #: herobase/templates/herobase/help.html:15
 msgid ""
-"This game is no ordinary game: it’s an “alternate reality game”. "
-"That means that the story of Anonyma happens “for real” in the city "
-"of Karlsruhe, and all the players are acting like if they were “real” heroes. "
-"This is a fun, but also kind of new game, so here are some basic rules that explain it clearly!"
+"This game is no ordinary game: it’s an “alternate reality game”. That means "
+"that the story of Anonyma happens “for real” in the city of Karlsruhe, and "
+"all the players are acting like if they were “real” heroes. This is a fun, "
+"but also kind of new game, so here are some basic rules that explain it "
+"clearly!"
 msgstr ""
 "\n"
 "      Dieses ist kein gewöhnliches Spiel; es ist ein “Alternate Reality "
@@ -970,16 +977,15 @@ msgstr ""
 "Basisregeln um es besser zu erklären:\n"
 "      "
 
-
 #: herobase/templates/herobase/help.html:22
 msgid "Collaborate."
 msgstr "Zusammenarbeiten."
 
 #: herobase/templates/herobase/help.html:24
 msgid ""
-"When quests become mentally or physically challenging, heroes rely on teamwork "
-"and community. Don’t be shy; interacting with fellow players can be the best part "
-"of the game! So go and check out the forums."
+"When quests become mentally or physically challenging, heroes rely on "
+"teamwork and community. Don’t be shy; interacting with fellow players can be "
+"the best part of the game! So go and check out the forums."
 msgstr ""
 "\n"
 "      Wenn eine Aufgabe mental oder physisch zu anstrengend wird, verlassen "
@@ -995,10 +1001,10 @@ msgstr "Teilen."
 
 #: herobase/templates/herobase/help.html:33
 msgid ""
-"If you find a piece of information, or even if you get a fresh idea about a quest, "
-"don’t keep it to yourself! Remember that all heroes are allies against Anonyma "
-"and the other villains. There is no single winner in the end, so just share what "
-"you’ve got on the forums or the hero wiki!"
+"If you find a piece of information, or even if you get a fresh idea about a "
+"quest, don’t keep it to yourself! Remember that all heroes are allies "
+"against Anonyma and the other villains. There is no single winner in the "
+"end, so just share what you’ve got on the forums or the hero wiki!"
 msgstr ""
 "\n"
 "      Wenn ihr mit einer Information konfrontiert seid oder eine neue Idee "
@@ -1010,16 +1016,15 @@ msgstr ""
 "      im Heldenwiki.\n"
 "      "
 
-
 #: herobase/templates/herobase/help.html:41
 msgid "Go out."
 msgstr "Rausgehen."
 
 #: herobase/templates/herobase/help.html:43
 msgid ""
-"At some point, quests will take heroes out there in the world. Whether it is to "
-"look for important clues, or to perform heroic actions, remember to obey elementary "
-"safety measures. Heroes too can get hurt."
+"At some point, quests will take heroes out there in the world. Whether it is "
+"to look for important clues, or to perform heroic actions, remember to obey "
+"elementary safety measures. Heroes too can get hurt."
 msgstr ""
 "\n"
 "      An einem bestimmten Punkt werden die Quests die Helden raus ins reale "
@@ -1035,10 +1040,11 @@ msgstr "Durchhalten (und manchmal über den Tellerrand schauen)"
 
 #: herobase/templates/herobase/help.html:52
 msgid ""
-"When quests require them to do things they never have done - or even heard of - "
-"before, true heroes don’t give up. Even if the task is seamingly impossible. "
-"Sometimes, it’s just a matter of perspective. So, be resourceful, imaginative and "
-"persistent. And don’t forget to play with your friends and fellow heroes!"
+"When quests require them to do things they never have done - or even heard "
+"of - before, true heroes don’t give up. Even if the task is seamingly "
+"impossible. Sometimes, it’s just a matter of perspective. So, be "
+"resourceful, imaginative and persistent. And don’t forget to play with your "
+"friends and fellow heroes!"
 msgstr ""
 "\n"
 "      Wenn Quests vom einem verlangen, Dinge zu tun, die man noch nie getan\n"
@@ -1055,8 +1061,8 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"      In case of great need, the community will be able to turn to the elder heroes  "
-"      <a href=\"%(hotline_url)s\">for advice.</a>\n"
+"      In case of great need, the community will be able to turn to the elder "
+"heroes        <a href=\"%(hotline_url)s\">for advice.</a>\n"
 "        "
 msgstr ""
 "\n"
@@ -1076,11 +1082,11 @@ msgstr "Profil verwalten"
 #: herobase/templates/herobase/help.html:78
 msgid ""
 "\n"
-"If you want to manage your profile click on the symbol with the cog on the upper "
-"right of the page, change whatever needs changing and complete the process by clicking "
-"on the red button with the tick on the lower part of the page."
-"Your actions are thereby being saved and immediately depicted according to the changes "
-"you made."
+"If you want to manage your profile click on the symbol with the cog on the "
+"upper right of the page, change whatever needs changing and complete the "
+"process by clicking on the red button with the tick on the lower part of the "
+"page.Your actions are thereby being saved and immediately depicted according "
+"to the changes you made."
 msgstr ""
 "\n"
 "        Wenn ihr euer Profil verwalten wollt, dann klickt auf das Symbol mit "
@@ -1097,11 +1103,11 @@ msgstr "EP sammeln"
 #: herobase/templates/herobase/help.html:87
 msgid ""
 "\n"
-"You can collect XP (or Experience Points), by accepting quests and solving them."
-"But you also get experience points by posting quests and seeing them through."
-"The points are being delivered after the conclusion of the quest."
-"After having aqcuired a certain amount of XP you gain a level. This will prove you "
-"to the rest of the community as experienced heroes."
+"You can collect XP (or Experience Points), by accepting quests and solving "
+"them.But you also get experience points by posting quests and seeing them "
+"through.The points are being delivered after the conclusion of the quest."
+"After having aqcuired a certain amount of XP you gain a level. This will "
+"prove you to the rest of the community as experienced heroes."
 msgstr ""
 "\n"
 "        EP (oder auch Erfahrungspunkte; aus dem englischen: Experience "
@@ -1120,12 +1126,12 @@ msgstr "Quest annehmen"
 #: herobase/templates/herobase/help.html:98
 msgid ""
 "\n"
-"If you feel that a quests suits you and you´d like to take part then just press "
-"the big red button that sais “apply”."
-"As soon as the quest provider accepts you as a participant you are part of the "
-"quest and therefore also partly responsible for its solving."
-"After the conclusion of the quest, which happens as soon as the quest provider "
-"marks it as finished, you receive your well-earned XP."
+"If you feel that a quests suits you and you´d like to take part then just "
+"press the big red button that sais “apply”.As soon as the quest provider "
+"accepts you as a participant you are part of the quest and therefore also "
+"partly responsible for its solving.After the conclusion of the quest, which "
+"happens as soon as the quest provider marks it as finished, you receive your "
+"well-earned XP."
 msgstr ""
 "\n"
 "        Wenn euch eine Quest gefällt und ihr gerne mitmachen möchtet, dann "
@@ -1145,7 +1151,8 @@ msgstr "Symbol Zeitaufwand"
 #: herobase/templates/herobase/help.html:108
 msgid ""
 "\n"
-"The symbol with the clock indicates the approximate time it will take to solve the quest."
+"The symbol with the clock indicates the approximate time it will take to "
+"solve the quest."
 msgstr ""
 "\n"
 "        Das Symbol mit der Uhr kennzeichnet wie viel Zeit die Erfüllung der "
@@ -1160,8 +1167,8 @@ msgstr "Symbol Ort"
 msgid ""
 "\n"
 "If you see this symbol, it means that this quest has to be solved locally. "
-"Every quest without this symbol can be solved online or digitally."
-"The place is depicted in the quest."
+"Every quest without this symbol can be solved online or digitally.The place "
+"is depicted in the quest."
 msgstr ""
 "\n"
 "        Wenn ihr dieses Symbol seht, heisst das, dass diese Quest lokal vor "
@@ -1177,9 +1184,10 @@ msgstr "Quest einstellen"
 #: herobase/templates/herobase/help.html:124
 msgid ""
 "\n"
-"The icon “new quest” (the one with the pencil) provides you with a form "
-"that allows you to post your own quests. Fill in all the fields conscientiously. "
-"The more informations you provide, the easier it will be to find heros that want to participate."
+"The icon “new quest” (the one with the pencil) provides you with a form that "
+"allows you to post your own quests. Fill in all the fields conscientiously. "
+"The more informations you provide, the easier it will be to find heros that "
+"want to participate."
 msgstr ""
 "\n"
 "        Unter dem Icon “neue Quest” (das mit dem Stift) findet ihr ein "
@@ -1197,10 +1205,9 @@ msgstr "Nachrichten versenden"
 msgid ""
 "\n"
 "The icon that says messages and that looks like an envelope provides you "
-"with your platforminternal mailbox."
-"There you can write your own messages to other users (you’ll need to know "
-"the username of the person you want to contact though) and check out all messages "
-"that you have sent and received."
+"with your platforminternal mailbox.There you can write your own messages to "
+"other users (you’ll need to know the username of the person you want to "
+"contact though) and check out all messages that you have sent and received."
 msgstr ""
 "\n"
 "        Unter dem Icon, das mit \"Nachrichten\" gekennzeichnet ist und wie "
@@ -1218,10 +1225,10 @@ msgstr "Benachrichtigungen"
 #: herobase/templates/herobase/help.html:144
 msgid ""
 "\n"
-"The symbol with the bell represents notifications."
-"With it you can immediatly see if something new happens on the plattform."
-"If you click on it you will be forwarded to a list that tells you everything "
-"that has happened on the platform."
+"The symbol with the bell represents notifications.With it you can immediatly "
+"see if something new happens on the plattform.If you click on it you will be "
+"forwarded to a list that tells you everything that has happened on the "
+"platform."
 msgstr ""
 "\n"
 "        Das Glockensymbol oben repräsentiert eure Benachrichtigungen.  Ihr "
@@ -1243,8 +1250,8 @@ msgstr "Das Spiel"
 #: herobase/templates/herobase/help.html:157
 msgid ""
 "\n"
-"The icon with the puzzle piece reveals all that happened in the course "
-"of the arg that has happened over the summer in Karlsruhe."
+"The icon with the puzzle piece reveals all that happened in the course of "
+"the arg that has happened over the summer in Karlsruhe."
 msgstr ""
 "\n"
 "        Unter dem Icon mit dem Puzzlesymbol findet ihr alle Infos, die "
@@ -1258,8 +1265,9 @@ msgstr "Heldenklassen"
 
 #: herobase/templates/herobase/hero_classes.inc.html:3
 msgid ""
-"The heroic class of your character gives an indication about the kind of class you like."
-" Of course you can take any quest you like but your class indicates a certain preference."
+"The heroic class of your character gives an indication about the kind of "
+"class you like. Of course you can take any quest you like but your class "
+"indicates a certain preference."
 msgstr ""
 "Die Heldenklasse Deines Charakters gibt an welche Arten von Quests Du "
 "bevorzugst. Natürlich kannst Du jede Quest\n"
@@ -1268,7 +1276,9 @@ msgstr ""
 
 #: herobase/templates/herobase/hero_classes.inc.html:6
 msgid "Every quest is being matched with one or more of those heroic classes"
-msgstr "Jede Quest ist entsprechend einer oder mehrerer dieser Heldenklassen zugeordnet."
+msgstr ""
+"Jede Quest ist entsprechend einer oder mehrerer dieser Heldenklassen "
+"zugeordnet."
 
 #: herobase/templates/herobase/hero_classes.inc.html:9
 msgid ""
@@ -1379,9 +1389,9 @@ msgid ""
 "\n"
 "When heroes need help, they ask the community on the forums. But when even "
 "that is not enough, heroes turn to the hero hotline. Thanks to the hotline, "
-"they can quickly get in touch with the elder heroes - creators of this game and website."
-"“The Hero Phone”: 01573-1914755 (leave message if no answer)"
-"“The Hero Mailbox”: info@youarehero.net"
+"they can quickly get in touch with the elder heroes - creators of this game "
+"and website.“The Hero Phone”: 01573-1914755 (leave message if no answer)“The "
+"Hero Mailbox”: info@youarehero.net"
 msgstr ""
 "\n"
 "      Wenn Helden Hilfe brauchen, fragen sie erstmal die Community in den "
@@ -1409,12 +1419,13 @@ msgstr "Haftungshinweise"
 msgid ""
 "\n"
 "                    Despite thorough contentual controls we do not assume "
-"liability for content of external links. The content of the linked "
-"pages lies solemnly in the responsibility of the respective owners.\n"
+"liability for content of external links. The content of the linked pages "
+"lies solemnly in the responsibility of the respective owners.\n"
 "                    In case that statements on this website infringe "
 "property rights, like trade- or copyright breaches, we entreat you to give "
 "us immediaty notice via email or otherwise.\n"
-"                    In that case we will immediatly rid the page from its unlawful condition.\n"
+"                    In that case we will immediatly rid the page from its "
+"unlawful condition.\n"
 "                "
 msgstr ""
 "\n"
@@ -1432,13 +1443,10 @@ msgstr ""
 #: herobase/templates/herobase/leader_board.html:8
 #: herobase/templates/herobase/layout/mainmenu.inc.html:29
 #: herobase/templates/herobase/layout/mainmenu.inc.html:30
-msgid "Leaderboard"
-msgstr "Bestenliste"
-
 #: herobase/templates/herobase/leader_board.html:13
 #: herobase/templates/herobase/layout/navigation_authenticated.html:28
 msgid "Leaderboard"
-msgstr "Rangliste"
+msgstr "Bestenliste"
 
 #: herobase/templates/herobase/leader_board.html:18
 msgid "Top 5"
@@ -1488,16 +1496,16 @@ msgstr "you are hero &ndash; Das Spiel möge beginnen!"
 msgid "a heroic game from the Karlsruhe University of Arts and Design "
 msgstr "(k)ein Heldenspiel aus der HfG Karlsruhe"
 
-
 #: herobase/templates/herobase/press.html:15
 msgid ""
 "\n"
-"      <em>Gaming can make a better world</em> &ndash; this is the ,essage of game designer "
-"Jane McGonigal. At the Karlsruhe University of Arts and Design\n"
-"      Student Greta Hoffmann has accepted this challenge together "
-"with a group of heroes dieser Aufgabe under the motto \n"
-"      <em>you are hero</em>. These heroes want to introduce themselves"
-"to the city of Karlsruhe with a big game starting on the 16. September 2013.\n"
+"      <em>Gaming can make a better world</em> &ndash; this is the ,essage of "
+"game designer Jane McGonigal. At the Karlsruhe University of Arts and "
+"Design\n"
+"      Student Greta Hoffmann has accepted this challenge together with a "
+"group of heroes dieser Aufgabe under the motto \n"
+"      <em>you are hero</em>. These heroes want to introduce themselvesto the "
+"city of Karlsruhe with a big game starting on the 16. September 2013.\n"
 " Because <em>you are hero</em> urgently needs reinforcements!\n"
 "      "
 msgstr ""
@@ -1512,15 +1520,15 @@ msgstr ""
 "hero</em> braucht dringend Verstärkung!\n"
 "      "
 
-#: herobase/templates/herobase/press.html:21
 # recheck
+#: herobase/templates/herobase/press.html:21
 msgid ""
 "\n"
-"The game has already started: Recently an attractive but dubious figure calling"
-" herself <em>Anonyma</em> has been increasingly sighted in Karlsruhe. "
-"Especially on das FEST and at the KAMUNA she rocked the boat."
-"One asks oneself, why this <em>Femme fatale</em> has chosen our city to "
-"do her mischief. Actually we enjoy quite a peaceful living here"
+"The game has already started: Recently an attractive but dubious figure "
+"calling herself <em>Anonyma</em> has been increasingly sighted in Karlsruhe. "
+"Especially on das FEST and at the KAMUNA she rocked the boat.One asks "
+"oneself, why this <em>Femme fatale</em> has chosen our city to do her "
+"mischief. Actually we enjoy quite a peaceful living here"
 msgstr ""
 "\n"
 "      Das Spiel hat bereits begonnen: Kürzlich wurde vermehrt eine "
@@ -1583,8 +1591,8 @@ msgstr "Trashley Treasure"
 #: herobase/templates/herobase/public_home.html:26
 msgid ""
 "\n"
-"                  One rumours that her mother was a sewing mashine and her father "
-"a pyrolysis facilty. On her weekends\n"
+"                  One rumours that her mother was a sewing mashine and her "
+"father a pyrolysis facilty. On her weekends\n"
 "                  trashes are emptied and wardrobes fill themselves.\n"
 "                  "
 msgstr ""
@@ -1620,8 +1628,8 @@ msgstr "Citizen G"
 #: herobase/templates/herobase/public_home.html:50
 msgid ""
 "\n"
-"                  He is living proof that you can be a Schottish (or whatever you want to be) "
-"with or without schottish ancestry\n"
+"                  He is living proof that you can be a Schottish (or "
+"whatever you want to be) with or without schottish ancestry\n"
 "                  He's all about intercultural exchange and kilts\n"
 "                  "
 msgstr ""
@@ -1640,9 +1648,9 @@ msgstr "you are hero ist ein Spiel"
 msgid ""
 "\n"
 "Solve Quests online or in the city, alone or with friends, and help the hero "
-"community to save the world. It is free and you can spend as much (or little) "
-"time as you want. Register now and accept the Tutorial-Quest to start."
-"        "
+"community to save the world. It is free and you can spend as much (or "
+"little) time as you want. Register now and accept the Tutorial-Quest to "
+"start.        "
 msgstr ""
 "\n"
 "        Löse Quests online oder in der Stadt, allein oder mit deinen "
@@ -1656,8 +1664,8 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"          <a href=\"%(register_url)s\">Register</a> and accept "
-"Entropius’ quest to start.\n"
+"          <a href=\"%(register_url)s\">Register</a> and accept Entropius’ "
+"quest to start.\n"
 "        "
 msgstr ""
 "\n"
@@ -1673,8 +1681,9 @@ msgstr "Ma&icirc;tre"
 msgid ""
 "\n"
 "            Bored by eating he started to cook. He will fight for all the "
-"	disfranchised ingredients and shows them their right place in the\n"
-"            pot. This weekend is all under the topic of securing our alimentation.\n"
+"\tdisfranchised ingredients and shows them their right place in the\n"
+"            pot. This weekend is all under the topic of securing our "
+"alimentation.\n"
 "            "
 msgstr ""
 "\n"
@@ -1691,13 +1700,13 @@ msgstr "you are hero ist kein Spiel"
 #: herobase/templates/herobase/public_home.html:112
 #, python-format
 msgid ""
-"This is a serious matter!"
-"We want to prove that games and playing can save the world."
-"How? By providing the means to have fun while doing good."
-"Beneficence, charity and a social mind are real things that can help us all to live in a better world."
-"In our <a href=\"%(manifesto_url)s\">Manifest</a>  you can check out how "
-"you are hero is planning on approaching this goal."
-"Or you just add your own Quest if you need the help of heroes or see something that needs to be done."
+"This is a serious matter!We want to prove that games and playing can save "
+"the world.How? By providing the means to have fun while doing good."
+"Beneficence, charity and a social mind are real things that can help us all "
+"to live in a better world.In our <a href=\"%(manifesto_url)s\">Manifest</a>  "
+"you can check out how you are hero is planning on approaching this goal.Or "
+"you just add your own Quest if you need the help of heroes or see something "
+"that needs to be done."
 msgstr ""
 "\n"
 "        Dies ist eine ernste Angelegenheit!\n"
@@ -1785,6 +1794,7 @@ msgstr "Start"
 #: herobase/templates/herobase/layout/mainmenu.inc.html:52
 #: herobase/templates/herobase/layout/mainmenu.inc.html:53
 #: herobase/templates/herobase/quest/list.html:47
+#: herobase/templates/herobase/layout/navigation_authenticated.html:34
 msgid "Billboard"
 msgstr "Pinnwand"
 
@@ -1807,6 +1817,7 @@ msgstr "Private Nachrichten"
 
 #: herobase/templates/herobase/layout/mainmenu.inc.html:40
 #: heromessage/templates/message/create.html:9
+#: herobase/templates/herobase/layout/navigation_authenticated.html:26
 msgid "Messages"
 msgstr "Nachrichten"
 
@@ -1822,14 +1833,6 @@ msgstr "Quests"
 #: herobase/templates/herobase/layout/navigation.inc.html:33
 msgid "Find out more"
 msgstr "Erfahre mehr"
-
-#: herobase/templates/herobase/layout/navigation_authenticated.html:26
-msgid "Messages"
-msgstr "Nachrichten"
-
-#: herobase/templates/herobase/layout/navigation_authenticated.html:34
-msgid "Billboard"
-msgstr "Pinn<br/>wand"
 
 #: herobase/templates/herobase/layout/navigation_authenticated.html:37
 msgid "New Quest"
@@ -1848,6 +1851,7 @@ msgid "outbox"
 msgstr "Ausgang"
 
 #: herobase/templates/herobase/layout/navigation_authenticated.html:53
+#: heromessage/templates/message/submenu.inc.html:8
 msgid "compose"
 msgstr "Verfassen"
 
@@ -1910,10 +1914,6 @@ msgstr "Details zu"
 msgid "Status:"
 msgstr "Status:"
 
-#: herobase/templates/herobase/quest/detail.html:19
-msgid "Place"
-msgstr "Ort:"
-
 #: herobase/templates/herobase/quest/detail.html:21
 #: herobase/templates/herobase/quest/detail.html:30
 msgid "free"
@@ -1926,10 +1926,6 @@ msgstr "Datum:"
 #: herobase/templates/herobase/quest/detail.html:33
 msgid "Wanted heroes"
 msgstr "Gesuchte Helden:"
-
-#: herobase/templates/herobase/quest/detail.html:35
-msgid "Creator"
-msgstr "Ersteller:"
 
 #: herobase/templates/herobase/quest/detail.html:41
 msgid "Expenditure"
@@ -1947,26 +1943,26 @@ msgstr "Bearbeiten"
 msgid "Cancel quest"
 msgstr "Quest Abbrechen"
 
-#: herobase/templates/herobase/quest/detail.html:75
-msgid "Quest start"
-msgstr "Quest Start"
-
 #: herobase/templates/herobase/quest/detail.html:85
 msgid "Mark quest as solved"
 msgstr "Quest als erledigt markieren"
 
 #: herobase/templates/herobase/quest/detail.html:97
-msgid "Cancel"
-msgstr "Abbrechen"
-
 #: herobase/templates/herobase/quest/detail.html:98
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #: herobase/templates/herobase/quest/detail.html:113
 #: herobase/templates/herobase/quest/detail.html:119
+#: herobase/templates/herobase/userprofile/form_box.html:13
+#: heroorganization/templates/heroorganization/organization_update.html:41
+#, fuzzy
 msgid "Apply"
-msgstr "Bewerben"
+msgstr ""
+"#-#-#-#-#  django.po (PACKAGE VERSION)  #-#-#-#-#\n"
+"Bewerben\n"
+"#-#-#-#-#  django.po (PACKAGE VERSION)  #-#-#-#-#\n"
+"Übernehmen"
 
 #: herobase/templates/herobase/quest/documentation.html:5
 msgid "Documentation"
@@ -2070,14 +2066,6 @@ msgstr "Bewerbungen"
 msgid "Accept"
 msgstr "Annehmen"
 
-#: herobase/templates/herobase/quest/unaccepted_adventures.html:22
-msgid "Accept"
-msgstr "Annehmen"
-
-#: herobase/templates/herobase/quest/unaccepted_adventures.html:30
-msgid "Reject"
-msgstr "Ablehnen"
-
 #: herobase/templates/herobase/quest/unaccepted_adventures.html:30
 msgid "Reject"
 msgstr "Ablehnen"
@@ -2098,7 +2086,8 @@ msgstr "Achtung!"
 #: herobase/templates/herobase/userprofile/confirm_delete.html:10
 msgid ""
 "\n"
-"                  Are you sure that you want to <strong>irrevocably delete</strong> \n"
+"                  Are you sure that you want to <strong>irrevocably delete</"
+"strong> \n"
 "                  your profile on you are hero?\n"
 "                "
 msgstr ""
@@ -2119,6 +2108,8 @@ msgstr "Ja, sicher löschen"
 #: herobase/templates/herobase/userprofile/edit.html:44
 #: herobase/templates/herobase/userprofile/privacy_settings.html:5
 #: herobase/templates/herobase/userprofile/m/detail.html:52
+#: herobase/templates/herobase/userprofile/detail_mini.html:8
+#: herobase/templates/herobase/userprofile/submenu.inc.html:7
 msgid "Profile"
 msgstr "Profil"
 
@@ -2159,29 +2150,18 @@ msgstr "Rang in der Liste"
 msgid "Achievenments of %(user.username)s"
 msgstr " Errungenschaften von %(user.username)s "
 
-#: herobase/templates/herobase/userprofile/detail_mini.html:8
-msgid "Profile"
-msgstr "Profil"
-
 #: herobase/templates/herobase/userprofile/edit.html:48
 #: heronotification/models.py:237
 msgid "Welcome to you are hero"
 msgstr "Willkommen bei You are Hero"
 
-#: herobase/templates/herobase/userprofile/form_box.html:8
-#: herobase/templates/registration/activation_email_subject.txt:3
-#, fuzzy
-msgid "Welcome to you are hero"
-msgstr "Willkommen bei You are Hero"
-
 #: herobase/templates/herobase/userprofile/form_box.html:9
-msgid "Chose a profile picture or upload your own and write some lines about yourself if you want to."
-msgstr "Suche dir jetzt ein Profilbild aus und schreib' wenn du möchtest ein paar Zeilen über dich."
-
-#: herobase/templates/herobase/userprofile/form_box.html:13
-#: heroorganization/templates/heroorganization/organization_update.html:41
-msgid "Apply"
-msgstr "Übernehmen"
+msgid ""
+"Chose a profile picture or upload your own and write some lines about "
+"yourself if you want to."
+msgstr ""
+"Suche dir jetzt ein Profilbild aus und schreib' wenn du möchtest ein paar "
+"Zeilen über dich."
 
 #: herobase/templates/herobase/userprofile/public_avatar.inc.html:8
 #, python-format
@@ -2205,10 +2185,6 @@ msgid ""
 msgstr ""
 "Du hast nur %(selected)s Fertigkeiten ausgewählt. Bitte wähle mindestens\n"
 " %(minimum)s aus, um personalisierte Ergebnisse zu erhalten."
-
-#: herobase/templates/herobase/userprofile/submenu.inc.html:7
-msgid "Profile"
-msgstr "Profil"
 
 #: herobase/templates/herobase/userprofile/submenu.inc.html:10
 msgid "Settings"
@@ -2282,8 +2258,7 @@ msgid "Good bye!"
 msgstr "Auf Wiedersehen!"
 
 #: herobase/templates/registration/logout.html:9
-msgid ""
-"Thank you for using you are hero. We hope to see you soon."
+msgid "Thank you for using you are hero. We hope to see you soon."
 msgstr ""
 "Vielen Dank für die Benutzung von you are hero. Beehren Sie uns bald wieder."
 
@@ -2409,10 +2384,6 @@ msgstr ""
 "Du solltest bald eine E-Mail von uns erhalten. Klick bitte den Link darin "
 "an, um deine Anmeldung abzuschließen."
 
-#: herobase/templates/registration/registration_form.html:5
-msgid "Registration"
-msgstr "Registrierung"
-
 #: herobase/templates/registration/m/login.html:12
 msgid "Sign up now!"
 msgstr "Registriere Dich!"
@@ -2526,10 +2497,6 @@ msgstr "Keine Nachricht gefunden."
 msgid "No messages yet."
 msgstr "Noch keine Nachrichten."
 
-#: heromessage/templates/message/submenu.inc.html:8
-msgid "compose"
-msgstr "verfassen"
-
 #: heromessage/templates/message/submenu.inc.html:12
 msgid "Compose message to team"
 msgstr "Team-Nachricht verfassen"
@@ -2605,9 +2572,9 @@ msgstr "Du wurdest für die Quest <strong>%s</strong> akzeptiert."
 
 #: heronotification/models.py:209
 #, python-format
-msgid ""
-"Your application for the quest <strong>%s</strong> has been rejected."
-msgstr "Deine Bewerbung für die Quest <strong>%s</strong> wurde nicht angenommen."
+msgid "Your application for the quest <strong>%s</strong> has been rejected."
+msgstr ""
+"Deine Bewerbung für die Quest <strong>%s</strong> wurde nicht angenommen."
 
 #: heronotification/models.py:219
 #, python-format
@@ -2662,8 +2629,8 @@ msgid ""
 "Dear Ladies and Gentlemen,\n"
 "There has been a new application to the quest %(target.quest.title)s.\n"
 "Please report back to the applicants as soon as possible!\n"
-"Visit http://%(site.domain)s%(target.quest.get_absolute_url)s to see the quest "
-"and handle the application.\n"
+"Visit http://%(site.domain)s%(target.quest.get_absolute_url)s to see the "
+"quest and handle the application.\n"
 "\n"
 "Respectfully,\n"
 "Your you are hero butler\n"
@@ -2693,7 +2660,8 @@ msgid ""
 "Dear Ladies and Gentlemen,\n"
 "%(target.user.username)s has withdrawn his participation on your quest "
 "%(target.quest.title)s .\n"
-"You can visit the quest here http://%(site.domain)s %(target.quest.get_absolute_url)s.\n"
+"You can visit the quest here http://%(site.domain)s "
+"%(target.quest.get_absolute_url)s.\n"
 "\n"
 "Respectfully,\n"
 "Your you are hero butler\n"
@@ -2721,8 +2689,10 @@ msgid ""
 "New heroes and heroines\n"
 "\n"
 "Dear Ladies and Gentlemen,\n"
-"The quest %(target.quest.title)s has found in %(target.user.username)s a new participant.\n"
-"Visit http://%(site.domain)s%(target.quest.get_absolute_url)s to see the quest.\n"
+"The quest %(target.quest.title)s has found in %(target.user.username)s a new "
+"participant.\n"
+"Visit http://%(site.domain)s%(target.quest.get_absolute_url)s to see the "
+"quest.\n"
 "\n"
 "Respectfully,\n"
 "Your you are hero butler\n"
@@ -2750,7 +2720,8 @@ msgid ""
 "Apologies\n"
 "\n"
 "Dear Ladies and Gentlemen,\n"
-"unfortunately your application to the quest %(target.title)s could not be regarded this time.\n"
+"unfortunately your application to the quest %(target.title)s could not be "
+"regarded this time.\n"
 "Bear up and on to the next challenge!\n"
 "\n"
 "Respectfully,\n"
@@ -2778,7 +2749,8 @@ msgid ""
 "Heroic post\n"
 "\n"
 "Dear Ladies and Gentlemen,\n"
-"You have received a new message from %(target.sender)s in your heroes mailbox.\n"
+"You have received a new message from %(target.sender)s in your heroes "
+"mailbox.\n"
 "\n"
 "The message sais:\n"
 "%(target.title)s\n"
@@ -2871,7 +2843,8 @@ msgid ""
 "You are registered for the quest %(target.title)s.\n"
 "I herby inform you, that the quest has officially started now.\n"
 "\n"
-"You can find the quest here http://%(site.domain)s%(target.get_absolute_url)s.\n"
+"You can find the quest here http://%(site.domain)s"
+"%(target.get_absolute_url)s.\n"
 "\n"
 "Respectfully,\n"
 "Your you are hero butler\n"
@@ -2902,9 +2875,11 @@ msgid ""
 "\n"
 "Dear Ladies and Gentlemen,\n"
 "I am the butler and would like to welcome you at http://%(site.domain)s.\n"
-"From now on I will aid you as best as I can with help, hints and notifications.\n"
+"From now on I will aid you as best as I can with help, hints and "
+"notifications.\n"
 "\n"
-"My recommendation for the beginning would be the Do's and Don'ts of our website.\n"
+"My recommendation for the beginning would be the Do's and Don'ts of our "
+"website.\n"
 "\n"
 "Respectfully,\n"
 "Your you are hero butler\n"
@@ -2927,9 +2902,6 @@ msgstr ""
 "\n"
 
 #: heroorganization/templates/heroorganization/organization_detail.html:5
-msgid "Organization"
-msgstr "Organisation"
-
 #: heroorganization/templates/heroorganization/organization_detail.html:13
 msgid "Organization"
 msgstr "Organisation"
@@ -2951,8 +2923,8 @@ msgstr "Hallo, hier ist deine Adminseite."
 #, python-format
 msgid ""
 "\n"
-"                    here you can edit the details to your organization "
-"that will then be depicted on your\n"
+"                    here you can edit the details to your organization that "
+"will then be depicted on your\n"
 "                    <a href=\"%(organization.get_absolute_url)s"
 "\">organization profile</a>.\n"
 "                "
@@ -3127,9 +3099,6 @@ msgstr "Englisch"
 
 #~ msgid "Autor"
 #~ msgstr "Author"
-
-#~ msgid "Erfahrung"
-#~ msgstr "Experience"
 
 #~ msgid "Erfahrung"
 #~ msgstr "Experience"
