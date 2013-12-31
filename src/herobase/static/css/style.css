@@ -5136,3 +5136,12 @@ table.leader-table .active td.rank,
 table.leader-table .active a {
   color: blue;
 }
+.arg-pictures .picturebox {
+  height: 150px;
+  width: 150px;
+  display: inline-block;
+}
+.arg-pictures .picturebox.big {
+  height: 336px;
+  width: 312px;
+}

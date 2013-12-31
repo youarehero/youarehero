@@ -13,6 +13,29 @@
       </div>
     </div>
 
+    <div class="row"><div class="col-md-12">
+      <div class="arg-pictures js-masonry" data-masonry-options='{ "columnWidth": 162, "itemSelector": ".picturebox"}'>
+        <div class="box-blue cut-corners picturebox big"><img src="http://placekitten.com/288/336"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox big"><img src="http://placekitten.com/288/336"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox big"><img src="http://placekitten.com/288/336"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox big"><img src="http://placekitten.com/288/336"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+        <div class="box-blue cut-corners picturebox"><img src="http://placekitten.com/126/150"/></div>
+      </div>
+    </div>
+
     <div class="infobox-container middle">
       <div id="yah-ist-ein-spiel">
         <h1>{% trans "you are hero is a game" %}</h1>
@@ -96,4 +119,8 @@ Solve Quests online or in the city, alone or with friends, and help the hero com
           <img src="{% get_static_prefix %}/img/sponsors/hfg.png" height="60"/>
         </a>
     </div>
+{% endblock %}
+
+{% block javascript %}
+ <script src="{% get_static_prefix %}js/masonry.pkgd.min.js"></script>
 {% endblock %}
