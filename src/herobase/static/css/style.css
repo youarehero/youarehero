@@ -3074,18 +3074,15 @@ textarea {
   font-family: farao_book_heldregular;
 }
 .infobox-container.middle > div {
-  top: -65px;
+  bottom: 816px;
   left: 40px;
 }
 .infobox-container.middle + .row {
   margin-top: 180px;
 }
-.infobox-container.bottom {
-  height: 50px;
-}
 .infobox-container.bottom > div {
   left: 393px;
-  bottom: 0px;
+  bottom: 440px;
 }
 ul.buttons {
   margin: 6px 0;
