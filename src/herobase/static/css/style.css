@@ -5142,3 +5142,14 @@ table.leader-table .active a {
   height: 336px;
   width: 312px;
 }
+.arg-pictures .picturebox.big i {
+  font-size: 300px;
+  line-height: 203px;
+}
+.arg-pictures .picturebox i {
+  font-size: 150px;
+  line-height: 90px;
+  color: white;
+  display: block;
+  text-align: center;
+}
