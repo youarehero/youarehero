@@ -1,26 +1,29 @@
-{% load static %}
+{% load static i18n %}
 {% load url from future %}
 <div class="box-image" data-position="7">
     <div class="image" style="background-image: url({% get_static_prefix %}img/articles/article7.png);"></div>
-    <h1 class="header red">Neue Helden gesucht!</h1>
+    <h1 class="header red">{% trans "New Heroes Wanted!" %}</h1>
     <p class="text">
-    you are hero ist ein virtueller Treffpunkt für Helden und Heldenanwärter. Sogleich nach der Registrierung kreierst
-    Du Deinen Heldencharakter und sammelst Heldenpunkte indem du Quests (Aufgaben und Aufträge) von der Pinnwand
-    erfüllst. Die Herausforderung und zugleich heldenhafte Chance liegt darin, dass alle Quests in der Realität erfüllt
-    werden.
+    {% blocktrans %}you are hero is a virtual gathering place for heroes and heroic aspirants.
+    Right after the registration you create your own heroic character and collect
+    hero points by completing quests provided on the billboard. The challenge and
+    likewise heroic chance is the fact that all quests are being solved in
+    reality.{% endblocktrans %}
     <br/>
-    Natürlich könnt auch Ihr auch selbst Quests einstellen, schließlich braucht jeder Held hin und wieder Unterstützung.
-    Das Ziel des Spiels ist ganz einfach: Nicht nur reden, sondern handeln
-    <br/>
-    – also rettet die Welt.
+    {% blocktrans %}Of course you can also enter quests yourself, after all almost everyone needs
+    some help from time to time. The goal of this game is simple: Not only talk
+    but act<br/>– so go and save the world!{% endblocktrans %}
     </p>
     {% if not request.user.is_authenticated %}
         <div class="box-floating">
-            <h1 class="header"><a class="plain" href="#yah-ist-ein-spiel">Helden<br/>bedarf</a></h1>
-            <p>Erfahre mehr, <a href="{% url "registration_register" %}">registriere</a> dich jetzt und beginne noch heute mit dem Spiel!</p>
-            <div class="box-footer">
-                <a href="#yah-ist-ein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>
-            </div>
+          <h1 class="header"><a class="plain" href="#yah-ist-ein-spiel">{% trans "Heroes<br/>needed" %}</a></h1>
+          {% url "registration_register" as registration_url %}
+          <p>
+          {% blocktrans %}Get to know more, <a href="{{ registration_url }}">register now</a> and start the game today!{% endblocktrans %}
+          </p>
+          <div class="box-footer">
+              <a href="#yah-ist-ein-spiel"><i class="icon-yah-hand-down icon-2x"></i></a>
+          </div>
         </div>
     {% endif %}
 </div>
