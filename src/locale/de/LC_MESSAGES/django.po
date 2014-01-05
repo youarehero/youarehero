@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-29 16:13+0100\n"
+"POT-Creation-Date: 2014-01-05 19:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -892,7 +892,7 @@ msgstr ""
 "            "
 
 #: herobase/templates/herobase/arg.html:253
-#: herobase/templates/herobase/public_home.html:57
+#: herobase/templates/herobase/public_home.html:73
 #: herobase/templates/registration/registration_box.inc.html:29
 msgid "Register"
 msgstr "Registrieren"
@@ -1699,11 +1699,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: herobase/templates/herobase/public_home.html:18
+#: herobase/templates/herobase/public_home.html:41
 msgid "you are hero is a game"
 msgstr "you are hero ist ein Spiel"
 
-#: herobase/templates/herobase/public_home.html:20
+#: herobase/templates/herobase/public_home.html:43
 msgid ""
 "\n"
 "Solve Quests online or in the city, alone or with friends, and help the hero "
@@ -1719,7 +1719,7 @@ msgstr ""
 "        kannst so viel zeit aufwenden, wie du möchtest.\n"
 "        "
 
-#: herobase/templates/herobase/public_home.html:24
+#: herobase/templates/herobase/public_home.html:47
 #, python-format
 msgid ""
 "\n"
@@ -1732,11 +1732,11 @@ msgstr ""
 "Entropius’ Quest an um loszulegen.\n"
 "        "
 
-#: herobase/templates/herobase/public_home.html:37
+#: herobase/templates/herobase/public_home.html:60
 msgid "you are hero is no game"
 msgstr "you are hero ist kein Spiel"
 
-#: herobase/templates/herobase/public_home.html:40
+#: herobase/templates/herobase/public_home.html:63
 #, python-format
 msgid ""
 "This is a serious matter!We want to prove that games and playing can save "
@@ -1757,23 +1757,23 @@ msgstr ""
 "machen will, oder du trägst einfach deine eigene Quest ein, falls du selbst\n"
 "Helden-Hilfe benötigst!"
 
-#: herobase/templates/herobase/public_home.html:63
+#: herobase/templates/herobase/public_home.html:79
 msgid "Recently finished quests"
 msgstr "k&uuml;rzlich abgeschlossene Quests"
 
-#: herobase/templates/herobase/public_home.html:75
+#: herobase/templates/herobase/public_home.html:91
 msgid "sponsored by"
 msgstr "Gef&ouml;rdert durch"
 
-#: herobase/templates/herobase/public_home.html:78
+#: herobase/templates/herobase/public_home.html:94
 msgid "city of Karlsruhe"
 msgstr "Stadt Karlsruhe"
 
-#: herobase/templates/herobase/public_home.html:83
+#: herobase/templates/herobase/public_home.html:99
 msgid "Heinrich Hertz society"
 msgstr "Heinrich Hertz Gesellschaft"
 
-#: herobase/templates/herobase/public_home.html:88
+#: herobase/templates/herobase/public_home.html:104
 msgid "Rotary Club Karlsruhe"
 msgstr "Rotary Club Karlsruhe"
 
@@ -1793,6 +1793,51 @@ msgstr "Es gibt keine abgeschlossenen Quests."
 #: herobase/templates/herobase/userprofile/detail_box.html:32
 msgid "Team"
 msgstr "Team"
+
+#: herobase/templates/herobase/articles/7.inc.html:5
+msgid "New Heroes Wanted!"
+msgstr "Neue Helden gesucht!"
+
+#: herobase/templates/herobase/articles/7.inc.html:7
+msgid ""
+"you are hero is a virtual gathering place for heroes and heroic aspirants.\n"
+"    Right after the registration you create your own heroic character and "
+"collect\n"
+"    hero points by completing quests provided on the billboard. The "
+"challenge and\n"
+"    likewise heroic chance is the fact that all quests are being solved in\n"
+"    reality."
+msgstr ""
+"you are hero ist ein virtueller Treffpunkt für Helden und Heldenanwärter. "
+"Sogleich nach der Registrierung kreierst Du Deinen Heldencharakter und "
+"sammelst Heldenpunkte indem du Quests (Aufgaben und Aufträge) von der "
+"Pinnwand erfüllst. Die Herausforderung und zugleich heldenhafte Chance liegt "
+"darin, dass alle Quests in der Realität erfüllt werden."
+
+#: herobase/templates/herobase/articles/7.inc.html:13
+msgid ""
+"Of course you can also enter quests yourself, after all almost everyone "
+"needs\n"
+"    some help from time to time. The goal of this game is simple: Not only "
+"talk\n"
+"    but act<br/>– so go and save the world!"
+msgstr ""
+"Natürlich könnt auch Ihr auch selbst Quests einstellen, schließlich braucht "
+"jeder Held hin und wieder Unterstützung.Das Ziel des Spiels ist ganz "
+"einfach: Nicht nur reden, sondern handeln<br/> – also rettet die Welt."
+
+#: herobase/templates/herobase/articles/7.inc.html:19
+msgid "Heroes<br/>needed"
+msgstr "Helden<br/>bedarf"
+
+#: herobase/templates/herobase/articles/7.inc.html:22
+#, python-format
+msgid ""
+"Get to know more, <a href=\"%(registration_url)s\">register now</a> and "
+"start the game today!"
+msgstr ""
+"Erfahre mehr, <a href=\"%(registration_url)s\">registriere</a> dich jetzt "
+"und beginne noch heute mit dem Spiel!"
 
 #: herobase/templates/herobase/layout/footer.inc.html:5
 msgid "Imprint/Contact"
@@ -3020,3 +3065,16 @@ msgstr "Deutsch"
 msgid "English"
 msgstr "Englisch"
 
+#~ msgid ""
+#~ " Natürlich könnt auch Ihr auch selbst Quests einstellen, schließlich "
+#~ "braucht jeder Held hin\n"
+#~ "    und wieder Unterstützung.  Das Ziel des Spiels ist ganz einfach: "
+#~ "Nicht nur reden, sondern handeln<br/> – also rettet\n"
+#~ "    die Welt."
+#~ msgstr ""
+#~ "Of course you can also enter quests yourself, after all almost everyone "
+#~ "needs some help from time to time. The goal of this game is simple: Not "
+#~ "only talk but act<br/>– so go and save the world!"
+
+#~ msgid "Helden<br/>bedarf"
+#~ msgstr "Heroes<br/>needed"
